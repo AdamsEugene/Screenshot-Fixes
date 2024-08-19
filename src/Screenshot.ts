@@ -1,4 +1,5 @@
 import StickyAddToCart from "./StickyAddToCart";
+import ForsonScreenshotFixes from "./ForsonScreenshotFixes";
 
 class ScreenshotFixes {
   private debugMode: boolean;
@@ -21,12 +22,12 @@ class ScreenshotFixes {
     this.setPTagsDisplayBlock();
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
+    const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
     fixedElements.forEach((element) => {
       element.style.setProperty("display", "block", "important");
     });
     console.log(fixedElements);
-
     // Stop the Owl Carousel autoplay
   }
 
