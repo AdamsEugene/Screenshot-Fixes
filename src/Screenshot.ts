@@ -1,37 +1,71 @@
+import StickyAddToCart from "./StickyAddToCart";
+
 class ScreenshotFixes {
   private debugMode: boolean;
+  private dom: Document;
 
   constructor(debugMode = false) {
     this.debugMode = debugMode;
   }
 
-  init(containerId = "recordingPlayer", debugMode = false) {
+  public init(containerId = "recordingPlayer", debugMode = false): void {
+    console.log("inside screenshot fixes, id: ", containerId);
     this.debugMode = debugMode;
-    const document = window.document;
-    const container = document.getElementById(containerId) as HTMLIFrameElement;
-    const dom = container?.contentWindow?.document || document;
+    const container = document.getElementById(
+      containerId
+    ) as HTMLIFrameElement | null;
+    this.dom = container?.contentWindow?.document || document;
 
-    applyStyles(dom);
-    hidePopup(dom);
-  }
-}
+    this.applyStyles();
+    this.hidePopup();
+    this.setPTagsDisplayBlock();
 
-function applyStyles(doc: Document | undefined) {
-  doc
-    ?.querySelectorAll(".lai-star-rating-none svg, .lai-star-rating svg")
-    .forEach((element) => {
-      (element as HTMLElement).style.maxWidth = "20px";
-      (element as HTMLElement).style.float = "left";
+    const fixedElementsInstance = new StickyAddToCart(this.dom);
+    const fixedElements = fixedElementsInstance.getElements();
+    fixedElements.forEach((element) => {
+      element.style.setProperty("display", "block", "important");
     });
-}
+    console.log(fixedElements);
 
-function hidePopup(doc: Document | undefined) {
-  const popup = doc?.querySelector(".canadian-first-popup");
-  if (popup) {
-    const sibling = popup.previousElementSibling as HTMLElement;
-    if (sibling && sibling.children.length === 0 && sibling.className === "") {
-      sibling.style.setProperty("display", "none", "important");
+    // Stop the Owl Carousel autoplay
+  }
+
+  private applyStyles(): void {
+    this.dom
+      ?.querySelectorAll<HTMLElement>(
+        ".lai-star-rating-none svg, .lai-star-rating svg"
+      )
+      .forEach((element) => {
+        element.style.maxWidth = "20px";
+        element.style.float = "left";
+      });
+  }
+  private hidePopup(): void {
+    const popup = this.dom?.querySelector<HTMLElement>(".canadian-first-popup");
+    if (popup) {
+      const sibling = popup.previousElementSibling as HTMLElement | null;
+      if (
+        sibling &&
+        sibling.children.length === 0 &&
+        sibling.className === ""
+      ) {
+        sibling.style.setProperty("display", "none", "important");
+      }
     }
+  }
+  private setPTagsDisplayBlock() {
+    this.dom?.querySelectorAll(".feature__description")?.forEach((element) => {
+      const pTags = element.querySelectorAll("p");
+      pTags.forEach((p) => {
+        p.style.display = "block";
+      });
+    });
+
+    this.dom
+      ?.querySelectorAll(".custom-blk ul li img")
+      ?.forEach((img: HTMLElement) => {
+        img.style.minWidth = "100%";
+      });
   }
 }
 
