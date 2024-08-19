@@ -9,7 +9,7 @@ class ScreenshotFixes {
     this.debugMode = debugMode;
   }
 
-  public init(containerId = "recordingPlayer", debugMode = false): void {
+  public init(containerId = "recordingPlayer1", debugMode = false): void {
     console.log("inside screenshot fixes, id: ", containerId);
     this.debugMode = debugMode;
     const container = document.getElementById(
@@ -20,9 +20,12 @@ class ScreenshotFixes {
     this.applyStyles();
     this.hidePopup();
     this.setPTagsDisplayBlock();
+    this.setZIndexToNegOne();
+    this.setMinHeightMinWidth100();
+    this.adjustMainContentPosition();
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
-    const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
+    // const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
     fixedElements.forEach((element) => {
       element.style.setProperty("display", "block", "important");
@@ -67,6 +70,54 @@ class ScreenshotFixes {
       ?.forEach((img: HTMLElement) => {
         img.style.minWidth = "100%";
       });
+  }
+  private setZIndexToNegOne() {
+    const divsWithExactText = Array.from(
+      this.dom.querySelectorAll("div")
+    )?.filter((div) => div?.textContent.trim() === "Optimized Theme Version");
+    console.log("====================================");
+    console.log(divsWithExactText);
+    console.log("====================================");
+    divsWithExactText.forEach((div) => {
+      div.style.setProperty("z-index", "-1", "important");
+    });
+  }
+  private setMinHeightMinWidth100() {
+    const classNames = ["collection-hero.w3_bg"];
+    classNames.forEach((className) => {
+      const heroElements = this.dom.querySelectorAll(`.${className}`);
+      heroElements.forEach((heroElement) => {
+        const imgElement = heroElement.querySelector("img");
+        if (imgElement) {
+          imgElement.style.minWidth = "100%";
+          imgElement.style.minHeight = "100%";
+        }
+      });
+    });
+  }
+  private adjustMainContentPosition() {
+    const mainContent = this.dom.querySelector("#MainContent") as HTMLElement;
+    if (mainContent) {
+      let previousElement = mainContent.previousElementSibling;
+      if (previousElement) {
+        const header = previousElement.querySelector("header");
+        if (header) {
+          const headerRect = previousElement.getBoundingClientRect();
+          if (headerRect.height === 0) {
+            previousElement = header;
+          }
+        }
+        const previousElementRect = previousElement.getBoundingClientRect();
+        const previousElementBottom = previousElementRect.bottom;
+        const mainContentRect = mainContent.getBoundingClientRect();
+        let mainContentTop = mainContentRect.top;
+        if (Math.floor(mainContentTop) !== Math.floor(previousElementBottom)) {
+          mainContent.style.marginTop = `${
+            previousElementBottom - mainContentTop
+          }px`;
+        }
+      }
+    }
   }
 }
 
