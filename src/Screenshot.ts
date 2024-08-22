@@ -23,6 +23,7 @@ class ScreenshotFixes {
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const chrisScreenShotFixesInstance = new  ChrisScreenShotFixes(this.dom);
+    chrisScreenShotFixesInstance.init();
     const fixedElements = fixedElementsInstance.getElements();
     fixedElements.forEach((element) => {
       element.style.setProperty("display", "block", "important");
