@@ -25,7 +25,12 @@ class ScreenshotFixes {
     this.setMinHeightMinWidth100();
     this.adjustMainContentPosition();
     this.setElementDisplayToNone();
-    this.setHeroImagesStyles(["index-hero-wrapper", "content_card"]);
+    this.setHeroImagesStyles([
+      "index-hero-wrapper",
+      "content_card",
+      "reservation-section-wrapper",
+    ]);
+    this.normalizeSwiperSlideWidths();
 
     console.log("new dom to be used inside scf: ", this.dom);
 
@@ -154,6 +159,31 @@ class ScreenshotFixes {
           );
           imgElement.style.setProperty("height", "max-content", "important");
         }
+      });
+    });
+  }
+
+  private normalizeSwiperSlideWidths(): void {
+    const swipers = this.dom.querySelectorAll<HTMLElement>(".swiper-wrapper");
+    swipers.forEach((swiper) => {
+      const slides = swiper.querySelectorAll<HTMLElement>(".swiper-slide");
+      const widthCounts: Record<string, number> = {};
+
+      slides.forEach((slide) => {
+        const width = slide.style.width || `${slide.offsetWidth}px`;
+        widthCounts[width] = (widthCounts[width] || 0) + 1;
+      });
+
+      let mostCommonWidth = "";
+      let maxCount = 0;
+      for (const [width, count] of Object.entries(widthCounts)) {
+        if (count > maxCount) {
+          mostCommonWidth = width;
+          maxCount = count;
+        }
+      }
+      slides.forEach((slide) => {
+        slide.style.setProperty("width", mostCommonWidth, "important");
       });
     });
   }
