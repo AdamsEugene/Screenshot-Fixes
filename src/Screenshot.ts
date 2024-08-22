@@ -24,6 +24,8 @@ class ScreenshotFixes {
     this.setZIndexToNegOne();
     this.setMinHeightMinWidth100();
     this.adjustMainContentPosition();
+    this.setElementDisplayToNone();
+    this.setHeroImagesStyles(["index-hero-wrapper", "content_card"]);
 
     console.log("new dom to be used inside scf: ", this.dom);
 
@@ -123,6 +125,37 @@ class ScreenshotFixes {
         }
       }
     }
+  }
+
+  private setElementDisplayToNone() {
+    console.log("====================================");
+    console.log("setting ele display to none");
+    console.log("====================================");
+    this.dom
+      .querySelectorAll(".modal__gifting")
+      ?.forEach((m: HTMLElement) => (m.style.display = "none"));
+  }
+
+  private setHeroImagesStyles(classNames: string[]) {
+    classNames.forEach((className) => {
+      const heroWrappers = this.dom.querySelectorAll(`.${className}`);
+      console.log("====================================");
+      console.log("setHeroImagesStyles", { heroWrappers });
+      console.log("====================================");
+      heroWrappers.forEach((wrapper) => {
+        const imgElement = wrapper.querySelector("img");
+        if (imgElement) {
+          imgElement.style.setProperty("width", "100%", "important");
+          imgElement.style.setProperty("min-width", "100%", "important");
+          imgElement.style.setProperty(
+            "min-height",
+            "max-content",
+            "important"
+          );
+          imgElement.style.setProperty("height", "max-content", "important");
+        }
+      });
+    });
   }
 }
 
