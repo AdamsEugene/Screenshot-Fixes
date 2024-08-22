@@ -1,4 +1,5 @@
 import StickyAddToCart from "./StickyAddToCart";
+import ChrisScreenShotFixes from "./ChrisScreenShotFixes";
 import ForsonScreenshotFixes from "./ForsonScreenshotFixes";
 
 class ScreenshotFixes {
@@ -25,6 +26,8 @@ class ScreenshotFixes {
     this.adjustMainContentPosition();
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
+    const chrisScreenShotFixesInstance = new  ChrisScreenShotFixes(this.dom);
+    chrisScreenShotFixesInstance.init();
     // const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
     fixedElements.forEach((element) => {
@@ -33,6 +36,7 @@ class ScreenshotFixes {
     console.log(fixedElements);
     // Stop the Owl Carousel autoplay
   }
+
 
   private applyStyles(): void {
     this.dom
