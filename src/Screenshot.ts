@@ -25,8 +25,10 @@ class ScreenshotFixes {
     this.setMinHeightMinWidth100();
     this.adjustMainContentPosition();
 
+    console.log("new dom to be used inside scf: ", this.dom);
+
     const fixedElementsInstance = new StickyAddToCart(this.dom);
-    const chrisScreenShotFixesInstance = new  ChrisScreenShotFixes(this.dom);
+    const chrisScreenShotFixesInstance = new ChrisScreenShotFixes(this.dom);
     chrisScreenShotFixesInstance.init();
     // const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
@@ -36,7 +38,6 @@ class ScreenshotFixes {
     console.log(fixedElements);
     // Stop the Owl Carousel autoplay
   }
-
 
   private applyStyles(): void {
     this.dom
