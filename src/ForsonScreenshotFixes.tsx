@@ -17,7 +17,9 @@ export default class ForsonScreenshotFixes {
     this.applyResponsiveStyles()
   }
 
-  private adjustBannerImageHeight(): void {
+  private adjustBannerImageHeight() {
+    console.log('running adjustBannerImageHeight()');
+    
     if (this.document.body.clientWidth <= 430) return;
 
     const bannerImage = this.document.querySelector('.banner_image');
@@ -31,11 +33,13 @@ export default class ForsonScreenshotFixes {
   }
 
   private adjustImages(): void {
+    console.log('running adjustImages()');
     this.adjustBannerImages();
     this.adjustHoverEffectImages();
   }
 
   private adjustBannerImages(): void {
+    console.log('running adjustBannerImages()');
     const viewportWidth = this.document.body.clientWidth;
     this.document.querySelectorAll('.banner__media.media').forEach(bannerElement => {
       const bannerImage = bannerElement.querySelector('img');
@@ -50,6 +54,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private adjustHoverEffectImages(): void {
+    console.log('running adjustHoverEffectImages()');
     this.document.querySelectorAll(".media.media--hover-effect").forEach(el => {
       const images = el.querySelectorAll('img');
       const targetImage = images.length >= 2 ? images[1] : images[0];
@@ -60,6 +65,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private adjustPromoGridImages(): void {
+    console.log('running adjustPromoGridImages()');
     const viewportWidth = this.document.body.clientWidth;
     this.document.querySelectorAll('.promo-grid__bg').forEach(promoElement => {
       const promoImage = promoElement.querySelector('img');
@@ -74,11 +80,13 @@ export default class ForsonScreenshotFixes {
   }
 
   private adjustProductGridAndStyles(): void {
+    console.log('running adjustProductGridAndStyles()');
     this.addProductGridStyles();
     this.adjustProductGridImages();
   }
 
   private addProductGridStyles(): void {
+    console.log('running addProductGridStyles()');
     const style = this.document.createElement('style');
     style.textContent = `
       .multicolumn-list__item.center .media--adapt,
@@ -90,6 +98,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private adjustProductGridImages(): void {
+    console.log('running adjustProductGridImages()');
     const productGrid = this.document.querySelector('.grid.product-grid.grid--2-col-tablet-down.grid--4-col-desktop');
     if (!productGrid) return;
 
@@ -107,6 +116,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private removeSectionInterstitialHeight(): void {
+    console.log('running removeSectionInterstitialHeight()');
     const elements = this.document.querySelectorAll('.section-interstitial');
     elements.forEach(element => {
       if (!(element instanceof HTMLElement)) return;
@@ -119,6 +129,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private adjustImageStyles(): void {
+    console.log('running adjustImageStyles()');
     const targetDivs = this.document.querySelectorAll('.image-wrap, .text-spacing');
 
     targetDivs.forEach(div => {
@@ -135,6 +146,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private removeDisplayNone(): void {
+    console.log('running removeDisplayNone()');
     const classList = [
       'jdgm-widget',
       'jdgm-carousel',
@@ -154,11 +166,13 @@ export default class ForsonScreenshotFixes {
   }
 
   private removeProperties(): void {
+    console.log('running removeProperties()');
     this.removeSectionHeight();
     this.removeImgFitDimensions();
   }
 
   private removeSectionHeight(): void {
+    console.log('running removeSectionHeight()');
     const sectionElement = this.document.querySelector('.icons-with-text.section.section--full-width.section--padded-small.color-scheme.color-scheme--2');
     if (sectionElement instanceof HTMLElement) {
       sectionElement.style.removeProperty('height');
@@ -166,6 +180,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private removeImgFitDimensions(): void {
+    console.log('running removeImgFitDimensions()');
     const imgFitElements = this.document.querySelectorAll('.img-fit');
     imgFitElements.forEach(element => {
       if (element instanceof HTMLElement) {
@@ -176,6 +191,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private applyResponsiveStyles(): void {
+    console.log('running applyResponsiveStyles()');
     const viewportWidth = this.document.body.clientWidth;
     if (viewportWidth <= 749) {
       const productIngredientsElement = this.document.querySelector('.product-ingredients');
