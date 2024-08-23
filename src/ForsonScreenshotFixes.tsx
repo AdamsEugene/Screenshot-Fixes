@@ -11,8 +11,9 @@ export default class ForsonScreenshotFixes {
     this.adjustPromoGridImages();
     this.adjustProductGridAndStyles();
     this.removeSectionInterstitialHeight();
-    // this.removeImageWrapStyles();
-    this.adjustImageStyles()
+    this.adjustImageStyles();
+    this.removeDisplayNone();
+    this.removeProperties();
   }
 
   private adjustBannerImageHeight(): void {
@@ -115,21 +116,62 @@ export default class ForsonScreenshotFixes {
       }
     });
   }
-    private adjustImageStyles() {
-      const targetDivs = document.querySelectorAll('.image-wrap, .text-spacing');
-  
-      targetDivs.forEach(div => {
-          if (div instanceof HTMLElement) {
-              div.style.removeProperty('height');
-              
-              div.style.setProperty('padding-bottom', '1px', 'important');
-  
-              const img = div.querySelector('img');
-              if (img instanceof HTMLImageElement) {
-                  img.style.setProperty('height', 'auto', 'important');
-              }
-          }
+
+  private adjustImageStyles(): void {
+    const targetDivs = this.document.querySelectorAll('.image-wrap, .text-spacing');
+
+    targetDivs.forEach(div => {
+      if (div instanceof HTMLElement) {
+        div.style.removeProperty('height');
+        div.style.setProperty('padding-bottom', '1px', 'important');
+
+        const img = div.querySelector('img');
+        if (img instanceof HTMLImageElement) {
+          img.style.setProperty('height', 'auto', 'important');
+        }
+      }
+    });
+  }
+
+  private removeDisplayNone(): void {
+    const classList = [
+      'jdgm-widget',
+      'jdgm-carousel',
+      'jdgm-carousel--default-theme',
+      'jdgm-carousel--done',
+      'jdgm-carousel-wrapper',
+      'jdgm-carousel__left-arrow',
+      'jdgm-carousel__right-arrow'
+    ];
+    
+    classList.forEach(className => {
+      const elements = this.document.querySelectorAll(`.${className}`) as NodeListOf<HTMLElement>;
+      elements.forEach(element => {
+        element.style.removeProperty('display');
       });
+    });
+  }
+
+  private removeProperties(): void {
+    this.removeSectionHeight();
+    this.removeImgFitDimensions();
+  }
+
+  private removeSectionHeight(): void {
+    const sectionElement = this.document.querySelector('.icons-with-text.section.section--full-width.section--padded-small.color-scheme.color-scheme--2');
+    if (sectionElement instanceof HTMLElement) {
+      sectionElement.style.removeProperty('height');
+    }
+  }
+
+  private removeImgFitDimensions(): void {
+    const imgFitElements = this.document.querySelectorAll('.img-fit');
+    imgFitElements.forEach(element => {
+      if (element instanceof HTMLElement) {
+        element.style.removeProperty('height');
+        element.style.removeProperty('width');
+      }
+    });
   }
 
   private setImageDimensions(image: HTMLImageElement, parent: Element): void {
