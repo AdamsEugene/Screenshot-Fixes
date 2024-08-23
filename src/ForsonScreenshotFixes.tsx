@@ -14,6 +14,7 @@ export default class ForsonScreenshotFixes {
     this.adjustImageStyles();
     this.removeDisplayNone();
     this.removeProperties();
+    this.applyResponsiveStyles()
   }
 
   private adjustBannerImageHeight(): void {
@@ -172,6 +173,16 @@ export default class ForsonScreenshotFixes {
         element.style.removeProperty('width');
       }
     });
+  }
+
+  private applyResponsiveStyles(): void {
+    const viewportWidth = this.document.body.clientWidth;
+    if (viewportWidth <= 749) {
+      const productIngredientsElement = this.document.querySelector('.product-ingredients');
+      if (productIngredientsElement instanceof HTMLElement) {
+        productIngredientsElement.style.setProperty('--carousel-edge', 'max(calc(var(--spacing-edge) * 0), 0rem)');
+      }
+    }
   }
 
   private setImageDimensions(image: HTMLImageElement, parent: Element): void {
