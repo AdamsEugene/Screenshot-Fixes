@@ -15,6 +15,7 @@ export default class ForsonScreenshotFixes {
     this.removeDisplayNone();
     this.removeProperties();
     this.applyResponsiveStyles();
+    this.removeImgFitDimensions()
   }
 
   private adjustBannerImageHeight(): void {
