@@ -37,7 +37,8 @@ class ScreenshotFixes {
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const chrisScreenShotFixesInstance = new ChrisScreenShotFixes(this.dom);
     chrisScreenShotFixesInstance.init();
-    // const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
+    const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
+    forsonScreenshotFixesInstance.init()
     const fixedElements = fixedElementsInstance.getElements();
     fixedElements.forEach((element) => {
       element.style.setProperty("display", "block", "important");
