@@ -16,6 +16,7 @@ export default class ForsonScreenshotFixes {
     this.removeProperties();
     this.applyResponsiveStyles();
     this.applyCustomStyles();
+    this.updateElements()
   }
 
   // Upcircle EU
@@ -225,6 +226,27 @@ export default class ForsonScreenshotFixes {
     imgElements.forEach(element => {
         element.style.setProperty('-webkit-mask-image', 'none');
     });
+}
+
+// Ra Optics
+private updateElements() {
+  const wrapperElements = document.querySelectorAll('.rimage-wrapper.lazyload--placeholder') as NodeListOf<HTMLImageElement>;
+  wrapperElements.forEach((element) => {
+      element.style.background = 'none';
+  });
+
+  const imageElements = document.querySelectorAll('.rimage__image') as NodeListOf<HTMLImageElement>;
+  imageElements.forEach((element) => {
+      element.style.height = '';
+      element.style.width = '';
+  });
+
+  // Target the element with the ID 'CartPopup' and remove its width property
+  const cartPopupElement = document.getElementById('CartPopup');
+  if (cartPopupElement) {
+      cartPopupElement.style.width = '';
+  }
+  
 }
 
 
