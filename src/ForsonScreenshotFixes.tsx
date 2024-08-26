@@ -115,6 +115,9 @@ export default class ForsonScreenshotFixes {
     });
   }
 
+
+
+
   private removeSectionInterstitialHeight(): void {
     console.log('running removeSectionInterstitialHeight()');
     const elements = this.document.querySelectorAll('.section-interstitial');
@@ -128,6 +131,9 @@ export default class ForsonScreenshotFixes {
     });
   }
 
+
+
+  
   private adjustImageStyles(): void {
     console.log('running adjustImageStyles()');
     const targetDivs = this.document.querySelectorAll('.image-wrap, .text-spacing');
