@@ -7,63 +7,66 @@ export default class ForsonScreenshotFixes {
 
   public init(): void {
     this.adjustBannerImageHeight();
-    this.adjustImages();
+    this.adjustImages(); 
     this.adjustPromoGridImages();
     this.adjustProductGridAndStyles();
     this.removeSectionInterstitialHeight();
     this.adjustImageStyles();
     this.removeDisplayNone();
     this.removeProperties();
-    this.applyResponsiveStyles()
+    this.applyResponsiveStyles();
+    this.applyCustomStyles();
   }
 
+  // Upcircle EU
   private adjustBannerImageHeight() {
-    console.log('running adjustBannerImageHeight()');
-    
-    if (this.document.body.clientWidth <= 430) return;
+    if (document.body.clientWidth > 430) {
+        const bannerImage = document.querySelector('.banner_image') as HTMLElement;
+        if (bannerImage) {
+            const parentElement = bannerImage.parentElement;
+            if (parentElement) {
+                const parentHeight = parentElement.offsetHeight;
+                bannerImage.style.setProperty('min-height', `${parentHeight}px`);
+            } 
+        } 
+    }
+    const collectionSidebar = document.querySelector('.collection_sidebar') as HTMLElement;
+    if (collectionSidebar) {
+        collectionSidebar.style.setProperty('width', '30%');
+    }
+}
 
-    const bannerImage = this.document.querySelector('.banner_image');
-    if (!(bannerImage instanceof HTMLImageElement)) return;
-
-    const parentElement = bannerImage.parentElement;
-    if (!parentElement) return;
-
-    const parentHeight = parentElement.offsetHeight;
-    bannerImage.style.setProperty('min-height', `${parentHeight}px`);
-  }
-
-  private adjustImages(): void {
-    console.log('running adjustImages()');
-    this.adjustBannerImages();
-    this.adjustHoverEffectImages();
-  }
-
-  private adjustBannerImages(): void {
-    console.log('running adjustBannerImages()');
-    const viewportWidth = this.document.body.clientWidth;
-    this.document.querySelectorAll('.banner__media.media').forEach(bannerElement => {
-      const bannerImage = bannerElement.querySelector('img');
-      if (!(bannerImage instanceof HTMLImageElement)) return;
-
-      if (viewportWidth > 749) {
-        this.setImageDimensions(bannerImage, bannerElement);
-      } else {
-        this.removeImageDimensions(bannerImage);
-      }
+// homepage craftklaris
+  private adjustImages() {
+    var viewportWidth = document.body.clientWidth;
+    document.querySelectorAll('.banner__media.media').forEach(bannerElement => {
+        var bannerImage = bannerElement.querySelector('img');
+        if (bannerImage) {
+            if (viewportWidth > 749) {
+                var parentStyle = window.getComputedStyle(bannerElement);
+                var parentWidth = parentStyle.getPropertyValue('width');
+                var parentHeight = parentStyle.getPropertyValue('height');
+                bannerImage.style.setProperty('min-width', parentWidth);
+                bannerImage.style.setProperty('min-height', parentHeight);
+            } else {
+                bannerImage.style.removeProperty('min-width');
+                bannerImage.style.removeProperty('min-height');
+            }
+        }
     });
-  }
-
-  private adjustHoverEffectImages(): void {
-    console.log('running adjustHoverEffectImages()');
-    this.document.querySelectorAll(".media.media--hover-effect").forEach(el => {
-      const images = el.querySelectorAll('img');
-      const targetImage = images.length >= 2 ? images[1] : images[0];
-      if (targetImage instanceof HTMLImageElement) {
-        targetImage.style.minHeight = '100%';
-      }
+    // Second part: Adjust hover effect images
+    document.querySelectorAll(".media.media--hover-effect").forEach(el => {
+        const images = el.querySelectorAll('img');
+        if (images.length >= 2) {
+            const secondImage = images[1];
+            secondImage.style.minHeight = '100%';
+        }else if(images.length >= 1) {
+            const secondImage = images[0];
+            secondImage.style.minHeight = '100%';
+        }
     });
-  }
-
+}
+//MEXICO IN MY POCKET
   private adjustPromoGridImages(): void {
     console.log('running adjustPromoGridImages()');
     const viewportWidth = this.document.body.clientWidth;
@@ -79,46 +82,40 @@ export default class ForsonScreenshotFixes {
     });
   }
 
-  private adjustProductGridAndStyles(): void {
-    console.log('running adjustProductGridAndStyles()');
-    this.addProductGridStyles();
-    this.adjustProductGridImages();
-  }
-
-  private addProductGridStyles(): void {
-    console.log('running addProductGridStyles()');
-    const style = this.document.createElement('style');
+  // Mirai Clinical
+  private adjustProductGridAndStyles() {
+    // Part 1: Remove width auto
+    const style = document.createElement('style');
     style.textContent = `
-      .multicolumn-list__item.center .media--adapt,
-      .multicolumn-list__item .media--adapt .multicolumn-card__image {
-        width: 100% !important;
-      }
+        .multicolumn-list__item.center .media--adapt,
+        .multicolumn-list__item .media--adapt .multicolumn-card__image {
+            width: 100% !important;
+        }
     `;
-    this.document.head.appendChild(style);
-  }
+    document.head.appendChild(style);
 
-  private adjustProductGridImages(): void {
-    console.log('running adjustProductGridImages()');
-    const productGrid = this.document.querySelector('.grid.product-grid.grid--2-col-tablet-down.grid--4-col-desktop');
-    if (!productGrid) return;
+    // Part 2: Adjust product grid images
+    const productGrid = document.querySelector('.grid.product-grid.grid--2-col-tablet-down.grid--4-col-desktop');
+    if (productGrid) {
+        const listItems = productGrid.querySelectorAll('li');
+        listItems.forEach(li => {
+            const mediaElement = li.querySelector('.media.media--hover-effect');
+            if (mediaElement) {
+                const images = mediaElement.querySelectorAll('img');
+                if (images.length >= 2) {
+                    const secondImage = images[1];
+                    secondImage.style.minHeight = '100%';
+                } else if (images.length >= 1) {
+                    const firstImage = images[0];
+                    firstImage.style.minHeight = '100%';
+                }
+            }
+        });
+    }
+}
 
-    const listItems = productGrid.querySelectorAll('li');
-    listItems.forEach(li => {
-      const mediaElement = li.querySelector('.media.media--hover-effect');
-      if (!(mediaElement instanceof HTMLElement)) return;
-
-      const images = mediaElement.querySelectorAll('img');
-      const targetImage = images.length >= 2 ? images[1] : images[0];
-      if (targetImage instanceof HTMLImageElement) {
-        targetImage.style.minHeight = '100%';
-      }
-    });
-  }
-
-
-
-
-  private removeSectionInterstitialHeight(): void {
+// DAVOCADOGUY
+  private removeSectionInterstitialHeight() {
     console.log('running removeSectionInterstitialHeight()');
     const elements = this.document.querySelectorAll('.section-interstitial');
     elements.forEach(element => {
@@ -131,10 +128,8 @@ export default class ForsonScreenshotFixes {
     });
   }
 
-
-
-  
-  private adjustImageStyles(): void {
+  // FLAKON
+  private adjustImageStyles(){
     console.log('running adjustImageStyles()');
     const targetDivs = this.document.querySelectorAll('.image-wrap, .text-spacing');
 
@@ -151,6 +146,7 @@ export default class ForsonScreenshotFixes {
     });
   }
 
+  // JELLYBEE
   private removeDisplayNone(): void {
     console.log('running removeDisplayNone()');
     const classList = [
@@ -171,6 +167,7 @@ export default class ForsonScreenshotFixes {
     });
   }
 
+  // Rubio Monocoat
   private removeProperties(): void {
     console.log('running removeProperties()');
     this.removeSectionHeight();
@@ -217,4 +214,18 @@ export default class ForsonScreenshotFixes {
     image.style.removeProperty('min-width');
     image.style.removeProperty('min-height');
   }
+
+  private applyCustomStyles() {
+    const sectionElement = document.querySelector('.elementor-section.elementor-top-section.elementor-element.elementor-element-36d57aa4.elementor-section-content-middle.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default') as HTMLElement;
+    if (sectionElement) {
+        sectionElement.style.setProperty('background-image', 'linear-gradient(60deg, var(--e-global-color-9043077) 0%, #2783F3AD 100%)');
+    }
+
+    const imgElements = document.querySelectorAll('.elementor-widget-container img') as NodeListOf<HTMLImageElement>;
+    imgElements.forEach(element => {
+        element.style.setProperty('-webkit-mask-image', 'none');
+    });
+}
+
+
 }
