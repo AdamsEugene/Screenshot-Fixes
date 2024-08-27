@@ -1,11 +1,22 @@
 export default class ForsonScreenshotFixes {
   private document: Document;
 
-  constructor(dom: Document = document) {
+  /* constructor(dom: Document = document) {
     this.document = dom;
-  }
+  } */
+    constructor(dom: Document = document) {
+      this.document = dom;
+      this.setupLoadEventListener();
+    }
+
+    private setupLoadEventListener(): void {
+      window.addEventListener('load', () => {
+        this.init();
+      });
+    }
 
   public init(): void {
+    console.log("Initializing ScreenshotFixes");
     this.adjustBannerImageHeight();
     this.adjustImages();
     this.adjustPromoGridImages();
