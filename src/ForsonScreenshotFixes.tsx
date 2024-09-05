@@ -28,6 +28,7 @@ export default class ForsonScreenshotFixes {
     this.applyResponsiveStyles();
     this.applyCustomStyles();
     this.updateElements();
+    this.setImageWidthToParent()
   }
 
   // Upcircle EU
@@ -272,7 +273,7 @@ export default class ForsonScreenshotFixes {
     });
   }
 
-  // Ra Optics
+  //rubi
   private updateElements() {
     const wrapperElements = this.document.querySelectorAll(
       ".rimage-wrapper.lazyload--placeholder"
@@ -295,4 +296,22 @@ export default class ForsonScreenshotFixes {
       cartPopupElement.style.width = "";
     }
   }
+
+  
+
+  // RA optics
+  private setImageWidthToParent() {
+    const images = document.querySelectorAll<HTMLImageElement>('.rimage__image');
+
+    images.forEach(image => {
+      const parent = image.parentElement;
+  
+      if (parent) {
+        const parentWidth = window.getComputedStyle(parent).width;
+        image.style.width = parentWidth;
+      }
+    });
+  
+  }
+  
 }
