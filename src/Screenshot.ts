@@ -9,6 +9,35 @@ class ScreenshotFixes extends Common {
     this.debugMode = debugMode;
   }
 
+  desktopFunctions = [
+    () =>
+      this.adjustHeightOfRelativeElements(
+        "vc_row.style-color-jevc-bg.row-container"
+      ),
+    () =>
+      this.adjustHeightOfRelativeElements(
+        "vc_row.style-color-xsdn-bg.row-container"
+      ),
+    () =>
+      this.adjustHeightOfRelativeElements(
+        "row.unequal.triple-top-padding.triple-bottom-padding.no-h-padding.full-width.row-parent",
+        true
+      ),
+    () =>
+      this.adjustHeightOfRelativeElements(
+        "row.triple-top-padding.triple-bottom-padding.single-h-padding.limit-width.row-parent.row-header",
+        true
+      ),
+    () => this.setBackgroundWrapperHeight(),
+    () => this.setSlideshowHeight(),
+  ];
+
+  mobileFunctions = [
+    () => this.adjustReviewSliderDisplay(),
+    () => this.runFunctionsForIdSite(),
+    () => this.adjustGridProductImageHeight(),
+  ];
+
   public init(containerId = "recordingPlayer1", debugMode = false): void {
     const func = () => {
       console.log("Function executed inside ScreenshotFixes");
@@ -27,7 +56,10 @@ class ScreenshotFixes extends Common {
       ]);
       this.normalizeSwiperSlideWidths();
       this.setCarouselImageHeightToFull();
-      this.handleResize();
+      this.handleResize({
+        desktopFuncs: this.desktopFunctions,
+        mobileFuncs: this.mobileFunctions,
+      });
       this.setElementsHeightToMaxContent(
         "best-seller-carousel.flickity-enabled.is-draggable"
       );
@@ -37,6 +69,15 @@ class ScreenshotFixes extends Common {
       );
       this.setFirstChildSizeToParentSize(["#splide01-list"], "w", true);
       this.setHeight100();
+      this.adjustSliderItems();
+      this.adjustSlideshowSlides();
+      this.setUncolHeight();
+      this.adjustProductMediaWrapper();
+      this.adjustCollectionList();
+      this.adjustFlickityViewportWidth();
+      // this.adjustFullWidthPageHeight();
+
+      // this.adjustHeightOfRelativeElements();
     };
 
     this.exec({ containerId, debugMode, func });
@@ -56,12 +97,177 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  private runFunctionsForIdSite() {
+    const idSite = this.idSite();
+    console.log({ idSite });
+
+    if (idSite !== null && this.functionsMap[idSite]) {
+      this.functionsMap[idSite].forEach((func) => func());
+    }
+  }
+
   private setHeight100() {
     this.allElements("row.founders-content.d-flex.align-items-center").forEach(
       (element) => {
         this.setHeight(element, 100, "%");
       }
     );
+  }
+
+  private setUncolHeight() {
+    const parentElement = this.dom.querySelector<HTMLElement>(
+      ".wpb_column.pos-top.pos-center.align_center.align_center_mobile.column_parent.col-lg-12.single-internal-gutter"
+    );
+
+    if (parentElement) {
+      const uncolElement =
+        parentElement.querySelector<HTMLElement>(".uncol.style-light");
+
+      if (uncolElement) {
+        this.setHeight(uncolElement, 100, "%");
+        const uncont = uncolElement.querySelector<HTMLElement>(".uncont");
+        if (uncont) {
+          const secondChild = uncont.children[1] as HTMLElement;
+          if (secondChild) {
+            this.setImageParentsHeight(secondChild, uncont);
+          }
+        }
+      }
+    }
+  }
+
+  private setImageParentsHeight(secondChild: HTMLElement, uncont: HTMLElement) {
+    const images = secondChild.querySelectorAll<HTMLImageElement>("img");
+    images.forEach((img) => {
+      const imgHeight = img.offsetHeight;
+      let currentElement: HTMLElement | null = img.parentElement;
+      while (currentElement && currentElement !== uncont) {
+        currentElement.style.setProperty(
+          "height",
+          `${imgHeight}px`,
+          "important"
+        );
+        currentElement = currentElement.parentElement;
+      }
+      uncont.style.setProperty("height", `${imgHeight}px`, "important");
+    });
+  }
+
+  private removeExcessiveParentWidths = () => {
+    const allElements = this.dom.querySelectorAll("*");
+    const processedParents = new Set<HTMLElement>();
+    allElements.forEach((element) => {
+      const parent = element.parentElement;
+      if (parent && !processedParents.has(parent)) {
+        const parentWidth = parent.getBoundingClientRect().width;
+        if (parentWidth > 430) {
+          parent.style.width = "auto";
+          processedParents.add(parent);
+        }
+      }
+    });
+  };
+
+  private idSite(): number | null {
+    const currentUrl = window.location.href;
+    const urlObj = new URL(currentUrl);
+    const idSiteParam = urlObj.searchParams.get("idSite");
+    const idSiteNumber = idSiteParam ? parseInt(idSiteParam, 10) : null;
+    return Number.isNaN(idSiteNumber) ? null : idSiteNumber;
+  }
+
+  private adjustReviewSliderDisplay() {
+    const container = this.elements(
+      ".custom-review-slider-box-container-v2"
+    ) as HTMLElement;
+    if (
+      container &&
+      container.className.trim() === "custom-review-slider-box-container-v2"
+    ) {
+      container.style.setProperty("display", "block", "important");
+      const parent = container.parentElement;
+      if (
+        parent &&
+        parent.className.trim() === "custom-review-slider-content"
+      ) {
+        parent.style.setProperty("max-height", "282px", "important");
+        const parentOfParent = parent.parentElement;
+        if (
+          parentOfParent &&
+          parentOfParent.classList.contains("custom-review-slider-container")
+        ) {
+          parentOfParent.style.setProperty("max-height", "282px", "important");
+          const PPP = parentOfParent.parentElement;
+          if (PPP && PPP.classList.contains("shopify-section")) {
+            PPP.style.setProperty("max-height", "282px", "important");
+          }
+        }
+      }
+      const reviewBoxes = container.querySelectorAll<HTMLElement>(
+        ".custom-review-slider-box"
+      );
+      reviewBoxes.forEach((box, index) => {
+        if (index > 0) {
+          box.style.setProperty("display", "none", "important");
+        }
+      });
+    }
+  }
+
+  private adjustProductMediaWrapper() {
+    const mediaWrappers = this.allElements<HTMLElement>(
+      ".grid__item.large--one-half.product-single__media-wrapper"
+    );
+    mediaWrappers.forEach((mediaWrapper) => {
+      const flickityViewport =
+        mediaWrapper.querySelector<HTMLElement>(".flickity-viewport");
+      if (flickityViewport) {
+        flickityViewport.style.setProperty("min-height", "100%", "important");
+        const flickitySlider =
+          flickityViewport.querySelector<HTMLElement>(".flickity-slider");
+        if (flickitySlider) {
+          const sliderChildren = flickitySlider.children;
+          Array.from(sliderChildren).forEach((child: Element) => {
+            (child as HTMLElement).style.setProperty(
+              "min-height",
+              "100%",
+              "important"
+            );
+          });
+        }
+      }
+    });
+  }
+
+  protected adjustGridProductImageHeight(): void {
+    const productLinks = this.dom.querySelectorAll<HTMLElement>(
+      ".grid-product__link"
+    );
+    productLinks.forEach((link) => {
+      const productImage = link.querySelector<HTMLImageElement>(
+        ".grid-product__image"
+      );
+      if (productImage && productImage.parentElement) {
+        const parentHeight =
+          productImage.parentElement.getBoundingClientRect().height;
+        if (parentHeight) {
+          this.setHeight(productImage, parentHeight);
+        }
+      }
+    });
+  }
+
+  protected adjustFlickityViewportWidth(): void {
+    const flickityViewports = this.dom.querySelectorAll<HTMLElement>(
+      ".flickity-viewport.animate-out"
+    );
+    flickityViewports.forEach((viewport) => {
+      viewport.style.setProperty("width", "100%", "important");
+      const parentElement = viewport.parentElement;
+      if (parentElement) {
+        parentElement.style.removeProperty("transform");
+      }
+    });
   }
 
   private applyStyles(): void {
@@ -120,7 +326,7 @@ class ScreenshotFixes extends Common {
     });
   }
   private adjustMainContentPosition() {
-    const mainContent = this.dom.querySelector("#MainContent") as HTMLElement;
+    const mainContent = this.elementById("MainContent") as HTMLElement;
     if (mainContent) {
       let previousElement = mainContent.previousElementSibling;
       if (previousElement) {
@@ -145,9 +351,24 @@ class ScreenshotFixes extends Common {
   }
 
   private setElementDisplayToNone() {
-    this.allElements(".modal__gifting")?.forEach((m: HTMLElement) =>
-      this.displayNone(m)
+    const classes = [".boost-cart__backdrop", ".modal__gifting"];
+    classes.forEach((cls) => {
+      this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
+    });
+  }
+
+  private adjustSlideshowSlides() {
+    const slideshowSection = this.elementById(
+      "shopify-section-offer-slideshow"
     );
+    if (slideshowSection) {
+      const slides = slideshowSection.querySelectorAll(".slideshow__slide");
+      slides.forEach((slide: HTMLElement) => {
+        if (getComputedStyle(slide).position === "absolute") {
+          slide.style.setProperty("left", "0", "important");
+        }
+      });
+    }
   }
 
   private setHeroImagesStyles(classNames: string[]) {
@@ -182,16 +403,56 @@ class ScreenshotFixes extends Common {
 
       let mostCommonWidth = "";
       let maxCount = 0;
+
       for (const [width, count] of Object.entries(widthCounts)) {
         if (count > maxCount) {
           mostCommonWidth = width;
           maxCount = count;
         }
       }
+
       slides.forEach((slide) => {
+        const largerWidthElement = slide.querySelector<HTMLElement>(
+          ".ingredient-card__content"
+        );
+
+        if (largerWidthElement) {
+          const largerWidth = largerWidthElement.offsetWidth;
+
+          if (largerWidth > parseFloat(mostCommonWidth)) {
+            mostCommonWidth = `${largerWidth}px`;
+          }
+        }
+
+        console.log({ mostCommonWidth, slide });
+
+        mostCommonWidth =
+          parseFloat(mostCommonWidth) > 5 ? mostCommonWidth : "430px";
+
         slide.style.setProperty("width", mostCommonWidth, "important");
+        slide.style.setProperty("max-width", mostCommonWidth, "important");
+        slide.style.setProperty("min-width", mostCommonWidth, "important");
       });
     });
+  }
+
+  private adjustSliderItems() {
+    const productSlider = this.elementById("productSlider");
+    console.log({ productSlider });
+
+    if (productSlider) {
+      productSlider.style.visibility = "visible";
+      const sliderItems = productSlider.querySelectorAll(".slider-item");
+      sliderItems.forEach((item: HTMLElement, index: number) => {
+        if (index === 0) {
+          item.style.setProperty("opacity", "1", "important");
+          item.style.setProperty("position", "relative", "important");
+        } else {
+          item.style.setProperty("opacity", "0", "important");
+          item.style.setProperty("position", "absolute", "important");
+        }
+      });
+    }
   }
 
   public cleanup() {
@@ -199,11 +460,11 @@ class ScreenshotFixes extends Common {
       "containerId"
     ) as HTMLIFrameElement | null;
     // Remove the event listener when it's no longer needed
-    container?.contentWindow?.removeEventListener("resize", this.handleResize);
+    // container?.contentWindow?.removeEventListener("resize", this.handleResize);
   }
 
   private setMastheadAndFirstChildHeight(height: number) {
-    const masthead = this.dom.getElementById("masthead");
+    const masthead = this.elementById("masthead");
     if (masthead) {
       this.setElementHeightRecursively(masthead, height, 5);
     }
@@ -223,37 +484,99 @@ class ScreenshotFixes extends Common {
     }
   }
 
-  private setImageHeightToMaxContent(height: string) {
-    const elements = this.allElements(".dummy.secondary-dummy-image");
+  private adjustHeightOfRelativeElements(className: string, noPt?: boolean) {
+    const elements = this.allElements(className);
 
     elements.forEach((element: HTMLElement) => {
-      // Set height for the element itself
-      element.style.setProperty("height", height, "important");
-
-      // Set height for the image within the element
-      const imgElement = element.querySelector("img") as HTMLElement | null;
-      if (imgElement) {
-        imgElement.style.setProperty("height", height, "important");
-        imgElement.style.setProperty("min-height", "max-content", "important");
+      if (noPt) {
+        element.style.setProperty("padding-top", "0", "important");
       }
-
-      // Check the adjacent sibling element
-      const adjacentElement = element.nextElementSibling as HTMLElement | null;
-      if (adjacentElement && adjacentElement.tagName.toLowerCase() === "a") {
-        // Set height for the image within the adjacent <a> tag
-        const adjacentImgElement = adjacentElement.querySelector(
-          "img"
-        ) as HTMLElement | null;
-        if (adjacentImgElement) {
-          adjacentImgElement.style.setProperty("height", height, "important");
-          adjacentImgElement.style.setProperty(
-            "min-height",
-            "max-content",
-            "important"
-          );
+      const computedStyle = getComputedStyle(element);
+      if (computedStyle.position === "relative") {
+        element.style.setProperty("max-height", "720px", "important");
+        const firstChild = element.firstElementChild as HTMLElement | null;
+        if (firstChild) {
+          firstChild.style.setProperty("max-height", "720px", "important");
         }
       }
     });
+  }
+
+  private setBackgroundWrapperHeight() {
+    const elements = this.allElements(".background-wrapper");
+    elements.forEach((element: HTMLElement) => {
+      const firstChild = element.firstElementChild as HTMLElement | null;
+      if (firstChild) {
+        const backgroundImage = getComputedStyle(firstChild).backgroundImage;
+        if (backgroundImage && backgroundImage !== "none") {
+          this.setHeight(element, 720);
+          this.setHeight(firstChild, 720);
+        }
+      }
+    });
+  }
+
+  private adjustCollectionList(): void {
+    const collectionLists = this.dom.querySelectorAll<HTMLElement>(
+      ".collection-list.grid.grid--mobile-slider"
+    );
+    collectionLists.forEach((collectionList) => {
+      const gridItems = collectionList.querySelectorAll<HTMLElement>(
+        ".grid-item.collection-item.collection-item--centered"
+      );
+      gridItems.forEach((gridItem) => {
+        const collectionImage = gridItem.querySelector<HTMLElement>(
+          ".collection-item__image"
+        );
+        if (collectionImage) {
+          collectionImage.style.setProperty("height", "100%", "important");
+          collectionImage.style.setProperty("min-height", "100%", "important");
+          const collectionBg = collectionImage.querySelector<HTMLElement>(
+            ".collection-item__bg.aos-animate"
+          );
+          if (collectionBg) {
+            this.setOpacityAndDisplay(collectionBg);
+            const imageWrapper =
+              collectionBg.querySelector<HTMLElement>(".image-wrapper");
+            if (imageWrapper) {
+              this.setOpacityAndDisplay(imageWrapper);
+              const img = imageWrapper.querySelector<HTMLElement>("img");
+              if (img) {
+                this.setOpacityAndDisplay(img);
+              }
+            }
+          }
+        }
+      });
+    });
+  }
+
+  private setSlideshowHeight() {
+    const slideshowElement = this.elements(
+      ".slideshow-classic.image-slideshow.image-slideshow--slide.page-dots--false.flickity-enabled.is-draggable.flickity-resize"
+    ) as HTMLElement;
+    if (slideshowElement) {
+      slideshowElement.style.setProperty("max-height", "839px", "important");
+      const flickityViewport =
+        slideshowElement.querySelector<HTMLElement>(".flickity-viewport");
+      if (flickityViewport) {
+        flickityViewport.style.setProperty("max-height", "839px", "important");
+        const flickitySlider =
+          flickityViewport.querySelector<HTMLElement>(".flickity-slider");
+        if (flickitySlider) {
+          flickitySlider.style.setProperty("max-height", "839px", "important");
+          const galleryCells =
+            flickitySlider.querySelectorAll<HTMLElement>(".gallery-cell");
+          galleryCells.forEach((cell) => {
+            cell.style.setProperty("max-height", "839px", "important");
+            const images = cell.querySelectorAll<HTMLImageElement>("img");
+            images.forEach((img) => {
+              img.style.setProperty("max-height", "839px", "important");
+            });
+          });
+        }
+      }
+    }
   }
 
   private setCarouselImageHeightToFull() {
@@ -284,6 +607,11 @@ class ScreenshotFixes extends Common {
       }
     });
   }
+
+  functionsMap: Record<number, (() => void)[]> = {
+    1947: [this.removeExcessiveParentWidths],
+    // Add more idSite mappings as needed
+  };
 }
 
 function createInstance<T>(

@@ -4,16 +4,16 @@ export default class ForsonScreenshotFixes {
   /* constructor(dom: Document = document) {
     this.document = dom;
   } */
-    constructor(dom: Document = document) {
-      this.document = dom;
-      this.setupLoadEventListener();
-    }
+  constructor(dom: Document = document) {
+    this.document = dom;
+    this.setupLoadEventListener();
+  }
 
-    private setupLoadEventListener(): void {
-      window.addEventListener('load', () => {
-        this.init();
-      });
-    }
+  private setupLoadEventListener(): void {
+    window.addEventListener("load", () => {
+      this.init();
+    });
+  }
 
   public init(): void {
     console.log("Initializing ScreenshotFixes");
@@ -32,8 +32,8 @@ export default class ForsonScreenshotFixes {
 
   // Upcircle EU
   private adjustBannerImageHeight() {
-    if (document.body.clientWidth > 430) {
-      const bannerImage = document.querySelector(
+    if (this.document.body.clientWidth > 430) {
+      const bannerImage = this.document.querySelector(
         ".banner_image"
       ) as HTMLElement;
       if (bannerImage) {
@@ -44,7 +44,7 @@ export default class ForsonScreenshotFixes {
         }
       }
     }
-    const collectionSidebar = document.querySelector(
+    const collectionSidebar = this.document.querySelector(
       ".collection_sidebar"
     ) as HTMLElement;
     if (collectionSidebar) {
@@ -54,8 +54,8 @@ export default class ForsonScreenshotFixes {
 
   // homepage craftklaris
   private adjustImages() {
-    var viewportWidth = document.body.clientWidth;
-    document
+    var viewportWidth = this.document.body.clientWidth;
+    this.document
       .querySelectorAll(".banner__media.media")
       .forEach((bannerElement) => {
         var bannerImage = bannerElement.querySelector("img");
@@ -73,16 +73,18 @@ export default class ForsonScreenshotFixes {
         }
       });
     // Second part: Adjust hover effect images
-    document.querySelectorAll(".media.media--hover-effect").forEach((el) => {
-      const images = el.querySelectorAll("img");
-      if (images.length >= 2) {
-        const secondImage = images[1];
-        secondImage.style.minHeight = "100%";
-      } else if (images.length >= 1) {
-        const secondImage = images[0];
-        secondImage.style.minHeight = "100%";
-      }
-    });
+    this.document
+      .querySelectorAll(".media.media--hover-effect")
+      .forEach((el) => {
+        const images = el.querySelectorAll("img");
+        if (images.length >= 2) {
+          const secondImage = images[1];
+          secondImage.style.minHeight = "100%";
+        } else if (images.length >= 1) {
+          const secondImage = images[0];
+          secondImage.style.minHeight = "100%";
+        }
+      });
   }
   //MEXICO IN MY POCKET
   private adjustPromoGridImages(): void {
@@ -105,17 +107,17 @@ export default class ForsonScreenshotFixes {
   // Mirai Clinical
   private adjustProductGridAndStyles() {
     // Part 1: Remove width auto
-    const style = document.createElement("style");
+    const style = this.document.createElement("style");
     style.textContent = `
         .multicolumn-list__item.center .media--adapt,
         .multicolumn-list__item .media--adapt .multicolumn-card__image {
             width: 100% !important;
         }
     `;
-    document.head.appendChild(style);
+    this.document.head.appendChild(style);
 
     // Part 2: Adjust product grid images
-    const productGrid = document.querySelector(
+    const productGrid = this.document.querySelector(
       ".grid.product-grid.grid--2-col-tablet-down.grid--4-col-desktop"
     );
     if (productGrid) {
@@ -252,7 +254,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private applyCustomStyles() {
-    const sectionElement = document.querySelector(
+    const sectionElement = this.document.querySelector(
       ".elementor-section.elementor-top-section.elementor-element.elementor-element-36d57aa4.elementor-section-content-middle.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default"
     ) as HTMLElement;
     if (sectionElement) {
@@ -262,7 +264,7 @@ export default class ForsonScreenshotFixes {
       );
     }
 
-    const imgElements = document.querySelectorAll(
+    const imgElements = this.document.querySelectorAll(
       ".elementor-widget-container img"
     ) as NodeListOf<HTMLImageElement>;
     imgElements.forEach((element) => {
@@ -272,14 +274,14 @@ export default class ForsonScreenshotFixes {
 
   // Ra Optics
   private updateElements() {
-    const wrapperElements = document.querySelectorAll(
+    const wrapperElements = this.document.querySelectorAll(
       ".rimage-wrapper.lazyload--placeholder"
     ) as NodeListOf<HTMLImageElement>;
     wrapperElements.forEach((element) => {
       element.style.background = "none";
     });
 
-    const imageElements = document.querySelectorAll(
+    const imageElements = this.document.querySelectorAll(
       ".rimage__image"
     ) as NodeListOf<HTMLImageElement>;
     imageElements.forEach((element) => {
@@ -288,7 +290,7 @@ export default class ForsonScreenshotFixes {
     });
 
     // Target the element with the ID 'CartPopup' and remove its width property
-    const cartPopupElement = document.getElementById("CartPopup");
+    const cartPopupElement = this.document.getElementById("CartPopup");
     if (cartPopupElement) {
       cartPopupElement.style.width = "";
     }
