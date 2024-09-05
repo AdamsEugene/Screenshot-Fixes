@@ -312,7 +312,7 @@ export default class ForsonScreenshotFixes {
 
   // RA optics
   private setImageWidthToParent() {
-    const images = document.querySelectorAll<HTMLImageElement>('.rimage__image');
+    const images = this.document.querySelectorAll<HTMLImageElement>('.rimage__image');
 
     images.forEach(image => {
       const parent = image.parentElement;
