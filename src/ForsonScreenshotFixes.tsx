@@ -326,15 +326,15 @@ export default class ForsonScreenshotFixes {
 
   // ELEAT
   private updateStyles() {
-    const benefitImage = document.querySelector('.benefit-sticky-image') as HTMLElement;
+    const benefitImage = this.document.querySelector('.benefit-sticky-image') as HTMLElement;
     if (benefitImage) {
         benefitImage.style.setProperty('transform', 'translate(0px, 580px)', 'important');
     }
-    const reviewSection = document.querySelector('.review-section.bg-natural.py-4.desktop\\:py-14') as HTMLElement;
+    const reviewSection = this.document.querySelector('.review-section.bg-natural.py-4.desktop\\:py-14') as HTMLElement;
     if (reviewSection) {
         reviewSection.style.setProperty('position', 'relative', 'important');
     }
-    const absoluteElement = document.querySelector('.absolute.-bottom-60.left-0.z-0.w-144') as HTMLElement;
+    const absoluteElement = this.document.querySelector('.absolute.-bottom-60.left-0.z-0.w-144') as HTMLElement;
     if (absoluteElement) {
         absoluteElement.style.setProperty('display', 'none', 'important');
     }
