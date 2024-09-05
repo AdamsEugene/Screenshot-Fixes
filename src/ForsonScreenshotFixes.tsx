@@ -4,6 +4,7 @@ export default class ForsonScreenshotFixes {
   /* constructor(dom: Document = document) {
     this.document = dom;
   } */
+
   constructor(dom: Document = document) {
     this.document = dom;
     this.setupLoadEventListener();
@@ -157,9 +158,9 @@ export default class ForsonScreenshotFixes {
 
     // DAVOCADOGUY
     private setMinHeightForSection() {
-      const element = document.querySelector('.section-interstitial') as HTMLElement;
+      const element = this.document.querySelector('.section-interstitial') as HTMLElement;
       if (element) {
-          element.style.setProperty('min-height', '100vh', 'important');
+          element.style.setProperty('min-height', '100%', 'important');
       }
   }
 
