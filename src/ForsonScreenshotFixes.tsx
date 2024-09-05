@@ -29,6 +29,7 @@ export default class ForsonScreenshotFixes {
     this.applyCustomStyles();
     this.updateElements();
     this.setImageWidthToParent()
+    this.setMinHeightForSection()
   }
 
   // Upcircle EU
@@ -139,7 +140,7 @@ export default class ForsonScreenshotFixes {
     }
   }
 
-  // DAVOCADOGUY
+
   private removeSectionInterstitialHeight() {
     console.log("running removeSectionInterstitialHeight()");
     const elements = this.document.querySelectorAll(".section-interstitial");
@@ -151,6 +152,14 @@ export default class ForsonScreenshotFixes {
         element.style.setProperty("height", "initial", "important");
       }
     });
+  }
+
+    // DAVOCADOGUY
+    private setMinHeightForSection() {
+      const element = document.querySelector('.section-interstitial') as HTMLElement;
+      if (element) {
+          element.style.setProperty('min-height', '100vh', 'important');
+      }
   }
 
   // FLAKON
