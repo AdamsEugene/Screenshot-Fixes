@@ -30,6 +30,7 @@ export default class ForsonScreenshotFixes {
     this.updateElements();
     this.setImageWidthToParent()
     this.setMinHeightForSection()
+    this.updateStyles()
   }
 
   // Upcircle EU
@@ -320,7 +321,23 @@ export default class ForsonScreenshotFixes {
         image.style.width = parentWidth;
       }
     });
-  
   }
+
+  // ELEAT
+  private updateStyles() {
+    const benefitImage = document.querySelector('.benefit-sticky-image') as HTMLElement;
+    if (benefitImage) {
+        benefitImage.style.setProperty('transform', 'translate(0px, 580px)', 'important');
+    }
+    const reviewSection = document.querySelector('.review-section.bg-natural.py-4.desktop\\:py-14') as HTMLElement;
+    if (reviewSection) {
+        reviewSection.style.setProperty('position', 'relative', 'important');
+    }
+    const absoluteElement = document.querySelector('.absolute.-bottom-60.left-0.z-0.w-144') as HTMLElement;
+    if (absoluteElement) {
+        absoluteElement.style.setProperty('display', 'none', 'important');
+    }
+}
+
   
 }
