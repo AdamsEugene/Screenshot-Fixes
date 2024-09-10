@@ -17,7 +17,6 @@ export default class ForsonScreenshotFixes {
   }
 
   public init(): void {
-    console.log("Initializing ScreenshotFixes");
     this.adjustBannerImageHeight();
     this.adjustImages();
     this.adjustPromoGridImages();
@@ -29,10 +28,11 @@ export default class ForsonScreenshotFixes {
     this.applyResponsiveStyles();
     this.applyCustomStyles();
     this.updateElements();
-    this.setMinWidthForImages()
-    this.setMinHeightForSection()
-    this.updateStyles()
-    this.DavocadoBgImage()
+    this.setMinWidthForImages();
+    this.setMinHeightForSection();
+    this.updateStyles();
+    this.DavocadoBgImage();
+    this.setImageMinHeight();;
   }
 
   // Upcircle EU
@@ -319,13 +319,6 @@ export default class ForsonScreenshotFixes {
   
 
   // RA optics
- /*  private setMinWidthForImages() {
-    console.log("running RA optics function");
-    const images = this.document.getElementsByClassName('rimage__image') as HTMLCollectionOf<HTMLElement>;;
-    Array.from(images).forEach(image => {
-        image.style.setProperty('min-width', '100%');
-    });
-} */
     private setMinWidthForImages() {
       console.log("running RA optics function");
       const images = this.document.querySelectorAll('.rimage__image, .okeReviews-reviewsCarousel-review-product-image');
@@ -333,18 +326,6 @@ export default class ForsonScreenshotFixes {
           (image as HTMLElement).style.setProperty('min-width', '100%');
       });
   }
-  
-    /* private setMinWidthForImages() {
-      console.log("running RA optics function");
-      const images = this.document.getElementsByClassName('rimage__image') as HTMLCollectionOf<HTMLElement>;
-      Array.from(images).forEach(image => {
-          image.style.setProperty('min-width', '100%');
-      });
-      const reviewImages = this.document.getElementsByClassName('okeReviews-reviewsCarousel-review-product-image') as HTMLCollectionOf<HTMLElement>;
-      Array.from(reviewImages).forEach(reviewImage => {
-          reviewImage.style.setProperty('min-width', '100%', 'important');
-      });
-  } */
     
   // ELEAT
   private updateStyles() {
@@ -360,6 +341,18 @@ export default class ForsonScreenshotFixes {
     if (absoluteElement) {
         absoluteElement.style.setProperty('display', 'none', 'important');
     }
+}
+
+private setImageMinHeight(): void {
+  const className = '.image-wrap';
+  const elements = this.document.querySelectorAll(className) as NodeListOf<HTMLElement>;
+  elements.forEach(element => {
+    const parentHeight = element.offsetHeight;
+    const images = element.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
+    images.forEach(img => {
+      img.style.minHeight = `${parentHeight}px`;
+    });
+  });
 }
 
   
