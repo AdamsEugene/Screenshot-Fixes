@@ -32,6 +32,7 @@ export default class ForsonScreenshotFixes {
     this.setMinWidthForImages()
     this.setMinHeightForSection()
     this.updateStyles()
+    this.DavocadoBgImage()
   }
 
   // Upcircle EU
@@ -163,6 +164,13 @@ export default class ForsonScreenshotFixes {
           element.style.setProperty('min-height', '100%', 'important');
       }
   }
+  private DavocadoBgImage() {
+    console.log("Setting davocado bg image height");
+    const imgElement = this.document.querySelector('.section-interstitial__img img') as HTMLElement;
+    if (imgElement) {
+        imgElement.style.setProperty('min-height', '100vh');
+    }
+}
 
   // FLAKON
   private adjustImageStyles() {
@@ -311,15 +319,33 @@ export default class ForsonScreenshotFixes {
   
 
   // RA optics
-  private setMinWidthForImages() {
+ /*  private setMinWidthForImages() {
     console.log("running RA optics function");
     const images = this.document.getElementsByClassName('rimage__image') as HTMLCollectionOf<HTMLElement>;;
     Array.from(images).forEach(image => {
         image.style.setProperty('min-width', '100%');
     });
-}
-
-
+} */
+    private setMinWidthForImages() {
+      console.log("running RA optics function");
+      const images = this.document.querySelectorAll('.rimage__image, .okeReviews-reviewsCarousel-review-product-image');
+      images.forEach(image => {
+          (image as HTMLElement).style.setProperty('min-width', '100%');
+      });
+  }
+  
+    /* private setMinWidthForImages() {
+      console.log("running RA optics function");
+      const images = this.document.getElementsByClassName('rimage__image') as HTMLCollectionOf<HTMLElement>;
+      Array.from(images).forEach(image => {
+          image.style.setProperty('min-width', '100%');
+      });
+      const reviewImages = this.document.getElementsByClassName('okeReviews-reviewsCarousel-review-product-image') as HTMLCollectionOf<HTMLElement>;
+      Array.from(reviewImages).forEach(reviewImage => {
+          reviewImage.style.setProperty('min-width', '100%', 'important');
+      });
+  } */
+    
   // ELEAT
   private updateStyles() {
     const benefitImage = this.document.querySelector('.benefit-sticky-image') as HTMLElement;
