@@ -369,7 +369,7 @@ private modifyMainContent() {
   const mainContent = this.document.querySelector('#MainContent') as HTMLElement;
   if (mainContent) {
     mainContent.style.setProperty('position', 'relative', 'important');
-    mainContent.style.setProperty('top', '30px', 'important');
+    mainContent.style.setProperty('top', '50px', 'important');
   }
 }
 
