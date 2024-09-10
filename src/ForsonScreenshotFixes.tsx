@@ -36,6 +36,7 @@ export default class ForsonScreenshotFixes {
     this.modifyAKTElements();
     this.setTopToZero();
     this.modifyMainContent();
+    this.setBackgroundTransparent();
   }
 
   // Upcircle EU
@@ -369,6 +370,14 @@ private modifyMainContent() {
     mainContent.style.setProperty('position', 'relative', 'important');
     mainContent.style.setProperty('top', '10px', 'important');
   }
+}
+
+// Eleganza
+private setBackgroundTransparent() {
+  const elements = this.document.querySelectorAll('.logos__link-overlay') as NodeListOf<HTMLImageElement>;
+  elements.forEach(element => {
+    element.style.setProperty('background', 'transparent', 'important');
+  });
 }
   
 }
