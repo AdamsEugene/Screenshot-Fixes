@@ -30,6 +30,7 @@ class ScreenshotFixes extends Common {
       ),
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
+    // () => this.setHeroMaxHeight(),
   ];
 
   mobileFunctions = [
@@ -64,7 +65,7 @@ class ScreenshotFixes extends Common {
         "best-seller-carousel.flickity-enabled.is-draggable"
       );
       this.setFirstChildSizeToParentSize(
-        ["flickity-viewport", "row.founders-content.d-flex.align-items-center"],
+        ["row.founders-content.d-flex.align-items-center"],
         "h"
       );
       this.setFirstChildSizeToParentSize(["#splide01-list"], "w", true);
@@ -75,6 +76,7 @@ class ScreenshotFixes extends Common {
       this.adjustProductMediaWrapper();
       this.adjustCollectionList();
       this.adjustFlickityViewportWidth();
+      this.setDisplayToBlock();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -239,7 +241,7 @@ class ScreenshotFixes extends Common {
     });
   }
 
-  protected adjustGridProductImageHeight(): void {
+  private adjustGridProductImageHeight(): void {
     const productLinks = this.dom.querySelectorAll<HTMLElement>(
       ".grid-product__link"
     );
@@ -257,7 +259,7 @@ class ScreenshotFixes extends Common {
     });
   }
 
-  protected adjustFlickityViewportWidth(): void {
+  private adjustFlickityViewportWidth(): void {
     const flickityViewports = this.dom.querySelectorAll<HTMLElement>(
       ".flickity-viewport.animate-out"
     );
@@ -277,6 +279,14 @@ class ScreenshotFixes extends Common {
         element.style.float = "left";
       }
     );
+  }
+
+  private setDisplayToBlock() {
+    const classes = [".splide__list.sbc-section__menu.border-black"];
+    classes.forEach((cls) => {
+      const element = this.elements(cls) as HTMLElement;
+      if (element) this.displayBlock(element, true);
+    });
   }
 
   private hidePopup(): void {
@@ -480,6 +490,46 @@ class ScreenshotFixes extends Common {
       const firstChild = element.firstElementChild as HTMLElement;
       if (firstChild) {
         this.setElementHeightRecursively(firstChild, height, depth - 1);
+      }
+    }
+  }
+
+  private setHeroMaxHeight(): void {
+    const heroElement = this.dom.querySelector<HTMLElement>(
+      ".hero.hero--100vh.hero--mobile--500px.loaded.flickity-enabled.is-draggable.is-fade"
+    );
+
+    if (heroElement) {
+      heroElement.style.setProperty("max-height", "968px", "important");
+
+      const flickityViewport =
+        heroElement.querySelector<HTMLElement>(".flickity-viewport");
+
+      if (flickityViewport) {
+        flickityViewport.style.setProperty("max-height", "968px", "important");
+
+        const flickitySlider =
+          flickityViewport.querySelector<HTMLElement>(".flickity-slider");
+
+        if (flickitySlider) {
+          flickitySlider.style.setProperty("max-height", "968px", "important");
+
+          const firstChild = flickitySlider.firstElementChild as HTMLElement;
+
+          if (firstChild) {
+            firstChild.style.setProperty("max-height", "968px", "important");
+
+            const firstGrandchild = firstChild.firstElementChild as HTMLElement;
+
+            if (firstGrandchild) {
+              firstGrandchild.style.setProperty(
+                "max-height",
+                "968px",
+                "important"
+              );
+            }
+          }
+        }
       }
     }
   }

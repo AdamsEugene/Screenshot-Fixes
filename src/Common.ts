@@ -103,6 +103,10 @@ export default class Common {
     element.style.setProperty("display", "none", important ? "important" : "");
   }
 
+  protected displayBlock(element: HTMLElement, important?: boolean) {
+    element.style.setProperty("display", "block", important ? "important" : "");
+  }
+
   protected handleResize = ({
     mobileFuncs,
     desktopFuncs,
