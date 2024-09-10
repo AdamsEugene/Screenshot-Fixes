@@ -312,14 +312,13 @@ export default class ForsonScreenshotFixes {
 
   // RA optics
   private setMinWidthForImages() {
+    console.log("running RA optics function");
     const images = document.getElementsByClassName('rimage__image') as HTMLCollectionOf<HTMLElement>;;
     Array.from(images).forEach(image => {
         image.style.setProperty('min-width', '100%');
     });
 }
 
-// Call the function
-// setMinWidthForImages();
 
   // ELEAT
   private updateStyles() {
