@@ -29,7 +29,7 @@ export default class ForsonScreenshotFixes {
     this.applyResponsiveStyles();
     this.applyCustomStyles();
     this.updateElements();
-    this.setImageWidthToParent()
+    this.setMinWidthForImages()
     this.setMinHeightForSection()
     this.updateStyles()
   }
@@ -311,18 +311,15 @@ export default class ForsonScreenshotFixes {
   
 
   // RA optics
-  private setImageWidthToParent() {
-    const images = this.document.querySelectorAll<HTMLImageElement>('.rimage__image');
-
-    images.forEach(image => {
-      const parent = image.parentElement;
-  
-      if (parent) {
-        const parentWidth = window.getComputedStyle(parent).width;
-        image.style.width = parentWidth;
-      }
+  private setMinWidthForImages() {
+    const images = document.getElementsByClassName('rimage__image') as HTMLCollectionOf<HTMLElement>;;
+    Array.from(images).forEach(image => {
+        image.style.setProperty('min-width', '100%');
     });
-  }
+}
+
+// Call the function
+// setMinWidthForImages();
 
   // ELEAT
   private updateStyles() {
