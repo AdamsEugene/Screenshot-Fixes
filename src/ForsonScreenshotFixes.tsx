@@ -32,7 +32,8 @@ export default class ForsonScreenshotFixes {
     this.setMinHeightForSection();
     this.updateStyles();
     this.DavocadoBgImage();
-    this.setImageMinHeight();;
+    this.setImageMinHeight();
+    this.modifyAKTElements();
   }
 
   // Upcircle EU
@@ -77,7 +78,6 @@ export default class ForsonScreenshotFixes {
           }
         }
       });
-    // Second part: Adjust hover effect images
     this.document
       .querySelectorAll(".media.media--hover-effect")
       .forEach((el) => {
@@ -93,7 +93,6 @@ export default class ForsonScreenshotFixes {
   }
   //MEXICO IN MY POCKET
   private adjustPromoGridImages(): void {
-    console.log("running adjustPromoGridImages()");
     const viewportWidth = this.document.body.clientWidth;
     this.document
       .querySelectorAll(".promo-grid__bg")
@@ -111,7 +110,6 @@ export default class ForsonScreenshotFixes {
 
   // Mirai Clinical
   private adjustProductGridAndStyles() {
-    // Part 1: Remove width auto
     const style = this.document.createElement("style");
     style.textContent = `
         .multicolumn-list__item.center .media--adapt,
@@ -120,8 +118,6 @@ export default class ForsonScreenshotFixes {
         }
     `;
     this.document.head.appendChild(style);
-
-    // Part 2: Adjust product grid images
     const productGrid = this.document.querySelector(
       ".grid.product-grid.grid--2-col-tablet-down.grid--4-col-desktop"
     );
@@ -145,7 +141,6 @@ export default class ForsonScreenshotFixes {
 
 
   private removeSectionInterstitialHeight() {
-    console.log("running removeSectionInterstitialHeight()");
     const elements = this.document.querySelectorAll(".section-interstitial");
     elements.forEach((element) => {
       if (!(element instanceof HTMLElement)) return;
@@ -165,7 +160,6 @@ export default class ForsonScreenshotFixes {
       }
   }
   private DavocadoBgImage() {
-    console.log("Setting davocado bg image height");
     const imgElement = this.document.querySelector('.section-interstitial__img img') as HTMLElement;
     if (imgElement) {
         imgElement.style.setProperty('min-height', '100vh');
@@ -174,7 +168,6 @@ export default class ForsonScreenshotFixes {
 
   // FLAKON
   private adjustImageStyles() {
-    console.log("running adjustImageStyles()");
     const targetDivs = this.document.querySelectorAll(
       ".image-wrap, .text-spacing"
     );
@@ -194,7 +187,6 @@ export default class ForsonScreenshotFixes {
 
   // JELLYBEE
   private removeDisplayNone(): void {
-    console.log("running removeDisplayNone()");
     const classList = [
       "jdgm-widget",
       "jdgm-carousel",
@@ -217,13 +209,11 @@ export default class ForsonScreenshotFixes {
 
   // Rubio Monocoat
   private removeProperties(): void {
-    console.log("running removeProperties()");
     this.removeSectionHeight();
     this.removeImgFitDimensions();
   }
 
   private removeSectionHeight(): void {
-    console.log("running removeSectionHeight()");
     const sectionElement = this.document.querySelector(
       ".icons-with-text.section.section--full-width.section--padded-small.color-scheme.color-scheme--2"
     );
@@ -233,7 +223,6 @@ export default class ForsonScreenshotFixes {
   }
 
   private removeImgFitDimensions(): void {
-    console.log("running removeImgFitDimensions()");
     const imgFitElements = this.document.querySelectorAll(".img-fit");
     imgFitElements.forEach((element) => {
       if (element instanceof HTMLElement) {
@@ -244,7 +233,6 @@ export default class ForsonScreenshotFixes {
   }
 
   private applyResponsiveStyles(): void {
-    console.log("running applyResponsiveStyles()");
     const viewportWidth = this.document.body.clientWidth;
     if (viewportWidth <= 749) {
       const productIngredientsElement = this.document.querySelector(
@@ -283,7 +271,6 @@ export default class ForsonScreenshotFixes {
         "linear-gradient(60deg, var(--e-global-color-9043077) 0%, #2783F3AD 100%)"
       );
     }
-
     const imgElements = this.document.querySelectorAll(
       ".elementor-widget-container img"
     ) as NodeListOf<HTMLImageElement>;
@@ -308,19 +295,14 @@ export default class ForsonScreenshotFixes {
       element.style.height = "";
       element.style.width = "";
     });
-
-    // Target the element with the ID 'CartPopup' and remove its width property
     const cartPopupElement = this.document.getElementById("CartPopup");
     if (cartPopupElement) {
       cartPopupElement.style.width = "";
     }
   }
 
-  
-
   // RA optics
     private setMinWidthForImages() {
-      console.log("running RA optics function");
       const images = this.document.querySelectorAll('.rimage__image, .okeReviews-reviewsCarousel-review-product-image');
       images.forEach(image => {
           (image as HTMLElement).style.setProperty('min-width', '100%');
@@ -343,7 +325,9 @@ export default class ForsonScreenshotFixes {
     }
 }
 
+// Infinity Laser Spa
 private setImageMinHeight(): void {
+  console.log('running infinity laser function');
   const className = '.image-wrap';
   const elements = this.document.querySelectorAll(className) as NodeListOf<HTMLElement>;
   elements.forEach(element => {
@@ -355,5 +339,17 @@ private setImageMinHeight(): void {
   });
 }
 
+// AKT London
+private modifyAKTElements() {
+  console.log('running akt function');
+  const swiperElement = this.document.querySelector('.z-0.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events') as HTMLElement;
+  if (swiperElement) {
+    swiperElement.style.setProperty('overflow', 'hidden', 'important');
+  }
+  const flexElement = this.document.querySelector('.flex.flex-col.min-h-screen.font-primary') as HTMLElement;
+  if (flexElement) {
+    flexElement.style.setProperty('min-height', 'auto', 'important');
+  }
+}
   
 }
