@@ -34,6 +34,7 @@ export default class ForsonScreenshotFixes {
     this.DavocadoBgImage();
     this.setImageMinHeight();
     this.modifyAKTElements();
+    this.setTopToZero();
   }
 
   // Upcircle EU
@@ -349,6 +350,14 @@ private modifyAKTElements() {
   const flexElement = this.document.querySelector('.flex.flex-col.min-h-screen.font-primary') as HTMLElement;
   if (flexElement) {
     flexElement.style.setProperty('min-height', 'auto', 'important');
+  }
+}
+
+// Llama Naturals
+private setTopToZero() {
+  const stickyRibbonElement = this.document.querySelector('.container-sticky-ribbon') as HTMLElement;
+  if (stickyRibbonElement) {
+    stickyRibbonElement.style.setProperty('top', '0px', 'important');
   }
 }
   
