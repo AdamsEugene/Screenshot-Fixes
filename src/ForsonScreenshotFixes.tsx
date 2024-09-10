@@ -356,10 +356,11 @@ private modifyAKTElements() {
 }
 
 // Llama Naturals
-private setTopToZero() {
+private setTopToZero(): void {
   const stickyRibbonElement = this.document.querySelector('.container-sticky-ribbon') as HTMLElement;
   if (stickyRibbonElement) {
     stickyRibbonElement.style.setProperty('top', '0px', 'important');
+    stickyRibbonElement.style.setProperty('height', '45px', 'important');
   }
 }
 
