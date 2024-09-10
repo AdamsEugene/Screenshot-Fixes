@@ -35,6 +35,7 @@ export default class ForsonScreenshotFixes {
     this.setImageMinHeight();
     this.modifyAKTElements();
     this.setTopToZero();
+    this.modifyMainContent();
   }
 
   // Upcircle EU
@@ -358,6 +359,15 @@ private setTopToZero() {
   const stickyRibbonElement = this.document.querySelector('.container-sticky-ribbon') as HTMLElement;
   if (stickyRibbonElement) {
     stickyRibbonElement.style.setProperty('top', '0px', 'important');
+  }
+}
+
+// Etee
+private modifyMainContent() {
+  const mainContent = this.document.querySelector('#MainContent') as HTMLElement;
+  if (mainContent) {
+    mainContent.style.setProperty('position', 'relative', 'important');
+    mainContent.style.setProperty('top', '30px', 'important');
   }
 }
   
