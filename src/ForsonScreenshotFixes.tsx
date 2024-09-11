@@ -1,3 +1,5 @@
+import { log } from "console";
+
 export default class ForsonScreenshotFixes {
   private document: Document;
 
@@ -37,6 +39,7 @@ export default class ForsonScreenshotFixes {
     this.setTopToZero();
     this.modifyMainContent();
     this.setBackgroundTransparent();
+    this.modifyElements();
   }
 
   // Upcircle EU
@@ -330,7 +333,6 @@ export default class ForsonScreenshotFixes {
 
 // Infinity Laser Spa
 private setImageMinHeight(): void {
-  console.log('running infinity laser function');
   const className = '.image-wrap';
   const elements = this.document.querySelectorAll(className) as NodeListOf<HTMLElement>;
   elements.forEach(element => {
@@ -344,7 +346,6 @@ private setImageMinHeight(): void {
 
 // AKT London
 private modifyAKTElements() {
-  console.log('running akt function');
   const swiperElement = this.document.querySelector('.z-0.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events') as HTMLElement;
   if (swiperElement) {
     swiperElement.style.setProperty('overflow', 'hidden', 'important');
@@ -380,5 +381,18 @@ private setBackgroundTransparent() {
     element.style.setProperty('background', 'transparent', 'important');
   });
 }
-  
+
+// Nouveauts KSL
+private modifyElements() {
+  console.log("running Nouveauts KSL function");
+  const fixedElement = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-25') as HTMLElement;
+  if (fixedElement) {
+    fixedElement.style.setProperty('position', 'unset', 'important');
+  }
+  const scrollableElement = document.querySelector('.h-\\[70vh\\].max-h-\\[600px\\].w-full.overflow-y-auto') as HTMLElement;
+  if (scrollableElement) {
+    scrollableElement.style.setProperty('display', 'none', 'important');
+  }
+}
+
 }
