@@ -39,8 +39,7 @@ export default class ForsonScreenshotFixes {
     this.setTopToZero();
     this.modifyMainContent();
     this.setBackgroundTransparent();
-    // this.setupMinicartCloseButton()
-    this.setupMinicartToggle()
+    this.disableCartIcon()
   }
 
   // Upcircle EU
@@ -384,24 +383,23 @@ private setBackgroundTransparent() {
 }
 
 // voluspa
-private setupMinicartToggle() {
-  const closeButtons = this.document.querySelectorAll('.minicart__close.empty-cart-close') as NodeListOf<HTMLImageElement>;
-  const cartIcon = this.document.querySelector('.icon-bag.mini_cart.dropdown_link.active_link') as HTMLElement;
-  const minicartContainer = this.document.querySelector('#header > div.top-bar.top-bar-mobile > div.top-bar--right > div.cart-container > div') as HTMLElement;
-  
-  if (closeButtons.length > 0 && cartIcon && minicartContainer) {
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function(event) {
-        console.log('close button clicked');
-        
+private disableCartIcon() {
+  const cartIcons = document.querySelectorAll('.icon-bag.mini_cart.dropdown_link.active_link');
+  if (cartIcons.length > 0) {
+    cartIcons.forEach((icon) => {
+      const cartIcon = icon as HTMLElement;
+      cartIcon.addEventListener('click', function(event: Event) {
         event.preventDefault();
-        minicartContainer.style.setProperty('visibility', 'hidden');
-      });
-    });
-    cartIcon.addEventListener('click', function(event) {
-      event.preventDefault();
-      minicartContainer.style.setProperty('visibility', 'visible');
+        event.stopPropagation();
+      }, true);
+      cartIcon.style.setProperty('cursor', 'not-allowed', 'important');
+      cartIcon.classList.remove('active_link');
+      if (cartIcon instanceof HTMLAnchorElement) {
+        cartIcon.removeAttribute('href');
+      }
     });
   }
 }
+
+
 }
