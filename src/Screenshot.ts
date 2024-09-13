@@ -2,6 +2,7 @@ import StickyAddToCart from "./StickyAddToCart";
 import ChrisScreenShotFixes from "./ChrisScreenShotFixes";
 import ForsonScreenshotFixes from "./ForsonScreenshotFixes";
 import Common from "./Common";
+import snippets from "./custom.snippets.json";
 
 class ScreenshotFixes extends Common {
   constructor(debugMode = false) {
@@ -77,6 +78,9 @@ class ScreenshotFixes extends Common {
       this.adjustCollectionList();
       this.adjustFlickityViewportWidth();
       this.setDisplayToBlock();
+      this.removeClassesFromClassList();
+      this.setOverflowHidden();
+      this.processSnippets();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -96,6 +100,35 @@ class ScreenshotFixes extends Common {
     const fixedElements = fixedElementsInstance.getElements();
     fixedElements.forEach((element) => {
       element.style.setProperty("display", "block", "important");
+    });
+  }
+
+  private processSnippets() {
+    // console.log("this.iframeWindow: ", this.iframeWindow.location);
+
+    // const url = new URL(this.iframeWindow.location.href);
+    // const fileName = url.host + url.pathname + "-main.html";
+    snippets.forEach((snippet) => {
+      const { selector, content } = snippet;
+
+      const isElementInDom = selector
+        ? this.dom.querySelector(selector)
+        : undefined;
+
+      // const s3FileName = content.path.split("custom.snippets/")[1];
+      // console.log({ fileName, s3FileName });
+
+      if (content.path && content.idSite === this.idSite() && isElementInDom) {
+        fetch(content.path)
+          .then((response) => response.text())
+          .then((htmlContent) => {
+            const element = this.dom.querySelector(selector);
+            if (element) {
+              element.innerHTML = htmlContent;
+            }
+          })
+          .catch((error) => console.error(`Error fetching content: ${error}`));
+      }
     });
   }
 
@@ -170,9 +203,13 @@ class ScreenshotFixes extends Common {
     });
   };
 
-  private idSite(): number | null {
+  private getSiteURLAsObj() {
     const currentUrl = window.location.href;
-    const urlObj = new URL(currentUrl);
+    return new URL(currentUrl);
+  }
+
+  private idSite(): number | null {
+    const urlObj = this.getSiteURLAsObj();
     const idSiteParam = urlObj.searchParams.get("idSite");
     const idSiteNumber = idSiteParam ? parseInt(idSiteParam, 10) : null;
     return Number.isNaN(idSiteNumber) ? null : idSiteNumber;
@@ -286,6 +323,26 @@ class ScreenshotFixes extends Common {
     classes.forEach((cls) => {
       const element = this.elements(cls) as HTMLElement;
       if (element) this.displayBlock(element, true);
+    });
+  }
+
+  private removeClassesFromClassList(): void {
+    const classesToRemove = ["md-modal__backdrop"];
+    classesToRemove.forEach((className) => {
+      const elements = this.allElements<HTMLElement>(`.${className}`);
+      elements.forEach((element) => {
+        element.classList.remove(className);
+      });
+    });
+  }
+
+  private setOverflowHidden(): void {
+    const classCombinations = [".no-js.var-sticky"];
+    classCombinations.forEach((classCombo) => {
+      const elements = this.allElements<HTMLElement>(classCombo);
+      elements.forEach((element) => {
+        element.style.setProperty("overflow", "hidden", "important");
+      });
     });
   }
 

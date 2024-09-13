@@ -8,6 +8,7 @@ type DIM = "h" | "w" | "b";
 
 export default class Common {
   protected dom: Document;
+  protected iframeWindow: Window;
   protected debugMode: boolean;
   private domId = "recordingPlayer1";
 
@@ -22,6 +23,7 @@ export default class Common {
     const container = document.getElementById(
       containerId
     ) as HTMLIFrameElement | null;
+    this.iframeWindow = container?.contentWindow || window;
     this.dom = container?.contentWindow?.document || document;
 
     func();
