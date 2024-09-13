@@ -76,8 +76,10 @@ export default class ChrisScreenShotFixes {
       }
     });
 
-    if (callback) {
+    if (callback && context) {
       callback(context);
+    } else if (callback) {
+      callback();
     }
   }
 
