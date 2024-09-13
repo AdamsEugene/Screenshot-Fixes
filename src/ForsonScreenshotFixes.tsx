@@ -39,8 +39,9 @@ export default class ForsonScreenshotFixes {
     this.setTopToZero();
     this.modifyMainContent();
     this.setBackgroundTransparent();
-    this.disableCartIcon();
-    this.showImages();
+    this.disableClicks();
+    this.disableCartClicks();
+    this.setChildDisplayBlock();
   }
 
   // Upcircle EU
@@ -384,30 +385,24 @@ private setBackgroundTransparent() {
 }
 
 // voluspa
-private disableCartIcon() {
-  const cartIcons = this.document.querySelectorAll('.icon-bag.mini_cart.dropdown_link.active_link');
-  if (cartIcons.length > 0) {
-    cartIcons.forEach((icon) => {
-      const cartIcon = icon as HTMLElement;
-      cartIcon.addEventListener('click', function(event: Event) {
-        event.preventDefault();
-        event.stopPropagation();
-      }, true);
-      cartIcon.style.setProperty('cursor', 'not-allowed', 'important');
-      cartIcon.classList.remove('active_link');
-      if (cartIcon instanceof HTMLAnchorElement) {
-        cartIcon.removeAttribute('href');
-      }
-    });
-  }
+private disableClicks() {
+  document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
+    .forEach(el => el.style.pointerEvents = 'none');
 }
 
+private disableCartClicks() {
+  document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
+    .forEach(el => {
+      el.style.setProperty('pointer-events', 'none', 'important');
+      el.style.setProperty('cursor', 'not-allowed', 'important');
+    });
+}
+
+
 // Grace de Monaco
-private showImages() {
-  var elements = this.document.querySelectorAll(".CollectionItem__Image.Image--contrast.hide-no-js") as NodeListOf<HTMLElement>;
-  elements.forEach(function(element) {
-      element.style.setProperty('display', 'block', 'important');
-  });
+private setChildDisplayBlock() {
+  this.document.querySelectorAll<HTMLElement>(".CollectionItem__ImageWrapper")
+    .forEach(el => Array.from(el.children).forEach(child => (child as HTMLElement).style.setProperty('display', 'block', 'important')));
 }
 
 }
