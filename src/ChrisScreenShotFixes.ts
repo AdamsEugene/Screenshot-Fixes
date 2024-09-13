@@ -27,7 +27,6 @@ export default class ChrisScreenShotFixes {
   }
 
   private toggleCart(open: boolean): void {
-    console.log(`${open ? 'Opening' : 'Closing'} the cart`);
     // Select the cart container
     const cartContent = this.document.querySelector(".cart-container > div") as HTMLElement;
 
