@@ -39,7 +39,8 @@ export default class ForsonScreenshotFixes {
     this.setTopToZero();
     this.modifyMainContent();
     this.setBackgroundTransparent();
-    this.setupMinicartCloseButton()
+    // this.setupMinicartCloseButton()
+    this.setupMinicartToggle()
   }
 
   // Upcircle EU
@@ -383,17 +384,21 @@ private setBackgroundTransparent() {
 }
 
 // voluspa
-private setupMinicartCloseButton() {
-  const closeButton = document.querySelector('.minicart__close.empty-cart-close') as HTMLElement;
-  const minicartContainer = document.querySelector('.tos_warning.cart_content.animated.fadeIn') as HTMLElement;
+private setupMinicartToggle() {
+  const closeButton = this.document.querySelector('.minicart__close.empty-cart-close') as HTMLElement;
+  const cartIcon = this.document.querySelector('.icon-bag.mini_cart.dropdown_link.active_link') as HTMLElement;
+  const minicartContainer = this.document.querySelector('.tos_warning.cart_content.animated.fadeIn') as HTMLElement;
   
-  if (closeButton && minicartContainer) {
+  if (closeButton && cartIcon && minicartContainer) {
     closeButton.addEventListener('click', function(event) {
-      minicartContainer.style.setProperty('display', 'none', 'important');
+      event.preventDefault();
+      minicartContainer.style.setProperty('visibility', 'hidden', 'important');
+    });
+    cartIcon.addEventListener('click', function(event) {
+      event.preventDefault();
+      minicartContainer.style.setProperty('visibility', 'visible', 'important');
     });
   } 
 }
-
-
 
 }
