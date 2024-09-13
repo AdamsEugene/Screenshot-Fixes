@@ -392,11 +392,11 @@ private setupMinicartToggle() {
   if (closeButton && cartIcon && minicartContainer) {
     closeButton.addEventListener('click', function(event) {
       event.preventDefault();
-      minicartContainer.style.setProperty('visibility', 'hidden', 'important');
+      minicartContainer.style.setProperty('visibility', 'hidden');
     });
     cartIcon.addEventListener('click', function(event) {
       event.preventDefault();
-      minicartContainer.style.setProperty('visibility', 'visible', 'important');
+      minicartContainer.style.setProperty('visibility', 'visible');
     });
   } 
 }
