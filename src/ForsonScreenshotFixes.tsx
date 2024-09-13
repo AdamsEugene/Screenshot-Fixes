@@ -385,20 +385,23 @@ private setBackgroundTransparent() {
 
 // voluspa
 private setupMinicartToggle() {
-  const closeButton = this.document.querySelector('#header > div.top-bar.top-bar-mobile > div.top-bar--right > div.cart-container > div > div > header > button') as HTMLElement;
+  const closeButtons = this.document.querySelectorAll('.minicart__close.empty-cart-close') as NodeListOf<HTMLImageElement>;
   const cartIcon = this.document.querySelector('.icon-bag.mini_cart.dropdown_link.active_link') as HTMLElement;
   const minicartContainer = this.document.querySelector('#header > div.top-bar.top-bar-mobile > div.top-bar--right > div.cart-container > div') as HTMLElement;
   
-  if (closeButton && cartIcon && minicartContainer) {
-    closeButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      minicartContainer.style.setProperty('visibility', 'hidden');
+  if (closeButtons.length > 0 && cartIcon && minicartContainer) {
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function(event) {
+        console.log('close button clicked');
+        
+        event.preventDefault();
+        minicartContainer.style.setProperty('visibility', 'hidden');
+      });
     });
     cartIcon.addEventListener('click', function(event) {
       event.preventDefault();
       minicartContainer.style.setProperty('visibility', 'visible');
     });
-  } 
+  }
 }
-
 }
