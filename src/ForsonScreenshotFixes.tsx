@@ -385,7 +385,7 @@ private setBackgroundTransparent() {
 
 // voluspa
 private disableCartIcon() {
-  const cartIcons = document.querySelectorAll('.icon-bag.mini_cart.dropdown_link.active_link');
+  const cartIcons = this.document.querySelectorAll('.icon-bag.mini_cart.dropdown_link.active_link');
   if (cartIcons.length > 0) {
     cartIcons.forEach((icon) => {
       const cartIcon = icon as HTMLElement;
