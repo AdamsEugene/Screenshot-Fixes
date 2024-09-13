@@ -39,7 +39,7 @@ export default class ForsonScreenshotFixes {
     this.setTopToZero();
     this.modifyMainContent();
     this.setBackgroundTransparent();
-    this.modifyElements();
+    this.setupMinicartCloseButton()
   }
 
   // Upcircle EU
@@ -382,17 +382,18 @@ private setBackgroundTransparent() {
   });
 }
 
-// Nouveauts KSL
-private modifyElements() {
-  console.log("running Nouveauts KSL function");
-  const fixedElement = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-25') as HTMLElement;
-  if (fixedElement) {
-    fixedElement.style.setProperty('position', 'unset', 'important');
-  }
-  const scrollableElement = document.querySelector('.h-\\[70vh\\].max-h-\\[600px\\].w-full.overflow-y-auto') as HTMLElement;
-  if (scrollableElement) {
-    scrollableElement.style.setProperty('display', 'none', 'important');
-  }
+// voluspa
+private setupMinicartCloseButton() {
+  const closeButton = document.querySelector('.minicart__close.empty-cart-close') as HTMLElement;
+  const minicartContainer = document.querySelector('.tos_warning.cart_content.animated.fadeIn') as HTMLElement;
+  
+  if (closeButton && minicartContainer) {
+    closeButton.addEventListener('click', function(event) {
+      minicartContainer.style.setProperty('display', 'none', 'important');
+    });
+  } 
 }
+
+
 
 }
