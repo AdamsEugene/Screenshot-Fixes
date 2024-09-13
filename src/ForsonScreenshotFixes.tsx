@@ -40,7 +40,7 @@ export default class ForsonScreenshotFixes {
     this.modifyMainContent();
     this.setBackgroundTransparent();
     this.disableCartIcon();
-    this.displayCollectionImages()
+    this.showImages();
   }
 
   // Upcircle EU
@@ -403,21 +403,11 @@ private disableCartIcon() {
 }
 
 // Grace de Monaco
-private displayCollectionImages() {
-  const collectionList = this.document.querySelector('.CollectionList.CollectionList--grid.CollectionList--spaced');
-
-  if (collectionList) {
-    const anchorTags = collectionList.querySelectorAll('a');
-
-    anchorTags.forEach((anchor) => {
-      const image = anchor.querySelector('.CollectionItem__Image.Image--contrast.Image--lazyLoad.hide-no-js');
-
-      if (image instanceof HTMLElement) {
-        image.style.setProperty('display', 'block', 'important');
-      }
-    });
-  }
+private showImages() {
+  var elements = this.document.querySelectorAll(".CollectionItem__Image.Image--contrast.hide-no-js") as NodeListOf<HTMLElement>;
+  elements.forEach(function(element) {
+      element.style.setProperty('display', 'block', 'important');
+  });
 }
-
 
 }
