@@ -386,12 +386,14 @@ private setBackgroundTransparent() {
 
 // voluspa
 private disableClicks() {
-  document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
+  console.log('voluspa');
+  
+  this.document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
     .forEach(el => el.style.pointerEvents = 'none');
 }
 
 private disableCartClicks() {
-  document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
+  this.document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
     .forEach(el => {
       el.style.setProperty('pointer-events', 'none', 'important');
       el.style.setProperty('cursor', 'not-allowed', 'important');
@@ -401,6 +403,7 @@ private disableCartClicks() {
 
 // Grace de Monaco
 private setChildDisplayBlock() {
+  console.log("Grace de Monaco");
   this.document.querySelectorAll<HTMLElement>(".CollectionItem__ImageWrapper")
     .forEach(el => Array.from(el.children).forEach(child => (child as HTMLElement).style.setProperty('display', 'block', 'important')));
 }
