@@ -40,6 +40,7 @@ export default class ForsonScreenshotFixes {
     this.disableClicks();
     this.disableCartClicks();
     this.setChildDisplayBlock();
+    this.deleteParentIfContainsChild();
   }
 
   // Upcircle EU
@@ -387,6 +388,18 @@ private setChildDisplayBlock() {
   console.log("Grace de Monaco");
   this.document.querySelectorAll<HTMLElement>(".CollectionItem__ImageWrapper")
     .forEach(el => Array.from(el.children).forEach(child => (child as HTMLElement).style.setProperty('display', 'block', 'important')));
+}
+
+
+// 
+private deleteParentIfContainsChild() {
+  const parentElements = document.querySelectorAll('.shopify-section.shopify-section-group-header-group.section') as NodeListOf<HTMLImageElement>;
+  parentElements.forEach(parent => {
+      const child = parent.querySelector('.color-background-1.gradient');
+      if (child) {
+          parent.remove();
+      } 
+  });
 }
 
 }
