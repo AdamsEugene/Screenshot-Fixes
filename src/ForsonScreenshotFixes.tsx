@@ -41,6 +41,7 @@ export default class ForsonScreenshotFixes {
     this.disableCartClicks();
     this.setChildDisplayBlock();
     this.deleteParentIfContainsChild();
+    this.removeImportantStylesFromElement();
   }
 
   // Upcircle EU
@@ -391,7 +392,7 @@ private setChildDisplayBlock() {
 }
 
 
-// 
+//  NuroJit
 private deleteParentIfContainsChild() {
   const parentElements = this.document.querySelectorAll('.shopify-section.shopify-section-group-header-group.section') as NodeListOf<HTMLImageElement>;
   parentElements.forEach(parent => {
@@ -400,6 +401,20 @@ private deleteParentIfContainsChild() {
           parent.remove();
       } 
   });
+}
+
+// 
+// Function to remove important styles from the element
+private removeImportantStylesFromElement() {
+  const parentElement = this.document.querySelector('.gallery-cell.thumbnail.quick-shop-style--popup.swiper-slide-active.swiper-slide') as HTMLElement;
+  if (parentElement) {
+      const childElement = parentElement.querySelector('.gallery-cell__wrap') as HTMLElement;
+      if (childElement) {
+          parentElement.style.setProperty('width', 'auto', 'important');
+          parentElement.style.setProperty('max-width', 'none', 'important');
+          parentElement.style.setProperty('min-width', '0', 'important');
+      } 
+  }
 }
 
 }
