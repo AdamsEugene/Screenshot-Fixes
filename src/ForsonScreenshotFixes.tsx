@@ -45,7 +45,7 @@ export default class ForsonScreenshotFixes {
 
   // Upcircle EU
   private adjustBannerImageHeight() {
-    if (this.document.body.clientWidth > 430) {
+    if (this.document?.body?.clientWidth > 430) {
       const bannerImage = this.document.querySelector(
         ".banner_image"
       ) as HTMLElement;
@@ -393,7 +393,7 @@ private setChildDisplayBlock() {
 
 // 
 private deleteParentIfContainsChild() {
-  const parentElements = document.querySelectorAll('.shopify-section.shopify-section-group-header-group.section') as NodeListOf<HTMLImageElement>;
+  const parentElements = this.document.querySelectorAll('.shopify-section.shopify-section-group-header-group.section') as NodeListOf<HTMLImageElement>;
   parentElements.forEach(parent => {
       const child = parent.querySelector('.color-background-1.gradient');
       if (child) {
