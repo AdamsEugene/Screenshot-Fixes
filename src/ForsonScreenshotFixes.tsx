@@ -36,7 +36,6 @@ export default class ForsonScreenshotFixes {
     this.DavocadoBgImage();
     this.setImageMinHeight();
     this.modifyAKTElements();
-    this.setTopToZero();
     this.setBackgroundTransparent();
     this.disableClicks();
     this.disableCartClicks();
@@ -356,16 +355,6 @@ private modifyAKTElements() {
     flexElement.style.setProperty('min-height', 'auto', 'important');
   }
 }
-
-// Llama Naturals
-private setTopToZero(): void {
-  const stickyRibbonElement = this.document.querySelector('.container-sticky-ribbon') as HTMLElement;
-  if (stickyRibbonElement) {
-    stickyRibbonElement.style.setProperty('top', '0px', 'important');
-    stickyRibbonElement.style.setProperty('height', '45px', 'important');
-  }
-}
-
 
 
 // Eleganza
