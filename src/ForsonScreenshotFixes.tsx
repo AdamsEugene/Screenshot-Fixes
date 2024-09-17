@@ -405,7 +405,7 @@ private deleteParentIfContainsChild() {
 
 // 
 // Function to remove important styles from the element
-private removeImportantStylesFromElement() {
+/* private removeImportantStylesFromElement() {
   const parentElement = this.document.querySelector('.gallery-cell.thumbnail.quick-shop-style--popup.swiper-slide-active.swiper-slide') as HTMLElement;
   if (parentElement) {
       const childElement = parentElement.querySelector('.gallery-cell__wrap') as HTMLElement;
@@ -415,6 +415,25 @@ private removeImportantStylesFromElement() {
           parentElement.style.setProperty('min-width', '0', 'important');
       } 
   }
+} */
+
+// arctic cool
+private removeImportantStylesFromElement() {
+  const parentElement = this.document.querySelector('.gallery-cell.thumbnail.quick-shop-style--popup.swiper-slide-active.swiper-slide') as HTMLElement;
+  if (parentElement) {
+      const childElement = parentElement.querySelector('.gallery-cell__wrap') as HTMLElement;
+      if (childElement) {
+          parentElement.style.setProperty('width', 'auto', 'important');
+          parentElement.style.setProperty('max-width', 'none', 'important');
+          parentElement.style.setProperty('min-width', '0', 'important');
+      }
+  }
+  const headerElement = this.document.getElementById('header');
+  if (headerElement && headerElement.classList.contains('mobile_nav-fixed--true')) {
+      headerElement.style.setProperty('top', '0px', 'important');
+  } 
 }
+
+
 
 }
