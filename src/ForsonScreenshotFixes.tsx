@@ -67,7 +67,7 @@ export default class ForsonScreenshotFixes {
 
   // homepage craftklaris
   private adjustImages() {
-    var viewportWidth = this.document.body.clientWidth;
+    var viewportWidth = this.document?.body?.clientWidth;
     this.document
       .querySelectorAll(".banner__media.media")
       .forEach((bannerElement) => {
@@ -100,7 +100,7 @@ export default class ForsonScreenshotFixes {
   }
   //MEXICO IN MY POCKET
   private adjustPromoGridImages(): void {
-    const viewportWidth = this.document.body.clientWidth;
+    const viewportWidth = this.document?.body?.clientWidth;
     this.document
       .querySelectorAll(".promo-grid__bg")
       .forEach((promoElement) => {
@@ -240,7 +240,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private applyResponsiveStyles(): void {
-    const viewportWidth = this.document.body.clientWidth;
+    const viewportWidth = this.document?.body?.clientWidth;
     if (viewportWidth <= 749) {
       const productIngredientsElement = this.document.querySelector(
         ".product-ingredients"
