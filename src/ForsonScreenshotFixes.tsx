@@ -37,7 +37,6 @@ export default class ForsonScreenshotFixes {
     this.setImageMinHeight();
     this.modifyAKTElements();
     this.setTopToZero();
-    this.modifyMainContent();
     this.setBackgroundTransparent();
     this.disableClicks();
     this.disableCartClicks();
@@ -367,14 +366,7 @@ private setTopToZero(): void {
   }
 }
 
-// Etee
-private modifyMainContent() {
-  const mainContent = this.document.querySelector('#MainContent') as HTMLElement;
-  if (mainContent) {
-    mainContent.style.setProperty('position', 'relative', 'important');
-    mainContent.style.setProperty('top', '50px', 'important');
-  }
-}
+
 
 // Eleganza
 private setBackgroundTransparent() {
