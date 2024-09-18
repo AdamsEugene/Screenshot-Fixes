@@ -45,6 +45,7 @@ export default class ForsonScreenshotFixes {
     this.updateFeaturedCollectionSection();
     this.hideEmptyMinicart();
     this.centerUlInCustomBlk();
+    this.LogoxUpdatePageElements()
   }
 
   // Upcircle EU
@@ -440,7 +441,6 @@ private hideEmptyMinicart() {
   }
 }
 
-
 // addison ross uk
 private centerUlInCustomBlk() {
   const customBlkElements = this.document.querySelectorAll('.custom-blk') as NodeListOf<HTMLElement>;
@@ -452,5 +452,22 @@ private centerUlInCustomBlk() {
   });
 }
 
+// logOx
+private LogoxUpdatePageElements() {
+  var posts = this.document.querySelectorAll('.post_img.slick-slide') as NodeListOf<HTMLElement>;
+  posts.forEach(function(post) {
+      var img = post.querySelector('img');
+      if (img) {
+          img.style.height = '';
+      }
+  });
+  var elements = this.document.querySelectorAll('.featured-collection-section') as NodeListOf<HTMLElement>;
+  elements.forEach(function(element) {
+      element.classList.remove('pt-6', 'pt-9', 'pb-9');
+      element.style.paddingTop = '';
+      element.style.paddingBottom = '';
+      element.style.height = '';
+  });
+}
 
 }
