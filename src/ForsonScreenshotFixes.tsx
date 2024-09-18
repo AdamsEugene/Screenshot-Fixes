@@ -434,11 +434,12 @@ private updateFeaturedCollectionSection() {
 
 // pet gently
 private hideEmptyMinicart() {
-  var minicartWrapper = this.document.querySelector('.minicart_wrapper') as HTMLElement;
-  if (minicartWrapper && minicartWrapper.querySelector('.minicart_inner.empty')) {
+  var minicartWrapper = this.document.querySelector('.mnc') as HTMLElement;
+  if (minicartWrapper && minicartWrapper.querySelector('.minicart_wrapper')) {
       minicartWrapper.style.setProperty('display', 'none', 'important');
   }
 }
+
 
 // addison ross uk
 private centerUlInCustomBlk() {
