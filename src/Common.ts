@@ -27,8 +27,6 @@ export default class Common {
     this.dom = container?.contentWindow?.document || document;
 
     func();
-
-    // container?.contentWindow?.addEventListener("resize", this.handleResize);
   }
 
   protected allElements<T extends Element = HTMLElement>(
