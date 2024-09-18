@@ -42,6 +42,9 @@ export default class ForsonScreenshotFixes {
     this.setChildDisplayBlock();
     this.deleteParentIfContainsChild();
     this.removeImportantStylesFromElement();
+    this.updateFeaturedCollectionSection();
+    this.hideEmptyMinicart();
+    this.centerUlInCustomBlk();
   }
 
   // Upcircle EU
@@ -403,20 +406,6 @@ private deleteParentIfContainsChild() {
   });
 }
 
-// 
-// Function to remove important styles from the element
-/* private removeImportantStylesFromElement() {
-  const parentElement = this.document.querySelector('.gallery-cell.thumbnail.quick-shop-style--popup.swiper-slide-active.swiper-slide') as HTMLElement;
-  if (parentElement) {
-      const childElement = parentElement.querySelector('.gallery-cell__wrap') as HTMLElement;
-      if (childElement) {
-          parentElement.style.setProperty('width', 'auto', 'important');
-          parentElement.style.setProperty('max-width', 'none', 'important');
-          parentElement.style.setProperty('min-width', '0', 'important');
-      } 
-  }
-} */
-
 // arctic cool
 private removeImportantStylesFromElement() {
   const parentElement = this.document.querySelector('.gallery-cell.thumbnail.quick-shop-style--popup.swiper-slide-active.swiper-slide') as HTMLElement;
@@ -434,6 +423,33 @@ private removeImportantStylesFromElement() {
   } 
 }
 
+private updateFeaturedCollectionSection() {
+  const parentElements = this.document.querySelectorAll('.featured-collection-section') as NodeListOf<HTMLElement>;
+  parentElements.forEach(parent => {
+    parent.classList.remove('pt-6', 'pt-9', 'pb-9');
+    parent.style.paddingTop = '';
+    parent.style.paddingBottom = '';
+  });
+}
+
+// pet gently
+private hideEmptyMinicart() {
+  var minicartWrapper = this.document.querySelector('.minicart_wrapper') as HTMLElement;
+  if (minicartWrapper && minicartWrapper.querySelector('.minicart_inner.empty')) {
+      minicartWrapper.style.setProperty('display', 'none', 'important');
+  }
+}
+
+// addison ross uk
+private centerUlInCustomBlk() {
+  const customBlkElements = this.document.querySelectorAll('.custom-blk') as NodeListOf<HTMLElement>;
+  customBlkElements.forEach(function(element) {
+      const ulElement = element.querySelector('ul') as HTMLElement;
+      if (ulElement) {
+          ulElement.style.justifyContent = 'space-evenly';
+      }
+  });
+}
 
 
 }
