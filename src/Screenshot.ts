@@ -4,6 +4,7 @@ import ForsonScreenshotFixes from "./ForsonScreenshotFixes";
 import JesseScreenShotFixes from "./JesseScreenShotFixes";
 import Common from "./Common";
 import snippets from "./custom.snippets.json";
+import { JsonEntry } from "./@types";
 
 class ScreenshotFixes extends Common {
   constructor(debugMode = false) {
@@ -82,6 +83,10 @@ class ScreenshotFixes extends Common {
       this.removeClassesFromClassList();
       this.setOverflowHidden();
       this.processSnippets();
+      this.ensureOverlayClass();
+      this.adjustReviewRatingImages();
+      this.setSlideshowFullScreenHeight();
+      this.fixSvgsWithUse();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -126,14 +131,52 @@ class ScreenshotFixes extends Common {
         fetch(content.path)
           .then((response) => response.text())
           .then((htmlContent) => {
-            const element = this.dom.querySelector(selector);
+            const element = this.dom.querySelector(selector) as HTMLElement;
             if (element) {
-              element.innerHTML = htmlContent;
+              if (snippet.shadow)
+                this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
+              else element.innerHTML = htmlContent;
             }
           })
           .catch((error) => console.error(`Error fetching content: ${error}`));
       }
     });
+  }
+
+  private appendToFastSimonShadowRoot(
+    element: HTMLElement,
+    htmlContent: string,
+    snippet: JsonEntry
+  ): void {
+    const { elementToApplyStyles, classNames, shadowChildSelector, styles } =
+      snippet;
+    if (element) {
+      let applyStylesToMe: HTMLElement;
+      this.displayBlock(element, true);
+      const shadowRoot = element.shadowRoot;
+      console.log("shadowRoot: ", shadowRoot);
+      if (shadowRoot) {
+        if (!shadowRoot.querySelector(`#${shadowChildSelector}`)) {
+          const newDiv = document.createElement("div");
+          newDiv.id = shadowChildSelector;
+          newDiv.className = classNames;
+
+          newDiv.innerHTML = htmlContent;
+
+          if (elementToApplyStyles) {
+            applyStylesToMe = newDiv.querySelector(elementToApplyStyles);
+            if (!applyStylesToMe)
+              applyStylesToMe = shadowRoot.querySelector(elementToApplyStyles);
+          }
+          if (styles) {
+            for (const [key, value] of Object.entries(styles)) {
+              (applyStylesToMe || newDiv).style.setProperty(key, value);
+            }
+          }
+          shadowRoot.appendChild(newDiv);
+        }
+      }
+    }
   }
 
   private runFunctionsForIdSite() {
@@ -422,7 +465,11 @@ class ScreenshotFixes extends Common {
   }
 
   private setElementDisplayToNone() {
-    const classes = [".boost-cart__backdrop", ".modal__gifting"];
+    const classes = [
+      ".boost-cart__backdrop",
+      ".modal__gifting",
+      ".fixed.inset-0.bg-black.bg-opacity-25",
+    ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
     });
@@ -524,6 +571,67 @@ class ScreenshotFixes extends Common {
         }
       });
     }
+  }
+
+  private ensureOverlayClass(): void {
+    const overlayElements = this.dom.querySelectorAll<HTMLElement>("#overlay");
+    overlayElements.forEach((element) => {
+      if (!element.classList.contains("overlay")) {
+        element.classList.add("overlay");
+      }
+    });
+  }
+
+  private adjustReviewRatingImages(): void {
+    const reviewRatings =
+      this.dom.querySelectorAll<HTMLElement>(".review-rating");
+    reviewRatings.forEach((element) => {
+      if (
+        element.children.length === 1 &&
+        element.children[0].tagName === "IMG"
+      ) {
+        (element.children[0] as HTMLElement).style.objectFit = "contain";
+      }
+    });
+  }
+
+  private setSlideshowFullScreenHeight(): void {
+    const slideshows = this.dom.querySelectorAll<HTMLElement>(
+      ".slideshow--full-screen"
+    );
+    slideshows.forEach((slideshow) => {
+      const actualHeight = slideshow.getAttribute("actualHeight");
+      if (actualHeight) {
+        slideshow.style.setProperty(
+          "max-height",
+          `${actualHeight}`,
+          "important"
+        );
+      }
+    });
+  }
+
+  private fixSvgsWithUse(): void {
+    // const replacedImages = this.dom.querySelectorAll(
+    //   ".heatmap__com-svg-replacement"
+    // );
+    // replacedImages.forEach((img) => img.remove());
+    const svgElements = this.dom.querySelectorAll<SVGElement>("svg");
+    svgElements.forEach((svg) => {
+      const useElement = svg.querySelector("use");
+      if (useElement && useElement.hasAttribute("href")) {
+        const hrefValue = useElement.getAttribute("href");
+        const img = document.createElement("img");
+        img.src = hrefValue;
+        img.classList.add("heatmap__com-svg-replacement");
+        if (svg.parentElement) {
+          svg.parentElement.appendChild(img);
+          img.style.position = "absolute";
+          img.style.top = "0px";
+          img.style.left = "0px";
+        }
+      }
+    });
   }
 
   public cleanup() {

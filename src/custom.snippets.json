@@ -1,17 +1,31 @@
 [
-    {
-        "selector": "#product-list-main",
-        "content": {
-            "idSite": 2739,
-            "type": "file",
-            "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/voluspa_com_collections_product-list-main.html"
-        }
-    },
-    {
-        "selector": "",
-        "content": {
-            "type": "file",
-            "path": ""
-        }
+  {
+    "selector": "#product-list-main",
+    "content": {
+      "idSite": 2739,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/voluspa_com_collections_product-list-main.html"
     }
+  },
+  {
+    "selector": "#fast-simon-serp-app",
+    "shadowChildSelector": "fs-serp-page",
+    "classNames": "searchResultsWrapper fs-result-page-1401w5l",
+    "elementToApplyStyles": "#products-grid",
+    "styles": {
+      "display": "grid",
+      "grid-template-columns": "var(--grid-template-columns)",
+      "row-gap": "var(--grid-row-gap)",
+      "column-gap": "var(--grid-col-gap)",
+      "margin-left": "var(--grid-left-margin)",
+      "transition": ".2s opacity ease-in-out",
+      "opacity": "1"
+    },
+    "shadow": true,
+    "content": {
+      "idSite": 2091,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/winkscrubs.com-collections-womens-scrub-pants-main.html"
+    }
+  }
 ]
