@@ -114,14 +114,16 @@ export default class Common {
     mobileFuncs: (() => void)[];
     desktopFuncs: (() => void)[];
   }) => {
-    console.log("called with: ", this.dom.documentElement.clientWidth);
-
     if (this.dom.documentElement.clientWidth > 500) {
       desktopFuncs.forEach((func) => func());
     } else {
       mobileFuncs.forEach((func) => func());
     }
   };
+
+  protected isMobile() {
+    return this.dom.documentElement.clientWidth < 500;
+  }
 
   protected setOpacityAndDisplay(element: HTMLElement) {
     element.style.setProperty("opacity", "1", "important");

@@ -10,6 +10,7 @@ export interface JsonEntry {
   classNames?: string;
   elementToApplyStyles?: string;
   styles?: { [key: string]: string };
+  stylesDes?: { [key: string]: string };
   shadow?: boolean;
   content: Content;
 }

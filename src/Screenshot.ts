@@ -117,7 +117,7 @@ class ScreenshotFixes extends Common {
 
     // const url = new URL(this.iframeWindow.location.href);
     // const fileName = url.host + url.pathname + "-main.html";
-    snippets.forEach((snippet) => {
+    snippets.forEach((snippet: JsonEntry) => {
       const { selector, content } = snippet;
 
       const isElementInDom = selector
@@ -133,7 +133,7 @@ class ScreenshotFixes extends Common {
           .then((htmlContent) => {
             const element = this.dom.querySelector(selector) as HTMLElement;
             if (element) {
-              if (snippet.shadow)
+              if (snippet?.shadow)
                 this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
               else element.innerHTML = htmlContent;
             }
@@ -148,8 +148,13 @@ class ScreenshotFixes extends Common {
     htmlContent: string,
     snippet: JsonEntry
   ): void {
-    const { elementToApplyStyles, classNames, shadowChildSelector, styles } =
-      snippet;
+    const {
+      elementToApplyStyles,
+      classNames,
+      shadowChildSelector,
+      styles,
+      stylesDes,
+    } = snippet;
     if (element) {
       let applyStylesToMe: HTMLElement;
       this.displayBlock(element, true);
@@ -170,6 +175,11 @@ class ScreenshotFixes extends Common {
           }
           if (styles) {
             for (const [key, value] of Object.entries(styles)) {
+              (applyStylesToMe || newDiv).style.setProperty(key, value);
+            }
+          }
+          if (stylesDes && !this.isMobile()) {
+            for (const [key, value] of Object.entries(stylesDes)) {
               (applyStylesToMe || newDiv).style.setProperty(key, value);
             }
           }
