@@ -45,7 +45,8 @@ export default class ForsonScreenshotFixes {
     this.updateFeaturedCollectionSection();
     this.hideEmptyMinicart();
     this.centerUlInCustomBlk();
-    this.LogoxUpdatePageElements()
+    this.LogoxUpdatePageElements();
+    this.hideElementsBasedOnConditions();
   }
 
   // Upcircle EU
@@ -452,7 +453,7 @@ private centerUlInCustomBlk() {
   });
 }
 
-// logOx
+// logOx (ryan)
 private LogoxUpdatePageElements() {
   var posts = this.document.querySelectorAll('.post_img.slick-slide') as NodeListOf<HTMLElement>;
   posts.forEach(function(post) {
@@ -467,6 +468,24 @@ private LogoxUpdatePageElements() {
       element.style.paddingTop = '';
       element.style.paddingBottom = '';
       element.style.height = '';
+  });
+}
+
+// ksl
+private hideElementsBasedOnConditions() {
+  const targetElements = document.querySelectorAll('.fixed.inset-0.bg-black.bg-opacity-25') as NodeListOf<HTMLElement>;
+  targetElements.forEach(function(element) {
+      const parentElement = element.closest('.flex-grow.w-full.window--wide.absolute');
+      if (parentElement && parentElement.classList.contains('!px-6')) {
+          element.style.setProperty('display', 'none', 'important');
+      }
+  });
+  const parentElements = document.querySelectorAll('.flex.flex-wrap.h-full.px-4.-mx-4') as NodeListOf<HTMLElement>;
+  parentElements.forEach(function(parentElement) {
+      const childElement = parentElement.querySelector('.h-\\[70vh\\].max-h-\\[600px\\].w-full.overflow-y-auto');
+      if (childElement) {
+          parentElement.style.setProperty('display', 'none', 'important');
+      }
   });
 }
 
