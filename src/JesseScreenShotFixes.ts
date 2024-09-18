@@ -37,14 +37,8 @@ private changeAfterBackgroundToTransparent() {
         const rule = `.wbsk-ui__loading-body::after { background: transparent !important; }`;
         
         styleSheet.insertRule(rule, styleSheet.cssRules.length); 
-  
-        console.log('Background changed to transparent');
-      } else {
-        console.log('Background does not match #0000004f');
-      }
-    } else {
-      console.log('Element with class "wbsk-ui__loading-body" not found');
-    }
+        } 
+    } 
   }
   
 
