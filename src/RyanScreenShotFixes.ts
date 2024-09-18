@@ -1,5 +1,3 @@
-import { log } from "console";
-
 export default class RyanScreenshotFixes {
   private document: Document;
 
@@ -19,21 +17,30 @@ export default class RyanScreenshotFixes {
   }
 
   public init(): void {
-    this.updateFeaturedCollectionSection();
+    this.LogoxUpdatePageElements();
   }
 
   // theLogOx
-private updateFeaturedCollectionSection() {
-  // Select all parent elements with class 'featured-collection-section'
-  const parentElements = this.document.querySelectorAll('.featured-collection-section') as NodeListOf<HTMLElement>;
+ private LogoxUpdatePageElements() {
+    var posts = this.document.querySelectorAll('.post_img.slick-slide') as NodeListOf<HTMLElement>;
+    posts.forEach(function(post) {
+        var img = post.querySelector('img');
+        if (img) {
+            img.style.height = ''; 
+        }
+    });
+    var elements = this.document.querySelectorAll('.featured-collection-section') as NodeListOf<HTMLElement>;
 
-  parentElements.forEach(parent => {
-    parent.classList.remove('pt-6', 'pt-9', 'pb-9');
-    
-    // Clear any inline padding styles (padding-top and padding-bottom)
-    parent.style.paddingTop = '';
-    parent.style.paddingBottom = '';
-  });
+
+    // Loop through each element
+    elements.forEach(function(element) {
+        element.classList.remove('pt-6', 'pt-9', 'pb-9');
+
+        element.style.paddingTop = '';
+        element.style.paddingBottom = '';
+        
+        element.style.height = '';
+    });
 }
 
 }
