@@ -9,6 +9,14 @@
   },
   {
     "selector": "#shopify-block-obviyo_recommend_personalize_location_block_8UhAUk",
+    "elementToApplyStyles": ".obvSectionTitle",
+    "styles": {
+      "font-size": "var(--text-h2)",
+      "font-family": "DIN Next Bold, sans-serif",
+      "font-weight": "700",
+      "padding-bottom": "20px",
+      "text-align": "center"
+    },
     "content": {
       "idSite": 2710,
       "type": "file",
@@ -44,3 +52,5 @@
     }
   }
 ]
+
+
