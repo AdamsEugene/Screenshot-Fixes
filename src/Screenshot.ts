@@ -485,6 +485,8 @@ class ScreenshotFixes extends Common {
       ".modal__gifting",
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
+      ".fixed.inset-0.bg-black.bg-opacity-25",
+      ".flex.flex-wrap.h-full.px-4.-mx-4"
     ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
