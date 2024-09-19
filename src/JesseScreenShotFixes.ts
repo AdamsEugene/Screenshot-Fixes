@@ -16,8 +16,8 @@ export default class JesseScreenShotFixes extends Common {
         ".wbsk-ui__loading-body"
       ) as HTMLElement | null;
       if (loadingBody) {
-        console.log(this.iframeWindow, "hey here i am");
-        console.log(this.dom, "hey");
+        // console.log(this.iframeWindow, "hey here i am");
+        // console.log(this.dom, "hey");
         const afterElementStyle = this.iframeWindow.getComputedStyle(
           loadingBody,
           "::after"

@@ -88,7 +88,6 @@ class ScreenshotFixes extends Common {
       this.adjustReviewRatingImages();
       this.setSlideshowFullScreenHeight();
       this.fixSvgsWithUse();
-      this.hideSkipToContentAndAdjacent();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -164,7 +163,7 @@ class ScreenshotFixes extends Common {
       let applyStylesToMe: HTMLElement;
       this.displayBlock(element, true);
       const shadowRoot = element.shadowRoot;
-      console.log("shadowRoot: ", shadowRoot);
+      // console.log("shadowRoot: ", shadowRoot);
       if (shadowRoot) {
         if (!shadowRoot.querySelector(`#${shadowChildSelector}`)) {
           const newDiv = document.createElement("div");
@@ -196,7 +195,7 @@ class ScreenshotFixes extends Common {
 
   private runFunctionsForIdSite() {
     const idSite = this.idSite();
-    console.log({ idSite });
+    // console.log({ idSite });
 
     if (idSite !== null && this.functionsMap[idSite]) {
       this.functionsMap[idSite].forEach((func) => func());
@@ -486,32 +485,18 @@ class ScreenshotFixes extends Common {
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".fixed.inset-0.bg-black.bg-opacity-25",
-      ".flex.flex-wrap.h-full.px-4.-mx-4"
+      ".flex.flex-wrap.h-full.px-4.-mx-4",
     ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
     });
   }
 
-  private hideSkipToContentAndAdjacent(): void {
-    const skipToContentLink = this.dom.querySelector<HTMLElement>(
-      ".skip-to-content-link.button.visually-hidden"
-    );
-    if (skipToContentLink && skipToContentLink.tagName.toLowerCase() === "a") {
-      this.displayNone(skipToContentLink);
-      const adjacentElement =
-        skipToContentLink.nextElementSibling as HTMLElement;
-      if (
-        adjacentElement &&
-        adjacentElement.classList.contains("shopify-section") &&
-        adjacentElement.classList.contains(
-          "shopify-section-group-header-group"
-        ) &&
-        adjacentElement.classList.contains("section-header")
-      ) {
-        this.displayNone(adjacentElement);
-      }
-    }
+  private setElementDisplayToBlock() {
+    const classes = [''];
+    classes.forEach((cls) => {
+      this.allElements(cls)?.forEach((m: HTMLElement) => this.displayBlock(m));
+    });
   }
 
   private adjustSlideshowSlides() {
@@ -581,7 +566,7 @@ class ScreenshotFixes extends Common {
           }
         }
 
-        console.log({ mostCommonWidth, slide });
+        // console.log({ mostCommonWidth, slide });
 
         mostCommonWidth =
           parseFloat(mostCommonWidth) > 5 ? mostCommonWidth : "430px";
@@ -595,7 +580,7 @@ class ScreenshotFixes extends Common {
 
   private adjustSliderItems() {
     const productSlider = this.elementById("productSlider");
-    console.log({ productSlider });
+    // console.log({ productSlider });
 
     if (productSlider) {
       productSlider.style.visibility = "visible";

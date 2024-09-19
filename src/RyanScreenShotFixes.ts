@@ -20,7 +20,7 @@ private LogoxUpdatePageElements() {
         const img = post.querySelector('img');
         if (img) {
             img.style.height = '';
-            console.log(`Reset height for image in post:`, img);
+            // console.log(`Reset height for image in post:`, img);
         }
     });
 
@@ -29,7 +29,7 @@ private LogoxUpdatePageElements() {
 
     elements.forEach((element) => {
         // Log the element and its classes before changes
-        console.log('Before update:', element, 'Classes:', element.classList.value, 'Styles:', element.style.cssText);
+        // console.log('Before update:', element, 'Classes:', element.classList.value, 'Styles:', element.style.cssText);
         
         // Remove classes and reset styles
         element.classList.remove('pt-6', 'pt-9', 'pb-9');
@@ -38,7 +38,7 @@ private LogoxUpdatePageElements() {
         element.style.height = '';
         
         // Log the element after changes
-        console.log('After update:', element, 'Classes:', element.classList.value, 'Styles:', element.style.cssText);
+        // console.log('After update:', element, 'Classes:', element.classList.value, 'Styles:', element.style.cssText);
     });
 }
 
@@ -50,7 +50,7 @@ private FeldluftUpdatePageElements() {
     if (bulletPointsContainer) {
         // Remove 'hidden' attribute from the container
         bulletPointsContainer.removeAttribute('hidden');
-        console.log('Removed hidden attribute from:', bulletPointsContainer);
+        // console.log('Removed hidden attribute from:', bulletPointsContainer);
 
         // Select the div with class "dbtfy-product-bullet-points" that contains a child ul
         const bulletPointsDiv = this.dom.querySelector('.dbtfy-product-bullet-points') as HTMLElement;
@@ -60,7 +60,7 @@ private FeldluftUpdatePageElements() {
 
             if (bulletPointsUl) {
                 // Log the bulletPointsDiv and bulletPointsUl before changes
-                console.log('Before update:', bulletPointsDiv, 'Classes:', bulletPointsDiv.classList.value, 'Data-section-settings:', bulletPointsDiv.getAttribute('data-section-settings'));
+                // console.log('Before update:', bulletPointsDiv, 'Classes:', bulletPointsDiv.classList.value, 'Data-section-settings:', bulletPointsDiv.getAttribute('data-section-settings'));
 
                 // Convert DOMTokenList to array and copy the class attribute from the div to the ul
                 const classListArray = Array.from(bulletPointsDiv.classList);
@@ -83,11 +83,11 @@ private FeldluftUpdatePageElements() {
                         const settings = JSON.parse(blockSettings);
                         if (settings.collection !== "bestseller") {
                             li.style.display = 'none';  // Hide li elements that don't match the condition
-                            console.log('Hid item:', li, 'Collection:', settings.collection);
+                            // console.log('Hid item:', li, 'Collection:', settings.collection);
                         }
                     } else {
                         li.style.display = 'none';  // Hide li elements without the data-block-settings attribute
-                        console.log('Hid item without data-block-settings:', li);
+                        // console.log('Hid item without data-block-settings:', li);
                     }
                 });
 
@@ -95,10 +95,10 @@ private FeldluftUpdatePageElements() {
                 bulletPointsDiv.remove();
                 bulletPointsContainer.appendChild(bulletPointsUl);
 
-                console.log('Updated the ul, filtered list items, and moved it to the container.');
+                // console.log('Updated the ul, filtered list items, and moved it to the container.');
 
                 // Log the bulletPointsUl after changes
-                console.log('After update:', bulletPointsUl, 'Classes:', bulletPointsUl.classList.value, 'Data-section-settings:', bulletPointsUl.getAttribute('data-section-settings'));
+                // console.log('After update:', bulletPointsUl, 'Classes:', bulletPointsUl.classList.value, 'Data-section-settings:', bulletPointsUl.getAttribute('data-section-settings'));
             }
         }
     }
