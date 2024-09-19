@@ -132,11 +132,21 @@ class ScreenshotFixes extends Common {
       // const s3FileName = content.path.split("custom.snippets/")[1];
       // console.log({ fileName, s3FileName });
 
-      if (content.path && content.idSite === this.idSite() && isElementInDom) {
+      console.log("====================================");
+      console.log(this.idSiteHsr());
+      console.log("====================================");
+
+      if (
+        content.path &&
+        content.idSite === this.idSite() &&
+        content.idSiteHsr === this.idSiteHsr() &&
+        isElementInDom
+      ) {
         fetch(content.path)
           .then((response) => response.text())
           .then((htmlContent) => {
             const element = this.dom.querySelector(selector) as HTMLElement;
+            this.displayBlock(element);
             if (element) {
               if (snippet?.shadow)
                 this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
@@ -288,6 +298,17 @@ class ScreenshotFixes extends Common {
     const idSiteParam = urlObj.searchParams.get("idSite");
     const idSiteNumber = idSiteParam ? parseInt(idSiteParam, 10) : null;
     return Number.isNaN(idSiteNumber) ? null : idSiteNumber;
+  }
+
+  private idSiteHsr() {
+    const url = window.location.href;
+    const urlParams = new URLSearchParams(url.split("#")[1]);
+    const subcategory = urlParams.get("subcategory");
+    if (subcategory) {
+      return Number.isNaN(subcategory) ? null : +subcategory;
+    }
+    const oldIdsitehsr = urlParams.get("old_idsitehsr");
+    return Number.isNaN(oldIdsitehsr) ? null : +oldIdsitehsr;
   }
 
   private adjustReviewSliderDisplay() {

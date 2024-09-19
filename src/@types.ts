@@ -1,5 +1,6 @@
 export interface Content {
   idSite: number;
+  idSiteHsr:number
   type: string;
   path: string;
 }

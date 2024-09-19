@@ -3,6 +3,7 @@
     "selector": "#product-list-main",
     "content": {
       "idSite": 2739,
+      "idSiteHsr": 4927720,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/voluspa_com_collections_product-list-main.html"
     }
@@ -19,6 +20,7 @@
     },
     "content": {
       "idSite": 2710,
+      "idSiteHsr": 4815604,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/fleekfellows.com--main.html"
     }
@@ -27,6 +29,7 @@
     "selector": "#shopify-block-obviyo_recommend_personalize_location_block_z3jiGD",
     "content": {
       "idSite": 2710,
+      "idSiteHsr": 4815604,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/fleekfellows.com--main.html"
     }
@@ -55,10 +58,18 @@
     "shadow": true,
     "content": {
       "idSite": 2091,
+      "idSiteHsr": 3036289,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/winkscrubs.com-collections-womens-scrub-pants-main.html"
     }
+  },
+  {
+    "selector": "#product",
+    "content": {
+      "idSite": 2682,
+      "idSiteHsr": 4712965,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/instatints.com-products-instatint-main.html"
+    }
   }
 ]
-
-
