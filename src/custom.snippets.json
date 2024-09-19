@@ -8,6 +8,14 @@
     }
   },
   {
+    "selector": "#shopify-block-obviyo_recommend_personalize_location_block_8UhAUk",
+    "content": {
+      "idSite": 2710,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/fleekfellows.com--main.html"
+    }
+  },
+  {
     "selector": "#fast-simon-serp-app",
     "shadowChildSelector": "fs-serp-page",
     "classNames": "searchResultsWrapper fs-result-page-1401w5l",
