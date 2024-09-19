@@ -24,7 +24,7 @@
     }
   },
   {
-    "selector": "shopify-block-obviyo_recommend_personalize_location_block_z3jiGD",
+    "selector": "#shopify-block-obviyo_recommend_personalize_location_block_z3jiGD",
     "content": {
       "idSite": 2710,
       "type": "file",
