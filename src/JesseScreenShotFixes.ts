@@ -5,6 +5,7 @@ export default class JesseScreenShotFixes extends Common {
     const func = () => {
       this.changeAfterBackgroundToTransparent();
       this.updatePaddingForSmallScreens();
+      this.addMarginForSmallScreens();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -59,5 +60,21 @@ export default class JesseScreenShotFixes extends Common {
       } catch (error) {}
     };
     applyPaddingChange();
+  }
+
+  private addMarginForSmallScreens() {
+    const mediaQuery = this.iframeWindow.matchMedia("(max-width: 749px)");
+    const applyMarginChange = () => {
+      if (mediaQuery.matches) {
+        const parentDiv = this.dom.getElementById('shopify-section-template--17862126403806__shop_by_colours_BTUmmM') as HTMLElement | null;
+        if (parentDiv) {
+          const colourShopContainer = parentDiv.querySelector('.colour-shop-container') as HTMLElement | null;
+          if (colourShopContainer) {
+            colourShopContainer.style.marginTop = '120px';
+          } 
+        } 
+      } 
+    };
+      applyMarginChange();
   }
 }
