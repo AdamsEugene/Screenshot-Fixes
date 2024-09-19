@@ -88,6 +88,7 @@ class ScreenshotFixes extends Common {
       this.adjustReviewRatingImages();
       this.setSlideshowFullScreenHeight();
       this.fixSvgsWithUse();
+      this.hideSkipToContentAndAdjacent();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -492,6 +493,27 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  private hideSkipToContentAndAdjacent(): void {
+    const skipToContentLink = this.dom.querySelector<HTMLElement>(
+      ".skip-to-content-link.button.visually-hidden"
+    );
+    if (skipToContentLink && skipToContentLink.tagName.toLowerCase() === "a") {
+      this.displayNone(skipToContentLink);
+      const adjacentElement =
+        skipToContentLink.nextElementSibling as HTMLElement;
+      if (
+        adjacentElement &&
+        adjacentElement.classList.contains("shopify-section") &&
+        adjacentElement.classList.contains(
+          "shopify-section-group-header-group"
+        ) &&
+        adjacentElement.classList.contains("section-header")
+      ) {
+        this.displayNone(adjacentElement);
+      }
+    }
+  }
+
   private adjustSlideshowSlides() {
     const slideshowSection = this.elementById(
       "shopify-section-offer-slideshow"
@@ -628,24 +650,20 @@ class ScreenshotFixes extends Common {
     });
   }
 
-  private fixSvgsWithUse(): void {
-    // const replacedImages = this.dom.querySelectorAll(
-    //   ".heatmap__com-svg-replacement"
-    // );
-    // replacedImages.forEach((img) => img.remove());
-    const svgElements = this.dom.querySelectorAll<SVGElement>("svg");
-    svgElements.forEach((svg) => {
-      const useElement = svg.querySelector("use");
-      if (useElement && useElement.hasAttribute("href")) {
-        const hrefValue = useElement.getAttribute("href");
-        const img = document.createElement("img");
-        img.src = hrefValue;
-        img.classList.add("heatmap__com-svg-replacement");
-        if (svg.parentElement) {
+  private fixSvgsWithUse() {
+    this.dom.querySelectorAll("svg").forEach((svg) => {
+      const rect = svg.getBoundingClientRect();
+      if (rect.top < 150) {
+        const useElement = svg.querySelector("use");
+        if (useElement && useElement.hasAttribute("href")) {
+          const hrefValue = useElement.getAttribute("href");
+          const img = this.dom.createElement("img");
+          img.src = hrefValue;
+          img.classList.add("heatmap__com-svg-replacement");
           svg.parentElement.appendChild(img);
           img.style.position = "absolute";
-          img.style.top = "0px";
-          img.style.left = "0px";
+          img.style.top = `0px`;
+          // svg.style.visibility = 'hidden';
         }
       }
     });
