@@ -47,12 +47,9 @@ export default class JesseScreenShotFixes extends Common {
             padding-top: 250px !important;
           }
         `;
-        styleSheet.insertRule(rule, styleSheet.cssRules.length); // Inject the new rule
-        console.log("Padding-top changed to 250px for screens below 749px");
+        styleSheet.insertRule(rule, styleSheet.cssRules.length);
       }
     };
-  
-    // Apply the change on load
     applyPaddingChange();
   
   }
