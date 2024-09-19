@@ -7,6 +7,7 @@ export default class RyanScreenshotFixes extends Common {
       this.LogoxUpdatePageElements();
       this.setElementDisplayToBlock();
       this.FeldluftUpdatePageElements();
+      this.QuotidienUpdateElementHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -44,67 +45,52 @@ private LogoxUpdatePageElements() {
 
 //Feldluft
 private FeldluftUpdatePageElements() {
-    // Select the container for the bullet points
     const bulletPointsContainer = this.dom.querySelector('.dbtfy-product-bullet-points-container') as HTMLElement;
     
     if (bulletPointsContainer) {
-        // Remove 'hidden' attribute from the container
         bulletPointsContainer.removeAttribute('hidden');
-        console.log('Removed hidden attribute from:', bulletPointsContainer);
-
-        // Select the div with class "dbtfy-product-bullet-points" that contains a child ul
         const bulletPointsDiv = this.dom.querySelector('.dbtfy-product-bullet-points') as HTMLElement;
 
         if (bulletPointsDiv) {
             const bulletPointsUl = bulletPointsDiv.querySelector('ul') as HTMLElement;
 
             if (bulletPointsUl) {
-                // Log the bulletPointsDiv and bulletPointsUl before changes
-                console.log('Before update:', bulletPointsDiv, 'Classes:', bulletPointsDiv.classList.value, 'Data-section-settings:', bulletPointsDiv.getAttribute('data-section-settings'));
-
-                // Convert DOMTokenList to array and copy the class attribute from the div to the ul
                 const classListArray = Array.from(bulletPointsDiv.classList);
                 bulletPointsUl.classList.add(...classListArray);
-
-                // Add the data-section-settings attribute from the div to the ul
                 const dataSectionSettings = bulletPointsDiv.getAttribute('data-section-settings');
                 if (dataSectionSettings) {
                     bulletPointsUl.setAttribute('data-section-settings', dataSectionSettings);
                 }
-
-                // Add additional classes to the ul
                 bulletPointsUl.classList.add('justify-content-start', 'text-start', 'dbtfy-product-bullet-points--items-block');
-                
-                // Filter the li elements to only show those with data-block-settings "collection" set to "bestseller"
                 const listItems = bulletPointsUl.querySelectorAll('li') as NodeListOf<HTMLElement>;
                 listItems.forEach(li => {
                     const blockSettings = li.getAttribute('data-block-settings');
                     if (blockSettings) {
                         const settings = JSON.parse(blockSettings);
                         if (settings.collection !== "bestseller") {
-                            li.style.display = 'none';  // Hide li elements that don't match the condition
-                            console.log('Hid item:', li, 'Collection:', settings.collection);
+                            li.style.display = 'none';
                         }
                     } else {
-                        li.style.display = 'none';  // Hide li elements without the data-block-settings attribute
-                        console.log('Hid item without data-block-settings:', li);
+                        li.style.display = 'none';
                     }
                 });
-
-                // Remove the original div and move the ul to the container div
                 bulletPointsDiv.remove();
                 bulletPointsContainer.appendChild(bulletPointsUl);
-
-                console.log('Updated the ul, filtered list items, and moved it to the container.');
-
-                // Log the bulletPointsUl after changes
-                console.log('After update:', bulletPointsUl, 'Classes:', bulletPointsUl.classList.value, 'Data-section-settings:', bulletPointsUl.getAttribute('data-section-settings'));
             }
         }
     }
 }
 
-
+//Quotidien
+private QuotidienUpdateElementHeight(): void {
+  const elements = this.dom.querySelectorAll('.custom-content.grid-masonary.grid-masonary-1598306753941') as NodeListOf<HTMLElement>;
+  elements.forEach((element) => {
+    const actualHeight = element.getAttribute('actualheight');
+    if (actualHeight) {
+      element.style.height = actualHeight;
+    }
+  });
+}
 
 
 private setElementDisplayToBlock() {
