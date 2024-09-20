@@ -35,6 +35,15 @@
     }
   },
   {
+    "selector": "#CollectionLoop",
+    "content": {
+      "idSite": 2702,
+      "idSiteHsr": 4799661,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/ivyboutique.ca-collections-trending-1-main.html"
+    }
+  },
+  {
     "selector": "#fast-simon-serp-app",
     "shadowChildSelector": "fs-serp-page",
     "classNames": "searchResultsWrapper fs-result-page-1401w5l",
