@@ -46,6 +46,7 @@ export default class ForsonScreenshotFixes {
     this.hideEmptyMinicart();
     this.centerUlInCustomBlk();
     this.LogoxUpdatePageElements();
+    this.overrideMaxWidthInProductSlider()
   }
 
   // Upcircle EU
@@ -470,5 +471,19 @@ private LogoxUpdatePageElements() {
   });
 }
 
+private overrideMaxWidthInProductSlider() {
+  const productSlider = document.querySelector('.product-slider.swiper-container.swiper-container-initialized.swiper-container-horizontal') as HTMLElement;
+  if (productSlider) {
+    const swiperWrapper = productSlider.querySelector('.swiper-wrapper') as HTMLElement; 
+    if (swiperWrapper) {
+      const childElements = Array.from(swiperWrapper.children) as HTMLElement[];    
+      childElements.forEach((childElement) => {
+        childElement.style.setProperty('max-width', 'none', 'important');
+      });
+    }
+  }
+}
+
+  
 
 }
