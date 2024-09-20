@@ -145,6 +145,8 @@ class ScreenshotFixes extends Common {
         fetch(content.path)
           .then((response) => response.text())
           .then((htmlContent) => {
+            console.log(htmlContent);
+            
             const element = this.dom.querySelector(selector) as HTMLElement;
             this.displayBlock(element);
             if (element) {
