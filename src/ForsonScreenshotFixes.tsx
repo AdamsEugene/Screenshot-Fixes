@@ -46,7 +46,6 @@ export default class ForsonScreenshotFixes {
     this.hideEmptyMinicart();
     this.centerUlInCustomBlk();
     this.LogoxUpdatePageElements();
-    this.setMarginIfChildExists()
   }
 
   // Upcircle EU
@@ -471,15 +470,5 @@ private LogoxUpdatePageElements() {
   });
 }
 
-
-private setMarginIfChildExists() {
-  const parentElement = document.querySelector('.collection-grid__layout.pb-64.desktop\\:px-\\[81px\\].desktop\\:pb-64') as HTMLElement;
-  if (parentElement) {
-      const childElement = parentElement.querySelector('.collection-grid__header.p-16.desktop\\:max-w-\\[60\\%\\].desktop\\:p-0') as HTMLElement;
-      if (childElement) {
-          parentElement.style.setProperty('margin-top', '220px', 'important');
-      }
-  }
-}
 
 }
