@@ -8,6 +8,7 @@ export default class RyanScreenshotFixes extends Common {
       this.setElementDisplayToBlock();
       this.FeldluftUpdatePageElements();
       this.QuotidienUpdateElementHeight();
+      this.GodzillaUpdateHeaderPadding();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -82,7 +83,7 @@ private FeldluftUpdatePageElements() {
 }
 
 //Quotidien
-private QuotidienUpdateElementHeight(): void {
+private QuotidienUpdateElementHeight() {
   const elements = this.dom.querySelectorAll('.custom-content.grid-masonary.grid-masonary-1598306753941') as NodeListOf<HTMLElement>;
   elements.forEach((element) => {
     const actualHeight = element.getAttribute('actualheight');
@@ -92,6 +93,16 @@ private QuotidienUpdateElementHeight(): void {
   });
 }
 
+//Godzilla
+private GodzillaUpdateHeaderPadding() {
+  const gridLayouts = this.dom.querySelectorAll('.collection-grid__layout') as NodeListOf<HTMLElement>;
+  gridLayouts.forEach((layout) => {
+    const header = layout.querySelector('.collection-grid__header') as HTMLElement;
+    if (header) {
+      header.style.paddingTop = '220px';
+    }
+  });
+}
 
 private setElementDisplayToBlock() {
     const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container"];
