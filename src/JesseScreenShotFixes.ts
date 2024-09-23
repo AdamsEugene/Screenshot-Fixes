@@ -5,6 +5,8 @@ export default class JesseScreenShotFixes extends Common {
     const func = () => {
       this.changeAfterBackgroundToTransparent();
       this.updatePaddingForSmallScreens();
+      this.addMissingCssForAddisonRossMobile();
+      this.updateSlickSliderOnMobile();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -60,4 +62,44 @@ export default class JesseScreenShotFixes extends Common {
     };
     applyPaddingChange();
   }
+
+  private addMissingCssForAddisonRossMobile() {
+    // Check if the window width is less than or equal to 480px
+    if (this.iframeWindow.innerWidth <= 480) {
+      const css = `
+        .col-lg-3 {
+          -webkit-box-flex: 0;
+          -ms-flex: 100% !important;
+          flex: 100% !important;
+          max-width: 100% !important;
+        }
+  
+        .col-lg-2 {
+          -webkit-box-flex: 0;
+          -ms-flex: 100% !important;
+          flex: 100% !important;
+          max-width: 100% !important;
+        }
+  
+        .col-lg-7.featured-collection {
+          max-width: 100% !important;
+        }
+  
+        .col-lg-7 {
+          -webkit-box-flex: 0;
+          -ms-flex: 100% !important;
+          flex: 100% !important;
+          max-width: 100% !important;
+        }
+      `;
+  
+      // Create a new <style> element
+      const styleTag = this.dom.createElement('style');
+      styleTag.type = 'text/css';
+  
+      styleTag.appendChild(this.dom.createTextNode(css));
+        this.dom.head.appendChild(styleTag);
+  
+    } 
+}
 }
