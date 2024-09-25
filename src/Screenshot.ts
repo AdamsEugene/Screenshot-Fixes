@@ -89,6 +89,8 @@ class ScreenshotFixes extends Common {
       this.setSlideshowFullScreenHeight();
       this.fixSvgsWithUse();
       this.removeLoadingClassAndSetImageHeight();
+      this.updateSlickTrackWidths();
+      this.hideCanvasMenu();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -131,10 +133,6 @@ class ScreenshotFixes extends Common {
 
       // const s3FileName = content.path.split("custom.snippets/")[1];
       // console.log({ fileName, s3FileName });
-
-      console.log("====================================");
-      console.log(this.idSiteHsr());
-      console.log("====================================");
 
       if (
         content.path &&
@@ -415,10 +413,15 @@ class ScreenshotFixes extends Common {
   }
 
   private setDisplayToBlock() {
-    const classes = [".splide__list.sbc-section__menu.border-black"];
+    const classes = [
+      ".splide__list.sbc-section__menu.border-black",
+      ".quick-add-modal__content-info",
+    ];
     classes.forEach((cls) => {
-      const element = this.elements(cls) as HTMLElement;
-      if (element) this.displayBlock(element, true);
+      const elements = this.allElements(cls);
+      elements.forEach((element) => {
+        if (element) this.displayBlock(element, true);
+      });
     });
   }
 
@@ -667,6 +670,27 @@ class ScreenshotFixes extends Common {
         );
       }
     });
+  }
+
+  private updateSlickTrackWidths(): void {
+    const slickTracks = this.dom.querySelectorAll<HTMLElement>(".slick-track");
+    slickTracks.forEach((item) => {
+      Array.from(item.children).forEach((child) => {
+        const actualWidth = child.getAttribute("actualWidth");
+        if (actualWidth) {
+          (child as HTMLElement).style.maxWidth = `${actualWidth}`;
+        }
+      });
+    });
+  }
+
+  private hideCanvasMenu(): void {
+    const canvasMenu = this.dom.querySelector<HTMLElement>(
+      ".nt-canvas-menu.nt-push-menu"
+    );
+    if (canvasMenu) {
+      canvasMenu.style.setProperty("left", "-1000000%", "important");
+    }
   }
 
   private fixSvgsWithUse() {
