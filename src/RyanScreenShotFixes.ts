@@ -100,7 +100,7 @@ private GodzillaUpdateHeaderPadding() {
   gridLayouts.forEach((layout) => {
     const header = layout.querySelector('.collection-grid__header') as HTMLElement;
     if (header) {
-      header.style.paddingTop = '220px';
+      header.style.paddingTop = '260px';
     }
   });
 }
