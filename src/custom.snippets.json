@@ -71,5 +71,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/instatints.com-products-instatint-main.html"
     }
+  },
+  {
+    "selector": ".r-aiyneq",
+    "content": {
+      "idSite": 2764,
+      "idSiteHsr": 4997270,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/cothirtysix.com-products-polo-shirts-main.html"
+    }
   }
 ]

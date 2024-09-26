@@ -484,6 +484,23 @@ private overrideMaxWidthInProductSlider() {
   }
 }
 
-  
+//Arctic Cool
+/* private ArcticUpdateGalleryCells() {
+  const swiperWrapper = this.dom.querySelector('.swiper-wrapper') as HTMLElement;
+
+  if (swiperWrapper) {
+    const galleryCells = swiperWrapper.querySelectorAll('.gallery-cell') as NodeListOf<HTMLElement>;
+    galleryCells.forEach((cell) => {
+      cell.style.width = '249.2px';
+      if (cell.style.display === 'none') {
+        cell.style.display = '';
+      }
+      cell.style.maxWidth = '';
+      cell.style.minWidth = '';
+    });
+  }
+}
+   */
 
 }
+
