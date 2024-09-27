@@ -6,7 +6,7 @@ export default class JesseScreenShotFixes extends Common {
       this.changeAfterBackgroundToTransparent();
       this.updatePaddingForSmallScreens();
       this.addMissingCssForAddisonRossMobile();
-      this.updateSlickSliderOnMobile();
+      // this.updateSlickSliderOnMobile();
     };
     this.exec({ containerId, debugMode, func });
   }
