@@ -10,15 +10,14 @@ export default class RyanScreenshotFixes extends Common {
       this.QuotidienUpdateElementHeight();
       this.GodzillaUpdateHeaderPadding();
       this.ArcticUpdateGalleryCells();
+      this.RubioMonocoatUpdateMenuState()
     };
     this.exec({ containerId, debugMode, func });
   }
 
   // theLogOx
 private LogoxUpdatePageElements() {
-    // Select post images and reset their heights
     const posts = this.dom.querySelectorAll('.post_img.slick-slide') as NodeListOf<HTMLElement>;
-    
     posts.forEach((post) => {
         const img = post.querySelector('img');
         if (img) {
@@ -26,21 +25,13 @@ private LogoxUpdatePageElements() {
             console.log(`Reset height for image in post:`, img);
         }
     });
-
-    // Select featured collection elements and update their styles
     const elements = this.dom.querySelectorAll('.featured-collection-section') as NodeListOf<HTMLElement>;
-
     elements.forEach((element) => {
-        // Log the element and its classes before changes
         console.log('Before update:', element, 'Classes:', element.classList.value, 'Styles:', element.style.cssText);
-        
-        // Remove classes and reset styles
         element.classList.remove('pt-6', 'pt-9', 'pb-9');
         element.style.paddingTop = '';
         element.style.paddingBottom = '';
         element.style.height = '';
-        
-        // Log the element after changes
         console.log('After update:', element, 'Classes:', element.classList.value, 'Styles:', element.style.cssText);
     });
 }
@@ -128,5 +119,17 @@ private setElementDisplayToBlock() {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayBlock(m));
     });
   }
+
+  //RubioMonocoat
+private RubioMonocoatUpdateMenuState() {
+  const parentElement = this.dom.querySelector('.main-menu') as HTMLElement;
+  if (parentElement) {
+    const childElement = parentElement.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
+    if (childElement) {
+      childElement.classList.add('is-open');
+      childElement.setAttribute('open', '');
+    }
+  }
+}
 
 }
