@@ -132,7 +132,7 @@ class ScreenshotFixes extends Common {
         : undefined;
 
       // const s3FileName = content.path.split("custom.snippets/")[1];
-      // console.log({ fileName, s3FileName });
+      // console.log({ idSiteHsr: this.idSiteHsr(), isElementInDom });
 
       if (
         content.path &&
@@ -146,6 +146,17 @@ class ScreenshotFixes extends Common {
             const element = this.dom.querySelector(selector) as HTMLElement;
             this.displayBlock(element);
             if (element) {
+              if (snippet.append) {
+                const targetElement = document.querySelector(snippet.selector);
+                if (targetElement) {
+                  console.log(this.stringToHTML(htmlContent));
+
+                  targetElement.parentNode.insertBefore(
+                    this.stringToHTML(htmlContent),
+                    targetElement
+                  );
+                }
+              }
               if (snippet?.shadow)
                 this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
               else element.innerHTML = htmlContent;
@@ -200,6 +211,12 @@ class ScreenshotFixes extends Common {
         }
       }
     }
+  }
+
+  private stringToHTML(str: string) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(str, "text/html");
+    return doc.body.firstChild;
   }
 
   private runFunctionsForIdSite() {

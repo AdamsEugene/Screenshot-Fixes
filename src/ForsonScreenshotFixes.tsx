@@ -46,7 +46,8 @@ export default class ForsonScreenshotFixes {
     this.hideEmptyMinicart();
     this.centerUlInCustomBlk();
     this.LogoxUpdatePageElements();
-    this.overrideMaxWidthInProductSlider()
+    this.overrideMaxWidthInProductSlider();
+    this.RubioMonocoatUpdateMenuState()
   }
 
   // Upcircle EU
@@ -484,23 +485,26 @@ private overrideMaxWidthInProductSlider() {
   }
 }
 
-//Arctic Cool
-/* private ArcticUpdateGalleryCells() {
-  const swiperWrapper = this.dom.querySelector('.swiper-wrapper') as HTMLElement;
-
-  if (swiperWrapper) {
-    const galleryCells = swiperWrapper.querySelectorAll('.gallery-cell') as NodeListOf<HTMLElement>;
-    galleryCells.forEach((cell) => {
-      cell.style.width = '249.2px';
-      if (cell.style.display === 'none') {
-        cell.style.display = '';
+  //RubioMonocoat
+  private RubioMonocoatUpdateMenuState() {
+    const parentElement1 = this.document.querySelector('.main-menu') as HTMLElement;
+    if (parentElement1) {
+      const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
+      if (childElement1) {
+        childElement1.classList.add('is-open');
+        childElement1.setAttribute('open', '');
       }
-      cell.style.maxWidth = '';
-      cell.style.minWidth = '';
+    }
+
+    const parentElements2 = this.document.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
+    parentElements2.forEach(parentElement2 => {
+      const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
+      detailsElements.forEach(detailsElement => {
+        detailsElement.setAttribute('open', ''); 
+      });
     });
   }
-}
-   */
+
 
 }
 
