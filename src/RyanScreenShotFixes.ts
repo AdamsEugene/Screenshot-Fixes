@@ -10,7 +10,7 @@ export default class RyanScreenshotFixes extends Common {
       this.QuotidienUpdateElementHeight();
       this.GodzillaUpdateHeaderPadding();
       this.ArcticUpdateGalleryCells();
-      this.RubioMonocoatUpdateMenuState()
+      // this.RubioMonocoatUpdateMenuState()
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -94,7 +94,7 @@ private setElementDisplayToBlock() {
     });
   }
 
-  //RubioMonocoat
+/*   //RubioMonocoat
   private RubioMonocoatUpdateMenuState() {
     const parentElement1 = this.dom.querySelector('.main-menu') as HTMLElement;
     if (parentElement1) {
@@ -113,5 +113,5 @@ private setElementDisplayToBlock() {
       });
     });
   }
-
+ */
 }
