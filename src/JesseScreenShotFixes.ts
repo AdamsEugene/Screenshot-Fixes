@@ -18,13 +18,10 @@ export default class JesseScreenShotFixes extends Common {
         ".wbsk-ui__loading-body"
       ) as HTMLElement | null;
       if (loadingBody) {
-        console.log(this.iframeWindow, "hey here i am");
-        console.log(this.dom, "hey");
         const afterElementStyle = this.iframeWindow.getComputedStyle(
           loadingBody,
           "::after"
         );
-
         const currentBackgroundColor =
           afterElementStyle.getPropertyValue("background-color");
         if (currentBackgroundColor === "rgba(0, 0, 0, 0.31)") {
@@ -40,15 +37,11 @@ export default class JesseScreenShotFixes extends Common {
 
   //   Addison Ross Luxury
   private updatePaddingForSmallScreens() {
-    // Define the media query for screens below 749px
     const mediaQuery = this.iframeWindow.matchMedia("(max-width: 749px)");
-
-    // Function to apply the padding-top change
     const applyPaddingChange = () => {
       try {
         if (mediaQuery.matches) {
-          // Add a new style rule to override the existing padding-top with !important
-          const styleSheet = this.dom?.styleSheets?.[0]; // Select the first stylesheet
+          const styleSheet = this.dom?.styleSheets?.[0];
           if (styleSheet) {
             const rule = `
             .featured-category .collection-list-wrapper.page-width {
@@ -64,7 +57,6 @@ export default class JesseScreenShotFixes extends Common {
   }
 
   private addMissingCssForAddisonRossMobile() {
-    // Check if the window width is less than or equal to 480px
     if (this.iframeWindow.innerWidth <= 480) {
       const css = `
         .col-lg-3 {
@@ -92,11 +84,8 @@ export default class JesseScreenShotFixes extends Common {
           max-width: 100% !important;
         }
       `;
-  
-      // Create a new <style> element
       const styleTag = this.dom.createElement('style');
       styleTag.type = 'text/css';
-  
       styleTag.appendChild(this.dom.createTextNode(css));
         this.dom.head.appendChild(styleTag);
   

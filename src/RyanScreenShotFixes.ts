@@ -37,42 +37,17 @@ private LogoxUpdatePageElements() {
 }
 
 //Feldluft
-private FeldluftUpdatePageElements() {
-    const bulletPointsContainer = this.dom.querySelector('.dbtfy-product-bullet-points-container') as HTMLElement;
-    
-    if (bulletPointsContainer) {
-        bulletPointsContainer.removeAttribute('hidden');
-        const bulletPointsDiv = this.dom.querySelector('.dbtfy-product-bullet-points') as HTMLElement;
-
-        if (bulletPointsDiv) {
-            const bulletPointsUl = bulletPointsDiv.querySelector('ul') as HTMLElement;
-
-            if (bulletPointsUl) {
-                const classListArray = Array.from(bulletPointsDiv.classList);
-                bulletPointsUl.classList.add(...classListArray);
-                const dataSectionSettings = bulletPointsDiv.getAttribute('data-section-settings');
-                if (dataSectionSettings) {
-                    bulletPointsUl.setAttribute('data-section-settings', dataSectionSettings);
-                }
-                bulletPointsUl.classList.add('justify-content-start', 'text-start', 'dbtfy-product-bullet-points--items-block');
-                const listItems = bulletPointsUl.querySelectorAll('li') as NodeListOf<HTMLElement>;
-                listItems.forEach(li => {
-                    const blockSettings = li.getAttribute('data-block-settings');
-                    if (blockSettings) {
-                        const settings = JSON.parse(blockSettings);
-                        if (settings.collection !== "bestseller") {
-                            li.style.display = 'none';
-                        }
-                    } else {
-                        li.style.display = 'none';
-                    }
-                });
-                bulletPointsDiv.remove();
-                bulletPointsContainer.appendChild(bulletPointsUl);
-            }
-        }
-    }
-}
+    private FeldluftUpdatePageElements() {
+      const bulletPointsContainer = this.dom.querySelector('.dbtfy-product-bullet-points-container') as HTMLElement;
+      const bulletPointsUl = this.dom.querySelector('.dbtfy-product-bullet-points ul') as HTMLElement;
+      if (bulletPointsContainer && bulletPointsUl) {
+          bulletPointsContainer.removeAttribute('hidden');
+          bulletPointsUl.classList.add(...Array.from(bulletPointsUl.parentElement?.classList || []), 'justify-content-start', 'text-start', 'dbtfy-product-bullet-points--items-block');
+          bulletPointsUl.setAttribute('data-section-settings', bulletPointsUl.parentElement?.getAttribute('data-section-settings') || '');
+          bulletPointsUl.querySelectorAll('li').forEach(li => li.style.display = JSON.parse(li.getAttribute('data-block-settings') || '{}').collection === "bestseller" ? '' : 'none');
+          bulletPointsContainer.appendChild(bulletPointsUl);
+      }
+  }
 
 //Quotidien
 private QuotidienUpdateElementHeight() {
@@ -99,7 +74,6 @@ private GodzillaUpdateHeaderPadding() {
 //Arctic Cool
 private ArcticUpdateGalleryCells() {
   const swiperWrapper = this.dom.querySelector('.swiper-wrapper') as HTMLElement;
-
   if (swiperWrapper) {
     const galleryCells = swiperWrapper.querySelectorAll('.gallery-cell') as NodeListOf<HTMLElement>;
     galleryCells.forEach((cell) => {
