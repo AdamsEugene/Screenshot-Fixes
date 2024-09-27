@@ -46,7 +46,8 @@ export default class ForsonScreenshotFixes {
     this.hideEmptyMinicart();
     this.centerUlInCustomBlk();
     this.LogoxUpdatePageElements();
-    this.overrideMaxWidthInProductSlider()
+    this.overrideMaxWidthInProductSlider();
+    this.RubioMonocoatUpdateMenuState()
   }
 
   // Upcircle EU
