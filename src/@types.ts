@@ -1,6 +1,6 @@
 export interface Content {
   idSite: number;
-  idSiteHsr:number
+  idSiteHsr: number;
   type: string;
   path: string;
 }
@@ -13,5 +13,6 @@ export interface JsonEntry {
   styles?: { [key: string]: string };
   stylesDes?: { [key: string]: string };
   shadow?: boolean;
+  append?: string;
   content: Content;
 }
