@@ -10,7 +10,7 @@ export default class RyanScreenshotFixes extends Common {
       this.QuotidienUpdateElementHeight();
       this.GodzillaUpdateHeaderPadding();
       this.ArcticUpdateGalleryCells();
-      // this.RubioMonocoatUpdateMenuState()
+      this.CoThirtySixshowBarsInContainer();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -94,24 +94,17 @@ private setElementDisplayToBlock() {
     });
   }
 
-/*   //RubioMonocoat
-  private RubioMonocoatUpdateMenuState() {
-    const parentElement1 = this.dom.querySelector('.main-menu') as HTMLElement;
-    if (parentElement1) {
-      const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
-      if (childElement1) {
-        childElement1.classList.add('is-open');
-        childElement1.setAttribute('open', '');
-      }
+  // CoThirty Six
+  private  CoThirtySixshowBarsInContainer() {
+  const containers = this.dom.querySelectorAll('.mb_container') as NodeListOf<HTMLElement>;
+  containers.forEach((container) => {
+    const bar1 = container.querySelector('.bar1') as HTMLElement;
+    const bar2 = container.querySelector('.bar2') as HTMLElement;
+    if (bar1 && bar2) {
+      bar1.style.display = '';
+      bar2.style.display = '';
     }
-  
-    const parentElements2 = this.dom.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
-    parentElements2.forEach(parentElement2 => {
-      const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
-      detailsElements.forEach(detailsElement => {
-        detailsElement.setAttribute('open', ''); 
-      });
-    });
-  }
- */
+  });
+}
+
 }
