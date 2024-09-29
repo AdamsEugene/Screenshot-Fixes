@@ -47,7 +47,7 @@ export default class ForsonScreenshotFixes {
     this.centerUlInCustomBlk();
     this.LogoxUpdatePageElements();
     this.overrideMaxWidthInProductSlider();
-    this.RubioMonocoatUpdateMenuState()
+    // this.RubioMonocoatUpdateMenuState()
   }
 
   // Upcircle EU
@@ -486,24 +486,24 @@ private overrideMaxWidthInProductSlider() {
 }
 
   //RubioMonocoat
-  private RubioMonocoatUpdateMenuState() {
-    const parentElement1 = this.document.querySelector('.main-menu') as HTMLElement;
-    if (parentElement1) {
-      const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
-      if (childElement1) {
-        childElement1.classList.add('is-open');
-        childElement1.setAttribute('open', '');
-      }
-    }
+  // private RubioMonocoatUpdateMenuState() {
+  //   const parentElement1 = this.document.querySelector('.main-menu') as HTMLElement;
+  //   if (parentElement1) {
+  //     const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
+  //     if (childElement1) {
+  //       childElement1.classList.add('is-open');
+  //       childElement1.setAttribute('open', '');
+  //     }
+  //   }
 
-    const parentElements2 = this.document.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
-    parentElements2.forEach(parentElement2 => {
-      const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
-      detailsElements.forEach(detailsElement => {
-        detailsElement.setAttribute('open', ''); 
-      });
-    });
-  }
+  //   const parentElements2 = this.document.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
+  //   parentElements2.forEach(parentElement2 => {
+  //     const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
+  //     detailsElements.forEach(detailsElement => {
+  //       detailsElement.setAttribute('open', ''); 
+  //     });
+  //   });
+  // }
 
 
 }
