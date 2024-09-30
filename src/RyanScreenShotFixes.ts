@@ -110,16 +110,16 @@ private setElementDisplayToBlock() {
 
 //RhinoUsa
 private RhinoUsaremoveWidthFromMenuDrawer() {
-  const menuDetails = this.dom.querySelectorAll('.ms-menu-details.ms-menu-details--opening') as NodeListOf<HTMLElement>;
+  const menuDetails = this.dom.querySelectorAll('.ms-menu-details') as NodeListOf<HTMLElement>;
   menuDetails.forEach((element) => {
       const menuDrawer = element.querySelector('.ms-menu-drawer') as HTMLElement;
       if (menuDrawer) {
           if (menuDrawer.style.width === '100%') {
-              menuDrawer.style.width = '';
+              menuDrawer.style.setProperty('width', 'auto', 'important');  
+              menuDrawer.style.setProperty('min-width', 'max-content', 'important');  
           }
       }
   });
 }
-
 
 }
