@@ -11,7 +11,6 @@ export default class RyanScreenshotFixes extends Common {
       this.GodzillaUpdateHeaderPadding();
       this.ArcticUpdateGalleryCells();
       this.CoThirtySixshowBarsInContainer();
-      this.RubioMonocotUpdateMenuState();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -107,28 +106,5 @@ private setElementDisplayToBlock() {
     }
   });
 }
-
-//Rubio Monocot
-private RubioMonocotUpdateMenuState() {
-  if (window.matchMedia("(min-width: 769px)").matches) {
-    const parentElement1 = this.dom.querySelector('.main-menu') as HTMLElement;
-    if (parentElement1) {
-      const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
-      if (childElement1) {
-        childElement1.classList.add('is-open');
-        childElement1.setAttribute('open', '');
-      }
-    }
-
-    const parentElements2 = this.dom.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
-    parentElements2.forEach(parentElement2 => {
-      const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
-      detailsElements.forEach(detailsElement => {
-        detailsElement.setAttribute('open', ''); 
-      });
-    });
-  }
-}
-
 
 }
