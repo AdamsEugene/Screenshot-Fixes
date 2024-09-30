@@ -35,6 +35,7 @@ class ScreenshotFixes extends Common {
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
     // () => this.setHeroMaxHeight(),
+    () => this.RubioMonocotUpdateMenuState(),
   ];
 
   mobileFunctions = [
@@ -921,6 +922,27 @@ class ScreenshotFixes extends Common {
       }
     });
   }
+
+  // Rubio Monocot
+  private RubioMonocotUpdateMenuState() {
+    const parentElement1 = this.dom.querySelector('.main-menu') as HTMLElement;
+    if (parentElement1) {
+      const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
+      if (childElement1) {
+        childElement1.classList.add('is-open');
+        childElement1.setAttribute('open', '');
+      }
+    }
+  
+    const parentElements2 = this.dom.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
+    parentElements2.forEach(parentElement2 => {
+      const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
+      detailsElements.forEach(detailsElement => {
+        detailsElement.setAttribute('open', '');
+      });
+    });
+  }
+  
 
   functionsMap: Record<number, (() => void)[]> = {
     1947: [this.removeExcessiveParentWidths],
