@@ -139,14 +139,17 @@ private PenguinDojoupdateElements() {
   const drawerMenuElement = this.dom.getElementById("DrawerMenu") as HTMLElement;
   if (drawerMenuElement) drawerMenuElement.style.removeProperty('height');
 
-  const overlayElement = this.dom.querySelector("#GlobalLoadingOverlayBlank.loading-overlay.loading-overlay--global-initial") as HTMLElement;
+  const overlayElement = this.dom.getElementById("GlobalLoadingOverlayBlank") as HTMLElement;
   if (overlayElement) overlayElement.classList.add("hidden");
 
   const toolbarElement = this.dom.getElementById("enable-toolbar") as HTMLElement;
   if (toolbarElement) toolbarElement.remove();
 
-  const hamburgerLines = this.dom.querySelectorAll("#DrawerMenuToggler .hamburger__line") as NodeListOf<HTMLElement>;
-  hamburgerLines.forEach(line => line.style.display = 'block');
+  const hamburgerToggler = this.dom.getElementById("DrawerMenuToggler") as HTMLElement;
+  if (hamburgerToggler) {
+    const hamburgerLines = hamburgerToggler.querySelectorAll(".hamburger__line") as NodeListOf<HTMLElement>;
+    hamburgerLines.forEach(line => line.style.display = 'block');
+  }
 }
-
+  
 }
