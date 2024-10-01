@@ -927,7 +927,7 @@ class ScreenshotFixes extends Common {
   private RubioMonocotUpdateMenuState() {
     const parentElement1 = this.dom.querySelector('.main-menu') as HTMLElement;
     if (parentElement1) {
-      const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
+      const childElement1 = parentElement1.querySelector('.main-menu__disclosure') as HTMLElement;
       if (childElement1) {
         childElement1.classList.add('is-open');
         childElement1.setAttribute('open', '');
