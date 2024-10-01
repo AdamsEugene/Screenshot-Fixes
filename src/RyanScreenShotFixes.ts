@@ -91,7 +91,7 @@ private ArcticUpdateGalleryCells() {
 }
 
 private setElementDisplayToBlock() {
-    const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container", ".hamburger__line"];
+    const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container"];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayBlock(m));
     });
@@ -144,6 +144,9 @@ private PenguinDojoupdateElements() {
 
   const toolbarElement = this.dom.getElementById("enable-toolbar") as HTMLElement;
   if (toolbarElement) toolbarElement.remove();
+
+  const hamburgerLines = this.dom.querySelectorAll("#DrawerMenuToggler .hamburger__line") as NodeListOf<HTMLElement>;
+  hamburgerLines.forEach(line => line.style.display = 'block');
 }
 
 }
