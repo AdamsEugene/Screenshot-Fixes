@@ -13,6 +13,7 @@ export default class RyanScreenshotFixes extends Common {
       this.CoThirtySixshowBarsInContainer();
       this.RhinoUsaremoveWidthFromMenuDrawer();
       this.BreeoupdateBannerMinHeight();
+      this.PenguinDojoupdateElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -124,19 +125,28 @@ private RhinoUsaremoveWidthFromMenuDrawer() {
 }
 
 // Breeo
-private  BreeoupdateBannerMinHeight() {
-  const sectionElements = this.dom.querySelectorAll('.shopify-section.section.image-banner-section') as NodeListOf<HTMLElement>;
-  sectionElements.forEach((section) => {
-      const bannerElement = section.querySelector('.banner.banner-medium.theme-dark') as HTMLElement;
-      if (bannerElement) {
-          bannerElement.style.removeProperty('min-height');
-          bannerElement.style.setProperty('min-height', 'auto', 'important');
-          const bannerContent = bannerElement.querySelector('.banner-content.banner-content-bottom-left.banner-content-mobile-top.container') as HTMLElement;
-          if (bannerContent) {
-              bannerContent.style.setProperty('margin-top', '125px', 'important');
-          }
-      }
+private BreeoupdateBannerMinHeight() {
+  this.dom.querySelectorAll('.shopify-section.section.image-banner-section').forEach((section: HTMLElement) => {
+    const banner = section.querySelector('.banner.banner-medium.theme-dark') as HTMLElement;
+    const bannerContent = banner?.querySelector('.banner-content.banner-content-bottom-left.banner-content-mobile-top.container') as HTMLElement;
+    banner?.style.setProperty('min-height', 'auto', 'important');
+    bannerContent?.style.setProperty('margin-top', '125px', 'important');
   });
+}
+
+//Penguin Dojo
+private PenguinDojoupdateElements() {
+  const drawerMenuElement = this.dom.getElementById("DrawerMenu") as HTMLElement;
+  if (drawerMenuElement) drawerMenuElement.style.removeProperty('height');
+
+  const overlayElement = this.dom.querySelector("#GlobalLoadingOverlayBlank.loading-overlay.loading-overlay--global-initial") as HTMLElement;
+  if (overlayElement) overlayElement.classList.add("hidden");
+
+  const toolbarElement = this.dom.getElementById("enable-toolbar") as HTMLElement;
+  if (toolbarElement) toolbarElement.remove();
+
+  const hamburgerLines = this.dom.querySelectorAll("#DrawerMenuToggler .hamburger__line") as NodeListOf<HTMLElement>;
+  hamburgerLines.forEach(line => line.style.removeProperty('display'));
 }
 
 }
