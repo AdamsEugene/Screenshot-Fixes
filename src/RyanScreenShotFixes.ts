@@ -12,6 +12,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ArcticUpdateGalleryCells();
       this.CoThirtySixshowBarsInContainer();
       this.RhinoUsaremoveWidthFromMenuDrawer();
+      this.BreeoupdateBannerMinHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -117,6 +118,22 @@ private RhinoUsaremoveWidthFromMenuDrawer() {
           if (menuDrawer.style.width === '100%') {
               menuDrawer.style.setProperty('width', 'auto', 'important');  
               menuDrawer.style.setProperty('min-width', 'max-content', 'important');  
+          }
+      }
+  });
+}
+
+// Breeo
+private  BreeoupdateBannerMinHeight() {
+  const sectionElements = this.dom.querySelectorAll('.shopify-section.section.image-banner-section') as NodeListOf<HTMLElement>;
+  sectionElements.forEach((section) => {
+      const bannerElement = section.querySelector('.banner.banner-medium.theme-dark') as HTMLElement;
+      if (bannerElement) {
+          bannerElement.style.removeProperty('min-height');
+          bannerElement.style.setProperty('min-height', 'auto', 'important');
+          const bannerContent = bannerElement.querySelector('.banner-content.banner-content-bottom-left.banner-content-mobile-top.container') as HTMLElement;
+          if (bannerContent) {
+              bannerContent.style.setProperty('margin-top', '125px', 'important');
           }
       }
   });
