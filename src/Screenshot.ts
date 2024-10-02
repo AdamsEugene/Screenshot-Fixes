@@ -109,7 +109,7 @@ class ScreenshotFixes extends Common {
     jesseScreenShotFixesInstance.init(containerId, debugMode);
 
     const anitaScreenShotFixesInstance = new AnitaScreenShotFixes(this.dom);
-    anitaScreenShotFixesInstance.init(containerId, debugMode);
+    anitaScreenShotFixesInstance.init();
 
     const forsonScreenshotFixesInstance = new ForsonScreenshotFixes(this.dom);
     forsonScreenshotFixesInstance.init();
