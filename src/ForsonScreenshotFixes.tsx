@@ -47,6 +47,8 @@ export default class ForsonScreenshotFixes {
     this.centerUlInCustomBlk();
     this.LogoxUpdatePageElements();
     this.overrideMaxWidthInProductSlider();
+    this.addActiveStateToHeader();
+    this.removePositionRelative();
     // this.RubioMonocoatUpdateMenuState()
   }
 
@@ -505,6 +507,19 @@ private overrideMaxWidthInProductSlider() {
   //   });
   // }
 
+  private addActiveStateToHeader() {
+    const header = this.document.querySelector('.header.header--sticky') as HTMLElement;
+    if (header) {
+      header.classList.add('active-state');
+    }
+  }
+
+  private removePositionRelative() {
+    var element = this.document.getElementById('shopify-section-header') as HTMLElement;
+    if (element && element.classList.contains('shopify-section')) {
+        element.style.setProperty('position', 'initial', 'important');
+    }
+}
 
 }
 
