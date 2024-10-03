@@ -91,9 +91,9 @@ private ArcticUpdateGalleryCells() {
 }
 
 private setElementDisplayToBlock() {
-    const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container"];
+    const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container", ".mobile-menu__toggle-button", ".hamburger__line"];
     classes.forEach((cls) => {
-      this.allElements(cls)?.forEach((m: HTMLElement) => this.displayBlock(m));
+      this.allElements(cls)?.forEach((m: HTMLElement) => this.displayBlock(m, true));
     });
   }
 
