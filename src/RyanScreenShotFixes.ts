@@ -164,9 +164,8 @@ private aktlondonUpdatePageElements() {
 //hey Hair
 private heyhairMobileToggleButton() {
   this.dom.querySelectorAll('#mobile-header .mobile-menu__toggle-button').forEach((childElement: HTMLElement) => {
-    childElement.id = "toggleButtonId";
-    childElement.style.setProperty("display", "block", "important");
+    childElement.style.removeProperty('display');
   });
 }
-  
+ 
 }
