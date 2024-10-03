@@ -163,9 +163,15 @@ private aktlondonUpdatePageElements() {
 
 //hey Hair
 private heyhairMobileToggleButton() {
-  this.dom.querySelectorAll('#mobile-header .mobile-menu__toggle-button').forEach((childElement: HTMLElement) => {
-    childElement.style.removeProperty('display');
-  });
+  const mobileHeader = this.dom.getElementById('mobile-header') as HTMLElement;
+  if (mobileHeader) {
+      const toggleButton = mobileHeader.querySelector('.mobile-menu__toggle-button') as HTMLElement;
+      if (toggleButton) {
+          if (toggleButton.style.display === 'none') {
+              toggleButton.style.display = '';
+          }
+      }
+  }
 }
  
 }
