@@ -49,6 +49,7 @@ export default class ForsonScreenshotFixes {
     this.overrideMaxWidthInProductSlider();
     this.addActiveStateToHeader();
     this.removePositionRelative();
+    this.checkAndRemoveHiddenElements();
     // this.RubioMonocoatUpdateMenuState()
   }
 
@@ -487,26 +488,6 @@ private overrideMaxWidthInProductSlider() {
   }
 }
 
-  //RubioMonocoat
-  // private RubioMonocoatUpdateMenuState() {
-  //   const parentElement1 = this.document.querySelector('.main-menu') as HTMLElement;
-  //   if (parentElement1) {
-  //     const childElement1 = parentElement1.querySelector('.main-menu__disclosure.has-motion') as HTMLElement;
-  //     if (childElement1) {
-  //       childElement1.classList.add('is-open');
-  //       childElement1.setAttribute('open', '');
-  //     }
-  //   }
-
-  //   const parentElements2 = this.document.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
-  //   parentElements2.forEach(parentElement2 => {
-  //     const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
-  //     detailsElements.forEach(detailsElement => {
-  //       detailsElement.setAttribute('open', ''); 
-  //     });
-  //   });
-  // }
-
   private addActiveStateToHeader() {
     const header = this.document.querySelector('.header.header--sticky') as HTMLElement;
     if (header) {
@@ -520,6 +501,33 @@ private overrideMaxWidthInProductSlider() {
         element.style.setProperty('position', 'initial', 'important');
     }
 }
+
+// hey hair
+private checkAndRemoveHiddenElements(): void {
+  const wrapper = this.document.getElementById('mobile-header-sticky-wrapper');
+  if (wrapper) {
+    const hiddenElements = Array.from(wrapper.querySelectorAll('*')).filter(element => {
+      const computedStyle = window.getComputedStyle(element);
+      return element instanceof HTMLElement && 
+             (element.style.display === 'none' || computedStyle.display === 'none');
+    });
+    if (hiddenElements.length > 0) {
+      hiddenElements.forEach(element => {
+        if (element instanceof HTMLElement) {
+          element.style.removeProperty('display');
+        }
+      });
+      console.log('Removed display: none from hidden elements:', hiddenElements);
+    } else {
+      console.log('No hidden elements found.');
+    }
+  } else {
+    console.log('Element with ID mobile-header-sticky-wrapper not found.');
+  }
+}
+// Call the function
+
+
 
 }
 
