@@ -14,6 +14,8 @@ export default class RyanScreenshotFixes extends Common {
       this.RhinoUsaremoveWidthFromMenuDrawer();
       this.BreeoupdateBannerMinHeight();
       this.PenguinDojoupdateElements();
+      this.aktlondonUpdatePageElements();
+      this.heyhairMobileToggleButton();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -91,7 +93,7 @@ private ArcticUpdateGalleryCells() {
 }
 
 private setElementDisplayToBlock() {
-    const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container", ".mobile-menu__toggle-button", ".hamburger__line"];
+    const classes = [".dbtfy-color-swatches-container", ".dbtfy-color-swatches", ".dbtfy-faq", ".dbtfy-product-bullet-points-container", ".mobile-menu__toggle-button", ".hamburger__line", ".swiper-button-next", ".swiper-button-prev"];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayBlock(m, true));
     });
@@ -150,6 +152,21 @@ private PenguinDojoupdateElements() {
     const hamburgerLines = hamburgerToggler.querySelectorAll(".hamburger__line") as NodeListOf<HTMLElement>;
     hamburgerLines.forEach(line => line.style.display = 'block');
   }
+}
+
+//aktlondon
+private aktlondonUpdatePageElements() {
+  (this.dom.querySelector("video.md\\:lp-block") as HTMLElement)?.style.setProperty("height", "auto", "important");
+  (this.dom.querySelector("#widget_cont #widget-header") as HTMLElement)?.style.setProperty("overflow", "hidden", "important");
+  (this.dom.querySelector("#widget_cont #widget-header") as HTMLElement)?.style.setProperty("height", "600px", "important");
+}
+
+//hey Hair
+private heyhairMobileToggleButton() {
+  this.dom.querySelectorAll('#mobile-header .mobile-menu__toggle-button').forEach((childElement: HTMLElement) => {
+    childElement.id = "toggleButtonId";
+    childElement.style.setProperty("display", "block", "important");
+  });
 }
   
 }
