@@ -163,15 +163,13 @@ private aktlondonUpdatePageElements() {
 
 //hey Hair
 private heyhairMobileToggleButton() {
-  const mobileHeader = this.dom.getElementById('mobile-header') as HTMLElement;
-  if (mobileHeader) {
-      const toggleButton = mobileHeader.querySelector('.mobile-menu__toggle-button') as HTMLElement;
-      if (toggleButton) {
-          if (toggleButton.style.display === 'none') {
-              toggleButton.style.display = '';
-          }
+  this.dom.querySelectorAll('.mobile-header.py-2.w3_bg.sticky--enabled').forEach((mobileHeader: HTMLElement) => {
+      const toggleButton = mobileHeader.querySelector('.mobile-menu__toggle-button.mobile-toggle__position--left.w3_bg') as HTMLElement;
+
+      if (toggleButton && toggleButton.style.display === 'none') {
+          toggleButton.style.setProperty('display', '', 'important');
       }
-  }
+  });
 }
  
 }
