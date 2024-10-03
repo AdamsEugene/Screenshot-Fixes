@@ -510,7 +510,7 @@ private overrideMaxWidthInProductSlider() {
   private addActiveStateToHeader() {
     const header = this.document.querySelector('.header.header--sticky') as HTMLElement;
     if (header) {
-      header.classList.add('active-state');
+      header.style.setProperty('background-color', '#4d5f71', 'important');
     }
   }
 
