@@ -1,0 +1,14 @@
+[
+    {
+     "idSite": 1910,
+      "idSiteHsr": 4396687,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/skinnyrx.com-quiz-9-styles.css"
+    },
+    {
+     "idSite": 1910,
+      "idSiteHsr": 4509891,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/skinnyrx.com-resultsv3-styles.css"
+    }
+]
