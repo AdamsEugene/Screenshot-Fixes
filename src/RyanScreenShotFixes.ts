@@ -177,10 +177,10 @@ private heyhairMobileToggleButton() {
 //springerpets
 private springerupdatePageElements() {
   this.dom.querySelectorAll('.product-image-container').forEach((parent) => {
-      const child = parent.querySelector('#product-hero-7') as HTMLElement;
-      if (child && child.style.opacity === "1") {
-          child.style.opacity = "0";
-      }
+    const child = parent.querySelector('#product-hero-7') as HTMLElement;
+    if (child) {
+      child.style.removeProperty('opacity');
+    }
   });
 
   this.dom.querySelectorAll('.spo-loaded').forEach((parent) => {
