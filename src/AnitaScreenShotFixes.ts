@@ -16,6 +16,7 @@ export default class AnitaScreenShotFixes {
   public init(): void {
     this.removeHeightProperty();
     this.hideShopifyMinicartElements();
+    this.setTransparentBackground();
   }
 
   private removeHeightProperty() {
@@ -34,14 +35,28 @@ export default class AnitaScreenShotFixes {
 
   private hideShopifyMinicartElements(): void {
     const elements = this.document.querySelectorAll(
-      '#shopify-section-global-minicart'
+      "#shopify-section-global-minicart"
     ) as NodeListOf<HTMLElement>;
-  
+
     elements.forEach((element: HTMLElement) => {
-      if (element.classList.contains('shopify-section')) {
-        element.style.setProperty('display', 'none', 'important');
+      if (element.classList.contains("shopify-section")) {
+        element.style.setProperty("display", "none", "important");
       }
     });
   }
-  
+
+  private setTransparentBackground(): void {
+    const element = this.document.querySelector(
+      "#product-hero-7"
+    ) as HTMLElement;
+
+    if (
+      element &&
+      element.classList.contains("comp-lightbox") &&
+      element.classList.contains("is-video") &&
+      element.classList.contains("product-image")
+    ) {
+      element.style.setProperty("background", "transparent", "important");
+    }
+  }
 }
