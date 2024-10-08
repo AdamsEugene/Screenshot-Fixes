@@ -6,6 +6,7 @@ import AnitaScreenShotFixes from "./AnitaScreenShotFixes";
 import RyanScreenShotFixes from "./RyanScreenShotFixes";
 import Common from "./Common";
 import snippets from "./custom.snippets.json";
+import styles from "./cssSnippets.json";
 import { JsonEntry } from "./@types";
 
 class ScreenshotFixes extends Common {
@@ -93,6 +94,7 @@ class ScreenshotFixes extends Common {
       this.removeLoadingClassAndSetImageHeight();
       this.updateSlickTrackWidths();
       this.hideCanvasMenu();
+      this.injectCss()
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -123,6 +125,26 @@ class ScreenshotFixes extends Common {
       element.style.setProperty("display", "block", "important");
     });
   }
+
+  private injectCss(){
+    
+    styles.forEach((style: JsonEntry["content"]) => {
+        const styleElement = this.dom.createElement('style');
+        if (style.path &&
+          style.idSite === this.idSite() &&
+          style.idSiteHsr === this.idSiteHsr()) {
+            fetch(style.path)
+                .then((response) => response.text())
+                .then((cssContent) => {
+                    styleElement.innerHTML = cssContent;
+                    this.dom.head.appendChild(styleElement);
+                })
+                .catch((error) => {
+                });
+        } 
+    });
+}
+
 
   private processSnippets() {
     // console.log("this.iframeWindow: ", this.iframeWindow.location);
