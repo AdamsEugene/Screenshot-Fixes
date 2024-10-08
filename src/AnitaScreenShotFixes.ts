@@ -15,6 +15,7 @@ export default class AnitaScreenShotFixes {
   }
   public init(): void {
     this.removeHeightProperty();
+    this.hideMiniCartSections();
   }
 
   private removeHeightProperty() {
@@ -29,5 +30,15 @@ export default class AnitaScreenShotFixes {
     ) {
       mobileNav.style.setProperty("height", "", "important");
     }
+  }
+
+  private hideMiniCartSections(): void {
+    const miniCartSections = document.querySelectorAll(
+      '#shopify-section-global-minicart.shopify-section'
+    ) as NodeListOf<HTMLElement>;
+  
+    miniCartSections.forEach((element) => {
+      element.style.setProperty('display', 'none', 'important');
+    });
   }
 }
