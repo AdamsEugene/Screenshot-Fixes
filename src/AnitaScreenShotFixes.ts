@@ -21,6 +21,9 @@ export default class AnitaScreenShotFixes {
     this.hideSearchForm();
     this.disableFlexOnMobileMenuBody();
     this.showGlobalOverlay();
+    this.removeFixedPositionFromHeader();
+    this.makeBackdropTransparent(); 
+    this.removeMainContentMargin();
   }
 
   private removeHeightProperty() {
@@ -104,10 +107,45 @@ export default class AnitaScreenShotFixes {
     const element = this.document.querySelector(
       ".global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close"
     ) as HTMLElement;
-  
+
     if (element && element.style.display === "none") {
       element.style.setProperty("display", "block", "important");
     }
   }
+  private removeFixedPositionFromHeader(): void {
+    const headerElement = this.document.getElementById('shopify-section-header') as HTMLElement;
+  
+    if (headerElement) {
+      const isShopifySection = headerElement.classList.contains('shopify-section');
+      
+      if (isShopifySection) {
+        headerElement.style.removeProperty('position');
+      }
+    }
+  }
+  
+
+  private makeBackdropTransparent(): void {
+    const element = this.document.querySelector(
+      'body.product-mc-modified .recommendation-modal__backdrop'
+    ) as HTMLElement;
+  
+    if (element) {
+      element.style.setProperty('background', 'transparent', 'important');
+    }
+  }
+
+  private removeMainContentMargin(): void {
+    const bodyElement = this.document.querySelector('body.product-mc-modified') as HTMLElement;
+  
+    if (bodyElement) {
+      const mainContentElement = bodyElement.querySelector('.main.content') as HTMLElement;
+      
+      if (mainContentElement) {
+        mainContentElement.style.setProperty('margin-top', '0', 'important');
+      }
+    }
+  }
+  
   
 }
