@@ -66,48 +66,47 @@ export default class AnitaScreenShotFixes {
 
   private setMobileMenuZIndexAndPosition(): void {
     const element = this.document.querySelector(
-      'nav.global-header__mobile-menu__content'
+      "nav.global-header__mobile-menu__content"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.setProperty('z-index', '2', 'important');
-      element.style.setProperty('position', 'relative', 'important');
+      element.style.setProperty("z-index", "2", "important");
+      element.style.setProperty("position", "relative", "important");
     }
   }
 
   private hideSearchForm(): void {
     const element = this.document.querySelector(
-      'form.comp-search.cr-white'
+      "form.comp-search.cr-white"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.setProperty('display', 'none', 'important');
+      element.style.setProperty("display", "none", "important");
     }
   }
-  
+
   private disableFlexOnMobileMenuBody(): void {
     const parentElement = this.document.querySelector(
-      '.global-header__mobile-menu.min-safe-h-screen.f-v.g-gap-3.cr-white.bg-green-main.tablet-down-only'
+      ".global-header__mobile-menu.min-safe-h-screen.f-v.g-gap-3.cr-white.bg-green-main.tablet-down-only"
     ) as HTMLElement;
-  
+
     if (parentElement) {
-      const childElement = parentElement.querySelector('.global-header__mobile-menu__body') as HTMLElement;
+      const childElement = parentElement.querySelector(
+        ".global-header__mobile-menu__body"
+      ) as HTMLElement;
       if (childElement) {
-        childElement.style.setProperty('flex', 'none', 'important');
+        childElement.style.setProperty("flex", "none", "important");
       }
     }
   }
 
   private showGlobalOverlay(): void {
     const element = this.document.querySelector(
-      '.global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close'
+      ".global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close"
     ) as HTMLElement;
-  
-    if (element && element.style.display === 'none') {
-      element.style.removeProperty('display');
+
+    if (element && element.style.display === "none") {
+      element.style.removeProperty("display");
     }
   }
-  
-  
-  
 }
