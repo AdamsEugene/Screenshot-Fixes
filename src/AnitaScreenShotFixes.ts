@@ -17,6 +17,10 @@ export default class AnitaScreenShotFixes {
     this.removeHeightProperty();
     this.hideShopifyMinicartElements();
     this.setTransparentBackground();
+    this.setMobileMenuZIndexAndPosition();
+    this.hideSearchForm();
+    this.disableFlexOnMobileMenuBody();
+    this.showGlobalOverlay();
   }
 
   private removeHeightProperty() {
@@ -57,6 +61,52 @@ export default class AnitaScreenShotFixes {
       element.classList.contains("product-image")
     ) {
       element.style.setProperty("background", "transparent", "important");
+    }
+  }
+
+  private setMobileMenuZIndexAndPosition(): void {
+    const element = this.document.querySelector(
+      "nav.global-header__mobile-menu__content"
+    ) as HTMLElement;
+
+    if (element) {
+      element.style.setProperty("z-index", "2", "important");
+      element.style.setProperty("position", "relative", "important");
+    }
+  }
+
+  private hideSearchForm(): void {
+    const element = this.document.querySelector(
+      "form.comp-search.cr-white"
+    ) as HTMLElement;
+
+    if (element) {
+      element.style.setProperty("display", "none", "important");
+    }
+  }
+
+  private disableFlexOnMobileMenuBody(): void {
+    const parentElement = this.document.querySelector(
+      ".global-header__mobile-menu.min-safe-h-screen.f-v.g-gap-3.cr-white.bg-green-main.tablet-down-only"
+    ) as HTMLElement;
+
+    if (parentElement) {
+      const childElement = parentElement.querySelector(
+        ".global-header__mobile-menu__body"
+      ) as HTMLElement;
+      if (childElement) {
+        childElement.style.setProperty("flex", "none", "important");
+      }
+    }
+  }
+
+  private showGlobalOverlay(): void {
+    const element = this.document.querySelector(
+      ".global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close"
+    ) as HTMLElement;
+
+    if (element && element.style.display === "none") {
+      element.style.removeProperty("display");
     }
   }
 }
