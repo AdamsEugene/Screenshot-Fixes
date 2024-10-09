@@ -23,12 +23,7 @@ export default class AnitaScreenShotFixes {
     this.showGlobalOverlay();
     this.removeFixedPositionFromHeader();
     this.makeBackdropTransparent(); 
-<<<<<<< HEAD
-    this.removeMainContentMargin();
-    this.setDisplayToBlock();
-=======
     // this.removeMainContentMargin();
->>>>>>> 44c5a81adf42f85b638b9fd6571d44259e7a5158
   }
 
   private removeHeightProperty() {
@@ -140,45 +135,5 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-<<<<<<< HEAD
-  private removeMainContentMargin(): void {
-    const bodyElement = this.document.querySelector('body.product-mc-modified') as HTMLElement;
-  
-    if (bodyElement) {
-      const mainContentElement = bodyElement.querySelector('.main.content') as HTMLElement;
-      
-      if (mainContentElement) {
-        mainContentElement.style.setProperty('margin-top', '0', 'important');
-      }
-    }
-  }
-
-  private setDisplayToBlock(): void {
-    // Get the element by ID and check the required classes
-    const blockElement = this.document.getElementById(
-      'shopify-block-jebbit_product_quiz_builder_jebbit_campaign_url_7xczVR'
-    ) as HTMLElement;
-  
-    if (
-      blockElement &&
-      blockElement.classList.contains('shopify-block') &&
-      blockElement.classList.contains('shopify-app-block')
-    ) {
-      blockElement.style.setProperty('display', 'block', 'important');
-    }
-  
-    // Get the iframe element by tag and class
-    const iframeElement = this.document.querySelector(
-      'iframe.jebbit-iframe'
-    ) as HTMLElement;
-  
-    if (iframeElement) {
-      iframeElement.style.setProperty('display', 'block', 'important');
-    }
-  }
-  
-  
-=======
->>>>>>> 44c5a81adf42f85b638b9fd6571d44259e7a5158
   
 }
