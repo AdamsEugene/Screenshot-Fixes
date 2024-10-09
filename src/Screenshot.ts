@@ -94,7 +94,8 @@ class ScreenshotFixes extends Common {
       this.removeLoadingClassAndSetImageHeight();
       this.updateSlickTrackWidths();
       this.hideCanvasMenu();
-      this.injectCss()
+      this.adjustSlideshowHeight();
+      this.injectCss();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -126,25 +127,24 @@ class ScreenshotFixes extends Common {
     });
   }
 
-  private injectCss(){
-    
+  private injectCss() {
     styles.forEach((style: JsonEntry["content"]) => {
-        const styleElement = this.dom.createElement('style');
-        if (style.path &&
-          style.idSite === this.idSite() &&
-          style.idSiteHsr === this.idSiteHsr()) {
-            fetch(style.path)
-                .then((response) => response.text())
-                .then((cssContent) => {
-                    styleElement.innerHTML = cssContent;
-                    this.dom.head.appendChild(styleElement);
-                })
-                .catch((error) => {
-                });
-        } 
+      const styleElement = this.dom.createElement("style");
+      if (
+        style.path &&
+        style.idSite === this.idSite() &&
+        style.idSiteHsr === this.idSiteHsr()
+      ) {
+        fetch(style.path)
+          .then((response) => response.text())
+          .then((cssContent) => {
+            styleElement.innerHTML = cssContent;
+            this.dom.head.appendChild(styleElement);
+          })
+          .catch((error) => {});
+      }
     });
-}
-
+  }
 
   private processSnippets() {
     // console.log("this.iframeWindow: ", this.iframeWindow.location);
@@ -567,6 +567,7 @@ class ScreenshotFixes extends Common {
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
+      ".absolute.top-0.right-\\[-5px\\].py-\\[90px\\].w-2\\/3.h-full.flex.items-center.justify-center",
     ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
@@ -825,6 +826,24 @@ class ScreenshotFixes extends Common {
     }
   }
 
+  private adjustSlideshowHeight() {
+    const slideshowSections = this.allElements(
+      ".shopify-section.shopify-section--slideshow"
+    );
+    slideshowSections.forEach((section) => {
+      const actualHeight = section.getAttribute("actualHeight");
+      if (actualHeight && actualHeight.endsWith("px")) {
+        const actualHeightValue = parseFloat(actualHeight);
+        const computedHeight = parseFloat(getComputedStyle(section).height);
+        if (computedHeight > actualHeightValue * 1.04) {
+          section.style.height = actualHeight;
+          section.style.minHeight = actualHeight;
+          section.style.maxHeight = actualHeight;
+        }
+      }
+    });
+  }
+
   private adjustHeightOfRelativeElements(className: string, noPt?: boolean) {
     const elements = this.allElements(className);
 
@@ -951,24 +970,29 @@ class ScreenshotFixes extends Common {
 
   // Rubio Monocot
   private RubioMonocotUpdateMenuState() {
-    const parentElement1 = this.dom.querySelector('.main-menu') as HTMLElement;
+    const parentElement1 = this.dom.querySelector(".main-menu") as HTMLElement;
     if (parentElement1) {
-      const childElement1 = parentElement1.querySelector('.main-menu__disclosure') as HTMLElement;
+      const childElement1 = parentElement1.querySelector(
+        ".main-menu__disclosure"
+      ) as HTMLElement;
       if (childElement1) {
-        childElement1.classList.add('is-open');
-        childElement1.setAttribute('open', '');
+        childElement1.classList.add("is-open");
+        childElement1.setAttribute("open", "");
       }
     }
-  
-    const parentElements2 = this.dom.querySelectorAll('.js-mega-nav') as NodeListOf<HTMLElement>;
-    parentElements2.forEach(parentElement2 => {
-      const detailsElements = parentElement2.querySelectorAll('details') as NodeListOf<HTMLDetailsElement>;
-      detailsElements.forEach(detailsElement => {
-        detailsElement.setAttribute('open', '');
+
+    const parentElements2 = this.dom.querySelectorAll(
+      ".js-mega-nav"
+    ) as NodeListOf<HTMLElement>;
+    parentElements2.forEach((parentElement2) => {
+      const detailsElements = parentElement2.querySelectorAll(
+        "details"
+      ) as NodeListOf<HTMLDetailsElement>;
+      detailsElements.forEach((detailsElement) => {
+        detailsElement.setAttribute("open", "");
       });
     });
   }
-  
 
   functionsMap: Record<number, (() => void)[]> = {
     1947: [this.removeExcessiveParentWidths],
