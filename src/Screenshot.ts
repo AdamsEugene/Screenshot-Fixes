@@ -96,6 +96,7 @@ class ScreenshotFixes extends Common {
       this.hideCanvasMenu();
       this.adjustSlideshowHeight();
       this.injectCss();
+      this.getAttrAndSetDisplayNone();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -571,6 +572,19 @@ class ScreenshotFixes extends Common {
     ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
+    });
+  }
+
+  private getAttrAndSetDisplayNone() {
+    const attrs = ['[x-show="searchActive"]'];
+    attrs.forEach((attr) => {
+      const elements = this.dom.querySelectorAll(
+        attr
+      ) as NodeListOf<HTMLElement>;
+
+      elements.forEach((element) => {
+        this.displayNone(element, true);
+      });
     });
   }
 
