@@ -18,6 +18,7 @@ export default class RyanScreenshotFixes extends Common {
       this.heyhairMobileToggleButton();
       this.springerupdatePageElements();
       this.OliviaPearlupdateHeader();
+      this.hideSearchElementIfToggleExists();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -199,5 +200,17 @@ private OliviaPearlupdateHeader() {
     }
   });
 }
+
+// persmount
+private hideSearchElementIfToggleExists() {
+  const headerSearchElement = this.dom.querySelector('.header-search') as HTMLElement;
+  if (headerSearchElement && headerSearchElement.querySelector('.header-search-toggle')) {
+      headerSearchElement.style.setProperty('display', 'none');
+  }
+}
+
+// Call the function
+
+
 
 }
