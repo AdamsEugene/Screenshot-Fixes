@@ -104,9 +104,10 @@ export default class AnitaScreenShotFixes {
     const element = this.document.querySelector(
       ".global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close"
     ) as HTMLElement;
-
+  
     if (element && element.style.display === "none") {
-      element.style.removeProperty("display");
+      element.style.setProperty("display", "block", "important");
     }
   }
+  
 }
