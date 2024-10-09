@@ -23,8 +23,12 @@ export default class AnitaScreenShotFixes {
     this.showGlobalOverlay();
     this.removeFixedPositionFromHeader();
     this.makeBackdropTransparent(); 
+<<<<<<< HEAD
     this.removeMainContentMargin();
     this.setDisplayToBlock();
+=======
+    // this.removeMainContentMargin();
+>>>>>>> 44c5a81adf42f85b638b9fd6571d44259e7a5158
   }
 
   private removeHeightProperty() {
@@ -136,6 +140,7 @@ export default class AnitaScreenShotFixes {
     }
   }
 
+<<<<<<< HEAD
   private removeMainContentMargin(): void {
     const bodyElement = this.document.querySelector('body.product-mc-modified') as HTMLElement;
   
@@ -173,5 +178,7 @@ export default class AnitaScreenShotFixes {
   }
   
   
+=======
+>>>>>>> 44c5a81adf42f85b638b9fd6571d44259e7a5158
   
 }

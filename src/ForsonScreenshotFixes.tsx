@@ -50,7 +50,6 @@ export default class ForsonScreenshotFixes {
     this.addActiveStateToHeader();
     this.removePositionRelative();
     this.checkAndRemoveHiddenElements();
-    // this.RubioMonocoatUpdateMenuState()
   }
 
   // Upcircle EU
@@ -527,7 +526,7 @@ private checkAndRemoveHiddenElements(): void {
 }
 // Call the function
 
-
+ 
 
 }
 
