@@ -19,6 +19,7 @@ export default class RyanScreenshotFixes extends Common {
       this.springerupdatePageElements();
       this.OliviaPearlupdateHeader();
       this.hideSearchElementIfToggleExists();
+      this.BraceAbilityupdateHeader();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -209,8 +210,13 @@ private hideSearchElementIfToggleExists() {
   }
 }
 
-// Call the function
-
-
+//BraceAbility
+private BraceAbilityupdateHeader() {
+  this.dom.querySelectorAll('#shopify-section-header').forEach((headerElement: HTMLElement) => {
+    if (headerElement.style.position === 'fixed') {
+      headerElement.style.setProperty('position', 'relative', 'important');
+    }
+  });
+}
 
 }
