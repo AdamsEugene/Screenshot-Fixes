@@ -18,7 +18,12 @@ export default class RyanScreenshotFixes extends Common {
       this.heyhairMobileToggleButton();
       this.springerupdatePageElements();
       this.OliviaPearlupdateHeader();
+<<<<<<< HEAD
       this. BraceAbilityupdateHeader() 
+=======
+      this.hideSearchElementIfToggleExists();
+      this.BraceAbilityupdateHeader();
+>>>>>>> eead0c13b2377c3a04cd9f5ec6a366858a5a4cd3
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -201,6 +206,7 @@ private OliviaPearlupdateHeader() {
   });
 }
 
+<<<<<<< HEAD
 // brace ability
 private BraceAbilityupdateHeader() {
   this.dom.querySelectorAll('#shopify-section-header').forEach((headerElement: HTMLElement) => {
@@ -208,6 +214,29 @@ private BraceAbilityupdateHeader() {
       headerElement.style.setProperty('position', 'relative', 'important');
     }
   });
+=======
+// persmount
+private hideSearchElementIfToggleExists() {
+  const headerSearchElement = this.dom.querySelector('.header-search') as HTMLElement;
+  if (headerSearchElement && headerSearchElement.querySelector('.header-search-toggle')) {
+      headerSearchElement.style.setProperty('display', 'none');
+  }
+}
+
+//BraceAbility 
+private BraceAbilityupdateHeader() {
+  const parentElement = this.dom.querySelector('.transition-body') as HTMLElement;
+  if (parentElement) {
+    const headerElement = parentElement.querySelector('#shopify-section-header') as HTMLElement;
+    if (headerElement?.style.position === 'fixed') {
+      headerElement.style.setProperty('position', 'relative', 'important');
+    } 
+    const mainContentElement = parentElement.querySelector('#MainContent') as HTMLElement;
+    if (mainContentElement) {
+      mainContentElement.style.marginTop = '';
+    }
+  }
+>>>>>>> eead0c13b2377c3a04cd9f5ec6a366858a5a4cd3
 }
 
 }

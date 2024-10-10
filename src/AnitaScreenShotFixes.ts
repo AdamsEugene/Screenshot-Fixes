@@ -23,7 +23,10 @@ export default class AnitaScreenShotFixes {
     this.showGlobalOverlay();
     this.removeFixedPositionFromHeader();
     this.makeBackdropTransparent(); 
+<<<<<<< HEAD
     // this.removeMainContentMargin();
+=======
+>>>>>>> eead0c13b2377c3a04cd9f5ec6a366858a5a4cd3
   }
 
   private removeHeightProperty() {
@@ -135,5 +138,9 @@ export default class AnitaScreenShotFixes {
     }
   }
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> eead0c13b2377c3a04cd9f5ec6a366858a5a4cd3
 }
