@@ -22,8 +22,9 @@ export default class AnitaScreenShotFixes {
     this.disableFlexOnMobileMenuBody();
     this.showGlobalOverlay();
     this.removeFixedPositionFromHeader();
-    this.makeBackdropTransparent(); 
+    this.makeBackdropTransparent();
     // this.removeMainContentMargin();
+    this.setDisplayToBlock();
   }
 
   private removeHeightProperty() {
@@ -113,27 +114,49 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeFixedPositionFromHeader(): void {
-    const headerElement = this.document.getElementById('shopify-section-header') as HTMLElement;
-  
+    const headerElement = this.document.getElementById(
+      "shopify-section-header"
+    ) as HTMLElement;
+
     if (headerElement) {
-      const isShopifySection = headerElement.classList.contains('shopify-section');
-      
+      const isShopifySection =
+        headerElement.classList.contains("shopify-section");
+
       if (isShopifySection) {
-        headerElement.style.removeProperty('position');
+        headerElement.style.removeProperty("position");
       }
     }
   }
-  
 
   private makeBackdropTransparent(): void {
     const element = this.document.querySelector(
-      'body.product-mc-modified .recommendation-modal__backdrop'
+      "body.product-mc-modified .recommendation-modal__backdrop"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.setProperty('background', 'transparent', 'important');
+      element.style.setProperty("background", "transparent", "important");
     }
   }
 
-  
+  private setDisplayToBlock(): void {
+    const blockElement = this.document.getElementById(
+      "shopify-block-jebbit_product_quiz_builder_jebbit_campaign_url_7xczVR"
+    ) as HTMLElement;
+
+    if (
+      blockElement &&
+      blockElement.classList.contains("shopify-block") &&
+      blockElement.classList.contains("shopify-app-block")
+    ) {
+      blockElement.style.setProperty("display", "block", "important");
+    }
+
+    const iframeElement = this.document.querySelector(
+      "iframe.jebbit-iframe"
+    ) as HTMLElement;
+
+    if (iframeElement) {
+      iframeElement.style.setProperty("display", "block", "important");
+    }
+  }
 }
