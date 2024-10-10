@@ -21,6 +21,7 @@ export default class RyanScreenshotFixes extends Common {
       this.hideSearchElementIfToggleExists();
       this.BraceAbilityupdateHeader();
       this.UpdateIframeSrc();
+      this.PetsmontremoveExtraFooter();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -224,6 +225,22 @@ private BraceAbilityupdateHeader() {
       mainContentElement.style.marginTop = '';
     }
   }
+}
+
+//Petsmont
+private PetsmontremoveExtraFooter() {
+  const footerSections = this.dom.querySelectorAll<HTMLElement>('#shopify-section-sections--18006968729850__footer.shopify-section.shopify-section-group-footer-group');
+  
+  footerSections.forEach((section, index) => {
+    if (index > 0) section.remove();
+  });
+
+  this.dom.querySelectorAll<HTMLElement>('.col-lg-3.col-md-3.col-sm-6.col-6').forEach(parent => {
+    const ulElement = parent.querySelector<HTMLElement>('.list-unstyled.li-space-lg.p-small');
+    ulElement?.querySelectorAll<HTMLElement>('li a').forEach(link => {
+      link.style.color = '#dfd8d2';
+    });
+  });
 }
 
 //Iframe Update
