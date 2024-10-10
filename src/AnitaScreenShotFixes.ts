@@ -25,6 +25,7 @@ export default class AnitaScreenShotFixes {
     this.makeBackdropTransparent();
     // this.removeMainContentMargin();
     this.setDisplayToBlock();
+    this.setOpacityToHeroSideBySide();
   }
 
   private removeHeightProperty() {
@@ -159,4 +160,19 @@ export default class AnitaScreenShotFixes {
       iframeElement.style.setProperty("display", "block", "important");
     }
   }
+  private setOpacityToHeroSideBySide(): void {
+    const parentElement = this.document.querySelector(
+      '.slideshow__slide.slideshow__slide--slideshow-split2-0.is-selected'
+    ) as HTMLElement;
+  
+    if (parentElement) {
+      const childElement = parentElement.querySelector(
+        '.hero__sidebyside.hero__sidebyside-text--left.color-scheme-2'
+      ) as HTMLElement;
+  
+      if (childElement) {
+        childElement.style.opacity = '1';
+      }
+    }
+  }  
 }
