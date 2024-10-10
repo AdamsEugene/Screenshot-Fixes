@@ -18,12 +18,8 @@ export default class RyanScreenshotFixes extends Common {
       this.heyhairMobileToggleButton();
       this.springerupdatePageElements();
       this.OliviaPearlupdateHeader();
-<<<<<<< HEAD
-      this. BraceAbilityupdateHeader() 
-=======
       this.hideSearchElementIfToggleExists();
       this.BraceAbilityupdateHeader();
->>>>>>> eead0c13b2377c3a04cd9f5ec6a366858a5a4cd3
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -206,15 +202,6 @@ private OliviaPearlupdateHeader() {
   });
 }
 
-<<<<<<< HEAD
-// brace ability
-private BraceAbilityupdateHeader() {
-  this.dom.querySelectorAll('#shopify-section-header').forEach((headerElement: HTMLElement) => {
-    if (headerElement.style.position === 'fixed') {
-      headerElement.style.setProperty('position', 'relative', 'important');
-    }
-  });
-=======
 // persmount
 private hideSearchElementIfToggleExists() {
   const headerSearchElement = this.dom.querySelector('.header-search') as HTMLElement;
@@ -236,7 +223,6 @@ private BraceAbilityupdateHeader() {
       mainContentElement.style.marginTop = '';
     }
   }
->>>>>>> eead0c13b2377c3a04cd9f5ec6a366858a5a4cd3
 }
 
 }
