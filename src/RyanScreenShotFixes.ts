@@ -210,13 +210,19 @@ private hideSearchElementIfToggleExists() {
   }
 }
 
-//BraceAbility
+//BraceAbility 
 private BraceAbilityupdateHeader() {
-  this.dom.querySelectorAll('#shopify-section-header').forEach((headerElement: HTMLElement) => {
-    if (headerElement.style.position === 'fixed') {
+  const parentElement = this.dom.querySelector('.transition-body') as HTMLElement;
+  if (parentElement) {
+    const headerElement = parentElement.querySelector('#shopify-section-header') as HTMLElement;
+    if (headerElement?.style.position === 'fixed') {
       headerElement.style.setProperty('position', 'relative', 'important');
+    } 
+    const mainContentElement = parentElement.querySelector('#MainContent') as HTMLElement;
+    if (mainContentElement) {
+      mainContentElement.style.marginTop = '';
     }
-  });
+  }
 }
 
 }
