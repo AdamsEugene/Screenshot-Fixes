@@ -249,12 +249,17 @@ private Mimibeltupdatefooter() {
   this.dom.querySelectorAll('.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown')
       .forEach(footer => {
           const childElement = footer.querySelector('.footer__content-bottom.animate-item.animate-item--child') as HTMLElement;
-          if (childElement) childElement.style.opacity = '1';
+          if (childElement) {
+              childElement.style.setProperty('opacity', '1', 'important');
+          }
       });
   
   this.dom.querySelectorAll('.footer__blocks-wrapper.grid .footer-block.grid__item')
-      .forEach(childBlock => (childBlock as HTMLElement).style.opacity = '1');
+      .forEach(childBlock => {
+          (childBlock as HTMLElement).style.setProperty('opacity', '1', 'important');
+      });
 }
+
 
 //Iframe Update
 private UpdateIframeSrc() {
