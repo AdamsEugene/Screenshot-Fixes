@@ -80,5 +80,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.simplyhair.co.uk--main.html"
     }
+  },
+  {
+    "selector": ".footer",
+    "content": {
+      "idSite": 2834,
+      "idSiteHsr": 5240019,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/mimibelt.com-products-pregnancy-safety-belt-main.html"
+    }
   }
 ]
