@@ -71,5 +71,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/instatints.com-products-instatint-main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-template--16744977432794__slideshow-split2",
+    "content": {
+      "idSite": 2863,
+      "idSiteHsr": 5335324,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.simplyhair.co.uk--main.html"
+    }
   }
 ]
