@@ -357,7 +357,7 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Mimi Belt
-  private Mimibeltupdatefooter() {
+ /*  private Mimibeltupdatefooter() {
     this.dom.querySelectorAll('.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown')
         .forEach(footer => {
             const childElement = footer.querySelector('.footer__content-bottom.animate-item.animate-item--child') as HTMLElement;
@@ -370,7 +370,23 @@ export default class RyanScreenshotFixes extends Common {
         .forEach(childBlock => {
             (childBlock as HTMLElement).style.setProperty('opacity', '1', 'important');
         });
-  }
+  } */
+        private Mimibeltupdatefooter() {
+          const targetElement = document.querySelector(
+            '.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown'
+          ) as HTMLElement;
+          if (targetElement) {
+            const childrenWithOpacityZero = targetElement.querySelectorAll('*');
+            childrenWithOpacityZero.forEach((child) => {
+              const childElement = child as HTMLElement;
+              const computedOpacity = window.getComputedStyle(childElement).opacity;
+              if (computedOpacity === '0') {
+                childElement.style.setProperty('opacity', '1', 'important');
+              }
+            });
+          }
+        }
+        
 
   //Iframe Update
   private UpdateIframeSrc() {
