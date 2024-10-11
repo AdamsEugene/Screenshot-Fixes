@@ -22,6 +22,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BraceAbilityupdateHeader();
       this.UpdateIframeSrc();
       this.PetsmontremoveExtraFooter();
+      this.Mimibeltupdatefooter();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -241,6 +242,18 @@ private PetsmontremoveExtraFooter() {
       link.style.color = '#dfd8d2';
     });
   });
+}
+
+//Mimi Belt
+private Mimibeltupdatefooter() {
+  this.dom.querySelectorAll('.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown')
+      .forEach(footer => {
+          const childElement = footer.querySelector('.footer__content-bottom.animate-item.animate-item--child') as HTMLElement;
+          if (childElement) childElement.style.opacity = '1';
+      });
+  
+  this.dom.querySelectorAll('.footer__blocks-wrapper.grid .footer-block.grid__item')
+      .forEach(childBlock => (childBlock as HTMLElement).style.opacity = '1');
 }
 
 //Iframe Update
