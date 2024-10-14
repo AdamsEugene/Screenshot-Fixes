@@ -27,6 +27,8 @@ export default class AnitaScreenShotFixes {
     this.setDisplayToBlock();
     this.setOpacityToHeroSideBySide();
     this.removeFixedPositionFromHeaderBedsite();
+    this.removeMinHeightAndOverflow();
+    this.removeDisplayNone();
   }
 
   private removeHeightProperty() {
@@ -191,6 +193,42 @@ export default class AnitaScreenShotFixes {
         element.style.setProperty("position", "static", "important");
         element.style.removeProperty("position");
       }
-    }, 100); 
+    }, 100);
+  }
+  private removeMinHeightAndOverflow(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "gp-carousel-ft-gp-carousel-gKJd-U6nmQ-template--17982265458943__gp_section_523067330180154432-7635732070655-template--17982265458943__gp_section_523067330180154432"
+      ) as HTMLElement;
+
+      if (
+        element &&
+        element.classList.contains("gem-slider") &&
+        element.classList.contains("gp-h-full") &&
+        element.classList.contains("gp-overflow-hidden") &&
+        element.classList.contains("gp-select-none") &&
+        element.classList.contains("mobile:!gp-flex-nowrap") &&
+        element.classList.contains("tablet:!gp-flex-nowrap") &&
+        element.classList.contains("!gp-flex-nowrap") &&
+        element.classList.contains("mobile:!gp-min-h-full") &&
+        element.classList.contains("tablet:!gp-min-h-full") &&
+        element.classList.contains("!gp-min-h-full")
+      ) {
+        element.style.removeProperty("min-height");
+        element.style.removeProperty("overflow");
+      }
+    }, 100);
+  }
+
+  private removeDisplayNone(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector(
+        ".gp-items-center.gp-justify-center.gp-gap-2.gp-text-center.gp-carousel-dot-container.gp-carousel-dot-container-ft-gp-carousel-gKJd-U6nmQ-template--17982265458943__gp_section_523067330180154432-7635732070655-template--17982265458943__gp_section_523067330180154432.gp-static.gp-flex-row.gp-left-0.gp-right-0.tablet\\:gp-static.tablet\\:gp-flex-row.tablet\\:gp-left-0.tablet\\:gp-right-0.mobile\\:gp-static.mobile\\:gp-flex-row.mobile\\:gp-left-0.mobile\\:gp-right-0"
+      ) as HTMLElement;
+
+      if (element) {
+        element.style.removeProperty("display");
+      }
+    }, 100);
   }
 }
