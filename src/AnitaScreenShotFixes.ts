@@ -26,6 +26,7 @@ export default class AnitaScreenShotFixes {
     // this.removeMainContentMargin();
     this.setDisplayToBlock();
     this.setOpacityToHeroSideBySide();
+    this.removeFixedPositionFromHeaderBedsite();
   }
 
   private removeHeightProperty() {
@@ -162,17 +163,34 @@ export default class AnitaScreenShotFixes {
   }
   private setOpacityToHeroSideBySide(): void {
     const parentElement = this.document.querySelector(
-      '.slideshow__slide.slideshow__slide--slideshow-split2-0.is-selected'
+      ".slideshow__slide.slideshow__slide--slideshow-split2-0.is-selected"
     ) as HTMLElement;
-  
+
     if (parentElement) {
       const childElement = parentElement.querySelector(
-        '.hero__sidebyside.hero__sidebyside-text--left.color-scheme-2'
+        ".hero__sidebyside.hero__sidebyside-text--left.color-scheme-2"
       ) as HTMLElement;
-  
+
       if (childElement) {
-        childElement.style.opacity = '1';
+        childElement.style.opacity = "1";
       }
     }
-  }  
+  }
+
+  private removeFixedPositionFromHeaderBedsite(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
+
+      if (
+        element &&
+        element.classList.contains("shopify-section") &&
+        element.classList.contains("section-header")
+      ) {
+        element.style.setProperty("position", "static", "important");
+        element.style.removeProperty("position");
+      }
+    }, 100); 
+  }
 }
