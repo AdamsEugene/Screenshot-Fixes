@@ -22,6 +22,7 @@ export default class RyanScreenshotFixes extends Common {
       this.UpdateIframeSrc();
       this.PetsmontremoveExtraFooter();
       this.Mimibeltupdatefooter();
+      this.HampshireupdateHeader();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -357,35 +358,36 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Mimi Belt
- /*  private Mimibeltupdatefooter() {
-    this.dom.querySelectorAll('.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown')
-        .forEach(footer => {
-            const childElement = footer.querySelector('.footer__content-bottom.animate-item.animate-item--child') as HTMLElement;
-            if (childElement) {
-                childElement.style.setProperty('opacity', '1', 'important');
-            }
-        });
-    
-    this.dom.querySelectorAll('.footer__blocks-wrapper.grid .footer-block.grid__item')
-        .forEach(childBlock => {
-            (childBlock as HTMLElement).style.setProperty('opacity', '1', 'important');
-        });
-  } */
-        private Mimibeltupdatefooter() {
-          const targetElement = document.querySelector(
-            '.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown'
-          ) as HTMLElement;
-          if (targetElement) {
-            const childrenWithOpacityZero = targetElement.querySelectorAll('*');
-            childrenWithOpacityZero.forEach((child) => {
-              const childElement = child as HTMLElement;
-              const computedOpacity = window.getComputedStyle(childElement).opacity;
-              if (computedOpacity === '0') {
-                childElement.style.setProperty('opacity', '1', 'important');
-              }
-            });
-          }
+  private Mimibeltupdatefooter() {
+    const targetElement = document.querySelector(
+      '.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown'
+    ) as HTMLElement;
+    if (targetElement) {
+      const childrenWithOpacityZero = targetElement.querySelectorAll('*');
+      childrenWithOpacityZero.forEach((child) => {
+        const childElement = child as HTMLElement;
+        const computedOpacity = window.getComputedStyle(childElement).opacity;
+        if (computedOpacity === '0') {
+          childElement.style.setProperty('opacity', '1', 'important');
         }
+      });
+    }
+  }
+
+  //Hampshire
+  private HampshireupdateHeader() {
+    const parentElement = this.dom.querySelector(
+      ".template-product-.bg-background"
+    ) as HTMLElement;
+    if (parentElement) {
+      const headerElement = parentElement.querySelector(
+        "#shopify-section-header"
+      ) as HTMLElement;
+      if (headerElement?.style.position === "fixed") {
+        headerElement.style.setProperty("position", "relative", "important");
+      }
+    }
+  }
         
 
   //Iframe Update
