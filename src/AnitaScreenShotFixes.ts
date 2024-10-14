@@ -29,6 +29,7 @@ export default class AnitaScreenShotFixes {
     this.removeFixedPositionFromHeaderBedsite();
     this.removeMinHeightAndOverflow();
     this.removeDisplayNone();
+    this.setStyleToRecommendationModal();
   }
 
   private removeHeightProperty() {
@@ -231,4 +232,16 @@ export default class AnitaScreenShotFixes {
       }
     }, 100);
   }
+  private setStyleToRecommendationModal(): void {
+    const bodyElement = this.document.querySelector('body.gradient.template-index') as HTMLElement;
+  
+    if (bodyElement) {
+      const containerElement = bodyElement.querySelector('.recommendation-modal__container') as HTMLElement;
+  
+      if (containerElement) {
+        containerElement.style.setProperty('display', 'block', 'important');
+      }
+    }
+  }
+  
 }
