@@ -179,14 +179,18 @@ export default class AnitaScreenShotFixes {
 
   private removeFixedPositionFromHeaderBedsite(): void {
     setTimeout(() => {
-      const element = this.document.getElementById('shopify-section-header') as HTMLElement;
-  
-      if (element && element.classList.contains('shopify-section') && element.classList.contains('section-header')) {
-        // Manually reset the position property
-        element.style.setProperty('position', 'static', 'important');
-        element.style.removeProperty('position');
+      const element = this.document.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
+
+      if (
+        element &&
+        element.classList.contains("shopify-section") &&
+        element.classList.contains("section-header")
+      ) {
+        element.style.setProperty("position", "static", "important");
+        element.style.removeProperty("position");
       }
-    }, 100); // Delay of 100ms to ensure all styles are applied
+    }, 100); 
   }
-  
 }
