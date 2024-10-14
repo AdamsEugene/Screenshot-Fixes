@@ -568,7 +568,6 @@ class ScreenshotFixes extends Common {
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
-      ".absolute.top-0.right-\\[-5px\\].py-\\[90px\\].w-2\\/3.h-full.flex.items-center.justify-center",
     ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
