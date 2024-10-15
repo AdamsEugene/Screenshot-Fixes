@@ -22,6 +22,7 @@ export default class RyanScreenshotFixes extends Common {
       this.UpdateIframeSrc();
       this.PetsmontremoveExtraFooter();
       this.Mimibeltupdatefooter();
+      this.HampshireupdateHeader();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -149,21 +150,35 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private setElementDisplayToBlock() {
-    const classes = [
+    const selectors = [
       ".dbtfy-color-swatches-container",
       ".dbtfy-color-swatches",
       ".dbtfy-faq",
       ".dbtfy-product-bullet-points-container",
       ".hamburger__line",
       ".swiper-button-next",
-      ".swiper-button-prev",
+      ".swiper-button-prev", // Example of an ID selector
     ];
-    classes.forEach((cls) => {
-      this.allElements(cls)?.forEach((m: HTMLElement) =>
-        this.displayBlock(m, true)
-      );
+  
+    selectors.forEach((selector) => {
+      // Check if it's a class or an ID
+      if (selector.startsWith('.')) {
+        // Handle class selectors
+        this.allElements(selector)?.forEach((el: HTMLElement) =>
+          this.displayBlock(el, true)
+        );
+      } else if (selector.startsWith('#')) {
+        // Handle ID selectors
+        const el = document.querySelector(selector) as HTMLElement;
+        if (el) {
+          this.displayBlock(el, true);
+        }
+      }
     });
-  }
+    const style = this.dom.createElement('style');
+    style.innerHTML = `#fast-simon-serp-app { display: block !important; }`;
+    this.dom.head.appendChild(style);
+  }  
 
   // CoThirty Six
   private CoThirtySixshowBarsInContainer() {
@@ -357,35 +372,36 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Mimi Belt
- /*  private Mimibeltupdatefooter() {
-    this.dom.querySelectorAll('.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown')
-        .forEach(footer => {
-            const childElement = footer.querySelector('.footer__content-bottom.animate-item.animate-item--child') as HTMLElement;
-            if (childElement) {
-                childElement.style.setProperty('opacity', '1', 'important');
-            }
-        });
-    
-    this.dom.querySelectorAll('.footer__blocks-wrapper.grid .footer-block.grid__item')
-        .forEach(childBlock => {
-            (childBlock as HTMLElement).style.setProperty('opacity', '1', 'important');
-        });
-  } */
-        private Mimibeltupdatefooter() {
-          const targetElement = document.querySelector(
-            '.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown'
-          ) as HTMLElement;
-          if (targetElement) {
-            const childrenWithOpacityZero = targetElement.querySelectorAll('*');
-            childrenWithOpacityZero.forEach((child) => {
-              const childElement = child as HTMLElement;
-              const computedOpacity = window.getComputedStyle(childElement).opacity;
-              if (computedOpacity === '0') {
-                childElement.style.setProperty('opacity', '1', 'important');
-              }
-            });
-          }
+  private Mimibeltupdatefooter() {
+    const targetElement = document.querySelector(
+      '.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown'
+    ) as HTMLElement;
+    if (targetElement) {
+      const childrenWithOpacityZero = targetElement.querySelectorAll('*');
+      childrenWithOpacityZero.forEach((child) => {
+        const childElement = child as HTMLElement;
+        const computedOpacity = window.getComputedStyle(childElement).opacity;
+        if (computedOpacity === '0') {
+          childElement.style.setProperty('opacity', '1', 'important');
         }
+      });
+    }
+  }
+
+  //Hampshire
+  private HampshireupdateHeader() {
+    const parentElement = this.dom.querySelector(
+      ".template-product-.bg-background"
+    ) as HTMLElement;
+    if (parentElement) {
+      const headerElement = parentElement.querySelector(
+        "#shopify-section-header"
+      ) as HTMLElement;
+      if (headerElement?.style.position === "fixed") {
+        headerElement.style.setProperty("position", "relative", "important");
+      }
+    }
+  }
         
 
   //Iframe Update
