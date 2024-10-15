@@ -150,7 +150,7 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private setElementDisplayToBlock() {
-    const classes = [
+    const selectors = [
       ".dbtfy-color-swatches-container",
       ".dbtfy-color-swatches",
       ".dbtfy-faq",
@@ -158,13 +158,25 @@ export default class RyanScreenshotFixes extends Common {
       ".hamburger__line",
       ".swiper-button-next",
       ".swiper-button-prev",
+      "#fast-simon-serp-app", // Example of an ID selector
     ];
-    classes.forEach((cls) => {
-      this.allElements(cls)?.forEach((m: HTMLElement) =>
-        this.displayBlock(m, true)
-      );
+  
+    selectors.forEach((selector) => {
+      // Check if it's a class or an ID
+      if (selector.startsWith('.')) {
+        // Handle class selectors
+        this.allElements(selector)?.forEach((el: HTMLElement) =>
+          this.displayBlock(el, true)
+        );
+      } else if (selector.startsWith('#')) {
+        // Handle ID selectors
+        const el = document.querySelector(selector) as HTMLElement;
+        if (el) {
+          this.displayBlock(el, true);
+        }
+      }
     });
-  }
+  }  
 
   // CoThirty Six
   private CoThirtySixshowBarsInContainer() {
