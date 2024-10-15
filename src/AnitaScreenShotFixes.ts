@@ -30,6 +30,7 @@ export default class AnitaScreenShotFixes {
     this.removeMinHeightAndOverflow();
     this.removeDisplayNone();
     this.setStyleToRecommendationModal();
+    this.rdImasetOpacityToProductCages();
   }
 
   private removeHeightProperty() {
@@ -242,6 +243,14 @@ export default class AnitaScreenShotFixes {
         containerElement.style.setProperty('display', 'block', 'important');
       }
     }
+  }private rdImasetOpacityToProductCages(): void {
+    const imageElements = this.document.querySelectorAll(
+      '.product-card__image.product-card__image--secondary'
+    ) as NodeListOf<HTMLElement>;
+  
+    imageElements.forEach((element) => {
+      element.style.setProperty('opacity', '0', 'important');
+    });
   }
   
 }
