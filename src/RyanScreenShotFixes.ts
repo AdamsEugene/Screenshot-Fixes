@@ -157,8 +157,7 @@ export default class RyanScreenshotFixes extends Common {
       ".dbtfy-product-bullet-points-container",
       ".hamburger__line",
       ".swiper-button-next",
-      ".swiper-button-prev",
-      "#fast-simon-serp-app", // Example of an ID selector
+      ".swiper-button-prev", // Example of an ID selector
     ];
   
     selectors.forEach((selector) => {
@@ -176,6 +175,9 @@ export default class RyanScreenshotFixes extends Common {
         }
       }
     });
+    const style = this.dom.createElement('style');
+    style.innerHTML = `#fast-simon-serp-app { display: block !important; }`;
+    this.dom.head.appendChild(style);
   }  
 
   // CoThirty Six
