@@ -23,6 +23,7 @@ export default class RyanScreenshotFixes extends Common {
       this.PetsmontremoveExtraFooter();
       this.Mimibeltupdatefooter();
       this.HampshireupdateHeader();
+      this.EdenboostUpdateThumbnailHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -402,8 +403,21 @@ export default class RyanScreenshotFixes extends Common {
       }
     }
   }
-        
 
+  //Edenboost
+  private EdenboostUpdateThumbnailHeight() {
+    this.dom
+      .querySelectorAll(".text-link.product-single__thumbnail.product-single__thumbnail--product-alphacleanse-v4-template-radio")
+      .forEach((parentElement: HTMLElement) => {
+        const childElement = parentElement.querySelector(".product-single__thumbnail-image") as HTMLElement;
+        
+        if (childElement && childElement.style.height) {
+          childElement.style.setProperty("height", "max-content", "important");
+        }
+      });
+  }
+  
+        
   //Iframe Update
   private UpdateIframeSrc() {
     const iframe = this.dom.querySelector("iframe") as HTMLIFrameElement;
