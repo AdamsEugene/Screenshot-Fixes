@@ -31,6 +31,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNone();
     this.setStyleToRecommendationModal();
     this.rdImasetOpacityToProductCages();
+    this.setDisplayToBlockFulton();
   }
 
   private removeHeightProperty() {
@@ -253,8 +254,23 @@ export default class AnitaScreenShotFixes {
       imageElements.forEach((element) => {
         element.style.setProperty('opacity', '0', 'important');
       });
-    }, 100); // Delay of 100ms to ensure all styles are applied before changing opacity
+    }, 100);
   }
+  private setDisplayToBlockFulton(): void {
+    setTimeout(() => {
+      const parentElement = this.document.getElementById('shopify-section-layout-header') as HTMLElement;
+  
+      if (parentElement) {
+        const targetElement = parentElement.children[1] as HTMLElement;
+  
+        if (targetElement) {
+          targetElement.style.setProperty('display', 'block', 'important');
+        }
+      }
+    }, 100);
+  }
+  
+
   
   
   
