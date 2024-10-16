@@ -243,14 +243,19 @@ export default class AnitaScreenShotFixes {
         containerElement.style.setProperty('display', 'block', 'important');
       }
     }
-  }private rdImasetOpacityToProductCages(): void {
-    const imageElements = this.document.querySelectorAll(
-      '.product-card__image.product-card__image--secondary'
-    ) as NodeListOf<HTMLElement>;
-  
-    imageElements.forEach((element) => {
-      element.style.setProperty('opacity', '0', 'important');
-    });
   }
+  private rdImasetOpacityToProductCages(): void {
+    setTimeout(() => {
+      const imageElements = this.document.querySelectorAll(
+        '.product-card__image.product-card__image--secondary'
+      ) as NodeListOf<HTMLElement>;
+  
+      imageElements.forEach((element) => {
+        element.style.setProperty('opacity', '0', 'important');
+      });
+    }, 100); // Delay of 100ms to ensure all styles are applied before changing opacity
+  }
+  
+  
   
 }
