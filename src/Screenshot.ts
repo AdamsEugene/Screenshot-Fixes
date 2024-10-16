@@ -572,6 +572,10 @@ class ScreenshotFixes extends Common {
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
     });
+    const idsToHide = ['pandectes-banner', 'gdpr-blocking-page-overlay'];
+    const style = this.dom.createElement('style');
+    style.innerHTML = idsToHide.map(id => `#${id} { display: none !important; }`).join('\n');
+    this.dom.head.appendChild(style);
   }
 
   private getAttrAndSetDisplayNone() {
