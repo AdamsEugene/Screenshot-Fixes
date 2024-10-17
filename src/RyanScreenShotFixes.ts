@@ -493,9 +493,9 @@ export default class RyanScreenshotFixes extends Common {
     const style = this.dom.createElement('style');
     style.innerHTML = `
       .viair-header-link-first-level .viair-header-mega-menu {
-        opacity: revert-layer;
+        opacity: 0;
       }
-      .viair-header-link-first-level .viair-header-mega-menu:hover {
+      .viair-header-link-first-level:hover .viair-header-mega-menu {
         opacity: 1 !important;
       }
     `;
