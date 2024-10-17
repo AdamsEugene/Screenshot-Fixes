@@ -298,10 +298,12 @@ export default class AnitaScreenShotFixes {
       ) as NodeListOf<HTMLElement>;
   
       elements.forEach((element) => {
-        if (window.getComputedStyle(element).opacity === '1') {
+        if (element.style.opacity === '1') {
           element.style.opacity = '';
         }
       });
-    }, 1000); 
+    }, 1000);
+  }
+  
   }
 }
