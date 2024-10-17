@@ -305,17 +305,18 @@ export default class AnitaScreenShotFixes {
     elements.forEach((element, index) => {
       console.log(`Processing element ${index + 1}/${elements.length}...`);
   
-      if (window.getComputedStyle(element).opacity === '1') {
-        console.log(`Removing opacity for element ${index + 1}.`);
-        element.style.opacity = '';
-        element.style.opacity = '0'; // Set the opacity to 0 after removal
+      if (element.style.opacity === '1') {
+        console.log(`Removing inline opacity for element ${index + 1}.`);
+        element.style.opacity = ''; 
+        element.style.opacity = '0'; 
         console.log(`Opacity removed and set to 0 for element ${index + 1}.`);
       } else {
-        console.log(`Element ${index + 1} does not have opacity set to 1.`);
+        console.log(`Element ${index + 1} does not have inline opacity set to 1.`);
       }
     });
   
     console.log('Completed processing all elements.');
   }
+  
   
 }
