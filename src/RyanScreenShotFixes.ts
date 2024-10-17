@@ -493,7 +493,7 @@ export default class RyanScreenshotFixes extends Common {
     const style = this.dom.createElement('style');
     style.innerHTML = `
       .viair-header-link-first-level .viair-header-mega-menu {
-        opacity: 0;
+        opacity: 0 !important;
       }
       .viair-header-link-first-level:hover .viair-header-mega-menu {
         opacity: 1 !important;
