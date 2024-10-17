@@ -89,5 +89,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/mimibelt.com-products-pregnancy-safety-belt-main.html"
     }
+  },
+  {
+    "selector": ".kaching-bundles__bars",
+    "content": {
+      "idSite": 2890,
+      "idSiteHsr": 5497132,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/officialquasi.com-products-bio-collagen-mask-main.html"
+    }
   }
 ]
