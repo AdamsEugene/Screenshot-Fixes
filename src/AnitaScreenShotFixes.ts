@@ -33,6 +33,7 @@ export default class AnitaScreenShotFixes {
     this.rdImasetOpacityToProductCages();
     this.setDisplayToBlockFulton();
     this.setDisplayToBlockForKachingBundles();
+    this.removeOpacityFromMegaMenuWithDelay();
   }
 
   private removeHeightProperty() {
@@ -289,5 +290,18 @@ export default class AnitaScreenShotFixes {
         }
       });
     }, 100);
+  }
+  private removeOpacityFromMegaMenuWithDelay(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll(
+        '.viair-header-mega-menu, .small_mega_menu'
+      ) as NodeListOf<HTMLElement>;
+  
+      elements.forEach((element) => {
+        if (window.getComputedStyle(element).opacity === '1') {
+          element.style.opacity = '';
+        }
+      });
+    }, 1000); 
   }
 }
