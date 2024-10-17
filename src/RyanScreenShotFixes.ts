@@ -26,6 +26,7 @@ export default class RyanScreenshotFixes extends Common {
       this.EdenboostUpdateThumbnailHeight();
       this.VIAIRremoveOpacityFromMegaMenu();
       this.observeOverlays();
+      this.glowupdateElementsVisibility();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -450,11 +451,31 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private observeOverlays() {
-    const observer = new MutationObserver(() => {
-      this.GrowhideLightboxOverlays();
-    });
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.GrowhideLightboxOverlays();
+      });
   
-    observer.observe(this.dom.body, { childList: true, subtree: true });
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
+  }
+
+  private glowupdateElementsVisibility() {
+    const updateVisibility = (parentSelector: string, childSelector: string) => {
+        this.dom.querySelectorAll(parentSelector).forEach(parent => {
+            const children = parent.querySelectorAll(childSelector) as NodeListOf<HTMLElement>;
+            children.forEach(child => {
+                child.setAttribute('data-visible', 'true');
+                child.style.setProperty('opacity', '1', 'important');
+            });
+        });
+    };
+
+    updateVisibility('.padding.background-light.text-align-center', '.img.hover-plus.margin-bottom-1250.soft-load');
+    updateVisibility('.content.text-align-center', '.testimonial-carousel.soft-load');
+    updateVisibility('.content.flex.flex-row.flex-center', '.img.half.left.soft-load');
+    updateVisibility('.content', '.soft-load');
+    updateVisibility('.half.right', '.soft-load');
   }
   
   //VIAIR
