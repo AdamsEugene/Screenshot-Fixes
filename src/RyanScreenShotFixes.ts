@@ -23,6 +23,8 @@ export default class RyanScreenshotFixes extends Common {
       this.PetsmontremoveExtraFooter();
       this.Mimibeltupdatefooter();
       this.HampshireupdateHeader();
+      this.EdenboostUpdateThumbnailHeight();
+      this.VIAIRremoveOpacityFromMegaMenu();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -402,7 +404,31 @@ export default class RyanScreenshotFixes extends Common {
       }
     }
   }
+
+  //Edenboost
+  private EdenboostUpdateThumbnailHeight() {
+    this.dom
+      .querySelectorAll(".text-link.product-single__thumbnail.product-single__thumbnail--product-alphacleanse-v4-template-radio")
+      .forEach((parentElement: HTMLElement) => {
+        const childElement = parentElement.querySelector(".product-single__thumbnail-image") as HTMLElement;
         
+        if (childElement && childElement.style.height) {
+          childElement.style.setProperty("height", "max-content", "important");
+        }
+      });
+  }
+  
+  //VIAIR
+  private VIAIRremoveOpacityFromMegaMenu() {
+    this.dom.querySelectorAll(".viair-header-link-first-level")
+      .forEach((parentElement: HTMLElement) => {
+        [".viair-header-mega-menu.small_mega_menu", ".viair-header-mega-menu"]
+          .forEach(selector => {
+            const child = parentElement.querySelector(selector) as HTMLElement;
+            if (child?.style.opacity) child.style.setProperty("opacity", "revert-layer", "important");
+          });
+      });
+  }
 
   //Iframe Update
   private UpdateIframeSrc() {
