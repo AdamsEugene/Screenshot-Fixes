@@ -295,20 +295,21 @@ export default class AnitaScreenShotFixes {
     console.log('Starting to remove opacity from mega menu elements...');
   
     const elements = this.document.querySelectorAll(
-      '.viair-header-mega-menu, .small_mega_menu'
+      '.viair-header-mega-menu'
     ) as NodeListOf<HTMLElement>;
   
     if (elements.length === 0) {
-      console.log('No elements found with the specified classes.');
+      console.log('No elements found with the specified class.');
     }
   
     elements.forEach((element, index) => {
       console.log(`Processing element ${index + 1}/${elements.length}...`);
   
+      // Check if the opacity is set directly as an inline style
       if (element.style.opacity === '1') {
         console.log(`Removing inline opacity for element ${index + 1}.`);
-        element.style.opacity = ''; 
-        element.style.opacity = '0'; 
+        element.style.opacity = ''; // Remove the inline opacity
+        element.style.opacity = '0'; // Set the opacity to 0 after removal
         console.log(`Opacity removed and set to 0 for element ${index + 1}.`);
       } else {
         console.log(`Element ${index + 1} does not have inline opacity set to 1.`);
@@ -317,6 +318,7 @@ export default class AnitaScreenShotFixes {
   
     console.log('Completed processing all elements.');
   }
+  
   
   
 }
