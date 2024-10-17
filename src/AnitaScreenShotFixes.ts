@@ -33,7 +33,7 @@ export default class AnitaScreenShotFixes {
     this.rdImasetOpacityToProductCages();
     this.setDisplayToBlockFulton();
     this.setDisplayToBlockForKachingBundles();
-    this.removeOpacityFromMegaMenuWithDelay();
+    this.removeOpacityFromMegaMenu();
   }
 
   private removeHeightProperty() {
@@ -291,19 +291,31 @@ export default class AnitaScreenShotFixes {
       });
     }, 100);
   }
-  private removeOpacityFromMegaMenuWithDelay(): void {
-    setTimeout(() => {
-      const elements = this.document.querySelectorAll(
-        '.viair-header-mega-menu, .small_mega_menu'
-      ) as NodeListOf<HTMLElement>;
+  private removeOpacityFromMegaMenu(): void {
+    console.log('Starting to remove opacity from mega menu elements...');
   
-      elements.forEach((element) => {
-        if (element.style.opacity === '1') {
-          element.style.opacity = '';
-        }
-      });
-    }, 1000);
+    const elements = this.document.querySelectorAll(
+      '.viair-header-mega-menu, .small_mega_menu'
+    ) as NodeListOf<HTMLElement>;
+  
+    if (elements.length === 0) {
+      console.log('No elements found with the specified classes.');
+    }
+  
+    elements.forEach((element, index) => {
+      console.log(`Processing element ${index + 1}/${elements.length}...`);
+  
+      if (window.getComputedStyle(element).opacity === '1') {
+        console.log(`Removing opacity for element ${index + 1}.`);
+        element.style.opacity = '';
+        element.style.opacity = '0'; // Set the opacity to 0 after removal
+        console.log(`Opacity removed and set to 0 for element ${index + 1}.`);
+      } else {
+        console.log(`Element ${index + 1} does not have opacity set to 1.`);
+      }
+    });
+  
+    console.log('Completed processing all elements.');
   }
   
-  }
-
+}
