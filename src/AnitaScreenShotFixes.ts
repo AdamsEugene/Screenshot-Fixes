@@ -306,4 +306,4 @@ export default class AnitaScreenShotFixes {
   }
   
   }
-}
+
