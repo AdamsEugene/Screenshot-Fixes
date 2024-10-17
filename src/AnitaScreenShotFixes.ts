@@ -292,32 +292,35 @@ export default class AnitaScreenShotFixes {
     }, 100);
   }
   private removeOpacityFromMegaMenu(): void {
-    console.log('Starting to remove opacity from mega menu elements...');
+    setTimeout(() => {
+      console.log('Starting to remove opacity from mega menu elements...');
   
-    const elements = this.document.querySelectorAll(
-      '.viair-header-mega-menu'
-    ) as NodeListOf<HTMLElement>;
+      const elements = this.document.querySelectorAll(
+        '.viair-header-mega-menu'
+      ) as NodeListOf<HTMLElement>;
   
-    if (elements.length === 0) {
-      console.log('No elements found with the specified class.');
-    }
-  
-    elements.forEach((element, index) => {
-      console.log(`Processing element ${index + 1}/${elements.length}...`);
-  
-      // Check if the opacity is set directly as an inline style
-      if (element.style.opacity === '1') {
-        console.log(`Removing inline opacity for element ${index + 1}.`);
-        element.style.opacity = ''; // Remove the inline opacity
-        element.style.opacity = '0'; // Set the opacity to 0 after removal
-        console.log(`Opacity removed and set to 0 for element ${index + 1}.`);
-      } else {
-        console.log(`Element ${index + 1} does not have inline opacity set to 1.`);
+      if (elements.length === 0) {
+        console.log('No elements found with the specified class.');
       }
-    });
   
-    console.log('Completed processing all elements.');
+      elements.forEach((element, index) => {
+        console.log(`Processing element ${index + 1}/${elements.length}...`);
+        console.log('Element found:', element); 
+  
+        if (element.style.opacity === '1') {
+          console.log(`Removing inline opacity for element ${index + 1}.`);
+          element.style.opacity = '';
+          element.style.opacity = '0'; 
+          console.log(`Opacity removed and set to 0 for element ${index + 1}.`);
+        } else {
+          console.log(`Element ${index + 1} does not have inline opacity set to 1.`);
+        }
+      });
+  
+      console.log('Completed processing all elements.');
+    }, 2000); // Delay of 1000ms to ensure all styles are applied before changing opacity
   }
+  
   
   
   
