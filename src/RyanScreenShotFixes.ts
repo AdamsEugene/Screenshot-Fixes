@@ -25,7 +25,7 @@ export default class RyanScreenshotFixes extends Common {
       this.HampshireupdateHeader();
       this.EdenboostUpdateThumbnailHeight();
       this.VIAIRremoveOpacityFromMegaMenu();
-      this.GrowhideLightboxOverlays();
+      this.observeOverlays();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -425,8 +425,10 @@ export default class RyanScreenshotFixes extends Common {
     let hasVisibleOverlay = false;
   
     overlays.forEach(overlay => {
-      if (getComputedStyle(overlay).opacity === "1") {
-        hasVisibleOverlay = true; // Track if there's at least one visible overlay
+      const opacity = getComputedStyle(overlay).opacity;
+      console.log(`Overlay opacity: ${opacity}`); // Log opacity
+      if (opacity === "1") {
+        hasVisibleOverlay = true;
       }
     });
   
@@ -441,7 +443,18 @@ export default class RyanScreenshotFixes extends Common {
         }
       `;
       this.dom.head.appendChild(style);
+      console.log('Styles added to hide overlays'); // Log style addition
+    } else {
+      console.log('No visible overlays found'); // Log if no overlays found
     }
+  }
+
+  private observeOverlays() {
+    const observer = new MutationObserver(() => {
+      this.GrowhideLightboxOverlays();
+    });
+  
+    observer.observe(this.dom.body, { childList: true, subtree: true });
   }
   
   //VIAIR
