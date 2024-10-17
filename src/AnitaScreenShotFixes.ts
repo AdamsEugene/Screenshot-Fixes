@@ -32,6 +32,7 @@ export default class AnitaScreenShotFixes {
     this.setStyleToRecommendationModal();
     this.rdImasetOpacityToProductCages();
     this.setDisplayToBlockFulton();
+    this.setDisplayToBlockForKachingBundles();
   }
 
   private removeHeightProperty() {
@@ -271,6 +272,17 @@ export default class AnitaScreenShotFixes {
   }
   
 
+  private setDisplayToBlockForKachingBundles(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll('.kaching-bundles__bar-radio') as NodeListOf<HTMLElement>;
+  
+      elements.forEach((element) => {
+        if (element.style.display === 'none') {
+          element.style.setProperty('display', 'block', 'important');
+        }
+      });
+    }, 100); // Delay of 100ms to ensure all styles are applied before changing display
+  }
   
   
   
