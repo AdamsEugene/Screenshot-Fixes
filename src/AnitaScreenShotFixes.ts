@@ -318,9 +318,4 @@ export default class AnitaScreenShotFixes {
     console.log('Completed processing all elements.');
   }
   
-<<<<<<< HEAD
 }
-=======
-  }
-
->>>>>>> d2e3e32a2cab1caf7b206804382515c3f8488eef
