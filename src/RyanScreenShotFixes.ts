@@ -25,6 +25,7 @@ export default class RyanScreenshotFixes extends Common {
       this.HampshireupdateHeader();
       this.EdenboostUpdateThumbnailHeight();
       this.VIAIRremoveOpacityFromMegaMenu();
+      this.GrowhideLightboxOverlays();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -414,6 +415,19 @@ export default class RyanScreenshotFixes extends Common {
         
         if (childElement && childElement.style.height) {
           childElement.style.setProperty("height", "max-content", "important");
+        }
+      });
+  }
+
+  //Grow
+  private GrowhideLightboxOverlays() {
+    this.dom.querySelectorAll<HTMLElement>("body > .lightbox-overlay")
+      .forEach(overlay => {
+        if (getComputedStyle(overlay).opacity === "1") {
+          overlay.style.setProperty("opacity", "0", "important");
+          overlay.querySelectorAll<HTMLElement>("*").forEach(descendant => {
+            descendant.style.setProperty("opacity", "0", "important");
+          });
         }
       });
   }
