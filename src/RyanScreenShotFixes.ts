@@ -464,10 +464,20 @@ export default class RyanScreenshotFixes extends Common {
     const updateVisibility = (parentSelector: string, childSelector: string) => {
         this.dom.querySelectorAll(parentSelector).forEach(parent => {
             const children = parent.querySelectorAll(childSelector) as NodeListOf<HTMLElement>;
-            children.forEach(child => {
-                child.setAttribute('data-visible', 'true');
-                child.style.setProperty('opacity', '1', 'important');
-            });
+            if (children.length > 0) {
+                const style = this.dom.createElement('style');
+                let styleContent = '';
+
+                children.forEach((child, index) => {
+                    const uniqueClass = `child-visible-${index}`;
+                    child.classList.add(uniqueClass);
+                    child.setAttribute('data-visible', 'true');
+                    styleContent += `.${uniqueClass} { opacity: 1 !important; } `;
+                });
+
+                style.innerHTML = styleContent;
+                this.dom.head.appendChild(style);
+            }
         });
     };
 
