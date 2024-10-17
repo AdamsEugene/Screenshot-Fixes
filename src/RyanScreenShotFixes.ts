@@ -421,15 +421,27 @@ export default class RyanScreenshotFixes extends Common {
 
   //Grow
   private GrowhideLightboxOverlays() {
-    this.dom.querySelectorAll<HTMLElement>("body > .lightbox-overlay")
-      .forEach(overlay => {
-        if (getComputedStyle(overlay).opacity === "1") {
-          overlay.style.setProperty("opacity", "0", "important");
-          overlay.querySelectorAll<HTMLElement>("*").forEach(descendant => {
-            descendant.style.setProperty("opacity", "0", "important");
-          });
+    const overlays = this.dom.querySelectorAll<HTMLElement>("body > .lightbox-overlay");
+    let hasVisibleOverlay = false;
+  
+    overlays.forEach(overlay => {
+      if (getComputedStyle(overlay).opacity === "1") {
+        hasVisibleOverlay = true; // Track if there's at least one visible overlay
+      }
+    });
+  
+    if (hasVisibleOverlay) {
+      const style = this.dom.createElement('style');
+      style.innerHTML = `
+        body > .lightbox-overlay {
+          opacity: 0 !important;
         }
-      });
+        body > .lightbox-overlay * {
+          opacity: 0 !important;
+        }
+      `;
+      this.dom.head.appendChild(style);
+    }
   }
   
   //VIAIR
