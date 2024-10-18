@@ -97,6 +97,7 @@ class ScreenshotFixes extends Common {
       this.adjustSlideshowHeight();
       this.injectCss();
       this.getAttrAndSetDisplayNone();
+      this.modifyParentElement();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -572,9 +573,11 @@ class ScreenshotFixes extends Common {
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
     });
-    const idsToHide = ['pandectes-banner', 'gdpr-blocking-page-overlay'];
-    const style = this.dom.createElement('style');
-    style.innerHTML = idsToHide.map(id => `#${id} { display: none !important; }`).join('\n');
+    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay"];
+    const style = this.dom.createElement("style");
+    style.innerHTML = idsToHide
+      .map((id) => `#${id} { display: none !important; }`)
+      .join("\n");
     this.dom.head.appendChild(style);
   }
 
@@ -772,6 +775,21 @@ class ScreenshotFixes extends Common {
         }
       }
     });
+  }
+
+  private modifyParentElement() {
+    const element = this.dom.querySelector(
+      ".recommendation-modal__container"
+    ) as HTMLElement;
+    if (element) {
+      const parent = element.parentElement as HTMLElement;
+      if (parent.tagName.toLowerCase() === "div" && parent.className === "") {
+        parent.id = "the_id";
+        const style = document.createElement("style");
+        style.innerHTML = `#the_id { display: none !important; }`;
+        document.head.appendChild(style);
+      }
+    }
   }
 
   public cleanup() {
