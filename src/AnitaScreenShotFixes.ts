@@ -315,17 +315,36 @@ export default class AnitaScreenShotFixes {
       console.log('Completed processing all elements.');
     }, 1000); 
   }
-  private updateHeightForSpecificElement(): void {
-    const element = this.document.querySelector(
-      '.r-4wlhl5[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
-    ) as HTMLElement;
   
-    if (element) {
-      if (element.style.height === 'max-content') {
-        element.style.removeProperty('height');
+  private updateHeightForSpecificElement(): void {
+    setTimeout(() => {
+      console.log('Attempting to update height for a specific element...');
+  
+      let element = this.document.querySelector(
+        '.r-4wlhl5[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
+      ) as HTMLElement;
+  
+      if (!element) {
+        console.log('Primary target not found, attempting backup method...');
+        element = this.document.querySelector(
+          '[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
+        ) as HTMLElement;
+  
+        if (!element) {
+          element = this.document.querySelector('.r-4wlhl5') as HTMLElement;
+        }
       }
-      element.style.setProperty('height', '13vh', 'important');
-    }
+  
+      if (element) {
+        if (element.style.height === 'max-content') {
+          element.style.removeProperty('height');
+        }
+  
+        element.style.setProperty('height', '12vh', 'important');
+      } else {
+        console.log('No element found with any of the backup methods.');
+      }
+    }, 1000); 
   }
   
   
