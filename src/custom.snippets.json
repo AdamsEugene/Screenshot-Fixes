@@ -98,5 +98,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/officialquasi.com-products-bio-collagen-mask-main.html"
     }
+  },
+  {
+    "selector": ".template--15645122592839__main",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449449,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-shop-all-main.html"
+    }
   }
 ]
