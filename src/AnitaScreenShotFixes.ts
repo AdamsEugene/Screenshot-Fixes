@@ -34,6 +34,7 @@ export default class AnitaScreenShotFixes {
     this.setDisplayToBlockFulton();
     this.setDisplayToBlockForKachingBundles();
     this.removeAllInlineStylesFromMegaMenuWithDelay();
+    this.updateHeightForSpecificElement();
   }
 
   private removeHeightProperty() {
@@ -314,6 +315,19 @@ export default class AnitaScreenShotFixes {
       console.log('Completed processing all elements.');
     }, 1000); 
   }
+  private updateHeightForSpecificElement(): void {
+    const element = this.document.querySelector(
+      '.r-4wlhl5[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
+    ) as HTMLElement;
+  
+    if (element) {
+      if (element.style.height === 'max-content') {
+        element.style.removeProperty('height');
+      }
+      element.style.setProperty('height', '13vh', 'important');
+    }
+  }
+  
   
   
   
