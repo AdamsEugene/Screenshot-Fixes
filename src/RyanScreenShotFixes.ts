@@ -27,7 +27,7 @@ export default class RyanScreenshotFixes extends Common {
       this.VIAIRremoveOpacityFromMegaMenu();
       this.observeOverlays();
       this.glowupdateElementsVisibility();
-      this.hideRecommendationModalElements();
+      this.ReduxupdateHeaderPosition();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -503,22 +503,13 @@ export default class RyanScreenshotFixes extends Common {
     this.dom.head.appendChild(style);
   }
 
-  //Localization
-  private hideRecommendationModalElements() {
-    const style = document.createElement('style');
-    style.innerHTML = `
-      .recommendation-modal__container {
-        display: none !important;
-      }
-      
-      .recommendation-modal__backdrop {
-        display: none !important;
-        pointer-events: none !important;
-        z-index: -1 !important;
-      }
-    `;
+  //Redux
+  private ReduxupdateHeaderPosition() {
+    const childElement = this.dom.querySelector('.main-header #shopify-section-header.shopify-section') as HTMLElement;
     
-    document.head.appendChild(style);
+    if (childElement?.style.position === 'fixed') {
+      childElement.style.setProperty('position', 'relative', 'important');
+    }
   }
 
   //Iframe Update
