@@ -100,7 +100,7 @@
     }
   },
   {
-    "selector": ".template--15645122592839__main",
+    "selector": "#main-content",
     "content": {
       "idSite": 2886,
       "idSiteHsr": 5449449,
