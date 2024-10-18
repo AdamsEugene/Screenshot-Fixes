@@ -505,13 +505,20 @@ export default class RyanScreenshotFixes extends Common {
 
   //Localization
   private hideRecommendationModalElements() {
-    const elements = this.dom.querySelectorAll(
-      '.recommendation-modal__container, .recommendation-modal__backdrop'
-    ) as NodeListOf<HTMLElement>;
-  
-    elements.forEach((element) => {
-      element.style.setProperty('display', 'none', 'important');
-    });
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .recommendation-modal__container {
+        display: none !important;
+      }
+      
+      .recommendation-modal__backdrop {
+        display: none !important;
+        pointer-events: none !important;
+        z-index: -1 !important;
+      }
+    `;
+    
+    document.head.appendChild(style);
   }
 
   //Iframe Update
