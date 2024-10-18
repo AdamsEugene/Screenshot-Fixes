@@ -27,6 +27,7 @@ export default class RyanScreenshotFixes extends Common {
       this.VIAIRremoveOpacityFromMegaMenu();
       this.observeOverlays();
       this.glowupdateElementsVisibility();
+      this.hideRecommendationModalElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -500,6 +501,17 @@ export default class RyanScreenshotFixes extends Common {
       }
     `;
     this.dom.head.appendChild(style);
+  }
+
+  //Localization
+  private hideRecommendationModalElements() {
+    const elements = this.dom.querySelectorAll(
+      '.recommendation-modal__container, .recommendation-modal__backdrop'
+    ) as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.setProperty('display', 'none', 'important');
+    });
   }
 
   //Iframe Update
