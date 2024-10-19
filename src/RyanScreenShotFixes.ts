@@ -28,6 +28,7 @@ export default class RyanScreenshotFixes extends Common {
       this.observeOverlays();
       this.glowupdateElementsVisibility();
       this.ReduxupdateHeaderPosition();
+      this.Ministryofsupplyfixes();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -510,6 +511,44 @@ export default class RyanScreenshotFixes extends Common {
     if (childElement?.style.position === 'fixed') {
       childElement.style.setProperty('position', 'relative', 'important');
     }
+  }
+
+  //Ministry of Supply
+  private Ministryofsupplyfixes() {
+    const updateHeight = (elements: NodeListOf<HTMLElement>, attr: string, divisor: number, cssProp: string) => {
+      elements.forEach(parent => {
+        const firstChildElement = parent.querySelector('.flex.flex-col.relative') as HTMLElement | null;
+        if (firstChildElement) {
+          const value = parseFloat(firstChildElement.getAttribute(attr) || '0');
+          if (!isNaN(value)) {
+            const computedValue = Math.floor(value / divisor);
+            const childElements = parent.querySelectorAll('.flex.flex-col.relative') as NodeListOf<HTMLElement>;
+            childElements.forEach(child => child.style.setProperty(cssProp, `${computedValue}px`));
+          }
+        }
+      });
+    };
+  
+    const gridElements = this.dom.querySelectorAll('.grid.h-full') as NodeListOf<HTMLElement>;
+    updateHeight(gridElements, 'elementscrollheight', 13, '--slider-height');
+  
+    const relativeElements = this.dom.querySelectorAll('.relative.grid.overflow-x-auto.scrollbar-none.overflow-y-hidden.snap-mandatory.-mx-container-fullwidth.scroll-px-container-fullwidth.px-container-fullwidth.snap-x') as NodeListOf<HTMLElement>;
+    relativeElements.forEach(parent => {
+      const childElements = parent.querySelectorAll('.relative') as NodeListOf<HTMLElement>;
+      childElements.forEach(child => {
+        const value = parseFloat(child.getAttribute('actualheight') || '0');
+        if (!isNaN(value)) {
+          const computedValue = Math.floor(value / 13);
+          child.style.setProperty('min-height', `${computedValue}px`);
+        }
+      });
+    });
+  
+    const parentElements3 = this.dom.querySelectorAll('.shrink-0.max-w-full.w-full.h-full') as NodeListOf<HTMLElement>;
+    parentElements3.forEach(parent => {
+      const childElements = parent.querySelectorAll('.product-card--product-card') as NodeListOf<HTMLElement>;
+      childElements.forEach(child => child.style.display = 'block');
+    });
   }
 
   //Iframe Update
