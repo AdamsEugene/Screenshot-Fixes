@@ -544,11 +544,13 @@ export default class RyanScreenshotFixes extends Common {
       });
     });
   
-    const parentElements3 = this.dom.querySelectorAll('.shrink-0.max-w-full.w-full.h-full') as NodeListOf<HTMLElement>;
-    parentElements3.forEach(parent => {
-      const childElements = parent.querySelectorAll('.product-card--product-card') as NodeListOf<HTMLElement>;
-      childElements.forEach(child => child.style.display = 'block');
-    });
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      .shrink-0.max-w-full.w-full.h-full .product-card--product-card {
+        display: block !important;
+      }
+    `;
+    document.head.appendChild(styleElement);
   }
 
   //Iframe Update
