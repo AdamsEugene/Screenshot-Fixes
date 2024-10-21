@@ -28,6 +28,7 @@ export default class RyanScreenshotFixes extends Common {
       this.observeOverlays();
       this.glowupdateElementsVisibility();
       this.Ministryofsupplyfixes();
+      this.WarriorLabsupdateMenuHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -566,6 +567,20 @@ export default class RyanScreenshotFixes extends Common {
       }
     `;
     document.head.appendChild(styleElement);
+  }
+
+  //Warrior Labs
+  private WarriorLabsupdateMenuHeight() {
+    this.dom
+      .querySelectorAll(".main-menu__disclosure.has-motion.is-open")
+      .forEach((parent: HTMLElement) => {
+        const childElement = parent.querySelector(
+          ".main-menu__content.has-motion.justify-center"
+        ) as HTMLElement;
+  
+        childElement?.style.removeProperty('height');
+        childElement?.style.setProperty("height", "auto", "important");
+      });
   }
 
   //Iframe Update
