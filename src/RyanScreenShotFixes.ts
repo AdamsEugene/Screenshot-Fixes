@@ -27,8 +27,8 @@ export default class RyanScreenshotFixes extends Common {
       this.VIAIRremoveOpacityFromMegaMenu();
       this.observeOverlays();
       this.glowupdateElementsVisibility();
-      this.ReduxupdateHeaderPosition();
       this.Ministryofsupplyfixes();
+      this.WarriorLabsupdateMenuHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -458,6 +458,7 @@ export default class RyanScreenshotFixes extends Common {
     if (this.dom && this.dom.body) {
       const observer = new MutationObserver(() => {
         this.GrowhideLightboxOverlays();
+        this.ReduxupdateHeaderPosition();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -514,8 +515,10 @@ export default class RyanScreenshotFixes extends Common {
         const contentWrapper = section.querySelector(
           ".content__wrapper.vertical-center.horizontal-left.mobile--content_overlay"
         ) as HTMLElement;
+  
         contentWrapper?.style.setProperty("padding-top", "0", "important");
         contentWrapper?.style.setProperty("padding-bottom", "0", "important");
+        contentWrapper?.style.removeProperty('height');
         const styleTag = document.createElement('style');
         styleTag.innerHTML = `
           .content__wrapper.vertical-center.horizontal-left.mobile--content_overlay {
@@ -564,6 +567,20 @@ export default class RyanScreenshotFixes extends Common {
       }
     `;
     document.head.appendChild(styleElement);
+  }
+
+  //Warrior Labs
+  private WarriorLabsupdateMenuHeight() {
+    this.dom
+      .querySelectorAll(".main-menu__disclosure.has-motion.is-open")
+      .forEach((parent: HTMLElement) => {
+        const childElement = parent.querySelector(
+          ".main-menu__content.has-motion.justify-center"
+        ) as HTMLElement;
+  
+        childElement?.style.removeProperty('height');
+        childElement?.style.setProperty("height", "auto", "important");
+      });
   }
 
   //Iframe Update
