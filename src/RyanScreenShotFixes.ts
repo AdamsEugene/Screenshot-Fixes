@@ -27,7 +27,6 @@ export default class RyanScreenshotFixes extends Common {
       this.VIAIRremoveOpacityFromMegaMenu();
       this.observeOverlays();
       this.glowupdateElementsVisibility();
-      this.ReduxupdateHeaderPosition();
       this.Ministryofsupplyfixes();
     };
     this.exec({ containerId, debugMode, func });
@@ -458,6 +457,7 @@ export default class RyanScreenshotFixes extends Common {
     if (this.dom && this.dom.body) {
       const observer = new MutationObserver(() => {
         this.GrowhideLightboxOverlays();
+        this.ReduxupdateHeaderPosition();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -514,8 +514,10 @@ export default class RyanScreenshotFixes extends Common {
         const contentWrapper = section.querySelector(
           ".content__wrapper.vertical-center.horizontal-left.mobile--content_overlay"
         ) as HTMLElement;
+  
         contentWrapper?.style.setProperty("padding-top", "0", "important");
         contentWrapper?.style.setProperty("padding-bottom", "0", "important");
+        contentWrapper?.style.removeProperty('height');
         const styleTag = document.createElement('style');
         styleTag.innerHTML = `
           .content__wrapper.vertical-center.horizontal-left.mobile--content_overlay {
