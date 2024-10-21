@@ -579,7 +579,14 @@ export default class RyanScreenshotFixes extends Common {
         ) as HTMLElement;
   
         childElement?.style.removeProperty('height');
-        childElement?.style.setProperty("height", "auto", "important");
+  
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = `
+          .main-menu__content.has-motion.justify-center {
+            height: auto !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
       });
   }
 
