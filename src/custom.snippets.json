@@ -116,5 +116,41 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-starter-kits-main.html"
     }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449429,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-laundry-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449461,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-body-care-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449444,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-dish-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449448,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-cleaning-main.html"
+    }
   }
 ]
