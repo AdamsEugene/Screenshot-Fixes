@@ -514,10 +514,15 @@ export default class RyanScreenshotFixes extends Common {
         const contentWrapper = section.querySelector(
           ".content__wrapper.vertical-center.horizontal-left.mobile--content_overlay"
         ) as HTMLElement;
-        
         contentWrapper?.style.setProperty("padding-top", "0", "important");
         contentWrapper?.style.setProperty("padding-bottom", "0", "important");
-        contentWrapper?.style.setProperty("height", "auto", "important");
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = `
+          .content__wrapper.vertical-center.horizontal-left.mobile--content_overlay {
+            height: auto !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
       });
   }
 
