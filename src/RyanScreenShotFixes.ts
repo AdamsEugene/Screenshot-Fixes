@@ -508,11 +508,17 @@ export default class RyanScreenshotFixes extends Common {
 
   //Redux
   private ReduxupdateHeaderPosition() {
-    const childElement = this.dom.querySelector('.main-header #shopify-section-header.shopify-section') as HTMLElement;
-    
-    if (childElement?.style.position === 'fixed') {
-      childElement.style.setProperty('position', 'relative', 'important');
-    }
+    this.dom
+      .querySelectorAll(".shopify-section.index-section.index-section--flush")
+      .forEach((section: HTMLElement) => {
+        const contentWrapper = section.querySelector(
+          ".content__wrapper.vertical-center.horizontal-left.mobile--content_overlay"
+        ) as HTMLElement;
+        
+        contentWrapper?.style.setProperty("padding-top", "0", "important");
+        contentWrapper?.style.setProperty("padding-bottom", "0", "important");
+        contentWrapper?.style.setProperty("height", "auto", "important");
+      });
   }
 
   //Ministry of Supply
