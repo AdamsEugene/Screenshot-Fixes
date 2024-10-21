@@ -28,7 +28,6 @@ export default class RyanScreenshotFixes extends Common {
       this.observeOverlays();
       this.glowupdateElementsVisibility();
       this.Ministryofsupplyfixes();
-      this.WarriorLabsupdateMenuHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -459,6 +458,7 @@ export default class RyanScreenshotFixes extends Common {
       const observer = new MutationObserver(() => {
         this.GrowhideLightboxOverlays();
         this.ReduxupdateHeaderPosition();
+        this.WarriorLabsupdateMenuHeight();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
