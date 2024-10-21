@@ -35,6 +35,7 @@ export default class AnitaScreenShotFixes {
     this.setDisplayToBlockForKachingBundles();
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
+    this.removeMarginTopFromContent();
   }
 
   private removeHeightProperty() {
@@ -336,6 +337,16 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000); 
   }
+  private removeMarginTopFromContent(): void {
+    const element = this.document.querySelector(
+      '.content-for-layout.focus-none'
+    ) as HTMLElement;
+  
+    if (element) {
+      element.style.removeProperty('margin-top');
+    }
+  }
+  
   
   
   
