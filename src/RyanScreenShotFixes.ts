@@ -312,13 +312,15 @@ export default class RyanScreenshotFixes extends Common {
 
   //Olivia Pearl
   private OliviaPearlupdateHeader() {
-    this.dom
-      .querySelectorAll("#shopify-section-header")
-      .forEach((headerElement: HTMLElement) => {
-        if (headerElement.style.position === "initial") {
-          headerElement.style.setProperty("position", "fixed", "important");
-        }
-      });
+    if (window.location.href.includes("oliviaandpearl")) {
+      this.dom
+        .querySelectorAll("#shopify-section-header")
+        .forEach((headerElement: HTMLElement) => {
+          if (headerElement.style.position === "initial") {
+            headerElement.style.setProperty("position", "fixed", "important");
+          }
+        });
+    }
   }
 
   // persmount
