@@ -623,14 +623,10 @@ export default class RyanScreenshotFixes extends Common {
     if (parentContainer) {
       const container = parentContainer.querySelector('#modal-1-content') as HTMLElement;
       if (container) {
-        if (window.innerWidth <= 768) {
-          container.style.setProperty('margin-top', '0px', 'important');
-        } else {
-          container.style.setProperty('margin-top', '10vh', 'important');
-        }
+        container.style.setProperty('margin-top', '0px', 'important');
       }
     }
-  }
+  }  
 
   //Upcircle
   private Upcircleupdatemaincontent() {
