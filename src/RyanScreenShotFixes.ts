@@ -572,7 +572,7 @@ export default class RyanScreenshotFixes extends Common {
   //Warrior Labs
   private WarriorLabsupdateMenuHeight() {
     this.dom
-      .querySelectorAll(".main-menu__disclosure.has-motion.is-open")
+      .querySelectorAll(".main-menu__disclosure.has-motion")
       .forEach((parent: HTMLElement) => {
         const childElement = parent.querySelector(
           ".main-menu__content.has-motion.justify-center"

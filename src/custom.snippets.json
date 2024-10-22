@@ -161,5 +161,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-cleaning-main.html"
     }
+  },
+  {
+    "selector": "#template-index",
+    "content": {
+      "idSite": 1391,
+      "idSiteHsr": 834411,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/us.upcirclebeauty.com--main.html"
+    }
   }
 ]
