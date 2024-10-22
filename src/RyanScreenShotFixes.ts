@@ -463,6 +463,7 @@ export default class RyanScreenshotFixes extends Common {
         this.WarriorLabsupdateMenuHeight();
         this.DenverCoUpdateResponsiveDialog();
         this.Upcircleupdatemaincontent();
+        this.joliesskincareUpdateReviewsHeight();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -631,6 +632,31 @@ export default class RyanScreenshotFixes extends Common {
           }
       `;
       document.head.appendChild(styleElement);
+    }
+  }
+
+  private joliesskincareUpdateReviewsHeight() {
+    if (window.location.href.includes("joliesskincare")) {
+      if (!document.querySelector("#looxReviewsFrameHeightStyle")) {
+        this.dom
+          .querySelectorAll("#looxReviews")
+          .forEach((parentElement: HTMLElement) => {
+            const childElement = parentElement.querySelector("#looxReviewsFrame") as HTMLElement;
+            if (childElement) {
+              if (childElement.style.height) {
+                childElement.style.height = ''; 
+              }
+              const styleTag = document.createElement("style");
+              styleTag.id = "looxReviewsFrameHeightStyle"; 
+              styleTag.innerHTML = `
+                  #looxReviewsFrame {
+                      height: 4088px !important;
+                  }
+              `;
+              document.head.appendChild(styleTag);
+            }
+          });
+      }
     }
   }
 
