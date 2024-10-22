@@ -619,16 +619,19 @@ export default class RyanScreenshotFixes extends Common {
 
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialog() {
-    const styleElement = document.createElement('style');
-    styleElement.innerHTML = `
-        .wp-block-navigation__responsive-dialog {
-            overflow-y: hidden !important;
-        }
-        .wp-block-navigation__responsive-container-content {
-            margin-top: 0px !important;
-        }
-    `;
-    document.head.appendChild(styleElement);
+    if (!document.querySelector("#responsiveDialogStyles")) {
+      const styleElement = document.createElement('style');
+      styleElement.id = "responsiveDialogStyles";
+      styleElement.innerHTML = `
+          .wp-block-navigation__responsive-dialog {
+              overflow-y: hidden !important;
+          }
+          .wp-block-navigation__responsive-container-content {
+              margin-top: 0px !important;
+          }
+      `;
+      document.head.appendChild(styleElement);
+    }
   }
 
   //Upcircle
