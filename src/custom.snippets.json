@@ -179,5 +179,41 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/us.upcirclebeauty.com--main-footer.html"
     }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449440,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-haircare-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449450,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-refills-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449455,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-combos-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449452,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-home-accessories-main.html"
+    }
   }
 ]
