@@ -29,6 +29,7 @@ export default class RyanScreenshotFixes extends Common {
       this.glowupdateElementsVisibility();
       this.Ministryofsupplyfixes();
       this.YaqeenupdateCurrencySwitcher();
+      this.DenverCoUpdateResponsiveDialog();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -594,23 +595,43 @@ export default class RyanScreenshotFixes extends Common {
   //Yaqeen Books
   private YaqeenupdateCurrencySwitcher() {
     this.dom
-      .querySelectorAll(".doubly-nice-select.currency-switcher.right.slim")
+      .querySelectorAll(".doubly-nice-select")
       .forEach((parent: HTMLElement) => {
-        const childElement = parent.querySelector(".list") as HTMLElement;
+        const childElement = parent.querySelector(
+          ".list"
+        ) as HTMLElement;
   
-        childElement?.style.setProperty('opacity', '0', 'important');
+        if (childElement?.style.opacity === '1') {
+          childElement.style.opacity = '0';
+        }
   
         const styleTag = document.createElement('style');
         styleTag.innerHTML = `
-          .doubly-nice-select.currency-switcher .list {
-            opacity: 0 !important;
-          }
-          .doubly-nice-select.currency-switcher.open .list {
+          .doubly-nice-select.open .list {
             opacity: 1 !important;
           }
         `;
         document.head.appendChild(styleTag);
       });
+  }  
+
+  //Denver Headshot Company
+  private DenverCoUpdateResponsiveDialog() {
+    const parentElements = document.querySelectorAll('.wp-block-navigation__responsive-close') as NodeListOf<HTMLElement>;
+
+    parentElements.forEach((parent) => {
+        const childDialog = parent.querySelector('.wp-block-navigation__responsive-dialog') as HTMLElement;
+        if (childDialog) {
+            // Add overflow-y: hidden; to the child dialog element
+            childDialog.style.overflowY = 'hidden';
+
+            const childContainerContent = childDialog.querySelector('.wp-block-navigation__responsive-container-content') as HTMLElement;
+            if (childContainerContent) {
+                // Add margin-top: 0px !important; to the child container content
+                childContainerContent.style.setProperty('margin-top', '0px', 'important');
+            }
+        }
+    });
   }
 
   //Iframe Update
