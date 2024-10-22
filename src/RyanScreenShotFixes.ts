@@ -632,15 +632,20 @@ export default class RyanScreenshotFixes extends Common {
 
   //Upcircle
   private Upcircleupdatemaincontent() {
-    if (window.location.href.includes("upcirclebeauty")) {
-      const styleElement = document.createElement("style");
-      styleElement.textContent = `
-        #shopify-section-header {
-          height: auto !important;
-        }
-      `;
-      document.head.appendChild(styleElement);
-    }
+    this.dom.querySelectorAll(".index").forEach((parentElement: HTMLElement) => {
+      const childElement = parentElement.querySelector("#template-index") as HTMLElement;
+      if (childElement) {
+        childElement.style.removeProperty("height");
+  
+        const styleElement = document.createElement("style");
+        styleElement.textContent = `
+          #template-index {
+            height: max-content !important;
+          }
+        `;
+        document.head.appendChild(styleElement);
+      }
+    });
   }
 
   //Iframe Update
