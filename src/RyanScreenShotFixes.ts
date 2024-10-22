@@ -619,9 +619,9 @@ export default class RyanScreenshotFixes extends Common {
 
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialog() {
-    if (window.location.href.includes("5575412")) {
-      const container = this.dom.getElementById('modal-1-content') as HTMLElement;
-  
+    const parentContainer = this.dom.querySelector('.wp-block-navigation__responsive-container');
+    if (parentContainer) {
+      const container = parentContainer.querySelector('#modal-1-content') as HTMLElement;
       if (container) {
         if (window.innerWidth <= 768) {
           container.style.setProperty('margin-top', '0px', 'important');
