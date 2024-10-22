@@ -36,6 +36,7 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
+    this.removePositionFromShopifySection()
   }
 
   private removeHeightProperty() {
@@ -356,6 +357,16 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty('margin-top');
     }
   }
+  private removePositionFromShopifySection(): void {
+    const element = this.document.querySelector(
+      '#shopify-section-header.shopify-section.sticky.top-0.z-header'
+    ) as HTMLElement;
+  
+    if (element) {
+      element.style.removeProperty('position');
+    }
+  }
+  
   
   
   
