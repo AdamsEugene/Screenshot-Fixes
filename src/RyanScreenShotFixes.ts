@@ -593,20 +593,25 @@ export default class RyanScreenshotFixes extends Common {
 
   //Yaqeen Books
   private YaqeenupdateCurrencySwitcher() {
-    const elements = this.dom.querySelectorAll(".doubly-nice-select.currency-switcher.right.slim");
-    if (elements.length === 0) return;
-   
-    const styleTag = document.createElement('style');
-    styleTag.innerHTML = `
-      .doubly-nice-select.currency-switcher.right.slim .list {
-        opacity: 0 !important;
-      }
-      .doubly-nice-select.currency-switcher.right.slim.open .list {
-        opacity: 1 !important;
-      }
-    `;
-    document.head.appendChild(styleTag);
-   }
+    this.dom
+      .querySelectorAll(".doubly-nice-select.currency-switcher.right.slim")
+      .forEach((parent: HTMLElement) => {
+        const childElement = parent.querySelector(".list") as HTMLElement;
+  
+        childElement?.style.setProperty('opacity', '0', 'important');
+  
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = `
+          .doubly-nice-select.currency-switcher .list {
+            opacity: 0 !important;
+          }
+          .doubly-nice-select.currency-switcher.open .list {
+            opacity: 1 !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
+      });
+  }
 
   //Iframe Update
   private UpdateIframeSrc() {
