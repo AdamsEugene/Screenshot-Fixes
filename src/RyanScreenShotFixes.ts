@@ -29,7 +29,6 @@ export default class RyanScreenshotFixes extends Common {
       this.glowupdateElementsVisibility();
       this.Ministryofsupplyfixes();
       this.YaqeenupdateCurrencySwitcher();
-      this.DenverCoUpdateResponsiveDialog();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -461,6 +460,7 @@ export default class RyanScreenshotFixes extends Common {
         this.GrowhideLightboxOverlays();
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
+        this.DenverCoUpdateResponsiveDialog();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -617,21 +617,16 @@ export default class RyanScreenshotFixes extends Common {
 
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialog() {
-    const parentElements = document.querySelectorAll('.wp-block-navigation__responsive-close') as NodeListOf<HTMLElement>;
-
-    parentElements.forEach((parent) => {
-        const childDialog = parent.querySelector('.wp-block-navigation__responsive-dialog') as HTMLElement;
-        if (childDialog) {
-            // Add overflow-y: hidden; to the child dialog element
-            childDialog.style.overflowY = 'hidden';
-
-            const childContainerContent = childDialog.querySelector('.wp-block-navigation__responsive-container-content') as HTMLElement;
-            if (childContainerContent) {
-                // Add margin-top: 0px !important; to the child container content
-                childContainerContent.style.setProperty('margin-top', '0px', 'important');
-            }
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = `
+        .wp-block-navigation__responsive-dialog {
+            overflow-y: hidden !important;
         }
-    });
+        .wp-block-navigation__responsive-container-content {
+            margin-top: 0px !important;
+        }
+    `;
+    document.head.appendChild(styleElement);
   }
 
   //Iframe Update
