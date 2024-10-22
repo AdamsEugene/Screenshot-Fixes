@@ -29,6 +29,7 @@ export default class RyanScreenshotFixes extends Common {
       this.glowupdateElementsVisibility();
       this.Ministryofsupplyfixes();
       this.YaqeenupdateCurrencySwitcher();
+      this.Upcircleupdatemaincontent();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -627,6 +628,17 @@ export default class RyanScreenshotFixes extends Common {
         }
     `;
     document.head.appendChild(styleElement);
+  }
+
+  //Upcircle
+  private Upcircleupdatemaincontent() {
+    if (window.location.href.includes("upcirclebeauty")) {
+      this.dom
+        .querySelectorAll("#template-index")
+        .forEach((headerElement: HTMLElement) => {
+          headerElement.style.setProperty("height", "auto", "important");
+        });
+    }
   }
 
   //Iframe Update
