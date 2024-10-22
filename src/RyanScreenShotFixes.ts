@@ -633,11 +633,13 @@ export default class RyanScreenshotFixes extends Common {
   //Upcircle
   private Upcircleupdatemaincontent() {
     if (window.location.href.includes("upcirclebeauty")) {
-      this.dom
-        .querySelectorAll("#template-index")
-        .forEach((headerElement: HTMLElement) => {
-          headerElement.style.setProperty("height", "auto", "important");
-        });
+      const styleElement = document.createElement("style");
+      styleElement.textContent = `
+        #shopify-section-header {
+          height: auto !important;
+        }
+      `;
+      document.head.appendChild(styleElement);
     }
   }
 
