@@ -30,6 +30,7 @@ export default class RyanScreenshotFixes extends Common {
       this.Ministryofsupplyfixes();
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
+      this.DenverCoUpdateResponsiveDialog();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -461,7 +462,6 @@ export default class RyanScreenshotFixes extends Common {
         this.GrowhideLightboxOverlays();
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
-        this.DenverCoUpdateResponsiveDialog();
         this.Upcircleupdatemaincontent();
       });
   
@@ -619,18 +619,16 @@ export default class RyanScreenshotFixes extends Common {
 
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialog() {
-    if (!document.querySelector("#responsiveDialogStyles")) {
-      const styleElement = document.createElement('style');
-      styleElement.id = "responsiveDialogStyles";
-      styleElement.innerHTML = `
-          .wp-block-navigation__responsive-dialog {
-              overflow-y: hidden !important;
-          }
-          .wp-block-navigation__responsive-container-content {
-              margin-top: 0px !important;
-          }
-      `;
-      document.head.appendChild(styleElement);
+    if (window.location.href.includes("5575412")) {
+      const container = this.dom.getElementById('modal-1-content') as HTMLElement;
+  
+      if (container) {
+        if (window.innerWidth <= 768) {
+          container.style.setProperty('margin-top', '0px', 'important');
+        } else {
+          container.style.setProperty('margin-top', '10vh', 'important');
+        }
+      }
     }
   }
 
