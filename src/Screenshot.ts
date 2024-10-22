@@ -44,7 +44,7 @@ class ScreenshotFixes extends Common {
     () => this.adjustReviewSliderDisplay(),
     () => this.runFunctionsForIdSite(),
     () => this.adjustGridProductImageHeight(),
-    () => this.observeMutations(),
+    // () => this.observeMutations(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -438,40 +438,17 @@ class ScreenshotFixes extends Common {
   }
 
   //jolies skin care
-  private joliesskincareUpdateReviewsHeight() {
-    if (window.location.href.includes("joliesskincare")) {
-      if (!document.querySelector("#looxReviewsFrameHeightStyle")) {
-        this.dom
-          .querySelectorAll("#looxReviews")
-          .forEach((parentElement: HTMLElement) => {
-            const childElement = parentElement.querySelector("#looxReviewsFrame") as HTMLElement;
-            if (childElement) {
-              if (childElement.style.height) {
-                childElement.style.height = ''; 
-              }
-              const styleTag = document.createElement("style");
-              styleTag.id = "looxReviewsFrameHeightStyle"; 
-              styleTag.innerHTML = `
-                  #looxReviewsFrame {
-                      height: 4088px !important;
-                  }
-              `;
-              document.head.appendChild(styleTag);
-            }
-          });
-      }
-    }
-  }
   
-  private observeMutations() {
-    if (this.dom && this.dom.body) {
-      const observer = new MutationObserver(() => {
-        this.joliesskincareUpdateReviewsHeight();
-      });
   
-      observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
-  }
+  // private observeMutations() {
+  //   if (this.dom && this.dom.body) {
+  //     const observer = new MutationObserver(() => {
+  //       this.joliesskincareUpdateReviewsHeight();
+  //     });
+  
+  //     observer.observe(this.dom.body, { childList: true, subtree: true });
+  //   } 
+  // }
 
   private adjustFlickityViewportWidth(): void {
     const flickityViewports = this.dom.querySelectorAll<HTMLElement>(
