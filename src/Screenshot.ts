@@ -44,6 +44,7 @@ class ScreenshotFixes extends Common {
     () => this.adjustReviewSliderDisplay(),
     () => this.runFunctionsForIdSite(),
     () => this.adjustGridProductImageHeight(),
+    () => this.joliesskincareUpdateReviewsHeight(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -434,6 +435,21 @@ class ScreenshotFixes extends Common {
         }
       }
     });
+  }
+
+  //jolies skin care
+  private joliesskincareUpdateReviewsHeight() {
+    if (window.location.href.includes("joliesskincare")) {
+        this.dom
+            .querySelectorAll("#looxReviews")
+            .forEach((parentElement: HTMLElement) => {
+                const childElement = parentElement.querySelector("#looxReviewsFrame") as HTMLElement;
+
+                if (childElement && childElement.style.height !== "4088px") {
+                    childElement.style.setProperty("height", "4088px", "important");
+                }
+            });
+    }
   }
 
   private adjustFlickityViewportWidth(): void {
