@@ -29,7 +29,7 @@ export default class RyanScreenshotFixes extends Common {
       this.glowupdateElementsVisibility();
       this.Ministryofsupplyfixes();
       this.YaqeenupdateCurrencySwitcher();
-      this.Upcircleupdatemaincontent();
+      this.ReverseLifeUpdateImage();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -462,6 +462,7 @@ export default class RyanScreenshotFixes extends Common {
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
         this.DenverCoUpdateResponsiveDialog();
+        this.Upcircleupdatemaincontent();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -647,6 +648,18 @@ export default class RyanScreenshotFixes extends Common {
       }
     });
   }
+
+  //Reverse Life
+  private ReverseLifeUpdateImage() {
+    this.dom.querySelectorAll(".footer-middle-container").forEach((parentElement: HTMLElement) => {
+      parentElement.querySelectorAll(".social-icon img, .designed-by img").forEach((imgElement: HTMLImageElement) => {
+        if (imgElement.src.includes("_430x")) {
+          imgElement.src = imgElement.src.replace("_430x", "_300x");
+        }
+      });
+    });
+  }
+  
 
   //Iframe Update
   private UpdateIframeSrc() {
