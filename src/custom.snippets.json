@@ -215,5 +215,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-home-accessories-main.html"
     }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449433,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-replacement-main.html"
+    }
   }
 ]
