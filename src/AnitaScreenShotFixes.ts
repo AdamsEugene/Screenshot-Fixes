@@ -36,7 +36,10 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
-    this.removePositionFromShopifySection()
+    // this.removePositionFromShopifySection();
+    this.removePositionFromShopifySectionEleat();
+    this.updatePositionForShopifyHeaderELEAT();
+    this.removeHeightAndWidthFromAllPromoCardsKHAITE();
   }
 
   private removeHeightProperty() {
@@ -298,64 +301,93 @@ export default class AnitaScreenShotFixes {
     setTimeout(() => {
   
       const elements = this.document.querySelectorAll(
-        '.viair-header-mega-menu'
+        ".viair-header-mega-menu"
       ) as NodeListOf<HTMLElement>;
-  
+
       if (elements.length === 0) {
         return
       }
-  
+
       elements.forEach((element, index) => {
   
         element.removeAttribute('style');
       });
     }, 1000); 
   }
-  
+
   private updateHeightForSpecificElement(): void {
     setTimeout(() => {
   
       let element = this.document.querySelector(
         '.r-4wlhl5[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
       ) as HTMLElement;
-  
+
       if (!element) {
         element = this.document.querySelector(
           '[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
         ) as HTMLElement;
-  
+
         if (!element) {
-          element = this.document.querySelector('.r-4wlhl5') as HTMLElement;
+          element = this.document.querySelector(".r-4wlhl5") as HTMLElement;
         }
       }
-  
+
       if (element) {
-        if (element.style.height === 'max-content') {
-          element.style.removeProperty('height');
+        if (element.style.height === "max-content") {
+          element.style.removeProperty("height");
         }
   
         element.style.setProperty('height', '12vh', 'important');
       }
-    }, 1000); 
+    }, 1000);
   }
   private removeMarginTopFromContent(): void {
     const element = this.document.querySelector(
-      '.content-for-layout.focus-none'
+      ".content-for-layout.focus-none"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.removeProperty('margin-top');
+      element.style.removeProperty("margin-top");
     }
   }
-  private removePositionFromShopifySection(): void {
-    const element = this.document.querySelector(
-      '#shopify-section-header.shopify-section.sticky.top-0.z-header'
+  private removePositionFromShopifySectionEleat(): void {
+    const element = this.document.getElementById(
+      "shopify-section-header"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.removeProperty('position');
+      if (
+        element.classList.contains("shopify-section") &&
+        element.classList.contains("sticky") &&
+        element.classList.contains("top-0") &&
+        element.classList.contains("z-header")
+      ) {
+        element.style.removeProperty("position");
+      }
     }
   }
+
+  private updatePositionForShopifyHeaderELEAT(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
+
+      if (element) {
+        if (element.style.position) {
+          element.style.removeProperty("position");
+        }
+        element.style.setProperty("position", "relative", "important");
+      }
+    }, 1000);
+  }
+  private removeHeightAndWidthFromAllPromoCardsKHAITE(): void {
+    const elements = this.document.querySelectorAll('.collection-promo-card__media') as NodeListOf<HTMLElement>;
   
+    elements.forEach((element) => {
+      element.style.removeProperty('height');
+      element.style.removeProperty('width');
+    });
+  }
   
 }
