@@ -39,6 +39,7 @@ export default class AnitaScreenShotFixes {
     // this.removePositionFromShopifySection();
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
+    this.removeHeightAndWidthFromAllPromoCardsKHAITE();
   }
 
   private removeHeightProperty() {
@@ -380,4 +381,13 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
+  private removeHeightAndWidthFromAllPromoCardsKHAITE(): void {
+    const elements = this.document.querySelectorAll('.collection-promo-card__media') as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.removeProperty('height');
+      element.style.removeProperty('width');
+    });
+  }
+  
 }
