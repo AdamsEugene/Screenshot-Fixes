@@ -40,6 +40,7 @@ export default class AnitaScreenShotFixes {
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
     this.removeHeightAndWidthFromAllPromoCardsKHAITE();
+    this.removeDisplayFromCartAsideELEAT();
   }
 
   private removeHeightProperty() {
@@ -299,25 +300,22 @@ export default class AnitaScreenShotFixes {
   }
   private removeAllInlineStylesFromMegaMenuWithDelay(): void {
     setTimeout(() => {
-  
       const elements = this.document.querySelectorAll(
         ".viair-header-mega-menu"
       ) as NodeListOf<HTMLElement>;
 
       if (elements.length === 0) {
-        return
+        return;
       }
 
       elements.forEach((element, index) => {
-  
-        element.removeAttribute('style');
+        element.removeAttribute("style");
       });
-    }, 1000); 
+    }, 1000);
   }
 
   private updateHeightForSpecificElement(): void {
     setTimeout(() => {
-  
       let element = this.document.querySelector(
         '.r-4wlhl5[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
       ) as HTMLElement;
@@ -336,8 +334,8 @@ export default class AnitaScreenShotFixes {
         if (element.style.height === "max-content") {
           element.style.removeProperty("height");
         }
-  
-        element.style.setProperty('height', '12vh', 'important');
+
+        element.style.setProperty("height", "12vh", "important");
       }
     }, 1000);
   }
@@ -382,12 +380,26 @@ export default class AnitaScreenShotFixes {
     }, 1000);
   }
   private removeHeightAndWidthFromAllPromoCardsKHAITE(): void {
-    const elements = this.document.querySelectorAll('.collection-promo-card__media') as NodeListOf<HTMLElement>;
-  
+    const elements = this.document.querySelectorAll(
+      ".collection-promo-card__media"
+    ) as NodeListOf<HTMLElement>;
+
     elements.forEach((element) => {
-      element.style.removeProperty('height');
-      element.style.removeProperty('width');
+      element.style.removeProperty("height");
+      element.style.removeProperty("width");
     });
   }
-  
+  private removeDisplayFromCartAsideELEAT(): void {
+    const element = this.document.getElementById(
+      "shopify-section-cart-aside"
+    ) as HTMLElement;
+
+    if (
+      element &&
+      element.classList.contains("shopify-section") &&
+      element.classList.contains("cart-aside")
+    ) {
+      element.style.removeProperty("display");
+    }
+  }
 }
