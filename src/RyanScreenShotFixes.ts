@@ -31,7 +31,6 @@ export default class RyanScreenshotFixes extends Common {
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
       this.DenverCoUpdateResponsiveDialog();
-      this.sevenlionsupdateMainContentMarginTop();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -657,19 +656,6 @@ export default class RyanScreenshotFixes extends Common {
       });
     });
   }
-
-  //sevenlions
-  private sevenlionsupdateMainContentMarginTop() {
-    if (window.location.href.includes("6004349")) {
-      this.dom.querySelectorAll("#MainContent").forEach((element: HTMLElement) => {
-        if (element.style.marginTop) {
-          element.style.marginTop = ''; 
-        }
-        element.style.setProperty('margin-top', '0', 'important');
-      });
-    }
-  }
-
 
   //Iframe Update
   private UpdateIframeSrc() {

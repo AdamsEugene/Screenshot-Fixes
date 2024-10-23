@@ -1055,8 +1055,20 @@ class ScreenshotFixes extends Common {
   //   });
   // }
 
+   //sevenlions
+   private sevenlionsupdateMainContentMarginTop = () => {
+    const mainContentElements = this.dom.querySelectorAll("#MainContent");
+    mainContentElements.forEach((element: HTMLElement) => {
+      if (element.style.marginTop) {
+        element.style.marginTop = '';
+      }
+      element.style.setProperty('margin-top', '0', 'important');
+    });
+  };
+
   functionsMap: Record<number, (() => void)[]> = {
     1947: [this.removeExcessiveParentWidths],
+    2910: [this.sevenlionsupdateMainContentMarginTop],
     // Add more idSite mappings as needed
   };
 }
