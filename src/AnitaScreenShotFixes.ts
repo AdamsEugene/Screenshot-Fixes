@@ -296,81 +296,81 @@ export default class AnitaScreenShotFixes {
   }
   private removeAllInlineStylesFromMegaMenuWithDelay(): void {
     setTimeout(() => {
-      console.log('Starting to remove all inline styles from mega menu elements...');
-  
+      console.log(
+        "Starting to remove all inline styles from mega menu elements..."
+      );
+
       const elements = this.document.querySelectorAll(
-        '.viair-header-mega-menu'
+        ".viair-header-mega-menu"
       ) as NodeListOf<HTMLElement>;
-  
+
       if (elements.length === 0) {
-        console.log('No elements found with the specified class.');
+        console.log("No elements found with the specified class.");
       }
-  
+
       elements.forEach((element, index) => {
         console.log(`Processing element ${index + 1}/${elements.length}...`);
-        console.log('Element found:', element); 
-  
-        element.removeAttribute('style');
+        console.log("Element found:", element);
+
+        element.removeAttribute("style");
         console.log(`All inline styles removed for element ${index + 1}.`);
       });
-  
-      console.log('Completed processing all elements.');
-    }, 1000); 
+
+      console.log("Completed processing all elements.");
+    }, 1000);
   }
-  
+
   private updateHeightForSpecificElement(): void {
     setTimeout(() => {
-      console.log('Attempting to update height for a specific element...');
-  
+      console.log("Attempting to update height for a specific element...");
+
       let element = this.document.querySelector(
         '.r-4wlhl5[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
       ) as HTMLElement;
-  
+
       if (!element) {
-        console.log('Primary target not found, attempting backup method...');
+        console.log("Primary target not found, attempting backup method...");
         element = this.document.querySelector(
           '[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
         ) as HTMLElement;
-  
+
         if (!element) {
-          element = this.document.querySelector('.r-4wlhl5') as HTMLElement;
+          element = this.document.querySelector(".r-4wlhl5") as HTMLElement;
         }
       }
-  
+
       if (element) {
-        if (element.style.height === 'max-content') {
-          element.style.removeProperty('height');
+        if (element.style.height === "max-content") {
+          element.style.removeProperty("height");
         }
-  
-        element.style.setProperty('height', '12vh', 'important');
+
+        element.style.setProperty("height", "12vh", "important");
       } else {
-        console.log('No element found with any of the backup methods.');
+        console.log("No element found with any of the backup methods.");
       }
-    }, 1000); 
+    }, 1000);
   }
   private removeMarginTopFromContent(): void {
     const element = this.document.querySelector(
-      '.content-for-layout.focus-none'
+      ".content-for-layout.focus-none"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.removeProperty('margin-top');
+      element.style.removeProperty("margin-top");
     }
   }
   private removePositionFromShopifySection(): void {
-    const element = this.document.getElementById('shopify-section-header') as HTMLElement;
-  
-    if (element && element.classList.contains('shopify-section') && element.classList.contains('header-section') && element.classList.contains('header--ontop')) {
-      element.style.removeProperty('position');
+    const element = this.document.getElementById(
+      "shopify-section-header"
+    ) as HTMLElement;
+
+    if (
+      element &&
+      element.classList.contains("shopify-section") &&
+      element.classList.contains("header-section") &&
+      element.classList.contains("header--ontop")
+    ) {
+      element.style.removeProperty("position");
     }
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
 }
