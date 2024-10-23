@@ -36,7 +36,9 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
-    this.removePositionFromShopifySection();
+    // this.removePositionFromShopifySection();
+    this.removePositionFromShopifySectionEleat();
+    this.updatePositionForShopifyHeaderELEAT();
   }
 
   private removeHeightProperty() {
@@ -359,18 +361,35 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("margin-top");
     }
   }
-  private removePositionFromShopifySection(): void {
+  private removePositionFromShopifySectionEleat(): void {
     const element = this.document.getElementById(
       "shopify-section-header"
     ) as HTMLElement;
 
-    if (
-      element &&
-      element.classList.contains("shopify-section") &&
-      element.classList.contains("header-section") &&
-      element.classList.contains("header--ontop")
-    ) {
-      element.style.removeProperty("position");
+    if (element) {
+      if (
+        element.classList.contains("shopify-section") &&
+        element.classList.contains("sticky") &&
+        element.classList.contains("top-0") &&
+        element.classList.contains("z-header")
+      ) {
+        element.style.removeProperty("position");
+      }
     }
+  }
+
+  private updatePositionForShopifyHeaderELEAT(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
+
+      if (element) {
+        if (element.style.position) {
+          element.style.removeProperty("position");
+        }
+        element.style.setProperty("position", "relative", "important");
+      }
+    }, 1000);
   }
 }
