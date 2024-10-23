@@ -26,6 +26,12 @@ export default class RyanScreenshotFixes extends Common {
       this.EdenboostUpdateThumbnailHeight();
       this.VIAIRremoveOpacityFromMegaMenu();
       this.observeOverlays();
+      this.glowupdateElementsVisibility();
+      this.Ministryofsupplyfixes();
+      this.YaqeenupdateCurrencySwitcher();
+      this.ReverseLifeUpdateImage();
+      this.DenverCoUpdateResponsiveDialog();
+      this.sevenlionsupdateMainContentMarginTop();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -309,13 +315,15 @@ export default class RyanScreenshotFixes extends Common {
 
   //Olivia Pearl
   private OliviaPearlupdateHeader() {
-    this.dom
-      .querySelectorAll("#shopify-section-header")
-      .forEach((headerElement: HTMLElement) => {
-        if (headerElement.style.position === "initial") {
-          headerElement.style.setProperty("position", "fixed", "important");
-        }
-      });
+    if (window.location.href.includes("oliviaandpearl")) {
+      this.dom
+        .querySelectorAll("#shopify-section-header")
+        .forEach((headerElement: HTMLElement) => {
+          if (headerElement.style.position === "initial") {
+            headerElement.style.setProperty("position", "fixed", "important");
+          }
+        });
+    }
   }
 
   // persmount
@@ -450,24 +458,218 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private observeOverlays() {
-    const observer = new MutationObserver(() => {
-      this.GrowhideLightboxOverlays();
-    });
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.GrowhideLightboxOverlays();
+        this.ReduxupdateHeaderPosition();
+        this.WarriorLabsupdateMenuHeight();
+        this.Upcircleupdatemaincontent();
+      });
   
-    observer.observe(this.dom.body, { childList: true, subtree: true });
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
+  }
+
+  private glowupdateElementsVisibility() {
+    const updateVisibility = (parentSelector: string, childSelector: string) => {
+        this.dom.querySelectorAll(parentSelector).forEach(parent => {
+            const children = parent.querySelectorAll(childSelector) as NodeListOf<HTMLElement>;
+            if (children.length > 0) {
+                const style = this.dom.createElement('style');
+                let styleContent = '';
+
+                children.forEach((child, index) => {
+                    const uniqueClass = `child-visible-${index}`;
+                    child.classList.add(uniqueClass);
+                    child.setAttribute('data-visible', 'true');
+                    styleContent += `.${uniqueClass} { opacity: 1 !important; } `;
+                });
+
+                style.innerHTML = styleContent;
+                this.dom.head.appendChild(style);
+            }
+        });
+    };
+
+    updateVisibility('.padding.background-light.text-align-center', '.img.hover-plus.margin-bottom-1250.soft-load');
+    updateVisibility('.content.text-align-center', '.testimonial-carousel.soft-load');
+    updateVisibility('.content.flex.flex-row.flex-center', '.img.half.left.soft-load');
+    updateVisibility('.content', '.soft-load');
+    updateVisibility('.half.right', '.soft-load');
   }
   
   //VIAIR
   private VIAIRremoveOpacityFromMegaMenu() {
-    this.dom.querySelectorAll(".viair-header-link-first-level")
-      .forEach((parentElement: HTMLElement) => {
-        [".viair-header-mega-menu.small_mega_menu", ".viair-header-mega-menu"]
-          .forEach(selector => {
-            const child = parentElement.querySelector(selector) as HTMLElement;
-            if (child?.style.opacity) child.style.setProperty("opacity", "revert-layer", "important");
-          });
+    const style = this.dom.createElement('style');
+    style.innerHTML = `
+      .viair-header-link-first-level .viair-header-mega-menu {
+        opacity: 0 !important;
+      }
+      .viair-header-link-first-level:hover .viair-header-mega-menu {
+        opacity: 1 !important;
+      }
+    `;
+    this.dom.head.appendChild(style);
+  }
+
+  //Redux
+  private ReduxupdateHeaderPosition() {
+    this.dom
+      .querySelectorAll(".shopify-section.index-section.index-section--flush")
+      .forEach((section: HTMLElement) => {
+        const contentWrapper = section.querySelector(
+          ".content__wrapper.vertical-center.horizontal-left.mobile--content_overlay"
+        ) as HTMLElement;
+  
+        contentWrapper?.style.setProperty("padding-top", "0", "important");
+        contentWrapper?.style.setProperty("padding-bottom", "0", "important");
+        contentWrapper?.style.removeProperty('height');
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = `
+          .content__wrapper.vertical-center.horizontal-left.mobile--content_overlay {
+            height: auto !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
       });
   }
+
+  //Ministry of Supply
+  private Ministryofsupplyfixes() {
+    const updateHeight = (elements: NodeListOf<HTMLElement>, attr: string, divisor: number, cssProp: string) => {
+      elements.forEach(parent => {
+        const firstChildElement = parent.querySelector('.flex.flex-col.relative') as HTMLElement | null;
+        if (firstChildElement) {
+          const value = parseFloat(firstChildElement.getAttribute(attr) || '0');
+          if (!isNaN(value)) {
+            const computedValue = Math.floor(value / divisor);
+            const childElements = parent.querySelectorAll('.flex.flex-col.relative') as NodeListOf<HTMLElement>;
+            childElements.forEach(child => child.style.setProperty(cssProp, `${computedValue}px`));
+          }
+        }
+      });
+    };
+  
+    const gridElements = this.dom.querySelectorAll('.grid.h-full') as NodeListOf<HTMLElement>;
+    updateHeight(gridElements, 'elementscrollheight', 13, '--slider-height');
+  
+    const relativeElements = this.dom.querySelectorAll('.relative.grid.overflow-x-auto.scrollbar-none.overflow-y-hidden.snap-mandatory.-mx-container-fullwidth.scroll-px-container-fullwidth.px-container-fullwidth.snap-x') as NodeListOf<HTMLElement>;
+    relativeElements.forEach(parent => {
+      const childElements = parent.querySelectorAll('.relative') as NodeListOf<HTMLElement>;
+      childElements.forEach(child => {
+        const value = parseFloat(child.getAttribute('actualheight') || '0');
+        if (!isNaN(value)) {
+          const computedValue = Math.floor(value / 13);
+          child.style.setProperty('min-height', `${computedValue}px`);
+        }
+      });
+    });
+  
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+      .shrink-0.max-w-full.w-full.h-full .product-card--product-card {
+        display: block !important;
+      }
+    `;
+    document.head.appendChild(styleElement);
+  }
+
+  //Warrior Labs
+  private WarriorLabsupdateMenuHeight() {
+    this.dom
+      .querySelectorAll(".main-menu__disclosure.has-motion")
+      .forEach((parent: HTMLElement) => {
+        const childElement = parent.querySelector(
+          ".main-menu__content.has-motion.justify-center"
+        ) as HTMLElement;
+  
+        childElement?.style.removeProperty('height');
+  
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = `
+          .main-menu__content.has-motion.justify-center {
+            height: auto !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
+      });
+  }
+
+  //Yaqeen Books
+  private YaqeenupdateCurrencySwitcher() {
+    this.dom
+      .querySelectorAll(".doubly-nice-select")
+      .forEach((parent: HTMLElement) => {
+        const childElement = parent.querySelector(
+          ".list"
+        ) as HTMLElement;
+  
+        if (childElement?.style.opacity === '1') {
+          childElement.style.opacity = '0';
+        }
+  
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = `
+          .doubly-nice-select.open .list {
+            opacity: 1 !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
+      });
+  }  
+
+  //Denver Headshot Company
+  private DenverCoUpdateResponsiveDialog() {
+    const parentContainer = this.dom.querySelector('.wp-block-navigation__responsive-container');
+    if (parentContainer) {
+      const container = parentContainer.querySelector('#modal-1-content') as HTMLElement;
+      if (container) {
+        container.style.setProperty('margin-top', '0px', 'important');
+      }
+    }
+  }  
+
+  //Upcircle
+  private Upcircleupdatemaincontent() {
+    this.dom.querySelectorAll(".index").forEach((parentElement: HTMLElement) => {
+      const childElement = parentElement.querySelector("#template-index") as HTMLElement;
+      if (childElement) {
+        childElement.style.removeProperty("height");
+  
+        const styleElement = document.createElement("style");
+        styleElement.textContent = `
+          #template-index {
+            height: max-content !important;
+          }
+        `;
+        document.head.appendChild(styleElement);
+      }
+    });
+  }
+
+  //Reverse Life
+  private ReverseLifeUpdateImage() {
+    this.dom.querySelectorAll(".footer-middle-container").forEach((parentElement: HTMLElement) => {
+      parentElement.querySelectorAll(".social-icon img, .designed-by img").forEach((imgElement: HTMLImageElement) => {
+        if (imgElement.src.includes("_430x")) {
+          imgElement.src = imgElement.src.replace("_430x", "_300x");
+        }
+      });
+    });
+  }
+
+  //sevenlions
+  private sevenlionsupdateMainContentMarginTop() {
+    if (window.location.href.includes("6004349")) {
+      this.dom.querySelectorAll("#MainContent").forEach((element: HTMLElement) => {
+        if (element.style.marginTop) {
+          element.style.marginTop = ''; 
+        }
+        element.style.setProperty('margin-top', '0', 'important');
+      });
+    }
+  }
+
 
   //Iframe Update
   private UpdateIframeSrc() {

@@ -98,5 +98,131 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/officialquasi.com-products-bio-collagen-mask-main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-template--23655976763717__169340327498b41d44",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5617527,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-products-silk-3-pro-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449449,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-shop-all-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449445,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-starter-kits-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449429,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-laundry-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449461,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-body-care-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449444,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-dish-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449448,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-cleaning-main.html"
+    }
+  },
+  {
+    "selector": "#template-index",
+    "content": {
+      "idSite": 1391,
+      "idSiteHsr": 834411,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/us.upcirclebeauty.com--main.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-footer",
+    "content": {
+      "idSite": 1391,
+      "idSiteHsr": 834411,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/us.upcirclebeauty.com--main-footer.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449440,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-haircare-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449450,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-refills-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449455,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-combos-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449452,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-home-accessories-main.html"
+    }
+  },
+  {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449433,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-replacement-main.html"
+    }
   }
 ]

@@ -50,6 +50,7 @@ export default class ForsonScreenshotFixes {
     this.addActiveStateToHeader();
     this.removePositionRelative();
     this.checkAndRemoveHiddenElements();
+    this.removePaddingTop();
   }
 
   // Upcircle EU
@@ -377,7 +378,6 @@ private setBackgroundTransparent() {
 
 // voluspa
 private disableClicks() {
-  console.log('voluspa');
   
   this.document.querySelectorAll<HTMLElement>(".icon-bag.mini_cart.dropdown_link.active_link")
     .forEach(el => el.style.pointerEvents = 'none');
@@ -394,7 +394,6 @@ private disableCartClicks() {
 
 // Grace de Monaco
 private setChildDisplayBlock() {
-  console.log("Grace de Monaco");
   this.document.querySelectorAll<HTMLElement>(".CollectionItem__ImageWrapper")
     .forEach(el => Array.from(el.children).forEach(child => (child as HTMLElement).style.setProperty('display', 'block', 'important')));
 }
@@ -516,17 +515,24 @@ private checkAndRemoveHiddenElements(): void {
           element.style.removeProperty('display');
         }
       });
-      console.log('Removed display: none from hidden elements:', hiddenElements);
-    } else {
-      console.log('No hidden elements found.');
-    }
-  } else {
-    console.log('Element with ID mobile-header-sticky-wrapper not found.');
+    } 
   }
 }
 // Call the function
+private removePaddingTop() {
+  const pageContainer = this.document.getElementById('PageContainer') as HTMLElement;
+  
+  if (pageContainer) {
+      const mainContent = pageContainer.querySelector('#MainContent.main-content') as HTMLElement;
+      
+      if (mainContent) {
+          pageContainer.style.setProperty('padding-top', '0', 'important');
+          return true;
+      }
+  }
+  return false;
+}
 
- 
 
 }
 

@@ -37,13 +37,14 @@ class ScreenshotFixes extends Common {
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
     // () => this.setHeroMaxHeight(),
-    () => this.RubioMonocotUpdateMenuState(),
+    // () => this.RubioMonocotUpdateMenuState(),
   ];
 
   mobileFunctions = [
     () => this.adjustReviewSliderDisplay(),
     () => this.runFunctionsForIdSite(),
     () => this.adjustGridProductImageHeight(),
+    () => this.observeMutations(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -97,6 +98,7 @@ class ScreenshotFixes extends Common {
       this.adjustSlideshowHeight();
       this.injectCss();
       this.getAttrAndSetDisplayNone();
+      this.modifyParentElement();
       // this.adjustFullWidthPageHeight();
 
       // this.adjustHeightOfRelativeElements();
@@ -435,6 +437,31 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  //jolies skin care
+  private joliesskincareUpdateReviewsHeight() {
+    if (window.location.href.includes("4646357")) {
+      this.dom.querySelectorAll("#looxReviews").forEach((parentElement: HTMLElement) => {
+        const childElement = parentElement.querySelector("#looxReviewsFrame") as HTMLElement;
+        if (childElement) {
+          if (childElement.style.height) {
+            childElement.style.height = ''; 
+          }
+          childElement.style.height = '4088px';
+        }
+      });
+    }
+  }
+  
+  private observeMutations() {
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.joliesskincareUpdateReviewsHeight();
+      });
+  
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
+  }
+
   private adjustFlickityViewportWidth(): void {
     const flickityViewports = this.dom.querySelectorAll<HTMLElement>(
       ".flickity-viewport.animate-out"
@@ -572,9 +599,11 @@ class ScreenshotFixes extends Common {
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
     });
-    const idsToHide = ['pandectes-banner', 'gdpr-blocking-page-overlay'];
-    const style = this.dom.createElement('style');
-    style.innerHTML = idsToHide.map(id => `#${id} { display: none !important; }`).join('\n');
+    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay"];
+    const style = this.dom.createElement("style");
+    style.innerHTML = idsToHide
+      .map((id) => `#${id} { display: none !important; }`)
+      .join("\n");
     this.dom.head.appendChild(style);
   }
 
@@ -772,6 +801,21 @@ class ScreenshotFixes extends Common {
         }
       }
     });
+  }
+
+  private modifyParentElement() {
+    const element = this.dom.querySelector(
+      ".recommendation-modal__container"
+    ) as HTMLElement;
+    if (element) {
+      const parent = element.parentElement as HTMLElement;
+      if (parent.tagName.toLowerCase() === "div" && parent.className === "") {
+        parent.id = "the_id";
+        const style = document.createElement("style");
+        style.innerHTML = `#the_id { display: none !important; }`;
+        document.head.appendChild(style);
+      }
+    }
   }
 
   public cleanup() {
@@ -986,30 +1030,30 @@ class ScreenshotFixes extends Common {
   }
 
   // Rubio Monocot
-  private RubioMonocotUpdateMenuState() {
-    const parentElement1 = this.dom.querySelector(".main-menu") as HTMLElement;
-    if (parentElement1) {
-      const childElement1 = parentElement1.querySelector(
-        ".main-menu__disclosure"
-      ) as HTMLElement;
-      if (childElement1) {
-        childElement1.classList.add("is-open");
-        childElement1.setAttribute("open", "");
-      }
-    }
+  // private RubioMonocotUpdateMenuState() {
+  //   const parentElement1 = this.dom.querySelector(".main-menu") as HTMLElement;
+  //   if (parentElement1) {
+  //     const childElement1 = parentElement1.querySelector(
+  //       ".main-menu__disclosure"
+  //     ) as HTMLElement;
+  //     if (childElement1) {
+  //       childElement1.classList.add("is-open");
+  //       childElement1.setAttribute("open", "");
+  //     }
+  //   }
 
-    const parentElements2 = this.dom.querySelectorAll(
-      ".js-mega-nav"
-    ) as NodeListOf<HTMLElement>;
-    parentElements2.forEach((parentElement2) => {
-      const detailsElements = parentElement2.querySelectorAll(
-        "details"
-      ) as NodeListOf<HTMLDetailsElement>;
-      detailsElements.forEach((detailsElement) => {
-        detailsElement.setAttribute("open", "");
-      });
-    });
-  }
+  //   const parentElements2 = this.dom.querySelectorAll(
+  //     ".js-mega-nav"
+  //   ) as NodeListOf<HTMLElement>;
+  //   parentElements2.forEach((parentElement2) => {
+  //     const detailsElements = parentElement2.querySelectorAll(
+  //       "details"
+  //     ) as NodeListOf<HTMLDetailsElement>;
+  //     detailsElements.forEach((detailsElement) => {
+  //       detailsElement.setAttribute("open", "");
+  //     });
+  //   });
+  // }
 
   functionsMap: Record<number, (() => void)[]> = {
     1947: [this.removeExcessiveParentWidths],
