@@ -41,6 +41,7 @@ export default class AnitaScreenShotFixes {
     this.updatePositionForShopifyHeaderELEAT();
     this.removeHeightAndWidthFromAllPromoCardsKHAITE();
     this.removeDisplayFromCartAsideELEAT();
+    this.removeMarginTopAndHeightFromParentKHAITE();
   }
 
   private removeHeightProperty() {
@@ -402,4 +403,16 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("display");
     }
   }
+  private removeMarginTopAndHeightFromParentKHAITE(): void {
+    const element = this.document.getElementById('shopify-section-template--15516159377471__hero_banner_GWHzkd') as HTMLElement;
+  
+    if (element) {
+      const parent = element.closest('#MainContent.main-content') as HTMLElement;
+      if (parent) {
+        parent.style.setProperty('margin-top', '0', 'important');
+        parent.style.setProperty('height', 'auto', 'important');
+      }
+    }
+  }
+  
 }
