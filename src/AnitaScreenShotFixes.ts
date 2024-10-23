@@ -36,7 +36,7 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
-    this.removePositionFromShopifySection()
+    this.removePositionFromShopifySection();
   }
 
   private removeHeightProperty() {
@@ -358,14 +358,13 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removePositionFromShopifySection(): void {
-    const element = this.document.querySelector(
-      '#shopify-section-header.shopify-section.sticky.top-0.z-header'
-    ) as HTMLElement;
+    const element = this.document.getElementById('shopify-section-header') as HTMLElement;
   
-    if (element) {
+    if (element && element.classList.contains('shopify-section') && element.classList.contains('header-section') && element.classList.contains('header--ontop')) {
       element.style.removeProperty('position');
     }
   }
+  
   
   
   
