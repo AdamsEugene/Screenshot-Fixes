@@ -11,7 +11,6 @@ export default class RyanScreenshotFixes extends Common {
       this.ArcticUpdateGalleryCells();
       this.CoThirtySixshowBarsInContainer();
       this.RhinoUsaremoveWidthFromMenuDrawer();
-      this.BreeoupdateBannerMinHeight();
       this.PenguinDojoupdateElements();
       this.aktlondonUpdatePageElements();
       this.heyhairMobileToggleButton();
@@ -31,7 +30,8 @@ export default class RyanScreenshotFixes extends Common {
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
       this.DenverCoUpdateResponsiveDialog();
-      this.sevenlionsupdateMainContentMarginTop();
+      this.adjustHeaderPosition();
+      this.WoojerupdateMinHeight()
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -220,22 +220,6 @@ export default class RyanScreenshotFixes extends Common {
         }
       }
     });
-  }
-
-  // Breeo
-  private BreeoupdateBannerMinHeight() {
-    this.dom
-      .querySelectorAll(".shopify-section.section.image-banner-section")
-      .forEach((section: HTMLElement) => {
-        const banner = section.querySelector(
-          ".banner.banner-medium.theme-dark"
-        ) as HTMLElement;
-        const bannerContent = banner?.querySelector(
-          ".banner-content.banner-content-bottom-left.banner-content-mobile-top.container"
-        ) as HTMLElement;
-        banner?.style.setProperty("min-height", "auto", "important");
-        bannerContent?.style.setProperty("margin-top", "125px", "important");
-      });
   }
 
   //Penguin Dojo
@@ -434,7 +418,6 @@ export default class RyanScreenshotFixes extends Common {
   
     overlays.forEach(overlay => {
       const opacity = getComputedStyle(overlay).opacity;
-      console.log(`Overlay opacity: ${opacity}`); // Log opacity
       if (opacity === "1") {
         hasVisibleOverlay = true;
       }
@@ -451,11 +434,8 @@ export default class RyanScreenshotFixes extends Common {
         }
       `;
       this.dom.head.appendChild(style);
-      console.log('Styles added to hide overlays'); // Log style addition
-    } else {
-      console.log('No visible overlays found'); // Log if no overlays found
     }
-  }
+  }  
 
   private observeOverlays() {
     if (this.dom && this.dom.body) {
@@ -658,19 +638,16 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
-  //sevenlions
-  private sevenlionsupdateMainContentMarginTop() {
-    if (window.location.href.includes("6004349")) {
-      this.dom.querySelectorAll("#MainContent").forEach((element: HTMLElement) => {
-        if (element.style.marginTop) {
-          element.style.marginTop = ''; 
-        }
-        element.style.setProperty('margin-top', '0', 'important');
+  // Woojer
+  private WoojerupdateMinHeight() {
+    this.dom.querySelectorAll('.sc-kqGpvY').forEach((parentElement: HTMLElement) => {
+      parentElement.querySelectorAll('.sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh').forEach((childElement: HTMLElement) => {
+        childElement.style.minHeight = '';
+        childElement.style.setProperty('min-height', 'auto', 'important');
       });
-    }
+    });
   }
-
-
+  
   //Iframe Update
   private UpdateIframeSrc() {
     const iframe = this.dom.querySelector("iframe") as HTMLIFrameElement;
@@ -708,4 +685,15 @@ export default class RyanScreenshotFixes extends Common {
       }
     }
   }
+
+  private adjustHeaderPosition() {
+    const header = this.dom.getElementById('shopify-section-header') as HTMLElement;
+  
+    if (header && header.classList.contains('shopify-section') && 
+        header.classList.contains('header-section') && 
+        header.classList.contains('header--ontop')) {
+        header.style.removeProperty('position');
+    }
+  }
+  
 }

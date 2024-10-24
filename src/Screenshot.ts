@@ -106,8 +106,6 @@ class ScreenshotFixes extends Common {
 
     this.exec({ containerId, debugMode, func });
 
-    console.log("new dom to be used inside scf: ", this.dom);
-
     const chrisScreenShotFixesInstance = new ChrisScreenShotFixes(this.dom);
     chrisScreenShotFixesInstance.init();
 
@@ -1055,10 +1053,140 @@ class ScreenshotFixes extends Common {
   //   });
   // }
 
-  functionsMap: Record<number, (() => void)[]> = {
-    1947: [this.removeExcessiveParentWidths],
-    // Add more idSite mappings as needed
+   //sevenlions
+   private sevenlionsupdateMainContentMarginTop = () => {
+    const mainContentElements = this.dom.querySelectorAll("#MainContent");
+    mainContentElements.forEach((element: HTMLElement) => {
+      if (element.style.marginTop) {
+        element.style.marginTop = '';
+      }
+      element.style.setProperty('margin-top', '0', 'important');
+    });
   };
+
+  // Breeo
+  private BreeoupdateBannerMinHeight = () => {
+    const sections = this.dom.querySelectorAll(
+      ".shopify-section.section.image-banner-section"
+    );
+    sections.forEach((section: HTMLElement) => {
+      const banner = section.querySelector(
+        ".banner.banner-medium.theme-dark"
+      ) as HTMLElement;
+      const bannerContent = banner?.querySelector(
+        ".banner-content.banner-content-bottom-left.banner-content-mobile-top.container"
+      ) as HTMLElement;
+      if (banner) {
+        banner.style.setProperty("min-height", "auto", "important");
+      }
+      if (bannerContent) {
+        bannerContent.style.setProperty("margin-top", "125px", "important");
+      }
+    });
+  };
+
+  private adjustHeaderElements = () => {
+    const findAndAdjustHeader = () => {
+      const mainContent = this.dom.querySelector('main, #MainContent, [data-main], [role="main"]');
+  
+      if (mainContent) {
+        const header = mainContent.previousElementSibling as HTMLElement;
+        console.log('Potential shop header:', header);
+  
+        if (header) {
+          const isShopHeader = header.querySelector('.site-header, .main-header, nav, [class*="menu"]');
+  
+          if (isShopHeader) {
+            header.style.setProperty('margin-top', '-54px', 'important');
+            console.log('Applied styles to shop header');
+          }
+        }
+      }
+      const mainNav = this.dom.querySelector('nav.site-nav, .main-nav, .site-header__nav');
+  
+      if (mainNav) {
+        const headerContainer = mainNav.closest('header') || mainNav.parentElement;
+        if (headerContainer) {
+          (headerContainer as HTMLElement).style.setProperty('margin-top', '-54px', 'important');
+          console.log('Applied styles to header container');
+        }
+      }
+    };
+    findAndAdjustHeader();
+    
+    window.addEventListener('load', findAndAdjustHeader);
+    const interval = setInterval(findAndAdjustHeader, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+
+  private removeMainContentMarginTop = () => {
+    const findAndAdjustContent = () => {
+      const mainContent = this.dom.querySelector(
+        '#MainContent, main, [data-main], [role="main"], .main-content'
+      );
+  
+      if (mainContent) {
+        (mainContent as HTMLElement).style.setProperty('margin-top', '0', 'important');
+        console.log('Removed margin-top from main content');
+      }
+    };
+  
+    findAndAdjustContent();
+    
+    window.addEventListener('load', findAndAdjustContent);
+    const interval = setInterval(findAndAdjustContent, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+
+  private heatmapSvgHideElements() {
+    const svgElements = this.dom.querySelectorAll('.heatmap__com-svg-replacement') as NodeListOf<HTMLElement>;
+
+    svgElements.forEach((element: HTMLElement) => {
+        element.style.setProperty('display', 'none', 'important');
+    });
+  };
+
+  private observeMutation = () => {
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.heatmapSvgHideElements();
+      });
+  
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
+  }
+
+
+  // functionsMap: Record<number, (() => void)[]> = {
+  //   1947: [this.removeExcessiveParentWidths],
+  //   2910: [this.sevenlionsupdateMainContentMarginTop],
+  //   2761: [this.BreeoupdateBannerMinHeight],
+  //   2853: [this.adjustHeaderElements, this.removeMainContentMarginTop],
+  //   // Add more idSite mappings as needed
+  // };
+
+  private functionsMap: Record<number, (() => void)[]> = this.createFunctionsMap();
+
+  private createFunctionsMap(): Record<number, (() => void)[]> {
+      const functionGroups = [
+          { ids: [1947], functions: [this.removeExcessiveParentWidths] },
+          { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
+          { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
+          { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
+          { ids: [2777, 172], functions: [this.observeMutation] },
+      ];
+
+      const map: Record<number, (() => void)[]> = {};
+
+      functionGroups.forEach(({ ids, functions }) => {
+          ids.forEach(id => {
+              map[id] = functions;
+          });
+      });
+
+      return map;
+  }
+  
 }
 
 function createInstance<T>(
