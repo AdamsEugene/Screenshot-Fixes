@@ -11,7 +11,6 @@ export default class RyanScreenshotFixes extends Common {
       this.ArcticUpdateGalleryCells();
       this.CoThirtySixshowBarsInContainer();
       this.RhinoUsaremoveWidthFromMenuDrawer();
-      this.BreeoupdateBannerMinHeight();
       this.PenguinDojoupdateElements();
       this.aktlondonUpdatePageElements();
       this.heyhairMobileToggleButton();
@@ -219,22 +218,6 @@ export default class RyanScreenshotFixes extends Common {
         }
       }
     });
-  }
-
-  // Breeo
-  private BreeoupdateBannerMinHeight() {
-    this.dom
-      .querySelectorAll(".shopify-section.section.image-banner-section")
-      .forEach((section: HTMLElement) => {
-        const banner = section.querySelector(
-          ".banner.banner-medium.theme-dark"
-        ) as HTMLElement;
-        const bannerContent = banner?.querySelector(
-          ".banner-content.banner-content-bottom-left.banner-content-mobile-top.container"
-        ) as HTMLElement;
-        banner?.style.setProperty("min-height", "auto", "important");
-        bannerContent?.style.setProperty("margin-top", "125px", "important");
-      });
   }
 
   //Penguin Dojo

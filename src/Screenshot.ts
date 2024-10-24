@@ -1066,9 +1066,31 @@ class ScreenshotFixes extends Common {
     });
   };
 
+  // Breeo
+  private BreeoupdateBannerMinHeight = () => {
+    const sections = this.dom.querySelectorAll(
+      ".shopify-section.section.image-banner-section"
+    );
+    sections.forEach((section: HTMLElement) => {
+      const banner = section.querySelector(
+        ".banner.banner-medium.theme-dark"
+      ) as HTMLElement;
+      const bannerContent = banner?.querySelector(
+        ".banner-content.banner-content-bottom-left.banner-content-mobile-top.container"
+      ) as HTMLElement;
+      if (banner) {
+        banner.style.setProperty("min-height", "auto", "important");
+      }
+      if (bannerContent) {
+        bannerContent.style.setProperty("margin-top", "125px", "important");
+      }
+    });
+  };
+
   functionsMap: Record<number, (() => void)[]> = {
     1947: [this.removeExcessiveParentWidths],
     2910: [this.sevenlionsupdateMainContentMarginTop],
+    2761: [this.BreeoupdateBannerMinHeight],
     // Add more idSite mappings as needed
   };
 }
