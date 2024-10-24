@@ -30,6 +30,7 @@ export default class RyanScreenshotFixes extends Common {
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
       this.DenverCoUpdateResponsiveDialog();
+      this.WoojerupdateMinHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -640,6 +641,16 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
+  // Woojer
+  private WoojerupdateMinHeight() {
+    this.dom.querySelectorAll('.sc-kqGpvY').forEach((parentElement: HTMLElement) => {
+      parentElement.querySelectorAll('.sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh').forEach((childElement: HTMLElement) => {
+        childElement.style.minHeight = '';
+        childElement.style.setProperty('min-height', 'auto', 'important');
+      });
+    });
+  }
+  
   //Iframe Update
   private UpdateIframeSrc() {
     const iframe = this.dom.querySelector("iframe") as HTMLIFrameElement;
