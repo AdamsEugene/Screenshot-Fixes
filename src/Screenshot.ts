@@ -106,8 +106,6 @@ class ScreenshotFixes extends Common {
 
     this.exec({ containerId, debugMode, func });
 
-    console.log("new dom to be used inside scf: ", this.dom);
-
     const chrisScreenShotFixesInstance = new ChrisScreenShotFixes(this.dom);
     chrisScreenShotFixesInstance.init();
 
@@ -1087,10 +1085,64 @@ class ScreenshotFixes extends Common {
     });
   };
 
+  private adjustHeaderElements = () => {
+    const findAndAdjustHeader = () => {
+      const mainContent = this.dom.querySelector('main, #MainContent, [data-main], [role="main"]');
+  
+      if (mainContent) {
+        const header = mainContent.previousElementSibling as HTMLElement;
+        console.log('Potential shop header:', header);
+  
+        if (header) {
+          const isShopHeader = header.querySelector('.site-header, .main-header, nav, [class*="menu"]');
+  
+          if (isShopHeader) {
+            header.style.setProperty('margin-top', '-54px', 'important');
+            console.log('Applied styles to shop header');
+          }
+        }
+      }
+      const mainNav = this.dom.querySelector('nav.site-nav, .main-nav, .site-header__nav');
+  
+      if (mainNav) {
+        const headerContainer = mainNav.closest('header') || mainNav.parentElement;
+        if (headerContainer) {
+          (headerContainer as HTMLElement).style.setProperty('margin-top', '-54px', 'important');
+          console.log('Applied styles to header container');
+        }
+      }
+    };
+    findAndAdjustHeader();
+    
+    window.addEventListener('load', findAndAdjustHeader);
+    const interval = setInterval(findAndAdjustHeader, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+
+  private removeMainContentMarginTop = () => {
+    const findAndAdjustContent = () => {
+      const mainContent = this.dom.querySelector(
+        '#MainContent, main, [data-main], [role="main"], .main-content'
+      );
+  
+      if (mainContent) {
+        (mainContent as HTMLElement).style.setProperty('margin-top', '0', 'important');
+        console.log('Removed margin-top from main content');
+      }
+    };
+  
+    findAndAdjustContent();
+    
+    window.addEventListener('load', findAndAdjustContent);
+    const interval = setInterval(findAndAdjustContent, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+
   functionsMap: Record<number, (() => void)[]> = {
     1947: [this.removeExcessiveParentWidths],
     2910: [this.sevenlionsupdateMainContentMarginTop],
     2761: [this.BreeoupdateBannerMinHeight],
+    2853: [this.adjustHeaderElements, this.removeMainContentMarginTop],
     // Add more idSite mappings as needed
   };
 }

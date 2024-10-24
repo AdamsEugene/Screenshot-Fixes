@@ -30,7 +30,7 @@ export default class RyanScreenshotFixes extends Common {
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
       this.DenverCoUpdateResponsiveDialog();
-      this.WoojerupdateMinHeight();
+      this.adjustHeaderPosition()
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -688,4 +688,15 @@ export default class RyanScreenshotFixes extends Common {
       }
     }
   }
+
+  private adjustHeaderPosition() {
+    const header = this.dom.getElementById('shopify-section-header') as HTMLElement;
+  
+    if (header && header.classList.contains('shopify-section') && 
+        header.classList.contains('header-section') && 
+        header.classList.contains('header--ontop')) {
+        header.style.removeProperty('position');
+    }
+  }
+  
 }
