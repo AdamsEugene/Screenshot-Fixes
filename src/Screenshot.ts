@@ -1138,13 +1138,35 @@ class ScreenshotFixes extends Common {
     setTimeout(() => clearInterval(interval), 5000);
   }
 
-  functionsMap: Record<number, (() => void)[]> = {
-    1947: [this.removeExcessiveParentWidths],
-    2910: [this.sevenlionsupdateMainContentMarginTop],
-    2761: [this.BreeoupdateBannerMinHeight],
-    2853: [this.adjustHeaderElements, this.removeMainContentMarginTop],
-    // Add more idSite mappings as needed
-  };
+  // functionsMap: Record<number, (() => void)[]> = {
+  //   1947: [this.removeExcessiveParentWidths],
+  //   2910: [this.sevenlionsupdateMainContentMarginTop],
+  //   2761: [this.BreeoupdateBannerMinHeight],
+  //   2853: [this.adjustHeaderElements, this.removeMainContentMarginTop],
+  //   // Add more idSite mappings as needed
+  // };
+
+  private functionsMap: Record<number, (() => void)[]> = this.createFunctionsMap();
+
+  private createFunctionsMap(): Record<number, (() => void)[]> {
+      const functionGroups = [
+          { ids: [1947], functions: [this.removeExcessiveParentWidths] },
+          { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
+          { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
+          { ids: [2761], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
+      ];
+
+      const map: Record<number, (() => void)[]> = {};
+
+      functionGroups.forEach(({ ids, functions }) => {
+          ids.forEach(id => {
+              map[id] = functions;
+          });
+      });
+
+      return map;
+  }
+  
 }
 
 function createInstance<T>(
