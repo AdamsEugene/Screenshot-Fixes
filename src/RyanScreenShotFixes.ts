@@ -30,7 +30,8 @@ export default class RyanScreenshotFixes extends Common {
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
       this.DenverCoUpdateResponsiveDialog();
-      this.adjustHeaderPosition()
+      this.adjustHeaderPosition();
+      this.WoojerupdateMinHeight()
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -417,7 +418,6 @@ export default class RyanScreenshotFixes extends Common {
   
     overlays.forEach(overlay => {
       const opacity = getComputedStyle(overlay).opacity;
-      console.log(`Overlay opacity: ${opacity}`); // Log opacity
       if (opacity === "1") {
         hasVisibleOverlay = true;
       }
@@ -434,11 +434,8 @@ export default class RyanScreenshotFixes extends Common {
         }
       `;
       this.dom.head.appendChild(style);
-      console.log('Styles added to hide overlays'); // Log style addition
-    } else {
-      console.log('No visible overlays found'); // Log if no overlays found
     }
-  }
+  }  
 
   private observeOverlays() {
     if (this.dom && this.dom.body) {

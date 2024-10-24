@@ -1138,6 +1138,25 @@ class ScreenshotFixes extends Common {
     setTimeout(() => clearInterval(interval), 5000);
   }
 
+  private heatmapSvgHideElements() {
+    const svgElements = this.dom.querySelectorAll('.heatmap__com-svg-replacement') as NodeListOf<HTMLElement>;
+
+    svgElements.forEach((element: HTMLElement) => {
+        element.style.setProperty('display', 'none', 'important');
+    });
+  };
+
+  private observeMutation = () => {
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.heatmapSvgHideElements();
+      });
+  
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
+  }
+
+
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1154,6 +1173,7 @@ class ScreenshotFixes extends Common {
           { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
           { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
           { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
+          { ids: [2777], functions: [this.observeMutation] },
       ];
 
       const map: Record<number, (() => void)[]> = {};
