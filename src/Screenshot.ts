@@ -1153,7 +1153,7 @@ class ScreenshotFixes extends Common {
           { ids: [1947], functions: [this.removeExcessiveParentWidths] },
           { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
           { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
-          { ids: [2761], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
+          { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
       ];
 
       const map: Record<number, (() => void)[]> = {};
