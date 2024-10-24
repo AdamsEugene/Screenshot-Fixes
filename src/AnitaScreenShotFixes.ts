@@ -39,7 +39,7 @@ export default class AnitaScreenShotFixes {
     // this.removePositionFromShopifySection();
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
-    this.removeHeightAndWidthFromAllPromoCardsKHAITE();
+    this.removeInlineStylesFromAllPromoCardsKHAITE();
     this.removeDisplayFromCartAsideELEAT();
     this.removeMarginTopAndHeightFromParentKHAITE();
     this.setOwlItemWidthBLACK();
@@ -381,14 +381,13 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
-  private removeHeightAndWidthFromAllPromoCardsKHAITE(): void {
+  private removeInlineStylesFromAllPromoCardsKHAITE(): void {
     const elements = this.document.querySelectorAll(
       ".collection-promo-card__media"
     ) as NodeListOf<HTMLElement>;
 
     elements.forEach((element) => {
-      element.style.setProperty("height", "", "important");
-      element.style.setProperty("width", "", "important");
+      element.removeAttribute("style");
     });
   }
 
