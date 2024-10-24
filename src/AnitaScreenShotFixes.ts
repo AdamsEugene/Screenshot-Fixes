@@ -382,14 +382,26 @@ export default class AnitaScreenShotFixes {
     }, 1000);
   }
   private removeInlineStylesFromAllPromoCardsKHAITE(): void {
-    const elements = this.document.querySelectorAll(
-      ".collection-promo-card__media"
-    ) as NodeListOf<HTMLElement>;
-
-    elements.forEach((element) => {
-      element.removeAttribute("style");
-    });
+    console.log('Starting the process to remove inline styles from all promo cards after a delay...');
+  
+    setTimeout(() => {
+      console.log('Executing removal after delay...');
+      const elements = this.document.querySelectorAll(".collection-promo-card__media") as NodeListOf<HTMLElement>;
+  
+      if (elements.length === 0) {
+        console.log('No elements found with the specified class.');
+      }
+  
+      elements.forEach((element, index) => {
+        console.log(`Removing inline styles from element ${index + 1} of ${elements.length}...`);
+        element.removeAttribute("style");
+        console.log('Removed inline styles from element:', element);
+      });
+  
+      console.log('Completed removing inline styles from all matched elements.');
+    }, 1000); // Delay of 1000ms (1 second)
   }
+  
 
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
