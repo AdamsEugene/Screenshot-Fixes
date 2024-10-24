@@ -387,10 +387,11 @@ export default class AnitaScreenShotFixes {
     ) as NodeListOf<HTMLElement>;
 
     elements.forEach((element) => {
-      element.style.removeProperty("height");
-      element.style.removeProperty("width");
+      element.style.setProperty("height", "", "important");
+      element.style.setProperty("width", "", "important");
     });
   }
+
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
       "shopify-section-cart-aside"
