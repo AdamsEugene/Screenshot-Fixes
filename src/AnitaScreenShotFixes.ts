@@ -42,7 +42,7 @@ export default class AnitaScreenShotFixes {
     this.removeHeightAndWidthFromAllPromoCardsKHAITE();
     this.removeDisplayFromCartAsideELEAT();
     this.removeMarginTopAndHeightFromParentKHAITE();
-    this.removePositionFromHeaderElementKHAITE();
+    this.setOwlItemWidthBLACK();
   }
 
   private removeHeightProperty() {
@@ -387,10 +387,11 @@ export default class AnitaScreenShotFixes {
     ) as NodeListOf<HTMLElement>;
 
     elements.forEach((element) => {
-      element.style.removeProperty("height");
-      element.style.removeProperty("width");
+      element.style.setProperty("height", "", "important");
+      element.style.setProperty("width", "", "important");
     });
   }
+
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
       "shopify-section-cart-aside"
@@ -419,18 +420,13 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  private removePositionFromHeaderElementKHAITE(): void {
-    const element = this.document.getElementById(
-      "shopify-section-header"
-    ) as HTMLElement;
+  private setOwlItemWidthBLACK(): void {
+    const elements = this.document.querySelectorAll(
+      ".owl-item"
+    ) as NodeListOf<HTMLElement>;
 
-    if (
-      element &&
-      element.classList.contains("shopify-section") &&
-      element.classList.contains("header-section") &&
-      element.classList.contains("header--ontop")
-    ) {
-      element.style.removeProperty("position");
-    }
+    elements.forEach((element) => {
+      element.style.setProperty("width", "1512px", "important");
+    });
   }
 }
