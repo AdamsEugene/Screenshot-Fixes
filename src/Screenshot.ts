@@ -45,6 +45,7 @@ class ScreenshotFixes extends Common {
     () => this.runFunctionsForIdSite(),
     () => this.adjustGridProductImageHeight(),
     () => this.observeMutations(),
+    () => this.DenvercoContentAdjustOpacity(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -449,7 +450,19 @@ class ScreenshotFixes extends Common {
       });
     }
   }
-  
+
+  //Denver CO
+  private DenvercoContentAdjustOpacity() {
+    this.dom.querySelectorAll(
+        '.wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex'
+    ).forEach((parentElement) => {
+        const siteLogoElement = parentElement.querySelector('#site-logo');
+        siteLogoElement?.querySelectorAll('img').forEach((img) => {
+            img.style.setProperty('opacity', '0', 'important');
+        });
+    });
+  }
+
   private observeMutations() {
     if (this.dom && this.dom.body) {
       const observer = new MutationObserver(() => {
