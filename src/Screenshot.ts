@@ -1176,9 +1176,13 @@ class ScreenshotFixes extends Common {
   }
 
   private hideWindowOverlay() {
-    const style = document.createElement('style');
-    style.textContent = `.window-overlay { display: none !important; }`;
-    document.head.appendChild(style);
+    const style = this.dom.createElement('style');
+    style.innerHTML = `
+      .window-overlay {
+        display: none !important;
+      }
+    `;
+    this.dom.head.appendChild(style);
   }
 
   private observeMutationoverlay = () => {
