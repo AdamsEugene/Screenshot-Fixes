@@ -39,10 +39,8 @@ export default class AnitaScreenShotFixes {
     // this.removePositionFromShopifySection();
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
-    this.removeInlineStylesFromAllPromoCardsKHAITE();
     this.removeDisplayFromCartAsideELEAT();
-    this.removeMarginTopAndHeightFromParentKHAITE();
-    this.setOwlItemWidthBLACK();
+    // this.setOwlItemWidthBLACK();
   }
 
   private removeHeightProperty() {
@@ -381,27 +379,6 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
-  private removeInlineStylesFromAllPromoCardsKHAITE(): void {
-    console.log('Starting the process to remove inline styles from all promo cards after a delay...');
-  
-    setTimeout(() => {
-      console.log('Executing removal after delay...');
-      const elements = this.document.querySelectorAll(".collection-promo-card__media") as NodeListOf<HTMLElement>;
-  
-      if (elements.length === 0) {
-        console.log('No elements found with the specified class.');
-      }
-  
-      elements.forEach((element, index) => {
-        console.log(`Removing inline styles from element ${index + 1} of ${elements.length}...`);
-        element.removeAttribute("style");
-        console.log('Removed inline styles from element:', element);
-      });
-  
-      console.log('Completed removing inline styles from all matched elements.');
-    }, 1000); // Delay of 1000ms (1 second)
-  }
-  
 
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
@@ -416,7 +393,17 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("display");
     }
   }
-  private removeMarginTopAndHeightFromParentKHAITE(): void {
+  private setOwlItemWidthBLACK(): void {
+    const elements = this.document.querySelectorAll(
+      ".owl-item"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.style.setProperty("width", "1512px", "important");
+    });
+  }
+  private updatePromoCardsAndParentStylesKHAITE(): void {
+    // Removing margin-top and height from parent of specific element
     const element = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
     ) as HTMLElement;
@@ -430,14 +417,48 @@ export default class AnitaScreenShotFixes {
         parent.style.setProperty("height", "auto", "important");
       }
     }
-  }
-  private setOwlItemWidthBLACK(): void {
-    const elements = this.document.querySelectorAll(
-      ".owl-item"
+
+    // Removing height and width from all promo card elements
+    const promoCardElements = this.document.querySelectorAll(
+      ".collection-promo-card__media"
     ) as NodeListOf<HTMLElement>;
 
-    elements.forEach((element) => {
-      element.style.setProperty("width", "1512px", "important");
+    promoCardElements.forEach((element) => {
+      element.style.removeProperty("height");
+      element.style.removeProperty("width");
     });
+  }
+  private removeStylesFromPromoCardsAndParentKHAITE(): void {
+    // Remove margin-top and height from the parent of the specific element
+    const heroBannerElement = this.document.getElementById(
+      "shopify-section-template--15516159377471__hero_banner_GWHzkd"
+    ) as HTMLElement;
+
+    if (heroBannerElement) {
+      const parent = heroBannerElement.closest(
+        "#MainContent.main-content"
+      ) as HTMLElement;
+      if (parent) {
+        parent.style.setProperty("margin-top", "0", "important");
+        parent.style.setProperty("height", "auto", "important");
+      }
+    }
+
+    // Remove height and width from all elements with the specified class
+    const promoCardElements = this.document.querySelectorAll(
+      ".collection-promo-card__media"
+    ) as NodeListOf<HTMLElement>;
+
+    promoCardElements.forEach((element) => {
+      element.style.removeProperty("height");
+      element.style.removeProperty("width");
+    });
+
+    // Remove all inline styles from promo card elements after a delay
+    setTimeout(() => {
+      promoCardElements.forEach((element) => {
+        element.removeAttribute("style");
+      });
+    }, 1000); // Delay of 1000ms (1 second)
   }
 }
