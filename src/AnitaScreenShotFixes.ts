@@ -41,6 +41,7 @@ export default class AnitaScreenShotFixes {
     this.updatePositionForShopifyHeaderELEAT();
     this.removeDisplayFromCartAsideELEAT();
     // this.setOwlItemWidthBLACK();
+    this.removeStylesFromPromoCardsAndParentKHAITE();
   }
 
   private removeHeightProperty() {
