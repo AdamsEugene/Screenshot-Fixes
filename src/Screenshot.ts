@@ -1176,13 +1176,11 @@ class ScreenshotFixes extends Common {
   }
 
   private hideWindowOverlay() {
-    const overlays = this.dom.querySelectorAll('.window-overlay') as NodeListOf<HTMLElement>;
-  
-    overlays.forEach((overlay: HTMLElement) => {
-      overlay.style.setProperty('display', 'none', 'important');
-    });
+    const style = document.createElement('style');
+    style.textContent = `.window-overlay { display: none !important; }`;
+    document.head.appendChild(style);
   }
-  
+
   private observeMutationoverlay = () => {
     if (this.dom && this.dom.body) {
       const observer = new MutationObserver(() => {
