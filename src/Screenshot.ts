@@ -608,9 +608,15 @@ class ScreenshotFixes extends Common {
       ".flex.flex-wrap.h-full.px-4.-mx-4",
       ".window-overlay",
     ];
+    
+    // Add inline styles with !important to class-based elements
     classes.forEach((cls) => {
-      this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
+      this.allElements(cls)?.forEach((m: HTMLElement) => {
+        m.style.setProperty("display", "none", "important");
+      });
     });
+    
+    // Add !important to styles targeting IDs
     const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay"];
     const style = this.dom.createElement("style");
     style.innerHTML = idsToHide
