@@ -606,6 +606,7 @@ class ScreenshotFixes extends Common {
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
+      ".window-overlay",
     ];
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => this.displayNone(m));
