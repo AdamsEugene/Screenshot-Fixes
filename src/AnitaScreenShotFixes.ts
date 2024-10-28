@@ -42,6 +42,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayFromCartAsideELEAT();
     // this.setOwlItemWidthBLACK();
     this.removeStylesFromPromoCardsAndParentKHAITE();
+    this.removePositionFromHeaderElementKHT();
   }
 
   private removeHeightProperty() {
@@ -461,5 +462,27 @@ export default class AnitaScreenShotFixes {
         element.removeAttribute("style");
       });
     }, 1000); // Delay of 1000ms (1 second)
+  }
+  private removePositionFromHeaderElementKHT(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
+
+      if (
+        element &&
+        element.classList.contains("shopify-section") &&
+        element.classList.contains("header-section") &&
+        element.classList.contains("header--ontop")
+      ) {
+        const ancestor = element.closest(
+          "#khaite-official-website"
+        ) as HTMLElement;
+
+        if (ancestor) {
+          element.style.removeProperty("position");
+        }
+      }
+    }, 1000);
   }
 }
