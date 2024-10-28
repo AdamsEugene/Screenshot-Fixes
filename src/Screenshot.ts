@@ -36,6 +36,7 @@ class ScreenshotFixes extends Common {
       ),
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
+    () => this.GobiHeatupdateLookImageStyles(),
     // () => this.setHeroMaxHeight(),
     // () => this.RubioMonocotUpdateMenuState(),
   ];
@@ -46,6 +47,7 @@ class ScreenshotFixes extends Common {
     () => this.adjustGridProductImageHeight(),
     () => this.observeMutations(),
     () => this.DenvercoContentAdjustOpacity(),
+    () => this.observeMutationMobile(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -461,6 +463,26 @@ class ScreenshotFixes extends Common {
             img.style.setProperty('opacity', '0', 'important');
         });
     });
+  }
+
+  //Gobi Heat
+  private GobiHeatadjustLookParentHeight() {
+    this.dom.querySelectorAll('.look').forEach((parentElement) => {
+        const lookImageElement = parentElement.querySelector('.look__image');
+        if (lookImageElement) {
+            (parentElement as HTMLElement).style.setProperty('height', 'auto', 'important');
+        }
+    });
+  }
+
+  private observeMutationMobile = () => {
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.GobiHeatadjustLookParentHeight();
+      });
+  
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
   }
 
   private observeMutations() {
@@ -1027,6 +1049,31 @@ class ScreenshotFixes extends Common {
         imgElement.style.setProperty("height", "100%", "important");
         imgElement.style.setProperty("min-height", "100%", "important");
       }
+    });
+  }
+
+  //Gobi Heat
+  private GobiHeatupdateLookImageStyles() {
+    const updateStyles = (el: HTMLElement, prop: string, value: string) => {
+        el.style.removeProperty(prop);
+        el.style.setProperty(prop, value, 'important');
+    };
+
+    this.dom.querySelectorAll('.look').forEach((look: HTMLElement) => {
+        const lookImage = look.querySelector('.look__image') as HTMLElement | null;
+        if (!lookImage) return;
+
+        updateStyles(lookImage, 'height', '810px');
+
+        const container = lookImage.querySelector('.look__image-container') as HTMLElement | null;
+        if (!container) return;
+
+        updateStyles(container, 'min-height', 'auto');
+
+        const dots = container.querySelector('.look__dots') as HTMLElement;
+        if (dots) updateStyles(dots, 'height', 'auto');
+
+        container.querySelectorAll('img').forEach((img: HTMLImageElement) => updateStyles(img, 'width', '100%'));
     });
   }
 
