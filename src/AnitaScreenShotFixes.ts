@@ -44,6 +44,7 @@ export default class AnitaScreenShotFixes {
     this.removeStylesFromPromoCardsAndParentKHAITE();
     this.removePositionFromHeaderElementKHT();
     this.hideAgeVerifierPopupEsafety();
+    this.setDrawerBackgroundTransparentNurosym();
   }
 
   private removeHeightProperty() {
@@ -491,5 +492,20 @@ export default class AnitaScreenShotFixes {
     ) {
       element.style.setProperty("display", "none", "important");
     }
+  }
+  private setDrawerBackgroundTransparentNurosym(): void {
+    const elements = this.document.querySelectorAll(
+      ".lang-drawer, .menu-drawer"
+    ) as NodeListOf<HTMLElement>;
+
+    if (elements.length === 0) {
+      console.log(
+        'No elements found with the classes "lang-drawer" or "menu-drawer".'
+      );
+    }
+
+    elements.forEach((element) => {
+      element.style.setProperty("background-color", "transparent", "important");
+    });
   }
 }
