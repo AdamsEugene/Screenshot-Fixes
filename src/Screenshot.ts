@@ -163,11 +163,12 @@ class ScreenshotFixes extends Common {
 
       // const s3FileName = content.path.split("custom.snippets/")[1];
       // console.log({ idSiteHsr: this.idSiteHsr(), isElementInDom });
+      const idSiteHsr = content.idSiteHsr ? content.idSiteHsr === this.idSiteHsr() : true;
 
       if (
         content.path &&
         content.idSite === this.idSite() &&
-        content.idSiteHsr === this.idSiteHsr() &&
+        idSiteHsr &&
         isElementInDom
       ) {
         fetch(content.path)

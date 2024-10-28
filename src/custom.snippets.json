@@ -224,5 +224,21 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-collections-replacement-main.html"
     }
+  },
+  {
+    "selector": ".klaviyo-form-QWhmcn",
+    "content": {
+      "idSite": 2171,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.serenitycbd.com-pet-can-i-give-my-dog-cbd-and-trazodone-main.html"
+    }
+  },
+  {
+    "selector": "#mm-1",
+    "content": {
+      "idSite": 2846,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.firedeptcoffee.com--main.html"
+    }
   }
 ]

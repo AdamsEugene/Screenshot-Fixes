@@ -1,6 +1,6 @@
 export interface Content {
   idSite: number;
-  idSiteHsr: number;
+  idSiteHsr?: number;
   type: string;
   path: string;
 }
