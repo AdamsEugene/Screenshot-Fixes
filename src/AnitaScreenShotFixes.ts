@@ -43,6 +43,7 @@ export default class AnitaScreenShotFixes {
     // this.setOwlItemWidthBLACK();
     this.removeStylesFromPromoCardsAndParentKHAITE();
     this.removePositionFromHeaderElementKHT();
+    this.hideAgeVerifierPopupEsafety();
   }
 
   private removeHeightProperty() {
@@ -485,4 +486,16 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
+  private hideAgeVerifierPopupEsafety(): void {
+    const element = this.document.getElementById('shopify-section-sections--16673528938664__age-verifier-popup') as HTMLElement;
+  
+    if (
+      element &&
+      element.classList.contains('shopify-section') &&
+      element.classList.contains('shopify-section-group-footer-group')
+    ) {
+      element.style.setProperty('display', 'none', 'important');
+    }
+  }
+  
 }
