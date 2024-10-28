@@ -31,7 +31,8 @@ export default class RyanScreenshotFixes extends Common {
       this.ReverseLifeUpdateImage();
       this.DenverCoUpdateResponsiveDialog();
       this.adjustHeaderPosition();
-      this.WoojerupdateMinHeight()
+      this.WoojerupdateMinHeight();
+      this.YaqeenUpdateBackground();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -597,6 +598,14 @@ export default class RyanScreenshotFixes extends Common {
         document.head.appendChild(styleTag);
       });
   }  
+
+  private YaqeenUpdateBackground() {
+    this.dom.querySelectorAll("#Details-menu-drawer-container").forEach((parentElement: HTMLElement) => {
+        parentElement.querySelectorAll("#menu-drawer").forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty("background-color", "revert-layer", "important");
+        });
+    });
+  }
 
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialog() {
