@@ -36,7 +36,7 @@ class ScreenshotFixes extends Common {
       ),
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
-    () => this.GobiHeatupdateLookImageStyles(),
+    () => this.observeMutationDesktop(),
     // () => this.setHeroMaxHeight(),
     // () => this.RubioMonocotUpdateMenuState(),
   ];
@@ -47,7 +47,6 @@ class ScreenshotFixes extends Common {
     () => this.adjustGridProductImageHeight(),
     () => this.observeMutations(),
     () => this.DenvercoContentAdjustOpacity(),
-    () => this.observeMutationMobile(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -463,26 +462,6 @@ class ScreenshotFixes extends Common {
             img.style.setProperty('opacity', '0', 'important');
         });
     });
-  }
-
-  //Gobi Heat
-  private GobiHeatadjustLookParentHeight() {
-    this.dom.querySelectorAll('.look').forEach((parentElement) => {
-        const lookImageElement = parentElement.querySelector('.look__image');
-        if (lookImageElement) {
-            (parentElement as HTMLElement).style.setProperty('height', 'auto', 'important');
-        }
-    });
-  }
-
-  private observeMutationMobile = () => {
-    if (this.dom && this.dom.body) {
-      const observer = new MutationObserver(() => {
-        this.GobiHeatadjustLookParentHeight();
-      });
-  
-      observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
   }
 
   private observeMutations() {
@@ -1077,6 +1056,17 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  private observeMutationDesktop() {
+    if (this.dom && this.dom.body) {
+      const observer = new MutationObserver(() => {
+        this.GobiHeatupdateLookImageStyles();
+      });
+  
+      observer.observe(this.dom.body, { childList: true, subtree: true });
+    } 
+  }
+
+  
   private setElementAndFirstChildHeight(
     height: number,
     domElement: HTMLElement | NodeListOf<HTMLElement>
