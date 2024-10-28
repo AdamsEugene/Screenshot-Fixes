@@ -406,7 +406,6 @@ export default class AnitaScreenShotFixes {
     });
   }
   private updatePromoCardsAndParentStylesKHAITE(): void {
-    // Removing margin-top and height from parent of specific element
     const element = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
     ) as HTMLElement;
@@ -420,8 +419,6 @@ export default class AnitaScreenShotFixes {
         parent.style.setProperty("height", "auto", "important");
       }
     }
-
-    // Removing height and width from all promo card elements
     const promoCardElements = this.document.querySelectorAll(
       ".collection-promo-card__media"
     ) as NodeListOf<HTMLElement>;
@@ -432,7 +429,6 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeStylesFromPromoCardsAndParentKHAITE(): void {
-    // Remove margin-top and height from the parent of the specific element
     const heroBannerElement = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
     ) as HTMLElement;
@@ -447,7 +443,6 @@ export default class AnitaScreenShotFixes {
       }
     }
 
-    // Remove height and width from all elements with the specified class
     const promoCardElements = this.document.querySelectorAll(
       ".collection-promo-card__media"
     ) as NodeListOf<HTMLElement>;
@@ -456,13 +451,11 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("height");
       element.style.removeProperty("width");
     });
-
-    // Remove all inline styles from promo card elements after a delay
     setTimeout(() => {
       promoCardElements.forEach((element) => {
         element.removeAttribute("style");
       });
-    }, 1000); // Delay of 1000ms (1 second)
+    }, 1000);
   }
   private removePositionFromHeaderElementKHT(): void {
     setTimeout(() => {
@@ -487,15 +480,16 @@ export default class AnitaScreenShotFixes {
     }, 1000);
   }
   private hideAgeVerifierPopupEsafety(): void {
-    const element = this.document.getElementById('shopify-section-sections--16673528938664__age-verifier-popup') as HTMLElement;
-  
+    const element = this.document.getElementById(
+      "shopify-section-sections--16673528938664__age-verifier-popup"
+    ) as HTMLElement;
+
     if (
       element &&
-      element.classList.contains('shopify-section') &&
-      element.classList.contains('shopify-section-group-footer-group')
+      element.classList.contains("shopify-section") &&
+      element.classList.contains("shopify-section-group-footer-group")
     ) {
-      element.style.setProperty('display', 'none', 'important');
+      element.style.setProperty("display", "none", "important");
     }
   }
-  
 }
