@@ -34,6 +34,7 @@ export default class RyanScreenshotFixes extends Common {
       this.WoojerupdateMinHeight();
       this.YaqeenUpdateBackground();
       this.NubianceUpdateBackground();
+      this.NuveremoveIsEmptyClass();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -664,6 +665,13 @@ export default class RyanScreenshotFixes extends Common {
         parentElement.querySelectorAll(".header__dropdown").forEach((childElement: HTMLElement) => {
             childElement.style.setProperty("background", "white", "important");
         });
+    });
+  }
+
+  //Nuve
+  private NuveremoveIsEmptyClass() {
+    this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
+        cartItemElement.classList.remove("is-empty");
     });
   }
   
