@@ -46,6 +46,7 @@ export default class AnitaScreenShotFixes {
     this.hideAgeVerifierPopupEsafety();
     this.setDrawerBackgroundTransparentNurosym();
     this.hideAnnouncementHeaderBedsrus();
+    this.removeMarginTopFromParentOfHomepageHeroUNDERDOG();
   }
 
   private removeHeightProperty() {
@@ -516,6 +517,19 @@ export default class AnitaScreenShotFixes {
 
     if (element && element.classList.contains("shopify-section")) {
       element.style.display = "none";
+    }
+  }
+  private removeMarginTopFromParentOfHomepageHeroUNDERDOG(): void {
+    const element = this.document.getElementById(
+      "shopify-section-homepage_hero_C4eetH"
+    ) as HTMLElement | null;
+
+    if (element && element.classList.contains("shopify-section")) {
+      const parent = element.parentElement as HTMLElement | null;
+
+      if (parent && parent.style.marginTop) {
+        parent.style.removeProperty("margin-top");
+      }
     }
   }
 }
