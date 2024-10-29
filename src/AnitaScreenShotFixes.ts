@@ -45,6 +45,7 @@ export default class AnitaScreenShotFixes {
     this.removePositionFromHeaderElementKHT();
     this.hideAgeVerifierPopupEsafety();
     this.setDrawerBackgroundTransparentNurosym();
+    this.hideAnnouncementHeaderBedsrus();
   }
 
   private removeHeightProperty() {
@@ -507,5 +508,14 @@ export default class AnitaScreenShotFixes {
     elements.forEach((element) => {
       element.style.setProperty("background-color", "transparent", "important");
     });
+  }
+  private hideAnnouncementHeaderBedsrus(): void {
+    const element = this.document.getElementById(
+      "shopify-section-announcement-header"
+    ) as HTMLElement;
+
+    if (element && element.classList.contains("shopify-section")) {
+      element.style.display = "none";
+    }
   }
 }
