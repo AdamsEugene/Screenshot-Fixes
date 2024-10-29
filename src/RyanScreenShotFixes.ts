@@ -36,6 +36,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NubianceUpdateBackground();
       this.NuveremoveIsEmptyClass();
       this.NourishedhideSubmenuDrawers();
+      this.NextAdventureSetSubmenuHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -676,12 +677,22 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
-  //
+  //Nourished
   private NourishedhideSubmenuDrawers() {
     this.dom.querySelectorAll(".mobile-nav__link").forEach((parentElement: HTMLElement) => {
         const submenuDrawer = parentElement.querySelector(".mobile-nav__submenu-drawer");
         if (submenuDrawer) {
             (submenuDrawer as HTMLElement).style.visibility = "hidden";
+        }
+    });
+  }
+
+  //Next Adventure
+  private NextAdventureSetSubmenuHeight() {
+    this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
+        const submenu = parentElement.querySelector(".navmenu-submenu.navmenu-meganav");
+        if (submenu) {
+            (submenu as HTMLElement).style.setProperty("height", "revert-layer", "important");
         }
     });
   }
