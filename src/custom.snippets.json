@@ -241,5 +241,50 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-template--16394274570326__03ab1527-a9a3-4dcf-a02a-e817632ef113",
+    "content": {
+      "idSite": 2052,
+      "idSiteHsr": 2869815,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thelogox.com--main.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--16394274570326__49e5a829-89e2-465d-93b6-fd2559a0133c",
+    "content": {
+      "idSite": 2052,
+      "idSiteHsr": 2869815,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thelogox.com--main(1).html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--16394274570326__a9ad45a0-be5e-45f5-a989-045b8a85ac08",
+    "content": {
+      "idSite": 2052,
+      "idSiteHsr": 2869815,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thelogox.com--main(2).html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--16394274570326__fbde8f8f-d63e-4c78-aa9c-7ae6106764e2",
+    "content": {
+      "idSite": 2052,
+      "idSiteHsr": 2869815,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thelogox.com--main(3).html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--16394274570326__9e0aaa59-a219-4e9f-952f-cf48bcd1f2e3",
+    "content": {
+      "idSite": 2052,
+      "idSiteHsr": 2869815,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thelogox.com--main(4).html"
+    }
   }
 ]
