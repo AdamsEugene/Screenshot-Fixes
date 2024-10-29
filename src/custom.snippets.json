@@ -234,15 +234,6 @@
     }
   },
   {
-    "selector": "#MainContent",
-    "content": {
-      "idSite": 2898,
-      "idSiteHsr": 5940418,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.html"
-    }
-  },
-  {
     "selector": "#shopify-section-template--16394274570326__03ab1527-a9a3-4dcf-a02a-e817632ef113",
     "content": {
       "idSite": 2052,
