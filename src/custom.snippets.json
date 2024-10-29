@@ -277,5 +277,23 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thelogox.com--main(4).html"
     }
+  },
+  {
+    "selector": "#cart",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5940418,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.html"
+    }
+  },
+  {
+    "selector": ".cart__footer",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5940418,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main-cart-footer.html"
+    }
   }
 ]
