@@ -33,6 +33,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustHeaderPosition();
       this.WoojerupdateMinHeight();
       this.YaqeenUpdateBackground();
+      this.NubianceUpdateBackground();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -654,6 +655,15 @@ export default class RyanScreenshotFixes extends Common {
         childElement.style.minHeight = '';
         childElement.style.setProperty('min-height', 'auto', 'important');
       });
+    });
+  }
+
+  //Nubiance
+  private NubianceUpdateBackground() {
+    this.dom.querySelectorAll(".menu__item.grandparent.kids-2.no-images").forEach((parentElement: HTMLElement) => {
+        parentElement.querySelectorAll(".header__dropdown").forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty("background", "white", "important");
+        });
     });
   }
   
