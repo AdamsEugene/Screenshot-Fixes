@@ -36,7 +36,6 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
-    // this.removePositionFromShopifySection();
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
     this.removeDisplayFromCartAsideELEAT();
