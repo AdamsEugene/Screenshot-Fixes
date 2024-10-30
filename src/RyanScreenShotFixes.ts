@@ -38,6 +38,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NourishedhideSubmenuDrawers();
       this.NextAdventureSetSubmenuHeight();
       this.beRootedUpdateBackground();
+      this.muteAllMediaElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -450,7 +451,6 @@ export default class RyanScreenshotFixes extends Common {
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
         this.Upcircleupdatemaincontent();
-        this.muteAllMediaElements();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -711,15 +711,25 @@ export default class RyanScreenshotFixes extends Common {
 
   //muteMediaElements
   private muteAllMediaElements() {
-    this.dom.querySelectorAll("audio").forEach((audioElement: HTMLAudioElement) => {
-        audioElement.muted = true;
-    });
+    const self = this; 
 
-    this.dom.querySelectorAll("video").forEach((videoElement: HTMLVideoElement) => {
-        videoElement.muted = true;
-    });
+    function muteMedia() {
+        const audioElements = self.dom.querySelectorAll("audio");
+        audioElements.forEach((audioElement: HTMLAudioElement) => {
+            audioElement.muted = true;
+            console.log("Muted audio element:", audioElement);
+        });
+        const videoElements = self.dom.querySelectorAll("video");
+        videoElements.forEach((videoElement: HTMLVideoElement) => {
+            videoElement.muted = true;
+            console.log("Muted video element:", videoElement);
+        });
+    }
+    muteMedia();
+    window.addEventListener('load', muteMedia);
+    const interval = setInterval(muteMedia, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
   }
-
   
   //Iframe Update
   private UpdateIframeSrc() {
