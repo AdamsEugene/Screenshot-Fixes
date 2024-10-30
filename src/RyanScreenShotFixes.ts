@@ -38,6 +38,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NourishedhideSubmenuDrawers();
       this.NextAdventureSetSubmenuHeight();
       this.beRootedUpdateBackground();
+      this.muteAllMediaElements();
     };
     this.exec({ containerId, debugMode, func });
   }
