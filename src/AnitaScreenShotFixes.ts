@@ -53,6 +53,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromOwlStageBedrus();
     this.setWidthForOwlItemWithAncestorBLACK();
     this.removeAllInlineStylesSAYA();
+    this.removeInlineCssFromWidgetHeaderAKT();
   }
 
   private removeHeightProperty() {
@@ -627,15 +628,32 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeAllInlineStylesSAYA(): void {
-    const element = this.document.getElementById('t4s-menu-drawer') as HTMLElement;
-  
+    const element = this.document.getElementById(
+      "t4s-menu-drawer"
+    ) as HTMLElement;
+
     if (
       element &&
-      element.classList.contains('t4s-drawer') &&
-      element.classList.contains('sidenavwidth') &&
-      element.classList.contains('t4s-drawer__left')
+      element.classList.contains("t4s-drawer") &&
+      element.classList.contains("sidenavwidth") &&
+      element.classList.contains("t4s-drawer__left")
     ) {
-      element.removeAttribute('style');
+      element.removeAttribute("style");
+    }
+  }
+  private removeInlineCssFromWidgetHeaderAKT(): void {
+    const element = this.document.getElementById(
+      "widget-header"
+    ) as HTMLElement;
+
+    if (
+      element &&
+      element.classList.contains("starter-offer") &&
+      element.classList.contains("swiper-initialized") &&
+      element.classList.contains("swiper-horizontal") &&
+      element.classList.contains("swiper-css-mode")
+    ) {
+      element.removeAttribute("style");
     }
   }
 }
