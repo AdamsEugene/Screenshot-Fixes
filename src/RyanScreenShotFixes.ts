@@ -38,7 +38,6 @@ export default class RyanScreenshotFixes extends Common {
       this.NourishedhideSubmenuDrawers();
       this.NextAdventureSetSubmenuHeight();
       this.beRootedUpdateBackground();
-      this.muteAllMediaElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -451,6 +450,7 @@ export default class RyanScreenshotFixes extends Common {
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
         this.Upcircleupdatemaincontent();
+        this.muteAllMediaElements();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
