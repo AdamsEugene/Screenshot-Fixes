@@ -36,7 +36,6 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
-    // this.removePositionFromShopifySection();
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
     this.removeDisplayFromCartAsideELEAT();
@@ -50,6 +49,8 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromFigureSquareSwiperSlide();
     this.removeInlineStylesFromSwiperSlideImage();
     this.hideContainerPdpLightboxContentContainer();
+    this.removeInlineStylesFromSlideshowSlideFlakon();
+    this.removeMarginTopFromSiblingOfFooterkhaite();
   }
 
   private removeHeightProperty() {
@@ -563,5 +564,48 @@ export default class AnitaScreenShotFixes {
     elements.forEach((element) => {
       element.style.display = "none";
     });
+  }
+  private removeInlineStylesFromSlideshowSlideFlakon(): void {
+    const elements = this.document.querySelectorAll(
+      ".slideshow__slide"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      const ancestor = element.closest(
+        "#Slideshow-template--19990696919368__slideshow"
+      ) as HTMLElement | null;
+
+      if (
+        ancestor &&
+        ancestor.classList.contains("hero") &&
+        ancestor.classList.contains("hero--100vh") &&
+        ancestor.classList.contains(
+          "hero--template--19990696919368__slideshow"
+        ) &&
+        ancestor.classList.contains("hero--mobile--100vh") &&
+        ancestor.classList.contains("loaded") &&
+        ancestor.classList.contains("flickity-enabled") &&
+        ancestor.classList.contains("is-draggable") &&
+        ancestor.classList.contains("is-fade")
+      ) {
+        element.style.removeProperty("width");
+        element.style.removeProperty("height");
+        element.style.removeProperty("overflow");
+      }
+    });
+  }
+  private removeMarginTopFromSiblingOfFooterkhaite(): void {
+    const element = this.document.getElementById(
+      "shopify-section-footer"
+    ) as HTMLElement | null;
+
+    if (element && element.classList.contains("shopify-section")) {
+      const previousSibling =
+        element.previousElementSibling as HTMLElement | null;
+
+      if (previousSibling && previousSibling.style.marginTop) {
+        previousSibling.style.removeProperty("margin-top");
+      }
+    }
   }
 }
