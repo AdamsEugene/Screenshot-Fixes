@@ -39,7 +39,6 @@ export default class AnitaScreenShotFixes {
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
     this.removeDisplayFromCartAsideELEAT();
-    // this.setOwlItemWidthBLACK();
     this.removeStylesFromPromoCardsAndParentKHAITE();
     this.removePositionFromHeaderElementKHT();
     this.hideAgeVerifierPopupEsafety();
@@ -51,6 +50,10 @@ export default class AnitaScreenShotFixes {
     this.hideContainerPdpLightboxContentContainer();
     this.removeInlineStylesFromSlideshowSlideFlakon();
     this.removeMarginTopFromSiblingOfFooterkhaite();
+    this.removeInlineStylesFromOwlStageBedrus();
+    this.setWidthForOwlItemWithAncestorBLACK();
+    this.removeAllInlineStylesSAYA();
+    this.removeInlineCssFromWidgetHeaderAKT();
   }
 
   private removeHeightProperty() {
@@ -403,15 +406,16 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("display");
     }
   }
-  private setOwlItemWidthBLACK(): void {
+  private setWidthForOwlItemWithAncestorBLACK(): void {
     const elements = this.document.querySelectorAll(
-      ".owl-item"
+      ".gradient.gempage .owl-item"
     ) as NodeListOf<HTMLElement>;
 
     elements.forEach((element) => {
       element.style.setProperty("width", "1512px", "important");
     });
   }
+
   private updatePromoCardsAndParentStylesKHAITE(): void {
     const element = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
@@ -606,6 +610,50 @@ export default class AnitaScreenShotFixes {
       if (previousSibling && previousSibling.style.marginTop) {
         previousSibling.style.removeProperty("margin-top");
       }
+    }
+  }
+  private removeInlineStylesFromOwlStageBedrus(): void {
+    const elements = this.document.querySelectorAll(
+      ".owl-stage"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      const ancestor = element.closest(
+        "#shopify-section-announcement-bar"
+      ) as HTMLElement | null;
+
+      if (ancestor) {
+        element.removeAttribute("style");
+      }
+    });
+  }
+  private removeAllInlineStylesSAYA(): void {
+    const element = this.document.getElementById(
+      "t4s-menu-drawer"
+    ) as HTMLElement;
+
+    if (
+      element &&
+      element.classList.contains("t4s-drawer") &&
+      element.classList.contains("sidenavwidth") &&
+      element.classList.contains("t4s-drawer__left")
+    ) {
+      element.removeAttribute("style");
+    }
+  }
+  private removeInlineCssFromWidgetHeaderAKT(): void {
+    const element = this.document.getElementById(
+      "widget-header"
+    ) as HTMLElement;
+
+    if (
+      element &&
+      element.classList.contains("starter-offer") &&
+      element.classList.contains("swiper-initialized") &&
+      element.classList.contains("swiper-horizontal") &&
+      element.classList.contains("swiper-css-mode")
+    ) {
+      element.removeAttribute("style");
     }
   }
 }
