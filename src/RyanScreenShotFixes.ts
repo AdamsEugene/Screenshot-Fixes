@@ -701,7 +701,7 @@ export default class RyanScreenshotFixes extends Common {
 
   //be Rooted
   private beRootedUpdateBackground() {
-    this.dom.querySelectorAll(".menu-drawer-container.menu-opening").forEach((parentElement: HTMLElement) => {
+    this.dom.querySelectorAll(".menu-drawer-container").forEach((parentElement: HTMLElement) => {
         parentElement.querySelectorAll("#menu-drawer").forEach((childElement: HTMLElement) => {
             childElement.style.setProperty("background-color", "revert-layer", "important");
         });
