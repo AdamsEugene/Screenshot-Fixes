@@ -39,6 +39,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NextAdventureSetSubmenuHeight();
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
+      this.KhaiteUpdateHeaderMargin();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -730,6 +731,18 @@ export default class RyanScreenshotFixes extends Common {
     const interval = setInterval(muteMedia, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
+
+  //Khaite
+  private KhaiteUpdateHeaderMargin() {
+    this.dom.querySelectorAll("class-controller").forEach((parentElement: HTMLElement) => {
+        parentElement.querySelectorAll("#shopify-section-header").forEach((childElement: HTMLElement) => {
+            // Remove existing margin-top
+            childElement.style.removeProperty("margin-top");
+            // Set new margin-top to auto !important
+            childElement.style.setProperty("margin-top", "auto", "important");
+        });
+    });
+  } 
   
   //Iframe Update
   private UpdateIframeSrc() {
