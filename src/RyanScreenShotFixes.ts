@@ -734,15 +734,24 @@ export default class RyanScreenshotFixes extends Common {
 
   //Khaite
   private KhaiteUpdateHeaderMargin() {
-    this.dom.querySelectorAll("class-controller").forEach((parentElement: HTMLElement) => {
-        parentElement.querySelectorAll("#shopify-section-header").forEach((childElement: HTMLElement) => {
-            // Remove existing margin-top
-            childElement.style.removeProperty("margin-top");
-            // Set new margin-top to auto !important
-            childElement.style.setProperty("margin-top", "auto", "important");
+    const self = this; 
+
+    function updateHeaderMargin() {
+        const parentElements = self.dom.querySelectorAll("class-controller");
+        parentElements.forEach((parentElement: HTMLElement) => {
+            const childElements = parentElement.querySelectorAll("#shopify-section-header");
+            childElements.forEach((childElement: HTMLElement) => {
+                childElement.style.removeProperty("margin-top");
+                childElement.style.setProperty("margin-top", "auto", "important");
+            });
         });
-    });
-  } 
+    }
+
+    updateHeaderMargin();
+    window.addEventListener('load', updateHeaderMargin);
+    const interval = setInterval(updateHeaderMargin, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
   
   //Iframe Update
   private UpdateIframeSrc() {
