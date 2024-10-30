@@ -691,9 +691,10 @@ export default class RyanScreenshotFixes extends Common {
   private NextAdventureSetSubmenuHeight() {
     this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
         const submenu = parentElement.querySelector(".navmenu-submenu.navmenu-meganav");
-        if (submenu) {
-            (submenu as HTMLElement).style.setProperty("height", "revert-layer", "important");
+        if (submenu && (submenu as HTMLElement).style.height === "max-content") {
+            (submenu as HTMLElement).style.removeProperty("height");
         }
+        (submenu as HTMLElement).style.setProperty("height", "revert-layer", "important");
     });
   }
   
