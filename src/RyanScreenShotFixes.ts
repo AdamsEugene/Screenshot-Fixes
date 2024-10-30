@@ -37,6 +37,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NuveremoveIsEmptyClass();
       this.NourishedhideSubmenuDrawers();
       this.NextAdventureSetSubmenuHeight();
+      this.beRootedUpdateBackground();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -695,6 +696,15 @@ export default class RyanScreenshotFixes extends Common {
             (submenu as HTMLElement).style.removeProperty("height");
         }
         (submenu as HTMLElement).style.setProperty("height", "revert-layer", "important");
+    });
+  }
+
+  //be Rooted
+  private beRootedUpdateBackground() {
+    this.dom.querySelectorAll(".menu-drawer-container.menu-opening").forEach((parentElement: HTMLElement) => {
+        parentElement.querySelectorAll("#menu-drawer").forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty("background-color", "revert-layer", "important");
+        });
     });
   }
   
