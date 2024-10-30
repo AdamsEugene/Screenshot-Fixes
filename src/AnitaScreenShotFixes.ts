@@ -50,7 +50,8 @@ export default class AnitaScreenShotFixes {
     this.hideContainerPdpLightboxContentContainer();
     this.removeInlineStylesFromSlideshowSlideFlakon();
     this.removeMarginTopFromSiblingOfFooterkhaite();
-    this.removeInlineStylesFromOwlStageBLACK();
+    this.removeInlineStylesFromOwlStageBedrus();
+    this.setWidthForOwlItemWithAncestorBLACK();
   }
 
   private removeHeightProperty() {
@@ -403,15 +404,16 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("display");
     }
   }
-  private setOwlItemWidthBLACK(): void {
+  private setWidthForOwlItemWithAncestorBLACK(): void {
     const elements = this.document.querySelectorAll(
-      ".owl-item"
+      ".gradient.gempage .owl-item"
     ) as NodeListOf<HTMLElement>;
 
     elements.forEach((element) => {
       element.style.setProperty("width", "1512px", "important");
     });
   }
+
   private updatePromoCardsAndParentStylesKHAITE(): void {
     const element = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
@@ -608,14 +610,18 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  private removeInlineStylesFromOwlStageBLACK(): void {
-    const elements = this.document.querySelectorAll('.owl-stage') as NodeListOf<HTMLElement>;
-  
+  private removeInlineStylesFromOwlStageBedrus(): void {
+    const elements = this.document.querySelectorAll(
+      ".owl-stage"
+    ) as NodeListOf<HTMLElement>;
+
     elements.forEach((element) => {
-      const ancestor = element.closest('#shopify-section-announcement-bar') as HTMLElement | null;
-  
+      const ancestor = element.closest(
+        "#shopify-section-announcement-bar"
+      ) as HTMLElement | null;
+
       if (ancestor) {
-        element.removeAttribute('style');
+        element.removeAttribute("style");
       }
     });
   }
