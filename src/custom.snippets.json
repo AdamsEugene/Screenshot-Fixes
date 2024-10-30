@@ -295,5 +295,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main-cart-footer.html"
     }
+  },
+  {
+    "selector": ".footer__register-form",
+    "content": {
+      "idSite": 1808,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.vicicollection.com--main.html"
+    }
   }
 ]
