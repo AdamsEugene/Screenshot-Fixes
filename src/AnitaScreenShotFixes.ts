@@ -52,6 +52,7 @@ export default class AnitaScreenShotFixes {
     this.removeMarginTopFromSiblingOfFooterkhaite();
     this.removeInlineStylesFromOwlStageBedrus();
     this.setWidthForOwlItemWithAncestorBLACK();
+    this.removeAllInlineStylesSAYA();
   }
 
   private removeHeightProperty() {
@@ -624,5 +625,17 @@ export default class AnitaScreenShotFixes {
         element.removeAttribute("style");
       }
     });
+  }
+  private removeAllInlineStylesSAYA(): void {
+    const element = this.document.getElementById('t4s-menu-drawer') as HTMLElement;
+  
+    if (
+      element &&
+      element.classList.contains('t4s-drawer') &&
+      element.classList.contains('sidenavwidth') &&
+      element.classList.contains('t4s-drawer__left')
+    ) {
+      element.removeAttribute('style');
+    }
   }
 }
