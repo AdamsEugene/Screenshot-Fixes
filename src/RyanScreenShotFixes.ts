@@ -707,6 +707,18 @@ export default class RyanScreenshotFixes extends Common {
         });
     });
   }
+
+  //muteMediaElements
+  private muteAllMediaElements() {
+    this.dom.querySelectorAll("audio").forEach((audioElement: HTMLAudioElement) => {
+        audioElement.muted = true;
+    });
+
+    this.dom.querySelectorAll("video").forEach((videoElement: HTMLVideoElement) => {
+        videoElement.muted = true;
+    });
+  }
+
   
   //Iframe Update
   private UpdateIframeSrc() {
