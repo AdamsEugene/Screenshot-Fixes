@@ -596,15 +596,17 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeMarginTopFromSiblingOfFooterkhaite(): void {
-    const element = this.document.getElementById('shopify-section-footer') as HTMLElement | null;
-  
-    if (element && element.classList.contains('shopify-section')) {
-      const previousSibling = element.previousElementSibling as HTMLElement | null;
-  
+    const element = this.document.getElementById(
+      "shopify-section-footer"
+    ) as HTMLElement | null;
+
+    if (element && element.classList.contains("shopify-section")) {
+      const previousSibling =
+        element.previousElementSibling as HTMLElement | null;
+
       if (previousSibling && previousSibling.style.marginTop) {
-        previousSibling.style.removeProperty('margin-top');
+        previousSibling.style.removeProperty("margin-top");
       }
     }
   }
-  
 }
