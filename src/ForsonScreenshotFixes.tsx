@@ -51,6 +51,7 @@ export default class ForsonScreenshotFixes {
     this.removePositionRelative();
     this.checkAndRemoveHiddenElements();
     this.removePaddingTop();
+    this.overrideMarginTop();
   }
 
   // Upcircle EU
@@ -533,6 +534,12 @@ private removePaddingTop() {
   return false;
 }
 
+private overrideMarginTop() {
+  const header = document.getElementById('shopify-section-header');
+  if (header) {
+      header.style.setProperty('margin-top', '0px', 'important');
+  }
+}
 
 
 }
