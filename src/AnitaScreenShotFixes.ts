@@ -39,7 +39,6 @@ export default class AnitaScreenShotFixes {
     this.removePositionFromShopifySectionEleat();
     this.updatePositionForShopifyHeaderELEAT();
     this.removeDisplayFromCartAsideELEAT();
-    // this.setOwlItemWidthBLACK();
     this.removeStylesFromPromoCardsAndParentKHAITE();
     this.removePositionFromHeaderElementKHT();
     this.hideAgeVerifierPopupEsafety();
@@ -51,6 +50,7 @@ export default class AnitaScreenShotFixes {
     this.hideContainerPdpLightboxContentContainer();
     this.removeInlineStylesFromSlideshowSlideFlakon();
     this.removeMarginTopFromSiblingOfFooterkhaite();
+    this.removeInlineStylesFromOwlStageBLACK();
   }
 
   private removeHeightProperty() {
@@ -607,5 +607,16 @@ export default class AnitaScreenShotFixes {
         previousSibling.style.removeProperty("margin-top");
       }
     }
+  }
+  private removeInlineStylesFromOwlStageBLACK(): void {
+    const elements = this.document.querySelectorAll('.owl-stage') as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      const ancestor = element.closest('#shopify-section-announcement-bar') as HTMLElement | null;
+  
+      if (ancestor) {
+        element.removeAttribute('style');
+      }
+    });
   }
 }
