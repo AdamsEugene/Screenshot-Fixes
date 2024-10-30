@@ -47,6 +47,9 @@ export default class AnitaScreenShotFixes {
     this.setDrawerBackgroundTransparentNurosym();
     this.hideAnnouncementHeaderBedsrus();
     this.removeMarginTopFromParentOfHomepageHeroUNDERDOG();
+    this.removeInlineStylesFromFigureSquareSwiperSlide();
+    this.removeInlineStylesFromSwiperSlideImage();
+    this.hideContainerPdpLightboxContentContainer();
   }
 
   private removeHeightProperty() {
@@ -531,5 +534,34 @@ export default class AnitaScreenShotFixes {
         parent.style.removeProperty("margin-top");
       }
     }
+  }
+  private removeInlineStylesFromFigureSquareSwiperSlide(): void {
+    const elements = this.document.querySelectorAll(
+      ".figure--square.swiper-slide"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.removeAttribute("style");
+    });
+  }
+
+  private removeInlineStylesFromSwiperSlideImage(): void {
+    const elements = this.document.querySelectorAll(
+      ".swiper-slide.image"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.removeAttribute("style");
+    });
+  }
+
+  private hideContainerPdpLightboxContentContainer(): void {
+    const elements = this.document.querySelectorAll(
+      ".container.pdp-lightbox__content-container"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.style.display = "none";
+    });
   }
 }
