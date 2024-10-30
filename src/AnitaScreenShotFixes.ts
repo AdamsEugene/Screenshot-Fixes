@@ -51,6 +51,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromSwiperSlideImage();
     this.hideContainerPdpLightboxContentContainer();
     this.removeInlineStylesFromSlideshowSlideFlakon();
+    this.removeMarginTopFromSiblingOfFooterkhaite();
   }
 
   private removeHeightProperty() {
@@ -594,4 +595,16 @@ export default class AnitaScreenShotFixes {
       }
     });
   }
+  private removeMarginTopFromSiblingOfFooterkhaite(): void {
+    const element = this.document.getElementById('shopify-section-footer') as HTMLElement | null;
+  
+    if (element && element.classList.contains('shopify-section')) {
+      const previousSibling = element.previousElementSibling as HTMLElement | null;
+  
+      if (previousSibling && previousSibling.style.marginTop) {
+        previousSibling.style.removeProperty('margin-top');
+      }
+    }
+  }
+  
 }
