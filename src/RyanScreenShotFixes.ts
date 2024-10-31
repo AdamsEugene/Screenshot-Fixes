@@ -40,7 +40,7 @@ export default class RyanScreenshotFixes extends Common {
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
       this.KhaiteUpdateHeaderMargin();
-      this.SmelUpdateOpacity();
+      this.SmelupdateStyles();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -712,20 +712,33 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Smel
-  private SmelUpdateOpacity() {
-    const self = this;
+  private SmelupdateStyles() {
+    const appendOpacityStyle = () => {
+        let styleElement = document.getElementById("custom-opacity-style") as HTMLStyleElement;
+        if (!styleElement) {
+            styleElement = document.createElement("style");
+            styleElement.id = "custom-opacity-style";
+            document.head.appendChild(styleElement);
+        }
 
-    const updateOpacity = () => {
-        self.dom.querySelectorAll(".product-item__image-link .product-item__image--two").forEach((childElement: HTMLElement) => {
-            childElement.style.removeProperty("opacity");
-            childElement.style.setProperty("opacity", "0", "important");
-        });
+        styleElement.textContent = `
+            .product-item__image-link .product-item__image--two {
+                opacity: 0 !important;
+            }
+        `;
     };
 
-    updateOpacity();
-    window.addEventListener('load', updateOpacity);
-    const interval = setInterval(updateOpacity, 1000);
+    appendOpacityStyle();
+    window.addEventListener('load', appendOpacityStyle);
+    const interval = setInterval(appendOpacityStyle, 1000);
     setTimeout(() => clearInterval(interval), 5000);
+
+    this.dom.querySelectorAll(".drawer-menu__panel").forEach(panel => {
+        ["bottom", "all-links", "contents"].forEach(cls => {
+            const el = panel.querySelector(`.drawer-menu__${cls}`) as HTMLElement;
+            if (el) el.style.setProperty("height", "revert-layer", "important");
+        });
+    });
   }
 
   //muteMediaElements
