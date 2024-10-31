@@ -40,7 +40,6 @@ export default class RyanScreenshotFixes extends Common {
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
       this.KhaiteUpdateHeaderMargin();
-      this.SmelUpdateOpacity();
       this.SmelUpdateHeight();
     };
     this.exec({ containerId, debugMode, func });
@@ -454,6 +453,7 @@ export default class RyanScreenshotFixes extends Common {
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
         this.Upcircleupdatemaincontent();
+        this.SmelUpdateOpacity();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -737,7 +737,7 @@ export default class RyanScreenshotFixes extends Common {
     const interval = setInterval(appendOpacityStyle, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
-
+  
   private SmelUpdateHeight() {
     this.dom.querySelectorAll(".drawer-menu__panel").forEach(panel => {
         ["bottom", "all-links", "contents"].forEach(cls => {
@@ -746,6 +746,7 @@ export default class RyanScreenshotFixes extends Common {
         });
     });
   }
+
 
   //muteMediaElements
   private muteAllMediaElements() {
