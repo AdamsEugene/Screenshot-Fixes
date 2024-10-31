@@ -713,30 +713,31 @@ export default class RyanScreenshotFixes extends Common {
 
   //Smel
   private SmelUpdateOpacity() {
-    this.dom.querySelectorAll(".product-item__image-link").forEach((parentElement: HTMLElement) => {
-        parentElement.querySelectorAll(".product-item__image--two").forEach((childElement: HTMLElement) => {
+    const self = this;
+
+    const updateOpacity = () => {
+        self.dom.querySelectorAll(".product-item__image-link .product-item__image--two").forEach((childElement: HTMLElement) => {
             childElement.style.removeProperty("opacity");
             childElement.style.setProperty("opacity", "0", "important");
         });
-    });
+    };
+
+    updateOpacity();
+    window.addEventListener('load', updateOpacity);
+    const interval = setInterval(updateOpacity, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
   }
 
   //muteMediaElements
   private muteAllMediaElements() {
-    const self = this; 
+    const self = this;
 
-    function muteMedia() {
-        const audioElements = self.dom.querySelectorAll("audio");
-        audioElements.forEach((audioElement: HTMLAudioElement) => {
-            audioElement.muted = true;
-            console.log("Muted audio element:", audioElement);
+    const muteMedia = () => {
+        self.dom.querySelectorAll("audio, video").forEach((mediaElement: HTMLMediaElement) => {
+            mediaElement.muted = true;
         });
-        const videoElements = self.dom.querySelectorAll("video");
-        videoElements.forEach((videoElement: HTMLVideoElement) => {
-            videoElement.muted = true;
-            console.log("Muted video element:", videoElement);
-        });
-    }
+    };
+
     muteMedia();
     window.addEventListener('load', muteMedia);
     const interval = setInterval(muteMedia, 1000);
