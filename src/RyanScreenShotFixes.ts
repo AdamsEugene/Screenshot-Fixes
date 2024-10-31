@@ -40,7 +40,8 @@ export default class RyanScreenshotFixes extends Common {
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
       this.KhaiteUpdateHeaderMargin();
-      this.SmelupdateStyles();
+      this.SmelUpdateOpacity();
+      this.SmelUpdateHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -712,9 +713,12 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Smel
-  private SmelupdateStyles() {
+  private SmelUpdateOpacity() {
+    const self = this;
+
     const appendOpacityStyle = () => {
         let styleElement = document.getElementById("custom-opacity-style") as HTMLStyleElement;
+        
         if (!styleElement) {
             styleElement = document.createElement("style");
             styleElement.id = "custom-opacity-style";
@@ -732,7 +736,9 @@ export default class RyanScreenshotFixes extends Common {
     window.addEventListener('load', appendOpacityStyle);
     const interval = setInterval(appendOpacityStyle, 1000);
     setTimeout(() => clearInterval(interval), 5000);
+  }
 
+  private SmelUpdateHeight() {
     this.dom.querySelectorAll(".drawer-menu__panel").forEach(panel => {
         ["bottom", "all-links", "contents"].forEach(cls => {
             const el = panel.querySelector(`.drawer-menu__${cls}`) as HTMLElement;
