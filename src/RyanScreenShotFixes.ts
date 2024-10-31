@@ -42,6 +42,7 @@ export default class RyanScreenshotFixes extends Common {
       this.KhaiteUpdateHeaderMargin();
       this.SmelUpdateHeight();
       this.SmelUpdateOpacity();
+      this.disablePointerEventsOnAbsolutePseudoElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -767,6 +768,21 @@ export default class RyanScreenshotFixes extends Common {
     window.addEventListener('load', updateHeaderMargin);
     const interval = setInterval(updateHeaderMargin, 1000);
     setTimeout(() => clearInterval(interval), 5000);
+  }
+
+  //disable pointer events
+  private disablePointerEventsOnAbsolutePseudoElements() {
+    this.dom.querySelectorAll('.card__link').forEach((parentElement: HTMLElement) => {
+      const beforeStyle = window.getComputedStyle(parentElement, '::before');
+      const afterStyle = window.getComputedStyle(parentElement, '::after');
+  
+      const isBeforeAbsolute = beforeStyle.position === 'absolute';
+      const isAfterAbsolute = afterStyle.position === 'absolute';
+  
+      if (isBeforeAbsolute || isAfterAbsolute) {
+        parentElement.style.setProperty('pointer-events', 'none', 'important');
+      }
+    });
   }
   
   //Iframe Update
