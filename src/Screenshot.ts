@@ -280,11 +280,11 @@ class ScreenshotFixes extends Common {
   }
 
   private removeIdFromLogo() {
-    const logoElement = document.querySelector('.wp-block-image.size-large.is-resized.dark-logo') as HTMLElement;
-    if (logoElement && logoElement.id === 'site-logo') {
-      logoElement.removeAttribute('id');
-    }
-  }
+    this.allElements(".wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex").forEach(parent => {
+        const child = parent.querySelector("#site-logo");
+        if (child) child.removeAttribute("id");
+    });
+}
   
 
   private setUncolHeight() {
