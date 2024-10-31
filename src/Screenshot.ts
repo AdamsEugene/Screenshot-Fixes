@@ -37,8 +37,7 @@ class ScreenshotFixes extends Common {
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
     () => this.observeMutationDesktop(),
-    // () => this.setHeroMaxHeight(),
-    // () => this.RubioMonocotUpdateMenuState(),
+    () => this.removeIdFromLogo(),
   ];
 
   mobileFunctions = [
@@ -279,6 +278,14 @@ class ScreenshotFixes extends Common {
       }
     });
   }
+
+  private removeIdFromLogo() {
+    const logoElement = document.querySelector('.wp-block-image.size-large.is-resized.dark-logo') as HTMLElement;
+    if (logoElement && logoElement.id === 'site-logo') {
+      logoElement.removeAttribute('id');
+    }
+  }
+  
 
   private setUncolHeight() {
     const parentElement = this.dom.querySelector<HTMLElement>(
