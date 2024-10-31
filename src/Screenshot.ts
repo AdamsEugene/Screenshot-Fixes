@@ -455,14 +455,13 @@ class ScreenshotFixes extends Common {
 
   //Denver CO
   private DenvercoContentAdjustOpacity() {
-    this.dom.querySelectorAll(
-        '.wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex'
-    ).forEach((parentElement) => {
-        const siteLogoElement = parentElement.querySelector('#site-logo');
-        siteLogoElement?.querySelectorAll('img').forEach((img) => {
-            img.style.setProperty('opacity', '0', 'important');
-        });
-    });
+    const style = this.dom.createElement('style');
+    style.innerHTML = `
+        .wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex #site-logo img {
+            opacity: 0 !important;
+        }
+    `;
+    this.dom.head.appendChild(style);
   }
 
   private observeMutations() {
@@ -1233,6 +1232,50 @@ class ScreenshotFixes extends Common {
     } 
   }
 
+  private SmelAdjustHeroStyles = () => {
+    // Find and adjust ".image-hero__inner" elements
+    const heroInners = this.dom.querySelectorAll('.image-hero__inner');
+    
+    heroInners.forEach((heroInner: HTMLElement) => {
+        const textContainerWrapper = heroInner.querySelector('.image-hero__text-container-wrapper') as HTMLElement;
+        const imageContainer = heroInner.querySelector('.image-hero__image-container') as HTMLElement;
+        
+        if (textContainerWrapper && imageContainer) {
+            // Adjust "height" and "min-height" on the image container
+            if (imageContainer.style.height) {
+                imageContainer.style.height = '';
+            }
+            imageContainer.style.setProperty('height', 'auto', 'important');
+
+            if (imageContainer.style.minHeight) {
+                imageContainer.style.minHeight = '';
+            }
+            imageContainer.style.setProperty('min-height', 'revert-layer', 'important');
+
+            // Adjust "min-height" on the text container wrapper
+            if (textContainerWrapper.style.minHeight) {
+                textContainerWrapper.style.minHeight = '';
+            }
+            textContainerWrapper.style.setProperty('min-height', 'revert-layer', 'important');
+        }
+    });
+
+    // Find and adjust ".shopify-section.shopify-section--full-width" elements
+    const shopifySections = this.dom.querySelectorAll('.shopify-section.shopify-section--full-width');
+    
+    shopifySections.forEach((section: HTMLElement) => {
+        const imageHero = section.querySelector('.image-hero.image-hero--image-aspect-custom') as HTMLElement;
+        
+        if (imageHero) {
+            // Adjust "--custom-height" on the image hero
+            if (imageHero.style.getPropertyValue('--custom-height')) {
+                imageHero.style.removeProperty('--custom-height');
+            }
+            imageHero.style.setProperty('--custom-height', '15vh', 'important');
+        }
+    });
+  };
+
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1252,6 +1295,7 @@ class ScreenshotFixes extends Common {
           { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
           { ids: [2697], functions: [this.observeMutationoverlay] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
+          { ids: [2925], functions: [this.SmelAdjustHeroStyles] },
       ];
 
       const map: Record<number, (() => void)[]> = {};
