@@ -695,13 +695,16 @@ export default class RyanScreenshotFixes extends Common {
 
   //Next Adventure
   private NextAdventureSetSubmenuHeight() {
-    this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
-        const submenu = parentElement.querySelector(".navmenu-submenu.navmenu-meganav");
-        if (submenu && (submenu as HTMLElement).style.height === "max-content") {
-            (submenu as HTMLElement).style.removeProperty("height");
-        }
-        (submenu as HTMLElement).style.setProperty("height", "revert-layer", "important");
-    });
+    try {
+        this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
+            const submenu = parentElement.querySelector(".navmenu-submenu.navmenu-meganav") as HTMLElement | null;
+            
+            if (submenu) {
+                if (submenu.style.height === "max-content") submenu.style.removeProperty("height");
+                submenu.style.setProperty("height", "revert-layer", "important");
+            }
+        });
+    } catch {}
   }
 
   //be Rooted
