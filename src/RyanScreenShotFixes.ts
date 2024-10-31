@@ -714,28 +714,17 @@ export default class RyanScreenshotFixes extends Common {
 
   //Smel
   private SmelUpdateOpacity() {
-    const self = this;
+    const styleElement = document.getElementById("custom-opacity-style") as HTMLStyleElement || document.createElement("style");
+    if (!styleElement.id) {
+        styleElement.id = "custom-opacity-style";
+        document.head.appendChild(styleElement);
+    }
 
-    const appendOpacityStyle = () => {
-        let styleElement = document.getElementById("custom-opacity-style") as HTMLStyleElement;
-        
-        if (!styleElement) {
-            styleElement = document.createElement("style");
-            styleElement.id = "custom-opacity-style";
-            document.head.appendChild(styleElement);
+    styleElement.textContent = `
+        .product-item__image-link .product-item__image--two {
+            opacity: 0 !important;
         }
-
-        styleElement.textContent = `
-            .product-item__image-link .product-item__image--two {
-                opacity: 0 !important;
-            }
-        `;
-    };
-
-    appendOpacityStyle();
-    window.addEventListener('load', appendOpacityStyle);
-    const interval = setInterval(appendOpacityStyle, 1000);
-    setTimeout(() => clearInterval(interval), 5000);
+    `;
   }
   
   private SmelUpdateHeight() {
@@ -746,7 +735,6 @@ export default class RyanScreenshotFixes extends Common {
         });
     });
   }
-
 
   //muteMediaElements
   private muteAllMediaElements() {
