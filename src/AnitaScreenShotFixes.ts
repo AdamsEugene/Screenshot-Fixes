@@ -54,6 +54,7 @@ export default class AnitaScreenShotFixes {
     this.setWidthForOwlItemWithAncestorBLACK();
     this.removeAllInlineStylesSAYA();
     this.removeInlineCssFromWidgetHeaderAKT();
+    this.removeAllInlineStylesFromElementsHEDERA();
   }
 
   private removeHeightProperty() {
@@ -656,5 +657,12 @@ export default class AnitaScreenShotFixes {
     ) {
       element.removeAttribute("style");
     }
+  }
+  private removeAllInlineStylesFromElementsHEDERA(): void {
+    const elements = this.document.querySelectorAll('.jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup') as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.removeAttribute('style');
+    });
   }
 }
