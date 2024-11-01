@@ -614,6 +614,7 @@ class ScreenshotFixes extends Common {
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
+      ".window-overlay",
     ];
     
     // Add inline styles with !important to class-based elements
@@ -1219,26 +1220,6 @@ class ScreenshotFixes extends Common {
     } 
   }
 
-  private hideWindowOverlay() {
-    const style = this.dom.createElement('style');
-    style.innerHTML = `
-      .window-overlay {
-        display: none !important;
-      }
-    `;
-    this.dom.head.appendChild(style);
-  }
-
-  private observeMutationoverlay = () => {
-    if (this.dom && this.dom.body) {
-      const observer = new MutationObserver(() => {
-        this.hideWindowOverlay();
-      });
-  
-      observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
-  }
-
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1256,7 +1237,6 @@ class ScreenshotFixes extends Common {
           { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
           { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
           { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
-          { ids: [2697], functions: [this.observeMutationoverlay] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
       ];
 
