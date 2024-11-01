@@ -36,7 +36,6 @@ export default class RyanScreenshotFixes extends Common {
       this.NubianceUpdateBackground();
       this.NuveremoveIsEmptyClass();
       this.NourishedhideSubmenuDrawers();
-      this.NextAdventureSetSubmenuHeight();
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
       this.KhaiteUpdateHeaderMargin();
@@ -455,6 +454,7 @@ export default class RyanScreenshotFixes extends Common {
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
         this.Upcircleupdatemaincontent();
+        this.NextAdventureSetSubmenuHeight();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -695,15 +695,18 @@ export default class RyanScreenshotFixes extends Common {
 
   //Next Adventure
   private NextAdventureSetSubmenuHeight() {
-    try {
-        this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
-            const submenu = parentElement.querySelector(".navmenu-submenu.navmenu-meganav") as HTMLElement | null;
-            if (submenu) {
-                submenu.style.removeProperty("height");
-                submenu.style.setProperty("height", "revert-layer", "important");
-            }
-        });
-    } catch {}
+    this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
+        const submenu = parentElement.querySelector(".navmenu-submenu") as HTMLElement | null;
+        if (submenu) submenu.style.removeProperty("height");
+    });
+
+    const styleSheet = document.createElement("style");
+    styleSheet.innerHTML = `
+        .navmenu-item .navmenu-submenu {
+            height: revert-layer !important;
+        }
+    `;
+    document.head.appendChild(styleSheet);
   }
 
   //be Rooted
