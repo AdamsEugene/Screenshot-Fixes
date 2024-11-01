@@ -42,6 +42,7 @@ export default class RyanScreenshotFixes extends Common {
       this.SmelUpdateHeight();
       this.SmelUpdateOpacity();
       this.disablePointerEventsOnAbsolutePseudoElements();
+      this.GraymatterhideNextDivAfterIframe();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -735,6 +736,14 @@ export default class RyanScreenshotFixes extends Common {
             const el = panel.querySelector(`.drawer-menu__${cls}`) as HTMLElement;
             if (el) el.style.setProperty("height", "revert-layer", "important");
         });
+    });
+  }
+
+  //Graymatter Labs
+  private GraymatterhideNextDivAfterIframe() {
+    this.dom.querySelectorAll('iframe.alia-iframe.left').forEach((iframeElement: HTMLIFrameElement) => {
+        const nextDiv = iframeElement.nextElementSibling?.tagName === 'DIV' ? iframeElement.nextElementSibling as HTMLElement : null;
+        nextDiv?.style.setProperty('display', 'none', 'important');
     });
   }
 
