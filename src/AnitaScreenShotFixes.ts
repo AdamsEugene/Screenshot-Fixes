@@ -628,19 +628,20 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeAllInlineStylesSAYA(): void {
-    const element = this.document.getElementById(
-      "t4s-menu-drawer"
-    ) as HTMLElement;
-
-    if (
-      element &&
-      element.classList.contains("t4s-drawer") &&
-      element.classList.contains("sidenavwidth") &&
-      element.classList.contains("t4s-drawer__left")
-    ) {
-      element.removeAttribute("style");
-    }
+    setTimeout(() => {
+      const element = this.document.getElementById("t4s-menu-drawer") as HTMLElement;
+  
+      if (
+        element &&
+        element.classList.contains("t4s-drawer") &&
+        element.classList.contains("sidenavwidth") &&
+        element.classList.contains("t4s-drawer__left")
+      ) {
+        element.removeAttribute("style");
+      }
+    }, 2000); // 1000ms (1 second) delay
   }
+  
   private removeInlineCssFromWidgetHeaderAKT(): void {
     const element = this.document.getElementById(
       "widget-header"
