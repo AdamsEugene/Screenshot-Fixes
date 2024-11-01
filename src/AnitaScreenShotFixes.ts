@@ -54,6 +54,7 @@ export default class AnitaScreenShotFixes {
     this.setWidthForOwlItemWithAncestorBLACK();
     this.removeAllInlineStylesSAYA();
     this.removeInlineCssFromWidgetHeaderAKT();
+    this.removeAllInlineStylesFromElementsHEDERA();
   }
 
   private removeHeightProperty() {
@@ -628,19 +629,20 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeAllInlineStylesSAYA(): void {
-    const element = this.document.getElementById(
-      "t4s-menu-drawer"
-    ) as HTMLElement;
-
-    if (
-      element &&
-      element.classList.contains("t4s-drawer") &&
-      element.classList.contains("sidenavwidth") &&
-      element.classList.contains("t4s-drawer__left")
-    ) {
-      element.removeAttribute("style");
-    }
+    setTimeout(() => {
+      const element = this.document.getElementById("t4s-menu-drawer") as HTMLElement;
+  
+      if (
+        element &&
+        element.classList.contains("t4s-drawer") &&
+        element.classList.contains("sidenavwidth") &&
+        element.classList.contains("t4s-drawer__left")
+      ) {
+        element.removeAttribute("style");
+      }
+    }, 2000); // 1000ms (1 second) delay
   }
+  
   private removeInlineCssFromWidgetHeaderAKT(): void {
     const element = this.document.getElementById(
       "widget-header"
@@ -655,5 +657,12 @@ export default class AnitaScreenShotFixes {
     ) {
       element.removeAttribute("style");
     }
+  }
+  private removeAllInlineStylesFromElementsHEDERA(): void {
+    const elements = this.document.querySelectorAll('.jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup') as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.removeAttribute('style');
+    });
   }
 }
