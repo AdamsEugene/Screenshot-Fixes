@@ -625,7 +625,7 @@ class ScreenshotFixes extends Common {
     });
     
     // Add !important to styles targeting IDs
-    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay", "ps__widget_container"];
+    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay", "ps__widget_container", "shopify-section-promo-popup"];
     const style = this.dom.createElement("style");
     style.innerHTML = idsToHide
       .map((id) => `#${id} { display: none !important; }`)
