@@ -381,20 +381,20 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private updatePositionForShopifyHeaderELEAT(): void {
-    setTimeout(() => {
-      const element = this.document.getElementById(
-        "shopify-section-header"
-      ) as HTMLElement;
+  // private updatePositionForShopifyHeaderELEAT(): void {
+  //   setTimeout(() => {
+  //     const element = this.document.getElementById(
+  //       "shopify-section-header"
+  //     ) as HTMLElement;
 
-      if (element) {
-        if (element.style.position) {
-          element.style.removeProperty("position");
-        }
-        element.style.setProperty("position", "relative", "important");
-      }
-    }, 1000);
-  }
+  //     if (element) {
+  //       if (element.style.position) {
+  //         element.style.removeProperty("position");
+  //       }
+  //       element.style.setProperty("position", "relative", "important");
+  //     }
+  //   }, 1000);
+  // }
 
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
