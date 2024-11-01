@@ -55,6 +55,8 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesSAYA();
     this.removeInlineCssFromWidgetHeaderAKT();
     this.removeAllInlineStylesFromElementsHEDERA();
+    this.removeWidthFromElementNerd();
+    this.removeFormWidthFromNewsletterElementSAYA();
   }
 
   private removeHeightProperty() {
@@ -379,20 +381,20 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private updatePositionForShopifyHeaderELEAT(): void {
-    setTimeout(() => {
-      const element = this.document.getElementById(
-        "shopify-section-header"
-      ) as HTMLElement;
+  // private updatePositionForShopifyHeaderELEAT(): void {
+  //   setTimeout(() => {
+  //     const element = this.document.getElementById(
+  //       "shopify-section-header"
+  //     ) as HTMLElement;
 
-      if (element) {
-        if (element.style.position) {
-          element.style.removeProperty("position");
-        }
-        element.style.setProperty("position", "relative", "important");
-      }
-    }, 1000);
-  }
+  //     if (element) {
+  //       if (element.style.position) {
+  //         element.style.removeProperty("position");
+  //       }
+  //       element.style.setProperty("position", "relative", "important");
+  //     }
+  //   }, 1000);
+  // }
 
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
@@ -630,8 +632,10 @@ export default class AnitaScreenShotFixes {
   }
   private removeAllInlineStylesSAYA(): void {
     setTimeout(() => {
-      const element = this.document.getElementById("t4s-menu-drawer") as HTMLElement;
-  
+      const element = this.document.getElementById(
+        "t4s-menu-drawer"
+      ) as HTMLElement;
+
       if (
         element &&
         element.classList.contains("t4s-drawer") &&
@@ -642,7 +646,7 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000); // 1000ms (1 second) delay
   }
-  
+
   private removeInlineCssFromWidgetHeaderAKT(): void {
     const element = this.document.getElementById(
       "widget-header"
@@ -659,10 +663,30 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeAllInlineStylesFromElementsHEDERA(): void {
-    const elements = this.document.querySelectorAll('.jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup') as NodeListOf<HTMLElement>;
-  
+    const elements = this.document.querySelectorAll(
+      ".jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup"
+    ) as NodeListOf<HTMLElement>;
+
     elements.forEach((element) => {
-      element.removeAttribute('style');
+      element.removeAttribute("style");
     });
+  }
+  private removeWidthFromElementNerd(): void {
+    const element = this.document.querySelector(
+      ".row.single-top-padding.single-bottom-padding.no-h-padding.limit-width.row-parent"
+    ) as HTMLElement;
+
+    if (element) {
+      element.style.removeProperty("width");
+    }
+  }
+  private removeFormWidthFromNewsletterElementSAYA(): void {
+    const element = this.document.querySelector(
+      ".t4s-newsletter-parent.t4s_newsletter_se.t4s-newsl-des-1.t4s-newsl-small.t4s-text-start.t4s-hidden-mobile-false"
+    ) as HTMLElement;
+
+    if (element) {
+      element.style.removeProperty("--form-width");
+    }
   }
 }
