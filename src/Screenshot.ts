@@ -624,13 +624,13 @@ class ScreenshotFixes extends Common {
     });
     
     // Add !important to styles targeting IDs
-    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay"];
+    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay", "ps__widget_container"];
     const style = this.dom.createElement("style");
     style.innerHTML = idsToHide
       .map((id) => `#${id} { display: none !important; }`)
       .join("\n");
     this.dom.head.appendChild(style);
-  }
+  } 
 
   private getAttrAndSetDisplayNone() {
     const attrs = ['[x-show="searchActive"]'];
