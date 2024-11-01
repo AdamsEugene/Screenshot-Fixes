@@ -1220,6 +1220,20 @@ class ScreenshotFixes extends Common {
     } 
   }
 
+  //ELEAT
+  private ELEATUpdatePositionForShopifyHeader = () => {
+    setTimeout(() => {
+      const headerElement = this.dom.getElementById("shopify-section-header") as HTMLElement;
+  
+      if (headerElement) {
+        if (headerElement.style.position) {
+          headerElement.style.position = '';
+        }
+        headerElement.style.setProperty("position", "relative", "important");
+      }
+    }, 1000);
+  };
+
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1238,6 +1252,7 @@ class ScreenshotFixes extends Common {
           { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
           { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
+          { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
       ];
 
       const map: Record<number, (() => void)[]> = {};
