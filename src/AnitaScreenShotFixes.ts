@@ -57,6 +57,10 @@ export default class AnitaScreenShotFixes {
     this.removeAllInlineStylesFromElementsHEDERA();
     this.removeWidthFromElementNerd();
     this.removeFormWidthFromNewsletterElementSAYA();
+    this.removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE();
+    this.removeDisplayFromSpacerElementsCEDIS();
+    this.removeHeightFromLookImageElementsGOBI();
+
   }
 
   private removeHeightProperty() {
@@ -688,5 +692,34 @@ export default class AnitaScreenShotFixes {
     if (element) {
       element.style.removeProperty("--form-width");
     }
+  }
+  private removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE(): void {
+    const elements = this.document.querySelectorAll(
+      ".announcementSwiperSlide.swiper-slide"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.style.removeProperty("width");
+      element.style.removeProperty("max-width");
+      element.style.removeProperty("min-width");
+    });
+  }
+  private removeDisplayFromSpacerElementsCEDIS(): void {
+    const elements = this.document.querySelectorAll(
+      ".spacer"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.style.removeProperty("display");
+    });
+  }
+  private removeHeightFromLookImageElementsGOBI(): void {
+    const elements = this.document.querySelectorAll(
+      ".look__image.look__image--fullheight"
+    ) as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+      element.style.removeProperty("height");
+    });
   }
 }
