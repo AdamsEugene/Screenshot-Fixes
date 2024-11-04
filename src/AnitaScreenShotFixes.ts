@@ -60,7 +60,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE();
     this.removeDisplayFromSpacerElementsCEDIA();
     this.removeHeightFromLookImageElementsGOBI();
-    this.removeHeightFromHeaderMenu();
+    this.removeHeightFromHeaderMenuKHAITE();
   }
 
   private removeHeightProperty() {
@@ -727,7 +727,7 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("height");
     });
   }
-  private removeHeightFromHeaderMenu(): void {
+  private removeHeightFromHeaderMenuKHAITE(): void {
     setTimeout(() => {
       const element = this.document.querySelector('.header__menu.cc-show') as HTMLElement;
   
