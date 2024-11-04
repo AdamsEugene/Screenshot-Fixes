@@ -60,6 +60,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE();
     this.removeDisplayFromSpacerElementsCEDIA();
     this.removeHeightFromLookImageElementsGOBI();
+    this.removeHeightFromHeaderMenu();
   }
 
   private removeHeightProperty() {
@@ -521,20 +522,13 @@ export default class AnitaScreenShotFixes {
     }
   }
   private setDrawerBackgroundTransparentNurosym(): void {
-    const elements = this.document.querySelectorAll(
-      ".lang-drawer, .menu-drawer"
-    ) as NodeListOf<HTMLElement>;
-
-    if (elements.length === 0) {
-      console.log(
-        'No elements found with the classes "lang-drawer" or "menu-drawer".'
-      );
-    }
-
+    const elements = this.document.querySelectorAll(".lang-drawer, .menu-drawer") as NodeListOf<HTMLElement>;
+  
     elements.forEach((element) => {
       element.style.setProperty("background-color", "transparent", "important");
     });
   }
+  
   private hideAnnouncementHeaderBedsrus(): void {
     const element = this.document.getElementById(
       "shopify-section-announcement-header"
@@ -733,4 +727,14 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("height");
     });
   }
+  private removeHeightFromHeaderMenu(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector('.header__menu.cc-show') as HTMLElement;
+  
+      if (element) {
+        element.style.removeProperty('height');
+      }
+    }, 1000);
+  }
+  
 }
