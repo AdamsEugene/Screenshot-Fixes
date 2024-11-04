@@ -37,7 +37,7 @@ export default class AnitaScreenShotFixes {
     this.updateHeightForSpecificElement();
     this.removeMarginTopFromContent();
     this.removePositionFromShopifySectionEleat();
-    // this.updatePositionForShopifyHeaderELEAT();
+    this.updatePositionForShopifyHeaderELEAT();
     this.removeDisplayFromCartAsideELEAT();
     this.removeStylesFromPromoCardsAndParentKHAITE();
     this.removePositionFromHeaderElementKHT();
@@ -60,7 +60,6 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE();
     this.removeDisplayFromSpacerElementsCEDIS();
     this.removeHeightFromLookImageElementsGOBI();
-
   }
 
   private removeHeightProperty() {
@@ -385,20 +384,31 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  // private updatePositionForShopifyHeaderELEAT(): void {
-  //   setTimeout(() => {
-  //     const element = this.document.getElementById(
-  //       "shopify-section-header"
-  //     ) as HTMLElement;
+  private updatePositionForShopifyHeaderELEAT(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
 
-  //     if (element) {
-  //       if (element.style.position) {
-  //         element.style.removeProperty("position");
-  //       }
-  //       element.style.setProperty("position", "relative", "important");
-  //     }
-  //   }, 1000);
-  // }
+      if (element) {
+        const parentElement = element.parentElement;
+
+        if (
+          parentElement &&
+          parentElement.classList.contains("bg-white") &&
+          parentElement.classList.contains("font-gimlet") &&
+          parentElement.classList.contains("text-base") &&
+          parentElement.classList.contains("text-black") &&
+          parentElement.tagName.toLowerCase() === "body"
+        ) {
+          if (element.style.position) {
+            element.style.removeProperty("position");
+          }
+          element.style.setProperty("position", "relative", "important");
+        }
+      }
+    }, 1000);
+  }
 
   private removeDisplayFromCartAsideELEAT(): void {
     const element = this.document.getElementById(
