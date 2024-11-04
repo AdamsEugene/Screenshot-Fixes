@@ -1210,11 +1210,11 @@ class ScreenshotFixes extends Common {
     });
   };
 
-  private Nuvecartfooter() {
-    const svgElements = this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>;
-
-    svgElements.forEach((element: HTMLElement) => {
-        element.style.setProperty('display', 'block', 'important');
+  private Nuvecartfooter = () => {
+    const footerElements = this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>;
+  
+    footerElements.forEach((element: HTMLElement) => {
+      element.style.setProperty('display', 'block', 'important');
     });
   };
 
