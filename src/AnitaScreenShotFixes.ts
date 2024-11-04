@@ -524,13 +524,7 @@ export default class AnitaScreenShotFixes {
     const elements = this.document.querySelectorAll(
       ".lang-drawer, .menu-drawer"
     ) as NodeListOf<HTMLElement>;
-
-    if (elements.length === 0) {
-      console.log(
-        'No elements found with the classes "lang-drawer" or "menu-drawer".'
-      );
-    }
-
+  
     elements.forEach((element) => {
       element.style.setProperty("background-color", "transparent", "important");
     });

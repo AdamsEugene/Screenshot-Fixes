@@ -1155,14 +1155,12 @@ class ScreenshotFixes extends Common {
   
       if (mainContent) {
         const header = mainContent.previousElementSibling as HTMLElement;
-        console.log('Potential shop header:', header);
   
         if (header) {
           const isShopHeader = header.querySelector('.site-header, .main-header, nav, [class*="menu"]');
   
           if (isShopHeader) {
             header.style.setProperty('margin-top', '-54px', 'important');
-            console.log('Applied styles to shop header');
           }
         }
       }
@@ -1172,13 +1170,13 @@ class ScreenshotFixes extends Common {
         const headerContainer = mainNav.closest('header') || mainNav.parentElement;
         if (headerContainer) {
           (headerContainer as HTMLElement).style.setProperty('margin-top', '-54px', 'important');
-          console.log('Applied styles to header container');
         }
       }
     };
-    findAndAdjustHeader();
     
+    findAndAdjustHeader();
     window.addEventListener('load', findAndAdjustHeader);
+    
     const interval = setInterval(findAndAdjustHeader, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
@@ -1191,13 +1189,13 @@ class ScreenshotFixes extends Common {
   
       if (mainContent) {
         (mainContent as HTMLElement).style.setProperty('margin-top', '0', 'important');
-        console.log('Removed margin-top from main content');
       }
     };
   
     findAndAdjustContent();
     
     window.addEventListener('load', findAndAdjustContent);
+    
     const interval = setInterval(findAndAdjustContent, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }

@@ -56,33 +56,17 @@ export default class RyanScreenshotFixes extends Common {
       const img = post.querySelector("img");
       if (img) {
         img.style.height = "";
-        console.log(`Reset height for image in post:`, img);
       }
     });
+  
     const elements = this.dom.querySelectorAll(
       ".featured-collection-section"
     ) as NodeListOf<HTMLElement>;
     elements.forEach((element) => {
-      console.log(
-        "Before update:",
-        element,
-        "Classes:",
-        element.classList.value,
-        "Styles:",
-        element.style.cssText
-      );
       element.classList.remove("pt-6", "pt-9", "pb-9");
       element.style.paddingTop = "";
       element.style.paddingBottom = "";
       element.style.height = "";
-      console.log(
-        "After update:",
-        element,
-        "Classes:",
-        element.classList.value,
-        "Styles:",
-        element.style.cssText
-      );
     });
   }
 
