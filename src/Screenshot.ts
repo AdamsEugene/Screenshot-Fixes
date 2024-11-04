@@ -1244,14 +1244,6 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
-  //Hide Header group
-  private hideShopifyHeaderGroup = () => {
-    const headerGroupElements = this.dom.querySelectorAll('.shopify-section.shopify-section-group-header-group.section-main-page-landing');
-    headerGroupElements.forEach((element: HTMLElement) => {
-        element.style.setProperty('display', 'none', 'important');
-    });
-  };
-
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1272,7 +1264,6 @@ class ScreenshotFixes extends Common {
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
           { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
           { ids: [2898], functions: [this.Nuvecartfooter] },
-          { ids: [1642], functions: [this.hideShopifyHeaderGroup] },
       ];
 
       const map: Record<number, (() => void)[]> = {};
