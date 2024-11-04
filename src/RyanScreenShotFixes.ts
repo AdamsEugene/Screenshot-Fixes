@@ -44,6 +44,7 @@ export default class RyanScreenshotFixes extends Common {
       this.disablePointerEventsOnAbsolutePseudoElements();
       this.GraymatterhideNextDivAfterIframe();
       this.hideShopifyHeaderGroup();
+      this.KhaiteUpdateHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -768,6 +769,19 @@ export default class RyanScreenshotFixes extends Common {
     const interval = setInterval(updateHeaderMargin, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
+
+  private KhaiteUpdateHeight() {
+    this.dom.querySelectorAll('.menu-item.cc-show').forEach(parent => {
+        const submenu = parent.querySelector('.menu-item__submenu') as HTMLElement;
+        if (submenu) {
+            submenu.style.removeProperty('height');
+            submenu.style.removeProperty('min-height');
+            submenu.style.setProperty('min-height', 'max-content', 'important');
+            submenu.style.setProperty('height', 'max-content', 'important');
+        }
+    });
+  }
+
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
