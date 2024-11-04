@@ -58,7 +58,7 @@ export default class AnitaScreenShotFixes {
     this.removeWidthFromElementNerd();
     this.removeFormWidthFromNewsletterElementSAYA();
     this.removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE();
-    this.removeDisplayFromSpacerElementsCEDIS();
+    this.removeDisplayFromSpacerElementsCEDIA();
     this.removeHeightFromLookImageElementsGOBI();
   }
 
@@ -714,15 +714,16 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("min-width");
     });
   }
-  private removeDisplayFromSpacerElementsCEDIS(): void {
-    const elements = this.document.querySelectorAll(
-      ".spacer"
-    ) as NodeListOf<HTMLElement>;
-
-    elements.forEach((element) => {
-      element.style.removeProperty("display");
-    });
+  private removeDisplayFromSpacerElementsCEDIA(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll(".spacer") as NodeListOf<HTMLElement>;
+  
+      elements.forEach((element) => {
+        element.style.removeProperty("display");
+      });
+    }, 2000);
   }
+  
   private removeHeightFromLookImageElementsGOBI(): void {
     const elements = this.document.querySelectorAll(
       ".look__image.look__image--fullheight"
