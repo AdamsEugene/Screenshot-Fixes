@@ -1214,9 +1214,10 @@ class ScreenshotFixes extends Common {
     const elements = [
       ...Array.from(this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>),
       this.dom.querySelector('#sticky_container') as HTMLElement
-    ].filter(Boolean);
+    ].filter(Boolean); // Filters out null if #sticky_container is not found
 
     elements.forEach(element => {
+      element.style.removeProperty('display'); // Removes any existing display style
       element.style.setProperty('display', 'block', 'important');
     });
   };
