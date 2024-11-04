@@ -771,7 +771,7 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private KhaiteUpdateHeight() {
-    this.dom.querySelectorAll('.menu-item.cc-show').forEach(parent => {
+    this.dom.querySelectorAll('.menu-item').forEach(parent => {
         const submenu = parent.querySelector('.menu-item__submenu') as HTMLElement;
         if (submenu) {
             submenu.style.removeProperty('height');
@@ -781,7 +781,6 @@ export default class RyanScreenshotFixes extends Common {
         }
     });
   }
-
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
