@@ -288,6 +288,24 @@
     }
   },
   {
+    "selector": ".cg-wrapper",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5616478,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.cg-wrapper.html"
+    }
+  },
+  {
+    "selector": ".cart-prices",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5616478,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.cart-prices.html"
+    }
+  },
+  {
     "selector": ".footer__register-form",
     "content": {
       "idSite": 1808,
