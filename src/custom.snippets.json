@@ -279,21 +279,39 @@
     }
   },
   {
-    "selector": "#cart",
+    "selector": ".cart-items",
     "content": {
       "idSite": 2898,
       "idSiteHsr": 5940418,
       "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.html"
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.cart-items.html"
     }
   },
   {
-    "selector": ".cart__footer",
+    "selector": ".cg-wrapper",
     "content": {
       "idSite": 2898,
       "idSiteHsr": 5940418,
       "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main-cart-footer.html"
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.cg-wrapper.html"
+    }
+  },
+  {
+    "selector": "#container_upsell",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5940418,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main#container_upsell.html"
+    }
+  },
+  {
+    "selector": ".cart-prices",
+    "content": {
+      "idSite": 2898,
+      "idSiteHsr": 5940418,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-cart-main.cart-prices.html"
     }
   },
   {
