@@ -34,7 +34,7 @@ export default class RyanScreenshotFixes extends Common {
       this.WoojerupdateMinHeight();
       this.YaqeenUpdateBackground();
       this.NubianceUpdateBackground();
-      // this.NuveremoveIsEmptyClass();
+      this.NuveremoveIsEmptyClass();
       this.NourishedhideSubmenuDrawers();
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
@@ -43,6 +43,8 @@ export default class RyanScreenshotFixes extends Common {
       this.SmelUpdateOpacity();
       this.disablePointerEventsOnAbsolutePseudoElements();
       this.GraymatterhideNextDivAfterIframe();
+      this.hideShopifyHeaderGroup();
+      this.KhaiteUpdateHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -56,33 +58,17 @@ export default class RyanScreenshotFixes extends Common {
       const img = post.querySelector("img");
       if (img) {
         img.style.height = "";
-        console.log(`Reset height for image in post:`, img);
       }
     });
+  
     const elements = this.dom.querySelectorAll(
       ".featured-collection-section"
     ) as NodeListOf<HTMLElement>;
     elements.forEach((element) => {
-      console.log(
-        "Before update:",
-        element,
-        "Classes:",
-        element.classList.value,
-        "Styles:",
-        element.style.cssText
-      );
       element.classList.remove("pt-6", "pt-9", "pb-9");
       element.style.paddingTop = "";
       element.style.paddingBottom = "";
       element.style.height = "";
-      console.log(
-        "After update:",
-        element,
-        "Classes:",
-        element.classList.value,
-        "Styles:",
-        element.style.cssText
-      );
     });
   }
 
@@ -678,11 +664,11 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Nuve
-  // private NuveremoveIsEmptyClass() {
-  //   this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
-  //       cartItemElement.classList.remove("is-empty");
-  //   });
-  // }
+  private NuveremoveIsEmptyClass() {
+    this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
+        cartItemElement.classList.remove("is-empty");
+    });
+  }
 
   //Nourished
   private NourishedhideSubmenuDrawers() {
@@ -784,6 +770,18 @@ export default class RyanScreenshotFixes extends Common {
     setTimeout(() => clearInterval(interval), 5000);
   }
 
+  private KhaiteUpdateHeight() {
+    this.dom.querySelectorAll('.menu-item').forEach(parent => {
+        const submenu = parent.querySelector('.menu-item__submenu') as HTMLElement;
+        if (submenu) {
+            submenu.style.removeProperty('height');
+            submenu.style.removeProperty('min-height');
+            submenu.style.setProperty('min-height', 'max-content', 'important');
+            submenu.style.setProperty('height', 'max-content', 'important');
+        }
+    });
+  }
+
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
     this.dom.querySelectorAll('.card__link').forEach((parentElement: HTMLElement) => {
@@ -796,6 +794,13 @@ export default class RyanScreenshotFixes extends Common {
       if (isBeforeAbsolute || isAfterAbsolute) {
         parentElement.style.setProperty('pointer-events', 'none', 'important');
       }
+    });
+  }
+
+  //Hide Header group
+  private hideShopifyHeaderGroup() {
+    this.dom.querySelectorAll('.shopify-section.shopify-section-group-header-group.section-main-page-landing').forEach((headerGroupElement: HTMLElement) => {
+        headerGroupElement.style.setProperty('display', 'none', 'important');
     });
   }
   

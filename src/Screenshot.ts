@@ -1155,14 +1155,12 @@ class ScreenshotFixes extends Common {
   
       if (mainContent) {
         const header = mainContent.previousElementSibling as HTMLElement;
-        console.log('Potential shop header:', header);
   
         if (header) {
           const isShopHeader = header.querySelector('.site-header, .main-header, nav, [class*="menu"]');
   
           if (isShopHeader) {
             header.style.setProperty('margin-top', '-54px', 'important');
-            console.log('Applied styles to shop header');
           }
         }
       }
@@ -1172,13 +1170,13 @@ class ScreenshotFixes extends Common {
         const headerContainer = mainNav.closest('header') || mainNav.parentElement;
         if (headerContainer) {
           (headerContainer as HTMLElement).style.setProperty('margin-top', '-54px', 'important');
-          console.log('Applied styles to header container');
         }
       }
     };
-    findAndAdjustHeader();
     
+    findAndAdjustHeader();
     window.addEventListener('load', findAndAdjustHeader);
+    
     const interval = setInterval(findAndAdjustHeader, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
@@ -1191,13 +1189,13 @@ class ScreenshotFixes extends Common {
   
       if (mainContent) {
         (mainContent as HTMLElement).style.setProperty('margin-top', '0', 'important');
-        console.log('Removed margin-top from main content');
       }
     };
   
     findAndAdjustContent();
     
     window.addEventListener('load', findAndAdjustContent);
+    
     const interval = setInterval(findAndAdjustContent, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
@@ -1207,6 +1205,18 @@ class ScreenshotFixes extends Common {
 
     svgElements.forEach((element: HTMLElement) => {
         element.style.setProperty('display', 'none', 'important');
+    });
+  };
+
+  private Nuvecartfooter = () => {
+    const elements = [
+      ...Array.from(this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>),
+      this.dom.querySelector('#sticky_container') as HTMLElement
+    ].filter(Boolean); // Filters out null if #sticky_container is not found
+
+    elements.forEach(element => {
+      element.style.removeProperty('display'); // Removes any existing display style
+      element.style.setProperty('display', 'block', 'important');
     });
   };
 
@@ -1253,6 +1263,7 @@ class ScreenshotFixes extends Common {
           { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
           { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
+          { ids: [2898], functions: [this.Nuvecartfooter] },
       ];
 
       const map: Record<number, (() => void)[]> = {};

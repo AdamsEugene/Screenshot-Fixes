@@ -58,8 +58,9 @@ export default class AnitaScreenShotFixes {
     this.removeWidthFromElementNerd();
     this.removeFormWidthFromNewsletterElementSAYA();
     this.removeInlineStylesFromAnnouncementSwiperSlideEVERYDAYDOSE();
-    this.removeDisplayFromSpacerElementsCEDIS();
+    this.removeDisplayFromSpacerElementsCEDIA();
     this.removeHeightFromLookImageElementsGOBI();
+    this.removeHeightFromHeaderMenuKHAITE();
   }
 
   private removeHeightProperty() {
@@ -521,20 +522,13 @@ export default class AnitaScreenShotFixes {
     }
   }
   private setDrawerBackgroundTransparentNurosym(): void {
-    const elements = this.document.querySelectorAll(
-      ".lang-drawer, .menu-drawer"
-    ) as NodeListOf<HTMLElement>;
-
-    if (elements.length === 0) {
-      console.log(
-        'No elements found with the classes "lang-drawer" or "menu-drawer".'
-      );
-    }
-
+    const elements = this.document.querySelectorAll(".lang-drawer, .menu-drawer") as NodeListOf<HTMLElement>;
+  
     elements.forEach((element) => {
       element.style.setProperty("background-color", "transparent", "important");
     });
   }
+  
   private hideAnnouncementHeaderBedsrus(): void {
     const element = this.document.getElementById(
       "shopify-section-announcement-header"
@@ -714,15 +708,16 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("min-width");
     });
   }
-  private removeDisplayFromSpacerElementsCEDIS(): void {
-    const elements = this.document.querySelectorAll(
-      ".spacer"
-    ) as NodeListOf<HTMLElement>;
-
-    elements.forEach((element) => {
-      element.style.removeProperty("display");
-    });
+  private removeDisplayFromSpacerElementsCEDIA(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll(".spacer") as NodeListOf<HTMLElement>;
+  
+      elements.forEach((element) => {
+        element.style.removeProperty("display");
+      });
+    }, 2000);
   }
+  
   private removeHeightFromLookImageElementsGOBI(): void {
     const elements = this.document.querySelectorAll(
       ".look__image.look__image--fullheight"
@@ -732,4 +727,14 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty("height");
     });
   }
+  private removeHeightFromHeaderMenuKHAITE(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector('.header__menu.cc-show') as HTMLElement;
+  
+      if (element) {
+        element.style.removeProperty('height');
+      }
+    }, 1000);
+  }
+  
 }
