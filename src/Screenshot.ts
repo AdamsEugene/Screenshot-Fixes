@@ -37,8 +37,7 @@ class ScreenshotFixes extends Common {
     () => this.setBackgroundWrapperHeight(),
     () => this.setSlideshowHeight(),
     () => this.observeMutationDesktop(),
-    // () => this.setHeroMaxHeight(),
-    // () => this.RubioMonocotUpdateMenuState(),
+    () => this.removeIdFromLogo(),
   ];
 
   mobileFunctions = [
@@ -280,6 +279,14 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  private removeIdFromLogo() {
+    this.allElements(".wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex").forEach(parent => {
+        const child = parent.querySelector("#site-logo");
+        if (child) child.removeAttribute("id");
+    });
+}
+  
+
   private setUncolHeight() {
     const parentElement = this.dom.querySelector<HTMLElement>(
       ".wpb_column.pos-top.pos-center.align_center.align_center_mobile.column_parent.col-lg-12.single-internal-gutter"
@@ -455,14 +462,13 @@ class ScreenshotFixes extends Common {
 
   //Denver CO
   private DenvercoContentAdjustOpacity() {
-    this.dom.querySelectorAll(
-        '.wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex'
-    ).forEach((parentElement) => {
-        const siteLogoElement = parentElement.querySelector('#site-logo');
-        siteLogoElement?.querySelectorAll('img').forEach((img) => {
-            img.style.setProperty('opacity', '0', 'important');
-        });
-    });
+    const style = this.dom.createElement('style');
+    style.innerHTML = `
+        .wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex #site-logo img {
+            opacity: 0 !important;
+        }
+    `;
+    this.dom.head.appendChild(style);
   }
 
   private observeMutations() {
@@ -608,6 +614,7 @@ class ScreenshotFixes extends Common {
       ".fixed.inset-0.bg-black.bg-opacity-25",
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
+      ".window-overlay",
     ];
     
     // Add inline styles with !important to class-based elements
@@ -618,13 +625,13 @@ class ScreenshotFixes extends Common {
     });
     
     // Add !important to styles targeting IDs
-    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay"];
+    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay", "ps__widget_container", "shopify-section-promo-popup"];
     const style = this.dom.createElement("style");
     style.innerHTML = idsToHide
       .map((id) => `#${id} { display: none !important; }`)
       .join("\n");
     this.dom.head.appendChild(style);
-  }
+  } 
 
   private getAttrAndSetDisplayNone() {
     const attrs = ['[x-show="searchActive"]'];
@@ -1148,14 +1155,12 @@ class ScreenshotFixes extends Common {
   
       if (mainContent) {
         const header = mainContent.previousElementSibling as HTMLElement;
-        console.log('Potential shop header:', header);
   
         if (header) {
           const isShopHeader = header.querySelector('.site-header, .main-header, nav, [class*="menu"]');
   
           if (isShopHeader) {
             header.style.setProperty('margin-top', '-54px', 'important');
-            console.log('Applied styles to shop header');
           }
         }
       }
@@ -1165,13 +1170,13 @@ class ScreenshotFixes extends Common {
         const headerContainer = mainNav.closest('header') || mainNav.parentElement;
         if (headerContainer) {
           (headerContainer as HTMLElement).style.setProperty('margin-top', '-54px', 'important');
-          console.log('Applied styles to header container');
         }
       }
     };
-    findAndAdjustHeader();
     
+    findAndAdjustHeader();
     window.addEventListener('load', findAndAdjustHeader);
+    
     const interval = setInterval(findAndAdjustHeader, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
@@ -1184,13 +1189,13 @@ class ScreenshotFixes extends Common {
   
       if (mainContent) {
         (mainContent as HTMLElement).style.setProperty('margin-top', '0', 'important');
-        console.log('Removed margin-top from main content');
       }
     };
   
     findAndAdjustContent();
     
     window.addEventListener('load', findAndAdjustContent);
+    
     const interval = setInterval(findAndAdjustContent, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
@@ -1200,6 +1205,18 @@ class ScreenshotFixes extends Common {
 
     svgElements.forEach((element: HTMLElement) => {
         element.style.setProperty('display', 'none', 'important');
+    });
+  };
+
+  private Nuvecartfooter = () => {
+    const elements = [
+      ...Array.from(this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>),
+      this.dom.querySelector('#sticky_container') as HTMLElement
+    ].filter(Boolean); // Filters out null if #sticky_container is not found
+
+    elements.forEach(element => {
+      element.style.removeProperty('display'); // Removes any existing display style
+      element.style.setProperty('display', 'block', 'important');
     });
   };
 
@@ -1213,25 +1230,19 @@ class ScreenshotFixes extends Common {
     } 
   }
 
-  private hideWindowOverlay() {
-    const style = this.dom.createElement('style');
-    style.innerHTML = `
-      .window-overlay {
-        display: none !important;
-      }
-    `;
-    this.dom.head.appendChild(style);
-  }
-
-  private observeMutationoverlay = () => {
-    if (this.dom && this.dom.body) {
-      const observer = new MutationObserver(() => {
-        this.hideWindowOverlay();
-      });
+  //ELEAT
+  private ELEATUpdatePositionForShopifyHeader = () => {
+    setTimeout(() => {
+      const headerElement = this.dom.getElementById("shopify-section-header") as HTMLElement;
   
-      observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
-  }
+      if (headerElement) {
+        if (headerElement.style.position) {
+          headerElement.style.position = '';
+        }
+        headerElement.style.setProperty("position", "relative", "important");
+      }
+    }, 1000);
+  };
 
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
@@ -1249,9 +1260,10 @@ class ScreenshotFixes extends Common {
           { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
           { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
           { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
-          { ids: [2777, 172, 2907], functions: [this.observeMutation] },
-          { ids: [2697], functions: [this.observeMutationoverlay] },
+          { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
+          { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
+          { ids: [2898], functions: [this.Nuvecartfooter] },
       ];
 
       const map: Record<number, (() => void)[]> = {};

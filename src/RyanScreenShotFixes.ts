@@ -33,6 +33,18 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustHeaderPosition();
       this.WoojerupdateMinHeight();
       this.YaqeenUpdateBackground();
+      this.NubianceUpdateBackground();
+      this.NuveremoveIsEmptyClass();
+      this.NourishedhideSubmenuDrawers();
+      this.beRootedUpdateBackground();
+      this.muteAllMediaElements();
+      this.KhaiteUpdateHeaderMargin();
+      this.SmelUpdateHeight();
+      this.SmelUpdateOpacity();
+      this.disablePointerEventsOnAbsolutePseudoElements();
+      this.GraymatterhideNextDivAfterIframe();
+      this.hideShopifyHeaderGroup();
+      this.KhaiteUpdateHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -46,33 +58,17 @@ export default class RyanScreenshotFixes extends Common {
       const img = post.querySelector("img");
       if (img) {
         img.style.height = "";
-        console.log(`Reset height for image in post:`, img);
       }
     });
+  
     const elements = this.dom.querySelectorAll(
       ".featured-collection-section"
     ) as NodeListOf<HTMLElement>;
     elements.forEach((element) => {
-      console.log(
-        "Before update:",
-        element,
-        "Classes:",
-        element.classList.value,
-        "Styles:",
-        element.style.cssText
-      );
       element.classList.remove("pt-6", "pt-9", "pb-9");
       element.style.paddingTop = "";
       element.style.paddingBottom = "";
       element.style.height = "";
-      console.log(
-        "After update:",
-        element,
-        "Classes:",
-        element.classList.value,
-        "Styles:",
-        element.style.cssText
-      );
     });
   }
 
@@ -445,6 +441,7 @@ export default class RyanScreenshotFixes extends Common {
         this.ReduxupdateHeaderPosition();
         this.WarriorLabsupdateMenuHeight();
         this.Upcircleupdatemaincontent();
+        this.NextAdventureSetSubmenuHeight();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -654,6 +651,156 @@ export default class RyanScreenshotFixes extends Common {
         childElement.style.minHeight = '';
         childElement.style.setProperty('min-height', 'auto', 'important');
       });
+    });
+  }
+
+  //Nubiance
+  private NubianceUpdateBackground() {
+    this.dom.querySelectorAll(".menu__item.grandparent.kids-2.no-images").forEach((parentElement: HTMLElement) => {
+        parentElement.querySelectorAll(".header__dropdown").forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty("background", "white", "important");
+        });
+    });
+  }
+
+  //Nuve
+  private NuveremoveIsEmptyClass() {
+    this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
+        cartItemElement.classList.remove("is-empty");
+    });
+  }
+
+  //Nourished
+  private NourishedhideSubmenuDrawers() {
+    this.dom.querySelectorAll(".mobile-nav__link").forEach((parentElement: HTMLElement) => {
+        const submenuDrawer = parentElement.querySelector(".mobile-nav__submenu-drawer");
+        if (submenuDrawer) {
+            (submenuDrawer as HTMLElement).style.visibility = "hidden";
+        }
+    });
+  }
+
+  //Next Adventure
+  private NextAdventureSetSubmenuHeight() {
+    this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
+        const submenu = parentElement.querySelector(".navmenu-submenu") as HTMLElement | null;
+        if (submenu) submenu.style.removeProperty("height");
+    });
+
+    const styleSheet = document.createElement("style");
+    styleSheet.innerHTML = `
+        .navmenu-item .navmenu-submenu {
+            height: revert-layer !important;
+        }
+    `;
+    document.head.appendChild(styleSheet);
+  }
+
+  //be Rooted
+  private beRootedUpdateBackground() {
+    this.dom.querySelectorAll(".menu-drawer-container").forEach((parentElement: HTMLElement) => {
+        parentElement.querySelectorAll("#menu-drawer").forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty("background-color", "revert-layer", "important");
+        });
+    });
+  }
+
+  //Smel
+  private SmelUpdateOpacity() {
+    const style = this.dom.createElement('style');
+    style.innerHTML = `
+        .product-item__image-link .product-item__image--two {
+            opacity: 0 !important;
+        }
+    `;
+    this.dom.head.appendChild(style);
+  }
+  
+  private SmelUpdateHeight() {
+    this.dom.querySelectorAll(".drawer-menu__panel").forEach(panel => {
+        ["bottom", "all-links", "contents"].forEach(cls => {
+            const el = panel.querySelector(`.drawer-menu__${cls}`) as HTMLElement;
+            if (el) el.style.setProperty("height", "revert-layer", "important");
+        });
+    });
+  }
+
+  //Graymatter Labs
+  private GraymatterhideNextDivAfterIframe() {
+    this.dom.querySelectorAll('iframe.alia-iframe.left').forEach((iframeElement: HTMLIFrameElement) => {
+        const nextDiv = iframeElement.nextElementSibling?.tagName === 'DIV' ? iframeElement.nextElementSibling as HTMLElement : null;
+        nextDiv?.style.setProperty('display', 'none', 'important');
+    });
+  }
+
+  //muteMediaElements
+  private muteAllMediaElements() {
+    const self = this;
+
+    const muteMedia = () => {
+        self.dom.querySelectorAll("audio, video").forEach((mediaElement: HTMLMediaElement) => {
+            mediaElement.muted = true;
+        });
+    };
+
+    muteMedia();
+    window.addEventListener('load', muteMedia);
+    const interval = setInterval(muteMedia, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+
+  //Khaite
+  private KhaiteUpdateHeaderMargin() {
+    const self = this; 
+
+    function updateHeaderMargin() {
+        const parentElements = self.dom.querySelectorAll("class-controller");
+        parentElements.forEach((parentElement: HTMLElement) => {
+            const childElements = parentElement.querySelectorAll("#shopify-section-header");
+            childElements.forEach((childElement: HTMLElement) => {
+                childElement.style.removeProperty("margin-top");
+                childElement.style.setProperty("margin-top", "auto", "important");
+            });
+        });
+    }
+
+    updateHeaderMargin();
+    window.addEventListener('load', updateHeaderMargin);
+    const interval = setInterval(updateHeaderMargin, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+
+  private KhaiteUpdateHeight() {
+    this.dom.querySelectorAll('.menu-item').forEach(parent => {
+        const submenu = parent.querySelector('.menu-item__submenu') as HTMLElement;
+        if (submenu) {
+            submenu.style.removeProperty('height');
+            submenu.style.removeProperty('min-height');
+            submenu.style.setProperty('min-height', 'max-content', 'important');
+            submenu.style.setProperty('height', 'max-content', 'important');
+        }
+    });
+  }
+
+  //disable pointer events
+  private disablePointerEventsOnAbsolutePseudoElements() {
+    this.dom.querySelectorAll('.card__link').forEach((parentElement: HTMLElement) => {
+      const beforeStyle = window.getComputedStyle(parentElement, '::before');
+      const afterStyle = window.getComputedStyle(parentElement, '::after');
+  
+      const isBeforeAbsolute = beforeStyle.position === 'absolute';
+      const isAfterAbsolute = afterStyle.position === 'absolute';
+  
+      if (isBeforeAbsolute || isAfterAbsolute) {
+        parentElement.style.setProperty('pointer-events', 'none', 'important');
+      }
+    });
+  }
+
+  //Hide Header group
+  private hideShopifyHeaderGroup() {
+    this.dom.querySelectorAll('.shopify-section.shopify-section-group-header-group.section-main-page-landing').forEach((headerGroupElement: HTMLElement) => {
+        headerGroupElement.style.setProperty('display', 'none', 'important');
     });
   }
   

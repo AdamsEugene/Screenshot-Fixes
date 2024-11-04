@@ -522,7 +522,13 @@ export default class AnitaScreenShotFixes {
     }
   }
   private setDrawerBackgroundTransparentNurosym(): void {
+<<<<<<< HEAD
     const elements = this.document.querySelectorAll(".lang-drawer, .menu-drawer") as NodeListOf<HTMLElement>;
+=======
+    const elements = this.document.querySelectorAll(
+      ".lang-drawer, .menu-drawer"
+    ) as NodeListOf<HTMLElement>;
+>>>>>>> a2c985a55e1caebd4e1eefc3062999f746d577f4
   
     elements.forEach((element) => {
       element.style.setProperty("background-color", "transparent", "important");
