@@ -34,7 +34,7 @@ export default class RyanScreenshotFixes extends Common {
       this.WoojerupdateMinHeight();
       this.YaqeenUpdateBackground();
       this.NubianceUpdateBackground();
-      // this.NuveremoveIsEmptyClass();
+      this.NuveremoveIsEmptyClass();
       this.NourishedhideSubmenuDrawers();
       this.beRootedUpdateBackground();
       this.muteAllMediaElements();
@@ -678,11 +678,11 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Nuve
-  // private NuveremoveIsEmptyClass() {
-  //   this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
-  //       cartItemElement.classList.remove("is-empty");
-  //   });
-  // }
+  private NuveremoveIsEmptyClass() {
+    this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
+        cartItemElement.classList.remove("is-empty");
+    });
+  }
 
   //Nourished
   private NourishedhideSubmenuDrawers() {

@@ -1210,6 +1210,14 @@ class ScreenshotFixes extends Common {
     });
   };
 
+  private Nuvecartfooter() {
+    const svgElements = this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>;
+
+    svgElements.forEach((element: HTMLElement) => {
+        element.style.setProperty('display', 'block', 'important');
+    });
+  };
+
   private observeMutation = () => {
     if (this.dom && this.dom.body) {
       const observer = new MutationObserver(() => {
@@ -1253,6 +1261,7 @@ class ScreenshotFixes extends Common {
           { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
           { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
+          { ids: [2898], functions: [this.Nuvecartfooter] },
       ];
 
       const map: Record<number, (() => void)[]> = {};
