@@ -741,26 +741,42 @@ export default class AnitaScreenShotFixes {
   }
   private removeOpacityFromDrawerCoverinfiniteicon(): void {
     setTimeout(() => {
+      console.log('Attempting to find element with ID "drawerCover"...');
       const element = this.document.getElementById('drawerCover') as HTMLElement;
   
       if (element) {
+        console.log('Element found:', element);
         element.style.removeProperty('opacity');
+        console.log('Opacity property removed from element.');
+      } else {
+        console.log('Element with ID "drawerCover" not found.');
       }
-    }, 2000);
+    }, 1000); // 1000ms (1 second) delay
   }
-  private removeOpacityFromProductCardImageshappydad(): void {
-    const ancestor = this.document.querySelector(
-      '#shopify-section-template--16803550560424__main.shopify-section.shopify-section--main-collection'
-    ) as HTMLElement;
   
-    if (ancestor) {
+  private removeOpacityFromProductCardImageshappydad(): void {
+    const ancestor = this.document.getElementById('shopify-section-template--16803550560424__main') as HTMLElement;
+  
+    if (ancestor && ancestor.classList.contains('shopify-section') && ancestor.classList.contains('shopify-section--main-collection')) {
+      console.log('Ancestor element found with the specified ID and classes:', ancestor);
+  
       const elements = ancestor.querySelectorAll('.product-card__image.product-card__image--secondary') as NodeListOf<HTMLElement>;
   
-      elements.forEach((element) => {
-        element.style.removeProperty('opacity');
-      });
+      if (elements.length > 0) {
+        console.log(`Found ${elements.length} product-card image(s) with the specified classes.`);
+  
+        elements.forEach((element) => {
+          element.style.removeProperty('opacity');
+          console.log('Removed opacity property from element:', element);
+        });
+      } else {
+        console.log('No product-card images found with the specified classes.');
+      }
+    } else {
+      console.log('Ancestor element not found or does not have the specified classes.');
     }
   }
+  
   
   
   
