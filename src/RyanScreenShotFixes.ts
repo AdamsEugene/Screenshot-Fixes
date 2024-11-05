@@ -45,7 +45,6 @@ export default class RyanScreenshotFixes extends Common {
       this.GraymatterhideNextDivAfterIframe();
       this.hideShopifyHeaderGroup();
       this.KhaiteUpdateHeight();
-      this.NitesightssetChildOpacities();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -443,6 +442,7 @@ export default class RyanScreenshotFixes extends Common {
         this.WarriorLabsupdateMenuHeight();
         this.Upcircleupdatemaincontent();
         this.NextAdventureSetSubmenuHeight();
+        this.NitesightssetChildOpacities();
       });
   
       observer.observe(this.dom.body, { childList: true, subtree: true });
