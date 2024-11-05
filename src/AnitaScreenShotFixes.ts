@@ -62,6 +62,7 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
     this.removeOpacityFromDrawerCoverinfiniteicon();
+    this.removeOpacityFromProductCardImageshappydad();
   }
 
   private removeHeightProperty() {
@@ -745,8 +746,24 @@ export default class AnitaScreenShotFixes {
       if (element) {
         element.style.removeProperty('opacity');
       }
-    }, 1000); // 1000ms (1 second) delay
+    }, 2000);
   }
+  private removeOpacityFromProductCardImageshappydad(): void {
+    const ancestor = this.document.querySelector(
+      '#shopify-section-template--16803550560424__main.shopify-section.shopify-section--main-collection'
+    ) as HTMLElement;
+  
+    if (ancestor) {
+      const elements = ancestor.querySelectorAll('.product-card__image.product-card__image--secondary') as NodeListOf<HTMLElement>;
+  
+      elements.forEach((element) => {
+        element.style.removeProperty('opacity');
+      });
+    }
+  }
+  
+  
+  
   
   
   
