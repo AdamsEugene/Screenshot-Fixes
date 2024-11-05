@@ -61,6 +61,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayFromSpacerElementsCEDIA();
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
+    this.removeOpacityFromDrawerCoverinfiniteicon();
   }
 
   private removeHeightProperty() {
@@ -737,5 +738,13 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
+  private removeOpacityFromDrawerCoverinfiniteicon(): void {
+    const element = this.document.getElementById('drawerCover') as HTMLElement;
+  
+    if (element) {
+      element.style.removeProperty('opacity');
+    }
+  }
+  
   
 }
