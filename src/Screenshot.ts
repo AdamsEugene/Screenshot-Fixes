@@ -38,6 +38,7 @@ class ScreenshotFixes extends Common {
     () => this.setSlideshowHeight(),
     () => this.observeMutationDesktop(),
     () => this.removeIdFromLogo(),
+    () => this.BenchmadeupdateMinHeight(),
   ];
 
   mobileFunctions = [
@@ -284,12 +285,24 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  //Benchmade
+  private BenchmadeupdateMinHeight() {
+    this.allElements('.swiper-slide.relative').forEach(parent => {
+        parent.querySelectorAll('div').forEach(childDiv => {
+            if (Array.from(childDiv.classList).some(cls => cls.startsWith('laptop:min-h-'))) {
+                const windowHeight = childDiv.getAttribute('windowheight');
+                if (windowHeight) childDiv.style.setProperty('min-height', `${windowHeight}px`, 'important');
+            }
+        });
+    });
+  }
+
   private removeIdFromLogo() {
     this.allElements(".wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex").forEach(parent => {
         const child = parent.querySelector("#site-logo");
         if (child) child.removeAttribute("id");
     });
-}
+  }
   
 
   private setUncolHeight() {
