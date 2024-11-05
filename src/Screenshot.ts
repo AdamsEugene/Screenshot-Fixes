@@ -149,21 +149,15 @@ class ScreenshotFixes extends Common {
   }
 
   private processSnippets() {
-    // console.log("this.iframeWindow: ", this.iframeWindow.location);
-
-    // const url = new URL(this.iframeWindow.location.href);
-    // const fileName = url.host + url.pathname + "-main.html";
     snippets.forEach((snippet: JsonEntry) => {
       const { selector, content } = snippet;
-
+  
       const isElementInDom = selector
         ? this.dom.querySelector(selector)
         : undefined;
-
-      // const s3FileName = content.path.split("custom.snippets/")[1];
-      // console.log({ idSiteHsr: this.idSiteHsr(), isElementInDom });
+  
       const idSiteHsr = content.idSiteHsr ? content.idSiteHsr === this.idSiteHsr() : true;
-
+  
       if (
         content.path &&
         content.idSite === this.idSite() &&
@@ -175,27 +169,38 @@ class ScreenshotFixes extends Common {
           .then((htmlContent) => {
             const element = this.dom.querySelector(selector) as HTMLElement;
             this.displayBlock(element);
+  
             if (element) {
+              // Check for the 'aria-code-injected' attribute to prevent re-injection
+              if (element.hasAttribute("aria-code-injected")) {
+                return;
+              }
+  
               if (snippet.append) {
                 const targetElement = document.querySelector(snippet.selector);
                 if (targetElement) {
-                  console.log(this.stringToHTML(htmlContent));
-
                   targetElement.parentNode.insertBefore(
                     this.stringToHTML(htmlContent),
                     targetElement
                   );
+                  // Mark the injected snippet with 'aria-code-injected' attribute
+                  targetElement.setAttribute("aria-code-injected", "true");
                 }
+              } else {
+                if (snippet?.shadow) {
+                  this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
+                } else {
+                  element.innerHTML = htmlContent;
+                }
+                // Mark the injected snippet with 'aria-code-injected' attribute
+                element.setAttribute("aria-code-injected", "true");
               }
-              if (snippet?.shadow)
-                this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
-              else element.innerHTML = htmlContent;
             }
           })
           .catch((error) => console.error(`Error fetching content: ${error}`));
       }
     });
-  }
+  }  
 
   private appendToFastSimonShadowRoot(
     element: HTMLElement,
