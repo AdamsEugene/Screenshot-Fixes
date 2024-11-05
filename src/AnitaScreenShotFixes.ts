@@ -656,20 +656,21 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeInlineCssFromWidgetHeaderAKT(): void {
-    const element = this.document.getElementById(
-      "widget-header"
-    ) as HTMLElement;
-
-    if (
-      element &&
-      element.classList.contains("starter-offer") &&
-      element.classList.contains("swiper-initialized") &&
-      element.classList.contains("swiper-horizontal") &&
-      element.classList.contains("swiper-css-mode")
-    ) {
-      element.removeAttribute("style");
-    }
+    setTimeout(() => {
+      const element = this.document.getElementById("widget-header") as HTMLElement;
+  
+      if (
+        element &&
+        element.classList.contains("starter-offer") &&
+        element.classList.contains("swiper-initialized") &&
+        element.classList.contains("swiper-horizontal") &&
+        element.classList.contains("swiper-css-mode")
+      ) {
+        element.removeAttribute("style");
+      }
+    }, 1000); // 1000ms (1 second) delay
   }
+  
   private removeAllInlineStylesFromElementsHEDERA(): void {
     const elements = this.document.querySelectorAll(
       ".jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup"
