@@ -792,9 +792,10 @@ export default class RyanScreenshotFixes extends Common {
 
     elements.forEach(({ parent, child, opacity }) => {
         this.dom.querySelectorAll(parent).forEach(parentElement => {
-            const childElement = parentElement.querySelector(child) as HTMLElement;
+            const childElement = parentElement.querySelector(child) as HTMLElement; // Type assertion
             if (childElement) {
-                childElement.style.setProperty('opacity', opacity, 'important');
+                childElement.style.removeProperty('opacity'); // Remove existing inline opacity
+                childElement.style.setProperty('opacity', opacity, 'important'); // Set new opacity
             }
         });
     });
