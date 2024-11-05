@@ -739,12 +739,15 @@ export default class AnitaScreenShotFixes {
     }, 1000);
   }
   private removeOpacityFromDrawerCoverinfiniteicon(): void {
-    const element = this.document.getElementById('drawerCover') as HTMLElement;
+    setTimeout(() => {
+      const element = this.document.getElementById('drawerCover') as HTMLElement;
   
-    if (element) {
-      element.style.removeProperty('opacity');
-    }
+      if (element) {
+        element.style.removeProperty('opacity');
+      }
+    }, 1000); // 1000ms (1 second) delay
   }
+  
   
   
 }
