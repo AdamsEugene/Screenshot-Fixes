@@ -652,7 +652,7 @@ export default class AnitaScreenShotFixes {
       ) {
         element.removeAttribute("style");
       }
-    }, 2000); // 1000ms (1 second) delay
+    }, 2000);
   }
 
   private removeInlineCssFromWidgetHeaderAKT(): void {
@@ -668,7 +668,7 @@ export default class AnitaScreenShotFixes {
       ) {
         element.removeAttribute("style");
       }
-    }, 1000); // 1000ms (1 second) delay
+    }, 1000);
   }
   
   private removeAllInlineStylesFromElementsHEDERA(): void {
