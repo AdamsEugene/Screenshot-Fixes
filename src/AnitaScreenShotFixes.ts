@@ -61,8 +61,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayFromSpacerElementsCEDIA();
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
-    this.removeOpacityFromDrawerCoverinfiniteicon();
-    this.updateOpacityForProductCardImageshappydad();
+    this.removeBackgroundFromSidebarContainerinfiniteicon();
   }
 
   private removeHeightProperty() {
@@ -747,24 +746,22 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
-  private removeOpacityFromDrawerCoverinfiniteicon(): void {
-    setTimeout(() => {
-      const element = this.document.getElementById(
-        "drawerCover"
-      ) as HTMLElement;
-
-      if (element) {
-        element.style.removeProperty("opacity");
-        element.style.setProperty("opacity", "0", "important");
-      }
-    }, 1000);
+  private removeBackgroundFromSidebarContainerinfiniteicon(): void {
+    const elements = this.document.querySelectorAll(
+      '.sidebar-container.z-100.menu-drawer.fixed.top-0.left-0.bottom-0.w-11\\/12.max-w-md.px-4.py-4.bg-scheme-background.text-scheme-text.transform.overflow-y-auto'
+    ) as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.removeProperty('background');
+    });
   }
+  
 
-  private updateOpacityForProductCardImageshappydad(): void {
+  private removeInlineSyleForProductCardImageshappydad(): void {
     const ancestorElement = this.document.getElementById(
       "shopify-section-template--16803550560424__main"
     ) as HTMLElement;
-
+  
     if (
       ancestorElement &&
       ancestorElement.classList.contains("shopify-section") &&
@@ -773,11 +770,11 @@ export default class AnitaScreenShotFixes {
       const elements = ancestorElement.querySelectorAll(
         ".product-card__image.product-card__image--secondary"
       ) as NodeListOf<HTMLElement>;
-
+  
       elements.forEach((element) => {
-        element.style.removeProperty("opacity");
-        element.style.setProperty("opacity", "0", "important");
+        element.removeAttribute("style");
       });
     }
   }
+  
 }
