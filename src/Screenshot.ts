@@ -1260,7 +1260,7 @@ class ScreenshotFixes extends Common {
           { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
           { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
           { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
-          { ids: [2777, 172, 2907, 555], functions: [this.observeMutation] },
+          { ids: [2777, 172, 2907, 555, 2684], functions: [this.observeMutation] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
           { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
           { ids: [2898], functions: [this.Nuvecartfooter] },
