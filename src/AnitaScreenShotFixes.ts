@@ -62,7 +62,7 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
     this.removeOpacityFromDrawerCoverinfiniteicon();
-    this.removeOpacityFromProductCardImageshappydad();
+    this.updateOpacityForProductCardImageshappydad();
   }
 
   private removeHeightProperty() {
@@ -524,13 +524,15 @@ export default class AnitaScreenShotFixes {
     }
   }
   private setDrawerBackgroundTransparentNurosym(): void {
-    const elements = this.document.querySelectorAll(".lang-drawer, .menu-drawer") as NodeListOf<HTMLElement>;
-  
+    const elements = this.document.querySelectorAll(
+      ".lang-drawer, .menu-drawer"
+    ) as NodeListOf<HTMLElement>;
+
     elements.forEach((element) => {
       element.style.setProperty("background-color", "transparent", "important");
     });
   }
-  
+
   private hideAnnouncementHeaderBedsrus(): void {
     const element = this.document.getElementById(
       "shopify-section-announcement-header"
@@ -659,8 +661,10 @@ export default class AnitaScreenShotFixes {
 
   private removeInlineCssFromWidgetHeaderAKT(): void {
     setTimeout(() => {
-      const element = this.document.getElementById("widget-header") as HTMLElement;
-  
+      const element = this.document.getElementById(
+        "widget-header"
+      ) as HTMLElement;
+
       if (
         element &&
         element.classList.contains("starter-offer") &&
@@ -672,7 +676,7 @@ export default class AnitaScreenShotFixes {
       }
     }, 1000);
   }
-  
+
   private removeAllInlineStylesFromElementsHEDERA(): void {
     const elements = this.document.querySelectorAll(
       ".jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup"
@@ -713,14 +717,16 @@ export default class AnitaScreenShotFixes {
   }
   private removeDisplayFromSpacerElementsCEDIA(): void {
     setTimeout(() => {
-      const elements = this.document.querySelectorAll(".spacer") as NodeListOf<HTMLElement>;
-  
+      const elements = this.document.querySelectorAll(
+        ".spacer"
+      ) as NodeListOf<HTMLElement>;
+
       elements.forEach((element) => {
         element.style.removeProperty("display");
       });
     }, 2000);
   }
-  
+
   private removeHeightFromLookImageElementsGOBI(): void {
     const elements = this.document.querySelectorAll(
       ".look__image.look__image--fullheight"
@@ -732,55 +738,46 @@ export default class AnitaScreenShotFixes {
   }
   private removeHeightFromHeaderMenuKHAITE(): void {
     setTimeout(() => {
-      const element = this.document.querySelector('.header__menu.cc-show') as HTMLElement;
-  
+      const element = this.document.querySelector(
+        ".header__menu.cc-show"
+      ) as HTMLElement;
+
       if (element) {
-        element.style.removeProperty('height');
+        element.style.removeProperty("height");
       }
     }, 1000);
   }
   private removeOpacityFromDrawerCoverinfiniteicon(): void {
     setTimeout(() => {
-      console.log('Attempting to find element with ID "drawerCover"...');
-      const element = this.document.getElementById('drawerCover') as HTMLElement;
-  
+      const element = this.document.getElementById(
+        "drawerCover"
+      ) as HTMLElement;
+
       if (element) {
-        console.log('Element found:', element);
-        element.style.removeProperty('opacity');
-        console.log('Opacity property removed from element.');
-      } else {
-        console.log('Element with ID "drawerCover" not found.');
+        element.style.removeProperty("opacity");
+        element.style.setProperty("opacity", "0", "important");
       }
-    }, 1000); // 1000ms (1 second) delay
+    }, 1000);
   }
-  
-  private removeOpacityFromProductCardImageshappydad(): void {
-    const ancestor = this.document.getElementById('shopify-section-template--16803550560424__main') as HTMLElement;
-  
-    if (ancestor && ancestor.classList.contains('shopify-section') && ancestor.classList.contains('shopify-section--main-collection')) {
-      console.log('Ancestor element found with the specified ID and classes:', ancestor);
-  
-      const elements = ancestor.querySelectorAll('.product-card__image.product-card__image--secondary') as NodeListOf<HTMLElement>;
-  
-      if (elements.length > 0) {
-        console.log(`Found ${elements.length} product-card image(s) with the specified classes.`);
-  
-        elements.forEach((element) => {
-          element.style.removeProperty('opacity');
-          console.log('Removed opacity property from element:', element);
-        });
-      } else {
-        console.log('No product-card images found with the specified classes.');
-      }
-    } else {
-      console.log('Ancestor element not found or does not have the specified classes.');
+
+  private updateOpacityForProductCardImageshappydad(): void {
+    const ancestorElement = this.document.getElementById(
+      "shopify-section-template--16803550560424__main"
+    ) as HTMLElement;
+
+    if (
+      ancestorElement &&
+      ancestorElement.classList.contains("shopify-section") &&
+      ancestorElement.classList.contains("shopify-section--main-collection")
+    ) {
+      const elements = ancestorElement.querySelectorAll(
+        ".product-card__image.product-card__image--secondary"
+      ) as NodeListOf<HTMLElement>;
+
+      elements.forEach((element) => {
+        element.style.removeProperty("opacity");
+        element.style.setProperty("opacity", "0", "important");
+      });
     }
   }
-  
-  
-  
-  
-  
-  
-  
 }
