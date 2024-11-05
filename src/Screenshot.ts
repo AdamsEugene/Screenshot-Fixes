@@ -38,6 +38,7 @@ class ScreenshotFixes extends Common {
     () => this.setSlideshowHeight(),
     () => this.observeMutationDesktop(),
     () => this.removeIdFromLogo(),
+    () => this.BenchmadeupdateMinHeight(),
   ];
 
   mobileFunctions = [
@@ -149,21 +150,15 @@ class ScreenshotFixes extends Common {
   }
 
   private processSnippets() {
-    // console.log("this.iframeWindow: ", this.iframeWindow.location);
-
-    // const url = new URL(this.iframeWindow.location.href);
-    // const fileName = url.host + url.pathname + "-main.html";
     snippets.forEach((snippet: JsonEntry) => {
       const { selector, content } = snippet;
-
+  
       const isElementInDom = selector
         ? this.dom.querySelector(selector)
         : undefined;
-
-      // const s3FileName = content.path.split("custom.snippets/")[1];
-      // console.log({ idSiteHsr: this.idSiteHsr(), isElementInDom });
+  
       const idSiteHsr = content.idSiteHsr ? content.idSiteHsr === this.idSiteHsr() : true;
-
+  
       if (
         content.path &&
         content.idSite === this.idSite() &&
@@ -175,27 +170,38 @@ class ScreenshotFixes extends Common {
           .then((htmlContent) => {
             const element = this.dom.querySelector(selector) as HTMLElement;
             this.displayBlock(element);
+  
             if (element) {
+              // Check for the 'aria-code-injected' attribute to prevent re-injection
+              if (element.hasAttribute("aria-code-injected")) {
+                return;
+              }
+  
               if (snippet.append) {
                 const targetElement = document.querySelector(snippet.selector);
                 if (targetElement) {
-                  console.log(this.stringToHTML(htmlContent));
-
                   targetElement.parentNode.insertBefore(
                     this.stringToHTML(htmlContent),
                     targetElement
                   );
+                  // Mark the injected snippet with 'aria-code-injected' attribute
+                  targetElement.setAttribute("aria-code-injected", "true");
                 }
+              } else {
+                if (snippet?.shadow) {
+                  this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
+                } else {
+                  element.innerHTML = htmlContent;
+                }
+                // Mark the injected snippet with 'aria-code-injected' attribute
+                element.setAttribute("aria-code-injected", "true");
               }
-              if (snippet?.shadow)
-                this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
-              else element.innerHTML = htmlContent;
             }
           })
           .catch((error) => console.error(`Error fetching content: ${error}`));
       }
     });
-  }
+  }  
 
   private appendToFastSimonShadowRoot(
     element: HTMLElement,
@@ -279,12 +285,24 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  //Benchmade
+  private BenchmadeupdateMinHeight() {
+    this.allElements('.swiper-slide.relative').forEach(parent => {
+        parent.querySelectorAll('div').forEach(childDiv => {
+            if (Array.from(childDiv.classList).some(cls => cls.startsWith('laptop:min-h-'))) {
+                const windowHeight = childDiv.getAttribute('windowheight');
+                if (windowHeight) childDiv.style.setProperty('min-height', `${windowHeight}px`, 'important');
+            }
+        });
+    });
+  }
+
   private removeIdFromLogo() {
     this.allElements(".wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex").forEach(parent => {
         const child = parent.querySelector("#site-logo");
         if (child) child.removeAttribute("id");
     });
-}
+  }
   
 
   private setUncolHeight() {
@@ -1260,7 +1278,7 @@ class ScreenshotFixes extends Common {
           { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
           { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
           { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
-          { ids: [2777, 172, 2907, 555, 2922], functions: [this.observeMutation] },
+          { ids: [2777, 172, 2907, 555, 2684], functions: [this.observeMutation] },
           { ids: [1848], functions: [this.removeMainContentMarginTop] },
           { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
           { ids: [2898], functions: [this.Nuvecartfooter] },
