@@ -45,6 +45,7 @@ export default class RyanScreenshotFixes extends Common {
       this.GraymatterhideNextDivAfterIframe();
       this.hideShopifyHeaderGroup();
       this.KhaiteUpdateHeight();
+      this.NitesightssetChildOpacities();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -782,6 +783,23 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
+  //Nitesights
+  private NitesightssetChildOpacities() {
+    const elements = [
+        { parent: '.comparison-slider', child: '.comparison-slider__input', opacity: '0' },
+        { parent: '.hotspot', child: '.hotspot__content', opacity: 'revert-layer' }
+    ];
+
+    elements.forEach(({ parent, child, opacity }) => {
+        this.dom.querySelectorAll(parent).forEach(parentElement => {
+            const childElement = parentElement.querySelector(child) as HTMLElement;
+            if (childElement) {
+                childElement.style.setProperty('opacity', opacity, 'important');
+            }
+        });
+    });
+  }
+
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
     this.dom.querySelectorAll('.card__link').forEach((parentElement: HTMLElement) => {
@@ -806,40 +824,35 @@ export default class RyanScreenshotFixes extends Common {
   
   //Iframe Update
   private UpdateIframeSrc() {
-    const iframe = this.dom.querySelector("iframe") as HTMLIFrameElement;
-    if (iframe) {
-      let iframeSrc = iframe.getAttribute("src");
-      if (iframeSrc) {
-        const proxyUrl1 =
-          "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
-        const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
-
-        const removeProxyUrl = (url: string, proxyUrl: string): string => {
-          if (url.startsWith(proxyUrl)) {
-            return decodeURIComponent(url.replace(proxyUrl, ""));
-          }
-          return url;
-        };
-
-        iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
-        iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
-
-        iframe.setAttribute("src", iframeSrc);
-        iframe.onload = () => {};
-        iframe.onerror = () => {
-          iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
-          iframe.onload = () => {};
-          iframe.onerror = () => {
-            iframe.setAttribute(
-              "src",
-              proxyUrl2 + encodeURIComponent(iframeSrc)
-            );
-            iframe.onload = () => {};
-            iframe.onerror = () => {};
-          };
-        };
-      }
+    const iframes = this.dom.querySelectorAll("iframe") as NodeListOf<HTMLIFrameElement>;
+    if (iframes.length === 0) {
+      return;
     }
+    iframes.forEach(iframe => {
+      let iframeSrc = iframe.getAttribute("src");
+      
+      if (!iframeSrc) {
+        return;
+      }
+      const proxyUrl1 = "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
+      const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
+      const removeProxyUrl = (url: string, proxyUrl: string) => {
+        return url.startsWith(proxyUrl) ? decodeURIComponent(url.replace(proxyUrl, "")) : url;
+      };
+      iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
+      iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
+      iframe.setAttribute("src", iframeSrc);
+      const retryWithProxy2 = () => {
+        iframe.setAttribute("src", proxyUrl2 + encodeURIComponent(iframeSrc));
+      };
+      const retryWithProxy1 = () => {
+        iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
+        iframe.onerror = retryWithProxy2;
+      };
+      iframe.onload = () => {
+      };
+      iframe.onerror = retryWithProxy1;
+    });
   }
 
   private adjustHeaderPosition() {
