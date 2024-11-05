@@ -788,7 +788,7 @@ export default class RyanScreenshotFixes extends Common {
     this.dom.querySelectorAll('.comparison-slider').forEach(parent => {
         const child = parent.querySelector('.comparison-slider__input') as HTMLElement;
         if (child) {
-            child.style.setProperty('opacity', '0', 'important');
+            child.style.setProperty('opacity', 'revert-layer', 'important');
         }
     });
 
