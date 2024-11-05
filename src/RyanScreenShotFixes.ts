@@ -785,19 +785,18 @@ export default class RyanScreenshotFixes extends Common {
 
   //Nitesights
   private NitesightssetChildOpacities() {
-    const elements = [
-        { parent: '.comparison-slider', child: '.comparison-slider__input', opacity: '0' },
-        { parent: '.hotspot', child: '.hotspot__content', opacity: 'revert-layer' }
-    ];
+    this.dom.querySelectorAll('.comparison-slider').forEach(parent => {
+        const child = parent.querySelector('.comparison-slider__input') as HTMLElement;
+        if (child) {
+            child.style.setProperty('opacity', '0', 'important');
+        }
+    });
 
-    elements.forEach(({ parent, child, opacity }) => {
-        this.dom.querySelectorAll(parent).forEach(parentElement => {
-            const childElement = parentElement.querySelector(child) as HTMLElement; // Type assertion
-            if (childElement) {
-                childElement.style.removeProperty('opacity'); // Remove existing inline opacity
-                childElement.style.setProperty('opacity', opacity, 'important'); // Set new opacity
-            }
-        });
+    this.dom.querySelectorAll('.hotspot').forEach(parent => {
+        const child = parent.querySelector('.hotspot__content') as HTMLElement;
+        if (child) {
+            child.style.setProperty('opacity', 'revert-layer', 'important');
+        }
     });
   }
 
