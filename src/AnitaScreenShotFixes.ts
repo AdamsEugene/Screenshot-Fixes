@@ -760,24 +760,27 @@ export default class AnitaScreenShotFixes {
   
 
   private removeInlineSyleForProductCardImageshappydad(): void {
-    const ancestorElement = this.document.getElementById(
-      "shopify-section-template--16803550560424__main"
-    ) as HTMLElement;
+    setTimeout(() => {
+      const ancestorElement = this.document.getElementById(
+        "shopify-section-template--16803550560424__main"
+      ) as HTMLElement;
   
-    if (
-      ancestorElement &&
-      ancestorElement.classList.contains("shopify-section") &&
-      ancestorElement.classList.contains("shopify-section--main-collection")
-    ) {
-      const elements = ancestorElement.querySelectorAll(
-        ".product-card__image.product-card__image--secondary"
-      ) as NodeListOf<HTMLElement>;
+      if (
+        ancestorElement &&
+        ancestorElement.classList.contains("shopify-section") &&
+        ancestorElement.classList.contains("shopify-section--main-collection")
+      ) {
+        const elements = ancestorElement.querySelectorAll(
+          ".product-card__image.product-card__image--secondary"
+        ) as NodeListOf<HTMLElement>;
   
-      elements.forEach((element) => {
-        element.removeAttribute("style");
-      });
-    }
+        elements.forEach((element) => {
+          element.removeAttribute("style");
+        });
+      }
+    }, 1000);
   }
+  
   private removeInlineStylesFromSwiperElementALBION(): void {
     setTimeout(() => {
       const ancestorElement = this.document.getElementById(
