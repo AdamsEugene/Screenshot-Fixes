@@ -815,8 +815,8 @@ export default class RyanScreenshotFixes extends Common {
 
   //Benchmade
   private BenchmadeupdateImageSrcsetToHttps() {
-    this.dom.querySelectorAll('.relative.h-0').forEach((parent) => {
-      const childImage = parent.querySelector('.image.absolute');
+    this.dom.querySelectorAll('.relative').forEach((parent) => {
+      const childImage = parent.querySelector('.image');
       if (childImage?.hasAttribute('srcset')) {
         childImage.setAttribute('srcset', childImage.getAttribute('srcset').replace('http://', 'https://'));
       }
