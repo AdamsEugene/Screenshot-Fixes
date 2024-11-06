@@ -778,7 +778,7 @@ export default class AnitaScreenShotFixes {
           element.removeAttribute("style");
         });
       }
-    }, 1000);
+    }, 2000);
   }
   
   private removeInlineStylesFromSwiperElementALBION(): void {
