@@ -62,6 +62,8 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
     this.removeBackgroundFromSidebarContainerinfiniteicon();
+    this.removeInlineSyleForProductCardImageshappydad();
+    this.removeInlineStylesFromSwiperElementALBION();
   }
 
   private removeHeightProperty() {
@@ -776,5 +778,25 @@ export default class AnitaScreenShotFixes {
       });
     }
   }
+  private removeInlineStylesFromSwiperElementALBION(): void {
+    const ancestorElement = this.document.getElementById(
+      'product-main-template--17243876589748__main'
+    ) as HTMLElement;
+  
+    if (
+      ancestorElement &&
+      ancestorElement.classList.contains('td-product-main') &&
+      ancestorElement.classList.contains('td-page-width')
+    ) {
+      const targetElement = ancestorElement.querySelector(
+        '.swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events'
+      ) as HTMLElement;
+  
+      if (targetElement) {
+        targetElement.removeAttribute('style');
+      }
+    }
+  }
+  
   
 }
