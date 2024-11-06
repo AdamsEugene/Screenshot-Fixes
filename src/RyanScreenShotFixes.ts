@@ -815,13 +815,17 @@ export default class RyanScreenshotFixes extends Common {
 
   //Benchmade
   private BenchmadeupdateImageSrcsetToHttps() {
-    this.dom.querySelectorAll('.relative').forEach((parent) => {
-      const childImage = parent.querySelector('.image');
-      if (childImage?.hasAttribute('srcset')) {
-        childImage.setAttribute('srcset', childImage.getAttribute('srcset').replace('http://', 'https://'));
+    this.dom.querySelectorAll('.relative.h-0').forEach((parent) => {
+      const childImage = parent.querySelector('.image.absolute');
+      if (childImage) {
+        ['src', 'srcset'].forEach(attr => {
+          if (childImage.hasAttribute(attr)) {
+            childImage.setAttribute(attr, childImage.getAttribute(attr).replace(/http:\/\//g, 'https://'));
+          }
+        });
       }
     });
-  }
+  }  
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
