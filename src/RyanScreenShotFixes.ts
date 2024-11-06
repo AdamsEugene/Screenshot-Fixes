@@ -45,6 +45,7 @@ export default class RyanScreenshotFixes extends Common {
       this.GraymatterhideNextDivAfterIframe();
       this.hideShopifyHeaderGroup();
       this.KhaiteUpdateHeight();
+      this.BenchmadeupdateImageSrcsetToHttps();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -809,6 +810,16 @@ export default class RyanScreenshotFixes extends Common {
             child.style.removeProperty('opacity');
             child.style.setProperty('opacity', 'revert-layer', 'important');
         }
+    });
+  }
+
+  //Benchmade
+  private BenchmadeupdateImageSrcsetToHttps() {
+    this.dom.querySelectorAll('.relative.h-0').forEach((parent) => {
+      const childImage = parent.querySelector('.image.absolute');
+      if (childImage?.hasAttribute('srcset')) {
+        childImage.setAttribute('srcset', childImage.getAttribute('srcset').replace('http://', 'https://'));
+      }
     });
   }
 
