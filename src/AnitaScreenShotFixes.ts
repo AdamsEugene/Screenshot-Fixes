@@ -64,6 +64,7 @@ export default class AnitaScreenShotFixes {
     this.removeBackgroundFromSidebarContainerinfiniteicon();
     this.removeInlineSyleForProductCardImageshappydad();
     this.removeInlineStylesFromSwiperElementALBION();
+    this.removeDisplayNoneFromDescendantsOBVI();
   }
 
   private removeHeightProperty() {
@@ -802,6 +803,20 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
+  private removeDisplayNoneFromDescendantsOBVI(): void {
+    const parentElement = this.document.querySelector('.r-kfm34z') as HTMLElement;
+  
+    if (parentElement) {
+      const descendants = parentElement.querySelectorAll('*') as NodeListOf<HTMLElement>;
+  
+      descendants.forEach((element) => {
+        if (element.style.display === 'none') {
+          element.style.removeProperty('display');
+        }
+      });
+    }
+  }
+  
   
   
   
