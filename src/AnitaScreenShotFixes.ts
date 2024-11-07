@@ -66,7 +66,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromSwiperElementALBION();
     this.removeDisplayNoneFromDescendantsOBVI();
     this.removeHeightFromImageHeroContainerSMEL();
-    this.setHeightAutoForImageInnerSMEL();
+    this.setHeightAutoForAllImageInnerSMEL();
   }
 
   private removeHeightProperty() {
@@ -826,32 +826,42 @@ export default class AnitaScreenShotFixes {
 
   private removeHeightFromImageHeroContainerSMEL(): void {
     setTimeout(() => {
-      const element = this.document.querySelector(
+      // Find all elements with the specified class
+      const elements = this.document.querySelectorAll(
         ".image-hero__image-container"
-      ) as HTMLElement;
+      ) as NodeListOf<HTMLElement>;
   
-      if (element) {
-        element.style.removeProperty("height");
+      if (elements.length > 0) {
+        elements.forEach((element) => {
+          element.style.removeProperty("height");
+        });
       }
-    }, 2000);
+    }, 2000); // 2000ms (2 second) delay
   }
   
-  private setHeightAutoForImageInnerSMEL(): void {
+  private setHeightAutoForAllImageInnerSMEL(): void {
     setTimeout(() => {
-      const parentElement = this.document.querySelector(
+      // Find all parent elements with the specified classes
+      const parentElements = this.document.querySelectorAll(
         ".image.image-hero__image.image--animate.animation--lazy-load.loaded"
-      ) as HTMLElement;
+      ) as NodeListOf<HTMLElement>;
   
-      if (parentElement) {
-        const innerElement = parentElement.querySelector(
-          ".image__inner"
-        ) as HTMLElement;
+      if (parentElements.length > 0) {
+        parentElements.forEach((parentElement) => {
+          // Find all child elements with the class "image__img" within each parent
+          const childElements = parentElement.querySelectorAll(".image__img") as NodeListOf<HTMLElement>;
   
-        if (innerElement) {
-          innerElement.style.setProperty("height", "auto", "important");
-        }
+          if (childElements.length > 0) {
+            childElements.forEach((childElement) => {
+              // Set height on each child element to "auto !important"
+              childElement.style.setProperty("height", "auto", "important");
+            });
+          }
+        });
       }
-    }, 3000);
+    }, 3000); // 3000ms (3 second) delay
   }
+  
+  
   
 }
