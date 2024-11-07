@@ -67,6 +67,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNoneFromDescendantsOBVI();
     this.removeHeightFromImageHeroContainerSMEL();
     this.setHeightAutoForAllImageInnerSMEL();
+    this.updateSvgElementsInsideDecorCEDIA();
   }
 
   private removeHeightProperty() {
@@ -826,42 +827,49 @@ export default class AnitaScreenShotFixes {
 
   private removeHeightFromImageHeroContainerSMEL(): void {
     setTimeout(() => {
-      // Find all elements with the specified class
       const elements = this.document.querySelectorAll(
         ".image-hero__image-container"
       ) as NodeListOf<HTMLElement>;
-  
+
       if (elements.length > 0) {
         elements.forEach((element) => {
           element.style.removeProperty("height");
         });
       }
-    }, 2000); // 2000ms (2 second) delay
+    }, 2000);
   }
-  
+
   private setHeightAutoForAllImageInnerSMEL(): void {
     setTimeout(() => {
-      // Find all parent elements with the specified classes
       const parentElements = this.document.querySelectorAll(
         ".image.image-hero__image.image--animate.animation--lazy-load.loaded"
       ) as NodeListOf<HTMLElement>;
-  
+
       if (parentElements.length > 0) {
         parentElements.forEach((parentElement) => {
-          // Find all child elements with the class "image__img" within each parent
-          const childElements = parentElement.querySelectorAll(".image__img") as NodeListOf<HTMLElement>;
-  
+          const childElements = parentElement.querySelectorAll(
+            ".image__img"
+          ) as NodeListOf<HTMLElement>;
+
           if (childElements.length > 0) {
             childElements.forEach((childElement) => {
-              // Set height on each child element to "auto !important"
               childElement.style.setProperty("height", "auto", "important");
             });
           }
         });
       }
-    }, 3000); // 3000ms (3 second) delay
+    }, 3000);
   }
+  private updateSvgElementsInsideDecorCEDIA(): void {
+    const decorSvgElements = this.document.querySelectorAll(
+      ".decor svg"
+    ) as NodeListOf<SVGElement>;
   
+    decorSvgElements.forEach((svgElement) => {
+      svgElement.style.setProperty("width", "calc(1vw + 1vh)", "important");
+      svgElement.style.setProperty("margin-bottom", "-300%", "important");
+    });
+  }
   
   
 }
