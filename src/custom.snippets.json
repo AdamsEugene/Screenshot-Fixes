@@ -328,5 +328,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/kinnstudio.com--main.html"
     }
+  },
+  {
+    "selector": ".ajax-cart__content",
+    "content": {
+      "idSite": 2853,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/khaite.com-collections-wardrobe-edit-products-cart-main.html"
+    }
   }
 ]
