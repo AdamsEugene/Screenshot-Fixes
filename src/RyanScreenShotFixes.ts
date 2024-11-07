@@ -46,6 +46,7 @@ export default class RyanScreenshotFixes extends Common {
       this.hideShopifyHeaderGroup();
       this.KhaiteUpdateHeight();
       this.BenchmadeupdateImageSrcsetToHttps();
+      this.modularclosetsaddAnimatedClass();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -826,6 +827,15 @@ export default class RyanScreenshotFixes extends Common {
       }
     });
   }  
+
+  //modular closets
+  private modularclosetsaddAnimatedClass() {
+    this.dom.querySelectorAll('.wowo').forEach((element) => {
+      if (element) {
+        element.classList.add('animated');
+      }
+    });
+  }
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
