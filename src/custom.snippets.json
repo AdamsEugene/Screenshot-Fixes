@@ -314,7 +314,7 @@
     }
   },
   {
-    "selector": ".CartContainerLayoutWp",
+    "selector": ".cart_drawerMn",
     "content": {
       "idSite": 2866,
       "type": "file",
