@@ -825,27 +825,33 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeHeightFromImageHeroContainerSMEL(): void {
-    const element = this.document.querySelector(
-      ".image-hero__image-container"
-    ) as HTMLElement;
-
-    if (element) {
-      element.style.removeProperty("height");
-    }
-  }
-  private setHeightAutoForImageInnerSMEL(): void {
-    const parentElement = this.document.querySelector(
-      ".image.image-hero__image.image--animate.animation--lazy-load.loaded"
-    ) as HTMLElement;
-
-    if (parentElement) {
-      const innerElement = parentElement.querySelector(
-        ".image__inner"
+    setTimeout(() => {
+      const element = this.document.querySelector(
+        ".image-hero__image-container"
       ) as HTMLElement;
-
-      if (innerElement) {
-        innerElement.style.setProperty("height", "auto", "important");
+  
+      if (element) {
+        element.style.removeProperty("height");
       }
-    }
+    }, 2000);
   }
+  
+  private setHeightAutoForImageInnerSMEL(): void {
+    setTimeout(() => {
+      const parentElement = this.document.querySelector(
+        ".image.image-hero__image.image--animate.animation--lazy-load.loaded"
+      ) as HTMLElement;
+  
+      if (parentElement) {
+        const innerElement = parentElement.querySelector(
+          ".image__inner"
+        ) as HTMLElement;
+  
+        if (innerElement) {
+          innerElement.style.setProperty("height", "auto", "important");
+        }
+      }
+    }, 3000);
+  }
+  
 }
