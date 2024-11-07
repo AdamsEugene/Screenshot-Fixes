@@ -312,5 +312,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.vicicollection.com--main.html"
     }
+  },
+  {
+    "selector": ".cart_drawerMn",
+    "content": {
+      "idSite": 2866,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/deuxpardeux.com-cart-products.html"
+    }
   }
 ]
