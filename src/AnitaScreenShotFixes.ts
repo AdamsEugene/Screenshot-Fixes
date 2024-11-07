@@ -65,6 +65,8 @@ export default class AnitaScreenShotFixes {
     this.removeInlineSyleForProductCardImageshappydad();
     this.removeInlineStylesFromSwiperElementALBION();
     this.removeDisplayNoneFromDescendantsOBVI();
+    this.removeHeightFromImageHeroContainerSMEL();
+    this.setHeightAutoForImageInnerSMEL();
   }
 
   private removeHeightProperty() {
@@ -751,21 +753,20 @@ export default class AnitaScreenShotFixes {
   }
   private removeBackgroundFromSidebarContainerinfiniteicon(): void {
     const elements = this.document.querySelectorAll(
-      '.sidebar-container.z-100.menu-drawer.fixed.top-0.left-0.bottom-0.w-11\\/12.max-w-md.px-4.py-4.bg-scheme-background.text-scheme-text.transform.overflow-y-auto'
+      ".sidebar-container.z-100.menu-drawer.fixed.top-0.left-0.bottom-0.w-11\\/12.max-w-md.px-4.py-4.bg-scheme-background.text-scheme-text.transform.overflow-y-auto"
     ) as NodeListOf<HTMLElement>;
-  
+
     elements.forEach((element) => {
-      element.style.removeProperty('background');
+      element.style.removeProperty("background");
     });
   }
-  
 
   private removeInlineSyleForProductCardImageshappydad(): void {
     setTimeout(() => {
       const ancestorElement = this.document.getElementById(
         "shopify-section-template--16803550560424__main"
       ) as HTMLElement;
-  
+
       if (
         ancestorElement &&
         ancestorElement.classList.contains("shopify-section") &&
@@ -774,50 +775,77 @@ export default class AnitaScreenShotFixes {
         const elements = ancestorElement.querySelectorAll(
           ".product-card__image.product-card__image--secondary"
         ) as NodeListOf<HTMLElement>;
-  
+
         elements.forEach((element) => {
           element.removeAttribute("style");
         });
       }
     }, 2000);
   }
-  
+
   private removeInlineStylesFromSwiperElementALBION(): void {
     setTimeout(() => {
       const ancestorElement = this.document.getElementById(
-        'product-main-template--17243876589748__main'
+        "product-main-template--17243876589748__main"
       ) as HTMLElement;
-  
+
       if (
         ancestorElement &&
-        ancestorElement.classList.contains('td-product-main') &&
-        ancestorElement.classList.contains('td-page-width')
+        ancestorElement.classList.contains("td-product-main") &&
+        ancestorElement.classList.contains("td-page-width")
       ) {
         const targetElement = ancestorElement.querySelector(
-          '.swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events'
+          ".swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events"
         ) as HTMLElement;
-  
+
         if (targetElement) {
-          targetElement.removeAttribute('style');
+          targetElement.removeAttribute("style");
         }
       }
     }, 2000);
   }
   private removeDisplayNoneFromDescendantsOBVI(): void {
-    const parentElement = this.document.querySelector('.r-kfm34z') as HTMLElement;
-  
-    if (parentElement) {
-      const descendants = parentElement.querySelectorAll('*') as NodeListOf<HTMLElement>;
-  
-      descendants.forEach((element) => {
-        if (element.style.display === 'none') {
-          element.style.removeProperty('display');
-        }
-      });
+    setTimeout(() => {
+      const parentElement = this.document.querySelector(
+        ".r-kfm34z"
+      ) as HTMLElement;
+
+      if (parentElement) {
+        const descendants = parentElement.querySelectorAll(
+          "*"
+        ) as NodeListOf<HTMLElement>;
+
+        descendants.forEach((element) => {
+          if (element.style.display === "none") {
+            element.style.removeProperty("display");
+          }
+        });
+      }
+    }, 1000);
+  }
+
+  private removeHeightFromImageHeroContainerSMEL(): void {
+    const element = this.document.querySelector(
+      ".image-hero__image-container"
+    ) as HTMLElement;
+
+    if (element) {
+      element.style.removeProperty("height");
     }
   }
-  
-  
-  
-  
+  private setHeightAutoForImageInnerSMEL(): void {
+    const parentElement = this.document.querySelector(
+      ".image.image-hero__image.image--animate.animation--lazy-load.loaded"
+    ) as HTMLElement;
+
+    if (parentElement) {
+      const innerElement = parentElement.querySelector(
+        ".image__inner"
+      ) as HTMLElement;
+
+      if (innerElement) {
+        innerElement.style.setProperty("height", "auto", "important");
+      }
+    }
+  }
 }
