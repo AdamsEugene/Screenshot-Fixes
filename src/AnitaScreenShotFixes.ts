@@ -764,21 +764,45 @@ export default class AnitaScreenShotFixes {
 
   private removeInlineStyleAndSetOpacityForProductCardImagesHappydad(): void {
     setTimeout(() => {
+      console.log("Starting to remove inline styles and set opacity for elements...");
+  
+      // Find all elements with the specified classes directly
       const elements = this.document.querySelectorAll(
         ".product-card__image.product-card__image--secondary"
       ) as NodeListOf<HTMLElement>;
   
       if (elements.length > 0) {
-        elements.forEach((element) => {
-        
+        console.log(`Found ${elements.length} elements with the class 'product-card__image product-card__image--secondary'.`);
+  
+        elements.forEach((element, index) => {
+          console.log(`Processing element ${index + 1}/${elements.length}.`);
+  
+          // Remove any existing inline styles
           element.removeAttribute("style");
-          
-        
+          console.log(`Removed inline styles from element ${index + 1}.`);
+  
+          // Set opacity to 0 with !important
           element.style.setProperty("opacity", "0", "important");
+          console.log(`Set opacity to 0 with !important for element ${index + 1}.`);
+  
+          // Check after another 2 seconds if opacity is still not set, set display to none
+          setTimeout(() => {
+            if (element.style.opacity !== "0") {
+              element.style.setProperty("display", "none", "important");
+              console.log(`Opacity not set, set display to none with !important for element ${index + 1}.`);
+            } else {
+              console.log(`Opacity is correctly set to 0 for element ${index + 1}.`);
+            }
+          }, 2000); // Another 2000ms (2 second) delay
         });
+      } else {
+        console.log("No elements found with the class 'product-card__image product-card__image--secondary'.");
       }
-    }, 2000);
+  
+      console.log("Finished processing elements.");
+    }, 2000); // Initial 2000ms (2 second) delay
   }
+  
   
 
   private removeInlineStylesFromSwiperElementALBION(): void {
