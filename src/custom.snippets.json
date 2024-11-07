@@ -314,11 +314,19 @@
     }
   },
   {
-    "selector": ".cart_drawerMn",
+    "selector": "#CartContainerLayoutWp",
     "content": {
       "idSite": 2866,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/deuxpardeux.com-cart-products.html"
+    }
+  },
+  {
+    "selector": ".klaviyo-form-UQytH3",
+    "content": {
+      "idSite": 2545,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/kinnstudio.com--main.html"
     }
   }
 ]
