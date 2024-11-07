@@ -62,7 +62,7 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
     this.removeBackgroundFromSidebarContainerinfiniteicon();
-    this.removeInlineSyleForProductCardImageshappydad();
+    this.removeInlineStyleAndSetOpacityForProductCardImagesHappydad();
     this.removeInlineStylesFromSwiperElementALBION();
     this.removeDisplayNoneFromDescendantsOBVI();
     this.removeHeightFromImageHeroContainerSMEL();
@@ -762,27 +762,24 @@ export default class AnitaScreenShotFixes {
     });
   }
 
-  private removeInlineSyleForProductCardImageshappydad(): void {
+  private removeInlineStyleAndSetOpacityForProductCardImagesHappydad(): void {
     setTimeout(() => {
-      const ancestorElement = this.document.getElementById(
-        "shopify-section-template--16803550560424__main"
-      ) as HTMLElement;
-
-      if (
-        ancestorElement &&
-        ancestorElement.classList.contains("shopify-section") &&
-        ancestorElement.classList.contains("shopify-section--main-collection")
-      ) {
-        const elements = ancestorElement.querySelectorAll(
-          ".product-card__image.product-card__image--secondary"
-        ) as NodeListOf<HTMLElement>;
-
+      const elements = this.document.querySelectorAll(
+        ".product-card__image.product-card__image--secondary"
+      ) as NodeListOf<HTMLElement>;
+  
+      if (elements.length > 0) {
         elements.forEach((element) => {
+        
           element.removeAttribute("style");
+          
+        
+          element.style.setProperty("opacity", "0", "important");
         });
       }
     }, 2000);
   }
+  
 
   private removeInlineStylesFromSwiperElementALBION(): void {
     setTimeout(() => {
