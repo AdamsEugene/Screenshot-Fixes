@@ -47,6 +47,8 @@ export default class RyanScreenshotFixes extends Common {
       this.KhaiteUpdateHeight();
       this.BenchmadeupdateImageSrcsetToHttps();
       this.modularclosetsaddAnimatedClass();
+      this.DeuxRemoveHiddenElements();
+      this.PulsioShowHiddenFAQAnswers();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -939,6 +941,28 @@ export default class RyanScreenshotFixes extends Common {
       }
     });
   }
+
+  //Deux par Deux
+  private DeuxRemoveHiddenElements() {
+    this.dom.querySelectorAll(".heatmap-com__hidden-element").forEach((element) => {
+      if (element) {
+        element.remove();
+      }
+    });
+  }
+
+  //Pulsio AIR
+  private PulsioShowHiddenFAQAnswers() {
+    this.dom.querySelectorAll('[classification^="FAQ Question"]').forEach((parent) => {
+      const hiddenChild = Array.from(parent.children).find(
+        (child) => window.getComputedStyle(child).display === 'none'
+      ) as HTMLElement;
+  
+      if (hiddenChild) {
+        hiddenChild.style.setProperty('display', 'block', 'important');
+      }
+    });
+  }  
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
