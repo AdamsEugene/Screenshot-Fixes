@@ -68,7 +68,10 @@ export default class AnitaScreenShotFixes {
     this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
     this.updateStylesForSecondImageInProductFiguresHAPPYDAD();
-    this.removeDisplayNoneFromNestedElementsANDIE();
+    // this.removeDisplayNoneFromNestedElementsANDIE();
+    this.updateMinHeightForBanner();
+    this.removeInlineStylesFromBannerContent();
+
   }
 
   private removeHeightProperty() {
@@ -869,7 +872,6 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeDisplayNoneFromNestedElementsANDIE(): void {
-    // Select all elements with the class 'layout layout--collection'
     const parentElements = this.document.querySelectorAll(
       ".layout.layout--collection"
     ) as NodeListOf<HTMLElement>;
@@ -900,5 +902,47 @@ export default class AnitaScreenShotFixes {
       }
     });
   }
+
+  private updateMinHeightForBanner(): void {
+    // Log to indicate that the function has started
+    console.log("Starting to update min-height for banner...");
+  
+    // Get the element by ID
+    const element = this.document.getElementById(
+      "Banner-template--16295038844973__image_banner_FdB9Xf"
+    ) as HTMLElement;
+  
+    if (element) {
+      console.log("Element found with ID 'Banner-template--16295038844973__image_banner_FdB9Xf'.");
+  
+      // Remove existing min-height property
+      if (element.style.minHeight) {
+        element.style.removeProperty("min-height");
+        console.log("Removed existing min-height property from element.");
+      }
+  
+      // Set new min-height to 825px with !important
+      element.style.setProperty("min-height", "825px", "important");
+      console.log("Set new min-height to 825px with !important.");
+    } else {
+      console.log("Element with specified ID not found.");
+    }
+  
+    // Log to indicate that the function has finished
+    console.log("Finished updating min-height for banner.");
+  }
+  
+
+  private removeInlineStylesFromBannerContent(): void {
+    const elements = this.document.querySelectorAll(
+      ".banner-content.banner-content-bottom-left.banner-content-mobile-top.container"
+    ) as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.removeAttribute("style");
+    });
+  }
+  
+  
   
 }
