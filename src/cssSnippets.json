@@ -15,5 +15,10 @@
      "idSite": 2898,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-products-silk-3-pro-styles.css"
+    },
+    {
+     "idSite": 2866,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/deuxpardeux.com-products-cart-styles.css"
     }
 ]
