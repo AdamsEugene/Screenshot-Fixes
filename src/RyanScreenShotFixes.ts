@@ -48,6 +48,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BenchmadeupdateImageSrcsetToHttps();
       this.modularclosetsaddAnimatedClass();
       this.DeuxRemoveHiddenElements();
+      this.bigkizzyFixSlideshowbox();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -963,6 +964,23 @@ export default class RyanScreenshotFixes extends Common {
       }
     });
   }  
+
+  //big kizzy hair
+  private bigkizzyFixSlideshowbox() {
+    this.dom.querySelectorAll('.slideshow__box').forEach((parent) => {
+        const childElements = parent.querySelectorAll('.slideshow__card');
+
+        childElements.forEach((child) => {
+            const innerElements = Array.from(child.querySelectorAll('[style*="opacity"]')).filter(
+                (inner) => window.getComputedStyle(inner).opacity !== ''
+            ) as HTMLElement[];
+
+            innerElements.forEach((inner) => {
+                inner.style.setProperty('opacity', 'revert-layer', 'important');
+            });
+        });
+    });
+  }
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
