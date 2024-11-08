@@ -1338,7 +1338,7 @@ class ScreenshotFixes extends Common {
         ids: [2853],
         functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
       },
-      { ids: [2777, 172, 2907, 555, 2684], functions: [this.observeMutation] },
+      { ids: [2777, 172, 2907, 555, 2684, 2842], functions: [this.observeMutation] },
       { ids: [1848], functions: [this.removeMainContentMarginTop] },
       { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
       { ids: [2898], functions: [this.Nuvecartfooter] },

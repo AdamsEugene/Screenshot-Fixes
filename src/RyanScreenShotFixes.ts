@@ -48,7 +48,6 @@ export default class RyanScreenshotFixes extends Common {
       this.BenchmadeupdateImageSrcsetToHttps();
       this.modularclosetsaddAnimatedClass();
       this.DeuxRemoveHiddenElements();
-      this.PulsioShowHiddenFAQAnswers();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -454,6 +453,7 @@ export default class RyanScreenshotFixes extends Common {
         this.NextAdventureSetSubmenuHeight();
         this.NitesightssetChildOpacities();
         this.ShieldEUsetChildOpacities();
+        this.PulsioShowHiddenFAQAnswers();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
