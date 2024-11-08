@@ -344,14 +344,5 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nuvebrand.com-products-silk-3-pro-main.html"
     }
-  },
-  {
-    "selector": "#swiper-wrapper-eba7775c24cdcd62",
-    "content": {
-      "idSite": 2091,
-      "idSiteHsr": 3036294,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/winkscrubs.com--main.html"
-    }
   }
 ]
