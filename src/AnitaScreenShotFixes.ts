@@ -67,7 +67,7 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromImageHeroContainerSMEL();
     this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
-    this.updateStylesForSecondImageInProductFigures();
+    this.updateStylesForSecondImageInProductFiguresHAPPYDAD();
     this.removeDisplayNoneFromNestedElementsANDIE();
   }
 
@@ -763,33 +763,24 @@ export default class AnitaScreenShotFixes {
     });
   }
 
-  private updateStylesForSecondImageInProductFigures(): void {
+  private updateStylesForSecondImageInProductFiguresHAPPYDAD(): void {
     setTimeout(() => {
-      // Select all elements with the class 'product-card__figure'
-      const productFigures = this.document.querySelectorAll('.product-card__figure') as NodeListOf<HTMLElement>;
-  
-      // Check if elements are found and log the count
-      console.log(`Found ${productFigures.length} elements with the class 'product-card__figure'.`);
-  
-      // Iterate through each 'product-card__figure' element
+      const productFigures = this.document.querySelectorAll(
+        ".product-card__figure"
+      ) as NodeListOf<HTMLElement>;
+
       productFigures.forEach((figure, index) => {
-        // Find all 'img' elements within the current 'product-card__figure'
-        const images = figure.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
-  
-        // Check if there is a second image
+        const images = figure.querySelectorAll(
+          "img"
+        ) as NodeListOf<HTMLImageElement>;
+
         if (images[1]) {
-          // Set opacity and display styles on the second image
-          images[1].style.setProperty('opacity', '1', 'important');
-          images[1].style.setProperty('display', 'none', 'important');
-          console.log(`Updated styles for the second image in 'product-card__figure' #${index + 1}.`);
-        } else {
-          console.log(`No second image found in 'product-card__figure' #${index + 1}.`);
+          images[1].style.setProperty("opacity", "1", "important");
+          images[1].style.setProperty("display", "none", "important");
         }
       });
-    }, 2000); // 2000ms (2 second) delay
+    }, 2000);
   }
-  
-  
 
   private removeInlineStylesFromSwiperElementALBION(): void {
     setTimeout(() => {
@@ -871,7 +862,7 @@ export default class AnitaScreenShotFixes {
     const decorSvgElements = this.document.querySelectorAll(
       ".decor svg"
     ) as NodeListOf<SVGElement>;
-  
+
     decorSvgElements.forEach((svgElement) => {
       svgElement.style.setProperty("width", "calc(1vw + 1vh)", "important");
       svgElement.style.setProperty("margin-bottom", "-300%", "important");
@@ -879,22 +870,19 @@ export default class AnitaScreenShotFixes {
   }
   private removeDisplayNoneFromNestedElementsANDIE(): void {
     const parentElements = this.document.querySelectorAll(
-      '.layout.layout--collection'
+      ".layout.layout--collection"
     ) as NodeListOf<HTMLElement>;
-  
+
     parentElements.forEach((parent, parentIndex) => {
       const matchingElements = parent.querySelectorAll(
         'div[style*="display: none;"][viewportwidth="100vw"]'
       ) as NodeListOf<HTMLElement>;
-  
+
       if (matchingElements.length > 0) {
         matchingElements.forEach((element) => {
-          element.style.removeProperty('display');
+          element.style.removeProperty("display");
         });
       }
     });
   }
-  
-  
-  
 }
