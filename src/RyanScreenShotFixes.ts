@@ -972,13 +972,10 @@ export default class RyanScreenshotFixes extends Common {
         const childElements = parent.querySelectorAll('.slideshow__card');
 
         childElements.forEach((child) => {
-            const innerElements = Array.from(child.querySelectorAll('[style*="opacity"]')).filter(
-                (inner) => window.getComputedStyle(inner).opacity !== ''
-            ) as HTMLElement[];
-
-            innerElements.forEach((inner) => {
-                inner.style.setProperty('opacity', 'revert-layer', 'important');
-            });
+            const childElement = child as HTMLElement;
+            if (window.getComputedStyle(childElement).opacity !== '') {
+                childElement.style.setProperty('opacity', 'revert-layer', 'important');
+            }
         });
     });
   }
