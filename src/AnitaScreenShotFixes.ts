@@ -62,12 +62,13 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromLookImageElementsGOBI();
     this.removeHeightFromHeaderMenuKHAITE();
     this.removeBackgroundFromSidebarContainerinfiniteicon();
-    this.removeInlineStyleAndSetOpacityForProductCardImagesHappydad();
     this.removeInlineStylesFromSwiperElementALBION();
     this.removeDisplayNoneFromDescendantsOBVI();
     this.removeHeightFromImageHeroContainerSMEL();
     this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
+    this.updateStylesForSecondImageInProductFigures();
+    this.removeDisplayNoneFromNestedElementsANDIE();
   }
 
   private removeHeightProperty() {
@@ -762,45 +763,30 @@ export default class AnitaScreenShotFixes {
     });
   }
 
-  private removeInlineStyleAndSetOpacityForProductCardImagesHappydad(): void {
+  private updateStylesForSecondImageInProductFigures(): void {
     setTimeout(() => {
-      console.log("Starting to remove inline styles and set opacity for elements...");
+      // Select all elements with the class 'product-card__figure'
+      const productFigures = this.document.querySelectorAll('.product-card__figure') as NodeListOf<HTMLElement>;
   
-      // Find all elements with the specified classes directly
-      const elements = this.document.querySelectorAll(
-        ".product-card__image.product-card__image--secondary"
-      ) as NodeListOf<HTMLElement>;
+      // Check if elements are found and log the count
+      console.log(`Found ${productFigures.length} elements with the class 'product-card__figure'.`);
   
-      if (elements.length > 0) {
-        console.log(`Found ${elements.length} elements with the class 'product-card__image product-card__image--secondary'.`);
+      // Iterate through each 'product-card__figure' element
+      productFigures.forEach((figure, index) => {
+        // Find all 'img' elements within the current 'product-card__figure'
+        const images = figure.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
   
-        elements.forEach((element, index) => {
-          console.log(`Processing element ${index + 1}/${elements.length}.`);
-  
-          // Remove any existing inline styles
-          element.removeAttribute("style");
-          console.log(`Removed inline styles from element ${index + 1}.`);
-  
-          // Set opacity to 0 with !important
-          element.style.setProperty("opacity", "0", "important");
-          console.log(`Set opacity to 0 with !important for element ${index + 1}.`);
-  
-          // Check after another 2 seconds if opacity is still not set, set display to none
-          setTimeout(() => {
-            if (element.style.opacity !== "0") {
-              element.style.setProperty("display", "none", "important");
-              console.log(`Opacity not set, set display to none with !important for element ${index + 1}.`);
-            } else {
-              console.log(`Opacity is correctly set to 0 for element ${index + 1}.`);
-            }
-          }, 2000); // Another 2000ms (2 second) delay
-        });
-      } else {
-        console.log("No elements found with the class 'product-card__image product-card__image--secondary'.");
-      }
-  
-      console.log("Finished processing elements.");
-    }, 2000); // Initial 2000ms (2 second) delay
+        // Check if there is a second image
+        if (images[1]) {
+          // Set opacity and display styles on the second image
+          images[1].style.setProperty('opacity', '1', 'important');
+          images[1].style.setProperty('display', 'none', 'important');
+          console.log(`Updated styles for the second image in 'product-card__figure' #${index + 1}.`);
+        } else {
+          console.log(`No second image found in 'product-card__figure' #${index + 1}.`);
+        }
+      });
+    }, 2000); // 2000ms (2 second) delay
   }
   
   
@@ -891,6 +877,24 @@ export default class AnitaScreenShotFixes {
       svgElement.style.setProperty("margin-bottom", "-300%", "important");
     });
   }
+  private removeDisplayNoneFromNestedElementsANDIE(): void {
+    const parentElements = this.document.querySelectorAll(
+      '.layout.layout--collection'
+    ) as NodeListOf<HTMLElement>;
+  
+    parentElements.forEach((parent, parentIndex) => {
+      const matchingElements = parent.querySelectorAll(
+        'div[style*="display: none;"][viewportwidth="100vw"]'
+      ) as NodeListOf<HTMLElement>;
+  
+      if (matchingElements.length > 0) {
+        matchingElements.forEach((element) => {
+          element.style.removeProperty('display');
+        });
+      }
+    });
+  }
+  
   
   
 }
