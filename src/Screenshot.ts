@@ -51,7 +51,8 @@ class ScreenshotFixes extends Common {
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
     const func = () => {
-      console.log("Function executed inside ScreenshotFixes");
+      if (!this.prodMode)
+        console.log("Function executed inside ScreenshotFixes");
 
       this.applyStyles();
       this.hidePopup();
@@ -131,12 +132,16 @@ class ScreenshotFixes extends Common {
   }
 
   private injectCss() {
+    if (!this.prodMode) console.log("insideIframe", this.insideIframe);
+
     styles.forEach((style: JsonEntry["content"]) => {
       const styleElement = this.dom.createElement("style");
+      const idSiteHsr = style.idSiteHsr ? style.idSiteHsr === this.idSiteHsr() : true;
       if (
         style.path &&
         style.idSite === this.idSite() &&
-        style.idSiteHsr === this.idSiteHsr()
+        idSiteHsr &&
+        this.insideIframe
       ) {
         fetch(style.path)
           .then((response) => response.text())
@@ -152,13 +157,15 @@ class ScreenshotFixes extends Common {
   private processSnippets() {
     snippets.forEach((snippet: JsonEntry) => {
       const { selector, content } = snippet;
-  
+
       const isElementInDom = selector
         ? this.dom.querySelector(selector)
         : undefined;
-  
-      const idSiteHsr = content.idSiteHsr ? content.idSiteHsr === this.idSiteHsr() : true;
-  
+
+      const idSiteHsr = content.idSiteHsr
+        ? content.idSiteHsr === this.idSiteHsr()
+        : true;
+
       if (
         content.path &&
         content.idSite === this.idSite() &&
@@ -170,13 +177,13 @@ class ScreenshotFixes extends Common {
           .then((htmlContent) => {
             const element = this.dom.querySelector(selector) as HTMLElement;
             this.displayBlock(element);
-  
+
             if (element) {
               // Check for the 'aria-code-injected' attribute to prevent re-injection
               if (element.hasAttribute("aria-code-injected")) {
                 return;
               }
-  
+
               if (snippet.append) {
                 const targetElement = document.querySelector(snippet.selector);
                 if (targetElement) {
@@ -189,7 +196,11 @@ class ScreenshotFixes extends Common {
                 }
               } else {
                 if (snippet?.shadow) {
-                  this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
+                  this.appendToFastSimonShadowRoot(
+                    element,
+                    htmlContent,
+                    snippet
+                  );
                 } else {
                   element.innerHTML = htmlContent;
                 }
@@ -201,7 +212,7 @@ class ScreenshotFixes extends Common {
           .catch((error) => console.error(`Error fetching content: ${error}`));
       }
     });
-  }  
+  }
 
   private appendToFastSimonShadowRoot(
     element: HTMLElement,
@@ -287,23 +298,33 @@ class ScreenshotFixes extends Common {
 
   //Benchmade
   private BenchmadeupdateMinHeight() {
-    this.allElements('.swiper-slide.relative').forEach(parent => {
-        parent.querySelectorAll('div').forEach(childDiv => {
-            if (Array.from(childDiv.classList).some(cls => cls.startsWith('laptop:min-h-'))) {
-                const windowHeight = childDiv.getAttribute('windowheight');
-                if (windowHeight) childDiv.style.setProperty('min-height', `${windowHeight}px`, 'important');
-            }
-        });
+    this.allElements(".swiper-slide.relative").forEach((parent) => {
+      parent.querySelectorAll("div").forEach((childDiv) => {
+        if (
+          Array.from(childDiv.classList).some((cls) =>
+            cls.startsWith("laptop:min-h-")
+          )
+        ) {
+          const windowHeight = childDiv.getAttribute("windowheight");
+          if (windowHeight)
+            childDiv.style.setProperty(
+              "min-height",
+              `${windowHeight}px`,
+              "important"
+            );
+        }
+      });
     });
   }
 
   private removeIdFromLogo() {
-    this.allElements(".wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex").forEach(parent => {
-        const child = parent.querySelector("#site-logo");
-        if (child) child.removeAttribute("id");
+    this.allElements(
+      ".wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex"
+    ).forEach((parent) => {
+      const child = parent.querySelector("#site-logo");
+      if (child) child.removeAttribute("id");
     });
   }
-  
 
   private setUncolHeight() {
     const parentElement = this.dom.querySelector<HTMLElement>(
@@ -466,21 +487,25 @@ class ScreenshotFixes extends Common {
   //jolies skin care
   private joliesskincareUpdateReviewsHeight() {
     if (window.location.href.includes("4646357")) {
-      this.dom.querySelectorAll("#looxReviews").forEach((parentElement: HTMLElement) => {
-        const childElement = parentElement.querySelector("#looxReviewsFrame") as HTMLElement;
-        if (childElement) {
-          if (childElement.style.height) {
-            childElement.style.height = ''; 
+      this.dom
+        .querySelectorAll("#looxReviews")
+        .forEach((parentElement: HTMLElement) => {
+          const childElement = parentElement.querySelector(
+            "#looxReviewsFrame"
+          ) as HTMLElement;
+          if (childElement) {
+            if (childElement.style.height) {
+              childElement.style.height = "";
+            }
+            childElement.style.height = "4088px";
           }
-          childElement.style.height = '4088px';
-        }
-      });
+        });
     }
   }
 
   //Denver CO
   private DenvercoContentAdjustOpacity() {
-    const style = this.dom.createElement('style');
+    const style = this.dom.createElement("style");
     style.innerHTML = `
         .wp-block-group.is-content-justification-right.is-nowrap.is-layout-flex.wp-container-core-group-is-layout-1.wp-block-group-is-layout-flex #site-logo img {
             opacity: 0 !important;
@@ -494,9 +519,9 @@ class ScreenshotFixes extends Common {
       const observer = new MutationObserver(() => {
         this.joliesskincareUpdateReviewsHeight();
       });
-  
+
       observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
+    }
   }
 
   private adjustFlickityViewportWidth(): void {
@@ -634,22 +659,27 @@ class ScreenshotFixes extends Common {
       ".flex.flex-wrap.h-full.px-4.-mx-4",
       ".window-overlay",
     ];
-    
+
     // Add inline styles with !important to class-based elements
     classes.forEach((cls) => {
       this.allElements(cls)?.forEach((m: HTMLElement) => {
         m.style.setProperty("display", "none", "important");
       });
     });
-    
+
     // Add !important to styles targeting IDs
-    const idsToHide = ["pandectes-banner", "gdpr-blocking-page-overlay", "ps__widget_container", "shopify-section-promo-popup"];
+    const idsToHide = [
+      "pandectes-banner",
+      "gdpr-blocking-page-overlay",
+      "ps__widget_container",
+      "shopify-section-promo-popup",
+    ];
     const style = this.dom.createElement("style");
     style.innerHTML = idsToHide
       .map((id) => `#${id} { display: none !important; }`)
       .join("\n");
     this.dom.head.appendChild(style);
-  } 
+  }
 
   private getAttrAndSetDisplayNone() {
     const attrs = ['[x-show="searchActive"]'];
@@ -1060,25 +1090,31 @@ class ScreenshotFixes extends Common {
   //Gobi Heat
   private GobiHeatupdateLookImageStyles() {
     const updateStyles = (el: HTMLElement, prop: string, value: string) => {
-        el.style.removeProperty(prop);
-        el.style.setProperty(prop, value, 'important');
+      el.style.removeProperty(prop);
+      el.style.setProperty(prop, value, "important");
     };
 
-    this.dom.querySelectorAll('.look').forEach((look: HTMLElement) => {
-        const lookImage = look.querySelector('.look__image') as HTMLElement | null;
-        if (!lookImage) return;
+    this.dom.querySelectorAll(".look").forEach((look: HTMLElement) => {
+      const lookImage = look.querySelector(
+        ".look__image"
+      ) as HTMLElement | null;
+      if (!lookImage) return;
 
-        updateStyles(lookImage, 'height', '810px');
+      updateStyles(lookImage, "height", "810px");
 
-        const container = lookImage.querySelector('.look__image-container') as HTMLElement | null;
-        if (!container) return;
+      const container = lookImage.querySelector(
+        ".look__image-container"
+      ) as HTMLElement | null;
+      if (!container) return;
 
-        updateStyles(container, 'min-height', 'auto');
+      updateStyles(container, "min-height", "auto");
 
-        const dots = container.querySelector('.look__dots') as HTMLElement;
-        if (dots) updateStyles(dots, 'height', 'auto');
+      const dots = container.querySelector(".look__dots") as HTMLElement;
+      if (dots) updateStyles(dots, "height", "auto");
 
-        container.querySelectorAll('img').forEach((img: HTMLImageElement) => updateStyles(img, 'width', '100%'));
+      container
+        .querySelectorAll("img")
+        .forEach((img: HTMLImageElement) => updateStyles(img, "width", "100%"));
     });
   }
 
@@ -1087,12 +1123,11 @@ class ScreenshotFixes extends Common {
       const observer = new MutationObserver(() => {
         this.GobiHeatupdateLookImageStyles();
       });
-  
+
       observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
+    }
   }
 
-  
   private setElementAndFirstChildHeight(
     height: number,
     domElement: HTMLElement | NodeListOf<HTMLElement>
@@ -1135,14 +1170,14 @@ class ScreenshotFixes extends Common {
   //   });
   // }
 
-   //sevenlions
-   private sevenlionsupdateMainContentMarginTop = () => {
+  //sevenlions
+  private sevenlionsupdateMainContentMarginTop = () => {
     const mainContentElements = this.dom.querySelectorAll("#MainContent");
     mainContentElements.forEach((element: HTMLElement) => {
       if (element.style.marginTop) {
-        element.style.marginTop = '';
+        element.style.marginTop = "";
       }
-      element.style.setProperty('margin-top', '0', 'important');
+      element.style.setProperty("margin-top", "0", "important");
     });
   };
 
@@ -1169,72 +1204,91 @@ class ScreenshotFixes extends Common {
 
   private adjustHeaderElements = () => {
     const findAndAdjustHeader = () => {
-      const mainContent = this.dom.querySelector('main, #MainContent, [data-main], [role="main"]');
-  
+      const mainContent = this.dom.querySelector(
+        'main, #MainContent, [data-main], [role="main"]'
+      );
+
       if (mainContent) {
         const header = mainContent.previousElementSibling as HTMLElement;
-  
+
         if (header) {
-          const isShopHeader = header.querySelector('.site-header, .main-header, nav, [class*="menu"]');
-  
+          const isShopHeader = header.querySelector(
+            '.site-header, .main-header, nav, [class*="menu"]'
+          );
+
           if (isShopHeader) {
-            header.style.setProperty('margin-top', '-54px', 'important');
+            header.style.setProperty("margin-top", "-54px", "important");
           }
         }
       }
-      const mainNav = this.dom.querySelector('nav.site-nav, .main-nav, .site-header__nav');
-  
+      const mainNav = this.dom.querySelector(
+        "nav.site-nav, .main-nav, .site-header__nav"
+      );
+
       if (mainNav) {
-        const headerContainer = mainNav.closest('header') || mainNav.parentElement;
+        const headerContainer =
+          mainNav.closest("header") || mainNav.parentElement;
         if (headerContainer) {
-          (headerContainer as HTMLElement).style.setProperty('margin-top', '-54px', 'important');
+          (headerContainer as HTMLElement).style.setProperty(
+            "margin-top",
+            "-54px",
+            "important"
+          );
         }
       }
     };
-    
+
     findAndAdjustHeader();
-    window.addEventListener('load', findAndAdjustHeader);
-    
+    window.addEventListener("load", findAndAdjustHeader);
+
     const interval = setInterval(findAndAdjustHeader, 1000);
     setTimeout(() => clearInterval(interval), 5000);
-  }
+  };
 
   private removeMainContentMarginTop = () => {
     const findAndAdjustContent = () => {
       const mainContent = this.dom.querySelector(
         '#MainContent, main, [data-main], [role="main"], .main-content'
       );
-  
+
       if (mainContent) {
-        (mainContent as HTMLElement).style.setProperty('margin-top', '0', 'important');
+        (mainContent as HTMLElement).style.setProperty(
+          "margin-top",
+          "0",
+          "important"
+        );
       }
     };
-  
+
     findAndAdjustContent();
-    
-    window.addEventListener('load', findAndAdjustContent);
-    
+
+    window.addEventListener("load", findAndAdjustContent);
+
     const interval = setInterval(findAndAdjustContent, 1000);
     setTimeout(() => clearInterval(interval), 5000);
-  }
+  };
 
   private heatmapSvgHideElements() {
-    const svgElements = this.dom.querySelectorAll('.heatmap__com-svg-replacement') as NodeListOf<HTMLElement>;
+    const svgElements = this.dom.querySelectorAll(
+      ".heatmap__com-svg-replacement"
+    ) as NodeListOf<HTMLElement>;
 
     svgElements.forEach((element: HTMLElement) => {
-        element.style.setProperty('display', 'none', 'important');
+      element.style.setProperty("display", "none", "important");
     });
-  };
+  }
 
   private Nuvecartfooter = () => {
     const elements = [
-      ...Array.from(this.dom.querySelectorAll('.cart__footer') as NodeListOf<HTMLElement>),
-      this.dom.querySelector('#sticky_container') as HTMLElement
+      ...Array.from(
+        this.dom.querySelectorAll(".cart__footer") as NodeListOf<HTMLElement>
+      ),
+      this.dom.querySelector("#sticky_container") as HTMLElement,
     ].filter(Boolean); // Filters out null if #sticky_container is not found
 
-    elements.forEach(element => {
-      element.style.removeProperty('display'); // Removes any existing display style
-      element.style.setProperty('display', 'block', 'important');
+    elements.forEach((element) => {
+      element.style.removeProperty("display"); // Removes any existing display style
+      element.style.setProperty("display", "block", "important");
     });
   };
 
@@ -1243,19 +1297,21 @@ class ScreenshotFixes extends Common {
       const observer = new MutationObserver(() => {
         this.heatmapSvgHideElements();
       });
-  
+
       observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
-  }
+    }
+  };
 
   //ELEAT
   private ELEATUpdatePositionForShopifyHeader = () => {
     setTimeout(() => {
-      const headerElement = this.dom.getElementById("shopify-section-header") as HTMLElement;
-  
+      const headerElement = this.dom.getElementById(
+        "shopify-section-header"
+      ) as HTMLElement;
+
       if (headerElement) {
         if (headerElement.style.position) {
-          headerElement.style.position = '';
+          headerElement.style.position = "";
         }
         headerElement.style.setProperty("position", "relative", "important");
       }
@@ -1270,31 +1326,34 @@ class ScreenshotFixes extends Common {
   //   // Add more idSite mappings as needed
   // };
 
-  private functionsMap: Record<number, (() => void)[]> = this.createFunctionsMap();
+  private functionsMap: Record<number, (() => void)[]> =
+    this.createFunctionsMap();
 
   private createFunctionsMap(): Record<number, (() => void)[]> {
-      const functionGroups = [
-          { ids: [1947], functions: [this.removeExcessiveParentWidths] },
-          { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
-          { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
-          { ids: [2853], functions: [this.adjustHeaderElements, this.removeMainContentMarginTop] },
-          { ids: [2777, 172, 2907, 555, 2684], functions: [this.observeMutation] },
-          { ids: [1848], functions: [this.removeMainContentMarginTop] },
-          { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
-          { ids: [2898], functions: [this.Nuvecartfooter] },
-      ];
+    const functionGroups = [
+      { ids: [1947], functions: [this.removeExcessiveParentWidths] },
+      { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
+      { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
+      {
+        ids: [2853],
+        functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
+      },
+      { ids: [2777, 172, 2907, 555, 2684], functions: [this.observeMutation] },
+      { ids: [1848], functions: [this.removeMainContentMarginTop] },
+      { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
+      { ids: [2898], functions: [this.Nuvecartfooter] },
+    ];
 
-      const map: Record<number, (() => void)[]> = {};
+    const map: Record<number, (() => void)[]> = {};
 
-      functionGroups.forEach(({ ids, functions }) => {
-          ids.forEach(id => {
-              map[id] = functions;
-          });
+    functionGroups.forEach(({ ids, functions }) => {
+      ids.forEach((id) => {
+        map[id] = functions;
       });
+    });
 
-      return map;
+    return map;
   }
-  
 }
 
 function createInstance<T>(

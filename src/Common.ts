@@ -11,20 +11,23 @@ export default class Common {
   protected iframeWindow: Window;
   protected debugMode: boolean;
   private domId = "recordingPlayer1";
+  protected insideIframe = false;
+  protected prodMode = true;
 
   constructor(dom: Document = document) {
     this.dom = dom;
   }
 
   protected exec({ containerId = this.domId, debugMode, func }: COMMON): void {
-    console.log("inside screenshot fixes, id: ", containerId);
     this.debugMode = debugMode;
+    this.prodMode = this.getRedirectType() === "dashboard";
 
     const container = document.getElementById(
       containerId
     ) as HTMLIFrameElement | null;
     this.iframeWindow = container?.contentWindow || window;
     this.dom = container?.contentWindow?.document || document;
+    if (container?.contentWindow?.document) this.insideIframe = true;
 
     func();
   }
@@ -136,5 +139,15 @@ export default class Common {
     ) as HTMLIFrameElement | null;
     // Remove the event listener when it's no longer needed
     // container?.contentWindow?.removeEventListener("resize", this.handleResize);
+  }
+
+  private getRedirectType(): "dashboard" | "locala" | "deves" | "dever" {
+    const url = new URL(window.location.href);
+    const hostname = url.hostname;
+    if (hostname.includes("localhost")) return "locala";
+    if (hostname.includes("dashboard")) return "dashboard";
+    if (hostname.includes("early-release")) return "dever";
+    if (hostname.includes("earlystage")) return "deves";
+    return "dashboard";
   }
 }
