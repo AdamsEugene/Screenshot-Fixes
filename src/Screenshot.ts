@@ -136,10 +136,11 @@ class ScreenshotFixes extends Common {
 
     styles.forEach((style: JsonEntry["content"]) => {
       const styleElement = this.dom.createElement("style");
+      const idSiteHsr = style.idSiteHsr ? style.idSiteHsr === this.idSiteHsr() : true;
       if (
         style.path &&
         style.idSite === this.idSite() &&
-        style.idSiteHsr === this.idSiteHsr() &&
+        idSiteHsr &&
         this.insideIframe
       ) {
         fetch(style.path)
