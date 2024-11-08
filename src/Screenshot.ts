@@ -136,7 +136,9 @@ class ScreenshotFixes extends Common {
 
     styles.forEach((style: JsonEntry["content"]) => {
       const styleElement = this.dom.createElement("style");
-      const idSiteHsr = style.idSiteHsr ? style.idSiteHsr === this.idSiteHsr() : true;
+      const idSiteHsr = style.idSiteHsr
+        ? style.idSiteHsr === this.idSiteHsr()
+        : true;
       if (
         style.path &&
         style.idSite === this.idSite() &&
@@ -148,6 +150,7 @@ class ScreenshotFixes extends Common {
           .then((cssContent) => {
             styleElement.innerHTML = cssContent;
             this.dom.head.appendChild(styleElement);
+            console.log(cssContent);
           })
           .catch((error) => {});
       }
@@ -658,6 +661,7 @@ class ScreenshotFixes extends Common {
       ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
       ".window-overlay",
+      ".agp__background.agp__background--color",
     ];
 
     // Add inline styles with !important to class-based elements
@@ -673,6 +677,7 @@ class ScreenshotFixes extends Common {
       "gdpr-blocking-page-overlay",
       "ps__widget_container",
       "shopify-section-promo-popup",
+      "agp_row",
     ];
     const style = this.dom.createElement("style");
     style.innerHTML = idsToHide
@@ -1338,7 +1343,10 @@ class ScreenshotFixes extends Common {
         ids: [2853],
         functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
       },
-      { ids: [2777, 172, 2907, 555, 2684, 2842], functions: [this.observeMutation] },
+      {
+        ids: [2777, 172, 2907, 555, 2684, 2842],
+        functions: [this.observeMutation],
+      },
       { ids: [1848], functions: [this.removeMainContentMarginTop] },
       { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
       { ids: [2898], functions: [this.Nuvecartfooter] },
