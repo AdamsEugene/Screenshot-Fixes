@@ -49,6 +49,7 @@ export default class RyanScreenshotFixes extends Common {
       this.modularclosetsaddAnimatedClass();
       this.DeuxRemoveHiddenElements();
       this.bigkizzyFixSlideshowbox();
+      this.canopyremoveOverflowFromProductMediaList();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -974,6 +975,19 @@ export default class RyanScreenshotFixes extends Common {
         if (elements.length > 0) {
             elements.forEach((element) => {
                 element.style.setProperty('opacity', 'revert-layer', 'important');
+            });
+        }
+    }, 2000);
+  }
+
+  //canopy
+  private canopyremoveOverflowFromProductMediaList() {
+    setTimeout(() => {
+        const elements = this.dom.querySelectorAll('.product__media-list .slick-list.draggable') as NodeListOf<HTMLElement>;
+
+        if (elements.length > 0) {
+            elements.forEach((element) => {
+                element.style.setProperty('overflow', 'revert-layer', 'important');
             });
         }
     }, 2000);
