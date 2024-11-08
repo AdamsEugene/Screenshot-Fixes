@@ -68,6 +68,7 @@ export default class AnitaScreenShotFixes {
     this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
     this.updateStylesForSecondImageInProductFigures();
+    this.removeDisplayNoneFromNestedElementsANDIE();
   }
 
   private removeHeightProperty() {
@@ -876,6 +877,24 @@ export default class AnitaScreenShotFixes {
       svgElement.style.setProperty("margin-bottom", "-300%", "important");
     });
   }
+  private removeDisplayNoneFromNestedElementsANDIE(): void {
+    const parentElements = this.document.querySelectorAll(
+      '.layout.layout--collection'
+    ) as NodeListOf<HTMLElement>;
+  
+    parentElements.forEach((parent, parentIndex) => {
+      const matchingElements = parent.querySelectorAll(
+        'div[style*="display: none;"][viewportwidth="100vw"]'
+      ) as NodeListOf<HTMLElement>;
+  
+      if (matchingElements.length > 0) {
+        matchingElements.forEach((element) => {
+          element.style.removeProperty('display');
+        });
+      }
+    });
+  }
+  
   
   
 }
