@@ -11,6 +11,7 @@ export default class Common {
   protected iframeWindow: Window;
   protected debugMode: boolean;
   private domId = "recordingPlayer1";
+  protected insideIframe = false;
 
   constructor(dom: Document = document) {
     this.dom = dom;
@@ -24,6 +25,8 @@ export default class Common {
       containerId
     ) as HTMLIFrameElement | null;
     this.iframeWindow = container?.contentWindow || window;
+    if (container?.contentWindow?.document) this.insideIframe = true;
+    else this.insideIframe = false;
     this.dom = container?.contentWindow?.document || document;
 
     func();
