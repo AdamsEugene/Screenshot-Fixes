@@ -869,20 +869,36 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeDisplayNoneFromNestedElementsANDIE(): void {
+    // Select all elements with the class 'layout layout--collection'
     const parentElements = this.document.querySelectorAll(
-      ".layout.layout--collection"
+      '.layout.layout--collection'
     ) as NodeListOf<HTMLElement>;
-
-    parentElements.forEach((parent, parentIndex) => {
+  
+    parentElements.forEach((parent: HTMLElement, parentIndex: number) => {
+      // Find child elements within each parent that have style "display: none" and viewportwidth="100vw"
       const matchingElements = parent.querySelectorAll(
         'div[style*="display: none;"][viewportwidth="100vw"]'
       ) as NodeListOf<HTMLElement>;
-
+  
       if (matchingElements.length > 0) {
-        matchingElements.forEach((element) => {
-          element.style.removeProperty("display");
+        console.log(
+          `Found ${matchingElements.length} matching element(s) inside parent #${parentIndex + 1} with class 'layout layout--collection'.`
+        );
+  
+        // Remove display: none from each matching element
+        matchingElements.forEach((element: HTMLElement, index: number) => {
+          element.style.removeProperty('display');
+          console.log(
+            `Removed display: none from element #${index + 1} within parent #${parentIndex + 1}:`,
+            element
+          );
         });
+      } else {
+        console.log(
+          `No matching elements found in parent #${parentIndex + 1} with class 'layout layout--collection'.`
+        );
       }
     });
   }
+  
 }
