@@ -968,16 +968,15 @@ export default class RyanScreenshotFixes extends Common {
 
   //big kizzy hair
   private bigkizzyFixSlideshowbox() {
-    this.dom.querySelectorAll('.slideshow__box').forEach((parent) => {
-        const childElements = parent.querySelectorAll('.slideshow__card');
+    setTimeout(() => {
+        const elements = this.dom.querySelectorAll('.slideshow__box .slideshow__card') as NodeListOf<HTMLElement>;
 
-        childElements.forEach((child) => {
-            const childElement = child as HTMLElement;
-            if (window.getComputedStyle(childElement).opacity !== '') {
-                childElement.style.setProperty('opacity', 'revert-layer', 'important');
-            }
-        });
-    });
+        if (elements.length > 0) {
+            elements.forEach((element) => {
+                element.style.setProperty('opacity', 'revert-layer', 'important');
+            });
+        }
+    }, 2000);
   }
 
   //disable pointer events
