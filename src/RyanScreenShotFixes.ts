@@ -455,6 +455,7 @@ export default class RyanScreenshotFixes extends Common {
         this.NitesightssetChildOpacities();
         this.ShieldEUsetChildOpacities();
         this.PulsioShowHiddenFAQAnswers();
+        this.bigkizzyFixSlideshowbox();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
