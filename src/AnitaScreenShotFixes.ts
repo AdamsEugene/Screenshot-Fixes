@@ -765,50 +765,18 @@ export default class AnitaScreenShotFixes {
 
   private updateStylesForSecondImageInProductFiguresHAPPYDAD(): void {
     setTimeout(() => {
-<<<<<<< HEAD
-=======
-      // Select all elements with the class 'product-card__figure'
->>>>>>> 1a4ec9eab9314e86f7a3b25c529e18f4f2f94690
       const productFigures = this.document.querySelectorAll(
         ".product-card__figure"
       ) as NodeListOf<HTMLElement>;
 
-<<<<<<< HEAD
       productFigures.forEach((figure, index) => {
-=======
-      // Check if elements are found and log the count
-      console.log(
-        `Found ${productFigures.length} elements with the class 'product-card__figure'.`
-      );
-
-      // Iterate through each 'product-card__figure' element
-      productFigures.forEach((figure, index) => {
-        // Find all 'img' elements within the current 'product-card__figure'
->>>>>>> 1a4ec9eab9314e86f7a3b25c529e18f4f2f94690
         const images = figure.querySelectorAll(
           "img"
         ) as NodeListOf<HTMLImageElement>;
 
-<<<<<<< HEAD
         if (images[1]) {
           images[1].style.setProperty("opacity", "1", "important");
           images[1].style.setProperty("display", "none", "important");
-=======
-        // Check if there is a second image
-        if (images[1]) {
-          // Set opacity and display styles on the second image
-          images[1].style.setProperty("opacity", "1", "important");
-          images[1].style.setProperty("display", "none", "important");
-          console.log(
-            `Updated styles for the second image in 'product-card__figure' #${
-              index + 1
-            }.`
-          );
-        } else {
-          console.log(
-            `No second image found in 'product-card__figure' #${index + 1}.`
-          );
->>>>>>> 1a4ec9eab9314e86f7a3b25c529e18f4f2f94690
         }
       });
     }, 2000);
