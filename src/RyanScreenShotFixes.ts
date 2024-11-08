@@ -62,7 +62,7 @@ export default class RyanScreenshotFixes extends Common {
         img.style.height = "";
       }
     });
-  
+
     const elements = this.dom.querySelectorAll(
       ".featured-collection-section"
     ) as NodeListOf<HTMLElement>;
@@ -167,15 +167,15 @@ export default class RyanScreenshotFixes extends Common {
       ".swiper-button-next",
       ".swiper-button-prev", // Example of an ID selector
     ];
-  
+
     selectors.forEach((selector) => {
       // Check if it's a class or an ID
-      if (selector.startsWith('.')) {
+      if (selector.startsWith(".")) {
         // Handle class selectors
         this.allElements(selector)?.forEach((el: HTMLElement) =>
           this.displayBlock(el, true)
         );
-      } else if (selector.startsWith('#')) {
+      } else if (selector.startsWith("#")) {
         // Handle ID selectors
         const el = document.querySelector(selector) as HTMLElement;
         if (el) {
@@ -183,10 +183,10 @@ export default class RyanScreenshotFixes extends Common {
         }
       }
     });
-    const style = this.dom.createElement('style');
+    const style = this.dom.createElement("style");
     style.innerHTML = `#fast-simon-serp-app { display: block !important; }`;
     this.dom.head.appendChild(style);
-  }  
+  }
 
   // CoThirty Six
   private CoThirtySixshowBarsInContainer() {
@@ -368,15 +368,15 @@ export default class RyanScreenshotFixes extends Common {
   //Mimi Belt
   private Mimibeltupdatefooter() {
     const targetElement = document.querySelector(
-      '.footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown'
+      ".footer.color-scheme-sections--18119191265494__footer.color-accent-1.gradient.section-sections--18119191265494__footer-padding.animate-section.animate--hidden.animate--shown"
     ) as HTMLElement;
     if (targetElement) {
-      const childrenWithOpacityZero = targetElement.querySelectorAll('*');
+      const childrenWithOpacityZero = targetElement.querySelectorAll("*");
       childrenWithOpacityZero.forEach((child) => {
         const childElement = child as HTMLElement;
         const computedOpacity = window.getComputedStyle(childElement).opacity;
-        if (computedOpacity === '0') {
-          childElement.style.setProperty('opacity', '1', 'important');
+        if (computedOpacity === "0") {
+          childElement.style.setProperty("opacity", "1", "important");
         }
       });
     }
@@ -400,10 +400,14 @@ export default class RyanScreenshotFixes extends Common {
   //Edenboost
   private EdenboostUpdateThumbnailHeight() {
     this.dom
-      .querySelectorAll(".text-link.product-single__thumbnail.product-single__thumbnail--product-alphacleanse-v4-template-radio")
+      .querySelectorAll(
+        ".text-link.product-single__thumbnail.product-single__thumbnail--product-alphacleanse-v4-template-radio"
+      )
       .forEach((parentElement: HTMLElement) => {
-        const childElement = parentElement.querySelector(".product-single__thumbnail-image") as HTMLElement;
-        
+        const childElement = parentElement.querySelector(
+          ".product-single__thumbnail-image"
+        ) as HTMLElement;
+
         if (childElement && childElement.style.height) {
           childElement.style.setProperty("height", "max-content", "important");
         }
@@ -412,18 +416,20 @@ export default class RyanScreenshotFixes extends Common {
 
   //Grow
   private GrowhideLightboxOverlays() {
-    const overlays = this.dom.querySelectorAll<HTMLElement>("body > .lightbox-overlay");
+    const overlays = this.dom.querySelectorAll<HTMLElement>(
+      "body > .lightbox-overlay"
+    );
     let hasVisibleOverlay = false;
-  
-    overlays.forEach(overlay => {
+
+    overlays.forEach((overlay) => {
       const opacity = getComputedStyle(overlay).opacity;
       if (opacity === "1") {
         hasVisibleOverlay = true;
       }
     });
-  
+
     if (hasVisibleOverlay) {
-      const style = this.dom.createElement('style');
+      const style = this.dom.createElement("style");
       style.innerHTML = `
         body > .lightbox-overlay {
           opacity: 0 !important;
@@ -434,7 +440,7 @@ export default class RyanScreenshotFixes extends Common {
       `;
       this.dom.head.appendChild(style);
     }
-  }  
+  }
 
   private observeOverlays() {
     if (this.dom && this.dom.body) {
@@ -447,42 +453,56 @@ export default class RyanScreenshotFixes extends Common {
         this.NitesightssetChildOpacities();
         this.ShieldEUsetChildOpacities();
       });
-  
+
       observer.observe(this.dom.body, { childList: true, subtree: true });
-    } 
+    }
   }
 
   private glowupdateElementsVisibility() {
-    const updateVisibility = (parentSelector: string, childSelector: string) => {
-        this.dom.querySelectorAll(parentSelector).forEach(parent => {
-            const children = parent.querySelectorAll(childSelector) as NodeListOf<HTMLElement>;
-            if (children.length > 0) {
-                const style = this.dom.createElement('style');
-                let styleContent = '';
+    const updateVisibility = (
+      parentSelector: string,
+      childSelector: string
+    ) => {
+      this.dom.querySelectorAll(parentSelector).forEach((parent) => {
+        const children = parent.querySelectorAll(
+          childSelector
+        ) as NodeListOf<HTMLElement>;
+        if (children.length > 0) {
+          const style = this.dom.createElement("style");
+          let styleContent = "";
 
-                children.forEach((child, index) => {
-                    const uniqueClass = `child-visible-${index}`;
-                    child.classList.add(uniqueClass);
-                    child.setAttribute('data-visible', 'true');
-                    styleContent += `.${uniqueClass} { opacity: 1 !important; } `;
-                });
+          children.forEach((child, index) => {
+            const uniqueClass = `child-visible-${index}`;
+            child.classList.add(uniqueClass);
+            child.setAttribute("data-visible", "true");
+            styleContent += `.${uniqueClass} { opacity: 1 !important; } `;
+          });
 
-                style.innerHTML = styleContent;
-                this.dom.head.appendChild(style);
-            }
-        });
+          style.innerHTML = styleContent;
+          this.dom.head.appendChild(style);
+        }
+      });
     };
 
-    updateVisibility('.padding.background-light.text-align-center', '.img.hover-plus.margin-bottom-1250.soft-load');
-    updateVisibility('.content.text-align-center', '.testimonial-carousel.soft-load');
-    updateVisibility('.content.flex.flex-row.flex-center', '.img.half.left.soft-load');
-    updateVisibility('.content', '.soft-load');
-    updateVisibility('.half.right', '.soft-load');
+    updateVisibility(
+      ".padding.background-light.text-align-center",
+      ".img.hover-plus.margin-bottom-1250.soft-load"
+    );
+    updateVisibility(
+      ".content.text-align-center",
+      ".testimonial-carousel.soft-load"
+    );
+    updateVisibility(
+      ".content.flex.flex-row.flex-center",
+      ".img.half.left.soft-load"
+    );
+    updateVisibility(".content", ".soft-load");
+    updateVisibility(".half.right", ".soft-load");
   }
-  
+
   //VIAIR
   private VIAIRremoveOpacityFromMegaMenu() {
-    const style = this.dom.createElement('style');
+    const style = this.dom.createElement("style");
     style.innerHTML = `
       .viair-header-link-first-level .viair-header-mega-menu {
         opacity: 0 !important;
@@ -502,11 +522,11 @@ export default class RyanScreenshotFixes extends Common {
         const contentWrapper = section.querySelector(
           ".content__wrapper.vertical-center.horizontal-left.mobile--content_overlay"
         ) as HTMLElement;
-  
+
         contentWrapper?.style.setProperty("padding-top", "0", "important");
         contentWrapper?.style.setProperty("padding-bottom", "0", "important");
-        contentWrapper?.style.removeProperty('height');
-        const styleTag = document.createElement('style');
+        contentWrapper?.style.removeProperty("height");
+        const styleTag = document.createElement("style");
         styleTag.innerHTML = `
           .content__wrapper.vertical-center.horizontal-left.mobile--content_overlay {
             height: auto !important;
@@ -518,36 +538,53 @@ export default class RyanScreenshotFixes extends Common {
 
   //Ministry of Supply
   private Ministryofsupplyfixes() {
-    const updateHeight = (elements: NodeListOf<HTMLElement>, attr: string, divisor: number, cssProp: string) => {
-      elements.forEach(parent => {
-        const firstChildElement = parent.querySelector('.flex.flex-col.relative') as HTMLElement | null;
+    const updateHeight = (
+      elements: NodeListOf<HTMLElement>,
+      attr: string,
+      divisor: number,
+      cssProp: string
+    ) => {
+      elements.forEach((parent) => {
+        const firstChildElement = parent.querySelector(
+          ".flex.flex-col.relative"
+        ) as HTMLElement | null;
         if (firstChildElement) {
-          const value = parseFloat(firstChildElement.getAttribute(attr) || '0');
+          const value = parseFloat(firstChildElement.getAttribute(attr) || "0");
           if (!isNaN(value)) {
             const computedValue = Math.floor(value / divisor);
-            const childElements = parent.querySelectorAll('.flex.flex-col.relative') as NodeListOf<HTMLElement>;
-            childElements.forEach(child => child.style.setProperty(cssProp, `${computedValue}px`));
+            const childElements = parent.querySelectorAll(
+              ".flex.flex-col.relative"
+            ) as NodeListOf<HTMLElement>;
+            childElements.forEach((child) =>
+              child.style.setProperty(cssProp, `${computedValue}px`)
+            );
           }
         }
       });
     };
-  
-    const gridElements = this.dom.querySelectorAll('.grid.h-full') as NodeListOf<HTMLElement>;
-    updateHeight(gridElements, 'elementscrollheight', 13, '--slider-height');
-  
-    const relativeElements = this.dom.querySelectorAll('.relative.grid.overflow-x-auto.scrollbar-none.overflow-y-hidden.snap-mandatory.-mx-container-fullwidth.scroll-px-container-fullwidth.px-container-fullwidth.snap-x') as NodeListOf<HTMLElement>;
-    relativeElements.forEach(parent => {
-      const childElements = parent.querySelectorAll('.relative') as NodeListOf<HTMLElement>;
-      childElements.forEach(child => {
-        const value = parseFloat(child.getAttribute('actualheight') || '0');
+
+    const gridElements = this.dom.querySelectorAll(
+      ".grid.h-full"
+    ) as NodeListOf<HTMLElement>;
+    updateHeight(gridElements, "elementscrollheight", 13, "--slider-height");
+
+    const relativeElements = this.dom.querySelectorAll(
+      ".relative.grid.overflow-x-auto.scrollbar-none.overflow-y-hidden.snap-mandatory.-mx-container-fullwidth.scroll-px-container-fullwidth.px-container-fullwidth.snap-x"
+    ) as NodeListOf<HTMLElement>;
+    relativeElements.forEach((parent) => {
+      const childElements = parent.querySelectorAll(
+        ".relative"
+      ) as NodeListOf<HTMLElement>;
+      childElements.forEach((child) => {
+        const value = parseFloat(child.getAttribute("actualheight") || "0");
         if (!isNaN(value)) {
           const computedValue = Math.floor(value / 13);
-          child.style.setProperty('min-height', `${computedValue}px`);
+          child.style.setProperty("min-height", `${computedValue}px`);
         }
       });
     });
-  
-    const styleElement = document.createElement('style');
+
+    const styleElement = document.createElement("style");
     styleElement.textContent = `
       .shrink-0.max-w-full.w-full.h-full .product-card--product-card {
         display: block !important;
@@ -564,10 +601,10 @@ export default class RyanScreenshotFixes extends Common {
         const childElement = parent.querySelector(
           ".main-menu__content.has-motion.justify-center"
         ) as HTMLElement;
-  
-        childElement?.style.removeProperty('height');
-  
-        const styleTag = document.createElement('style');
+
+        childElement?.style.removeProperty("height");
+
+        const styleTag = document.createElement("style");
         styleTag.innerHTML = `
           .main-menu__content.has-motion.justify-center {
             height: auto !important;
@@ -582,15 +619,13 @@ export default class RyanScreenshotFixes extends Common {
     this.dom
       .querySelectorAll(".doubly-nice-select")
       .forEach((parent: HTMLElement) => {
-        const childElement = parent.querySelector(
-          ".list"
-        ) as HTMLElement;
-  
-        if (childElement?.style.opacity === '1') {
-          childElement.style.opacity = '0';
+        const childElement = parent.querySelector(".list") as HTMLElement;
+
+        if (childElement?.style.opacity === "1") {
+          childElement.style.opacity = "0";
         }
-  
-        const styleTag = document.createElement('style');
+
+        const styleTag = document.createElement("style");
         styleTag.innerHTML = `
           .doubly-nice-select.open .list {
             opacity: 1 !important;
@@ -598,98 +633,138 @@ export default class RyanScreenshotFixes extends Common {
         `;
         document.head.appendChild(styleTag);
       });
-  }  
+  }
 
   private YaqeenUpdateBackground() {
-    this.dom.querySelectorAll("#Details-menu-drawer-container").forEach((parentElement: HTMLElement) => {
-        parentElement.querySelectorAll("#menu-drawer").forEach((childElement: HTMLElement) => {
-            childElement.style.setProperty("background-color", "revert-layer", "important");
-        });
-    });
+    this.dom
+      .querySelectorAll("#Details-menu-drawer-container")
+      .forEach((parentElement: HTMLElement) => {
+        parentElement
+          .querySelectorAll("#menu-drawer")
+          .forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty(
+              "background-color",
+              "revert-layer",
+              "important"
+            );
+          });
+      });
   }
 
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialog() {
-    const parentContainer = this.dom.querySelector('.wp-block-navigation__responsive-container');
+    const parentContainer = this.dom.querySelector(
+      ".wp-block-navigation__responsive-container"
+    );
     if (parentContainer) {
-      const container = parentContainer.querySelector('#modal-1-content') as HTMLElement;
+      const container = parentContainer.querySelector(
+        "#modal-1-content"
+      ) as HTMLElement;
       if (container) {
-        container.style.setProperty('margin-top', '0px', 'important');
+        container.style.setProperty("margin-top", "0px", "important");
       }
     }
-  }  
+  }
 
   //Upcircle
   private Upcircleupdatemaincontent() {
-    this.dom.querySelectorAll(".index").forEach((parentElement: HTMLElement) => {
-      const childElement = parentElement.querySelector("#template-index") as HTMLElement;
-      if (childElement) {
-        childElement.style.removeProperty("height");
-  
-        const styleElement = document.createElement("style");
-        styleElement.textContent = `
+    this.dom
+      .querySelectorAll(".index")
+      .forEach((parentElement: HTMLElement) => {
+        const childElement = parentElement.querySelector(
+          "#template-index"
+        ) as HTMLElement;
+        if (childElement) {
+          childElement.style.removeProperty("height");
+
+          const styleElement = document.createElement("style");
+          styleElement.textContent = `
           #template-index {
             height: max-content !important;
           }
         `;
-        document.head.appendChild(styleElement);
-      }
-    });
+          document.head.appendChild(styleElement);
+        }
+      });
   }
 
   //Reverse Life
   private ReverseLifeUpdateImage() {
-    this.dom.querySelectorAll(".footer-middle-container").forEach((parentElement: HTMLElement) => {
-      parentElement.querySelectorAll(".social-icon img, .designed-by img").forEach((imgElement: HTMLImageElement) => {
-        if (imgElement.src.includes("_430x")) {
-          imgElement.src = imgElement.src.replace("_430x", "_300x");
-        }
+    this.dom
+      .querySelectorAll(".footer-middle-container")
+      .forEach((parentElement: HTMLElement) => {
+        parentElement
+          .querySelectorAll(".social-icon img, .designed-by img")
+          .forEach((imgElement: HTMLImageElement) => {
+            if (imgElement.src.includes("_430x")) {
+              imgElement.src = imgElement.src.replace("_430x", "_300x");
+            }
+          });
       });
-    });
   }
 
   // Woojer
   private WoojerupdateMinHeight() {
-    this.dom.querySelectorAll('.sc-kqGpvY').forEach((parentElement: HTMLElement) => {
-      parentElement.querySelectorAll('.sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh').forEach((childElement: HTMLElement) => {
-        childElement.style.minHeight = '';
-        childElement.style.setProperty('min-height', 'auto', 'important');
+    this.dom
+      .querySelectorAll(".sc-kqGpvY")
+      .forEach((parentElement: HTMLElement) => {
+        parentElement
+          .querySelectorAll(
+            ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
+          )
+          .forEach((childElement: HTMLElement) => {
+            childElement.style.minHeight = "";
+            childElement.style.setProperty("min-height", "auto", "important");
+          });
       });
-    });
   }
 
   //Nubiance
   private NubianceUpdateBackground() {
-    this.dom.querySelectorAll(".menu__item.grandparent.kids-2.no-images").forEach((parentElement: HTMLElement) => {
-        parentElement.querySelectorAll(".header__dropdown").forEach((childElement: HTMLElement) => {
+    this.dom
+      .querySelectorAll(".menu__item.grandparent.kids-2.no-images")
+      .forEach((parentElement: HTMLElement) => {
+        parentElement
+          .querySelectorAll(".header__dropdown")
+          .forEach((childElement: HTMLElement) => {
             childElement.style.setProperty("background", "white", "important");
-        });
-    });
+          });
+      });
   }
 
   //Nuve
   private NuveremoveIsEmptyClass() {
-    this.dom.querySelectorAll("cart-items.page-width.is-empty").forEach((cartItemElement: HTMLElement) => {
+    this.dom
+      .querySelectorAll("cart-items.page-width.is-empty")
+      .forEach((cartItemElement: HTMLElement) => {
         cartItemElement.classList.remove("is-empty");
-    });
+      });
   }
 
   //Nourished
   private NourishedhideSubmenuDrawers() {
-    this.dom.querySelectorAll(".mobile-nav__link").forEach((parentElement: HTMLElement) => {
-        const submenuDrawer = parentElement.querySelector(".mobile-nav__submenu-drawer");
+    this.dom
+      .querySelectorAll(".mobile-nav__link")
+      .forEach((parentElement: HTMLElement) => {
+        const submenuDrawer = parentElement.querySelector(
+          ".mobile-nav__submenu-drawer"
+        );
         if (submenuDrawer) {
-            (submenuDrawer as HTMLElement).style.visibility = "hidden";
+          (submenuDrawer as HTMLElement).style.visibility = "hidden";
         }
-    });
+      });
   }
 
   //Next Adventure
   private NextAdventureSetSubmenuHeight() {
-    this.dom.querySelectorAll(".navmenu-item").forEach((parentElement: HTMLElement) => {
-        const submenu = parentElement.querySelector(".navmenu-submenu") as HTMLElement | null;
+    this.dom
+      .querySelectorAll(".navmenu-item")
+      .forEach((parentElement: HTMLElement) => {
+        const submenu = parentElement.querySelector(
+          ".navmenu-submenu"
+        ) as HTMLElement | null;
         if (submenu) submenu.style.removeProperty("height");
-    });
+      });
 
     const styleSheet = document.createElement("style");
     styleSheet.innerHTML = `
@@ -702,16 +777,24 @@ export default class RyanScreenshotFixes extends Common {
 
   //be Rooted
   private beRootedUpdateBackground() {
-    this.dom.querySelectorAll(".menu-drawer-container").forEach((parentElement: HTMLElement) => {
-        parentElement.querySelectorAll("#menu-drawer").forEach((childElement: HTMLElement) => {
-            childElement.style.setProperty("background-color", "revert-layer", "important");
-        });
-    });
+    this.dom
+      .querySelectorAll(".menu-drawer-container")
+      .forEach((parentElement: HTMLElement) => {
+        parentElement
+          .querySelectorAll("#menu-drawer")
+          .forEach((childElement: HTMLElement) => {
+            childElement.style.setProperty(
+              "background-color",
+              "revert-layer",
+              "important"
+            );
+          });
+      });
   }
 
   //Smel
   private SmelUpdateOpacity() {
-    const style = this.dom.createElement('style');
+    const style = this.dom.createElement("style");
     style.innerHTML = `
         .product-item__image-link .product-item__image--two {
             opacity: 0 !important;
@@ -719,22 +802,27 @@ export default class RyanScreenshotFixes extends Common {
     `;
     this.dom.head.appendChild(style);
   }
-  
+
   private SmelUpdateHeight() {
-    this.dom.querySelectorAll(".drawer-menu__panel").forEach(panel => {
-        ["bottom", "all-links", "contents"].forEach(cls => {
-            const el = panel.querySelector(`.drawer-menu__${cls}`) as HTMLElement;
-            if (el) el.style.setProperty("height", "revert-layer", "important");
-        });
+    this.dom.querySelectorAll(".drawer-menu__panel").forEach((panel) => {
+      ["bottom", "all-links", "contents"].forEach((cls) => {
+        const el = panel.querySelector(`.drawer-menu__${cls}`) as HTMLElement;
+        if (el) el.style.setProperty("height", "revert-layer", "important");
+      });
     });
   }
 
   //Graymatter Labs
   private GraymatterhideNextDivAfterIframe() {
-    this.dom.querySelectorAll('iframe.alia-iframe.left').forEach((iframeElement: HTMLIFrameElement) => {
-        const nextDiv = iframeElement.nextElementSibling?.tagName === 'DIV' ? iframeElement.nextElementSibling as HTMLElement : null;
-        nextDiv?.style.setProperty('display', 'none', 'important');
-    });
+    this.dom
+      .querySelectorAll("iframe.alia-iframe.left")
+      .forEach((iframeElement: HTMLIFrameElement) => {
+        const nextDiv =
+          iframeElement.nextElementSibling?.tagName === "DIV"
+            ? (iframeElement.nextElementSibling as HTMLElement)
+            : null;
+        nextDiv?.style.setProperty("display", "none", "important");
+      });
   }
 
   //muteMediaElements
@@ -742,139 +830,169 @@ export default class RyanScreenshotFixes extends Common {
     const self = this;
 
     const muteMedia = () => {
-        self.dom.querySelectorAll("audio, video").forEach((mediaElement: HTMLMediaElement) => {
-            mediaElement.muted = true;
+      self.dom
+        .querySelectorAll("audio, video")
+        .forEach((mediaElement: HTMLMediaElement) => {
+          mediaElement.muted = true;
         });
     };
 
     muteMedia();
-    window.addEventListener('load', muteMedia);
+    window.addEventListener("load", muteMedia);
     const interval = setInterval(muteMedia, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
 
   //Khaite
   private KhaiteUpdateHeaderMargin() {
-    const self = this; 
+    const self = this;
 
     function updateHeaderMargin() {
-        const parentElements = self.dom.querySelectorAll("class-controller");
-        parentElements.forEach((parentElement: HTMLElement) => {
-            const childElements = parentElement.querySelectorAll("#shopify-section-header");
-            childElements.forEach((childElement: HTMLElement) => {
-                childElement.style.removeProperty("margin-top");
-                childElement.style.setProperty("margin-top", "auto", "important");
-            });
+      const parentElements = self.dom.querySelectorAll("class-controller");
+      parentElements.forEach((parentElement: HTMLElement) => {
+        const childElements = parentElement.querySelectorAll(
+          "#shopify-section-header"
+        );
+        childElements.forEach((childElement: HTMLElement) => {
+          childElement.style.removeProperty("margin-top");
+          childElement.style.setProperty("margin-top", "auto", "important");
         });
+      });
     }
 
     updateHeaderMargin();
-    window.addEventListener('load', updateHeaderMargin);
+    window.addEventListener("load", updateHeaderMargin);
     const interval = setInterval(updateHeaderMargin, 1000);
     setTimeout(() => clearInterval(interval), 5000);
   }
 
   private KhaiteUpdateHeight() {
-    this.dom.querySelectorAll('.menu-item').forEach(parent => {
-        const submenu = parent.querySelector('.menu-item__submenu') as HTMLElement;
-        if (submenu) {
-            submenu.style.removeProperty('height');
-            submenu.style.removeProperty('min-height');
-            submenu.style.setProperty('min-height', 'max-content', 'important');
-            submenu.style.setProperty('height', 'max-content', 'important');
-        }
+    this.dom.querySelectorAll(".menu-item").forEach((parent) => {
+      const submenu = parent.querySelector(
+        ".menu-item__submenu"
+      ) as HTMLElement;
+      if (submenu) {
+        submenu.style.removeProperty("height");
+        submenu.style.removeProperty("min-height");
+        submenu.style.setProperty("min-height", "max-content", "important");
+        submenu.style.setProperty("height", "max-content", "important");
+      }
     });
   }
 
   //Nitesights
   private NitesightssetChildOpacities() {
-    this.dom.querySelectorAll('.comparison-slider').forEach(parent => {
-        const child = parent.querySelector('.comparison-slider__input') as HTMLElement;
-        if (child) {
-            child.style.setProperty('opacity', 'revert-layer', 'important');
-        }
+    this.dom.querySelectorAll(".comparison-slider").forEach((parent) => {
+      const child = parent.querySelector(
+        ".comparison-slider__input"
+      ) as HTMLElement;
+      if (child) {
+        child.style.setProperty("opacity", "revert-layer", "important");
+      }
     });
 
-    this.dom.querySelectorAll('.hotspot').forEach(parent => {
-        const child = parent.querySelector('.hotspot__content') as HTMLElement;
-        if (child) {
-            child.style.setProperty('opacity', 'revert-layer', 'important');
-        }
+    this.dom.querySelectorAll(".hotspot").forEach((parent) => {
+      const child = parent.querySelector(".hotspot__content") as HTMLElement;
+      if (child) {
+        child.style.setProperty("opacity", "revert-layer", "important");
+      }
     });
   }
 
   //Shield EU
   private ShieldEUsetChildOpacities() {
-    this.dom.querySelectorAll('.elementor-location-header').forEach(parent => {
-        const child = parent.querySelector('.elementor-element.elementor-element-941829d') as HTMLElement;
+    this.dom
+      .querySelectorAll(".elementor-location-header")
+      .forEach((parent) => {
+        const child = parent.querySelector(
+          ".elementor-element.elementor-element-941829d"
+        ) as HTMLElement;
         if (child) {
-            child.style.removeProperty('opacity');
-            child.style.setProperty('opacity', 'revert-layer', 'important');
+          child.style.removeProperty("opacity");
+          child.style.setProperty("opacity", "revert-layer", "important");
         }
-    });
+      });
   }
 
   //Benchmade
   private BenchmadeupdateImageSrcsetToHttps() {
-    this.dom.querySelectorAll('.relative.h-0').forEach((parent) => {
-      const childImage = parent.querySelector('.image.absolute');
+    this.dom.querySelectorAll(".relative.h-0").forEach((parent) => {
+      const childImage = parent.querySelector(".image.absolute");
       if (childImage) {
-        ['src', 'srcset'].forEach(attr => {
+        ["src", "srcset"].forEach((attr) => {
           if (childImage.hasAttribute(attr)) {
-            childImage.setAttribute(attr, childImage.getAttribute(attr).replace(/http:\/\//g, 'https://'));
+            childImage.setAttribute(
+              attr,
+              childImage.getAttribute(attr).replace(/http:\/\//g, "https://")
+            );
           }
         });
       }
     });
-  }  
+  }
 
   //modular closets
   private modularclosetsaddAnimatedClass() {
-    this.dom.querySelectorAll('.wowo').forEach((element) => {
+    this.dom.querySelectorAll(".wowo").forEach((element) => {
       if (element) {
-        element.classList.add('animated');
+        element.classList.add("animated");
       }
     });
   }
 
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
-    this.dom.querySelectorAll('.card__link').forEach((parentElement: HTMLElement) => {
-      const beforeStyle = window.getComputedStyle(parentElement, '::before');
-      const afterStyle = window.getComputedStyle(parentElement, '::after');
-  
-      const isBeforeAbsolute = beforeStyle.position === 'absolute';
-      const isAfterAbsolute = afterStyle.position === 'absolute';
-  
-      if (isBeforeAbsolute || isAfterAbsolute) {
-        parentElement.style.setProperty('pointer-events', 'none', 'important');
-      }
-    });
+    this.dom
+      .querySelectorAll(".card__link")
+      .forEach((parentElement: HTMLElement) => {
+        const beforeStyle = window.getComputedStyle(parentElement, "::before");
+        const afterStyle = window.getComputedStyle(parentElement, "::after");
+
+        const isBeforeAbsolute = beforeStyle.position === "absolute";
+        const isAfterAbsolute = afterStyle.position === "absolute";
+
+        if (isBeforeAbsolute || isAfterAbsolute) {
+          parentElement.style.setProperty(
+            "pointer-events",
+            "none",
+            "important"
+          );
+        }
+      });
   }
 
   //Hide Header group
   private hideShopifyHeaderGroup() {
-    this.dom.querySelectorAll('.shopify-section.shopify-section-group-header-group.section-main-page-landing').forEach((headerGroupElement: HTMLElement) => {
-        headerGroupElement.style.setProperty('display', 'none', 'important');
-    });
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.shopify-section-group-header-group.section-main-page-landing"
+      )
+      .forEach((headerGroupElement: HTMLElement) => {
+        headerGroupElement.style.setProperty("display", "none", "important");
+      });
   }
-  
+
   //Iframe Update
   private UpdateIframeSrc() {
-    const iframes = this.dom.querySelectorAll("iframe") as NodeListOf<HTMLIFrameElement>;
+    const iframes = this.dom.querySelectorAll(
+      "iframe"
+    ) as NodeListOf<HTMLIFrameElement>;
     if (iframes.length === 0) {
       return;
     }
-    iframes.forEach(iframe => {
+    iframes.forEach((iframe) => {
       let iframeSrc = iframe.getAttribute("src");
-      
+
       if (!iframeSrc) {
         return;
       }
-      const proxyUrl1 = "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
+      const proxyUrl1 =
+        "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
       const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
       const removeProxyUrl = (url: string, proxyUrl: string) => {
-        return url.startsWith(proxyUrl) ? decodeURIComponent(url.replace(proxyUrl, "")) : url;
+        return url.startsWith(proxyUrl)
+          ? decodeURIComponent(url.replace(proxyUrl, ""))
+          : url;
       };
       iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
       iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
@@ -886,20 +1004,23 @@ export default class RyanScreenshotFixes extends Common {
         iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
         iframe.onerror = retryWithProxy2;
       };
-      iframe.onload = () => {
-      };
+      iframe.onload = () => {};
       iframe.onerror = retryWithProxy1;
     });
   }
 
   private adjustHeaderPosition() {
-    const header = this.dom.getElementById('shopify-section-header') as HTMLElement;
-  
-    if (header && header.classList.contains('shopify-section') && 
-        header.classList.contains('header-section') && 
-        header.classList.contains('header--ontop')) {
-        header.style.removeProperty('position');
+    const header = this.dom.getElementById(
+      "shopify-section-header"
+    ) as HTMLElement;
+
+    if (
+      header &&
+      header.classList.contains("shopify-section") &&
+      header.classList.contains("header-section") &&
+      header.classList.contains("header--ontop")
+    ) {
+      header.style.removeProperty("position");
     }
   }
-  
 }

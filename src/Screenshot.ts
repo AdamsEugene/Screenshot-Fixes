@@ -50,10 +50,9 @@ class ScreenshotFixes extends Common {
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
-    console.log("insideIframe", this.insideIframe);
-
     const func = () => {
-      console.log("Function executed inside ScreenshotFixes");
+      if (!this.prodMode)
+        console.log("Function executed inside ScreenshotFixes");
 
       this.applyStyles();
       this.hidePopup();
@@ -133,6 +132,8 @@ class ScreenshotFixes extends Common {
   }
 
   private injectCss() {
+    if (!this.prodMode) console.log("insideIframe", this.insideIframe);
+
     styles.forEach((style: JsonEntry["content"]) => {
       const styleElement = this.dom.createElement("style");
       if (
