@@ -64,8 +64,8 @@ export default class AnitaScreenShotFixes {
     this.removeBackgroundFromSidebarContainerinfiniteicon();
     this.removeInlineStylesFromSwiperElementALBION();
     this.removeDisplayNoneFromDescendantsOBVI();
-    this.removeHeightFromImageHeroContainerSMEL();
-    this.setHeightAutoForAllImageInnerSMEL();
+    // this.removeHeightFromImageHeroContainerSMEL();
+    // this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
     this.updateStylesForSecondImageInProductFiguresHAPPYDAD();
     // this.removeDisplayNoneFromNestedElementsANDIE();
