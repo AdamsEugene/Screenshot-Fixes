@@ -52,6 +52,7 @@ export default class ForsonScreenshotFixes {
     this.checkAndRemoveHiddenElements();
     this.removePaddingTop();
     this.overrideMarginTop();
+    this.showHiddenElement()
   }
 
   // Upcircle EU
@@ -609,9 +610,21 @@ export default class ForsonScreenshotFixes {
   }
 
   private overrideMarginTop() {
-    const header = document.getElementById("shopify-section-header");
+    const header = this.document.getElementById("shopify-section-header");
     if (header) {
       header.style.setProperty("margin-top", "0px", "important");
     }
   }
+
+  private showHiddenElement() {
+    const parentElement = document.querySelector('.pf-c');
+    if (parentElement) {
+        const childElement = parentElement.querySelector('.sc-iapVNj.iUcVNL.pf-20_') as HTMLElement;
+        if (childElement) {
+            childElement.style.setProperty('visibility', 'visible', 'important');
+        }
+    }
+}
+ // Call the function
+
 }
