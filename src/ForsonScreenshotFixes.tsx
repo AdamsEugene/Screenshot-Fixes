@@ -617,7 +617,7 @@ export default class ForsonScreenshotFixes {
   }
 
   private showHiddenElement() {
-    const parentElement = document.querySelector('.pf-c');
+    const parentElement = this.document.querySelector('.pf-c');
     if (parentElement) {
         const childElement = parentElement.querySelector('.sc-iapVNj.iUcVNL.pf-20_') as HTMLElement;
         if (childElement) {
