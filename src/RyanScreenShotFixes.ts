@@ -51,6 +51,7 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.idcdermoupdateMiniCartHeight();
+      
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -169,18 +170,16 @@ export default class RyanScreenshotFixes extends Common {
       ".dbtfy-product-bullet-points-container",
       ".hamburger__line",
       ".swiper-button-next",
-      ".swiper-button-prev", // Example of an ID selector
+      ".swiper-button-prev", 
+      ".sticky-button",
     ];
 
     selectors.forEach((selector) => {
-      // Check if it's a class or an ID
       if (selector.startsWith(".")) {
-        // Handle class selectors
         this.allElements(selector)?.forEach((el: HTMLElement) =>
           this.displayBlock(el, true)
         );
       } else if (selector.startsWith("#")) {
-        // Handle ID selectors
         const el = document.querySelector(selector) as HTMLElement;
         if (el) {
           this.displayBlock(el, true);
@@ -771,14 +770,17 @@ export default class RyanScreenshotFixes extends Common {
         ) as HTMLElement | null;
         if (submenu) submenu.style.removeProperty("height");
       });
-
-    const styleSheet = document.createElement("style");
-    styleSheet.innerHTML = `
-        .navmenu-item .navmenu-submenu {
-            height: revert-layer !important;
-        }
-    `;
-    document.head.appendChild(styleSheet);
+  
+    if (!document.getElementById("next-adventure-submenu-style")) {
+      const styleSheet = document.createElement("style");
+      styleSheet.id = "next-adventure-submenu-style";
+      styleSheet.innerHTML = `
+          .navmenu-item .navmenu-submenu {
+              height: revert-layer !important;
+          }
+      `;
+      document.head.appendChild(styleSheet);
+    }
   }
 
   //be Rooted
@@ -1002,7 +1004,7 @@ export default class RyanScreenshotFixes extends Common {
             const childElement = parentElement.querySelector('#mini-cart') as HTMLElement;
             if (childElement) {
                 childElement.style.setProperty('height', 'revert-layer', 'important');
-            }
+                }
         }
     }, 2000);
   }
