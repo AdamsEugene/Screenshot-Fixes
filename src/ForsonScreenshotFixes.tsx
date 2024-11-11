@@ -53,7 +53,6 @@ export default class ForsonScreenshotFixes {
     this.removePaddingTop();
     this.overrideMarginTop();
     this.showHiddenElement();
-    this.removePageContainerMargin()
   }
 
   // Upcircle EU
@@ -625,11 +624,6 @@ export default class ForsonScreenshotFixes {
             childElement.style.setProperty('visibility', 'visible', 'important');
         }
     }
-}
-
-private removePageContainerMargin() {
-  const pageContainer = this.document.getElementById('PageContainer') as HTMLElement;
-  if (pageContainer && pageContainer.classList.contains('page-container') && pageContainer.classList.contains('drawer-page-content')) { pageContainer.style.setProperty('margin-top', '0', 'important');}
 }
 
 }
