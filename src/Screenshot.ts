@@ -1333,6 +1333,17 @@ class ScreenshotFixes extends Common {
     }
   };
 
+  //Springinger
+  private hideShopifyMinicartElements = () => {
+    const elements = this.dom.querySelectorAll('#shopify-section-global-minicart') as NodeListOf<HTMLElement>;
+
+    elements.forEach((element) => {
+        if (element.classList.contains('shopify-section')) {
+            element.style.setProperty('display', 'none', 'important');
+        }
+    });
+  };
+
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1361,6 +1372,7 @@ class ScreenshotFixes extends Common {
       { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
+      { ids: [2858], functions: [this.hideShopifyMinicartElements] },
     ];
 
     const map: Record<number, (() => void)[]> = {};
