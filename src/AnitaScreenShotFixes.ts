@@ -15,7 +15,7 @@ export default class AnitaScreenShotFixes {
   }
   public init(): void {
     this.removeHeightProperty();
-    this.hideShopifyMinicartElements();
+    // this.hideShopifyMinicartElements();
     this.setTransparentBackground();
     this.setMobileMenuZIndexAndPosition();
     this.hideSearchForm();
@@ -88,17 +88,17 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private hideShopifyMinicartElements(): void {
-    const elements = this.document.querySelectorAll(
-      "#shopify-section-global-minicart"
-    ) as NodeListOf<HTMLElement>;
+  // private hideShopifyMinicartElements(): void {
+  //   const elements = this.document.querySelectorAll(
+  //     "#shopify-section-global-minicart"
+  //   ) as NodeListOf<HTMLElement>;
 
-    elements.forEach((element: HTMLElement) => {
-      if (element.classList.contains("shopify-section")) {
-        element.style.setProperty("display", "none", "important");
-      }
-    });
-  }
+  //   elements.forEach((element: HTMLElement) => {
+  //     if (element.classList.contains("shopify-section")) {
+  //       element.style.setProperty("display", "none", "important");
+  //     }
+  //   });
+  // }
 
   private setTransparentBackground(): void {
     const element = this.document.querySelector(

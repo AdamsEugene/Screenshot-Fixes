@@ -170,8 +170,7 @@ export default class RyanScreenshotFixes extends Common {
       ".dbtfy-product-bullet-points-container",
       ".hamburger__line",
       ".swiper-button-next",
-      ".swiper-button-prev", 
-      ".sticky-button",
+      ".swiper-button-prev",
     ];
 
     selectors.forEach((selector) => {
