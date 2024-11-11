@@ -71,6 +71,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNoneFromNestedElementsBreeo();
     this.removeInlineStylesFromBannerContent();
     this.updateDisplayForNestedElementsAMIE();
+    this.updateImageStyleForBannerOMG();
   }
 
   private removeHeightProperty() {
@@ -939,6 +940,21 @@ export default class AnitaScreenShotFixes {
       });
     }, 2000);
   }
+  private updateImageStyleForBannerOMG(): void {
+    const element = this.document.getElementById(
+      "Banner-template--17503515181245__image_banner_qdE7JV"
+    ) as HTMLElement;
+  
+    if (element) {
+      const imgElement = element.querySelector("img") as HTMLElement;
+  
+      if (imgElement) {
+        imgElement.style.setProperty("height", "100%", "important");
+        imgElement.style.setProperty("position", "absolute", "important");
+      }
+    }
+  }
+  
   
   
   
