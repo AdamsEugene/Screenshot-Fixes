@@ -1323,6 +1323,16 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  private updateMiniCartHeight = () => {
+    const miniCart = this.dom.querySelector('#mini-cart.mini-cart');
+
+    if (miniCart) {
+        (miniCart as HTMLElement).style.setProperty('height', '6523px', 'important');
+        (miniCart as HTMLElement).style.setProperty('min-height', '6523px', 'important');
+        (miniCart as HTMLElement).style.setProperty('max-height', '6523px', 'important');
+    }
+  };
+
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1350,6 +1360,7 @@ class ScreenshotFixes extends Common {
       { ids: [1848], functions: [this.removeMainContentMarginTop] },
       { ids: [2118], functions: [this.ELEATUpdatePositionForShopifyHeader] },
       { ids: [2898], functions: [this.Nuvecartfooter] },
+      { ids: [2176], functions: [this.updateMiniCartHeight] },
     ];
 
     const map: Record<number, (() => void)[]> = {};

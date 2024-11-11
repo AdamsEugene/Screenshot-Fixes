@@ -50,7 +50,7 @@ export default class RyanScreenshotFixes extends Common {
       this.DeuxRemoveHiddenElements();
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
-      this.idcdermoupdateMiniCartHeight();
+      this.updateCartPopupHeight();
       
     };
     this.exec({ containerId, debugMode, func });
@@ -278,6 +278,14 @@ export default class RyanScreenshotFixes extends Common {
           toggleButton.style.setProperty("display", "", "important");
         }
       });
+  }
+
+  private updateCartPopupHeight() {
+    this.dom.querySelectorAll("#UpcartPopup #CartPopup").forEach((childElement) => {
+      const element = childElement as HTMLElement;
+      element.style.removeProperty("height");
+      element.style.setProperty("height", "auto", "important");
+    });
   }
 
   //springerpets
@@ -992,19 +1000,6 @@ export default class RyanScreenshotFixes extends Common {
             elements.forEach((element) => {
                 element.style.setProperty('overflow', 'revert-layer', 'important');
             });
-        }
-    }, 2000);
-  }
-
-  //IDC Dermo
-  private idcdermoupdateMiniCartHeight() {
-    setTimeout(() => {
-        const parentElement = document.querySelector('cart-service');
-        if (parentElement) {
-            const childElement = parentElement.querySelector('#mini-cart') as HTMLElement;
-            if (childElement) {
-                childElement.style.setProperty('height', 'revert-layer', 'important');
-                }
         }
     }, 2000);
   }

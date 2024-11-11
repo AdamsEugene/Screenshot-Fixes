@@ -352,5 +352,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.idcdermo.com-fr-products-glowfix-plump-advanced-lip-maximiser-sheer-pink-main.html"
     }
+  },
+  {
+    "selector": ".styles_CartPreview__card__KX-WB",
+    "content": {
+      "idSite": 1802,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/heyhair.co-products-gray-escape-advanced-hair-growth-supplement-main.html"
+    }
   }
 ]
