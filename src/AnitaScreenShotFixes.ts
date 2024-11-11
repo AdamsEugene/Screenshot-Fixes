@@ -70,7 +70,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNoneFromNestedElementsANDIE();
     this.removeDisplayNoneFromNestedElementsBreeo();
     this.removeInlineStylesFromBannerContent();
-    this.removeDisplayNoneFromNestedElementsAMIE();
+    this.updateDisplayForNestedElementsAMIE();
   }
 
   private removeHeightProperty() {
@@ -925,21 +925,21 @@ export default class AnitaScreenShotFixes {
       element.removeAttribute("style");
     });
   }
-  private removeDisplayNoneFromNestedElementsAMIE(): void {
-    const parentElements = this.document.querySelectorAll(
-      ".r-1mf0icq"
-    ) as NodeListOf<HTMLElement>;
-
-    parentElements.forEach((parentElement) => {
-      const childElements = parentElement.querySelectorAll(
-        ".r-1ks6rne"
+  private updateDisplayForNestedElementsAMIE(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll(
+        ".r-1mf0icq .r-1ks6rne"
       ) as NodeListOf<HTMLElement>;
-
-      childElements.forEach((childElement) => {
-        if (childElement.style.display === "none") {
-          childElement.style.removeProperty("display");
+  
+      elements.forEach((element) => {
+        if (element && element.style.display === "none") {
+          element.style.removeProperty("display");
+          element.style.setProperty("display", "block", "important");
         }
       });
-    });
+    }, 2000);
   }
+  
+  
+  
 }
