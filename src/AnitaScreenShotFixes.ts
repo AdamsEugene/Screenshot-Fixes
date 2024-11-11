@@ -15,7 +15,6 @@ export default class AnitaScreenShotFixes {
   }
   public init(): void {
     this.removeHeightProperty();
-    // this.hideShopifyMinicartElements();
     this.setTransparentBackground();
     this.setMobileMenuZIndexAndPosition();
     this.hideSearchForm();
@@ -68,10 +67,10 @@ export default class AnitaScreenShotFixes {
     // this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
     this.updateStylesForSecondImageInProductFiguresHAPPYDAD();
-    // this.removeDisplayNoneFromNestedElementsANDIE();
-    this.updateMinHeightForBanner();
+    this.removeDisplayNoneFromNestedElementsANDIE();
+    this.removeDisplayNoneFromNestedElementsBreeo();
     this.removeInlineStylesFromBannerContent();
-
+    this.removeDisplayNoneFromNestedElementsAMIE();
   }
 
   private removeHeightProperty() {
@@ -87,18 +86,6 @@ export default class AnitaScreenShotFixes {
       mobileNav.style.setProperty("height", "", "important");
     }
   }
-
-  // private hideShopifyMinicartElements(): void {
-  //   const elements = this.document.querySelectorAll(
-  //     "#shopify-section-global-minicart"
-  //   ) as NodeListOf<HTMLElement>;
-
-  //   elements.forEach((element: HTMLElement) => {
-  //     if (element.classList.contains("shopify-section")) {
-  //       element.style.setProperty("display", "none", "important");
-  //     }
-  //   });
-  // }
 
   private setTransparentBackground(): void {
     const element = this.document.querySelector(
@@ -875,7 +862,7 @@ export default class AnitaScreenShotFixes {
     const parentElements = this.document.querySelectorAll(
       ".layout.layout--collection"
     ) as NodeListOf<HTMLElement>;
-  
+
     parentElements.forEach((parent: HTMLElement, parentIndex: number) => {
       // Find child elements within each parent that have style "display: none" and viewportwidth="100vw"
       const matchingElements = parent.querySelectorAll(
@@ -884,65 +871,75 @@ export default class AnitaScreenShotFixes {
 
       if (matchingElements.length > 0) {
         console.log(
-          `Found ${matchingElements.length} matching element(s) inside parent #${parentIndex + 1} with class 'layout layout--collection'.`
+          `Found ${
+            matchingElements.length
+          } matching element(s) inside parent #${
+            parentIndex + 1
+          } with class 'layout layout--collection'.`
         );
-  
+
         // Remove display: none from each matching element
         matchingElements.forEach((element: HTMLElement, index: number) => {
-          element.style.removeProperty('display');
+          element.style.removeProperty("display");
           console.log(
-            `Removed display: none from element #${index + 1} within parent #${parentIndex + 1}:`,
+            `Removed display: none from element #${index + 1} within parent #${
+              parentIndex + 1
+            }:`,
             element
           );
         });
       } else {
         console.log(
-          `No matching elements found in parent #${parentIndex + 1} with class 'layout layout--collection'.`
+          `No matching elements found in parent #${
+            parentIndex + 1
+          } with class 'layout layout--collection'.`
         );
       }
     });
   }
 
-  private updateMinHeightForBanner(): void {
-    // Log to indicate that the function has started
-    console.log("Starting to update min-height for banner...");
-  
-    // Get the element by ID
-    const element = this.document.getElementById(
-      "Banner-template--16295038844973__image_banner_FdB9Xf"
-    ) as HTMLElement;
-  
-    if (element) {
-      console.log("Element found with ID 'Banner-template--16295038844973__image_banner_FdB9Xf'.");
-  
-      // Remove existing min-height property
-      if (element.style.minHeight) {
-        element.style.removeProperty("min-height");
-        console.log("Removed existing min-height property from element.");
-      }
-  
-      // Set new min-height to 825px with !important
-      element.style.setProperty("min-height", "825px", "important");
-      console.log("Set new min-height to 825px with !important.");
-    } else {
-      console.log("Element with specified ID not found.");
-    }
-  
-    // Log to indicate that the function has finished
-    console.log("Finished updating min-height for banner.");
+  private removeDisplayNoneFromNestedElementsBreeo(): void {
+    const parentElements = this.document.querySelectorAll(
+      ".r-1mf0icq"
+    ) as NodeListOf<HTMLElement>;
+
+    parentElements.forEach((parentElement) => {
+      const childElements = parentElement.querySelectorAll(
+        ".r-1ks6rne"
+      ) as NodeListOf<HTMLElement>;
+
+      childElements.forEach((childElement) => {
+        if (childElement.style.display === "none") {
+          childElement.style.removeProperty("display");
+        }
+      });
+    });
   }
-  
 
   private removeInlineStylesFromBannerContent(): void {
     const elements = this.document.querySelectorAll(
       ".banner-content.banner-content-bottom-left.banner-content-mobile-top.container"
     ) as NodeListOf<HTMLElement>;
-  
+
     elements.forEach((element) => {
       element.removeAttribute("style");
     });
   }
-  
-  
-  
+  private removeDisplayNoneFromNestedElementsAMIE(): void {
+    const parentElements = this.document.querySelectorAll(
+      ".r-1mf0icq"
+    ) as NodeListOf<HTMLElement>;
+
+    parentElements.forEach((parentElement) => {
+      const childElements = parentElement.querySelectorAll(
+        ".r-1ks6rne"
+      ) as NodeListOf<HTMLElement>;
+
+      childElements.forEach((childElement) => {
+        if (childElement.style.display === "none") {
+          childElement.style.removeProperty("display");
+        }
+      });
+    });
+  }
 }
