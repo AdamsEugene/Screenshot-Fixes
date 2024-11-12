@@ -1346,15 +1346,17 @@ class ScreenshotFixes extends Common {
 
   //Nectar
   private NectaraddActiveClassToBottomSticky = () => {
-    const parentElements = document.querySelectorAll('.shopify-section-group-header-group.section-header');
+    setTimeout(() => {
+        const parentElements = document.querySelectorAll('#shopify-section-sections--15554716860475__header');
 
-    parentElements.forEach((parent) => {
-        const childElement = parent.querySelector('.bottom_sticky');
-        
-        if (childElement) {
-            childElement.classList.add('active');
-        }
-    });
+        parentElements.forEach((parent) => {
+            const childElement = parent.querySelector('.bottom_sticky');
+
+            if (childElement) {
+                childElement.classList.add('active');
+            }
+        });
+    }, 1000);
   };
 
   // functionsMap: Record<number, (() => void)[]> = {

@@ -51,7 +51,7 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
-      
+      this.SerenityremoveMinHeightFromVcRow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -464,6 +464,7 @@ export default class RyanScreenshotFixes extends Common {
         this.ShieldEUsetChildOpacities();
         this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
+        this.DeuxRemoveclass();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -964,6 +965,22 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
+  private DeuxRemoveclass() {
+    this.dom.querySelectorAll('.cv_footer_cart_subtotal').forEach((parent) => {
+        const child = parent.querySelector('.cv_footer_sub_inner_cart');
+        
+        if (child) {
+            [parent, child].forEach((element) => {
+                element.querySelectorAll('*').forEach((descendant) => {
+                    if (descendant.classList.contains('heatmap-com__hidden-element')) {
+                        descendant.classList.remove('heatmap-com__hidden-element');
+                    }
+                });
+            });
+        }
+    });
+  }
+
   //Pulsio AIR
   private PulsioShowHiddenFAQAnswers() {
     this.dom.querySelectorAll('[classification^="FAQ Question"]').forEach((parent) => {
@@ -1001,6 +1018,19 @@ export default class RyanScreenshotFixes extends Common {
             });
         }
     }, 2000);
+  }
+
+  //Serenity
+  private SerenityremoveMinHeightFromVcRow() {
+    this.dom
+        .querySelectorAll('.vc_container')
+        .forEach((container) => {
+            const child = container.querySelector('.vc_row-o-columns-middle');
+            if (child) {
+                (child as HTMLElement).style.removeProperty('min-height');
+                (child as HTMLElement).style.setProperty('min-height', 'auto', 'important');
+            }
+        });
   }
 
   //disable pointer events
