@@ -75,6 +75,7 @@ export default class AnitaScreenShotFixes {
     this.updateVisibilityForShowOnScrollElementsEMERY();
     this.updateHomepageVideoPlayButtonDisplayEMERY();
     this.updateIframeDisplayInEmbedContainerEMERY();
+    this.removeWidthFromProductImageCarouselItemsEMERY();
   }
 
   private removeHeightProperty() {
@@ -994,6 +995,30 @@ export default class AnitaScreenShotFixes {
   
     console.log("Finished updating iframe display for all matching elements.");
   }
+  private removeWidthFromProductImageCarouselItemsEMERY(): void {
+    const parentElement = this.document.getElementById(
+      'shopify-block-judge_me_reviews_featured_carousel_i4iYAw'
+    ) as HTMLElement;
+  
+    if (parentElement) {
+      console.log('Parent element found with ID "shopify-block-judge_me_reviews_featured_carousel_i4iYAw".');
+      const carouselItems = parentElement.querySelectorAll(
+        '.jdgm-carousel-item__product-image'
+      ) as NodeListOf<HTMLElement>;
+      console.log(`Found ${carouselItems.length} elements with class 'jdgm-carousel-item__product-image'.`);
+      carouselItems.forEach((item, index) => {
+        if (item.style.width) {
+          item.style.removeProperty('width');
+          console.log(`Removed inline width property for element #${index + 1}.`);
+        } else {
+          console.log(`No inline width property found for element #${index + 1}.`);
+        }
+      });
+    } else {
+      console.log('No element found with the specified ID.');
+    }
+  }
+  
   
   
   
