@@ -967,13 +967,17 @@ export default class AnitaScreenShotFixes {
     });
   }
   private updateHomepageVideoPlayButtonDisplayEMERY(): void {
-    const elements = this.document.querySelectorAll(
-      ".homepage-video-play-button-inner"
-    ) as NodeListOf<HTMLElement>;
-    elements.forEach((element) => {
-      element.style.setProperty("display", "block", "important");
-    });
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll(
+        ".homepage-video-play-button-inner"
+      ) as NodeListOf<HTMLElement>;
+
+      elements.forEach((element) => {
+        element.style.setProperty("display", "block", "important");
+      });
+    }, 2000);
   }
+
   private updateIframeDisplayInEmbedContainerEMERY(): void {
     setTimeout(() => {
       const embedContainers = this.document.querySelectorAll(
