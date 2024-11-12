@@ -51,7 +51,6 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
-      this.SerenityremoveMinHeightFromVcRow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -465,6 +464,7 @@ export default class RyanScreenshotFixes extends Common {
         this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
         this.DeuxRemoveclass();
+        this.SerenityremoveMinHeightFromVcRow();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });

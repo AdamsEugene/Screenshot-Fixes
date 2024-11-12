@@ -1253,7 +1253,7 @@ class ScreenshotFixes extends Common {
   private removeMainContentMarginTop = () => {
     const findAndAdjustContent = () => {
       const mainContent = this.dom.querySelector(
-        '#MainContent, main, [data-main], [role="main"], .main-content'
+        '#MainContent, main, [data-main], [role="main"], .main-content, #main-content'
       );
 
       if (mainContent) {

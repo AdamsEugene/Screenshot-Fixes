@@ -360,5 +360,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/heyhair.co-products-gray-escape-advanced-hair-growth-supplement-main.html"
     }
+  },
+  {
+    "selector": ".klaviyo-form-VaBDVq",
+    "content": {
+      "idSite": 2429,
+      "idSiteHsr": 4206773,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.lundberg.com-collections-all-products-main.html"
+    }
   }
 ]
