@@ -935,7 +935,7 @@ export default class AnitaScreenShotFixes {
       const elements = this.document.querySelectorAll(
         ".r-1mf0icq .r-1ks6rne"
       ) as NodeListOf<HTMLElement>;
-  
+
       elements.forEach((element) => {
         if (element && element.style.display === "none") {
           element.style.removeProperty("display");
@@ -948,10 +948,10 @@ export default class AnitaScreenShotFixes {
     const element = this.document.getElementById(
       "Banner-template--17503515181245__image_banner_qdE7JV"
     ) as HTMLElement;
-  
+
     if (element) {
       const imgElement = element.querySelector("img") as HTMLElement;
-  
+
       if (imgElement) {
         imgElement.style.setProperty("height", "100%", "important");
         imgElement.style.setProperty("position", "absolute", "important");
@@ -960,73 +960,51 @@ export default class AnitaScreenShotFixes {
   }
   private updateVisibilityForShowOnScrollElementsEMERY(): void {
     const elements = this.document.querySelectorAll(
-      '.show-on-scroll'
+      ".show-on-scroll"
     ) as NodeListOf<HTMLElement>;
     elements.forEach((element) => {
-      element.style.setProperty('visibility', 'visible', 'important');
+      element.style.setProperty("visibility", "visible", "important");
     });
   }
   private updateHomepageVideoPlayButtonDisplayEMERY(): void {
     const elements = this.document.querySelectorAll(
-      '.homepage-video-play-button-inner'
+      ".homepage-video-play-button-inner"
     ) as NodeListOf<HTMLElement>;
     elements.forEach((element) => {
-      element.style.setProperty('display', 'block', 'important');
+      element.style.setProperty("display", "block", "important");
     });
   }
   private updateIframeDisplayInEmbedContainerEMERY(): void {
-    console.log("Starting to update iframe display for elements with class 'embed-container type-youtube'...");
-    const embedContainers = this.document.querySelectorAll(
-      '.embed-container.type-youtube'
-    ) as NodeListOf<HTMLElement>;
-  
-    console.log(`Found ${embedContainers.length} elements with class 'embed-container type-youtube'.`);
-    embedContainers.forEach((container, index) => {
-      console.log(`Processing container #${index + 1}/${embedContainers.length}:`, container);
-      const iframeElement = container.querySelector('iframe') as HTMLElement;
-  
-      if (iframeElement) {
-        iframeElement.style.setProperty('display', 'block', 'important');
-        console.log(`Updated display to 'block' for iframe in container #${index + 1}.`);
-      } else {
-        console.log(`No iframe found for container #${index + 1}.`);
-      }
-    });
-  
-    console.log("Finished updating iframe display for all matching elements.");
-  }
-  private removeWidthFromProductImageCarouselItemsEMERY(): void {
-    const parentElement = this.document.getElementById(
-      'shopify-block-judge_me_reviews_featured_carousel_i4iYAw'
-    ) as HTMLElement;
-  
-    if (parentElement) {
-      console.log('Parent element found with ID "shopify-block-judge_me_reviews_featured_carousel_i4iYAw".');
-      const carouselItems = parentElement.querySelectorAll(
-        '.jdgm-carousel-item__product-image'
+    setTimeout(() => {
+      const embedContainers = this.document.querySelectorAll(
+        ".embed-container.type-youtube"
       ) as NodeListOf<HTMLElement>;
-      console.log(`Found ${carouselItems.length} elements with class 'jdgm-carousel-item__product-image'.`);
-      carouselItems.forEach((item, index) => {
-        if (item.style.width) {
-          item.style.removeProperty('width');
-          console.log(`Removed inline width property for element #${index + 1}.`);
-        } else {
-          console.log(`No inline width property found for element #${index + 1}.`);
+
+      embedContainers.forEach((container) => {
+        const iframeElement = container.querySelector("iframe") as HTMLElement;
+
+        if (iframeElement) {
+          iframeElement.style.setProperty("display", "block", "important");
         }
       });
-    } else {
-      console.log('No element found with the specified ID.');
+    }, 2000);
+  }
+
+  private removeWidthFromProductImageCarouselItemsEMERY(): void {
+    const parentElement = this.document.getElementById(
+      "shopify-block-judge_me_reviews_featured_carousel_i4iYAw"
+    ) as HTMLElement;
+
+    if (parentElement) {
+      const carouselItems = parentElement.querySelectorAll(
+        ".jdgm-carousel-item__product-image"
+      ) as NodeListOf<HTMLElement>;
+
+      carouselItems.forEach((item) => {
+        if (item.style.width) {
+          item.style.removeProperty("width");
+        }
+      });
     }
   }
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
 }
