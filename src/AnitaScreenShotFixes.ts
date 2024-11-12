@@ -72,6 +72,9 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromBannerContent();
     this.updateDisplayForNestedElementsAMIE();
     this.updateImageStyleForBannerOMG();
+    this.updateVisibilityForShowOnScrollElementsEMERY();
+    this.updateHomepageVideoPlayButtonDisplayEMERY();
+    this.updateIframeDisplayInEmbedContainerEMERY();
   }
 
   private removeHeightProperty() {
@@ -954,6 +957,49 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private updateVisibilityForShowOnScrollElementsEMERY(): void {
+    const elements = this.document.querySelectorAll(
+      '.show-on-scroll'
+    ) as NodeListOf<HTMLElement>;
+    elements.forEach((element) => {
+      element.style.setProperty('visibility', 'visible', 'important');
+    });
+  }
+  private updateHomepageVideoPlayButtonDisplayEMERY(): void {
+    const elements = this.document.querySelectorAll(
+      '.homepage-video-play-button-inner'
+    ) as NodeListOf<HTMLElement>;
+    elements.forEach((element) => {
+      element.style.setProperty('display', 'block', 'important');
+    });
+  }
+  private updateIframeDisplayInEmbedContainerEMERY(): void {
+    console.log("Starting to update iframe display for elements with class 'embed-container type-youtube'...");
+    const embedContainers = this.document.querySelectorAll(
+      '.embed-container.type-youtube'
+    ) as NodeListOf<HTMLElement>;
+  
+    console.log(`Found ${embedContainers.length} elements with class 'embed-container type-youtube'.`);
+    embedContainers.forEach((container, index) => {
+      console.log(`Processing container #${index + 1}/${embedContainers.length}:`, container);
+      const iframeElement = container.querySelector('iframe') as HTMLElement;
+  
+      if (iframeElement) {
+        iframeElement.style.setProperty('display', 'block', 'important');
+        console.log(`Updated display to 'block' for iframe in container #${index + 1}.`);
+      } else {
+        console.log(`No iframe found for container #${index + 1}.`);
+      }
+    });
+  
+    console.log("Finished updating iframe display for all matching elements.");
+  }
+  
+  
+  
+
+  
+  
   
   
   
