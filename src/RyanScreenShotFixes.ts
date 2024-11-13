@@ -1106,14 +1106,16 @@ export default class RyanScreenshotFixes extends Common {
 
   //Model Train Stuff
   private ModelTrainupdateSlideoutDisplay() {
-    this.dom.querySelectorAll('.subcat-listing-header').forEach((parentElement) => {
-      const childElement = parentElement.querySelector('.ss__slideout');
-      if (childElement) {
-        const slideoutElement = childElement as HTMLElement;
-        slideoutElement.style.removeProperty('display');
-        slideoutElement.style.setProperty('display', 'revert-layer', 'important');
-      }
-    });
+    setTimeout(() => {
+      this.dom.querySelectorAll('.subcat-listing-header').forEach((parentElement) => {
+        const childElements = parentElement.querySelectorAll('.ss__slideout');
+        childElements.forEach((slideoutElement) => {
+          const element = slideoutElement as HTMLElement;
+          element.style.removeProperty('display');
+          element.style.setProperty('display', 'revert-layer', 'important');
+        });
+      });
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
