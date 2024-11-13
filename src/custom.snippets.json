@@ -369,5 +369,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.lundberg.com-collections-all-products-main.html"
     }
+  },
+  {
+    "selector": ".site-main-tw-component",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 5449435,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com--main.html"
+    }
   }
 ]
