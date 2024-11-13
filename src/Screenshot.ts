@@ -39,6 +39,7 @@ class ScreenshotFixes extends Common {
     () => this.observeMutationDesktop(),
     () => this.removeIdFromLogo(),
     () => this.BenchmadeupdateMinHeight(),
+    () => this.runFunctionsForIdSiteDesktop(),
   ];
 
   mobileFunctions = [
@@ -102,9 +103,6 @@ class ScreenshotFixes extends Common {
       this.injectCss();
       this.getAttrAndSetDisplayNone();
       this.modifyParentElement();
-      // this.adjustFullWidthPageHeight();
-
-      // this.adjustHeightOfRelativeElements();
     };
 
     this.exec({ containerId, debugMode, func });
@@ -150,7 +148,6 @@ class ScreenshotFixes extends Common {
           .then((cssContent) => {
             styleElement.innerHTML = cssContent;
             this.dom.head.appendChild(styleElement);
-            console.log(cssContent);
           })
           .catch((error) => {});
       }
@@ -275,6 +272,14 @@ class ScreenshotFixes extends Common {
 
     if (idSite !== null && this.functionsMap[idSite]) {
       this.functionsMap[idSite].forEach((func) => func());
+    }
+  }
+
+  private runFunctionsForIdSiteDesktop() {
+    const idSite = this.idSite();
+
+    if (idSite !== null && this.functionsMapDesktop[idSite]) {
+      this.functionsMapDesktop[idSite].forEach((func) => func());
     }
   }
 
@@ -1323,26 +1328,82 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  private fixHeroSectionOfSmel = () => {
+    const heroElement = this.dom.querySelector(
+      ".image-hero.image-hero--image-aspect-custom"
+    ) as HTMLElement;
+    heroElement.style.height = "822px";
+    heroElement.style.maxHeight = "822px";
+    const allChildElements = heroElement.getElementsByTagName(
+      "*"
+    ) as HTMLCollectionOf<HTMLElement>;
+    Array.from(allChildElements).forEach((element) => {
+      const elementHeight = element.offsetHeight;
+      if (elementHeight > 822) {
+        element.style.height = "822px";
+        element.style.maxHeight = "822px";
+      }
+    });
+  };
+
   private updateMiniCartHeight = () => {
-    const miniCart = this.dom.querySelector('#mini-cart.mini-cart');
+    const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
 
     if (miniCart) {
-        (miniCart as HTMLElement).style.setProperty('height', '6523px', 'important');
-        (miniCart as HTMLElement).style.setProperty('min-height', '6523px', 'important');
-        (miniCart as HTMLElement).style.setProperty('max-height', '6523px', 'important');
+      (miniCart as HTMLElement).style.setProperty(
+        "height",
+        "6523px",
+        "important"
+      );
+      (miniCart as HTMLElement).style.setProperty(
+        "min-height",
+        "6523px",
+        "important"
+      );
+      (miniCart as HTMLElement).style.setProperty(
+        "max-height",
+        "6523px",
+        "important"
+      );
     }
   };
 
+  private setPositionForAnnouncementBarSMEL = (): void => {
+    console.log("Starting to update position for the announcement bar...");
+
+    const announcementBar = this.dom.querySelector(
+      "#shopify-section-announcement-bar.shopify-section"
+    );
+
+    if (announcementBar) {
+      console.log("Announcement bar element found. Updating position...");
+      (announcementBar as HTMLElement).style.setProperty(
+        "position",
+        "relative",
+        "important"
+      );
+      console.log("Position set to 'relative' for the announcement bar.");
+    } else {
+      console.log(
+        "No announcement bar element found with the specified ID and class."
+      );
+    }
+
+    console.log("Finished updating position for the announcement bar.");
+  };
+
   //Springinger
-  private hideShopifyMinicartElements = () => {
-    const elements = this.dom.querySelectorAll('#shopify-section-global-minicart') as NodeListOf<HTMLElement>;
+  private hideShopifyMinicartElements() {
+    const elements = this.dom.querySelectorAll(
+      "#shopify-section-global-minicart"
+    ) as NodeListOf<HTMLElement>;
 
     elements.forEach((element) => {
-        if (element.classList.contains('shopify-section')) {
-            element.style.setProperty('display', 'none', 'important');
-        }
+      if (element.classList.contains("shopify-section")) {
+        element.style.setProperty("display", "none", "important");
+      }
     });
-  };
+  }
 
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
@@ -1355,8 +1416,14 @@ class ScreenshotFixes extends Common {
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
+  private functionsMapDesktop: Record<number, (() => void)[]> =
+    this.createFunctionsMapDesktop();
+
   private createFunctionsMap(): Record<number, (() => void)[]> {
-    const functionGroups = [
+    const functionGroups: {
+      ids: number[];
+      functions: (() => void)[];
+    }[] = [
       { ids: [1947], functions: [this.removeExcessiveParentWidths] },
       { ids: [2910], functions: [this.sevenlionsupdateMainContentMarginTop] },
       { ids: [2761], functions: [this.BreeoupdateBannerMinHeight] },
@@ -1373,7 +1440,25 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
+      { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
+
+    const map: Record<number, (() => void)[]> = {};
+
+    functionGroups.forEach(({ ids, functions }) => {
+      ids.forEach((id) => {
+        map[id] = functions;
+      });
+    });
+
+    return map;
+  }
+
+  private createFunctionsMapDesktop(): Record<number, (() => void)[]> {
+    const functionGroups: {
+      ids: number[];
+      functions: (() => void)[];
+    }[] = [{ ids: [2925], functions: [this.fixHeroSectionOfSmel] }];
 
     const map: Record<number, (() => void)[]> = {};
 
