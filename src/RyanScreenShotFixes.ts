@@ -53,6 +53,7 @@ export default class RyanScreenshotFixes extends Common {
       this.updateCartPopupHeight();
       this.NectaraddActiveClass();
       this.toggleMobileNavDataOpen();
+      this.toggleHeatmapClassOnDrawer();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1068,6 +1069,23 @@ export default class RyanScreenshotFixes extends Common {
       const imgElement = image as HTMLImageElement;
       if (imgElement && imgElement.hasAttribute('src')) {
         imgElement.srcset = imgElement.src;
+      }
+    });
+  }
+
+  //toggleHeatmapClassOnDrawer
+  private toggleHeatmapClassOnDrawer() {
+    this.dom.querySelectorAll('#mobile-menu-drawer[data-role="drawer"]').forEach((drawerElement) => {
+      if (drawerElement.classList.contains('mobile-nav-drawer') && drawerElement.classList.contains('opened-drawer')) {
+        const drawerBody = drawerElement.querySelector('.drawer-body');
+        if (drawerBody) {
+          drawerBody.classList.remove('heatmap-com__hidden-element');
+        }
+      } else {
+        const drawerBody = drawerElement.querySelector('.drawer-body');
+        if (drawerBody) {
+          drawerBody.classList.add('heatmap-com__hidden-element');
+        }
       }
     });
   }
