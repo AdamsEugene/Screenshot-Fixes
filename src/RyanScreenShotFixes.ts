@@ -173,7 +173,6 @@ export default class RyanScreenshotFixes extends Common {
       ".hamburger__line",
       ".swiper-button-next",
       ".swiper-button-prev",
-      ".nav-mobile-button-stripe",
     ];
 
     selectors.forEach((selector) => {
@@ -471,6 +470,7 @@ export default class RyanScreenshotFixes extends Common {
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
         this.KvEssentialsresetImageHeight();
+        this.FeelgroundssetNavButtonDisplay();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1088,6 +1088,14 @@ export default class RyanScreenshotFixes extends Common {
         }
       });
     }, 2000); 
+  }
+
+  //Feelgrounds EU
+  private FeelgroundssetNavButtonDisplay() {
+    this.dom.querySelectorAll('.menu-button-stripes .nav-mobile-button-stripe').forEach((stripeElement) => {
+      const element = stripeElement as HTMLElement;
+      element.style.setProperty('display', 'block', 'important');
+    });
   }
 
   //toggleHeatmapClassOnDrawer
