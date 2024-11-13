@@ -51,6 +51,7 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
+      this.NectaraddActiveClass();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1031,6 +1032,16 @@ export default class RyanScreenshotFixes extends Common {
                 (child as HTMLElement).style.setProperty('min-height', 'auto', 'important');
             }
         });
+  }
+
+  //Nectar
+  private NectaraddActiveClass() {
+    this.dom.querySelectorAll('#shopify-section-sections--15554716860475__header .bottom_sticky').forEach((element) => {
+      if (element) {
+        element.classList.add('active');
+        console.log('Added "active" class to the bottom_sticky element.');
+      }
+    });
   }
 
   //disable pointer events
