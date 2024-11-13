@@ -634,7 +634,7 @@ private overrideBeforeStyle() {
           position: static !important;
       }
   `;
-  document.head.appendChild(style);
+  this.document.head.appendChild(style);
 }
 
 
