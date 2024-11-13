@@ -54,6 +54,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NectaraddActiveClass();
       this.toggleMobileNavDataOpen();
       this.toggleHeatmapClassOnDrawer();
+      this.FeelgroundssetNavButtonDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -470,7 +471,6 @@ export default class RyanScreenshotFixes extends Common {
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
         this.KvEssentialsresetImageHeight();
-        this.FeelgroundssetNavButtonDisplay();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
