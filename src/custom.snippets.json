@@ -387,5 +387,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/budmother.com-products-budmother-hhc-gummies-mixed-fruit-main.html"
     }
+  },
+  {
+    "selector": "#MainContent",
+    "content": {
+      "idSite": 1740,
+      "idSiteHsr": 1929420,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.dylanoaks.com--main.html"
+    }
   }
 ]
