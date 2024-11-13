@@ -53,6 +53,7 @@ export default class ForsonScreenshotFixes {
     this.removePaddingTop();
     this.overrideMarginTop();
     this.showHiddenElement();
+    this.overrideBeforeStyle();
   }
 
   // Upcircle EU
@@ -625,5 +626,16 @@ export default class ForsonScreenshotFixes {
         }
     }
 }
+
+private overrideBeforeStyle() {
+  const style = this.document.createElement('style') as HTMLElement;
+  style.innerHTML = `
+      .wmc-cache-loading .woocommerce-Price-amount.amount:before {
+          position: static !important;
+      }
+  `;
+  document.head.appendChild(style);
+}
+
 
 }
