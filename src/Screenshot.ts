@@ -1368,29 +1368,26 @@ class ScreenshotFixes extends Common {
     }
   };
 
-  private setPositionForAnnouncementBarSMEL = (): void => {
-    console.log("Starting to update position for the announcement bar...");
-
-    const announcementBar = this.dom.querySelector(
-      "#shopify-section-announcement-bar.shopify-section"
-    );
-
-    if (announcementBar) {
-      console.log("Announcement bar element found. Updating position...");
-      (announcementBar as HTMLElement).style.setProperty(
-        "position",
-        "relative",
-        "important"
-      );
-      console.log("Position set to 'relative' for the announcement bar.");
-    } else {
-      console.log(
-        "No announcement bar element found with the specified ID and class."
-      );
-    }
-
-    console.log("Finished updating position for the announcement bar.");
-  };
+  // private setPositionForAnnouncementBarSMEL = (): void => {
+  //   setTimeout(() => {
+  //     console.log("Starting to update position for the announcement bar...");
+  
+  //     const announcementBar = this.dom.querySelector(
+  //       '#shopify-section-announcement-bar.shopify-section'
+  //     );
+  
+  //     if (announcementBar) {
+  //       console.log("Announcement bar element found. Updating position...");
+  //       (announcementBar as HTMLElement).style.setProperty('position', 'relative', 'important');
+  //       console.log("Position set to 'relative' for the announcement bar.");
+  //     } else {
+  //       console.log("No announcement bar element found with the specified ID and class.");
+  //     }
+  
+  //     console.log("Finished updating position for the announcement bar.");
+  //   }, 2000); // Delay of 2000ms (2 seconds)
+  // };
+  
 
   //Springinger
   private hideShopifyMinicartElements() {
@@ -1440,7 +1437,7 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
-      { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
+      // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
 
     const map: Record<number, (() => void)[]> = {};

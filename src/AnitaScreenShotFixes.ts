@@ -80,6 +80,7 @@ export default class AnitaScreenShotFixes {
     this.setDisplayBlockForRowElementsADDISON();
     this.setMaxWidthForColorElementsADDISON();
     this.setMaxWidthForSpecificColorElementsADDISON();
+    this.updateSecondSiblingPositionSMEL();
   }
 
   private removeHeightProperty() {
@@ -1017,48 +1018,65 @@ export default class AnitaScreenShotFixes {
   }
   private updateBannerMediaImageStylesOMG(): void {
     const bannerMediaElement = this.document.querySelector(
-      '.banner__media.media.animate--fixed.scroll-trigger.animate--fade-in'
+      ".banner__media.media.animate--fixed.scroll-trigger.animate--fade-in"
     ) as HTMLElement;
-  
+
     if (bannerMediaElement) {
-      const imgElement = bannerMediaElement.querySelector('img') as HTMLElement;
-  
+      const imgElement = bannerMediaElement.querySelector("img") as HTMLElement;
+
       if (imgElement) {
-        imgElement.style.setProperty('position', 'absolute', 'important');
-        imgElement.style.setProperty('top', '-206px', 'important');
+        imgElement.style.setProperty("position", "absolute", "important");
+        imgElement.style.setProperty("top", "-206px", "important");
       }
     }
   }
   private setDisplayBlockForRowElementsADDISON(): void {
     const elements = this.document.querySelectorAll(
-      '.row.mb-50'
+      ".row.mb-50"
     ) as NodeListOf<HTMLElement>;
-  
+
     elements.forEach((element) => {
-      element.style.setProperty('display', 'block', 'important');
+      element.style.setProperty("display", "block", "important");
     });
   }
-  
+
   private setMaxWidthForColorElementsADDISON(): void {
     const elements = this.document.querySelectorAll(
-      '.color.col-lg-3.col-md-6.col-sm-6.d-flex.align-items-center.col_img_k.collectionimagesn'
+      ".color.col-lg-3.col-md-6.col-sm-6.d-flex.align-items-center.col_img_k.collectionimagesn"
     ) as NodeListOf<HTMLElement>;
-  
+
     elements.forEach((element) => {
-      element.style.setProperty('max-width', '100%', 'important');
+      element.style.setProperty("max-width", "100%", "important");
     });
   }
   private setMaxWidthForSpecificColorElementsADDISON(): void {
     const elements = this.document.querySelectorAll(
-      '.color.col-lg-2.col-md-6.col-sm-6.d-flex'
+      ".color.col-lg-2.col-md-6.col-sm-6.d-flex"
     ) as NodeListOf<HTMLElement>;
-      elements.forEach((element) => {
-      element.style.setProperty('max-width', '100%', 'important');
+    elements.forEach((element) => {
+      element.style.setProperty("max-width", "100%", "important");
     });
   }
-  
-  
-  
-  
-  
+
+  private updateSecondSiblingPositionSMEL(): void {
+    const announcementBar = this.document.getElementById(
+      "shopify-section-announcement-bar_simple"
+    ) as HTMLElement;
+
+    if (announcementBar) {
+      let secondSibling = announcementBar.previousElementSibling;
+
+      if (secondSibling) {
+        secondSibling = secondSibling.previousElementSibling;
+
+        if (secondSibling) {
+          (secondSibling as HTMLElement).style.setProperty(
+            "position",
+            "relative",
+            "important"
+          );
+        }
+      }
+    }
+  }
 }
