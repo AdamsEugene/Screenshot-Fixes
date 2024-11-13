@@ -55,6 +55,7 @@ export default class RyanScreenshotFixes extends Common {
       this.toggleMobileNavDataOpen();
       this.toggleHeatmapClassOnDrawer();
       this.FeelgroundssetNavButtonDisplay();
+      this.ModelTrainupdateSlideoutDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1092,9 +1093,26 @@ export default class RyanScreenshotFixes extends Common {
 
   //Feelgrounds EU
   private FeelgroundssetNavButtonDisplay() {
-    this.dom.querySelectorAll('.menu-button-stripes .nav-mobile-button-stripe').forEach((stripeElement) => {
-      const element = stripeElement as HTMLElement;
-      element.style.setProperty('display', 'block', 'important');
+    setTimeout(() => {
+      this.dom.querySelectorAll('.menu-button-stripes').forEach((parentElement) => {
+        const childElements = parentElement.querySelectorAll('.nav-mobile-button-stripe');
+        childElements.forEach((stripeElement) => {
+          const element = stripeElement as HTMLElement;
+          element.style.setProperty('display', 'block', 'important');
+        });
+      });
+    }, 2000);
+  }
+
+  //Model Train Stuff
+  private ModelTrainupdateSlideoutDisplay() {
+    this.dom.querySelectorAll('.subcat-listing-header').forEach((parentElement) => {
+      const childElement = parentElement.querySelector('.ss__slideout');
+      if (childElement) {
+        const slideoutElement = childElement as HTMLElement;
+        slideoutElement.style.removeProperty('display');
+        slideoutElement.style.setProperty('display', 'revert-layer', 'important');
+      }
     });
   }
 
