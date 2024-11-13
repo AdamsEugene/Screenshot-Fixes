@@ -51,7 +51,8 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
-      this.SerenityremoveMinHeightFromVcRow();
+      this.NectaraddActiveClass();
+      this.toggleMobileNavDataOpen();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -465,6 +466,7 @@ export default class RyanScreenshotFixes extends Common {
         this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
         this.DeuxRemoveclass();
+        this.SerenityremoveMinHeightFromVcRow();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1031,6 +1033,32 @@ export default class RyanScreenshotFixes extends Common {
                 (child as HTMLElement).style.setProperty('min-height', 'auto', 'important');
             }
         });
+  }
+
+  //Nectar
+  private NectaraddActiveClass() {
+    this.dom.querySelectorAll('#shopify-section-sections--15554716860475__header .bottom_sticky').forEach((element) => {
+      if (element) {
+        element.classList.add('active');
+        console.log('Added "active" class to the bottom_sticky element.');
+      }
+    });
+  }
+
+  //Next Adventure
+  private toggleMobileNavDataOpen() {
+    this.dom.querySelectorAll('.mobile-nav-close').forEach((element) => {
+      if (element) {
+        element.addEventListener('click', () => {
+          const headerElement = element.closest('.site-header');
+          const mobileNav = headerElement ? headerElement.querySelector('.site-mobile-nav') : null;
+          if (mobileNav) {
+            const isOpen = mobileNav.getAttribute('data-open') === 'true';
+            mobileNav.setAttribute('data-open', isOpen ? 'false' : 'true');
+          }
+        });
+      }
+    });
   }
 
   //disable pointer events
