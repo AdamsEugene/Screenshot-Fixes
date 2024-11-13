@@ -52,6 +52,7 @@ export default class RyanScreenshotFixes extends Common {
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
       this.NectaraddActiveClass();
+      this.toggleMobileNavDataOpen();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1040,6 +1041,22 @@ export default class RyanScreenshotFixes extends Common {
       if (element) {
         element.classList.add('active');
         console.log('Added "active" class to the bottom_sticky element.');
+      }
+    });
+  }
+
+  //Next Adventure
+  private toggleMobileNavDataOpen() {
+    this.dom.querySelectorAll('.mobile-nav-close').forEach((element) => {
+      if (element) {
+        element.addEventListener('click', () => {
+          const headerElement = element.closest('.site-header');
+          const mobileNav = headerElement ? headerElement.querySelector('.site-mobile-nav') : null;
+          if (mobileNav) {
+            const isOpen = mobileNav.getAttribute('data-open') === 'true';
+            mobileNav.setAttribute('data-open', isOpen ? 'false' : 'true');
+          }
+        });
       }
     });
   }
