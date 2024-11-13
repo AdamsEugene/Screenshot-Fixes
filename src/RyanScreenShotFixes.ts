@@ -173,6 +173,7 @@ export default class RyanScreenshotFixes extends Common {
       ".hamburger__line",
       ".swiper-button-next",
       ".swiper-button-prev",
+      ".nav-mobile-button-stripe",
     ];
 
     selectors.forEach((selector) => {
@@ -1082,10 +1083,11 @@ export default class RyanScreenshotFixes extends Common {
         if (imageElement) {
           const imgElement = imageElement as HTMLElement;
           imgElement.style.removeProperty('height');
+          imgElement.offsetHeight;
           imgElement.style.setProperty('height', 'auto', 'important');
         }
       });
-    }, 2000);
+    }, 2000); 
   }
 
   //toggleHeatmapClassOnDrawer
