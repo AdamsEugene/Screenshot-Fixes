@@ -396,5 +396,41 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.dylanoaks.com--main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-tp_widget",
+    "content": {
+      "idSite": 198,
+      "idSiteHsr": 45808,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sofaclub.co.uk-collections-quick-delivery-main.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-footer_signup",
+    "content": {
+      "idSite": 198,
+      "idSiteHsr": 45808,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sofaclub.co.uk-collections-quick-delivery-main1.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-hp_usps_blocks",
+    "content": {
+      "idSite": 198,
+      "idSiteHsr": 45808,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sofaclub.co.uk-collections-quick-delivery-main2.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-footer",
+    "content": {
+      "idSite": 198,
+      "idSiteHsr": 45808,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sofaclub.co.uk-collections-quick-delivery-main3.html"
+    }
   }
 ]
