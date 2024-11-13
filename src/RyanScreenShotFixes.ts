@@ -54,6 +54,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NectaraddActiveClass();
       this.toggleMobileNavDataOpen();
       this.toggleHeatmapClassOnDrawer();
+      this.KvEssentialsresetImageHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1069,6 +1070,17 @@ export default class RyanScreenshotFixes extends Common {
       const imgElement = image as HTMLImageElement;
       if (imgElement && imgElement.hasAttribute('src')) {
         imgElement.srcset = imgElement.src;
+      }
+    });
+  }
+
+  //Kv Essentials
+  private KvEssentialsresetImageHeight() {
+    this.dom.querySelectorAll('.look').forEach((parentElement) => {
+      const imageElement = parentElement.querySelector('.look__image');
+      if (imageElement) {
+        const imgElement = imageElement as HTMLElement;
+        imgElement.style.setProperty('height', 'auto', 'important');
       }
     });
   }
