@@ -53,6 +53,7 @@ export default class RyanScreenshotFixes extends Common {
       this.updateCartPopupHeight();
       this.NectaraddActiveClass();
       this.toggleMobileNavDataOpen();
+      this.DetoxMarketupdateSrcsetFromSrc();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1061,6 +1062,16 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
+  //Detox Market
+  private DetoxMarketupdateSrcsetFromSrc() {
+    this.dom.querySelectorAll('.rimage__image').forEach((image) => {
+      const imgElement = image as HTMLImageElement;
+      if (imgElement && imgElement.hasAttribute('src')) {
+        imgElement.srcset = imgElement.src;
+      }
+    });
+  }
+
   //disable pointer events
   private disablePointerEventsOnAbsolutePseudoElements() {
     this.dom
@@ -1095,38 +1106,38 @@ export default class RyanScreenshotFixes extends Common {
 
   //Iframe Update
   private UpdateIframeSrc() {
-    const iframes = this.dom.querySelectorAll(
-      "iframe"
-    ) as NodeListOf<HTMLIFrameElement>;
-    if (iframes.length === 0) {
-      return;
-    }
+    const iframes = this.dom.querySelectorAll("iframe") as NodeListOf<HTMLIFrameElement>;
+    if (iframes.length === 0) return;
+  
+    const proxyUrl1 = "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
+    const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
+  
+    const removeProxyUrl = (url: string, proxyUrl: string) =>
+      url.startsWith(proxyUrl) ? decodeURIComponent(url.replace(proxyUrl, "")) : url;
+  
     iframes.forEach((iframe) => {
+      // Get the iframe src from the attribute
       let iframeSrc = iframe.getAttribute("src");
-
-      if (!iframeSrc) {
-        return;
-      }
-      const proxyUrl1 =
-        "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
-      const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
-      const removeProxyUrl = (url: string, proxyUrl: string) => {
-        return url.startsWith(proxyUrl)
-          ? decodeURIComponent(url.replace(proxyUrl, ""))
-          : url;
-      };
+      if (!iframeSrc) return;
+  
+      // Decode HTML entities in the URL
+      iframeSrc = decodeURIComponent(iframeSrc);
+  
+      // Remove the proxy URLs if they exist
       iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
       iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
+      
+      // Update the iframe's src attribute with the cleaned URL
       iframe.setAttribute("src", iframeSrc);
-      const retryWithProxy2 = () => {
-        iframe.setAttribute("src", proxyUrl2 + encodeURIComponent(iframeSrc));
-      };
-      const retryWithProxy1 = () => {
-        iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
-        iframe.onerror = retryWithProxy2;
-      };
-      iframe.onload = () => {};
-      iframe.onerror = retryWithProxy1;
+  
+      // If the iframe is already modified with 'src-changed', handle retry logic
+      if (iframe.getAttribute("src-changed") === "true") {
+        const retryWithProxy = (proxyUrl: string) => {
+          iframe.setAttribute("src", proxyUrl + encodeURIComponent(iframeSrc));
+        };
+  
+        iframe.onerror = () => retryWithProxy(proxyUrl1);
+      }
     });
   }
 
