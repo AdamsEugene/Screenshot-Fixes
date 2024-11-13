@@ -53,7 +53,6 @@ export default class RyanScreenshotFixes extends Common {
       this.updateCartPopupHeight();
       this.NectaraddActiveClass();
       this.toggleMobileNavDataOpen();
-      this.DetoxMarketupdateSrcsetFromSrc();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -468,6 +467,7 @@ export default class RyanScreenshotFixes extends Common {
         this.bigkizzyFixSlideshowbox();
         this.DeuxRemoveclass();
         this.SerenityremoveMinHeightFromVcRow();
+        this.DetoxMarketupdateSrcsetFromSrc();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
