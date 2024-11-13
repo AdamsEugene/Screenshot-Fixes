@@ -77,6 +77,8 @@ export default class AnitaScreenShotFixes {
     this.updateIframeDisplayInEmbedContainerEMERY();
     this.removeWidthFromProductImageCarouselItemsEMERY();
     this.updateBannerMediaImageStylesOMG();
+    this.setDisplayBlockForRowElementsADDISON();
+    this.setMaxWidthForColorElementsADDISON();
   }
 
   private removeHeightProperty() {
@@ -1026,5 +1028,27 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private setDisplayBlockForRowElementsADDISON(): void {
+    const elements = this.document.querySelectorAll(
+      '.row.mb-50'
+    ) as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.setProperty('display', 'block', 'important');
+    });
+  }
+  
+  private setMaxWidthForColorElementsADDISON(): void {
+    const elements = this.document.querySelectorAll(
+      '.color.col-lg-3.col-md-6.col-sm-6.d-flex.align-items-center.col_img_k.collectionimagesn'
+    ) as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.setProperty('max-width', '100%', 'important');
+    });
+  }
+  
+  
+  
   
 }
