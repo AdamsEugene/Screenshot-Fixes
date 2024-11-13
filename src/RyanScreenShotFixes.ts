@@ -1076,13 +1076,16 @@ export default class RyanScreenshotFixes extends Common {
 
   //Kv Essentials
   private KvEssentialsresetImageHeight() {
-    this.dom.querySelectorAll('.look').forEach((parentElement) => {
-      const imageElement = parentElement.querySelector('.look__image');
-      if (imageElement) {
-        const imgElement = imageElement as HTMLElement;
-        imgElement.style.setProperty('height', 'auto', 'important');
-      }
-    });
+    setTimeout(() => {
+      this.dom.querySelectorAll('.look').forEach((parentElement) => {
+        const imageElement = parentElement.querySelector('.look__image');
+        if (imageElement) {
+          const imgElement = imageElement as HTMLElement;
+          imgElement.style.removeProperty('height');
+          imgElement.style.setProperty('height', 'auto', 'important');
+        }
+      });
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
