@@ -378,5 +378,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com--main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-template--23789853901184__1665673125426ea976",
+    "content": {
+      "idSite": 2463,
+      "idSiteHsr": 4194138,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/budmother.com-products-budmother-hhc-gummies-mixed-fruit-main.html"
+    }
   }
 ]
