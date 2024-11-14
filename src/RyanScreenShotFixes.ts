@@ -1121,17 +1121,17 @@ export default class RyanScreenshotFixes extends Common {
 
   //Puresport
   private PuresportupdateProductCardMedia() {
-    this.dom
-      .querySelectorAll('.product-card__media')
-      .forEach((mediaElement: HTMLElement) => {
+    setTimeout(() => {
+      this.dom.querySelectorAll('.product-card__media').forEach((mediaElement) => {
         const pictureElements = mediaElement.querySelectorAll('picture');
         
         if (pictureElements.length >= 2) {
-          const secondPicture = pictureElements[1];
-          secondPicture.style.opacity = '';
+          const secondPicture = pictureElements[1] as HTMLElement;
+          secondPicture.style.removeProperty('opacity');
           secondPicture.style.setProperty('opacity', '0', 'important');
         }
       });
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
