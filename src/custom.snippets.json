@@ -450,5 +450,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bedsrus.com.au--main.html"
     }
+  },
+  {
+    "selector": ".rc-widget-injection-parent",
+    "content": {
+      "idSite": 2896,
+      "idSiteHsr": 5591232,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.innbeautyproject.com-products-extreme-cream-main.html"
+    }
   }
 ]
