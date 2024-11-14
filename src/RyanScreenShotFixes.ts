@@ -475,6 +475,7 @@ export default class RyanScreenshotFixes extends Common {
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
         this.KvEssentialsresetImageHeight();
+        this.DeuxupdateAllLSProductDisplays();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1160,6 +1161,22 @@ export default class RyanScreenshotFixes extends Common {
         if (childElement) {
           childElement.classList.add('splide');
         }
+      });
+    }, 2000);
+  }
+
+  //Deux Par Deux
+  private DeuxupdateAllLSProductDisplays() {
+    setTimeout(() => {
+      this.dom.querySelectorAll('.LS-section').forEach(parent => {
+        parent.querySelectorAll('.LS-products-flex').forEach(child => {
+          (child as HTMLElement).style.cssText = 'display: flex !important';
+        });
+      });
+  
+      this.dom.querySelectorAll('a').forEach(anchor => {
+        const hover = anchor.querySelector('.LS-product-img-hover');
+        if (hover) (hover as HTMLElement).style.cssText = 'opacity: 0 !important';
       });
     }, 2000);
   }
