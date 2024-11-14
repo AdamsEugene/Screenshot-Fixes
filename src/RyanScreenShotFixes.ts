@@ -58,6 +58,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ModelTrainupdateSlideoutDisplay();
       this.PuresportupdateProductCardMedia();
       this.BotaniqueParisupdateOrderHeading();
+      this.TFSCaddClassToSplideChild();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1147,6 +1148,19 @@ export default class RyanScreenshotFixes extends Common {
                 childElement.style.setProperty('display', 'block', 'important');
             }
         }
+    }, 2000);
+  }
+
+  //TFSC
+  private TFSCaddClassToSplideChild() {
+    setTimeout(() => {
+      const parentElements = this.dom.querySelectorAll('.rebuy-widget-content');
+      parentElements.forEach(parentElement => {
+        const childElement = parentElement.querySelector('[id^="splide"]');
+        if (childElement) {
+          childElement.classList.add('splide');
+        }
+      });
     }, 2000);
   }
 
