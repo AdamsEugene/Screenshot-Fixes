@@ -56,6 +56,7 @@ export default class RyanScreenshotFixes extends Common {
       this.toggleHeatmapClassOnDrawer();
       this.FeelgroundssetNavButtonDisplay();
       this.ModelTrainupdateSlideoutDisplay();
+      this.PuresportupdateProductCardMedia();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1116,6 +1117,21 @@ export default class RyanScreenshotFixes extends Common {
         });
       });
     }, 2000);
+  }
+
+  //Puresport
+  private PuresportupdateProductCardMedia() {
+    this.dom
+      .querySelectorAll('.product-card__media')
+      .forEach((mediaElement: HTMLElement) => {
+        const pictureElements = mediaElement.querySelectorAll('picture');
+        
+        if (pictureElements.length >= 2) {
+          const secondPicture = pictureElements[1];
+          secondPicture.style.opacity = '';
+          secondPicture.style.setProperty('opacity', '0', 'important');
+        }
+      });
   }
 
   //toggleHeatmapClassOnDrawer
