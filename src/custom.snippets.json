@@ -441,5 +441,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.shopbotaniqueparis.com-pages-tracking-main.html"
     }
+  },
+  {
+    "selector": ".klaviyo-form-VENSvR",
+    "content": {
+      "idSite": 2903,
+      "idSiteHsr": 5914022,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bedsrus.com.au--main.html"
+    }
   }
 ]
