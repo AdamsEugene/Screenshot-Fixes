@@ -432,5 +432,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sofaclub.co.uk-collections-quick-delivery-main3.html"
     }
+  },
+  {
+    "selector": "#wonderment-tracking-root--shipment-block-767abc339291d2ee4536e9b05a15be81",
+    "content": {
+      "idSite": 1965,
+      "idSiteHsr": 3425608,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.shopbotaniqueparis.com-pages-tracking-main.html"
+    }
   }
 ]

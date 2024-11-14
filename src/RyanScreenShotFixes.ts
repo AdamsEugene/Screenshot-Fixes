@@ -57,6 +57,7 @@ export default class RyanScreenshotFixes extends Common {
       this.FeelgroundssetNavButtonDisplay();
       this.ModelTrainupdateSlideoutDisplay();
       this.PuresportupdateProductCardMedia();
+      this.BotaniqueParisupdateOrderHeading();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1131,6 +1132,21 @@ export default class RyanScreenshotFixes extends Common {
           secondPicture.style.setProperty('opacity', '0', 'important');
         }
       });
+    }, 2000);
+  }
+
+  //Botanique Paris
+  private BotaniqueParisupdateOrderHeading() {
+    setTimeout(() => {
+        const parentElement = this.dom.querySelector('#shopify-section-template--17790039654565__track_your_order_heading');
+
+        if (parentElement) {
+            const childElement = parentElement.querySelector('#WS--template--17790039654565__track_your_order_heading') as HTMLElement;
+
+            if (childElement) {
+                childElement.style.setProperty('display', 'block', 'important');
+            }
+        }
     }, 2000);
   }
 
