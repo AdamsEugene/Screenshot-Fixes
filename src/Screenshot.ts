@@ -1346,16 +1346,6 @@ class ScreenshotFixes extends Common {
     });
   };
 
-  private updateFooterMarginSMEL = () => {
-    const footerElements = this.dom.querySelectorAll("#shopify-section-footer");
-    footerElements.forEach((element: HTMLElement) => {
-        if (element.style.marginTop) {
-            element.style.marginTop = "";
-        }
-        element.style.setProperty("margin-top", "revert", "important");
-    });
-  };
-
   private updateMiniCartHeight = () => {
     const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
 
@@ -1447,7 +1437,6 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
-      { ids: [2925], functions: [this.updateFooterMarginSMEL] },
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
 
