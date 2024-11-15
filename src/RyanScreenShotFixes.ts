@@ -478,6 +478,7 @@ export default class RyanScreenshotFixes extends Common {
         this.KvEssentialsresetImageHeight();
         this.DeuxupdateAllLSProductDisplays();
         this.RemiupdateLightboxWrapperOpacity();
+        this.AndieupdateDisplayStyleInPortals();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1211,6 +1212,24 @@ export default class RyanScreenshotFixes extends Common {
           childHTMLElement.style.setProperty('opacity', '0', 'important');
         }
       });
+    }, 2000);
+  }
+
+  //Andie Swim
+  private AndieupdateDisplayStyleInPortals() {
+    setTimeout(() => {
+        const portalRoot = this.dom.querySelectorAll('#headlessui-portal-root');
+        portalRoot.forEach((parentElement) => {
+            const portalElements = parentElement.querySelectorAll('div[data-headlessui-portal]');
+            portalElements.forEach((portal) => {
+                const firstInnerElement = portal.querySelector('div');
+                if (firstInnerElement) {
+                    const elementHTMLElement = firstInnerElement as HTMLElement;
+                    elementHTMLElement.style.removeProperty('display');
+                    elementHTMLElement.style.setProperty('display', 'block', 'important');
+                }
+            });
+        });
     }, 2000);
   }
 
