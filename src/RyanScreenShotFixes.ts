@@ -29,7 +29,6 @@ export default class RyanScreenshotFixes extends Common {
       this.Ministryofsupplyfixes();
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
-      this.DenverCoUpdateResponsiveDialog();
       this.adjustHeaderPosition();
       this.WoojerupdateMinHeight();
       this.YaqeenUpdateBackground();
@@ -59,6 +58,7 @@ export default class RyanScreenshotFixes extends Common {
       this.PuresportupdateProductCardMedia();
       this.BotaniqueParisupdateOrderHeading();
       this.TFSCaddClassToSplideChild();
+      this.DenverCoUpdateResponsiveDialogAndCover();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -676,18 +676,13 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Denver Headshot Company
-  private DenverCoUpdateResponsiveDialog() {
-    const parentContainer = this.dom.querySelector(
-      ".wp-block-navigation__responsive-container"
-    );
-    if (parentContainer) {
-      const container = parentContainer.querySelector(
-        "#modal-1-content"
-      ) as HTMLElement;
-      if (container) {
-        container.style.setProperty("margin-top", "0px", "important");
-      }
-    }
+  private DenverCoUpdateResponsiveDialogAndCover() {
+    setTimeout(() => {
+      this.dom.querySelector(".wp-block-navigation__responsive-container #modal-1-content")?.setAttribute("style", "margin-top: 0px !important");
+      this.dom.querySelectorAll('.wp-block-cover .wp-block-cover__background').forEach((backgroundElement) => {
+        (backgroundElement as HTMLElement).style.setProperty('opacity', '0', 'important');
+      });
+    }, 2000);
   }
 
   //Upcircle
