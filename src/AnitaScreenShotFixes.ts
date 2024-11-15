@@ -81,6 +81,7 @@ export default class AnitaScreenShotFixes {
     this.setMaxWidthForColorElementsADDISON();
     this.setMaxWidthForSpecificColorElementsADDISON();
     this.updateSecondSiblingPositionSMEL();
+    this.updateBannerHeightBREEO();
   }
 
   private removeHeightProperty() {
@@ -1079,4 +1080,16 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private updateBannerHeightBREEO(): void {
+    const bannerElement = this.document.getElementById(
+      'Banner-template--16295038844973__image_banner_DYeApg'
+    ) as HTMLElement;
+  
+    if (bannerElement) {
+      bannerElement.setAttribute('style', '');
+      bannerElement.style.setProperty('height', '720px', 'important');
+    }
+  }
+  
+  
 }
