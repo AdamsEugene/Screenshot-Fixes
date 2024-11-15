@@ -477,6 +477,7 @@ export default class RyanScreenshotFixes extends Common {
         this.DetoxMarketupdateSrcsetFromSrc();
         this.KvEssentialsresetImageHeight();
         this.DeuxupdateAllLSProductDisplays();
+        this.RemiupdateLightboxWrapperOpacity();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1196,6 +1197,21 @@ export default class RyanScreenshotFixes extends Common {
       `;
       this.dom.head.appendChild(style);
     }
+  }
+
+  //Remi
+  private RemiupdateLightboxWrapperOpacity() {
+    setTimeout(() => {
+      this.dom.querySelectorAll('#shopify-section-template--18360970215637__main').forEach((parentElement) => {
+        const childElement = parentElement.querySelector('.lightbox-wrapper');
+        
+        if (childElement) {
+          const childHTMLElement = childElement as HTMLElement;
+          childHTMLElement.style.removeProperty('opacity');
+          childHTMLElement.style.setProperty('opacity', '0', 'important');
+        }
+      });
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
