@@ -30,7 +30,7 @@ export default class RyanScreenshotFixes extends Common {
       this.YaqeenupdateCurrencySwitcher();
       this.ReverseLifeUpdateImage();
       this.adjustHeaderPosition();
-      this.WoojerupdateMinHeight();
+      this.WoojerUpdateMinHeightAndVisibility();
       this.YaqeenUpdateBackground();
       this.NubianceUpdateBackground();
       this.NuveremoveIsEmptyClass();
@@ -59,6 +59,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BotaniqueParisupdateOrderHeading();
       this.TFSCaddClassToSplideChild();
       this.DenverCoUpdateResponsiveDialogAndCover();
+      this.LiveLoveLocksupdateZoomContainerOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -723,7 +724,7 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   // Woojer
-  private WoojerupdateMinHeight() {
+  private WoojerUpdateMinHeightAndVisibility() {
     this.dom
       .querySelectorAll(".sc-kqGpvY")
       .forEach((parentElement: HTMLElement) => {
@@ -732,11 +733,17 @@ export default class RyanScreenshotFixes extends Common {
             ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
           )
           .forEach((childElement: HTMLElement) => {
-            childElement.style.minHeight = "";
             childElement.style.setProperty("min-height", "auto", "important");
           });
       });
-  }
+
+    if (!document.querySelector('#visibilityStyle')) {
+        const style = document.createElement('style');
+        style.id = 'visibilityStyle';  
+        style.innerHTML = '.pf-c .sc-iapVNj.iUcVvL { visibility: visible !important; }';
+        document.head.appendChild(style);
+    }
+}
 
   //Nubiance
   private NubianceUpdateBackground() {
@@ -1174,6 +1181,21 @@ export default class RyanScreenshotFixes extends Common {
         if (hover) (hover as HTMLElement).style.cssText = 'opacity: 0 !important';
       });
     }, 2000);
+  }
+
+  //Live Love Locks
+  private LiveLoveLocksupdateZoomContainerOpacity() {
+    const styleId = 'zoom-container-opacity-styles';
+    if (!this.dom.getElementById(styleId)) {
+      const style = this.dom.createElement('style');
+      style.id = styleId;
+      style.innerHTML = `
+        .zoom-container .zoomImg {
+          opacity: 0 !important;
+        }
+      `;
+      this.dom.head.appendChild(style);
+    }
   }
 
   //toggleHeatmapClassOnDrawer
