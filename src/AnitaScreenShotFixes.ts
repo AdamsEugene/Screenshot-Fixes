@@ -82,7 +82,7 @@ export default class AnitaScreenShotFixes {
     this.setMaxWidthForSpecificColorElementsADDISON();
     this.updateSecondSiblingPositionSMEL();
     this.updateBannerHeightBREEO();
-    this.updateFooterMarginSMEL();
+    // this.updateFooterMarginSMEL();
   }
 
   private removeHeightProperty() {
@@ -1091,13 +1091,13 @@ export default class AnitaScreenShotFixes {
       bannerElement.style.setProperty('height', '720px', 'important');
     }
   }
-  private updateFooterMarginSMEL(): void {
-    const footerElement = this.document.getElementById('shopify-section-footer') as HTMLElement;
+  // private updateFooterMarginSMEL(): void {
+  //   const footerElement = this.document.getElementById('shopify-section-footer') as HTMLElement;
   
-    if (footerElement) {
-      footerElement.style.setProperty('margin-top', 'revert', 'important');
-    }
-  }
+  //   if (footerElement) {
+  //     footerElement.style.setProperty('margin-top', 'revert', 'important');
+  //   }
+  // }
   
   
   
