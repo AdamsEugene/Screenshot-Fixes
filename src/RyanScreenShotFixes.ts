@@ -60,6 +60,7 @@ export default class RyanScreenshotFixes extends Common {
       this.TFSCaddClassToSplideChild();
       this.DenverCoUpdateResponsiveDialogAndCover();
       this.LiveLoveLocksupdateZoomContainerOpacity();
+      this.MaxLilyupdateMinHeightForMainContent();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1231,6 +1232,19 @@ export default class RyanScreenshotFixes extends Common {
             });
         });
     }, 2000);
+  }
+
+  //Max Lily 
+  private MaxLilyupdateMinHeightForMainContent() {
+    this.dom.querySelectorAll('#kids-bunk-beds-amp-loft-beds-slide-beds-amp-mattresses-max-amp-lily').forEach((parentElement) => {
+        const parentEl = parentElement as HTMLElement;
+        if (parentEl) {
+            const childElement = parentEl.querySelector('#MainContent') as HTMLElement;
+            if (childElement) {
+                childElement.style.minHeight = 'auto';
+            }
+        }
+    });
   }
 
   //toggleHeatmapClassOnDrawer
