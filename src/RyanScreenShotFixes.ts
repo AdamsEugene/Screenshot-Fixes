@@ -63,6 +63,8 @@ export default class RyanScreenshotFixes extends Common {
       this.MaxLilyupdateMinHeightForMainContent();
       this.NutrinicremoveHeightFromImageInSlider();
       this.UnderdogupdateLazyLoadImages();
+      this.MysticBarrelsupdateProductImageHeight();
+      this.UpcircleUSsetupFlipContentToggle();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1275,6 +1277,32 @@ export default class RyanScreenshotFixes extends Common {
         }
     });
   }
+
+  //Upcircle US
+  private UpcircleUSsetupFlipContentToggle() {
+    this.dom.querySelectorAll('.link_group_flip').forEach(flipElement => {
+        flipElement.addEventListener('click', (e) => {
+            e.preventDefault();
+            const contentElement = flipElement.nextElementSibling;
+            if (contentElement?.classList.contains('upcircle_content_mob')) {
+                const currentDisplay = (contentElement as HTMLElement).style.display;
+                (contentElement as HTMLElement).style.display = currentDisplay === 'block' ? 'none' : 'block';
+            }
+        });
+    });
+  }
+
+  //Mystic Barrels
+  private MysticBarrelsupdateProductImageHeight() {
+    const parent = this.dom.querySelector('#ProductInfo-template--15883225563249__mb14-main-product');
+    if (parent) {
+        const imageElement = parent.querySelector('.product-image-blocks img');
+        if (imageElement) {
+            (imageElement as HTMLElement).style.removeProperty('height');
+            (imageElement as HTMLElement).style.setProperty('height', 'auto', 'important');
+        }
+    }
+}
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
