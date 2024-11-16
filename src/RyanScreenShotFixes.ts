@@ -1250,22 +1250,11 @@ export default class RyanScreenshotFixes extends Common {
 
   //Kollagen Nutrinic
   private NutrinicremoveHeightFromImageInSlider() {
-    const parents = this.dom.querySelectorAll('.brxe-block.befo-slider__slide-inner');
-    console.log('Found parent elements:', parents.length);
-    
-    parents.forEach(parent => {
-        console.log('Parent HTML:', parent.innerHTML);
-        const imageTag = parent.querySelector('.befo-slider__image.tag');
-        console.log('Found image tag:', imageTag);
-        
-        if (imageTag) {
-            const img = imageTag.querySelector('img');
-            console.log('Found img:', img);
-            
-            if (img) {
-                (img as HTMLElement).style.setProperty('height', 'auto', 'important');
-                console.log('Updated height for:', img);
-            }
+    this.dom.querySelectorAll('.brxe-block.befo-slider__slide-inner').forEach(parent => {
+        (parent as HTMLElement).style.setProperty('height', 'auto', 'important');
+        const imageElement = parent.querySelector('.befo-slider__image.tag img');
+        if (imageElement) {
+            (imageElement as HTMLElement).style.setProperty('height', 'auto', 'important');
         }
     });
   }
