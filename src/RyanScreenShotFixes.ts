@@ -61,6 +61,7 @@ export default class RyanScreenshotFixes extends Common {
       this.DenverCoUpdateResponsiveDialogAndCover();
       this.LiveLoveLocksupdateZoomContainerOpacity();
       this.MaxLilyupdateMinHeightForMainContent();
+      this.NutrinicremoveHeightFromImageInSlider();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1242,6 +1243,28 @@ export default class RyanScreenshotFixes extends Common {
             const childElement = parentEl.querySelector('#MainContent') as HTMLElement;
             if (childElement) {
                 childElement.style.minHeight = 'auto';
+            }
+        }
+    });
+  }
+
+  //Kollagen Nutrinic
+  private NutrinicremoveHeightFromImageInSlider() {
+    const parents = this.dom.querySelectorAll('.brxe-block.befo-slider__slide-inner');
+    console.log('Found parent elements:', parents.length);
+    
+    parents.forEach(parent => {
+        console.log('Parent HTML:', parent.innerHTML);
+        const imageTag = parent.querySelector('.befo-slider__image.tag');
+        console.log('Found image tag:', imageTag);
+        
+        if (imageTag) {
+            const img = imageTag.querySelector('img');
+            console.log('Found img:', img);
+            
+            if (img) {
+                (img as HTMLElement).style.setProperty('height', 'auto', 'important');
+                console.log('Updated height for:', img);
             }
         }
     });
