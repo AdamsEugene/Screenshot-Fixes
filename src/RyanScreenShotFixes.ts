@@ -62,6 +62,7 @@ export default class RyanScreenshotFixes extends Common {
       this.LiveLoveLocksupdateZoomContainerOpacity();
       this.MaxLilyupdateMinHeightForMainContent();
       this.NutrinicremoveHeightFromImageInSlider();
+      this.UnderdogupdateLazyLoadImages();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1250,11 +1251,27 @@ export default class RyanScreenshotFixes extends Common {
 
   //Kollagen Nutrinic
   private NutrinicremoveHeightFromImageInSlider() {
+    if (!this.dom.querySelector('#slider-height-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'slider-height-style';
+        styleElement.textContent = '.brxe-block.befo-slider__slide-inner { height: auto !important; }';
+        this.dom.head.appendChild(styleElement);
+    }
+
     this.dom.querySelectorAll('.brxe-block.befo-slider__slide-inner').forEach(parent => {
-        (parent as HTMLElement).style.setProperty('height', 'auto', 'important');
         const imageElement = parent.querySelector('.befo-slider__image.tag img');
         if (imageElement) {
             (imageElement as HTMLElement).style.setProperty('height', 'auto', 'important');
+        }
+    });
+  }
+
+  //Underdog
+  private UnderdogupdateLazyLoadImages() {
+    this.dom.querySelectorAll('.dib-post-featured-image img').forEach(img => {
+        const lazyLoadSrc = img.getAttribute('data-lazy-load');
+        if (lazyLoadSrc) {
+            (img as HTMLImageElement).src = lazyLoadSrc;
         }
     });
   }
