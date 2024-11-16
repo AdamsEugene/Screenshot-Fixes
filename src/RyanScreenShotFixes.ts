@@ -1280,15 +1280,24 @@ export default class RyanScreenshotFixes extends Common {
 
   //Upcircle US
   private UpcircleUSsetupFlipContentToggle() {
-    this.dom.querySelectorAll('.link_group_flip').forEach(flipElement => {
-        flipElement.addEventListener('click', (e) => {
+    const existingElements = this.dom.querySelectorAll('.link_group_flip');
+    existingElements.forEach(el => {
+        el.removeEventListener('click', () => {});
+    });
+
+    this.dom.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const flipElement = target.closest('.link_group_flip');
+        
+        if (flipElement) {
             e.preventDefault();
             const contentElement = flipElement.nextElementSibling;
+            
             if (contentElement?.classList.contains('upcircle_content_mob')) {
                 const currentDisplay = (contentElement as HTMLElement).style.display;
                 (contentElement as HTMLElement).style.display = currentDisplay === 'block' ? 'none' : 'block';
             }
-        });
+        }
     });
   }
 
