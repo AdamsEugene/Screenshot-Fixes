@@ -65,6 +65,7 @@ export default class RyanScreenshotFixes extends Common {
       this.UnderdogupdateLazyLoadImages();
       this.MysticBarrelsupdateProductImageHeight();
       this.UpcircleUSsetupFlipContentToggle();
+      this.updateSecondaryImageOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1311,7 +1312,27 @@ export default class RyanScreenshotFixes extends Common {
             (imageElement as HTMLElement).style.setProperty('height', 'auto', 'important');
         }
     }
-}
+  }
+
+  //Reach International Outfitters
+  private updateSecondaryImageOpacity() {
+    setTimeout(() => {
+        // Check if style already exists
+        if (!this.dom.querySelector('#secondary-image-style')) {
+            const styleElement = this.dom.createElement('style');
+            styleElement.id = 'secondary-image-style';
+            styleElement.textContent = `
+                .grid-product__image-mask .grid-product__secondary-image {
+                    opacity: 0 !important;
+                }
+                .grid-product__image-mask:hover .grid-product__secondary-image {
+                    opacity: 1 !important;
+                }
+            `;
+            this.dom.head.appendChild(styleElement);
+        }
+    }, 2000);
+  }
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
