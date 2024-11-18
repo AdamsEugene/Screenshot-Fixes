@@ -48,12 +48,12 @@ export default class ForsonScreenshotFixes {
     this.LogoxUpdatePageElements();
     this.overrideMaxWidthInProductSlider();
     this.addActiveStateToHeader();
-    this.removePositionRelative();
     this.checkAndRemoveHiddenElements();
     this.removePaddingTop();
     this.overrideMarginTop();
     this.showHiddenElement();
     this.overrideBeforeStyle();
+    this.hideTinyCookieWrapper()
   }
 
   // Upcircle EU
@@ -557,14 +557,6 @@ export default class ForsonScreenshotFixes {
     }
   }
 
-  private removePositionRelative() {
-    var element = this.document.getElementById(
-      "shopify-section-header"
-    ) as HTMLElement;
-    if (element && element.classList.contains("shopify-section")) {
-      element.style.setProperty("position", "initial", "important");
-    }
-  }
 
   // hey hair
   private checkAndRemoveHiddenElements(): void {
@@ -635,6 +627,13 @@ private overrideBeforeStyle() {
       }
   `;
   this.document.head.appendChild(style);
+}
+
+private hideTinyCookieWrapper() {
+  const elements = this.document.querySelectorAll('#tinycookie-wrapper') as NodeListOf<HTMLImageElement>;
+  elements.forEach(element => {
+    element.style.display = 'none';
+  });
 }
 
 
