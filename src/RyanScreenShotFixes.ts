@@ -66,6 +66,7 @@ export default class RyanScreenshotFixes extends Common {
       this.UpcircleUSsetupFlipContentToggle();
       this.updateSecondaryImageOpacity();
       this.ThomsonCarterupdateViewportHeight();
+      this.primalherbssetupMobileMenuToggle();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1327,6 +1328,16 @@ export default class RyanScreenshotFixes extends Common {
         `;
         this.dom.head.appendChild(styleElement);
     }
+  }
+
+  private primalherbssetupMobileMenuToggle() {
+    const menuHolder = this.dom.querySelector('.mobile_menu_holder');
+    
+    this.dom.querySelector('.header header-drawer')?.addEventListener('click', () => 
+        menuHolder?.classList.add('open'));
+        
+    this.dom.querySelector('.mobile_menu_holder .close_button')?.addEventListener('click', () => 
+        menuHolder?.classList.remove('open'));
   }
 
   //toggleHeatmapClassOnDrawer
