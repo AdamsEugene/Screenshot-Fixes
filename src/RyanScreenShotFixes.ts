@@ -1378,42 +1378,63 @@ export default class RyanScreenshotFixes extends Common {
       });
   }
 
-  //Iframe Update
-  private UpdateIframeSrc() {
+private UpdateIframeSrc() {
     const iframes = this.dom.querySelectorAll("iframe") as NodeListOf<HTMLIFrameElement>;
     if (iframes.length === 0) return;
   
     const proxyUrl1 = "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
     const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
   
-    const removeProxyUrl = (url: string, proxyUrl: string) =>
-      url.startsWith(proxyUrl) ? decodeURIComponent(url.replace(proxyUrl, "")) : url;
+    const removeProxyUrl = (url: string, proxyUrl: string) => {
+        if (url.startsWith(proxyUrl)) {
+            try {
+                return decodeURIComponent(url.replace(proxyUrl, ""));
+            } catch (e) {
+                // If decoding fails, return the original URL without proxy
+                return url.replace(proxyUrl, "");
+            }
+        }
+        return url;
+    };
   
     iframes.forEach((iframe) => {
-      // Get the iframe src from the attribute
-      let iframeSrc = iframe.getAttribute("src");
-      if (!iframeSrc) return;
-  
-      // Decode HTML entities in the URL
-      iframeSrc = decodeURIComponent(iframeSrc);
-  
-      // Remove the proxy URLs if they exist
-      iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
-      iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
+        try {
+            // Get the iframe src from the attribute
+            let iframeSrc = iframe.getAttribute("src");
+            if (!iframeSrc) return;
       
-      // Update the iframe's src attribute with the cleaned URL
-      iframe.setAttribute("src", iframeSrc);
-  
-      // If the iframe is already modified with 'src-changed', handle retry logic
-      if (iframe.getAttribute("src-changed") === "true") {
-        const retryWithProxy = (proxyUrl: string) => {
-          iframe.setAttribute("src", proxyUrl + encodeURIComponent(iframeSrc));
-        };
-  
-        iframe.onerror = () => retryWithProxy(proxyUrl1);
-      }
+            // Safely decode HTML entities in the URL
+            try {
+                iframeSrc = decodeURIComponent(iframeSrc);
+            } catch (e) {
+                // If decoding fails, use the original URL
+                console.warn("Failed to decode iframe URL:", e);
+            }
+      
+            // Remove the proxy URLs if they exist
+            iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
+            iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
+          
+            // Update the iframe's src attribute with the cleaned URL
+            iframe.setAttribute("src", iframeSrc);
+      
+            // If the iframe is already modified with 'src-changed', handle retry logic
+            if (iframe.getAttribute("src-changed") === "true") {
+                const retryWithProxy = (proxyUrl: string) => {
+                    try {
+                        iframe.setAttribute("src", proxyUrl + encodeURIComponent(iframeSrc));
+                    } catch (e) {
+                        console.error("Failed to set proxy URL:", e);
+                    }
+                };
+        
+                iframe.onerror = () => retryWithProxy(proxyUrl1);
+            }
+        } catch (e) {
+            console.error("Error processing iframe:", e);
+        }
     });
-  }
+}
 
   private adjustHeaderPosition() {
     const header = this.dom.getElementById(
