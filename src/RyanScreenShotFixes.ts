@@ -46,7 +46,6 @@ export default class RyanScreenshotFixes extends Common {
       this.KhaiteUpdateHeight();
       this.BenchmadeupdateImageSrcsetToHttps();
       this.modularclosetsaddAnimatedClass();
-      this.DeuxRemoveHiddenElements();
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
@@ -66,6 +65,7 @@ export default class RyanScreenshotFixes extends Common {
       this.MysticBarrelsupdateProductImageHeight();
       this.UpcircleUSsetupFlipContentToggle();
       this.updateSecondaryImageOpacity();
+      this.ThomsonCarterupdateViewportHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -478,7 +478,6 @@ export default class RyanScreenshotFixes extends Common {
         this.ShieldEUsetChildOpacities();
         this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
-        this.DeuxRemoveclass();
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
         this.KvEssentialsresetImageHeight();
@@ -977,31 +976,6 @@ export default class RyanScreenshotFixes extends Common {
     });
   }
 
-  //Deux par Deux
-  private DeuxRemoveHiddenElements() {
-    this.dom.querySelectorAll(".heatmap-com__hidden-element").forEach((element) => {
-      if (element) {
-        element.remove();
-      }
-    });
-  }
-
-  private DeuxRemoveclass() {
-    this.dom.querySelectorAll('.cv_footer_cart_subtotal').forEach((parent) => {
-        const child = parent.querySelector('.cv_footer_sub_inner_cart');
-        
-        if (child) {
-            [parent, child].forEach((element) => {
-                element.querySelectorAll('*').forEach((descendant) => {
-                    if (descendant.classList.contains('heatmap-com__hidden-element')) {
-                        descendant.classList.remove('heatmap-com__hidden-element');
-                    }
-                });
-            });
-        }
-    });
-  }
-
   //Pulsio AIR
   private PulsioShowHiddenFAQAnswers() {
     this.dom.querySelectorAll('[classification^="FAQ Question"]').forEach((parent) => {
@@ -1332,6 +1306,27 @@ export default class RyanScreenshotFixes extends Common {
             this.dom.head.appendChild(styleElement);
         }
     }, 2000);
+  }
+
+  //Thomson Carter
+  private ThomsonCarterupdateViewportHeight() {
+    this.dom.querySelectorAll('.product-single__media-slider .flickity-viewport').forEach(element => {
+        const actualHeight = element.getAttribute('actualheight');
+        if (actualHeight) {
+            (element as HTMLElement).style.removeProperty('height');
+            (element as HTMLElement).style.setProperty('height', `${actualHeight}`, 'important');
+        }
+    });
+    if (!this.dom.querySelector('#product-media-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'product-media-style';
+        styleElement.textContent = `
+            .product-single__media .product-single__media--image-height {
+                display: block !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
   }
 
   //toggleHeatmapClassOnDrawer
