@@ -1388,8 +1388,16 @@ export default class RyanScreenshotFixes extends Common {
 
   //6 Week Challenge
   private WeekChallengeupdateGalleryStyles() {
-    this.dom.querySelectorAll('.e-gallery-item .e-gallery-image')
-        .forEach(image => (image as HTMLElement).style.setProperty('display', 'block', 'important'));
+    if (!this.dom.querySelector('#gallery-image-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'gallery-image-style';
+        styleElement.textContent = `
+            .e-gallery-item .e-gallery-image {
+                display: block !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
   }
 
   //toggleHeatmapClassOnDrawer
