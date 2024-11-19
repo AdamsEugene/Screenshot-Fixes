@@ -73,6 +73,7 @@ export default class RyanScreenshotFixes extends Common {
       this.WeekChallengeupdateGalleryStyles();
       this.McAfeeupdateDrawerHeight();
       this.PectivupdateSearchBarOpacity();
+      this.VitalityupdateHeroBannerDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1437,6 +1438,16 @@ export default class RyanScreenshotFixes extends Common {
                 wrapperElement.offsetHeight;
                 wrapperElement.style.setProperty('opacity', '0', 'important');
             }
+        });
+    }, 2000);
+  }
+
+  //Vitality
+  private VitalityupdateHeroBannerDisplay() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.container-max .hero-banner__cover').forEach(element => {
+            (element as HTMLElement).style.removeProperty('display');
+            (element as HTMLElement).style.setProperty('display', 'block', 'important');
         });
     }, 2000);
   }
