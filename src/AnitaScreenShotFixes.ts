@@ -83,6 +83,7 @@ export default class AnitaScreenShotFixes {
     this.hideAllScalapayModals();
     this.updateDrawerMenuDisplayNuBest();
     this.hideJstIframeElementNuBest();
+    this.updateDescendantsDisplayAmie();
   }
 
   private removeHeightProperty() {
@@ -1121,6 +1122,22 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty('display', 'none', 'important');
     }
   }
+  private updateDescendantsDisplayAmie(): void {
+    const parentElement = this.document.querySelector(
+      '.r-1v6j6db'
+    ) as HTMLElement;
+  
+    if (parentElement) {
+      const descendants = parentElement.querySelectorAll('*') as NodeListOf<HTMLElement>;
+  
+      descendants.forEach((descendant) => {
+        if (descendant.style.display === 'none') {
+          descendant.style.setProperty('display', 'block', 'important');
+        }
+      });
+    }
+  }
+  
   
   
   
