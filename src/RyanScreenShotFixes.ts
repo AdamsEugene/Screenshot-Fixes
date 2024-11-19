@@ -70,6 +70,7 @@ export default class RyanScreenshotFixes extends Common {
       this.SvelteChichideFormEmbed();
       this.NeathideAgeVerifier();
       this.AlphaLionhideVideoModal();
+      this.WeekChallengeupdateGalleryStyles();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1383,6 +1384,12 @@ export default class RyanScreenshotFixes extends Common {
         `;
         this.dom.head.appendChild(styleElement);
     }
+  }
+
+  //6 Week Challenge
+  private WeekChallengeupdateGalleryStyles() {
+    this.dom.querySelectorAll('.e-gallery-item .e-gallery-image')
+        .forEach(image => (image as HTMLElement).style.setProperty('display', 'block', 'important'));
   }
 
   //toggleHeatmapClassOnDrawer
