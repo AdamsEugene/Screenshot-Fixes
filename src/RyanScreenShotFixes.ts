@@ -68,6 +68,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ThomsonCarterupdateViewportHeight();
       this.primalherbssetupMobileMenuToggle();
       this.SvelteChichideFormEmbed();
+      this.NeathideAgeVerifier();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1348,6 +1349,20 @@ export default class RyanScreenshotFixes extends Common {
         styleElement.id = 'form-embed-style';
         styleElement.textContent = `
             .template-index #app-embed-container-246292 {
+                display: none !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
+  }
+
+  //Neat SweatProof Apparel
+  private NeathideAgeVerifier() {
+    if (!this.dom.querySelector('#age-verifier-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'age-verifier-style';
+        styleElement.textContent = `
+            #shopify-section-sections--15894718775357__age-verifier-popup #sections--15894718775357__age-verifier-popup {
                 display: none !important;
             }
         `;
