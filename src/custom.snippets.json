@@ -459,5 +459,50 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.innbeautyproject.com-products-extreme-cream-main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-template--23770148569467__homepage_ingredients_BR3Jfg",
+    "content": {
+      "idSite": 1671,
+      "idSiteHsr": 1762547,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/primalherbs.com--main.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23770148569467__homepage_video_reviews_8wEawA",
+    "content": {
+      "idSite": 1671,
+      "idSiteHsr": 1762547,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/primalherbs.com--main1.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23770148569467__homepage_difference_a4yCL9",
+    "content": {
+      "idSite": 1671,
+      "idSiteHsr": 1762547,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/primalherbs.com--main2.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23770148569467__homepage_faq_3hwmbt",
+    "content": {
+      "idSite": 1671,
+      "idSiteHsr": 1762547,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/primalherbs.com--main3.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23770148569467__homepage_specialist_Vqwcb3",
+    "content": {
+      "idSite": 1671,
+      "idSiteHsr": 1762547,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/primalherbs.com--main4.html"
+    }
   }
 ]
