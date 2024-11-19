@@ -63,8 +63,6 @@ export default class AnitaScreenShotFixes {
     this.removeBackgroundFromSidebarContainerinfiniteicon();
     this.removeInlineStylesFromSwiperElementALBION();
     this.removeDisplayNoneFromDescendantsOBVI();
-    // this.removeHeightFromImageHeroContainerSMEL();
-    // this.setHeightAutoForAllImageInnerSMEL();
     this.updateSvgElementsInsideDecorCEDIA();
     this.updateStylesForSecondImageInProductFiguresHAPPYDAD();
     this.removeDisplayNoneFromNestedElementsANDIE();
@@ -82,7 +80,9 @@ export default class AnitaScreenShotFixes {
     this.setMaxWidthForSpecificColorElementsADDISON();
     this.updateSecondSiblingPositionSMEL();
     this.updateBannerHeightBREEO();
-    this.updateFooterMarginSMEL();
+    this.hideAllScalapayModals();
+    this.updateDrawerMenuDisplayNuBest();
+    this.hideJstIframeElementNuBest();
   }
 
   private removeHeightProperty() {
@@ -1091,14 +1091,41 @@ export default class AnitaScreenShotFixes {
       bannerElement.style.setProperty('height', '720px', 'important');
     }
   }
-  private updateFooterMarginSMEL(): void {
-    const footerParent = this.document.querySelector('.shopify-section.footer__parent') as HTMLElement;
-    
-    if (footerParent && footerParent.querySelector('.footer.section')) {
-      footerParent.style.setProperty('margin-top', 'revert', 'important');
+
+  private hideAllScalapayModals(): void {
+    const modalElements = this.document.querySelectorAll('scalapay-modal-core') as NodeListOf<HTMLElement>;
+  
+    if (modalElements.length > 0) {
+      modalElements.forEach((modalElement) => {
+        modalElement.style.setProperty('display', 'none', 'important');
+      });
+    }
+  }
+  private updateDrawerMenuDisplayNuBest(): void {
+    const element = this.document.querySelector(
+      '.t4s-drawer-menu__close.t4s-pe-none.t4s-op-0.t4s-pf'
+    ) as HTMLElement;
+  
+    if (element) {
+      element.style.setProperty('display', 'none', 'important');
+    }
+  }
+  
+  
+  private hideJstIframeElementNuBest(): void {
+    const element = this.document.getElementById(
+      '_jst-iframe-ff0f878ae2aa44168b3e310ce8eef2b6-92b9e5301c2811ee8c7cb55495ba6c2c-c5e2bdb1a4cf432c8e005e64d49f9368'
+    ) as HTMLElement;
+  
+    if (element) {
+      element.style.setProperty('display', 'none', 'important');
     }
   }
   
   
   
+  
+  
+  
 }
+
