@@ -66,6 +66,13 @@ export default class RyanScreenshotFixes extends Common {
       this.UpcircleUSsetupFlipContentToggle();
       this.updateSecondaryImageOpacity();
       this.ThomsonCarterupdateViewportHeight();
+      this.primalherbssetupMobileMenuToggle();
+      this.SvelteChichideFormEmbed();
+      this.NeathideAgeVerifier();
+      this.AlphaLionhideVideoModal();
+      this.WeekChallengeupdateGalleryStyles();
+      this.McAfeeupdateDrawerHeight();
+      this.PectivupdateSearchBarOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1327,6 +1334,102 @@ export default class RyanScreenshotFixes extends Common {
         `;
         this.dom.head.appendChild(styleElement);
     }
+  }
+
+  private primalherbssetupMobileMenuToggle() {
+    const menuHolder = this.dom.querySelector('.mobile_menu_holder');
+    
+    this.dom.querySelector('.header header-drawer')?.addEventListener('click', () => 
+        menuHolder?.classList.add('open'));
+        
+    this.dom.querySelector('.mobile_menu_holder .close_button')?.addEventListener('click', () => 
+        menuHolder?.classList.remove('open'));
+  }
+
+  //Svelte Chic
+  private SvelteChichideFormEmbed() {
+    if (!this.dom.querySelector('#form-embed-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'form-embed-style';
+        styleElement.textContent = `
+            .template-index #app-embed-container-246292 {
+                display: none !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
+  }
+
+  //Neat SweatProof Apparel
+  private NeathideAgeVerifier() {
+    if (!this.dom.querySelector('#age-verifier-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'age-verifier-style';
+        styleElement.textContent = `
+            #shopify-section-sections--15894718775357__age-verifier-popup #sections--15894718775357__age-verifier-popup {
+                display: none !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
+  }
+
+  //Alpha Lion
+  private AlphaLionhideVideoModal() {
+    if (!this.dom.querySelector('#video-modal-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'video-modal-style';
+        styleElement.textContent = `
+            .main-wrapper [data-action="close-video"].video-modal {
+                opacity: 0 !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
+  }
+
+  //6 Week Challenge
+  private WeekChallengeupdateGalleryStyles() {
+    if (!this.dom.querySelector('#gallery-image-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'gallery-image-style';
+        styleElement.textContent = `
+            .e-gallery-item .e-gallery-image {
+                display: block !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
+    }
+  }
+
+  //McAfee Institute Intelligence
+  private McAfeeupdateDrawerHeight() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('#MenuDrawer.menu-drawer').forEach((parentElement) => {
+            const drawerInner = parentElement.querySelector('.drawer__inner.z-10');
+            if (drawerInner) {
+                const drawerElement = drawerInner as HTMLElement;
+                drawerElement.style.removeProperty('height');
+                drawerElement.offsetHeight;
+                drawerElement.style.setProperty('height', 'revert-layer', 'important');
+            }
+        });
+    }, 2000);
+  }
+
+  //Pectiv
+  private PectivupdateSearchBarOpacity() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('#SearchBar').forEach((parentElement) => {
+            const searchWrapper = parentElement.querySelector('.search-bar-wrapper');
+            if (searchWrapper) {
+                const wrapperElement = searchWrapper as HTMLElement;
+                wrapperElement.style.removeProperty('opacity');
+                wrapperElement.offsetHeight;
+                wrapperElement.style.setProperty('opacity', '0', 'important');
+            }
+        });
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
