@@ -72,6 +72,7 @@ export default class RyanScreenshotFixes extends Common {
       this.AlphaLionhideVideoModal();
       this.WeekChallengeupdateGalleryStyles();
       this.McAfeeupdateDrawerHeight();
+      this.PectivupdateSearchBarOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1411,6 +1412,21 @@ export default class RyanScreenshotFixes extends Common {
                 drawerElement.style.removeProperty('height');
                 drawerElement.offsetHeight;
                 drawerElement.style.setProperty('height', 'revert-layer', 'important');
+            }
+        });
+    }, 2000);
+  }
+
+  //Pectiv
+  private PectivupdateSearchBarOpacity() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('#SearchBar').forEach((parentElement) => {
+            const searchWrapper = parentElement.querySelector('.search-bar-wrapper');
+            if (searchWrapper) {
+                const wrapperElement = searchWrapper as HTMLElement;
+                wrapperElement.style.removeProperty('opacity');
+                wrapperElement.offsetHeight;
+                wrapperElement.style.setProperty('opacity', '0', 'important');
             }
         });
     }, 2000);
