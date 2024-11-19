@@ -67,6 +67,7 @@ export default class RyanScreenshotFixes extends Common {
       this.updateSecondaryImageOpacity();
       this.ThomsonCarterupdateViewportHeight();
       this.primalherbssetupMobileMenuToggle();
+      this.SvelteChichideFormEmbed();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1338,6 +1339,15 @@ export default class RyanScreenshotFixes extends Common {
         
     this.dom.querySelector('.mobile_menu_holder .close_button')?.addEventListener('click', () => 
         menuHolder?.classList.remove('open'));
+  }
+
+  //Svelte Chic
+  private SvelteChichideFormEmbed() {
+    const formEmbed = this.dom.querySelector('.template-index #app-embed-container-246292');
+    if (formEmbed) {
+        (formEmbed as HTMLElement).style.removeProperty('display');
+        (formEmbed as HTMLElement).style.setProperty('display', 'none', 'important');
+    }
   }
 
   //toggleHeatmapClassOnDrawer
