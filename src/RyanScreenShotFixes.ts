@@ -1339,21 +1339,12 @@ export default class RyanScreenshotFixes extends Common {
 
   private primalherbssetupMobileMenuToggle() {
     const menuHolder = this.dom.querySelector('.mobile_menu_holder');
-    this.dom.querySelector('.header header-drawer')?.addEventListener('click', () =>
+    
+    this.dom.querySelector('.header header-drawer')?.addEventListener('click', () => 
         menuHolder?.classList.add('open'));
-    this.dom.querySelector('.mobile_menu_holder .close_button')?.addEventListener('click', () =>
+        
+    this.dom.querySelector('.mobile_menu_holder .close_button')?.addEventListener('click', () => 
         menuHolder?.classList.remove('open'));
-
-    if (!this.dom.querySelector('#klaviyo-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'klaviyo-style';
-        styleElement.textContent = `
-            .needsclick.kl-private-reset-css-Xuajs1 .needsclick.kl-private-reset-css-Xuajs1 {
-                display: none !important;
-            }
-        `;
-        this.dom.head.appendChild(styleElement);
-    }
   }
 
   //Svelte Chic
