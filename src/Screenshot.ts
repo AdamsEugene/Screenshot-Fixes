@@ -1402,6 +1402,19 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  // private hideAllScalapayModals(): void {
+  //   const elements = this.dom.querySelectorAll(
+  //     'scalapay-modal-core'
+  //   ) as NodeListOf<HTMLElement>;
+  
+  //   elements.forEach((element) => {
+  //     if (element.classList.contains('hydrated')) {
+  //       element.style.setProperty('display', 'none', 'important');
+  //     }
+  //   });
+  // }
+  
+
   // functionsMap: Record<number, (() => void)[]> = {
   //   1947: [this.removeExcessiveParentWidths],
   //   2910: [this.sevenlionsupdateMainContentMarginTop],
@@ -1437,6 +1450,8 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
+      // { ids: [2432], functions: [this.hideAllScalapayModals] },
+
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
 
