@@ -1343,10 +1343,15 @@ export default class RyanScreenshotFixes extends Common {
 
   //Svelte Chic
   private SvelteChichideFormEmbed() {
-    const formEmbed = this.dom.querySelector('.template-index #app-embed-container-246292');
-    if (formEmbed) {
-        (formEmbed as HTMLElement).style.removeProperty('display');
-        (formEmbed as HTMLElement).style.setProperty('display', 'none', 'important');
+    if (!this.dom.querySelector('#form-embed-style')) {
+        const styleElement = this.dom.createElement('style');
+        styleElement.id = 'form-embed-style';
+        styleElement.textContent = `
+            .template-index #app-embed-container-246292 {
+                display: none !important;
+            }
+        `;
+        this.dom.head.appendChild(styleElement);
     }
   }
 
