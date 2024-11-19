@@ -53,7 +53,8 @@ export default class ForsonScreenshotFixes {
     this.overrideMarginTop();
     this.showHiddenElement();
     this.overrideBeforeStyle();
-    this.hideTinyCookieWrapper()
+    this.hideTinyCookieWrapper();
+    this.styleMenuDrawerElements();
   }
 
   // Upcircle EU
@@ -633,6 +634,20 @@ private hideTinyCookieWrapper() {
   const elements = this.document.querySelectorAll('#tinycookie-wrapper') as NodeListOf<HTMLImageElement>;
   elements.forEach(element => {
     element.style.display = 'none';
+  });
+}
+
+private styleMenuDrawerElements() {
+  const parentElements = this.document.querySelectorAll('.menu-drawer__inner-container') as NodeListOf<HTMLImageElement>;
+  parentElements.forEach(parent => {
+    const child = parent.querySelector('.menu-drawer__navigation-container') as HTMLLIElement;
+
+    if (child) {
+      parent.style.width = 'max-content';
+      parent.style.background = 'white';
+      child.style.width = 'max-content';
+      child.style.background = 'white';
+    }
   });
 }
 
