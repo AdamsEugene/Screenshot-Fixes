@@ -71,6 +71,7 @@ export default class RyanScreenshotFixes extends Common {
       this.NeathideAgeVerifier();
       this.AlphaLionhideVideoModal();
       this.WeekChallengeupdateGalleryStyles();
+      this.McAfeeupdateDrawerHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1398,6 +1399,21 @@ export default class RyanScreenshotFixes extends Common {
         `;
         this.dom.head.appendChild(styleElement);
     }
+  }
+
+  //McAfee Institute Intelligence
+  private McAfeeupdateDrawerHeight() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('#MenuDrawer.menu-drawer').forEach((parentElement) => {
+            const drawerInner = parentElement.querySelector('.drawer__inner.z-10');
+            if (drawerInner) {
+                const drawerElement = drawerInner as HTMLElement;
+                drawerElement.style.removeProperty('height');
+                drawerElement.offsetHeight;
+                drawerElement.style.setProperty('height', 'revert-layer', 'important');
+            }
+        });
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
