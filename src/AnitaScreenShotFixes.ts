@@ -87,7 +87,7 @@ export default class AnitaScreenShotFixes {
     this.updateDescendantsDisplayAmie();
     this.updateHeaderSectionChildrenDisplayEXCISION();
     this.updateMenuDrawerAndInnerHeightEXCISION();
-   this.updateSiblingDisplayPropertyKAHOOT()
+    this.updateFloatingAddToCartDisplaykahoot();
   }
 
   private removeHeightProperty() {
@@ -1188,21 +1188,29 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
-  private updateSiblingDisplayPropertyKAHOOT(): void {
-    const productElement = this.document.querySelector(
-      '.product.product--medium.product--left.product--thumbnail.product--mobile-show.grid.grid--1-col.grid--2-col-tablet'
-    ) as HTMLElement;
+  private updateFloatingAddToCartDisplaykahoot(): void {
+    setTimeout(() => {
+      const mainProductElement = this.document.getElementById(
+        'MainProduct-template--15217807163474__main'
+      ) as HTMLElement;
   
-    if (productElement) {
-      const siblingElement = productElement.nextElementSibling as HTMLElement;
+      if (mainProductElement) {
+        const floatingAddToCartElement = mainProductElement.querySelector(
+          '.floating-addToCart-container'
+        ) as HTMLElement;
   
-      if (siblingElement && siblingElement.style.display === 'none' && siblingElement.style.cssText.includes('!important')) {
-        setTimeout(() => {          siblingElement.style.removeProperty('display');
-            siblingElement.style.setProperty('display', 'block', 'important');
-        }, 5000);
+        if (floatingAddToCartElement) {
+          const currentDisplay = window.getComputedStyle(floatingAddToCartElement).getPropertyValue('display');
+          if (currentDisplay === 'none') {
+            floatingAddToCartElement.style.removeProperty('display');
+            floatingAddToCartElement.style.setProperty('display', 'block', 'important');
+          }
+        }
       }
-    }
+    }, 5000);
   }
+  
+  
   
   
   
