@@ -1123,20 +1123,21 @@ export default class AnitaScreenShotFixes {
     }
   }
   private updateDescendantsDisplayAmie(): void {
-    const parentElement = this.document.querySelector(
-      '.r-1v6j6db'
-    ) as HTMLElement;
+    setTimeout(() => {
+      const parentElement = this.document.querySelector('.r-1v6j6db') as HTMLElement;
   
-    if (parentElement) {
-      const descendants = parentElement.querySelectorAll('*') as NodeListOf<HTMLElement>;
+      if (parentElement) {
+        const descendants = parentElement.querySelectorAll('*') as NodeListOf<HTMLElement>;
   
-      descendants.forEach((descendant) => {
-        if (descendant.style.display === 'none') {
-          descendant.style.setProperty('display', 'block', 'important');
-        }
-      });
-    }
+        descendants.forEach((descendant) => {
+          if (descendant.style.display === 'none') {
+            descendant.style.setProperty('display', 'block', 'important');
+          }
+        });
+      }
+    }, 2000);
   }
+  
   
   
   
