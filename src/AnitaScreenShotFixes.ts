@@ -1207,54 +1207,72 @@ export default class AnitaScreenShotFixes {
   private updateFloatingAddToCartDisplaykahoot(): void {
     setTimeout(() => {
       // Log the start of the function
-      this.log("Starting to update the display for the floating add-to-cart container.");
-  
+      this.log(
+        "Starting to update the display for the floating add-to-cart container."
+      );
+
       const mainProductElement = this.document.getElementById(
         "MainProduct-template--15217807163474__main"
       ) as HTMLElement;
-  
+
       if (mainProductElement) {
-        // Log if the main product element is found
-        this.log("Found main product element with ID 'MainProduct-template--15217807163474__main'.", mainProductElement);
-  
+        this.log(
+          "Found main product element with ID 'MainProduct-template--15217807163474__main'.",
+          mainProductElement
+        );
+
         const floatingAddToCartElement = mainProductElement.querySelector(
           ".floating-addToCart-container"
         ) as HTMLElement;
-  
+
         if (floatingAddToCartElement) {
-          // Log if the floating add-to-cart container is found
-          this.log("Found floating add-to-cart element with class 'floating-addToCart-container'.", floatingAddToCartElement);
-  
+          this.log(
+            "Found floating add-to-cart element with class 'floating-addToCart-container'.",
+            floatingAddToCartElement
+          );
+
           const currentDisplay = window
             .getComputedStyle(floatingAddToCartElement)
             .getPropertyValue("display");
-  
-          // Log the current display value
-          this.log("Current display property value of floating add-to-cart element:", currentDisplay);
-  
+
+          this.log(
+            "Current display property value of floating add-to-cart element:",
+            currentDisplay
+          );
+
           if (currentDisplay === "none") {
-            // Remove the display:none and log the update
             floatingAddToCartElement.style.removeProperty("display");
-            this.log("Removed 'display: none' from the floating add-to-cart element.");
-  
-            // Set display to block and log the update
-            floatingAddToCartElement.style.setProperty("display", "block", "important");
-            this.log("Set 'display' to 'block' with !important for the floating add-to-cart element.");
+            this.log(
+              "Removed 'display: none' from the floating add-to-cart element."
+            );
+
+            floatingAddToCartElement.style.setProperty(
+              "display",
+              "block",
+              "important"
+            );
+            this.log(
+              "Set 'display' to 'block' with !important for the floating add-to-cart element."
+            );
           } else {
-            this.log("The floating add-to-cart element does not have 'display: none'. No changes were made.");
+            this.log(
+              "The floating add-to-cart element does not have 'display: none'. No changes were made."
+            );
           }
         } else {
-          // Log if the floating add-to-cart element is not found
-          this.log("Floating add-to-cart element with class 'floating-addToCart-container' not found.");
+          this.log(
+            "Floating add-to-cart element with class 'floating-addToCart-container' not found."
+          );
         }
       } else {
-        // Log if the main product element is not found
-        this.log("Main product element with ID 'MainProduct-template--15217807163474__main' not found.");
+        this.log(
+          "Main product element with ID 'MainProduct-template--15217807163474__main' not found."
+        );
       }
-  
-      // Log the end of the function
-      this.log("Finished updating the display for the floating add-to-cart container.");
-    }, 2000); // 5000ms (5 seconds) delay
+
+      this.log(
+        "Finished updating the display for the floating add-to-cart container."
+      );
+    }, 2000);
   }
-  
 }
