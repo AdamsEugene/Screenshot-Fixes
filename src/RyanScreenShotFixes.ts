@@ -79,6 +79,7 @@ export default class RyanScreenshotFixes extends Common {
       this.eSafetyupdateMegaMenuBackground();
       this.RinseBathBodyhideHeaderToolsLeft();
       this.preventSidebarDisplayNone();
+      this.removeHiddenClassFromMenu();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1499,6 +1500,7 @@ export default class RyanScreenshotFixes extends Common {
     const selectors = [
         '#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft',
         '.mob-drawer',
+        '.mobile-menu'
     ];
 
     const observer = new MutationObserver(() => {
@@ -1512,13 +1514,27 @@ export default class RyanScreenshotFixes extends Common {
         });
     });
 
-    if (this.dom.body) {
-        observer.observe(this.dom.body, { 
-            attributes: true,
-            attributeFilter: ['style'],
-            subtree: true 
-        });
-    }
+    selectors.forEach(selector => {
+        const targetElement = this.dom.querySelector(selector);
+        if (targetElement) {
+            observer.observe(targetElement, { 
+                attributeFilter: ['style']
+            });
+        }
+    });
+  }
+
+  //
+  private removeHiddenClassFromMenu() {
+    setTimeout(() => {
+        const drawerMenu = this.dom.querySelector('.mob-drawer.open .mob-drawer__menu.childOpen');
+        if (drawerMenu) {
+            const allElements = drawerMenu.getElementsByTagName('*');
+            Array.from(allElements).forEach(element => {
+                element.classList.remove('heatmap-com__hidden-element', 'passed');
+            });
+        }
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
