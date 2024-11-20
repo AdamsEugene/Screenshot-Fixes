@@ -77,6 +77,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BedsRUshideOwlClonedItems();
       this.FireDeptCoffeeupdateSubmenuDisplay();
       this.eSafetyupdateMegaMenuBackground();
+      this.RinseBathBodyhideHeaderToolsLeft();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1480,6 +1481,15 @@ export default class RyanScreenshotFixes extends Common {
     setTimeout(() => {
         (this.dom.querySelector('#m-theme #MainContent[role="main"]') as HTMLElement)?.style
             .setProperty('margin-top', 'auto', 'important');
+    }, 2000);
+  }
+
+  //Rinse Bath Body
+  private RinseBathBodyhideHeaderToolsLeft() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.main-header--tools-group .main-header--tools-left').forEach(element => {
+            (element as HTMLElement).style.setProperty('display', 'none', 'important');
+        });
     }, 2000);
   }
 
