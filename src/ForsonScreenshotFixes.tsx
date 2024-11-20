@@ -55,6 +55,7 @@ export default class ForsonScreenshotFixes {
     this.overrideBeforeStyle();
     this.hideTinyCookieWrapper();
     this.styleMenuDrawerElements();
+    this.removeMinHeightStyle()
   }
 
   // Upcircle EU
@@ -649,6 +650,13 @@ private styleMenuDrawerElements() {
       child.style.background = 'white';
     }
   });
+}
+
+private removeMinHeightStyle() {
+  const element = this.document.getElementById('gp-carousel-product-list-carousel-g5qBAQx5d8-template--23408454664498__gp_section_519316681286222864') as HTMLElement;
+  if (element) {
+    element.style.removeProperty('min-height');
+  }
 }
 
 
