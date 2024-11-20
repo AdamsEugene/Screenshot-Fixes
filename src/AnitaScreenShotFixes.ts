@@ -84,8 +84,9 @@ export default class AnitaScreenShotFixes {
     this.updateDrawerMenuDisplayNuBest();
     this.hideJstIframeElementNuBest();
     this.updateDescendantsDisplayAmie();
-    this.updateMenuDrawerDisplayTSEXCISION();
+    this.updateHeaderSectionChildrenDisplayEXCISION();
     this.updateMenuDrawerAndInnerHeightEXCISION();
+    this.updateFloatingAddToCartStylesKAHOOT();
   }
 
   private removeHeightProperty() {
@@ -1139,36 +1140,23 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
-  private updateMenuDrawerDisplayTSEXCISION(): void {
-    setTimeout(() => {
-      console.log('Starting to update MenuDrawer display...');
+  private updateHeaderSectionChildrenDisplayEXCISION(): void {
+    const parentElement = this.document.querySelector(
+      '.shopify-section.shopify-section-group-header-group.header-section.header-sticky'
+    ) as HTMLElement;
   
-      // Get the element by its ID
-      const drawerElement = this.document.getElementById('MenuDrawer') as HTMLElement;
-  
-      if (drawerElement) {
-        console.log('Element with ID "MenuDrawer" found.');
-  
-        if (drawerElement.tagName.toLowerCase() === 'menu-drawer') {
-          console.log('Element tag name is "menu-drawer". Proceeding to update styles.');
-  
-          // Remove all inline CSS properties by setting the style attribute to an empty string
-          drawerElement.setAttribute('style', '');
-          console.log('Removed all inline CSS properties from the element.');
-  
-          // Set display to block with !important
-          drawerElement.style.setProperty('display', 'block', 'important');
-          console.log('Set display to "block" with !important for the element.');
-        } else {
-          console.log('Element tag name is not "menu-drawer". No changes made.');
+    if (parentElement) {
+      const children = parentElement.children;
+      Array.from(children).forEach((child) => {
+        const childElement = child as HTMLElement;
+        if (childElement.style.display === 'none') {
+          childElement.style.display = '';
+          childElement.style.setProperty('display', 'block', 'important');
         }
-      } else {
-        console.log('Element with ID "MenuDrawer" not found.');
-      }
-  
-      console.log('Finished updating MenuDrawer display.');
-    }, 3000);
+      });
+    }
   }
+  
   
   
   
@@ -1187,6 +1175,17 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private updateFloatingAddToCartStylesKAHOOT(): void {
+    const addToCartElement = this.document.getElementById('floating-addToCart-container') as HTMLElement;
+  
+    if (addToCartElement && addToCartElement.classList.contains('floating-addToCart-container')) {
+      addToCartElement.style.setProperty('display', 'block', 'important');
+      addToCartElement.style.setProperty('left', 'auto', 'important');
+      addToCartElement.style.setProperty('bottom', '0', 'important');
+      addToCartElement.style.setProperty('transform', 'none', 'important');
+    }
+  }
+  
   
   
   
