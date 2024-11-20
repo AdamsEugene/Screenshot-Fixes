@@ -76,6 +76,7 @@ export default class RyanScreenshotFixes extends Common {
       this.VitalityupdateHeroBannerDisplay();
       this.BedsRUshideOwlClonedItems();
       this.FireDeptCoffeeupdateSubmenuDisplay();
+      this.eSafetyupdateMegaMenuBackground();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1464,6 +1465,21 @@ export default class RyanScreenshotFixes extends Common {
                 item.addEventListener('mouseleave', () => submenu.style.setProperty('display', 'none', 'important'));
             }
         });
+    }, 2000);
+  }
+
+  //eSafety Supplies
+  private eSafetyupdateMegaMenuBackground() {
+    !this.dom.querySelector('#mega-menu-style') && this.dom.head.appendChild(
+        Object.assign(this.dom.createElement('style'), {
+            id: 'mega-menu-style',
+            textContent: '.m-menu__item.m-menu__item--parent.m-menu__item--has-submenu.m-menu__item--mega .m-mega-menu { background-color: #fff !important; }'
+        })
+    );
+
+    setTimeout(() => {
+        (this.dom.querySelector('#m-theme #MainContent[role="main"]') as HTMLElement)?.style
+            .setProperty('margin-top', 'auto', 'important');
     }, 2000);
   }
 
