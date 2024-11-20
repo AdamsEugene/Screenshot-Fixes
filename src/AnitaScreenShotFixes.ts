@@ -1141,16 +1141,15 @@ export default class AnitaScreenShotFixes {
   }
   private updateMenuDrawerDisplayTSEXCISION(): void {
     setTimeout(() => {
-      const drawerElement = this.document.querySelector(
-        'menu-drawer#MenuDrawer.menu-drawer.drawer.drawer--start.z-30.fixed.bottom-0.left-0.h-full.w-full.pointer-events-none'
-      ) as HTMLElement;
+      const drawerElement = this.document.getElementById('MenuDrawer') as HTMLElement;
   
-      if (drawerElement) {
+      if (drawerElement && drawerElement.tagName.toLowerCase() === 'menu-drawer') {
         drawerElement.setAttribute('style', '');
-        drawerElement.style.setProperty('display', 'block', 'important');
+          drawerElement.style.setProperty('display', 'block', 'important');
       }
     }, 2000);
   }
+  
   
   private updateMenuDrawerAndInnerHeightEXCISION(): void {
     const drawerElement = this.document.querySelector(
