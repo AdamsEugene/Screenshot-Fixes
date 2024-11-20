@@ -1,10 +1,10 @@
-import Common from "./Common";
-
 export default class AnitaScreenShotFixes {
   private document: Document;
+  private prodMode: boolean;
 
   constructor(dom: Document = document) {
     this.document = dom;
+    this.prodMode = this.getRedirectType() === "dashboard"; // Initialize prodMode
     this.setupLoadEventListener();
   }
 
@@ -13,7 +13,15 @@ export default class AnitaScreenShotFixes {
       this.init();
     });
   }
+
   public init(): void {
+    this.log("Initializing AnitaScreenShotFixes...");
+    if (this.prodMode) {
+      this.log("Running in production mode");
+    } else {
+      this.log("Running in non-production mode");
+    }
+
     this.updateFloatingAddToCartStylesKAHOOT();
     this.removeHeightProperty();
     this.setTransparentBackground();
@@ -23,7 +31,6 @@ export default class AnitaScreenShotFixes {
     this.showGlobalOverlay();
     this.removeFixedPositionFromHeader();
     this.makeBackdropTransparent();
-    // this.removeMainContentMargin();
     this.setDisplayToBlock();
     this.setOpacityToHeroSideBySide();
     this.removeFixedPositionFromHeaderBedsite();
@@ -90,10 +97,28 @@ export default class AnitaScreenShotFixes {
     this.updateFloatingAddToCartDisplaykahoot();
   }
 
+  private log(message: string, ...optionalParams: any[]): void {
+    if (!this.prodMode) {
+      console.log(`[DEBUG]: ${message}`, ...optionalParams);
+    }
+  }
+
+  private getRedirectType(): "dashboard" | "locala" | "deves" | "dever" {
+    const url = new URL(window.location.href);
+    const hostname = url.hostname;
+    if (hostname.includes("localhost")) return "locala";
+    if (hostname.includes("dashboard")) return "dashboard";
+    if (hostname.includes("early-release")) return "dever";
+    if (hostname.includes("earlystage")) return "deves";
+    return "dashboard";
+  }
+
   private removeHeightProperty() {
     const mobileNav = this.document.querySelector(
       "mobile-navigation"
     ) as HTMLElement;
+
+    this.log("Checking for mobile navigation element...", mobileNav);
 
     if (
       mobileNav?.classList.contains("drawer") &&
@@ -101,6 +126,7 @@ export default class AnitaScreenShotFixes {
       mobileNav.id === "mobile-menu-drawer"
     ) {
       mobileNav.style.setProperty("height", "", "important");
+      this.log("Removed height property from mobile navigation.");
     }
   }
 
@@ -109,6 +135,8 @@ export default class AnitaScreenShotFixes {
       "#product-hero-7"
     ) as HTMLElement;
 
+    this.log("Checking for product hero element...", element);
+
     if (
       element &&
       element.classList.contains("comp-lightbox") &&
@@ -116,6 +144,7 @@ export default class AnitaScreenShotFixes {
       element.classList.contains("product-image")
     ) {
       element.style.setProperty("background", "transparent", "important");
+      this.log("Set transparent background for product hero.");
     }
   }
 
@@ -880,38 +909,14 @@ export default class AnitaScreenShotFixes {
       ".layout.layout--collection"
     ) as NodeListOf<HTMLElement>;
 
-    parentElements.forEach((parent: HTMLElement, parentIndex: number) => {
-      // Find child elements within each parent that have style "display: none" and viewportwidth="100vw"
+    parentElements.forEach((parent: HTMLElement) => {
       const matchingElements = parent.querySelectorAll(
         'div[style*="display: none;"][viewportwidth="100vw"]'
       ) as NodeListOf<HTMLElement>;
 
-      if (matchingElements.length > 0) {
-        console.log(
-          `Found ${
-            matchingElements.length
-          } matching element(s) inside parent #${
-            parentIndex + 1
-          } with class 'layout layout--collection'.`
-        );
-
-        // Remove display: none from each matching element
-        matchingElements.forEach((element: HTMLElement, index: number) => {
-          element.style.removeProperty("display");
-          console.log(
-            `Removed display: none from element #${index + 1} within parent #${
-              parentIndex + 1
-            }:`,
-            element
-          );
-        });
-      } else {
-        console.log(
-          `No matching elements found in parent #${
-            parentIndex + 1
-          } with class 'layout layout--collection'.`
-        );
-      }
+      matchingElements.forEach((element: HTMLElement) => {
+        element.style.removeProperty("display");
+      });
     });
   }
 
@@ -1088,54 +1093,59 @@ export default class AnitaScreenShotFixes {
   }
   private updateBannerHeightBREEO(): void {
     const bannerElement = this.document.getElementById(
-      'Banner-template--16295038844973__image_banner_DYeApg'
+      "Banner-template--16295038844973__image_banner_DYeApg"
     ) as HTMLElement;
-  
+
     if (bannerElement) {
-      bannerElement.setAttribute('style', '');
-      bannerElement.style.setProperty('height', '720px', 'important');
+      bannerElement.setAttribute("style", "");
+      bannerElement.style.setProperty("height", "720px", "important");
     }
   }
 
   private hideAllScalapayModals(): void {
-    const modalElements = this.document.querySelectorAll('scalapay-modal-core') as NodeListOf<HTMLElement>;
-  
+    const modalElements = this.document.querySelectorAll(
+      "scalapay-modal-core"
+    ) as NodeListOf<HTMLElement>;
+
     if (modalElements.length > 0) {
       modalElements.forEach((modalElement) => {
-        modalElement.style.setProperty('display', 'none', 'important');
+        modalElement.style.setProperty("display", "none", "important");
       });
     }
   }
   private updateDrawerMenuDisplayNuBest(): void {
     const element = this.document.querySelector(
-      '.t4s-drawer-menu__close.t4s-pe-none.t4s-op-0.t4s-pf'
+      ".t4s-drawer-menu__close.t4s-pe-none.t4s-op-0.t4s-pf"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.setProperty('display', 'none', 'important');
+      element.style.setProperty("display", "none", "important");
     }
   }
-  
-  
+
   private hideJstIframeElementNuBest(): void {
     const element = this.document.getElementById(
-      '_jst-iframe-ff0f878ae2aa44168b3e310ce8eef2b6-92b9e5301c2811ee8c7cb55495ba6c2c-c5e2bdb1a4cf432c8e005e64d49f9368'
+      "_jst-iframe-ff0f878ae2aa44168b3e310ce8eef2b6-92b9e5301c2811ee8c7cb55495ba6c2c-c5e2bdb1a4cf432c8e005e64d49f9368"
     ) as HTMLElement;
-  
+
     if (element) {
-      element.style.setProperty('display', 'none', 'important');
+      element.style.setProperty("display", "none", "important");
     }
   }
   private updateDescendantsDisplayAmie(): void {
     setTimeout(() => {
-      const parentElement = this.document.querySelector('.r-1v6j6db') as HTMLElement;
-  
+      const parentElement = this.document.querySelector(
+        ".r-1v6j6db"
+      ) as HTMLElement;
+
       if (parentElement) {
-        const descendants = parentElement.querySelectorAll('*') as NodeListOf<HTMLElement>;
-  
+        const descendants = parentElement.querySelectorAll(
+          "*"
+        ) as NodeListOf<HTMLElement>;
+
         descendants.forEach((descendant) => {
-          if (descendant.style.display === 'none') {
-            descendant.style.setProperty('display', 'block', 'important');
+          if (descendant.style.display === "none") {
+            descendant.style.setProperty("display", "block", "important");
           }
         });
       }
@@ -1143,91 +1153,126 @@ export default class AnitaScreenShotFixes {
   }
   private updateHeaderSectionChildrenDisplayEXCISION(): void {
     const parentElement = this.document.querySelector(
-      '.shopify-section.shopify-section-group-header-group.header-section.header-sticky'
+      ".shopify-section.shopify-section-group-header-group.header-section.header-sticky"
     ) as HTMLElement;
-  
+
     if (parentElement) {
       const children = parentElement.children;
       Array.from(children).forEach((child) => {
         const childElement = child as HTMLElement;
-        if (childElement.style.display === 'none') {
-          childElement.style.display = '';
-          childElement.style.setProperty('display', 'block', 'important');
+        if (childElement.style.display === "none") {
+          childElement.style.display = "";
+          childElement.style.setProperty("display", "block", "important");
         }
       });
     }
   }
-  
-  
-  
-  
+
   private updateMenuDrawerAndInnerHeightEXCISION(): void {
     const drawerElement = this.document.querySelector(
-      'menu-drawer#MenuDrawer.menu-drawer.drawer.drawer--start.z-30.fixed.bottom-0.left-0.h-full.w-full.pointer-events-none'
+      "menu-drawer#MenuDrawer.menu-drawer.drawer.drawer--start.z-30.fixed.bottom-0.left-0.h-full.w-full.pointer-events-none"
     ) as HTMLElement;
-  
+
     if (drawerElement) {
       const drawerInnerElement = drawerElement.querySelector(
-        '.drawer__inner.z-10.absolute.top-0.flex.flex-col.w-full.h-full.overflow-hidden'
+        ".drawer__inner.z-10.absolute.top-0.flex.flex-col.w-full.h-full.overflow-hidden"
       ) as HTMLElement;
-  
+
       if (drawerInnerElement) {
-        drawerInnerElement.style.setProperty('max-height', 'calc(100% - 60px)', 'important');
+        drawerInnerElement.style.setProperty(
+          "max-height",
+          "calc(100% - 60px)",
+          "important"
+        );
       }
     }
   }
   private updateFloatingAddToCartStylesKAHOOT(): void {
     setTimeout(() => {
-      const addToCartElement = this.document.getElementById('floating-addToCart-container') as HTMLElement;
-  
-      if (addToCartElement && addToCartElement.classList.contains('floating-addToCart-container')) {
-        addToCartElement.style.setProperty('display', 'block', 'important');
-        addToCartElement.style.setProperty('left', 'auto', 'important');
-        addToCartElement.style.setProperty('bottom', '0', 'important');
-        addToCartElement.style.setProperty('transform', 'none', 'important');
+      const addToCartElement = this.document.getElementById(
+        "floating-addToCart-container"
+      ) as HTMLElement;
+
+      if (
+        addToCartElement &&
+        addToCartElement.classList.contains("floating-addToCart-container")
+      ) {
+        addToCartElement.style.setProperty("display", "block", "important");
+        addToCartElement.style.setProperty("left", "auto", "important");
+        addToCartElement.style.setProperty("bottom", "0", "important");
+        addToCartElement.style.setProperty("transform", "none", "important");
       }
     }, 2000);
   }
   private updateFloatingAddToCartDisplaykahoot(): void {
     setTimeout(() => {
-      const mainProductElement = this.document.getElementById(
-        'MainProduct-template--15217807163474__main'
-      ) as HTMLElement;
-  
-      if (mainProductElement) {
-        const floatingAddToCartElement = mainProductElement.querySelector(
-          '.floating-addToCart-container'
-        ) as HTMLElement;
-  
-        if (floatingAddToCartElement) {
-          const currentDisplay = window.getComputedStyle(floatingAddToCartElement).getPropertyValue('display');
-          if (currentDisplay === 'none') {
-            floatingAddToCartElement.style.removeProperty('display');
-            floatingAddToCartElement.style.setProperty('display', 'block', 'important');
-          }
-        }
-      }
-    }, 5000);
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-}
+      // Log the start of the function
+      this.log(
+        "Starting to update the display for the floating add-to-cart container."
+      );
 
+      const mainProductElement = this.document.getElementById(
+        "MainProduct-template--15217807163474__main"
+      ) as HTMLElement;
+
+      if (mainProductElement) {
+        this.log(
+          "Found main product element with ID 'MainProduct-template--15217807163474__main'.",
+          mainProductElement
+        );
+
+        const floatingAddToCartElement = mainProductElement.querySelector(
+          ".floating-addToCart-container"
+        ) as HTMLElement;
+
+        if (floatingAddToCartElement) {
+          this.log(
+            "Found floating add-to-cart element with class 'floating-addToCart-container'.",
+            floatingAddToCartElement
+          );
+
+          const currentDisplay = window
+            .getComputedStyle(floatingAddToCartElement)
+            .getPropertyValue("display");
+
+          this.log(
+            "Current display property value of floating add-to-cart element:",
+            currentDisplay
+          );
+
+          if (currentDisplay === "none") {
+            floatingAddToCartElement.style.removeProperty("display");
+            this.log(
+              "Removed 'display: none' from the floating add-to-cart element."
+            );
+
+            floatingAddToCartElement.style.setProperty(
+              "display",
+              "block",
+              "important"
+            );
+            this.log(
+              "Set 'display' to 'block' with !important for the floating add-to-cart element."
+            );
+          } else {
+            this.log(
+              "The floating add-to-cart element does not have 'display: none'. No changes were made."
+            );
+          }
+        } else {
+          this.log(
+            "Floating add-to-cart element with class 'floating-addToCart-container' not found."
+          );
+        }
+      } else {
+        this.log(
+          "Main product element with ID 'MainProduct-template--15217807163474__main' not found."
+        );
+      }
+
+      this.log(
+        "Finished updating the display for the floating add-to-cart container."
+      );
+    }, 2000);
+  }
+}
