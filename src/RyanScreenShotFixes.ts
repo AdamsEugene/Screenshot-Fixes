@@ -74,6 +74,7 @@ export default class RyanScreenshotFixes extends Common {
       this.McAfeeupdateDrawerHeight();
       this.PectivupdateSearchBarOpacity();
       this.VitalityupdateHeroBannerDisplay();
+      this.BedsRUshideOwlClonedItems();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1439,6 +1440,15 @@ export default class RyanScreenshotFixes extends Common {
         this.dom.querySelectorAll('.container-max .hero-banner__cover').forEach(element => {
             (element as HTMLElement).style.removeProperty('display');
             (element as HTMLElement).style.setProperty('display', 'block', 'important');
+        });
+    }, 2000);
+  }
+
+  //Beds R Us Australia
+  private BedsRUshideOwlClonedItems() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.owl-stage .owl-item.cloned').forEach(item => {
+            (item as HTMLElement).style.setProperty('display', 'none', 'important');
         });
     }, 2000);
   }
