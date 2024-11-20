@@ -1176,15 +1176,19 @@ export default class AnitaScreenShotFixes {
     }
   }
   private updateFloatingAddToCartStylesKAHOOT(): void {
-    const addToCartElement = this.document.getElementById('floating-addToCart-container') as HTMLElement;
+    setTimeout(() => {
+      const addToCartElement = this.document.getElementById('floating-addToCart-container') as HTMLElement;
   
-    if (addToCartElement && addToCartElement.classList.contains('floating-addToCart-container')) {
-      addToCartElement.style.setProperty('display', 'block', 'important');
-      addToCartElement.style.setProperty('left', 'auto', 'important');
-      addToCartElement.style.setProperty('bottom', '0', 'important');
-      addToCartElement.style.setProperty('transform', 'none', 'important');
-    }
+      if (addToCartElement && addToCartElement.classList.contains('floating-addToCart-container')) {
+        addToCartElement.style.setProperty('display', 'block', 'important');
+        addToCartElement.style.setProperty('left', 'auto', 'important');
+        addToCartElement.style.setProperty('bottom', '0', 'important');
+        addToCartElement.style.setProperty('transform', 'none', 'important');
+      }
+    }, 2000);
   }
+  
+  
   
   
   
