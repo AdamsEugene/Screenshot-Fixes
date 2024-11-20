@@ -84,6 +84,8 @@ export default class AnitaScreenShotFixes {
     this.updateDrawerMenuDisplayNuBest();
     this.hideJstIframeElementNuBest();
     this.updateDescendantsDisplayAmie();
+    this.updateMenuDrawerDisplayTSEXCISION();
+    this.updateMenuDrawerAndInnerHeightEXCISION();
   }
 
   private removeHeightProperty() {
@@ -1137,6 +1139,40 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
+  private updateMenuDrawerDisplayTSEXCISION(): void {
+    setTimeout(() => {
+      const drawerElement = this.document.querySelector(
+        'menu-drawer#MenuDrawer.menu-drawer.drawer.drawer--start.z-30.fixed.bottom-0.left-0.h-full.w-full.pointer-events-none'
+      ) as HTMLElement;
+  
+      if (drawerElement) {
+        drawerElement.setAttribute('style', '');
+        drawerElement.style.setProperty('display', 'block', 'important');
+      }
+    }, 2000);
+  }
+  
+  private updateMenuDrawerAndInnerHeightEXCISION(): void {
+    const drawerElement = this.document.querySelector(
+      'menu-drawer#MenuDrawer.menu-drawer.drawer.drawer--start.z-30.fixed.bottom-0.left-0.h-full.w-full.pointer-events-none'
+    ) as HTMLElement;
+  
+    if (drawerElement) {
+      const drawerInnerElement = drawerElement.querySelector(
+        '.drawer__inner.z-10.absolute.top-0.flex.flex-col.w-full.h-full.overflow-hidden'
+      ) as HTMLElement;
+  
+      if (drawerInnerElement) {
+        drawerInnerElement.style.setProperty('max-height', 'calc(100% - 60px)', 'important');
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
   
   
   
