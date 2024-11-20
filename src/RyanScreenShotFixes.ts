@@ -1457,8 +1457,12 @@ export default class RyanScreenshotFixes extends Common {
   //Fire Dept Coffee
   private FireDeptCoffeeupdateSubmenuDisplay() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.header__nav-item.sub-menu .cc-submenu-outer').forEach(item => {
-            (item as HTMLElement).style.setProperty('display', 'block', 'important');
+        this.dom.querySelectorAll('.header__nav-item.sub-menu').forEach(item => {
+            const submenu = item.querySelector('.cc-submenu-outer') as HTMLElement;
+            if (submenu) {
+                item.addEventListener('mouseenter', () => submenu.style.setProperty('display', 'block', 'important'));
+                item.addEventListener('mouseleave', () => submenu.style.setProperty('display', 'none', 'important'));
+            }
         });
     }, 2000);
   }
