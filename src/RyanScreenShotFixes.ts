@@ -78,7 +78,7 @@ export default class RyanScreenshotFixes extends Common {
       this.FireDeptCoffeeupdateSubmenuDisplay();
       this.eSafetyupdateMegaMenuBackground();
       this.RinseBathBodyhideHeaderToolsLeft();
-      this.LaticoLeatherupdateSidebarDisplay();
+      this.preventSidebarDisplayNone();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1463,7 +1463,7 @@ export default class RyanScreenshotFixes extends Common {
         this.dom.querySelectorAll('.header__nav-item.sub-menu').forEach(item => {
             const submenu = item.querySelector('.cc-submenu-outer') as HTMLElement;
             if (submenu) {
-                item.addEventListener('mouseenter', () => submenu.style.setProperty('display', 'block', 'important'));
+                item.addEventListener('auenter', () => submenu.style.setProperty('display', 'block', 'important'));
                 item.addEventListener('mouseleave', () => submenu.style.setProperty('display', 'none', 'important'));
             }
         });
@@ -1495,19 +1495,28 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Latico Leather
-  private LaticoLeatherupdateSidebarDisplay() {
+  private preventSidebarDisplayNone() {
+    const selectors = [
+        '#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft',
+        '.mob-drawer',
+    ];
+
     const observer = new MutationObserver(() => {
-        const sidebar = this.dom.querySelector('#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft');
-        if (sidebar && (sidebar as HTMLElement).style.display === 'none') {
-            (sidebar as HTMLElement).style.removeProperty('display');
-        }
+        selectors.forEach(selector => {
+            const elements = this.dom.querySelectorAll(selector);
+            elements.forEach(element => {
+                if (element && (element as HTMLElement).style.display === 'none') {
+                    (element as HTMLElement).style.removeProperty('display');
+                }
+            });
+        });
     });
 
-    const sidebar = this.dom.querySelector('#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft');
-    if (sidebar) {
-        observer.observe(sidebar, { 
-            attributes: true, 
-            attributeFilter: ['style']
+    if (this.dom.body) {
+        observer.observe(this.dom.body, { 
+            attributes: true,
+            attributeFilter: ['style'],
+            subtree: true 
         });
     }
   }
