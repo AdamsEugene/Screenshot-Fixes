@@ -1185,7 +1185,7 @@ export default class AnitaScreenShotFixes {
         addToCartElement.style.setProperty('bottom', '0', 'important');
         addToCartElement.style.setProperty('transform', 'none', 'important');
       }
-    }, 2000);
+    }, 5000);
   }
   
   
