@@ -75,6 +75,7 @@ export default class RyanScreenshotFixes extends Common {
       this.PectivupdateSearchBarOpacity();
       this.VitalityupdateHeroBannerDisplay();
       this.BedsRUshideOwlClonedItems();
+      this.FireDeptCoffeeupdateSubmenuDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1449,6 +1450,15 @@ export default class RyanScreenshotFixes extends Common {
     setTimeout(() => {
         this.dom.querySelectorAll('.owl-stage .owl-item.cloned').forEach(item => {
             (item as HTMLElement).style.setProperty('display', 'none', 'important');
+        });
+    }, 2000);
+  }
+
+  //Fire Dept Coffee
+  private FireDeptCoffeeupdateSubmenuDisplay() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.header__nav-item.sub-menu .cc-submenu-outer').forEach(item => {
+            (item as HTMLElement).style.setProperty('display', 'block', 'important');
         });
     }, 2000);
   }
