@@ -1141,14 +1141,35 @@ export default class AnitaScreenShotFixes {
   }
   private updateMenuDrawerDisplayTSEXCISION(): void {
     setTimeout(() => {
+      console.log('Starting to update MenuDrawer display...');
+  
+      // Get the element by its ID
       const drawerElement = this.document.getElementById('MenuDrawer') as HTMLElement;
   
-      if (drawerElement && drawerElement.tagName.toLowerCase() === 'menu-drawer') {
-        drawerElement.setAttribute('style', '');
+      if (drawerElement) {
+        console.log('Element with ID "MenuDrawer" found.');
+  
+        if (drawerElement.tagName.toLowerCase() === 'menu-drawer') {
+          console.log('Element tag name is "menu-drawer". Proceeding to update styles.');
+  
+          // Remove all inline CSS properties by setting the style attribute to an empty string
+          drawerElement.setAttribute('style', '');
+          console.log('Removed all inline CSS properties from the element.');
+  
+          // Set display to block with !important
           drawerElement.style.setProperty('display', 'block', 'important');
+          console.log('Set display to "block" with !important for the element.');
+        } else {
+          console.log('Element tag name is not "menu-drawer". No changes made.');
+        }
+      } else {
+        console.log('Element with ID "MenuDrawer" not found.');
       }
-    }, 2000);
+  
+      console.log('Finished updating MenuDrawer display.');
+    }, 3000);
   }
+  
   
   
   private updateMenuDrawerAndInnerHeightEXCISION(): void {
