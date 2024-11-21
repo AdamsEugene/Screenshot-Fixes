@@ -1523,6 +1523,17 @@ export default class RyanScreenshotFixes extends Common {
   //   });
   // }
 
+  //
+  private removeHiddenClassFromMenu() {
+    const drawerMenu = this.dom.querySelector('.mob-drawer.open .mob-drawer__menu.childOpen');
+    if (drawerMenu) {
+        const allElements = drawerMenu.querySelectorAll('.heatmap-com__hidden-element');
+        Array.from(allElements).forEach(element => {
+            element.classList.remove('heatmap-com__hidden-element');
+        });
+    };
+  }
+
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
     this.dom.querySelectorAll('#mobile-menu-drawer[data-role="drawer"]').forEach((drawerElement) => {
