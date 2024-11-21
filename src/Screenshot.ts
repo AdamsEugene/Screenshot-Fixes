@@ -328,20 +328,14 @@ class ScreenshotFixes extends Common {
 
   //riequip
   private riequipupdateHeaderClass() {
-    this.dom.querySelectorAll('#shopify-section-sections--19944737210681__header').forEach((parent) => {
-        parent.querySelectorAll('.site-header.site-header-sticky--scrolled').forEach((childElement) => {
-            if (childElement) {
-                childElement.className = 'site-header site-header-nav--open';
-                
-                const navWrapper = childElement.querySelector('#site-header-nav');
-                if (navWrapper) {
-                    (navWrapper as HTMLElement).style.removeProperty('margin-top');
-                    (navWrapper as HTMLElement).style.setProperty('margin-top', '0px', 'important');
-                }
+    this.dom.querySelectorAll('#shopify-section-sections--19944737210681__header .site-header.site-header-sticky--scrolled, .site-header-sticky .site-header.site-header-sticky--scrolled')
+        .forEach(header => {
+            (header as HTMLElement).className = 'site-header site-header-nav--open';
+            if (header.querySelector('#site-header-nav')) {
+                (header.querySelector('#site-header-nav') as HTMLElement).style.setProperty('margin-top', '0px', 'important');
             }
         });
-    });
-  }
+}
 
   private removeIdFromLogo() {
     this.allElements(
