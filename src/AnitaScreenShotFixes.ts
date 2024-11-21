@@ -1251,6 +1251,11 @@ export default class AnitaScreenShotFixes {
               "block",
               "important"
             );
+            const id = floatingAddToCartElement.id;
+            console.log({id});
+            const style = this.document.createElement("style");
+            style.innerHTML = `#${id} { display: block !important; }`;
+            this.document.head.appendChild(style);
             this.log(
               "Set 'display' to 'block' with !important for the floating add-to-cart element."
             );
