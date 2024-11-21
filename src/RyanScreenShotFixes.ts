@@ -78,7 +78,7 @@ export default class RyanScreenshotFixes extends Common {
       this.FireDeptCoffeeupdateSubmenuDisplay();
       this.eSafetyupdateMegaMenuBackground();
       this.RinseBathBodyhideHeaderToolsLeft();
-      // this.preventSidebarDisplayNone();
+      this.AlbionremoveSwiperOverflow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1523,15 +1523,14 @@ export default class RyanScreenshotFixes extends Common {
   //   });
   // }
 
-  //
-  private removeHiddenClassFromMenu() {
-    const drawerMenu = this.dom.querySelector('.mob-drawer.open .mob-drawer__menu.childOpen');
-    if (drawerMenu) {
-        const allElements = drawerMenu.querySelectorAll('.heatmap-com__hidden-element');
-        Array.from(allElements).forEach(element => {
-            element.classList.remove('heatmap-com__hidden-element');
-        });
-    };
+  //Albion
+  private AlbionremoveSwiperOverflow() {
+    setTimeout(() => {
+        const swiper = this.dom.querySelector('#MediaGallery-template--17475545333940__main .swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events');
+        if (swiper) {
+            (swiper as HTMLElement).style.removeProperty('overflow');
+        }
+    }, 2000);
   }
 
   //toggleHeatmapClassOnDrawer
