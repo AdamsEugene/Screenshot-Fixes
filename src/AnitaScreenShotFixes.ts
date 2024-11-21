@@ -247,4 +247,22 @@ export default class AnitaScreenShotFixes {
     }
 }
 
+private updateChildPosition(): void {
+  const sectionElement = document.getElementById('shopify-section-template--18622508073185__659ca9df-371f-4701-bb4c-92dd5f2b0c43');
+
+  if (sectionElement) {
+      const flickitySlider = sectionElement.querySelector('.flickity-slider') as HTMLElement | null;
+
+      if (flickitySlider) {
+          const children = Array.from(flickitySlider.children) as HTMLElement[];
+
+          children.forEach((child) => {
+              child.style.setProperty('position', 'relative', 'important');
+          });
+      }
+  }
+}
+
+
+
 }
