@@ -79,7 +79,6 @@ export default class RyanScreenshotFixes extends Common {
       this.eSafetyupdateMegaMenuBackground();
       this.RinseBathBodyhideHeaderToolsLeft();
       // this.preventSidebarDisplayNone();
-      this.removeHiddenClassFromMenu();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1523,19 +1522,6 @@ export default class RyanScreenshotFixes extends Common {
   //       }
   //   });
   // }
-
-  //
-  private removeHiddenClassFromMenu() {
-    setTimeout(() => {
-        const drawerMenu = this.dom.querySelector('.mob-drawer.open .mob-drawer__menu.childOpen');
-        if (drawerMenu) {
-            const allElements = drawerMenu.getElementsByTagName('*');
-            Array.from(allElements).forEach(element => {
-                element.classList.remove('heatmap-com__hidden-element', 'passed');
-            });
-        }
-    }, 2000);
-  }
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
