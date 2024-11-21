@@ -78,7 +78,7 @@ export default class RyanScreenshotFixes extends Common {
       this.FireDeptCoffeeupdateSubmenuDisplay();
       this.eSafetyupdateMegaMenuBackground();
       this.RinseBathBodyhideHeaderToolsLeft();
-      this.preventSidebarDisplayNone();
+      // this.preventSidebarDisplayNone();
       this.removeHiddenClassFromMenu();
     };
     this.exec({ containerId, debugMode, func });
@@ -1496,33 +1496,33 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Latico Leather
-  private preventSidebarDisplayNone() {
-    const selectors = [
-        '#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft',
-        '.mob-drawer',
-        '.mobile-menu'
-    ];
+  // private preventSidebarDisplayNone() {
+  //   const selectors = [
+  //       '#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft',
+  //       '.mob-drawer',
+  //       '.mobile-menu'
+  //   ];
 
-    const observer = new MutationObserver(() => {
-        selectors.forEach(selector => {
-            const elements = this.dom.querySelectorAll(selector);
-            elements.forEach(element => {
-                if (element && (element as HTMLElement).style.display === 'none') {
-                    (element as HTMLElement).style.removeProperty('display');
-                }
-            });
-        });
-    });
+  //   const observer = new MutationObserver(() => {
+  //       selectors.forEach(selector => {
+  //           const elements = this.dom.querySelectorAll(selector);
+  //           elements.forEach(element => {
+  //               if (element && (element as HTMLElement).style.display === 'none') {
+  //                   (element as HTMLElement).style.removeProperty('display');
+  //               }
+  //           });
+  //       });
+  //   });
 
-    selectors.forEach(selector => {
-        const targetElement = this.dom.querySelector(selector);
-        if (targetElement) {
-            observer.observe(targetElement, { 
-                attributeFilter: ['style']
-            });
-        }
-    });
-  }
+  //   selectors.forEach(selector => {
+  //       const targetElement = this.dom.querySelector(selector);
+  //       if (targetElement) {
+  //           observer.observe(targetElement, { 
+  //               attributeFilter: ['style']
+  //           });
+  //       }
+  //   });
+  // }
 
   //
   private removeHiddenClassFromMenu() {
