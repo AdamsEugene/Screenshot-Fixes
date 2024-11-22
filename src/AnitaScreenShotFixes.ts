@@ -45,16 +45,14 @@ export default class AnitaScreenShotFixes {
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
       // this.updateFloatingAddToCartStyleskahoot,
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
-      // this.updateElementtoDisplayKahoot,
+      this.updateFloatingAddToCartStyleskahoot,
+      this.updateElementToDisplayKahoot,
     ]);
   }
 
   private executeStyleUpdates(updates: (() => void)[]): void {
     updates.forEach((update) => {
       const result = update.call(this);
-      if (!result) {
-        // console.error("Error during update method", update);
-      }
     });
   }
 
@@ -321,7 +319,7 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
- /*  private updateFloatingAddToCartStyleskahoot(): void {
+  private updateFloatingAddToCartStyleskahoot(): void {
     const element = this.document.getElementById(
       "floating-addToCart-container"
     ) as HTMLElement;
@@ -330,17 +328,31 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("transform", "none", "important");
       element.style.setProperty("left", "auto", "important");
     }
-  } */
+  }
 
-/*   private updateElementtoDisplayKahoot(): void {
-    setTimeout(() => {
-      const element = this.document.getElementById(
-        "floating-addToCart-container"
-      ) as HTMLElement;
-      if (element) {
-        element.style.setProperty("display", "block", "important");
-      }
-      this.log("Updated floating add-to-cart display for Kahoot");
-    }, 5000);
-  } */
+  private updateElementToDisplayKahoot(): void {
+    const targetId = "floating-addToCart-container";
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target instanceof HTMLElement) {
+          const element = mutation.target as HTMLElement;
+          if (element.style.display === "none") {
+            element.style.setProperty("display", "block", "important");
+            this.log(
+              "Ensured floating add-to-cart display remains visible for Kahoot"
+            );
+          }
+        }
+      });
+    });
+
+    const element = this.document.getElementById(targetId) as HTMLElement;
+    if (element) {
+      observer.observe(element, {
+        attributes: true,
+        attributeFilter: ["style"],
+      });
+    }
+  }
 }
