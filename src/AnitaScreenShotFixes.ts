@@ -42,6 +42,8 @@ export default class AnitaScreenShotFixes {
       this.removeMarginTopFromContent,
       this.setPositionRelativeToSlideshowSlideTanitco,
       this.updateChildPosition,
+      // this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
+      this.updateFloatingAddToCartStyleskahoot,
     ]);
   }
 
@@ -304,4 +306,26 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private removeInlineStylesFromCurrencySwitcherChildWUNutrition(): void {
+    const parentElement = this.document.querySelector(
+        '.doubly-nice-select.currency-switcher.left.slim.open'
+    ) as HTMLElement;
+
+    if (parentElement) {
+        const childElement = parentElement.querySelector('.list') as HTMLElement;
+
+        if (childElement) {
+            childElement.removeAttribute('style');
+        }
+    }
+}private updateFloatingAddToCartStyleskahoot(): void {
+  const element = this.document.getElementById('floating-addToCart-container') as HTMLElement;
+
+  if (element) {
+      element.style.setProperty('transform', 'none', 'important');
+      element.style.setProperty('left', 'auto', 'important');
+  }
+}
+
+
 }
