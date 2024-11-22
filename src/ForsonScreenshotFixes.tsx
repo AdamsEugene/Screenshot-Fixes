@@ -55,7 +55,8 @@ export default class ForsonScreenshotFixes {
     this.overrideBeforeStyle();
     this.hideTinyCookieWrapper();
     this.styleMenuDrawerElements();
-    this.removeMinHeightStyle()
+    this.removeMinHeightStyle();
+    this.addMarginToElement()
   }
 
   // Upcircle EU
@@ -507,6 +508,13 @@ export default class ForsonScreenshotFixes {
         ulElement.style.justifyContent = "space-evenly";
       }
     });
+  }
+
+  private addMarginToElement() {
+    const element = this.document.querySelector('.index-hero.slideshow.image-height.image-height--mobile.section-padding') as HTMLElement;
+    if (element) {
+      element.style.setProperty('margin-top', '15%', 'important');
+    }
   }
 
   // logOx (ryan)
