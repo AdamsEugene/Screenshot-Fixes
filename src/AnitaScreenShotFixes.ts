@@ -43,9 +43,9 @@ export default class AnitaScreenShotFixes {
       this.setPositionRelativeToSlideshowSlideTanitco,
       this.updateChildPosition,
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
-      this.updateFloatingAddToCartStyleskahoot,
+      // this.updateFloatingAddToCartStyleskahoot,
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
-      this.updateElementtoDisplayKahoot,
+      // this.updateElementtoDisplayKahoot,
     ]);
   }
 
@@ -53,14 +53,14 @@ export default class AnitaScreenShotFixes {
     updates.forEach((update) => {
       const result = update.call(this);
       if (!result) {
-        console.error("Error during update method", update);
+        // console.error("Error during update method", update);
       }
     });
   }
 
   private log(message: string, ...optionalParams: any[]): void {
     if (!this.prodMode) {
-      console.log(`[DEBUG]: ${message}`, ...optionalParams);
+      // console.log(`[DEBUG]: ${message}`, ...optionalParams);
     }
   }
 
@@ -321,7 +321,7 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  private updateFloatingAddToCartStyleskahoot(): void {
+ /*  private updateFloatingAddToCartStyleskahoot(): void {
     const element = this.document.getElementById(
       "floating-addToCart-container"
     ) as HTMLElement;
@@ -330,9 +330,9 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("transform", "none", "important");
       element.style.setProperty("left", "auto", "important");
     }
-  }
+  } */
 
-  private updateElementtoDisplayKahoot(): void {
+/*   private updateElementtoDisplayKahoot(): void {
     setTimeout(() => {
       const element = this.document.getElementById(
         "floating-addToCart-container"
@@ -342,5 +342,5 @@ export default class AnitaScreenShotFixes {
       }
       this.log("Updated floating add-to-cart display for Kahoot");
     }, 5000);
-  }
+  } */
 }
