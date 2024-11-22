@@ -504,5 +504,41 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/primalherbs.com--main4.html"
     }
+  },
+  {
+    "selector": "#shopify-section-template--23090236653890__tpt_collection_list_3_XdHzGY",
+    "content": {
+      "idSite": 2851,
+      "idSiteHsr": 5339209,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23090236653890__tpt_slideshow_one_WErhpz",
+    "content": {
+      "idSite": 2851,
+      "idSiteHsr": 5339209,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main1.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23090236653890__tpt_blog_post_1_tnggDb",
+    "content": {
+      "idSite": 2851,
+      "idSiteHsr": 5339209,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main2.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-template--23090236653890__tpt_badges_three_qhTRbw",
+    "content": {
+      "idSite": 2851,
+      "idSiteHsr": 5339209,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main3.html"
+    }
   }
 ]
