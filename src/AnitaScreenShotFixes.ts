@@ -100,9 +100,6 @@ export default class AnitaScreenShotFixes {
   }
 
   private log(message: string, ...optionalParams: any[]): void {
-    if (!this.prodMode) {
-      console.log(`[DEBUG]: ${message}`, ...optionalParams);
-    }
   }
 
   private getRedirectType(): "dashboard" | "locala" | "deves" | "dever" {
