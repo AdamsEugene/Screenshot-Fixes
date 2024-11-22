@@ -14,7 +14,9 @@ export default class AnitaScreenShotFixes {
 
   public init(): void {
     this.log("Initializing AnitaScreenShotFixes...");
-    this.log(`Running in ${this.prodMode ? "production" : "non-production"} mode`);
+    this.log(
+      `Running in ${this.prodMode ? "production" : "non-production"} mode`
+    );
 
     // Grouped logic into arrays for maintainability
     this.executeStyleUpdates([
@@ -39,6 +41,7 @@ export default class AnitaScreenShotFixes {
       this.updateSpecificElementHeightWithDelay,
       this.removeMarginTopFromContent,
       this.setPositionRelativeToSlideshowSlideTanitco,
+      this.updateChildPosition,
     ]);
   }
 
@@ -46,11 +49,10 @@ export default class AnitaScreenShotFixes {
     updates.forEach((update) => {
       const result = update.call(this);
       if (!result) {
-        console.error('Error during update method', update);
+        console.error("Error during update method", update);
       }
     });
-    }
-  
+  }
 
   private log(message: string, ...optionalParams: any[]): void {
     if (!this.prodMode) {
@@ -69,12 +71,16 @@ export default class AnitaScreenShotFixes {
 
   // Reusable helper to remove inline styles
   private removeInlineStyles(selector: string): void {
-    const elements = this.document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
+    const elements = this.document.querySelectorAll(
+      selector
+    ) as NodeListOf<HTMLElement>;
     elements.forEach((element) => element.removeAttribute("style"));
   }
 
   private updateFloatingAddToCartStyles(): void {
-    const element = this.document.getElementById("floating-addToCart-container") as HTMLElement;
+    const element = this.document.getElementById(
+      "floating-addToCart-container"
+    ) as HTMLElement;
     if (element?.classList.contains("floating-addToCart-container")) {
       element.style.setProperty("display", "block", "important");
       element.style.setProperty("bottom", "0", "important");
@@ -93,7 +99,9 @@ export default class AnitaScreenShotFixes {
   }
 
   private setTransparentBackground(): void {
-    const element = this.document.querySelector("#product-hero-7.comp-lightbox.is-video.product-image") as HTMLElement;
+    const element = this.document.querySelector(
+      "#product-hero-7.comp-lightbox.is-video.product-image"
+    ) as HTMLElement;
     if (element) {
       element.style.setProperty("background", "transparent", "important");
       this.log("Set transparent background for product hero.");
@@ -101,7 +109,9 @@ export default class AnitaScreenShotFixes {
   }
 
   private setMobileMenuZIndexAndPosition(): void {
-    const element = this.document.querySelector("nav.global-header__mobile-menu__content") as HTMLElement;
+    const element = this.document.querySelector(
+      "nav.global-header__mobile-menu__content"
+    ) as HTMLElement;
     if (element) {
       element.style.setProperty("z-index", "2", "important");
       element.style.setProperty("position", "relative", "important");
@@ -109,7 +119,9 @@ export default class AnitaScreenShotFixes {
   }
 
   private hideSearchForm(): void {
-    const element = this.document.querySelector("form.comp-search.cr-white") as HTMLElement;
+    const element = this.document.querySelector(
+      "form.comp-search.cr-white"
+    ) as HTMLElement;
     if (element) {
       element.style.setProperty("display", "none", "important");
     }
@@ -119,21 +131,27 @@ export default class AnitaScreenShotFixes {
     const parentElement = this.document.querySelector(
       ".global-header__mobile-menu.min-safe-h-screen.f-v.g-gap-3.cr-white.bg-green-main.tablet-down-only"
     ) as HTMLElement;
-    const childElement = parentElement?.querySelector(".global-header__mobile-menu__body") as HTMLElement;
+    const childElement = parentElement?.querySelector(
+      ".global-header__mobile-menu__body"
+    ) as HTMLElement;
     if (childElement) {
       childElement.style.setProperty("flex", "none", "important");
     }
   }
 
   private showGlobalOverlay(): void {
-    const element = this.document.querySelector(".global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close") as HTMLElement;
+    const element = this.document.querySelector(
+      ".global-overlay.p-fill.js-dropdown-menu-close.js-mobile-menu-close"
+    ) as HTMLElement;
     if (element && element.style.display === "none") {
       element.style.setProperty("display", "block", "important");
     }
   }
 
   private removeFixedPositionFromHeader(): void {
-    const element = this.document.getElementById("shopify-section-header") as HTMLElement;
+    const element = this.document.getElementById(
+      "shopify-section-header"
+    ) as HTMLElement;
     if (element?.classList.contains("shopify-section")) {
       element.style.removeProperty("position");
     }
@@ -150,7 +168,9 @@ export default class AnitaScreenShotFixes {
 
   private setDisplayToBlock(): void {
     const elements = [
-      this.document.getElementById("shopify-block-jebbit_product_quiz_builder_jebbit_campaign_url_7xczVR"),
+      this.document.getElementById(
+        "shopify-block-jebbit_product_quiz_builder_jebbit_campaign_url_7xczVR"
+      ),
       this.document.querySelector("iframe.jebbit-iframe"),
     ];
     elements.forEach((element) => {
@@ -160,10 +180,13 @@ export default class AnitaScreenShotFixes {
     });
   }
 
-
   private setOpacityToHeroSideBySide(): void {
-    const parentElement = this.document.querySelector(".slideshow__slide.is-selected") as HTMLElement;
-    const childElement = parentElement?.querySelector(".hero__sidebyside-text--left") as HTMLElement;
+    const parentElement = this.document.querySelector(
+      ".slideshow__slide.is-selected"
+    ) as HTMLElement;
+    const childElement = parentElement?.querySelector(
+      ".hero__sidebyside-text--left"
+    ) as HTMLElement;
     if (childElement) {
       childElement.style.opacity = "1";
     }
@@ -187,13 +210,17 @@ export default class AnitaScreenShotFixes {
 
   private removeDisplayNoneWithDelay(): void {
     setTimeout(() => {
-      const elements = this.document.querySelectorAll(".gp-carousel-dot-container") as NodeListOf<HTMLElement>;
+      const elements = this.document.querySelectorAll(
+        ".gp-carousel-dot-container"
+      ) as NodeListOf<HTMLElement>;
       elements.forEach((element) => element.style.removeProperty("display"));
     }, 100);
   }
 
   private setStyleToRecommendationModal(): void {
-    const containerElement = this.document.querySelector(".recommendation-modal__container") as HTMLElement;
+    const containerElement = this.document.querySelector(
+      ".recommendation-modal__container"
+    ) as HTMLElement;
     if (containerElement) {
       containerElement.style.setProperty("display", "block", "important");
     }
@@ -201,14 +228,20 @@ export default class AnitaScreenShotFixes {
 
   private setOpacityToProductCagesWithDelay(): void {
     setTimeout(() => {
-      const elements = this.document.querySelectorAll(".product-card__image--secondary") as NodeListOf<HTMLElement>;
-      elements.forEach((element) => element.style.setProperty("opacity", "0", "important"));
+      const elements = this.document.querySelectorAll(
+        ".product-card__image--secondary"
+      ) as NodeListOf<HTMLElement>;
+      elements.forEach((element) =>
+        element.style.setProperty("opacity", "0", "important")
+      );
     }, 100);
   }
 
   private setDisplayToBlockForKachingBundlesWithDelay(): void {
     setTimeout(() => {
-      const elements = this.document.querySelectorAll(".kaching-bundles__bar-radio") as NodeListOf<HTMLElement>;
+      const elements = this.document.querySelectorAll(
+        ".kaching-bundles__bar-radio"
+      ) as NodeListOf<HTMLElement>;
       elements.forEach((element) => {
         if (element.style.display === "none") {
           element.style.setProperty("display", "block", "important");
@@ -219,14 +252,18 @@ export default class AnitaScreenShotFixes {
 
   private removeAllInlineStylesWithDelay(): void {
     setTimeout(() => {
-      const elements = this.document.querySelectorAll(".viair-header-mega-menu") as NodeListOf<HTMLElement>;
+      const elements = this.document.querySelectorAll(
+        ".viair-header-mega-menu"
+      ) as NodeListOf<HTMLElement>;
       elements.forEach((element) => element.removeAttribute("style"));
     }, 1000);
   }
 
   private updateSpecificElementHeightWithDelay(): void {
     setTimeout(() => {
-      const element = this.document.querySelector('[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]') as HTMLElement;
+      const element = this.document.querySelector(
+        '[data-rid="0623162f-5f5e-4f4c-9c7e-f50d1df9f84b"]'
+      ) as HTMLElement;
       if (element) {
         element.style.setProperty("height", "12vh", "important");
       }
@@ -234,17 +271,37 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeMarginTopFromContent(): void {
-    const element = this.document.querySelector(".content-for-layout.focus-none") as HTMLElement;
+    const element = this.document.querySelector(
+      ".content-for-layout.focus-none"
+    ) as HTMLElement;
     element?.style.removeProperty("margin-top");
   }
   private setPositionRelativeToSlideshowSlideTanitco(): void {
     const element = this.document.querySelector(
-        '.slideshow__slide.slideshow__slide--template--16650453188833__730c5010-4eb1-4723-8b3d-06970325ab13-1666466508afdc26e1-0.d-flex.justify-content-center.align-items-center'
+      ".slideshow__slide.slideshow__slide--template--16650453188833__730c5010-4eb1-4723-8b3d-06970325ab13-1666466508afdc26e1-0.d-flex.justify-content-center.align-items-center"
     ) as HTMLElement;
 
     if (element) {
-        element.style.setProperty('position', 'relative', 'important');
+      element.style.setProperty("position", "relative", "important");
     }
-}
+  }
 
+  private updateChildPosition(): void {
+    const sectionElement = this.document.getElementById(
+      "shopify-section-template--18622508073185__659ca9df-371f-4701-bb4c-92dd5f2b0c43"
+    ) as HTMLElement;
+
+    if (sectionElement) {
+      const flickitySlider = sectionElement.querySelector(
+        ".flickity-slider"
+      ) as HTMLElement;
+
+      if (flickitySlider) {
+        const children = Array.from(flickitySlider.children) as HTMLElement[];
+        children.forEach((child: HTMLElement) => {
+          child.style.setProperty("position", "relative", "important");
+        });
+      }
+    }
+  }
 }
