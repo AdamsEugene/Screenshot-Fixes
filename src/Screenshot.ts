@@ -39,6 +39,7 @@ class ScreenshotFixes extends Common {
     () => this.observeMutationDesktop(),
     () => this.removeIdFromLogo(),
     () => this.BenchmadeupdateMinHeight(),
+    () => this.riequipupdateHeaderClass(),
     () => this.runFunctionsForIdSiteDesktop(),
   ];
 
@@ -324,6 +325,17 @@ class ScreenshotFixes extends Common {
       });
     });
   }
+
+  //riequip
+  private riequipupdateHeaderClass() {
+    this.dom.querySelectorAll('#shopify-section-sections--19944737210681__header .site-header.site-header-sticky--scrolled, .site-header-sticky .site-header.site-header-sticky--scrolled')
+        .forEach(header => {
+            (header as HTMLElement).className = 'site-header site-header-nav--open';
+            if (header.querySelector('#site-header-nav')) {
+                (header.querySelector('#site-header-nav') as HTMLElement).style.setProperty('margin-top', '0px', 'important');
+            }
+        });
+}
 
   private removeIdFromLogo() {
     this.allElements(

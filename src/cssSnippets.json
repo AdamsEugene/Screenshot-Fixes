@@ -22,11 +22,6 @@
     "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/deuxpardeux.com-products-cart-styles.css"
   },
   {
-    "idSite": 367,
-    "type": "file",
-    "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/deuxpardeux.com-products-cart-styles.css"
-  },
-  {
     "idSite": 2463,
     "type": "file",
     "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/budmother.com-products-budmother-hhc-gummies-mixed-fruit-styles.css"

@@ -43,7 +43,7 @@ export default class AnitaScreenShotFixes {
       this.setPositionRelativeToSlideshowSlideTanitco,
       this.updateChildPosition,
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
-      this.updateFloatingAddToCartStyleskahoot,
+      // this.updateFloatingAddToCartStyleskahoot,
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
     ]);
   }

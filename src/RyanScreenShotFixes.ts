@@ -74,6 +74,11 @@ export default class RyanScreenshotFixes extends Common {
       this.McAfeeupdateDrawerHeight();
       this.PectivupdateSearchBarOpacity();
       this.VitalityupdateHeroBannerDisplay();
+      this.BedsRUshideOwlClonedItems();
+      this.FireDeptCoffeeupdateSubmenuDisplay();
+      this.eSafetyupdateMegaMenuBackground();
+      this.RinseBathBodyhideHeaderToolsLeft();
+      this.AlbionremoveSwiperOverflow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1440,6 +1445,91 @@ export default class RyanScreenshotFixes extends Common {
             (element as HTMLElement).style.removeProperty('display');
             (element as HTMLElement).style.setProperty('display', 'block', 'important');
         });
+    }, 2000);
+  }
+
+  //Beds R Us Australia
+  private BedsRUshideOwlClonedItems() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.owl-stage .owl-item.cloned').forEach(item => {
+            (item as HTMLElement).style.setProperty('display', 'none', 'important');
+        });
+    }, 2000);
+  }
+
+  //Fire Dept Coffee
+  private FireDeptCoffeeupdateSubmenuDisplay() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.header__nav-item.sub-menu').forEach(item => {
+            const submenu = item.querySelector('.cc-submenu-outer') as HTMLElement;
+            if (submenu) {
+                item.addEventListener('auenter', () => submenu.style.setProperty('display', 'block', 'important'));
+                item.addEventListener('mouseleave', () => submenu.style.setProperty('display', 'none', 'important'));
+            }
+        });
+    }, 2000);
+  }
+
+  //eSafety Supplies
+  private eSafetyupdateMegaMenuBackground() {
+    !this.dom.querySelector('#mega-menu-style') && this.dom.head.appendChild(
+        Object.assign(this.dom.createElement('style'), {
+            id: 'mega-menu-style',
+            textContent: '.m-menu__item.m-menu__item--parent.m-menu__item--has-submenu.m-menu__item--mega .m-mega-menu { background-color: #fff !important; }'
+        })
+    );
+
+    setTimeout(() => {
+        (this.dom.querySelector('#m-theme #MainContent[role="main"]') as HTMLElement)?.style
+            .setProperty('margin-top', 'auto', 'important');
+    }, 2000);
+  }
+
+  //Rinse Bath Body
+  private RinseBathBodyhideHeaderToolsLeft() {
+    setTimeout(() => {
+        this.dom.querySelectorAll('.main-header--tools-group .main-header--tools-left').forEach(element => {
+            (element as HTMLElement).style.setProperty('display', 'none', 'important');
+        });
+    }, 2000);
+  }
+
+  //Latico Leather
+  // private preventSidebarDisplayNone() {
+  //   const selectors = [
+  //       '#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft',
+  //       '.mob-drawer',
+  //       '.mobile-menu'
+  //   ];
+
+  //   const observer = new MutationObserver(() => {
+  //       selectors.forEach(selector => {
+  //           const elements = this.dom.querySelectorAll(selector);
+  //           elements.forEach(element => {
+  //               if (element && (element as HTMLElement).style.display === 'none') {
+  //                   (element as HTMLElement).style.removeProperty('display');
+  //               }
+  //           });
+  //       });
+  //   });
+
+  //   selectors.forEach(selector => {
+  //       const targetElement = this.dom.querySelector(selector);
+  //       if (targetElement) {
+  //           observer.observe(targetElement, { 
+  //               attributeFilter: ['style']
+  //           });
+  //       }
+  //   });
+  // }
+
+  //Albion
+  private AlbionremoveSwiperOverflow() {
+    setTimeout(() => {
+        const swiper = this.dom.querySelector('#MediaGallery-template--17475545333940__main .swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events');
+        if (swiper) {
+            (swiper as HTMLElement).style.removeProperty('overflow');
+        }
     }, 2000);
   }
 

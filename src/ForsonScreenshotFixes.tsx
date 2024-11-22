@@ -55,6 +55,8 @@ export default class ForsonScreenshotFixes {
     this.overrideBeforeStyle();
     this.hideTinyCookieWrapper();
     this.styleMenuDrawerElements();
+    this.removeMinHeightStyle();
+    this.addMarginToElement()
   }
 
   // Upcircle EU
@@ -508,6 +510,13 @@ export default class ForsonScreenshotFixes {
     });
   }
 
+  private addMarginToElement() {
+    const element = this.document.querySelector('.index-hero.slideshow.image-height.image-height--mobile.section-padding') as HTMLElement;
+    if (element) {
+      element.style.setProperty('margin-top', '15%', 'important');
+    }
+  }
+
   // logOx (ryan)
   private LogoxUpdatePageElements() {
     var posts = this.document.querySelectorAll(
@@ -649,6 +658,13 @@ private styleMenuDrawerElements() {
       child.style.background = 'white';
     }
   });
+}
+
+private removeMinHeightStyle() {
+  const element = this.document.getElementById('gp-carousel-product-list-carousel-g5qBAQx5d8-template--23408454664498__gp_section_519316681286222864') as HTMLElement;
+  if (element) {
+    element.style.removeProperty('min-height');
+  }
 }
 
 
