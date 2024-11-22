@@ -540,5 +540,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main3.html"
     }
+  },
+  {
+    "selector": ".first-load-prod",
+    "content": {
+      "idSite": 2930,
+      "idSiteHsr": 6428558,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sonno.co.uk-collections-ottoman-divan-beds-main.html"
+    }
   }
 ]

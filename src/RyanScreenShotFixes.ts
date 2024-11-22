@@ -79,6 +79,7 @@ export default class RyanScreenshotFixes extends Common {
       this.eSafetyupdateMegaMenuBackground();
       this.RinseBathBodyhideHeaderToolsLeft();
       this.AlbionremoveSwiperOverflow();
+      this.sonnoremoveGridDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1529,6 +1530,16 @@ export default class RyanScreenshotFixes extends Common {
         const swiper = this.dom.querySelector('#MediaGallery-template--17475545333940__main .swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events');
         if (swiper) {
             (swiper as HTMLElement).style.removeProperty('overflow');
+        }
+    }, 2000);
+  }
+
+  //sonno
+  private sonnoremoveGridDisplay() {
+    setTimeout(() => {
+        const grid = this.dom.querySelector('.grid.grid-cols-2.md\\:grid-cols-2.lg\\:grid-cols-3.gap-x-\\[17px\\].gap-y-9.first-load-prod');
+        if (grid && grid.querySelector('.group')) {
+            (grid as HTMLElement).style.setProperty('display', 'grid', 'important');
         }
     }, 2000);
   }
