@@ -46,6 +46,7 @@ export default class AnitaScreenShotFixes {
       // this.updateFloatingAddToCartStyleskahoot,
       this.removeInlineStylesFromCurrencySwitcherChildWUNutrition,
       this.updateFloatingAddToCartStyleskahoot,
+      this.removeInlineStylesFromImageswonderpaws,
     ]);
   }
 
@@ -57,7 +58,6 @@ export default class AnitaScreenShotFixes {
 
   private log(message: string, ...optionalParams: any[]): void {
     if (!this.prodMode) {
-      // console.log(`[DEBUG]: ${message}`, ...optionalParams);
     }
   }
 
@@ -328,6 +328,20 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("left", "auto", "important");
     }
   }
+  private removeInlineStylesFromImageswonderpaws(): void {
+    const parentElements = this.document.querySelectorAll<HTMLElement>(
+      ".swiper-slide.item-product-card.grid__item.medium-up--one-half.text-left"
+    );
+
+    parentElements.forEach((parent) => {
+        const images = parent.querySelectorAll<HTMLImageElement>("img.feature-row__image");
+
+        images.forEach((img) => {
+            img.removeAttribute("style");
+        });
+    });
+}
+
 
   
 }
