@@ -1569,15 +1569,22 @@ export default class RyanScreenshotFixes extends Common {
 
   //Mad Rabbit
   private MadRabbitupdateSidebarDisplay() {
-    if (!this.dom.querySelector('#sidebar-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'sidebar-style';
-        styleElement.textContent = `
-            .collection-filter__grid .collection-filter__sidebar.js-collection-filter-sidebar {
-                display: block !important;
+    const selector = '.collection-filter__grid .collection-filter__sidebar.js-collection-filter-sidebar';
+    
+    const observer = new MutationObserver(() => {
+        const elements = this.dom.querySelectorAll(selector);
+        elements.forEach(element => {
+            if (element && (element as HTMLElement).style.display !== 'block') {
+                (element as HTMLElement).style.setProperty('display', 'block', 'important');
             }
-        `;
-        this.dom.head.appendChild(styleElement);
+        });
+    });
+
+    const targetElement = this.dom.querySelector(selector);
+    if (targetElement) {
+        observer.observe(targetElement, {
+            attributeFilter: ['style']
+        });
     }
   }
 
