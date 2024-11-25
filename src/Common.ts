@@ -18,7 +18,7 @@ export default class Common {
     [
       3004,
       {
-        idSelectors: ["#shopify-section-header"],
+        idSelectors: ["#replace-this-with-id"],
         classSelectors: ["mob-drawer"],
       },
     ],
@@ -192,7 +192,7 @@ export default class Common {
   public removeHeatmapComHideElement() {
     if (!this.idSite()) return;
     const exclusionRules = this.selectorsToExclude.get(this.idSite());
-    console.log({ exclusionRules, id: this.idSite() });
+    if (!this.prodMode) console.log({ exclusionRules, id: this.idSite() });
 
     if (!exclusionRules) return;
 
@@ -201,20 +201,21 @@ export default class Common {
       ...exclusionRules.classSelectors.map((cls) => `.${cls}`),
     ].join(", ");
 
-    console.log({ selectors });
+    if (!this.prodMode) console.log({ selectors });
 
     this.dom.querySelectorAll(selectors).forEach((container) => {
       container.classList.remove("heatmap-com__hidden-element");
-      console.log({ container });
+      if (!this.prodMode) console.log({ container });
 
-      container
-        .querySelectorAll(".heatmap-com__hidden-element")
-        .forEach((element) => {
-          if (this.isElementInViewport(element)) {
-            console.log(element);
-            element.classList.remove("heatmap-com__hidden-element");
-          }
-        });
+      const allElements = container.querySelectorAll("*");
+
+      if (!this.prodMode) console.log({ allElements });
+
+      Array.from(allElements).forEach((element) => {
+        if (this.isElementInViewport(element)) {
+          element.classList.remove("heatmap-com__hidden-element");
+        }
+      });
     });
   }
 
@@ -223,8 +224,9 @@ export default class Common {
     const hostname = url.hostname;
     if (hostname.includes("localhost")) return "locala";
     if (hostname.includes("dashboard")) return "dashboard";
+    if (hostname.includes("portal")) return "dashboard";
     if (hostname.includes("early-release")) return "dever";
     if (hostname.includes("earlystage")) return "deves";
-    return "dashboard";
+    return "dever";
   }
 }
