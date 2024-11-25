@@ -96,6 +96,7 @@ export default class AnitaScreenShotFixes {
     this.updateMenuDrawerAndInnerHeightEXCISION();
     this.removeInlineStylesFromCurrencySwitcherChildWUNutrition();
     this.removeInlineStylesFromImageswonderpaws();
+    this.removeAfterPseudoFromHomeSlider();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1215,6 +1216,20 @@ export default class AnitaScreenShotFixes {
         });
     });
 }
+private removeAfterPseudoFromHomeSlider(): void {
+  const element = this.document.getElementById('homeslider') as HTMLElement;
+
+  if (element) {
+      const style = this.document.createElement('style');
+      style.innerHTML = `
+          #homeslider::after {
+              content: none !important;
+          }
+      `;
+      this.document.head.appendChild(style);
+  }
+}
+
 
 
 
