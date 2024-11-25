@@ -80,6 +80,8 @@ export default class RyanScreenshotFixes extends Common {
       this.RinseBathBodyhideHeaderToolsLeft();
       this.AlbionremoveSwiperOverflow();
       this.sonnoremoveGridDisplay();
+      this.KahootsshowFloatingCart();
+      this.MadRabbitupdateSidebarDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1541,7 +1543,49 @@ export default class RyanScreenshotFixes extends Common {
         if (grid && grid.querySelector('.group')) {
             (grid as HTMLElement).style.setProperty('display', 'grid', 'important');
         }
-    }, 2000);
+    }, 100);
+  }
+
+  //Kahoots
+  private KahootsshowFloatingCart() {
+    const selector = '#floating-addToCart-container.floating-addToCart-container';
+
+    const observer = new MutationObserver(() => {
+        const elements = this.dom.querySelectorAll(selector);
+        elements.forEach(element => {
+            if (element && (element as HTMLElement).style.display !== 'block') {
+                (element as HTMLElement).style.setProperty('display', 'block', 'important');
+            }
+        });
+    });
+
+    const targetElement = this.dom.querySelector(selector);
+    if (targetElement) {
+        observer.observe(targetElement, { 
+            attributeFilter: ['style']
+        });
+    }
+  }
+
+  //Mad Rabbit
+  private MadRabbitupdateSidebarDisplay() {
+    const selector = '.collection-filter__grid .collection-filter__sidebar.js-collection-filter-sidebar';
+    
+    const observer = new MutationObserver(() => {
+        const elements = this.dom.querySelectorAll(selector);
+        elements.forEach(element => {
+            if (element && (element as HTMLElement).style.display !== 'block') {
+                (element as HTMLElement).style.setProperty('display', 'block', 'important');
+            }
+        });
+    });
+
+    const targetElement = this.dom.querySelector(selector);
+    if (targetElement) {
+        observer.observe(targetElement, {
+            attributeFilter: ['style']
+        });
+    }
   }
 
   //toggleHeatmapClassOnDrawer
