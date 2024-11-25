@@ -96,7 +96,8 @@ export default class AnitaScreenShotFixes {
     this.updateMenuDrawerAndInnerHeightEXCISION();
     this.removeInlineStylesFromCurrencySwitcherChildWUNutrition();
     this.removeInlineStylesFromImageswonderpaws();
-    this.removeAfterPseudoFromHomeSlider();
+    this.removeAfterPseudoFromHomeSliderAncestral();
+    this.removeWidthPropertiesFromSwiperSlidessullen();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1216,7 +1217,7 @@ export default class AnitaScreenShotFixes {
         });
     });
 }
-private removeAfterPseudoFromHomeSlider(): void {
+private removeAfterPseudoFromHomeSliderAncestral(): void {
   const element = this.document.getElementById('homeslider') as HTMLElement;
 
   if (element) {
@@ -1229,6 +1230,19 @@ private removeAfterPseudoFromHomeSlider(): void {
       this.document.head.appendChild(style);
   }
 }
+private removeWidthPropertiesFromSwiperSlidessullen(): void {
+  const allProductsElement = this.document.querySelector('.all_products_abc') as HTMLElement;
+
+  if (allProductsElement) {
+      const swiperSlides = allProductsElement.querySelectorAll('.swiper-slide') as NodeListOf<HTMLElement>;
+
+      swiperSlides.forEach((swiperSlide) => {
+          swiperSlide.style.removeProperty('min-width');
+          swiperSlide.style.removeProperty('max-width');
+      });
+  }
+}
+
 
 
 
