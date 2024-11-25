@@ -98,6 +98,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromImageswonderpaws();
     this.removeAfterPseudoFromHomeSliderAncestral();
     this.removeWidthPropertiesFromSwiperSlidessullen();
+    this.removeWidthPropertiesFromSwiperSlides();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1242,6 +1243,18 @@ private removeWidthPropertiesFromSwiperSlidessullen(): void {
       });
   }
 }
+private removeWidthPropertiesFromSwiperSlides(): void {
+  const ancestorElement = this.document.getElementById('CollectionSwitcher1-template--16295078461517__featured_collection_switcher_wThniV');
+  if (ancestorElement) {
+    const swiperSlides = ancestorElement.querySelectorAll('.grid__image-contain.image-style--.image-element') as NodeListOf<HTMLElement>;
+    swiperSlides.forEach((swiperSlide) => {
+      swiperSlide.style.removeProperty('width');
+    });
+  }
+}
+
+
+
 
 
 
