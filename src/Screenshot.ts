@@ -328,14 +328,19 @@ class ScreenshotFixes extends Common {
 
   //riequip
   private riequipupdateHeaderClass() {
-    this.dom.querySelectorAll('#shopify-section-sections--19944737210681__header .site-header.site-header-sticky--scrolled, .site-header-sticky .site-header.site-header-sticky--scrolled')
-        .forEach(header => {
-            (header as HTMLElement).className = 'site-header site-header-nav--open';
-            if (header.querySelector('#site-header-nav')) {
-                (header.querySelector('#site-header-nav') as HTMLElement).style.setProperty('margin-top', '0px', 'important');
-            }
-        });
-}
+    this.dom
+      .querySelectorAll(
+        "#shopify-section-sections--19944737210681__header .site-header.site-header-sticky--scrolled, .site-header-sticky .site-header.site-header-sticky--scrolled"
+      )
+      .forEach((header) => {
+        (header as HTMLElement).className = "site-header site-header-nav--open";
+        if (header.querySelector("#site-header-nav")) {
+          (
+            header.querySelector("#site-header-nav") as HTMLElement
+          ).style.setProperty("margin-top", "0px", "important");
+        }
+      });
+  }
 
   private removeIdFromLogo() {
     this.allElements(
@@ -399,29 +404,6 @@ class ScreenshotFixes extends Common {
       }
     });
   };
-
-  private getSiteURLAsObj() {
-    const currentUrl = window.location.href;
-    return new URL(currentUrl);
-  }
-
-  private idSite(): number | null {
-    const urlObj = this.getSiteURLAsObj();
-    const idSiteParam = urlObj.searchParams.get("idSite");
-    const idSiteNumber = idSiteParam ? parseInt(idSiteParam, 10) : null;
-    return Number.isNaN(idSiteNumber) ? null : idSiteNumber;
-  }
-
-  private idSiteHsr() {
-    const url = window.location.href;
-    const urlParams = new URLSearchParams(url.split("#")[1]);
-    const subcategory = urlParams.get("subcategory");
-    if (subcategory) {
-      return Number.isNaN(subcategory) ? null : +subcategory;
-    }
-    const oldIdsitehsr = urlParams.get("old_idsitehsr");
-    return Number.isNaN(oldIdsitehsr) ? null : +oldIdsitehsr;
-  }
 
   private adjustReviewSliderDisplay() {
     const container = this.elements(
@@ -1380,27 +1362,6 @@ class ScreenshotFixes extends Common {
     }
   };
 
-  // private setPositionForAnnouncementBarSMEL = (): void => {
-  //   setTimeout(() => {
-  //     console.log("Starting to update position for the announcement bar...");
-  
-  //     const announcementBar = this.dom.querySelector(
-  //       '#shopify-section-announcement-bar.shopify-section'
-  //     );
-  
-  //     if (announcementBar) {
-  //       console.log("Announcement bar element found. Updating position...");
-  //       (announcementBar as HTMLElement).style.setProperty('position', 'relative', 'important');
-  //       console.log("Position set to 'relative' for the announcement bar.");
-  //     } else {
-  //       console.log("No announcement bar element found with the specified ID and class.");
-  //     }
-  
-  //     console.log("Finished updating position for the announcement bar.");
-  //   }, 2000); // Delay of 2000ms (2 seconds)
-  // };
-  
-
   //Springinger
   private hideShopifyMinicartElements() {
     const elements = this.dom.querySelectorAll(
@@ -1413,27 +1374,6 @@ class ScreenshotFixes extends Common {
       }
     });
   }
-
-  // private hideAllScalapayModals(): void {
-  //   const elements = this.dom.querySelectorAll(
-  //     'scalapay-modal-core'
-  //   ) as NodeListOf<HTMLElement>;
-  
-  //   elements.forEach((element) => {
-  //     if (element.classList.contains('hydrated')) {
-  //       element.style.setProperty('display', 'none', 'important');
-  //     }
-  //   });
-  // }
-  
-
-  // functionsMap: Record<number, (() => void)[]> = {
-  //   1947: [this.removeExcessiveParentWidths],
-  //   2910: [this.sevenlionsupdateMainContentMarginTop],
-  //   2761: [this.BreeoupdateBannerMinHeight],
-  //   2853: [this.adjustHeaderElements, this.removeMainContentMarginTop],
-  //   // Add more idSite mappings as needed
-  // };
 
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();

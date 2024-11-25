@@ -310,11 +310,13 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private updateCartPopupHeight() {
-    this.dom.querySelectorAll("#UpcartPopup #CartPopup").forEach((childElement) => {
-      const element = childElement as HTMLElement;
-      element.style.removeProperty("height");
-      element.style.setProperty("height", "auto", "important");
-    });
+    this.dom
+      .querySelectorAll("#UpcartPopup #CartPopup")
+      .forEach((childElement) => {
+        const element = childElement as HTMLElement;
+        element.style.removeProperty("height");
+        element.style.setProperty("height", "auto", "important");
+      });
   }
 
   //springerpets
@@ -702,10 +704,20 @@ export default class RyanScreenshotFixes extends Common {
   //Denver Headshot Company
   private DenverCoUpdateResponsiveDialogAndCover() {
     setTimeout(() => {
-      this.dom.querySelector(".wp-block-navigation__responsive-container #modal-1-content")?.setAttribute("style", "margin-top: 0px !important");
-      this.dom.querySelectorAll('.wp-block-cover .wp-block-cover__background').forEach((backgroundElement) => {
-        (backgroundElement as HTMLElement).style.setProperty('opacity', '0', 'important');
-      });
+      this.dom
+        .querySelector(
+          ".wp-block-navigation__responsive-container #modal-1-content"
+        )
+        ?.setAttribute("style", "margin-top: 0px !important");
+      this.dom
+        .querySelectorAll(".wp-block-cover .wp-block-cover__background")
+        .forEach((backgroundElement) => {
+          (backgroundElement as HTMLElement).style.setProperty(
+            "opacity",
+            "0",
+            "important"
+          );
+        });
     }, 2000);
   }
 
@@ -760,13 +772,14 @@ export default class RyanScreenshotFixes extends Common {
           });
       });
 
-    if (!document.querySelector('#visibilityStyle')) {
-        const style = document.createElement('style');
-        style.id = 'visibilityStyle';  
-        style.innerHTML = '.pf-c .sc-iapVNj.iUcVvL { visibility: visible !important; }';
-        document.head.appendChild(style);
+    if (!document.querySelector("#visibilityStyle")) {
+      const style = document.createElement("style");
+      style.id = "visibilityStyle";
+      style.innerHTML =
+        ".pf-c .sc-iapVNj.iUcVvL { visibility: visible !important; }";
+      document.head.appendChild(style);
     }
-}
+  }
 
   //Nubiance
   private NubianceUpdateBackground() {
@@ -814,7 +827,7 @@ export default class RyanScreenshotFixes extends Common {
         ) as HTMLElement | null;
         if (submenu) submenu.style.removeProperty("height");
       });
-  
+
     if (!document.getElementById("next-adventure-submenu-style")) {
       const styleSheet = document.createElement("style");
       styleSheet.id = "next-adventure-submenu-style";
@@ -994,76 +1007,90 @@ export default class RyanScreenshotFixes extends Common {
 
   //Pulsio AIR
   private PulsioShowHiddenFAQAnswers() {
-    this.dom.querySelectorAll('[classification^="FAQ Question"]').forEach((parent) => {
-      const hiddenChild = Array.from(parent.children).find(
-        (child) => window.getComputedStyle(child).display === 'none'
-      ) as HTMLElement;
-  
-      if (hiddenChild) {
-        hiddenChild.style.setProperty('display', 'block', 'important');
-      }
-    });
-  }  
+    this.dom
+      .querySelectorAll('[classification^="FAQ Question"]')
+      .forEach((parent) => {
+        const hiddenChild = Array.from(parent.children).find(
+          (child) => window.getComputedStyle(child).display === "none"
+        ) as HTMLElement;
+
+        if (hiddenChild) {
+          hiddenChild.style.setProperty("display", "block", "important");
+        }
+      });
+  }
 
   //big kizzy hair
   private bigkizzyFixSlideshowbox() {
     setTimeout(() => {
-        const elements = this.dom.querySelectorAll('.slideshow__box .slideshow__card') as NodeListOf<HTMLElement>;
+      const elements = this.dom.querySelectorAll(
+        ".slideshow__box .slideshow__card"
+      ) as NodeListOf<HTMLElement>;
 
-        if (elements.length > 0) {
-            elements.forEach((element) => {
-                element.style.setProperty('opacity', 'revert-layer', 'important');
-            });
-        }
+      if (elements.length > 0) {
+        elements.forEach((element) => {
+          element.style.setProperty("opacity", "revert-layer", "important");
+        });
+      }
     }, 2000);
   }
 
   //canopy
   private canopyremoveOverflowFromProductMediaList() {
     setTimeout(() => {
-        const elements = this.dom.querySelectorAll('.product__media-list .slick-list.draggable') as NodeListOf<HTMLElement>;
+      const elements = this.dom.querySelectorAll(
+        ".product__media-list .slick-list.draggable"
+      ) as NodeListOf<HTMLElement>;
 
-        if (elements.length > 0) {
-            elements.forEach((element) => {
-                element.style.setProperty('overflow', 'revert-layer', 'important');
-            });
-        }
+      if (elements.length > 0) {
+        elements.forEach((element) => {
+          element.style.setProperty("overflow", "revert-layer", "important");
+        });
+      }
     }, 2000);
   }
 
   //Serenity
   private SerenityremoveMinHeightFromVcRow() {
-    this.dom
-        .querySelectorAll('.vc_container')
-        .forEach((container) => {
-            const child = container.querySelector('.vc_row-o-columns-middle');
-            if (child) {
-                (child as HTMLElement).style.removeProperty('min-height');
-                (child as HTMLElement).style.setProperty('min-height', 'auto', 'important');
-            }
-        });
-  }
-
-  //Nectar
-  private NectaraddActiveClass() {
-    this.dom.querySelectorAll('#shopify-section-sections--15554716860475__header .bottom_sticky').forEach((element) => {
-      if (element) {
-        element.classList.add('active');
-        console.log('Added "active" class to the bottom_sticky element.');
+    this.dom.querySelectorAll(".vc_container").forEach((container) => {
+      const child = container.querySelector(".vc_row-o-columns-middle");
+      if (child) {
+        (child as HTMLElement).style.removeProperty("min-height");
+        (child as HTMLElement).style.setProperty(
+          "min-height",
+          "auto",
+          "important"
+        );
       }
     });
   }
 
+  //Nectar
+  private NectaraddActiveClass() {
+    this.dom
+      .querySelectorAll(
+        "#shopify-section-sections--15554716860475__header .bottom_sticky"
+      )
+      .forEach((element) => {
+        if (element) {
+          element.classList.add("active");
+          console.log('Added "active" class to the bottom_sticky element.');
+        }
+      });
+  }
+
   //Next Adventure
   private toggleMobileNavDataOpen() {
-    this.dom.querySelectorAll('.mobile-nav-close').forEach((element) => {
+    this.dom.querySelectorAll(".mobile-nav-close").forEach((element) => {
       if (element) {
-        element.addEventListener('click', () => {
-          const headerElement = element.closest('.site-header');
-          const mobileNav = headerElement ? headerElement.querySelector('.site-mobile-nav') : null;
+        element.addEventListener("click", () => {
+          const headerElement = element.closest(".site-header");
+          const mobileNav = headerElement
+            ? headerElement.querySelector(".site-mobile-nav")
+            : null;
           if (mobileNav) {
-            const isOpen = mobileNav.getAttribute('data-open') === 'true';
-            mobileNav.setAttribute('data-open', isOpen ? 'false' : 'true');
+            const isOpen = mobileNav.getAttribute("data-open") === "true";
+            mobileNav.setAttribute("data-open", isOpen ? "false" : "true");
           }
         });
       }
@@ -1072,9 +1099,9 @@ export default class RyanScreenshotFixes extends Common {
 
   //Detox Market
   private DetoxMarketupdateSrcsetFromSrc() {
-    this.dom.querySelectorAll('.rimage__image').forEach((image) => {
+    this.dom.querySelectorAll(".rimage__image").forEach((image) => {
       const imgElement = image as HTMLImageElement;
-      if (imgElement && imgElement.hasAttribute('src')) {
+      if (imgElement && imgElement.hasAttribute("src")) {
         imgElement.srcset = imgElement.src;
       }
     });
@@ -1083,83 +1110,95 @@ export default class RyanScreenshotFixes extends Common {
   //Kv Essentials
   private KvEssentialsresetImageHeight() {
     setTimeout(() => {
-      this.dom.querySelectorAll('.look').forEach((parentElement) => {
-        const imageElement = parentElement.querySelector('.look__image');
+      this.dom.querySelectorAll(".look").forEach((parentElement) => {
+        const imageElement = parentElement.querySelector(".look__image");
         if (imageElement) {
           const imgElement = imageElement as HTMLElement;
-          imgElement.style.removeProperty('height');
+          imgElement.style.removeProperty("height");
           imgElement.offsetHeight;
-          imgElement.style.setProperty('height', 'auto', 'important');
+          imgElement.style.setProperty("height", "auto", "important");
         }
       });
-    }, 2000); 
+    }, 2000);
   }
 
   //Feelgrounds EU
   private FeelgroundssetNavButtonDisplay() {
     setTimeout(() => {
-      this.dom.querySelectorAll('.menu-button-stripes').forEach((parentElement) => {
-        const childElements = parentElement.querySelectorAll('.nav-mobile-button-stripe');
-        childElements.forEach((stripeElement) => {
-          const element = stripeElement as HTMLElement;
-          element.style.setProperty('display', 'block', 'important');
+      this.dom
+        .querySelectorAll(".menu-button-stripes")
+        .forEach((parentElement) => {
+          const childElements = parentElement.querySelectorAll(
+            ".nav-mobile-button-stripe"
+          );
+          childElements.forEach((stripeElement) => {
+            const element = stripeElement as HTMLElement;
+            element.style.setProperty("display", "block", "important");
+          });
         });
-      });
     }, 2000);
   }
 
   //Model Train Stuff
   private ModelTrainupdateSlideoutDisplay() {
     setTimeout(() => {
-      this.dom.querySelectorAll('.subcat-listing-header').forEach((parentElement) => {
-        const childElements = parentElement.querySelectorAll('.ss__slideout');
-        childElements.forEach((slideoutElement) => {
-          const element = slideoutElement as HTMLElement;
-          element.style.removeProperty('display');
-          element.style.setProperty('display', 'revert-layer', 'important');
+      this.dom
+        .querySelectorAll(".subcat-listing-header")
+        .forEach((parentElement) => {
+          const childElements = parentElement.querySelectorAll(".ss__slideout");
+          childElements.forEach((slideoutElement) => {
+            const element = slideoutElement as HTMLElement;
+            element.style.removeProperty("display");
+            element.style.setProperty("display", "revert-layer", "important");
+          });
         });
-      });
     }, 2000);
   }
 
   //Puresport
   private PuresportupdateProductCardMedia() {
     setTimeout(() => {
-      this.dom.querySelectorAll('.product-card__media').forEach((mediaElement) => {
-        const pictureElements = mediaElement.querySelectorAll('picture');
-        
-        if (pictureElements.length >= 2) {
-          const secondPicture = pictureElements[1] as HTMLElement;
-          secondPicture.style.removeProperty('opacity');
-          secondPicture.style.setProperty('opacity', '0', 'important');
-        }
-      });
+      this.dom
+        .querySelectorAll(".product-card__media")
+        .forEach((mediaElement) => {
+          const pictureElements = mediaElement.querySelectorAll("picture");
+
+          if (pictureElements.length >= 2) {
+            const secondPicture = pictureElements[1] as HTMLElement;
+            secondPicture.style.removeProperty("opacity");
+            secondPicture.style.setProperty("opacity", "0", "important");
+          }
+        });
     }, 2000);
   }
 
   //Botanique Paris
   private BotaniqueParisupdateOrderHeading() {
     setTimeout(() => {
-        const parentElement = this.dom.querySelector('#shopify-section-template--17790039654565__track_your_order_heading');
+      const parentElement = this.dom.querySelector(
+        "#shopify-section-template--17790039654565__track_your_order_heading"
+      );
 
-        if (parentElement) {
-            const childElement = parentElement.querySelector('#WS--template--17790039654565__track_your_order_heading') as HTMLElement;
+      if (parentElement) {
+        const childElement = parentElement.querySelector(
+          "#WS--template--17790039654565__track_your_order_heading"
+        ) as HTMLElement;
 
-            if (childElement) {
-                childElement.style.setProperty('display', 'block', 'important');
-            }
+        if (childElement) {
+          childElement.style.setProperty("display", "block", "important");
         }
+      }
     }, 2000);
   }
 
   //TFSC
   private TFSCaddClassToSplideChild() {
     setTimeout(() => {
-      const parentElements = this.dom.querySelectorAll('.rebuy-widget-content');
-      parentElements.forEach(parentElement => {
+      const parentElements = this.dom.querySelectorAll(".rebuy-widget-content");
+      parentElements.forEach((parentElement) => {
         const childElement = parentElement.querySelector('[id^="splide"]');
         if (childElement) {
-          childElement.classList.add('splide');
+          childElement.classList.add("splide");
         }
       });
     }, 2000);
@@ -1168,24 +1207,25 @@ export default class RyanScreenshotFixes extends Common {
   //Deux Par Deux
   private DeuxupdateAllLSProductDisplays() {
     setTimeout(() => {
-      this.dom.querySelectorAll('.LS-section').forEach(parent => {
-        parent.querySelectorAll('.LS-products-flex').forEach(child => {
-          (child as HTMLElement).style.cssText = 'display: flex !important';
+      this.dom.querySelectorAll(".LS-section").forEach((parent) => {
+        parent.querySelectorAll(".LS-products-flex").forEach((child) => {
+          (child as HTMLElement).style.cssText = "display: flex !important";
         });
       });
-  
-      this.dom.querySelectorAll('a').forEach(anchor => {
-        const hover = anchor.querySelector('.LS-product-img-hover');
-        if (hover) (hover as HTMLElement).style.cssText = 'opacity: 0 !important';
+
+      this.dom.querySelectorAll("a").forEach((anchor) => {
+        const hover = anchor.querySelector(".LS-product-img-hover");
+        if (hover)
+          (hover as HTMLElement).style.cssText = "opacity: 0 !important";
       });
     }, 2000);
   }
 
   //Live Love Locks
   private LiveLoveLocksupdateZoomContainerOpacity() {
-    const styleId = 'zoom-container-opacity-styles';
+    const styleId = "zoom-container-opacity-styles";
     if (!this.dom.getElementById(styleId)) {
-      const style = this.dom.createElement('style');
+      const style = this.dom.createElement("style");
       style.id = styleId;
       style.innerHTML = `
         .zoom-container .zoomImg {
@@ -1199,119 +1239,149 @@ export default class RyanScreenshotFixes extends Common {
   //Remi
   private RemiupdateLightboxWrapperOpacity() {
     setTimeout(() => {
-      this.dom.querySelectorAll('#shopify-section-template--18360970215637__main').forEach((parentElement) => {
-        const childElement = parentElement.querySelector('.lightbox-wrapper');
-        
-        if (childElement) {
-          const childHTMLElement = childElement as HTMLElement;
-          childHTMLElement.style.removeProperty('opacity');
-          childHTMLElement.style.setProperty('opacity', '0', 'important');
-        }
-      });
+      this.dom
+        .querySelectorAll("#shopify-section-template--18360970215637__main")
+        .forEach((parentElement) => {
+          const childElement = parentElement.querySelector(".lightbox-wrapper");
+
+          if (childElement) {
+            const childHTMLElement = childElement as HTMLElement;
+            childHTMLElement.style.removeProperty("opacity");
+            childHTMLElement.style.setProperty("opacity", "0", "important");
+          }
+        });
     }, 2000);
   }
 
   //Andie Swim
   private AndieupdateDisplayStyleInPortals() {
     setTimeout(() => {
-        const portalRoot = this.dom.querySelectorAll('#headlessui-portal-root');
-        portalRoot.forEach((parentElement) => {
-            const portalElements = parentElement.querySelectorAll('div[data-headlessui-portal]');
-            portalElements.forEach((portal) => {
-                const firstInnerElement = portal.querySelector('div');
-                if (firstInnerElement) {
-                    const elementHTMLElement = firstInnerElement as HTMLElement;
-                    elementHTMLElement.style.removeProperty('display');
-                    elementHTMLElement.style.setProperty('display', 'block', 'important');
-                }
-            });
+      const portalRoot = this.dom.querySelectorAll("#headlessui-portal-root");
+      portalRoot.forEach((parentElement) => {
+        const portalElements = parentElement.querySelectorAll(
+          "div[data-headlessui-portal]"
+        );
+        portalElements.forEach((portal) => {
+          const firstInnerElement = portal.querySelector("div");
+          if (firstInnerElement) {
+            const elementHTMLElement = firstInnerElement as HTMLElement;
+            elementHTMLElement.style.removeProperty("display");
+            elementHTMLElement.style.setProperty(
+              "display",
+              "block",
+              "important"
+            );
+          }
         });
+      });
     }, 2000);
   }
 
-  //Max Lily 
+  //Max Lily
   private MaxLilyupdateMinHeightForMainContent() {
-    this.dom.querySelectorAll('#kids-bunk-beds-amp-loft-beds-slide-beds-amp-mattresses-max-amp-lily').forEach((parentElement) => {
+    this.dom
+      .querySelectorAll(
+        "#kids-bunk-beds-amp-loft-beds-slide-beds-amp-mattresses-max-amp-lily"
+      )
+      .forEach((parentElement) => {
         const parentEl = parentElement as HTMLElement;
         if (parentEl) {
-            const childElement = parentEl.querySelector('#MainContent') as HTMLElement;
-            if (childElement) {
-                childElement.style.minHeight = 'auto';
-            }
+          const childElement = parentEl.querySelector(
+            "#MainContent"
+          ) as HTMLElement;
+          if (childElement) {
+            childElement.style.minHeight = "auto";
+          }
         }
-    });
+      });
   }
 
   //Kollagen Nutrinic
   private NutrinicremoveHeightFromImageInSlider() {
-    if (!this.dom.querySelector('#slider-height-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'slider-height-style';
-        styleElement.textContent = '.brxe-block.befo-slider__slide-inner { height: auto !important; }';
-        this.dom.head.appendChild(styleElement);
+    if (!this.dom.querySelector("#slider-height-style")) {
+      const styleElement = this.dom.createElement("style");
+      styleElement.id = "slider-height-style";
+      styleElement.textContent =
+        ".brxe-block.befo-slider__slide-inner { height: auto !important; }";
+      this.dom.head.appendChild(styleElement);
     }
 
-    this.dom.querySelectorAll('.brxe-block.befo-slider__slide-inner').forEach(parent => {
-        const imageElement = parent.querySelector('.befo-slider__image.tag img');
+    this.dom
+      .querySelectorAll(".brxe-block.befo-slider__slide-inner")
+      .forEach((parent) => {
+        const imageElement = parent.querySelector(
+          ".befo-slider__image.tag img"
+        );
         if (imageElement) {
-            (imageElement as HTMLElement).style.setProperty('height', 'auto', 'important');
+          (imageElement as HTMLElement).style.setProperty(
+            "height",
+            "auto",
+            "important"
+          );
         }
-    });
+      });
   }
 
   //Underdog
   private UnderdogupdateLazyLoadImages() {
-    this.dom.querySelectorAll('.dib-post-featured-image img').forEach(img => {
-        const lazyLoadSrc = img.getAttribute('data-lazy-load');
-        if (lazyLoadSrc) {
-            (img as HTMLImageElement).src = lazyLoadSrc;
-        }
+    this.dom.querySelectorAll(".dib-post-featured-image img").forEach((img) => {
+      const lazyLoadSrc = img.getAttribute("data-lazy-load");
+      if (lazyLoadSrc) {
+        (img as HTMLImageElement).src = lazyLoadSrc;
+      }
     });
   }
 
   //Upcircle US
   private UpcircleUSsetupFlipContentToggle() {
-    const existingElements = this.dom.querySelectorAll('.link_group_flip');
-    existingElements.forEach(el => {
-        el.removeEventListener('click', () => {});
+    const existingElements = this.dom.querySelectorAll(".link_group_flip");
+    existingElements.forEach((el) => {
+      el.removeEventListener("click", () => {});
     });
 
-    this.dom.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
-        const flipElement = target.closest('.link_group_flip');
-        
-        if (flipElement) {
-            e.preventDefault();
-            const contentElement = flipElement.nextElementSibling;
-            
-            if (contentElement?.classList.contains('upcircle_content_mob')) {
-                const currentDisplay = (contentElement as HTMLElement).style.display;
-                (contentElement as HTMLElement).style.display = currentDisplay === 'block' ? 'none' : 'block';
-            }
+    this.dom.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      const flipElement = target.closest(".link_group_flip");
+
+      if (flipElement) {
+        e.preventDefault();
+        const contentElement = flipElement.nextElementSibling;
+
+        if (contentElement?.classList.contains("upcircle_content_mob")) {
+          const currentDisplay = (contentElement as HTMLElement).style.display;
+          (contentElement as HTMLElement).style.display =
+            currentDisplay === "block" ? "none" : "block";
         }
+      }
     });
   }
 
   //Mystic Barrels
   private MysticBarrelsupdateProductImageHeight() {
-    const parent = this.dom.querySelector('#ProductInfo-template--15883225563249__mb14-main-product');
+    const parent = this.dom.querySelector(
+      "#ProductInfo-template--15883225563249__mb14-main-product"
+    );
     if (parent) {
-        const imageElement = parent.querySelector('.product-image-blocks img');
-        if (imageElement) {
-            (imageElement as HTMLElement).style.removeProperty('height');
-            (imageElement as HTMLElement).style.setProperty('height', 'auto', 'important');
-        }
+      const imageElement = parent.querySelector(".product-image-blocks img");
+      if (imageElement) {
+        (imageElement as HTMLElement).style.removeProperty("height");
+        (imageElement as HTMLElement).style.setProperty(
+          "height",
+          "auto",
+          "important"
+        );
+      }
     }
   }
 
   //Reach International Outfitters
   private updateSecondaryImageOpacity() {
     setTimeout(() => {
-        // Check if style already exists
-        if (!this.dom.querySelector('#secondary-image-style')) {
-            const styleElement = this.dom.createElement('style');
-            styleElement.id = 'secondary-image-style';
-            styleElement.textContent = `
+      // Check if style already exists
+      if (!this.dom.querySelector("#secondary-image-style")) {
+        const styleElement = this.dom.createElement("style");
+        styleElement.id = "secondary-image-style";
+        styleElement.textContent = `
                 .grid-product__image-mask .grid-product__secondary-image {
                     opacity: 0 !important;
                 }
@@ -1319,109 +1389,125 @@ export default class RyanScreenshotFixes extends Common {
                     opacity: 1 !important;
                 }
             `;
-            this.dom.head.appendChild(styleElement);
-        }
+        this.dom.head.appendChild(styleElement);
+      }
     }, 2000);
   }
 
   //Thomson Carter
   private ThomsonCarterupdateViewportHeight() {
-    this.dom.querySelectorAll('.product-single__media-slider .flickity-viewport').forEach(element => {
-        const actualHeight = element.getAttribute('actualheight');
+    this.dom
+      .querySelectorAll(".product-single__media-slider .flickity-viewport")
+      .forEach((element) => {
+        const actualHeight = element.getAttribute("actualheight");
         if (actualHeight) {
-            (element as HTMLElement).style.removeProperty('height');
-            (element as HTMLElement).style.setProperty('height', `${actualHeight}`, 'important');
+          (element as HTMLElement).style.removeProperty("height");
+          (element as HTMLElement).style.setProperty(
+            "height",
+            `${actualHeight}`,
+            "important"
+          );
         }
-    });
-    if (!this.dom.querySelector('#product-media-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'product-media-style';
-        styleElement.textContent = `
+      });
+    if (!this.dom.querySelector("#product-media-style")) {
+      const styleElement = this.dom.createElement("style");
+      styleElement.id = "product-media-style";
+      styleElement.textContent = `
             .product-single__media .product-single__media--image-height {
                 display: block !important;
             }
         `;
-        this.dom.head.appendChild(styleElement);
+      this.dom.head.appendChild(styleElement);
     }
   }
 
   private primalherbssetupMobileMenuToggle() {
-    const menuHolder = this.dom.querySelector('.mobile_menu_holder');
-    
-    this.dom.querySelector('.header header-drawer')?.addEventListener('click', () => 
-        menuHolder?.classList.add('open'));
-        
-    this.dom.querySelector('.mobile_menu_holder .close_button')?.addEventListener('click', () => 
-        menuHolder?.classList.remove('open'));
+    const menuHolder = this.dom.querySelector(".mobile_menu_holder");
+
+    this.dom
+      .querySelector(".header header-drawer")
+      ?.addEventListener("click", () => menuHolder?.classList.add("open"));
+
+    this.dom
+      .querySelector(".mobile_menu_holder .close_button")
+      ?.addEventListener("click", () => menuHolder?.classList.remove("open"));
   }
 
   //Svelte Chic
   private SvelteChichideFormEmbed() {
-    if (!this.dom.querySelector('#form-embed-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'form-embed-style';
-        styleElement.textContent = `
+    if (!this.dom.querySelector("#form-embed-style")) {
+      const styleElement = this.dom.createElement("style");
+      styleElement.id = "form-embed-style";
+      styleElement.textContent = `
             .template-index #app-embed-container-246292 {
                 display: none !important;
             }
         `;
-        this.dom.head.appendChild(styleElement);
+      this.dom.head.appendChild(styleElement);
     }
   }
 
   //Neat SweatProof Apparel
   private NeathideAgeVerifier() {
-    if (!this.dom.querySelector('#age-verifier-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'age-verifier-style';
-        styleElement.textContent = `
+    if (!this.dom.querySelector("#age-verifier-style")) {
+      const styleElement = this.dom.createElement("style");
+      styleElement.id = "age-verifier-style";
+      styleElement.textContent = `
             #shopify-section-sections--15894718775357__age-verifier-popup #sections--15894718775357__age-verifier-popup {
                 display: none !important;
             }
         `;
-        this.dom.head.appendChild(styleElement);
+      this.dom.head.appendChild(styleElement);
     }
   }
 
   //Alpha Lion
   private AlphaLionhideVideoModal() {
-    if (!this.dom.querySelector('#video-modal-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'video-modal-style';
-        styleElement.textContent = `
+    if (!this.dom.querySelector("#video-modal-style")) {
+      const styleElement = this.dom.createElement("style");
+      styleElement.id = "video-modal-style";
+      styleElement.textContent = `
             .main-wrapper [data-action="close-video"].video-modal {
                 opacity: 0 !important;
             }
         `;
-        this.dom.head.appendChild(styleElement);
+      this.dom.head.appendChild(styleElement);
     }
   }
 
   //6 Week Challenge
   private WeekChallengeupdateGalleryStyles() {
-    if (!this.dom.querySelector('#gallery-image-style')) {
-        const styleElement = this.dom.createElement('style');
-        styleElement.id = 'gallery-image-style';
-        styleElement.textContent = `
+    if (!this.dom.querySelector("#gallery-image-style")) {
+      const styleElement = this.dom.createElement("style");
+      styleElement.id = "gallery-image-style";
+      styleElement.textContent = `
             .e-gallery-item .e-gallery-image {
                 display: block !important;
             }
         `;
-        this.dom.head.appendChild(styleElement);
+      this.dom.head.appendChild(styleElement);
     }
   }
 
   //McAfee Institute Intelligence
   private McAfeeupdateDrawerHeight() {
     setTimeout(() => {
-        this.dom.querySelectorAll('#MenuDrawer.menu-drawer').forEach((parentElement) => {
-            const drawerInner = parentElement.querySelector('.drawer__inner.z-10');
-            if (drawerInner) {
-                const drawerElement = drawerInner as HTMLElement;
-                drawerElement.style.removeProperty('height');
-                drawerElement.offsetHeight;
-                drawerElement.style.setProperty('height', 'revert-layer', 'important');
-            }
+      this.dom
+        .querySelectorAll("#MenuDrawer.menu-drawer")
+        .forEach((parentElement) => {
+          const drawerInner = parentElement.querySelector(
+            ".drawer__inner.z-10"
+          );
+          if (drawerInner) {
+            const drawerElement = drawerInner as HTMLElement;
+            drawerElement.style.removeProperty("height");
+            drawerElement.offsetHeight;
+            drawerElement.style.setProperty(
+              "height",
+              "revert-layer",
+              "important"
+            );
+          }
         });
     }, 2000);
   }
@@ -1429,24 +1515,32 @@ export default class RyanScreenshotFixes extends Common {
   //Pectiv
   private PectivupdateSearchBarOpacity() {
     setTimeout(() => {
-        this.dom.querySelectorAll('#SearchBar').forEach((parentElement) => {
-            const searchWrapper = parentElement.querySelector('.search-bar-wrapper');
-            if (searchWrapper) {
-                const wrapperElement = searchWrapper as HTMLElement;
-                wrapperElement.style.removeProperty('opacity');
-                wrapperElement.offsetHeight;
-                wrapperElement.style.setProperty('opacity', '0', 'important');
-            }
-        });
+      this.dom.querySelectorAll("#SearchBar").forEach((parentElement) => {
+        const searchWrapper = parentElement.querySelector(
+          ".search-bar-wrapper"
+        );
+        if (searchWrapper) {
+          const wrapperElement = searchWrapper as HTMLElement;
+          wrapperElement.style.removeProperty("opacity");
+          wrapperElement.offsetHeight;
+          wrapperElement.style.setProperty("opacity", "0", "important");
+        }
+      });
     }, 2000);
   }
 
   //Vitality
   private VitalityupdateHeroBannerDisplay() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.container-max .hero-banner__cover').forEach(element => {
-            (element as HTMLElement).style.removeProperty('display');
-            (element as HTMLElement).style.setProperty('display', 'block', 'important');
+      this.dom
+        .querySelectorAll(".container-max .hero-banner__cover")
+        .forEach((element) => {
+          (element as HTMLElement).style.removeProperty("display");
+          (element as HTMLElement).style.setProperty(
+            "display",
+            "block",
+            "important"
+          );
         });
     }, 2000);
   }
@@ -1454,8 +1548,14 @@ export default class RyanScreenshotFixes extends Common {
   //Beds R Us Australia
   private BedsRUshideOwlClonedItems() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.owl-stage .owl-item.cloned').forEach(item => {
-            (item as HTMLElement).style.setProperty('display', 'none', 'important');
+      this.dom
+        .querySelectorAll(".owl-stage .owl-item.cloned")
+        .forEach((item) => {
+          (item as HTMLElement).style.setProperty(
+            "display",
+            "none",
+            "important"
+          );
         });
     }, 2000);
   }
@@ -1463,36 +1563,55 @@ export default class RyanScreenshotFixes extends Common {
   //Fire Dept Coffee
   private FireDeptCoffeeupdateSubmenuDisplay() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.header__nav-item.sub-menu').forEach(item => {
-            const submenu = item.querySelector('.cc-submenu-outer') as HTMLElement;
-            if (submenu) {
-                item.addEventListener('auenter', () => submenu.style.setProperty('display', 'block', 'important'));
-                item.addEventListener('mouseleave', () => submenu.style.setProperty('display', 'none', 'important'));
-            }
+      this.dom
+        .querySelectorAll(".header__nav-item.sub-menu")
+        .forEach((item) => {
+          const submenu = item.querySelector(
+            ".cc-submenu-outer"
+          ) as HTMLElement;
+          if (submenu) {
+            item.addEventListener("auenter", () =>
+              submenu.style.setProperty("display", "block", "important")
+            );
+            item.addEventListener("mouseleave", () =>
+              submenu.style.setProperty("display", "none", "important")
+            );
+          }
         });
     }, 2000);
   }
 
   //eSafety Supplies
   private eSafetyupdateMegaMenuBackground() {
-    !this.dom.querySelector('#mega-menu-style') && this.dom.head.appendChild(
-        Object.assign(this.dom.createElement('style'), {
-            id: 'mega-menu-style',
-            textContent: '.m-menu__item.m-menu__item--parent.m-menu__item--has-submenu.m-menu__item--mega .m-mega-menu { background-color: #fff !important; }'
+    !this.dom.querySelector("#mega-menu-style") &&
+      this.dom.head.appendChild(
+        Object.assign(this.dom.createElement("style"), {
+          id: "mega-menu-style",
+          textContent:
+            ".m-menu__item.m-menu__item--parent.m-menu__item--has-submenu.m-menu__item--mega .m-mega-menu { background-color: #fff !important; }",
         })
-    );
+      );
 
     setTimeout(() => {
-        (this.dom.querySelector('#m-theme #MainContent[role="main"]') as HTMLElement)?.style
-            .setProperty('margin-top', 'auto', 'important');
+      (
+        this.dom.querySelector(
+          '#m-theme #MainContent[role="main"]'
+        ) as HTMLElement
+      )?.style.setProperty("margin-top", "auto", "important");
     }, 2000);
   }
 
   //Rinse Bath Body
   private RinseBathBodyhideHeaderToolsLeft() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.main-header--tools-group .main-header--tools-left').forEach(element => {
-            (element as HTMLElement).style.setProperty('display', 'none', 'important');
+      this.dom
+        .querySelectorAll(".main-header--tools-group .main-header--tools-left")
+        .forEach((element) => {
+          (element as HTMLElement).style.setProperty(
+            "display",
+            "none",
+            "important"
+          );
         });
     }, 2000);
   }
@@ -1519,7 +1638,7 @@ export default class RyanScreenshotFixes extends Common {
   //   selectors.forEach(selector => {
   //       const targetElement = this.dom.querySelector(selector);
   //       if (targetElement) {
-  //           observer.observe(targetElement, { 
+  //           observer.observe(targetElement, {
   //               attributeFilter: ['style']
   //           });
   //       }
@@ -1529,80 +1648,99 @@ export default class RyanScreenshotFixes extends Common {
   //Albion
   private AlbionremoveSwiperOverflow() {
     setTimeout(() => {
-        const swiper = this.dom.querySelector('#MediaGallery-template--17475545333940__main .swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events');
-        if (swiper) {
-            (swiper as HTMLElement).style.removeProperty('overflow');
-        }
+      const swiper = this.dom.querySelector(
+        "#MediaGallery-template--17475545333940__main .swiper.slider-section__wrapper.swiper-initialized.swiper-horizontal.swiper-pointer-events"
+      );
+      if (swiper) {
+        (swiper as HTMLElement).style.removeProperty("overflow");
+      }
     }, 2000);
   }
 
   //sonno
   private sonnoremoveGridDisplay() {
     setTimeout(() => {
-        const grid = this.dom.querySelector('.grid.grid-cols-2.md\\:grid-cols-2.lg\\:grid-cols-3.gap-x-\\[17px\\].gap-y-9.first-load-prod');
-        if (grid && grid.querySelector('.group')) {
-            (grid as HTMLElement).style.setProperty('display', 'grid', 'important');
-        }
+      const grid = this.dom.querySelector(
+        ".grid.grid-cols-2.md\\:grid-cols-2.lg\\:grid-cols-3.gap-x-\\[17px\\].gap-y-9.first-load-prod"
+      );
+      if (grid && grid.querySelector(".group")) {
+        (grid as HTMLElement).style.setProperty("display", "grid", "important");
+      }
     }, 100);
   }
 
   //Kahoots
   private KahootsshowFloatingCart() {
-    const selector = '#floating-addToCart-container.floating-addToCart-container';
+    const selector =
+      "#floating-addToCart-container.floating-addToCart-container";
 
     const observer = new MutationObserver(() => {
-        const elements = this.dom.querySelectorAll(selector);
-        elements.forEach(element => {
-            if (element && (element as HTMLElement).style.display !== 'block') {
-                (element as HTMLElement).style.setProperty('display', 'block', 'important');
-            }
-        });
+      const elements = this.dom.querySelectorAll(selector);
+      elements.forEach((element) => {
+        if (element && (element as HTMLElement).style.display !== "block") {
+          (element as HTMLElement).style.setProperty(
+            "display",
+            "block",
+            "important"
+          );
+        }
+      });
     });
 
     const targetElement = this.dom.querySelector(selector);
     if (targetElement) {
-        observer.observe(targetElement, { 
-            attributeFilter: ['style']
-        });
+      observer.observe(targetElement, {
+        attributeFilter: ["style"],
+      });
     }
   }
 
   //Mad Rabbit
   private MadRabbitupdateSidebarDisplay() {
-    const selector = '.collection-filter__grid .collection-filter__sidebar.js-collection-filter-sidebar';
-    
+    const selector =
+      ".collection-filter__grid .collection-filter__sidebar.js-collection-filter-sidebar";
+
     const observer = new MutationObserver(() => {
-        const elements = this.dom.querySelectorAll(selector);
-        elements.forEach(element => {
-            if (element && (element as HTMLElement).style.display !== 'block') {
-                (element as HTMLElement).style.setProperty('display', 'block', 'important');
-            }
-        });
+      const elements = this.dom.querySelectorAll(selector);
+      elements.forEach((element) => {
+        if (element && (element as HTMLElement).style.display !== "block") {
+          (element as HTMLElement).style.setProperty(
+            "display",
+            "block",
+            "important"
+          );
+        }
+      });
     });
 
     const targetElement = this.dom.querySelector(selector);
     if (targetElement) {
-        observer.observe(targetElement, {
-            attributeFilter: ['style']
-        });
+      observer.observe(targetElement, {
+        attributeFilter: ["style"],
+      });
     }
   }
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
-    this.dom.querySelectorAll('#mobile-menu-drawer[data-role="drawer"]').forEach((drawerElement) => {
-      if (drawerElement.classList.contains('mobile-nav-drawer') && drawerElement.classList.contains('opened-drawer')) {
-        const drawerBody = drawerElement.querySelector('.drawer-body');
-        if (drawerBody) {
-          drawerBody.classList.remove('heatmap-com__hidden-element');
+    this.dom
+      .querySelectorAll('#mobile-menu-drawer[data-role="drawer"]')
+      .forEach((drawerElement) => {
+        if (
+          drawerElement.classList.contains("mobile-nav-drawer") &&
+          drawerElement.classList.contains("opened-drawer")
+        ) {
+          const drawerBody = drawerElement.querySelector(".drawer-body");
+          if (drawerBody) {
+            drawerBody.classList.remove("heatmap-com__hidden-element");
+          }
+        } else {
+          const drawerBody = drawerElement.querySelector(".drawer-body");
+          if (drawerBody) {
+            drawerBody.classList.add("heatmap-com__hidden-element");
+          }
         }
-      } else {
-        const drawerBody = drawerElement.querySelector('.drawer-body');
-        if (drawerBody) {
-          drawerBody.classList.add('heatmap-com__hidden-element');
-        }
-      }
-    });
+      });
   }
 
   //disable pointer events
@@ -1638,51 +1776,57 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private UpdateIframeSrc() {
-    const iframes = this.dom.querySelectorAll("iframe") as NodeListOf<HTMLIFrameElement>;
+    const iframes = this.dom.querySelectorAll(
+      "iframe"
+    ) as NodeListOf<HTMLIFrameElement>;
     if (iframes.length === 0) return;
 
-    const proxyUrl1 = "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
+    const proxyUrl1 =
+      "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
     const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
 
     const removeProxyUrl = (url: string, proxyUrl: string) => {
-        if (url.startsWith(proxyUrl)) {
-            try {
-                return decodeURIComponent(url.replace(proxyUrl, ""));
-            } catch (e) {
-                return url.replace(proxyUrl, "");
-            }
+      if (url.startsWith(proxyUrl)) {
+        try {
+          return decodeURIComponent(url.replace(proxyUrl, ""));
+        } catch (e) {
+          return url.replace(proxyUrl, "");
         }
-        return url;
+      }
+      return url;
     };
 
     iframes.forEach((iframe) => {
+      try {
+        let iframeSrc = iframe.getAttribute("src");
+        if (!iframeSrc) return;
+
         try {
-            let iframeSrc = iframe.getAttribute("src");
-            if (!iframeSrc) return;
-
-            try {
-                iframeSrc = decodeURIComponent(iframeSrc);
-            } catch (e) {}
-
-            iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
-            iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
-
-            // Check if iframe is from loox.io
-            if (iframeSrc.includes('loox.io')) {
-                iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
-            } else {
-                iframe.setAttribute("src", iframeSrc);
-            }
-
-            if (iframe.getAttribute("src-changed") === "true") {
-                const retryWithProxy = (proxyUrl: string) => {
-                    try {
-                        iframe.setAttribute("src", proxyUrl + encodeURIComponent(iframeSrc));
-                    } catch (e) {}
-                };
-                iframe.onerror = () => retryWithProxy(proxyUrl1);
-            }
+          iframeSrc = decodeURIComponent(iframeSrc);
         } catch (e) {}
+
+        iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
+        iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
+
+        // Check if iframe is from loox.io
+        if (iframeSrc.includes("loox.io")) {
+          iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
+        } else {
+          iframe.setAttribute("src", iframeSrc);
+        }
+
+        if (iframe.getAttribute("src-changed") === "true") {
+          const retryWithProxy = (proxyUrl: string) => {
+            try {
+              iframe.setAttribute(
+                "src",
+                proxyUrl + encodeURIComponent(iframeSrc)
+              );
+            } catch (e) {}
+          };
+          iframe.onerror = () => retryWithProxy(proxyUrl1);
+        }
+      } catch (e) {}
     });
   }
 

@@ -56,7 +56,7 @@ export default class ForsonScreenshotFixes {
     this.hideTinyCookieWrapper();
     this.styleMenuDrawerElements();
     this.removeMinHeightStyle();
-    this.addMarginToElement()
+    this.addMarginToElement();
   }
 
   // Upcircle EU
@@ -511,9 +511,11 @@ export default class ForsonScreenshotFixes {
   }
 
   private addMarginToElement() {
-    const element = this.document.querySelector('.index-hero.slideshow.image-height.image-height--mobile.section-padding') as HTMLElement;
+    const element = this.document.querySelector(
+      ".index-hero.slideshow.image-height.image-height--mobile.section-padding"
+    ) as HTMLElement;
     if (element) {
-      element.style.setProperty('margin-top', '15%', 'important');
+      element.style.setProperty("margin-top", "15%", "important");
     }
   }
 
@@ -567,7 +569,6 @@ export default class ForsonScreenshotFixes {
     }
   }
 
-
   // hey hair
   private checkAndRemoveHiddenElements(): void {
     const wrapper = this.document.getElementById(
@@ -620,52 +621,60 @@ export default class ForsonScreenshotFixes {
   }
 
   private showHiddenElement() {
-    const parentElement = this.document.querySelector('.pf-c');
+    const parentElement = this.document.querySelector(".pf-c");
     if (parentElement) {
-        const childElement = parentElement.querySelector('.sc-iapVNj.iUcVNL.pf-20_') as HTMLElement;
-        if (childElement) {
-            childElement.style.setProperty('visibility', 'visible', 'important');
-        }
+      const childElement = parentElement.querySelector(
+        ".sc-iapVNj.iUcVNL.pf-20_"
+      ) as HTMLElement;
+      if (childElement) {
+        childElement.style.setProperty("visibility", "visible", "important");
+      }
     }
-}
+  }
 
-private overrideBeforeStyle() {
-  const style = this.document.createElement('style') as HTMLElement;
-  style.innerHTML = `
+  private overrideBeforeStyle() {
+    const style = this.document.createElement("style") as HTMLElement;
+    style.innerHTML = `
       .wmc-cache-loading .woocommerce-Price-amount.amount:before {
           position: static !important;
       }
   `;
-  this.document.head.appendChild(style);
-}
-
-private hideTinyCookieWrapper() {
-  const elements = this.document.querySelectorAll('#tinycookie-wrapper') as NodeListOf<HTMLImageElement>;
-  elements.forEach(element => {
-    element.style.display = 'none';
-  });
-}
-
-private styleMenuDrawerElements() {
-  const parentElements = this.document.querySelectorAll('.menu-drawer__inner-container') as NodeListOf<HTMLImageElement>;
-  parentElements.forEach(parent => {
-    const child = parent.querySelector('.menu-drawer__navigation-container') as HTMLLIElement;
-
-    if (child) {
-      parent.style.width = 'max-content';
-      parent.style.background = 'white';
-      child.style.width = 'max-content';
-      child.style.background = 'white';
-    }
-  });
-}
-
-private removeMinHeightStyle() {
-  const element = this.document.getElementById('gp-carousel-product-list-carousel-g5qBAQx5d8-template--23408454664498__gp_section_519316681286222864') as HTMLElement;
-  if (element) {
-    element.style.removeProperty('min-height');
+    this.document.head.appendChild(style);
   }
-}
 
+  private hideTinyCookieWrapper() {
+    const elements = this.document.querySelectorAll(
+      "#tinycookie-wrapper"
+    ) as NodeListOf<HTMLImageElement>;
+    elements.forEach((element) => {
+      element.style.display = "none";
+    });
+  }
 
+  private styleMenuDrawerElements() {
+    const parentElements = this.document.querySelectorAll(
+      ".menu-drawer__inner-container"
+    ) as NodeListOf<HTMLImageElement>;
+    parentElements.forEach((parent) => {
+      const child = parent.querySelector(
+        ".menu-drawer__navigation-container"
+      ) as HTMLLIElement;
+
+      if (child) {
+        parent.style.width = "max-content";
+        parent.style.background = "white";
+        child.style.width = "max-content";
+        child.style.background = "white";
+      }
+    });
+  }
+
+  private removeMinHeightStyle() {
+    const element = this.document.getElementById(
+      "gp-carousel-product-list-carousel-g5qBAQx5d8-template--23408454664498__gp_section_519316681286222864"
+    ) as HTMLElement;
+    if (element) {
+      element.style.removeProperty("min-height");
+    }
+  }
 }
