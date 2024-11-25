@@ -1069,7 +1069,7 @@ export default class RyanScreenshotFixes extends Common {
   private NectaraddActiveClass() {
     this.dom
       .querySelectorAll(
-        "#shopify-section-sections--15554716860475__header .bottom_sticky"
+        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky"
       )
       .forEach((element) => {
         if (element) {
