@@ -98,7 +98,8 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromImageswonderpaws();
     this.removeAfterPseudoFromHomeSliderAncestral();
     this.removeWidthPropertiesFromSwiperSlidessullen();
-    this.removeWidthPropertiesFromSwiperSlides();
+    this.removeWidthPropertiesFromSwiperSlidesRIO();
+    this.hideElementWithClassBGT4X4()
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1243,13 +1244,19 @@ private removeWidthPropertiesFromSwiperSlidessullen(): void {
       });
   }
 }
-private removeWidthPropertiesFromSwiperSlides(): void {
+private removeWidthPropertiesFromSwiperSlidesRIO(): void {
   const ancestorElement = this.document.getElementById('CollectionSwitcher1-template--16295078461517__featured_collection_switcher_wThniV');
   if (ancestorElement) {
     const swiperSlides = ancestorElement.querySelectorAll('.grid__image-contain.image-style--.image-element') as NodeListOf<HTMLElement>;
     swiperSlides.forEach((swiperSlide) => {
       swiperSlide.style.removeProperty('width');
     });
+  }
+}
+private hideElementWithClassBGT4X4(): void {
+  const element = this.document.querySelector('.shopify-section.place-under-transparent-header.is-in-viewport') as HTMLElement;
+  if (element) {
+    element.style.display = 'none';
   }
 }
 
