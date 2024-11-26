@@ -98,7 +98,8 @@ export default class AnitaScreenShotFixes {
     this.removeAfterPseudoFromHomeSliderAncestral();
     this.removeWidthPropertiesFromSwiperSlidessullen();
     this.removeWidthPropertiesFromSwiperSlidesRIO();
-    this.hideElementWithClassBGT4X4()
+    this.hideElementWithClassBGT4X4();
+    this.setHeaderToFlexMYSTICBARRELS()
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1263,6 +1264,13 @@ private hideElementWithClassBGT4X4(): void {
   const element = this.document.querySelector('.shopify-section.place-under-transparent-header.is-in-viewport') as HTMLElement;
   if (element) {
     element.style.display = 'none';
+  }
+}
+private setHeaderToFlexMYSTICBARRELS(): void {
+  const headerElement = this.document.querySelector('.header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account') as HTMLElement;
+
+  if (headerElement) {
+    headerElement.style.display = 'flex';
   }
 }
 
