@@ -762,25 +762,35 @@ export default class RyanScreenshotFixes extends Common {
 
   // Woojer
   private WoojerUpdateMinHeightAndVisibility() {
-    this.dom
-      .querySelectorAll(".sc-kqGpvY")
-      .forEach((parentElement: HTMLElement) => {
-        parentElement
-          .querySelectorAll(
-            ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
-          )
-          .forEach((childElement: HTMLElement) => {
-            childElement.style.setProperty("min-height", "auto", "important");
-          });
-      });
+    this.dom.querySelectorAll(".sc-kqGpvY").forEach((parent) => {
+      parent
+        .querySelectorAll(
+          ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
+        )
+        .forEach((child: HTMLElement) =>
+          child.style.setProperty("min-height", "auto", "important")
+        );
+    });
 
-    if (!document.querySelector("#visibilityStyle")) {
-      const style = document.createElement("style");
-      style.id = "visibilityStyle";
-      style.innerHTML =
-        ".pf-c .sc-iapVNj.iUcVvL { visibility: visible !important; }";
-      document.head.appendChild(style);
-    }
+    const updateVisibility = (el: HTMLElement) =>
+      el.style.visibility === "hidden" &&
+      el.style.setProperty("visibility", "visible", "important");
+
+    const observer = new MutationObserver(() =>
+      this.dom
+        .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+        .forEach((el) => updateVisibility(el as HTMLElement))
+    );
+
+    observer.observe(this.dom.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style"],
+    });
+    this.dom
+      .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+      .forEach((el) => updateVisibility(el as HTMLElement));
   }
 
   //Nubiance
