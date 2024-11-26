@@ -1724,20 +1724,28 @@ export default class RyanScreenshotFixes extends Common {
 
   //Alpha Lion
   private AlphaLionupdateRadioOpacity() {
-    this.dom.querySelectorAll('.single_product input[type="radio"]').forEach(input => {
-        (input as HTMLElement).style.removeProperty('opacity');
-        (input as HTMLElement).style.setProperty('opacity', '0', 'important');
-    });
+    this.dom
+      .querySelectorAll('.single_product input[type="radio"]')
+      .forEach((input) => {
+        (input as HTMLElement).style.removeProperty("opacity");
+        (input as HTMLElement).style.setProperty("opacity", "0", "important");
+      });
   }
 
   //
   private MobileTrainupdateCarouselArrows() {
-    this.dom.querySelectorAll('.jdgm-carousel__arrows').forEach(parent => {
-        const arrows = parent.querySelectorAll('.jdgm-carousel__left-arrow, .jdgm-carousel__right-arrow');
-        arrows.forEach(arrow => {
-            (arrow as HTMLElement).style.removeProperty('display');
-            (arrow as HTMLElement).style.setProperty('display', 'block', 'important');
-        });
+    this.dom.querySelectorAll(".jdgm-carousel__arrows").forEach((parent) => {
+      const arrows = parent.querySelectorAll(
+        ".jdgm-carousel__left-arrow, .jdgm-carousel__right-arrow"
+      );
+      arrows.forEach((arrow) => {
+        (arrow as HTMLElement).style.removeProperty("display");
+        (arrow as HTMLElement).style.setProperty(
+          "display",
+          "block",
+          "important"
+        );
+      });
     });
   }
 
@@ -1801,9 +1809,8 @@ export default class RyanScreenshotFixes extends Common {
     ) as NodeListOf<HTMLIFrameElement>;
     if (iframes.length === 0) return;
 
-    const proxyUrl1 =
-      "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
-    const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
+    const proxyUrl1 = "https://portal.heatmap.com/proxy/spa-only/getUrl?url=";
+    const proxyUrl2 = "https://portal.heatmap.com/proxy/getUrl?url=";
 
     const removeProxyUrl = (url: string, proxyUrl: string) => {
       if (url.startsWith(proxyUrl)) {
