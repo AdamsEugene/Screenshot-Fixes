@@ -502,6 +502,8 @@ export default class RyanScreenshotFixes extends Common {
         this.DeuxupdateAllLSProductDisplays();
         this.RemiupdateLightboxWrapperOpacity();
         this.AndieupdateDisplayStyleInPortals();
+        this.AlphaLionupdateRadioOpacity();
+        this.MobileTrainupdateCarouselArrows();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1074,7 +1076,6 @@ export default class RyanScreenshotFixes extends Common {
       .forEach((element) => {
         if (element) {
           element.classList.add("active");
-          console.log('Added "active" class to the bottom_sticky element.');
         }
       });
   }
@@ -1719,6 +1720,25 @@ export default class RyanScreenshotFixes extends Common {
         attributeFilter: ["style"],
       });
     }
+  }
+
+  //Alpha Lion
+  private AlphaLionupdateRadioOpacity() {
+    this.dom.querySelectorAll('.single_product input[type="radio"]').forEach(input => {
+        (input as HTMLElement).style.removeProperty('opacity');
+        (input as HTMLElement).style.setProperty('opacity', '0', 'important');
+    });
+  }
+
+  //
+  private MobileTrainupdateCarouselArrows() {
+    this.dom.querySelectorAll('.jdgm-carousel__arrows').forEach(parent => {
+        const arrows = parent.querySelectorAll('.jdgm-carousel__left-arrow, .jdgm-carousel__right-arrow');
+        arrows.forEach(arrow => {
+            (arrow as HTMLElement).style.removeProperty('display');
+            (arrow as HTMLElement).style.setProperty('display', 'block', 'important');
+        });
+    });
   }
 
   //toggleHeatmapClassOnDrawer
