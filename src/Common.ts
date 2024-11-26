@@ -14,6 +14,22 @@ export default class Common {
   protected insideIframe = false;
   protected prodMode = true;
 
+  private selectorsToExclude = new Map([
+    [
+      3004,
+      {
+        idSelectors: ["#replace-this-with-id"],
+        classSelectors: ["mob-drawer"],
+      },
+    ],
+    // add another of idSite and ids and classes not to add heatmap-com__hidden-element
+  ]);
+
+  private getSiteURLAsObj() {
+    const currentUrl = window.location.href;
+    return new URL(currentUrl);
+  }
+
   constructor(dom: Document = document) {
     this.dom = dom;
   }
@@ -30,6 +46,24 @@ export default class Common {
     if (container?.contentWindow?.document) this.insideIframe = true;
 
     func();
+  }
+
+  protected idSite(): number | null {
+    const urlObj = this.getSiteURLAsObj();
+    const idSiteParam = urlObj.searchParams.get("idSite");
+    const idSiteNumber = idSiteParam ? parseInt(idSiteParam, 10) : null;
+    return Number.isNaN(idSiteNumber) ? null : idSiteNumber;
+  }
+
+  protected idSiteHsr() {
+    const url = window.location.href;
+    const urlParams = new URLSearchParams(url.split("#")[1]);
+    const subcategory = urlParams.get("subcategory");
+    if (subcategory) {
+      return Number.isNaN(subcategory) ? null : +subcategory;
+    }
+    const oldIdsitehsr = urlParams.get("old_idsitehsr");
+    return Number.isNaN(oldIdsitehsr) ? null : +oldIdsitehsr;
   }
 
   protected allElements<T extends Element = HTMLElement>(
@@ -141,13 +175,58 @@ export default class Common {
     // container?.contentWindow?.removeEventListener("resize", this.handleResize);
   }
 
+  protected isElementInViewport(element: Element): boolean {
+    const rect = element.getBoundingClientRect();
+
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (this.iframeWindow.innerHeight ||
+          this.dom.documentElement.clientHeight) &&
+      rect.right <=
+        (this.iframeWindow.innerWidth || this.dom.documentElement.clientWidth)
+    );
+  }
+
+  public removeHeatmapComHideElement() {
+    if (!this.idSite()) return;
+    const exclusionRules = this.selectorsToExclude.get(this.idSite());
+    if (!this.prodMode) console.log({ exclusionRules, id: this.idSite() });
+
+    if (!exclusionRules) return;
+
+    const selectors = [
+      ...exclusionRules.idSelectors,
+      ...exclusionRules.classSelectors.map((cls) => `.${cls}`),
+    ].join(", ");
+
+    if (!this.prodMode) console.log({ selectors });
+
+    this.dom.querySelectorAll(selectors).forEach((container) => {
+      container.classList.remove("heatmap-com__hidden-element");
+      if (!this.prodMode) console.log({ container });
+
+      const allElements = container.querySelectorAll("*");
+
+      if (!this.prodMode) console.log({ allElements });
+
+      Array.from(allElements).forEach((element) => {
+        if (this.isElementInViewport(element)) {
+          element.classList.remove("heatmap-com__hidden-element");
+        }
+      });
+    });
+  }
+
   private getRedirectType(): "dashboard" | "locala" | "deves" | "dever" {
     const url = new URL(window.location.href);
     const hostname = url.hostname;
     if (hostname.includes("localhost")) return "locala";
     if (hostname.includes("dashboard")) return "dashboard";
+    if (hostname.includes("portal")) return "dashboard";
     if (hostname.includes("early-release")) return "dever";
     if (hostname.includes("earlystage")) return "deves";
-    return "dashboard";
+    return "dever";
   }
 }

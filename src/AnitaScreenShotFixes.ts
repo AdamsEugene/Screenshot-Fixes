@@ -22,7 +22,6 @@ export default class AnitaScreenShotFixes {
       this.log("Running in non-production mode");
     }
 
-
     this.removeHeightProperty();
     this.setTransparentBackground();
     this.setMobileMenuZIndexAndPosition();
@@ -1191,7 +1190,7 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
- 
+
   private removeInlineStylesFromCurrencySwitcherChildWUNutrition(): void {
     const parentElement = this.document.querySelector(
       ".doubly-nice-select.currency-switcher.left.slim.open"
@@ -1205,45 +1204,52 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  
+
   private removeInlineStylesFromImageswonderpaws(): void {
     const parentElements = this.document.querySelectorAll<HTMLElement>(
       ".swiper-slide.item-product-card.grid__item.medium-up--one-half.text-left"
     );
 
     parentElements.forEach((parent) => {
-        const images = parent.querySelectorAll<HTMLImageElement>("img.feature-row__image");
+      const images = parent.querySelectorAll<HTMLImageElement>(
+        "img.feature-row__image"
+      );
 
-        images.forEach((img) => {
-            img.removeAttribute("style");
-        });
+      images.forEach((img) => {
+        img.removeAttribute("style");
+      });
     });
-}
-private removeAfterPseudoFromHomeSliderAncestral(): void {
-  const element = this.document.getElementById('homeslider') as HTMLElement;
+  }
+  private removeAfterPseudoFromHomeSliderAncestral(): void {
+    const element = this.document.getElementById("homeslider") as HTMLElement;
 
-  if (element) {
-      const style = this.document.createElement('style');
+    if (element) {
+      const style = this.document.createElement("style");
       style.innerHTML = `
           #homeslider::after {
               content: none !important;
           }
       `;
       this.document.head.appendChild(style);
+    }
   }
-}
-private removeWidthPropertiesFromSwiperSlidessullen(): void {
-  const allProductsElement = this.document.querySelector('.all_products_abc') as HTMLElement;
+  private removeWidthPropertiesFromSwiperSlidessullen(): void {
+    const allProductsElement = this.document.querySelector(
+      ".all_products_abc"
+    ) as HTMLElement;
 
-  if (allProductsElement) {
-      const swiperSlides = allProductsElement.querySelectorAll('.swiper-slide') as NodeListOf<HTMLElement>;
+    if (allProductsElement) {
+      const swiperSlides = allProductsElement.querySelectorAll(
+        ".swiper-slide"
+      ) as NodeListOf<HTMLElement>;
 
       swiperSlides.forEach((swiperSlide) => {
-          swiperSlide.style.removeProperty('min-width');
-          swiperSlide.style.removeProperty('max-width');
+        swiperSlide.style.removeProperty("min-width");
+        swiperSlide.style.removeProperty("max-width");
       });
+    }
   }
-}
+
 private removeWidthPropertiesFromSwiperSlidesRIO(): void {
   const ancestorElement = this.document.getElementById('CollectionSwitcher1-template--16295078461517__featured_collection_switcher_wThniV');
   if (ancestorElement) {
