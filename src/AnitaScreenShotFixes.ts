@@ -100,6 +100,7 @@ export default class AnitaScreenShotFixes {
     this.removeWidthPropertiesFromSwiperSlidesRIO();
     this.hideElementWithClassBGT4X4();
     this.setHeaderToFlexMYSTICBARRELS();
+    this.removeInlineStylesFromElementOCTO();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1281,4 +1282,12 @@ export default class AnitaScreenShotFixes {
       headerElement.style.display = "flex";
     }
   }
+  private removeInlineStylesFromElementOCTO(): void {
+    const element = this.document.querySelector('.bgExtraLayerOverlay') as HTMLElement | null;
+  
+    if (element) {
+      element.removeAttribute('style'); // Remove all inline styles
+    }
+  }
+  
 }
