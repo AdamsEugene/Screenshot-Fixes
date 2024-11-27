@@ -83,7 +83,6 @@ export default class RyanScreenshotFixes extends Common {
       this.KahootsshowFloatingCart();
       this.MadRabbitupdateSidebarDisplay();
       this.BreeoupdateBannerMinHeight();
-      this.VelvetCaviarupdateParentDisplayStyle();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -496,7 +495,7 @@ export default class RyanScreenshotFixes extends Common {
         this.NextAdventureSetSubmenuHeight();
         this.NitesightssetChildOpacities();
         this.ShieldEUsetChildOpacities();
-        this.PulsioShowHiddenFAQAnswers();
+        // this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
@@ -506,6 +505,7 @@ export default class RyanScreenshotFixes extends Common {
         this.AndieupdateDisplayStyleInPortals();
         this.AlphaLionupdateRadioOpacity();
         this.MobileTrainupdateCarouselArrows();
+        this.VelvetCaviarupdateParentDisplayStyle();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -1020,19 +1020,19 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Pulsio AIR
-  private PulsioShowHiddenFAQAnswers() {
-    this.dom
-      .querySelectorAll('[classification^="FAQ Question"]')
-      .forEach((parent) => {
-        const hiddenChild = Array.from(parent.children).find(
-          (child) => window.getComputedStyle(child).display === "none"
-        ) as HTMLElement;
+  // private PulsioShowHiddenFAQAnswers() {
+  //   this.dom
+  //     .querySelectorAll('[classification^="FAQ Question"]')
+  //     .forEach((parent) => {
+  //       const hiddenChild = Array.from(parent.children).find(
+  //         (child) => window.getComputedStyle(child).display === "none"
+  //       ) as HTMLElement;
 
-        if (hiddenChild) {
-          hiddenChild.style.setProperty("display", "block", "important");
-        }
-      });
-  }
+  //       if (hiddenChild) {
+  //         hiddenChild.style.setProperty("display", "block", "important");
+  //       }
+  //     });
+  // }
 
   //big kizzy hair
   private bigkizzyFixSlideshowbox() {
