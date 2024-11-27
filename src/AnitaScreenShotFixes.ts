@@ -103,6 +103,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromElementOCTO();
     this.setStylesForElementOCTO();
     this.removeInlineStylesFromElementsFastTrac();
+    this.hideInsertedStarContainersFastTrac();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1306,21 +1307,27 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeInlineStylesFromElementsFastTrac(): void {
-    // Define the class selectors to target
     const classSelectors: string[] = [
       '.sc-TBWPX.gKJFzi.pf-280_.pf-heading-1-h3',
       '.sc-TBWPX.gKJFzi.pf-171_.pf-heading-1-h3'
     ];
-  
-    // Iterate over each class selector
     classSelectors.forEach((selector) => {
       const elements = this.document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
   
       elements.forEach((element) => {
-        element.removeAttribute('style'); // Remove all inline styles
+        element.removeAttribute('style');
       });
     });
   }
+  private hideInsertedStarContainersFastTrac(): void {
+    const elements = this.document.querySelectorAll('.inserted-star-container') as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.display = 'none';
+    });
+  }
+  
+  
   
   
 }
