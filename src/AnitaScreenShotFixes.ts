@@ -102,6 +102,7 @@ export default class AnitaScreenShotFixes {
     this.setHeaderToFlexMYSTICBARRELS();
     this.removeInlineStylesFromElementOCTO();
     this.setStylesForElementOCTO();
+    this.removeInlineStylesFastTrac();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1304,4 +1305,12 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("width", "286px", "important");
     }
   }
+  private removeInlineStylesFastTrac(): void {
+    const element = this.document.querySelector('.sc-TBWPX.gKJFzi.pf-280_.pf-heading-1-h3') as HTMLElement | null;
+  
+    if (element) {
+      element.removeAttribute('style'); // Remove all inline styles
+    }
+  }
+  
 }
