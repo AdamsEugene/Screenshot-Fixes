@@ -558,5 +558,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.conteches.com-bridges-structures--main.html"
     }
+  },
+  {
+    "selector": "#stamped-reviews-widget",
+    "content": {
+      "idSite": 427,
+      "idSiteHsr": 134780,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.alphalion.com--main.html"
+    }
   }
 ]
