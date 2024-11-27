@@ -1079,41 +1079,56 @@ export default class RyanScreenshotFixes extends Common {
 
   //Nectar
   private NectarUpdateStyles() {
-    const bottomStickyElements = this.dom.querySelectorAll(".bottom_sticky");
+    const bottomStickyCount =
+      this.dom.querySelectorAll(".bottom_sticky").length;
 
-    if (bottomStickyElements.length === 1) {
-      bottomStickyElements[0].classList.add("active");
-    } else if (bottomStickyElements.length > 1) {
-      const stickyButton = this.dom.querySelector(
-        ".shopify-section.sticky-button"
-      );
-      if (stickyButton) {
-        (stickyButton as HTMLElement).style.setProperty(
+    if (bottomStickyCount > 1) {
+      const selector = ".shopify-section.sticky-button";
+      const observer = new MutationObserver(() => {
+        const elements = this.dom.querySelectorAll(selector);
+        elements.forEach((element) => {
+          if (element && (element as HTMLElement).style.display !== "block") {
+            (element as HTMLElement).style.setProperty(
+              "display",
+              "block",
+              "important"
+            );
+            (element as HTMLElement).style.setProperty(
+              "visibility",
+              "visible",
+              "important"
+            );
+          }
+        });
+      });
+
+      const targetElement = this.dom.querySelector(selector);
+      if (targetElement) {
+        (targetElement as HTMLElement).style.setProperty(
           "visibility",
           "visible",
           "important"
         );
+        observer.observe(targetElement, {
+          attributeFilter: ["style"],
+        });
       }
+    } else if (bottomStickyCount === 1) {
+      this.dom.querySelector(".bottom_sticky")?.classList.add("active");
     }
 
-    const parentSelector =
-      ".shopify-section.shopify-section-group-header-group.section-header, .page-width";
-
-    this.dom.querySelectorAll(parentSelector).forEach((parent) => {
-      const bottomSticky = parent.querySelector(".bottom_sticky");
-      if (bottomSticky) {
-        (bottomSticky as HTMLElement).style.setProperty(
-          "bottom",
-          "0",
-          "important"
-        );
-        (bottomSticky as HTMLElement).style.setProperty(
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky"
+      )
+      .forEach((el) => {
+        (el as HTMLElement).style.setProperty("bottom", "0", "important");
+        (el as HTMLElement).style.setProperty(
           "visibility",
           "visible",
           "important"
         );
-      }
-    });
+      });
   }
 
   //Next Adventure
