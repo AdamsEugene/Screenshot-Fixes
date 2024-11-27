@@ -101,6 +101,7 @@ export default class AnitaScreenShotFixes {
     this.hideElementWithClassBGT4X4();
     this.setHeaderToFlexMYSTICBARRELS();
     this.removeInlineStylesFromElementOCTO();
+    this.setStylesForElementOCTO();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1283,11 +1284,24 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeInlineStylesFromElementOCTO(): void {
-    const element = this.document.querySelector('.bgExtraLayerOverlay') as HTMLElement | null;
-  
+    const element = this.document.querySelector(
+      ".bgExtraLayerOverlay"
+    ) as HTMLElement | null;
+
     if (element) {
-      element.removeAttribute('style'); // Remove all inline styles
+      element.removeAttribute("style");
     }
   }
-  
+  private setStylesForElementOCTO(): void {
+    const element = this.document.querySelector(
+      ".u_1560738228.dmNewParagraph"
+    ) as HTMLElement | null;
+
+    if (element) {
+      element.style.setProperty("margin-left", "60px", "important");
+      element.style.setProperty("max-width", "100%", "important");
+      element.style.setProperty("margin", "unset", "important");
+      element.style.setProperty("width", "286px", "important");
+    }
+  }
 }
