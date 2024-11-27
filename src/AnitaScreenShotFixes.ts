@@ -99,7 +99,8 @@ export default class AnitaScreenShotFixes {
     this.removeWidthPropertiesFromSwiperSlidessullen();
     this.removeWidthPropertiesFromSwiperSlidesRIO();
     this.hideElementWithClassBGT4X4();
-    this.setHeaderToFlexMYSTICBARRELS()
+    this.setHeaderToFlexMYSTICBARRELS();
+    this.removeInlineStylesFromElementOCTO();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1251,37 +1252,42 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-private removeWidthPropertiesFromSwiperSlidesRIO(): void {
-  const ancestorElement = this.document.getElementById('CollectionSwitcher1-template--16295078461517__featured_collection_switcher_wThniV');
-  if (ancestorElement) {
-    const swiperSlides = ancestorElement.querySelectorAll('.grid__image-contain.image-style--.image-element') as NodeListOf<HTMLElement>;
-    swiperSlides.forEach((swiperSlide) => {
-      swiperSlide.style.removeProperty('width');
-    });
+  private removeWidthPropertiesFromSwiperSlidesRIO(): void {
+    const ancestorElement = this.document.getElementById(
+      "CollectionSwitcher1-template--16295078461517__featured_collection_switcher_wThniV"
+    );
+    if (ancestorElement) {
+      const swiperSlides = ancestorElement.querySelectorAll(
+        ".grid__image-contain.image-style--.image-element"
+      ) as NodeListOf<HTMLElement>;
+      swiperSlides.forEach((swiperSlide) => {
+        swiperSlide.style.removeProperty("width");
+      });
+    }
   }
-}
-private hideElementWithClassBGT4X4(): void {
-  const element = this.document.querySelector('.shopify-section.place-under-transparent-header.is-in-viewport') as HTMLElement;
-  if (element) {
-    element.style.display = 'none';
+  private hideElementWithClassBGT4X4(): void {
+    const element = this.document.querySelector(
+      ".shopify-section.place-under-transparent-header.is-in-viewport"
+    ) as HTMLElement;
+    if (element) {
+      element.style.display = "none";
+    }
   }
-}
-private setHeaderToFlexMYSTICBARRELS(): void {
-  const headerElement = this.document.querySelector('.header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account') as HTMLElement;
+  private setHeaderToFlexMYSTICBARRELS(): void {
+    const headerElement = this.document.querySelector(
+      ".header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account"
+    ) as HTMLElement;
 
-  if (headerElement) {
-    headerElement.style.display = 'flex';
+    if (headerElement) {
+      headerElement.style.display = "flex";
+    }
   }
-}
-
-
-
-
-
-
-
-
+  private removeInlineStylesFromElementOCTO(): void {
+    const element = this.document.querySelector('.bgExtraLayerOverlay') as HTMLElement | null;
+  
+    if (element) {
+      element.removeAttribute('style'); // Remove all inline styles
+    }
+  }
   
 }
-
-

@@ -49,6 +49,8 @@ class ScreenshotFixes extends Common {
     () => this.adjustGridProductImageHeight(),
     () => this.observeMutations(),
     () => this.DenvercoContentAdjustOpacity(),
+    () => this.setFontSizeToImportantOCTO(),
+
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -214,6 +216,14 @@ class ScreenshotFixes extends Common {
       }
     });
   }
+  private setFontSizeToImportantOCTO(): void {
+    const elements = this.dom.querySelectorAll('.m-font-size-38.font-size-80') as NodeListOf<HTMLElement>;
+  
+    elements.forEach((element) => {
+      element.style.setProperty('font-size', '38px', 'important');
+    });
+  }
+  
 
   private appendToFastSimonShadowRoot(
     element: HTMLElement,
