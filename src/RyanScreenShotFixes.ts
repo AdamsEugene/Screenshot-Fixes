@@ -1079,56 +1079,52 @@ export default class RyanScreenshotFixes extends Common {
 
   //Nectar
   private NectarUpdateStyles() {
-    const bottomStickyCount =
-      this.dom.querySelectorAll(".bottom_sticky").length;
-
+    const bottomStickyCount = this.dom.querySelectorAll('.bottom_sticky').length;
+    
     if (bottomStickyCount > 1) {
-      const selector = ".shopify-section.sticky-button";
-      const observer = new MutationObserver(() => {
-        const elements = this.dom.querySelectorAll(selector);
-        elements.forEach((element) => {
-          if (element && (element as HTMLElement).style.display !== "block") {
-            (element as HTMLElement).style.setProperty(
-              "display",
-              "block",
-              "important"
-            );
-            (element as HTMLElement).style.setProperty(
-              "visibility",
-              "visible",
-              "important"
-            );
-          }
+        const selector = '.shopify-section.sticky-button';
+        
+        // Initial force update
+        const initialElements = this.dom.querySelectorAll(selector);
+        initialElements.forEach(element => {
+            (element as HTMLElement).style.removeProperty('display');
+            (element as HTMLElement).style.setProperty('display', 'block', 'important');
+            (element as HTMLElement).style.setProperty('visibility', 'visible', 'important');
         });
-      });
 
-      const targetElement = this.dom.querySelector(selector);
-      if (targetElement) {
-        (targetElement as HTMLElement).style.setProperty(
-          "visibility",
-          "visible",
-          "important"
-        );
-        observer.observe(targetElement, {
-          attributeFilter: ["style"],
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    const elements = this.dom.querySelectorAll(selector);
+                    elements.forEach(element => {
+                        const computedStyle = window.getComputedStyle(element);
+                        if (computedStyle.display === 'none') {
+                            (element as HTMLElement).style.removeProperty('display');
+                            (element as HTMLElement).style.setProperty('display', 'block', 'important');
+                            (element as HTMLElement).style.setProperty('visibility', 'visible', 'important');
+                        }
+                    });
+                }
+            });
         });
-      }
+
+        const targetElement = this.dom.querySelector(selector);
+        if (targetElement) {
+            observer.observe(targetElement, {
+                attributes: true,
+                attributeFilter: ['style'],
+                attributeOldValue: true
+            });
+        }
     } else if (bottomStickyCount === 1) {
-      this.dom.querySelector(".bottom_sticky")?.classList.add("active");
+        this.dom.querySelector('.bottom_sticky')?.classList.add('active');
     }
 
-    this.dom
-      .querySelectorAll(
-        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky"
-      )
-      .forEach((el) => {
-        (el as HTMLElement).style.setProperty("bottom", "0", "important");
-        (el as HTMLElement).style.setProperty(
-          "visibility",
-          "visible",
-          "important"
-        );
-      });
+    this.dom.querySelectorAll('.shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky')
+        .forEach(el => {
+            (el as HTMLElement).style.setProperty('bottom', '0', 'important');
+            (el as HTMLElement).style.setProperty('visibility', 'visible', 'important');
+        });
   }
 
   //Next Adventure
