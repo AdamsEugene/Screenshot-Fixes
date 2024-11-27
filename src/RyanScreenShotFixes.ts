@@ -1086,10 +1086,12 @@ export default class RyanScreenshotFixes extends Common {
     if (bottomStickyCount > 1) {
       const selector = ".shopify-section.sticky-button";
 
+      // Initial force update
       const initialElements = this.dom.querySelectorAll(selector);
       initialElements.forEach((element) => {
         element.classList.add("active");
         (element as HTMLElement).style.removeProperty("display");
+        (element as HTMLElement).style.removeProperty("opacity");
         (element as HTMLElement).style.setProperty(
           "display",
           "block",
@@ -1115,6 +1117,7 @@ export default class RyanScreenshotFixes extends Common {
               if (computedStyle.display === "none") {
                 element.classList.add("active");
                 (element as HTMLElement).style.removeProperty("display");
+                (element as HTMLElement).style.removeProperty("opacity");
                 (element as HTMLElement).style.setProperty(
                   "display",
                   "block",
@@ -1123,6 +1126,11 @@ export default class RyanScreenshotFixes extends Common {
                 (element as HTMLElement).style.setProperty(
                   "visibility",
                   "visible",
+                  "important"
+                );
+                (element as HTMLElement).style.setProperty(
+                  "opacity",
+                  "1",
                   "important"
                 );
               }
