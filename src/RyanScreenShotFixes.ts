@@ -49,7 +49,7 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
-      this.NectaraddActiveClass();
+      this.NectarUpdateStyles();
       this.toggleMobileNavDataOpen();
       this.toggleHeatmapClassOnDrawer();
       this.FeelgroundssetNavButtonDisplay();
@@ -1078,16 +1078,22 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Nectar
-  private NectaraddActiveClass() {
-    this.dom
-      .querySelectorAll(
-        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky"
-      )
-      .forEach((element) => {
-        if (element) {
-          element.classList.add("active");
+  private NectarUpdateStyles() {
+    const bottomStickyElements = this.dom.querySelectorAll('.bottom_sticky');
+    
+    if (bottomStickyElements.length === 1) {
+        bottomStickyElements[0].classList.add('active');
+    }
+
+    const parentSelector = '.shopify-section.shopify-section-group-header-group.section-header, .page-width';
+    
+    this.dom.querySelectorAll(parentSelector).forEach(parent => {
+        const bottomSticky = parent.querySelector('.bottom_sticky');
+        if (bottomSticky) {
+            (bottomSticky as HTMLElement).style.setProperty('bottom', '0', 'important');
+            (bottomSticky as HTMLElement).style.setProperty('visibility', 'visible', 'important');
         }
-      });
+    });
   }
 
   //Next Adventure
