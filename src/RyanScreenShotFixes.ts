@@ -1100,6 +1100,7 @@ export default class RyanScreenshotFixes extends Common {
           "visible",
           "important"
         );
+        (element as HTMLElement).style.setProperty("opacity", "1", "important");
       });
 
       const observer = new MutationObserver((mutations) => {
