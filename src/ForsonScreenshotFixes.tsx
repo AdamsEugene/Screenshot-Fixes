@@ -3,9 +3,6 @@ import { log } from "console";
 export default class ForsonScreenshotFixes {
   private document: Document;
 
-  /* constructor(dom: Document = document) {
-    this.document = dom;
-  } */
 
   constructor(dom: Document = document) {
     this.document = dom;
