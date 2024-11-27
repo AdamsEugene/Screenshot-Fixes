@@ -83,6 +83,7 @@ export default class RyanScreenshotFixes extends Common {
       this.KahootsshowFloatingCart();
       this.MadRabbitupdateSidebarDisplay();
       this.BreeoupdateBannerMinHeight();
+      this.VelvetCaviarupdateParentDisplayStyle();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1080,64 +1081,79 @@ export default class RyanScreenshotFixes extends Common {
 
   //Nectar
   private NectarUpdateStyles() {
-    const bottomStickyCount = this.dom.querySelectorAll(".bottom_sticky").length;
+    const bottomStickyCount =
+      this.dom.querySelectorAll(".bottom_sticky").length;
 
     if (bottomStickyCount > 1) {
-        const selector = ".shopify-section.sticky-button";
+      const selector = ".shopify-section.sticky-button";
 
-        // Initial force update
-        const initialElements = this.dom.querySelectorAll(selector);
-        initialElements.forEach((element) => {
-            element.classList.add('active');
-            const el = element as HTMLElement;
-            el.style.setProperty("display", "block", "important");
-            el.style.setProperty("visibility", "visible", "important");
-            el.style.setProperty("opacity", "1", "important"); // Always set opacity with !important
+      // Initial force update
+      const initialElements = this.dom.querySelectorAll(selector);
+      initialElements.forEach((element) => {
+        element.classList.add("active");
+        const el = element as HTMLElement;
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("visibility", "visible", "important");
+        el.style.setProperty("opacity", "1", "important"); // Always set opacity with !important
+      });
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "style"
+          ) {
+            const elements = this.dom.querySelectorAll(selector);
+            elements.forEach((element) => {
+              const el = element as HTMLElement;
+              // Always apply styles regardless of current state
+              el.classList.add("active");
+              el.style.setProperty("display", "block", "important");
+              el.style.setProperty("visibility", "visible", "important");
+              el.style.setProperty("opacity", "1", "important");
+            });
+          }
+        });
+      });
+
+      const targetElement = this.dom.querySelector(selector);
+      if (targetElement) {
+        observer.observe(targetElement, {
+          attributes: true,
+          attributeFilter: ["style"],
+          attributeOldValue: true,
+          subtree: true, // Added to watch nested elements
         });
 
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === "attributes" && mutation.attributeName === "style") {
-                    const elements = this.dom.querySelectorAll(selector);
-                    elements.forEach((element) => {
-                        const el = element as HTMLElement;
-                        // Always apply styles regardless of current state
-                        el.classList.add('active');
-                        el.style.setProperty("display", "block", "important");
-                        el.style.setProperty("visibility", "visible", "important");
-                        el.style.setProperty("opacity", "1", "important");
-                    });
-                }
-            });
-        });
-
-        const targetElement = this.dom.querySelector(selector);
-        if (targetElement) {
-            observer.observe(targetElement, {
-                attributes: true,
-                attributeFilter: ["style"],
-                attributeOldValue: true,
-                subtree: true, // Added to watch nested elements
-            });
-
-            // Force initial opacity with !important
-            (targetElement as HTMLElement).style.setProperty("opacity", "1", "important");
-        }
+        // Force initial opacity with !important
+        (targetElement as HTMLElement).style.setProperty(
+          "opacity",
+          "1",
+          "important"
+        );
+      }
     } else if (bottomStickyCount === 1) {
-        const stickyElement = this.dom.querySelector(".bottom_sticky");
-        if (stickyElement) {
-            stickyElement.classList.add("active");
-            (stickyElement as HTMLElement).style.setProperty("opacity", "1", "important");
-        }
+      const stickyElement = this.dom.querySelector(".bottom_sticky");
+      if (stickyElement) {
+        stickyElement.classList.add("active");
+        (stickyElement as HTMLElement).style.setProperty(
+          "opacity",
+          "1",
+          "important"
+        );
+      }
     }
 
-    this.dom.querySelectorAll(".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky")
-        .forEach((el) => {
-            const element = el as HTMLElement;
-            element.style.setProperty("bottom", "0", "important");
-            element.style.setProperty("visibility", "visible", "important");
-        });
-}
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky"
+      )
+      .forEach((el) => {
+        const element = el as HTMLElement;
+        element.style.setProperty("bottom", "0", "important");
+        element.style.setProperty("visibility", "visible", "important");
+      });
+  }
 
   //Next Adventure
   private toggleMobileNavDataOpen() {
@@ -1831,6 +1847,35 @@ export default class RyanScreenshotFixes extends Common {
           "auto",
           "important"
         );
+      });
+  }
+
+  //Velvet Caviar
+  private VelvetCaviarupdateParentDisplayStyle() {
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.page-section.section-header.vue-component.sticky.top-0"
+      )
+      .forEach((parent) => {
+        const scriptChild = parent.querySelector(
+          'script[classification-group="headline"]'
+        );
+        if (scriptChild) {
+          const element = scriptChild as HTMLElement;
+          element.style.setProperty("display", "none", "important");
+
+          const observer = new MutationObserver(() => {
+            const computedStyle = window.getComputedStyle(element);
+            if (computedStyle.display === "block") {
+              element.style.setProperty("display", "none", "important");
+            }
+          });
+
+          observer.observe(element, {
+            attributes: true,
+            attributeFilter: ["style"],
+          });
+        }
       });
   }
 
