@@ -1086,46 +1086,17 @@ export default class RyanScreenshotFixes extends Common {
 
     if (bottomStickyCount > 1) {
       const selector = ".shopify-section.sticky-button";
-
-      // Initial force update
       const initialElements = this.dom.querySelectorAll(selector);
       initialElements.forEach((element) => {
         element.classList.add("active");
         const el = element as HTMLElement;
         el.style.setProperty("display", "block", "important");
         el.style.setProperty("visibility", "visible", "important");
-        el.style.setProperty("opacity", "1", "important"); // Always set opacity with !important
-      });
-
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (
-            mutation.type === "attributes" &&
-            mutation.attributeName === "style"
-          ) {
-            const elements = this.dom.querySelectorAll(selector);
-            elements.forEach((element) => {
-              const el = element as HTMLElement;
-              // Always apply styles regardless of current state
-              el.classList.add("active");
-              el.style.setProperty("display", "block", "important");
-              el.style.setProperty("visibility", "visible", "important");
-              el.style.setProperty("opacity", "1", "important");
-            });
-          }
-        });
+        el.style.setProperty("opacity", "1", "important");
       });
 
       const targetElement = this.dom.querySelector(selector);
       if (targetElement) {
-        observer.observe(targetElement, {
-          attributes: true,
-          attributeFilter: ["style"],
-          attributeOldValue: true,
-          subtree: true, // Added to watch nested elements
-        });
-
-        // Force initial opacity with !important
         (targetElement as HTMLElement).style.setProperty(
           "opacity",
           "1",
@@ -1143,16 +1114,6 @@ export default class RyanScreenshotFixes extends Common {
         );
       }
     }
-
-    this.dom
-      .querySelectorAll(
-        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky"
-      )
-      .forEach((el) => {
-        const element = el as HTMLElement;
-        element.style.setProperty("bottom", "0", "important");
-        element.style.setProperty("visibility", "visible", "important");
-      });
   }
 
   //Next Adventure
@@ -1862,8 +1823,11 @@ export default class RyanScreenshotFixes extends Common {
         );
         if (scriptChild) {
           const element = scriptChild as HTMLElement;
+
+          // Initially set display to none
           element.style.setProperty("display", "none", "important");
 
+          // Set up a MutationObserver to observe changes in the style
           const observer = new MutationObserver(() => {
             const computedStyle = window.getComputedStyle(element);
             if (computedStyle.display === "block") {
@@ -1871,12 +1835,10 @@ export default class RyanScreenshotFixes extends Common {
             }
           });
 
-          // Observe the parent element, since the child's display could be altered indirectly
-          observer.observe(parent, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["style"],
+          // Observe the style of the element directly for changes to its display
+          observer.observe(element, {
+            attributes: true, // Observe attribute changes (like style)
+            attributeFilter: ["style"], // Only interested in style changes
           });
         }
       });
