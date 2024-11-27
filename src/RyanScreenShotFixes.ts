@@ -1833,7 +1833,7 @@ export default class RyanScreenshotFixes extends Common {
       .forEach((banner) => {
         (banner as HTMLElement).style.setProperty(
           "min-height",
-          "0",
+          "auto",
           "important"
         );
       });
