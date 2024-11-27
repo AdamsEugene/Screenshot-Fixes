@@ -1831,6 +1831,17 @@ export default class RyanScreenshotFixes extends Common {
         ".shopify-section.section.image-banner-section .banner.banner-medium.theme-dark"
       )
       .forEach((banner) => {
+        const windowHeight = banner.getAttribute("windowheight");
+        if (windowHeight) {
+          const calculatedHeight = `${Math.round(
+            Number(windowHeight) * 0.85
+          )}px`;
+          (banner as HTMLElement).style.setProperty(
+            "height",
+            calculatedHeight,
+            "important"
+          );
+        }
         (banner as HTMLElement).style.setProperty(
           "min-height",
           "auto",
