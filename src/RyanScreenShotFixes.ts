@@ -1742,7 +1742,7 @@ export default class RyanScreenshotFixes extends Common {
       if (grid && grid.querySelector(".group")) {
         (grid as HTMLElement).style.setProperty("display", "grid", "important");
       }
-    }, 100);
+    }, 1000);
   }
 
   //Kahoots
@@ -1852,31 +1852,24 @@ export default class RyanScreenshotFixes extends Common {
 
   //Velvet Caviar
   private VelvetCaviarupdateParentDisplayStyle() {
-    this.dom
-      .querySelectorAll(
-        ".shopify-section.page-section.section-header.vue-component.sticky.top-0"
-      )
-      .forEach((parent) => {
-        const scriptChild = parent.querySelector(
-          'script[classification-group="headline"]'
-        );
-        if (scriptChild) {
-          const element = scriptChild as HTMLElement;
-          element.style.setProperty("display", "none", "important");
-
-          const observer = new MutationObserver(() => {
-            const computedStyle = window.getComputedStyle(element);
-            if (computedStyle.display === "block") {
-              element.style.setProperty("display", "none", "important");
-            }
-          });
-
-          observer.observe(element, {
-            attributes: true,
-            attributeFilter: ["style"],
-          });
-        }
-      });
+    setTimeout(() => {
+      this.dom
+        .querySelectorAll(
+          ".shopify-section.page-section.section-header.vue-component.sticky.top-0"
+        )
+        .forEach((parent) => {
+          const scriptChild = parent.querySelector(
+            'script[classification-group="headline"]'
+          );
+          if (scriptChild) {
+            (scriptChild as HTMLElement).style.setProperty(
+              "display",
+              "none",
+              "important"
+            );
+          }
+        });
+    }, 1000);
   }
 
   //toggleHeatmapClassOnDrawer
