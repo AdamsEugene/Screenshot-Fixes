@@ -83,6 +83,7 @@ export default class RyanScreenshotFixes extends Common {
       this.KahootsshowFloatingCart();
       this.MadRabbitupdateSidebarDisplay();
       this.BreeoupdateBannerMinHeight();
+      this.VelvetCaviarupdateParentDisplayStyle();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -505,7 +506,6 @@ export default class RyanScreenshotFixes extends Common {
         this.AndieupdateDisplayStyleInPortals();
         this.AlphaLionupdateRadioOpacity();
         this.MobileTrainupdateCarouselArrows();
-        this.VelvetCaviarupdateParentDisplayStyle();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
