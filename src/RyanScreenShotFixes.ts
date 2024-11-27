@@ -1080,90 +1080,64 @@ export default class RyanScreenshotFixes extends Common {
 
   //Nectar
   private NectarUpdateStyles() {
-    const bottomStickyCount =
-      this.dom.querySelectorAll(".bottom_sticky").length;
+    const bottomStickyCount = this.dom.querySelectorAll(".bottom_sticky").length;
 
     if (bottomStickyCount > 1) {
-      const selector = ".shopify-section.sticky-button";
+        const selector = ".shopify-section.sticky-button";
 
-      // Initial force update
-      const initialElements = this.dom.querySelectorAll(selector);
-      initialElements.forEach((element) => {
-        element.classList.add("active");
-        (element as HTMLElement).style.removeProperty("display");
-        (element as HTMLElement).style.removeProperty("opacity");
-        (element as HTMLElement).style.setProperty(
-          "display",
-          "block",
-          "important"
-        );
-        (element as HTMLElement).style.setProperty(
-          "visibility",
-          "visible",
-          "important"
-        );
-        (element as HTMLElement).style.setProperty("opacity", "1", "important");
-      });
+        // Initial force update
+        const initialElements = this.dom.querySelectorAll(selector);
+        initialElements.forEach((element) => {
+            element.classList.add('active');
+            const el = element as HTMLElement;
+            el.style.setProperty("display", "block", "important");
+            el.style.setProperty("visibility", "visible", "important");
+            el.style.setProperty("opacity", "1", "important"); // Always set opacity with !important
+        });
 
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (
-            mutation.type === "attributes" &&
-            mutation.attributeName === "style"
-          ) {
-            const elements = this.dom.querySelectorAll(selector);
-            elements.forEach((element) => {
-              const computedStyle = window.getComputedStyle(element);
-              if (computedStyle.display === "none") {
-                element.classList.add("active");
-                (element as HTMLElement).style.removeProperty("display");
-                (element as HTMLElement).style.removeProperty("opacity");
-                (element as HTMLElement).style.setProperty(
-                  "display",
-                  "block",
-                  "important"
-                );
-                (element as HTMLElement).style.setProperty(
-                  "visibility",
-                  "visible",
-                  "important"
-                );
-                (element as HTMLElement).style.setProperty(
-                  "opacity",
-                  "1",
-                  "important"
-                );
-              }
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === "attributes" && mutation.attributeName === "style") {
+                    const elements = this.dom.querySelectorAll(selector);
+                    elements.forEach((element) => {
+                        const el = element as HTMLElement;
+                        // Always apply styles regardless of current state
+                        el.classList.add('active');
+                        el.style.setProperty("display", "block", "important");
+                        el.style.setProperty("visibility", "visible", "important");
+                        el.style.setProperty("opacity", "1", "important");
+                    });
+                }
             });
-          }
         });
-      });
 
-      const targetElement = this.dom.querySelector(selector);
-      if (targetElement) {
-        observer.observe(targetElement, {
-          attributes: true,
-          attributeFilter: ["style"],
-          attributeOldValue: true,
-        });
-      }
+        const targetElement = this.dom.querySelector(selector);
+        if (targetElement) {
+            observer.observe(targetElement, {
+                attributes: true,
+                attributeFilter: ["style"],
+                attributeOldValue: true,
+                subtree: true, // Added to watch nested elements
+            });
+
+            // Force initial opacity with !important
+            (targetElement as HTMLElement).style.setProperty("opacity", "1", "important");
+        }
     } else if (bottomStickyCount === 1) {
-      this.dom.querySelector(".bottom_sticky")?.classList.add("active");
+        const stickyElement = this.dom.querySelector(".bottom_sticky");
+        if (stickyElement) {
+            stickyElement.classList.add("active");
+            (stickyElement as HTMLElement).style.setProperty("opacity", "1", "important");
+        }
     }
 
-    this.dom
-      .querySelectorAll(
-        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky"
-      )
-      .forEach((el) => {
-        (el as HTMLElement).style.setProperty("bottom", "0", "important");
-        (el as HTMLElement).style.setProperty(
-          "visibility",
-          "visible",
-          "important"
-        );
-      });
-  }
+    this.dom.querySelectorAll(".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky, .page-width .bottom_sticky")
+        .forEach((el) => {
+            const element = el as HTMLElement;
+            element.style.setProperty("bottom", "0", "important");
+            element.style.setProperty("visibility", "visible", "important");
+        });
+}
 
   //Next Adventure
   private toggleMobileNavDataOpen() {
