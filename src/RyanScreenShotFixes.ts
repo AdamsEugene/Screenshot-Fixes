@@ -1852,24 +1852,30 @@ export default class RyanScreenshotFixes extends Common {
 
   //Velvet Caviar
   private VelvetCaviarupdateParentDisplayStyle() {
-    setTimeout(() => {
-      this.dom
-        .querySelectorAll(
-          ".shopify-section.page-section.section-header.vue-component.sticky.top-0"
-        )
-        .forEach((parent) => {
-          const scriptChild = parent.querySelector(
-            'script[classification-group="headline"]'
-          );
-          if (scriptChild) {
-            (scriptChild as HTMLElement).style.setProperty(
-              "display",
-              "none",
-              "important"
-            );
+    const selector =
+      ".shopify-section.page-section.section-header.vue-component.sticky.top-0";
+
+    const observer = new MutationObserver(() => {
+      const elements = this.dom.querySelectorAll(selector);
+      elements.forEach((parent) => {
+        const scriptChild = parent.querySelector(
+          'script[classification-group="headline"]'
+        );
+        if (scriptChild) {
+          const element = scriptChild as HTMLElement;
+          if (element && element.style.display !== "none") {
+            element.style.setProperty("display", "none", "important");
           }
-        });
-    }, 1000);
+        }
+      });
+    });
+
+    const targetElement = this.dom.querySelector(selector);
+    if (targetElement) {
+      observer.observe(targetElement, {
+        attributeFilter: ["style"],
+      });
+    }
   }
 
   //toggleHeatmapClassOnDrawer
