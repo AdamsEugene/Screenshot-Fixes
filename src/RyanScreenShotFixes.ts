@@ -1852,30 +1852,34 @@ export default class RyanScreenshotFixes extends Common {
 
   //Velvet Caviar
   private VelvetCaviarupdateParentDisplayStyle() {
-    const selector =
-      ".shopify-section.page-section.section-header.vue-component.sticky.top-0";
-
-    const observer = new MutationObserver(() => {
-      const elements = this.dom.querySelectorAll(selector);
-      elements.forEach((parent) => {
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.page-section.section-header.vue-component.sticky.top-0"
+      )
+      .forEach((parent) => {
         const scriptChild = parent.querySelector(
           'script[classification-group="headline"]'
         );
         if (scriptChild) {
           const element = scriptChild as HTMLElement;
-          if (element && element.style.display !== "none") {
-            element.style.setProperty("display", "none", "important");
-          }
+          element.style.setProperty("display", "none", "important");
+
+          const observer = new MutationObserver(() => {
+            const computedStyle = window.getComputedStyle(element);
+            if (computedStyle.display === "block") {
+              element.style.setProperty("display", "none", "important");
+            }
+          });
+
+          // Observe the parent element, since the child's display could be altered indirectly
+          observer.observe(parent, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["style"],
+          });
         }
       });
-    });
-
-    const targetElement = this.dom.querySelector(selector);
-    if (targetElement) {
-      observer.observe(targetElement, {
-        attributeFilter: ["style"],
-      });
-    }
   }
 
   //toggleHeatmapClassOnDrawer
