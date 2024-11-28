@@ -85,6 +85,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BreeoupdateBannerMinHeight();
       this.VelvetCaviarupdateParentDisplayStyle();
       this.KarambitupdateCartDrawer();
+      this.denverHeadshotupdateHeroMargin();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1834,7 +1835,7 @@ export default class RyanScreenshotFixes extends Common {
 
           observer.observe(element, {
             attributes: true,
-            attributeFilter: ["style"], 
+            attributeFilter: ["style"],
           });
         }
       });
@@ -1842,9 +1843,34 @@ export default class RyanScreenshotFixes extends Common {
 
   //Karambit
   private KarambitupdateCartDrawer() {
-    const cartDrawer = this.dom.querySelector('cart-drawer.old-cart-drawer.drawer.is-empty');
+    const cartDrawer = this.dom.querySelector(
+      "cart-drawer.old-cart-drawer.drawer.is-empty"
+    );
     if (cartDrawer) {
-      cartDrawer.classList.remove('is-empty');
+      cartDrawer.classList.remove("is-empty");
+    }
+  }
+
+  //Denver Headshot
+  private denverHeadshotupdateHeroMargin() {
+    const parent = this.dom.querySelector(
+      ".entry-content.alignfull.wp-block-post-content.has-global-padding.is-layout-constrained.wp-block-post-content-is-layout-constrained"
+    );
+    if (parent) {
+      const heroSlideshow = parent.querySelector(
+        ".block-hero-background-slideshow.alignfull"
+      );
+      if (heroSlideshow) {
+        const actualHeight = heroSlideshow.getAttribute("actualheight");
+        if (actualHeight) {
+          const marginValue = parseInt(actualHeight) * 0.08 + "px";
+          (heroSlideshow as HTMLElement).style.setProperty(
+            "margin-top",
+            marginValue,
+            "important"
+          );
+        }
+      }
     }
   }
 
