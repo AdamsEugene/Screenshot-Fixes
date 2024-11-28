@@ -1,3 +1,5 @@
+import { ReplaceImgSrc } from "./@types";
+
 type COMMON = {
   containerId: string;
   debugMode: boolean;
@@ -24,6 +26,14 @@ export default class Common {
     ],
     // add another of idSite and ids and classes not to add heatmap-com__hidden-element
   ]);
+
+  protected replaceImgSrcMap: ReplaceImgSrc = {
+    2883: {
+      idSiteHsr: 5427523,
+      selector: ".image-element__wrap.is-hidden-desktop-only.test-3",
+      src: "//puracashmere.com/cdn/shop/files/Mobile_Banner_1_e973367a-98ac-4d6b-84d9-93dd20c6166c.jpg?v=1710514006&width=200",
+    },
+  };
 
   private getSiteURLAsObj() {
     const currentUrl = window.location.href;
@@ -76,7 +86,7 @@ export default class Common {
 
   protected elements(className: string, tag?: boolean) {
     const name = className.startsWith(".") ? className : `.${className}`;
-    return this.dom.querySelector(tag ? className : name);
+    return this.dom.querySelector(tag ? className : name) as HTMLElement;
   }
 
   protected elementById(id: string) {

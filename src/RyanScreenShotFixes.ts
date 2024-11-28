@@ -49,7 +49,7 @@ export default class RyanScreenshotFixes extends Common {
       this.bigkizzyFixSlideshowbox();
       this.canopyremoveOverflowFromProductMediaList();
       this.updateCartPopupHeight();
-      this.NectaraddActiveClass();
+      this.NectarUpdateStyles();
       this.toggleMobileNavDataOpen();
       this.toggleHeatmapClassOnDrawer();
       this.FeelgroundssetNavButtonDisplay();
@@ -82,6 +82,9 @@ export default class RyanScreenshotFixes extends Common {
       this.sonnoremoveGridDisplay();
       this.KahootsshowFloatingCart();
       this.MadRabbitupdateSidebarDisplay();
+      this.BreeoupdateBannerMinHeight();
+      this.VelvetCaviarupdateParentDisplayStyle();
+      this.KarambitupdateCartDrawer();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -494,7 +497,7 @@ export default class RyanScreenshotFixes extends Common {
         this.NextAdventureSetSubmenuHeight();
         this.NitesightssetChildOpacities();
         this.ShieldEUsetChildOpacities();
-        this.PulsioShowHiddenFAQAnswers();
+        // this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
@@ -502,6 +505,8 @@ export default class RyanScreenshotFixes extends Common {
         this.DeuxupdateAllLSProductDisplays();
         this.RemiupdateLightboxWrapperOpacity();
         this.AndieupdateDisplayStyleInPortals();
+        this.AlphaLionupdateRadioOpacity();
+        this.MobileTrainupdateCarouselArrows();
       });
 
       observer.observe(this.dom.body, { childList: true, subtree: true });
@@ -760,25 +765,35 @@ export default class RyanScreenshotFixes extends Common {
 
   // Woojer
   private WoojerUpdateMinHeightAndVisibility() {
-    this.dom
-      .querySelectorAll(".sc-kqGpvY")
-      .forEach((parentElement: HTMLElement) => {
-        parentElement
-          .querySelectorAll(
-            ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
-          )
-          .forEach((childElement: HTMLElement) => {
-            childElement.style.setProperty("min-height", "auto", "important");
-          });
-      });
+    this.dom.querySelectorAll(".sc-kqGpvY").forEach((parent) => {
+      parent
+        .querySelectorAll(
+          ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
+        )
+        .forEach((child: HTMLElement) =>
+          child.style.setProperty("min-height", "auto", "important")
+        );
+    });
 
-    if (!document.querySelector("#visibilityStyle")) {
-      const style = document.createElement("style");
-      style.id = "visibilityStyle";
-      style.innerHTML =
-        ".pf-c .sc-iapVNj.iUcVvL { visibility: visible !important; }";
-      document.head.appendChild(style);
-    }
+    const updateVisibility = (el: HTMLElement) =>
+      el.style.visibility === "hidden" &&
+      el.style.setProperty("visibility", "visible", "important");
+
+    const observer = new MutationObserver(() =>
+      this.dom
+        .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+        .forEach((el) => updateVisibility(el as HTMLElement))
+    );
+
+    observer.observe(this.dom.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style"],
+    });
+    this.dom
+      .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+      .forEach((el) => updateVisibility(el as HTMLElement));
   }
 
   //Nubiance
@@ -1006,19 +1021,19 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Pulsio AIR
-  private PulsioShowHiddenFAQAnswers() {
-    this.dom
-      .querySelectorAll('[classification^="FAQ Question"]')
-      .forEach((parent) => {
-        const hiddenChild = Array.from(parent.children).find(
-          (child) => window.getComputedStyle(child).display === "none"
-        ) as HTMLElement;
+  // private PulsioShowHiddenFAQAnswers() {
+  //   this.dom
+  //     .querySelectorAll('[classification^="FAQ Question"]')
+  //     .forEach((parent) => {
+  //       const hiddenChild = Array.from(parent.children).find(
+  //         (child) => window.getComputedStyle(child).display === "none"
+  //       ) as HTMLElement;
 
-        if (hiddenChild) {
-          hiddenChild.style.setProperty("display", "block", "important");
-        }
-      });
-  }
+  //       if (hiddenChild) {
+  //         hiddenChild.style.setProperty("display", "block", "important");
+  //       }
+  //     });
+  // }
 
   //big kizzy hair
   private bigkizzyFixSlideshowbox() {
@@ -1066,17 +1081,40 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //Nectar
-  private NectaraddActiveClass() {
-    this.dom
-      .querySelectorAll(
-        ".shopify-section.shopify-section-group-header-group.section-header .bottom_sticky"
-      )
-      .forEach((element) => {
-        if (element) {
-          element.classList.add("active");
-          console.log('Added "active" class to the bottom_sticky element.');
-        }
+  private NectarUpdateStyles() {
+    const bottomStickyCount =
+      this.dom.querySelectorAll(".bottom_sticky").length;
+
+    if (bottomStickyCount > 1) {
+      const selector = ".shopify-section.sticky-button";
+      const initialElements = this.dom.querySelectorAll(selector);
+      initialElements.forEach((element) => {
+        element.classList.add("active");
+        const el = element as HTMLElement;
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("visibility", "visible", "important");
+        el.style.setProperty("opacity", "1", "important");
       });
+
+      const targetElement = this.dom.querySelector(selector);
+      if (targetElement) {
+        (targetElement as HTMLElement).style.setProperty(
+          "opacity",
+          "1",
+          "important"
+        );
+      }
+    } else if (bottomStickyCount === 1) {
+      const stickyElement = this.dom.querySelector(".bottom_sticky");
+      if (stickyElement) {
+        stickyElement.classList.add("active");
+        (stickyElement as HTMLElement).style.setProperty(
+          "opacity",
+          "1",
+          "important"
+        );
+      }
+    }
   }
 
   //Next Adventure
@@ -1666,7 +1704,7 @@ export default class RyanScreenshotFixes extends Common {
       if (grid && grid.querySelector(".group")) {
         (grid as HTMLElement).style.setProperty("display", "grid", "important");
       }
-    }, 100);
+    }, 1000);
   }
 
   //Kahoots
@@ -1718,6 +1756,95 @@ export default class RyanScreenshotFixes extends Common {
       observer.observe(targetElement, {
         attributeFilter: ["style"],
       });
+    }
+  }
+
+  //Alpha Lion
+  private AlphaLionupdateRadioOpacity() {
+    this.dom
+      .querySelectorAll('.single_product input[type="radio"]')
+      .forEach((input) => {
+        (input as HTMLElement).style.removeProperty("opacity");
+        (input as HTMLElement).style.setProperty("opacity", "0", "important");
+      });
+  }
+
+  //
+  private MobileTrainupdateCarouselArrows() {
+    this.dom.querySelectorAll(".jdgm-carousel__arrows").forEach((parent) => {
+      const arrows = parent.querySelectorAll(
+        ".jdgm-carousel__left-arrow, .jdgm-carousel__right-arrow"
+      );
+      arrows.forEach((arrow) => {
+        (arrow as HTMLElement).style.removeProperty("display");
+        (arrow as HTMLElement).style.setProperty(
+          "display",
+          "block",
+          "important"
+        );
+      });
+    });
+  }
+
+  //Breeo
+  private BreeoupdateBannerMinHeight() {
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.section.image-banner-section .banner.banner-medium.theme-dark"
+      )
+      .forEach((banner) => {
+        const windowHeight = banner.getAttribute("windowheight");
+        if (windowHeight) {
+          const calculatedHeight = `${Math.round(
+            Number(windowHeight) * 0.85
+          )}px`;
+          (banner as HTMLElement).style.setProperty(
+            "height",
+            calculatedHeight,
+            "important"
+          );
+        }
+        (banner as HTMLElement).style.setProperty(
+          "min-height",
+          "auto",
+          "important"
+        );
+      });
+  }
+
+  //Velvet Caviar
+  private VelvetCaviarupdateParentDisplayStyle() {
+    this.dom
+      .querySelectorAll(
+        ".shopify-section.page-section.section-header.vue-component.sticky.top-0"
+      )
+      .forEach((parent) => {
+        const scriptChild = parent.querySelector(
+          'script[classification-group="headline"]'
+        );
+        if (scriptChild) {
+          const element = scriptChild as HTMLElement;
+          element.style.setProperty("display", "none", "important");
+          const observer = new MutationObserver(() => {
+            const computedStyle = window.getComputedStyle(element);
+            if (computedStyle.display === "block") {
+              element.style.setProperty("display", "none", "important");
+            }
+          });
+
+          observer.observe(element, {
+            attributes: true,
+            attributeFilter: ["style"], 
+          });
+        }
+      });
+  }
+
+  //Karambit
+  private KarambitupdateCartDrawer() {
+    const cartDrawer = this.dom.querySelector('cart-drawer.old-cart-drawer.drawer.is-empty');
+    if (cartDrawer) {
+      cartDrawer.classList.remove('is-empty');
     }
   }
 
@@ -1781,9 +1908,8 @@ export default class RyanScreenshotFixes extends Common {
     ) as NodeListOf<HTMLIFrameElement>;
     if (iframes.length === 0) return;
 
-    const proxyUrl1 =
-      "https://dashboard.heatmap.com/proxy/spa-only/getUrl?url=";
-    const proxyUrl2 = "https://dashboard.heatmap.com/proxy/getUrl?url=";
+    const proxyUrl1 = "https://portal.heatmap.com/proxy/spa-only/getUrl?url=";
+    const proxyUrl2 = "https://portal.heatmap.com/proxy/getUrl?url=";
 
     const removeProxyUrl = (url: string, proxyUrl: string) => {
       if (url.startsWith(proxyUrl)) {

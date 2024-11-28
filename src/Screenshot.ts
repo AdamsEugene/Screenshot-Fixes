@@ -50,7 +50,6 @@ class ScreenshotFixes extends Common {
     () => this.observeMutations(),
     () => this.DenvercoContentAdjustOpacity(),
     () => this.setFontSizeToImportantOCTO(),
-
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -106,6 +105,7 @@ class ScreenshotFixes extends Common {
       this.injectCss();
       this.getAttrAndSetDisplayNone();
       this.modifyParentElement();
+      this.replaceImgSrc();
     };
 
     this.exec({ containerId, debugMode, func });
@@ -217,13 +217,14 @@ class ScreenshotFixes extends Common {
     });
   }
   private setFontSizeToImportantOCTO(): void {
-    const elements = this.dom.querySelectorAll('.m-font-size-38.font-size-80') as NodeListOf<HTMLElement>;
-  
+    const elements = this.dom.querySelectorAll(
+      ".m-font-size-38.font-size-80"
+    ) as NodeListOf<HTMLElement>;
+
     elements.forEach((element) => {
-      element.style.setProperty('font-size', '38px', 'important');
+      element.style.setProperty("font-size", "38px", "important");
     });
   }
-  
 
   private appendToFastSimonShadowRoot(
     element: HTMLElement,
@@ -1371,6 +1372,17 @@ class ScreenshotFixes extends Common {
       );
     }
   };
+
+  private replaceImgSrc() {
+    const imgMap = this.replaceImgSrcMap[this.idSite()];
+    if (!imgMap || imgMap.idSiteHsr !== this.idSiteHsr()) return;
+    const element = this.elements(imgMap.selector);
+    if (!element) return;
+    const img = element.querySelector("img");
+    if (img) {
+      img.src = imgMap.src;
+    }
+  }
 
   //Springinger
   private hideShopifyMinicartElements() {

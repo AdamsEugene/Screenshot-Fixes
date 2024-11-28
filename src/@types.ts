@@ -16,3 +16,11 @@ export interface JsonEntry {
   append?: string;
   content: Content;
 }
+
+export type ReplaceImgSrc = {
+  [idSite: number]: {
+    idSiteHsr: number;
+    selector: string;
+    src: string;
+  };
+};

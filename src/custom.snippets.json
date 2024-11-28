@@ -549,5 +549,47 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/sonno.co.uk-collections-ottoman-divan-beds-main.html"
     }
+  },
+  {
+    "selector": "#contech-main-navigation",
+    "content": {
+      "idSite": 3014,
+      "idSiteHsr": 7323759,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.conteches.com-bridges-structures--main.html"
+    }
+  },
+  {
+    "selector": "#stamped-reviews-widget",
+    "content": {
+      "idSite": 427,
+      "idSiteHsr": 134780,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.alphalion.com--main.html"
+    }
+  },
+  {
+    "selector": "#cart-drawer",
+    "content": {
+      "idSite": 172,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/myobvi.com-collections-collagen-protein-powder-main.html"
+    }
+  },
+  {
+    "selector": "#CartDrawer",
+    "content": {
+      "idSite": 189,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/karambit.com-products-black-undercover-karambit-w-sheath-main.html"
+    }
+  },
+  {
+    "selector": "#CartPopup",
+    "content": {
+      "idSite": 195,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.sullenclothing.com-collections-tees-main.html"
+    }
   }
 ]
