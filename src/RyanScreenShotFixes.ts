@@ -84,6 +84,7 @@ export default class RyanScreenshotFixes extends Common {
       this.MadRabbitupdateSidebarDisplay();
       this.BreeoupdateBannerMinHeight();
       this.VelvetCaviarupdateParentDisplayStyle();
+      this.KarambitupdateCartDrawer();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1823,11 +1824,7 @@ export default class RyanScreenshotFixes extends Common {
         );
         if (scriptChild) {
           const element = scriptChild as HTMLElement;
-
-          // Initially set display to none
           element.style.setProperty("display", "none", "important");
-
-          // Set up a MutationObserver to observe changes in the style
           const observer = new MutationObserver(() => {
             const computedStyle = window.getComputedStyle(element);
             if (computedStyle.display === "block") {
@@ -1835,13 +1832,20 @@ export default class RyanScreenshotFixes extends Common {
             }
           });
 
-          // Observe the style of the element directly for changes to its display
           observer.observe(element, {
-            attributes: true, // Observe attribute changes (like style)
-            attributeFilter: ["style"], // Only interested in style changes
+            attributes: true,
+            attributeFilter: ["style"], 
           });
         }
       });
+  }
+
+  //Karambit
+  private KarambitupdateCartDrawer() {
+    const cartDrawer = this.dom.querySelector('cart-drawer.old-cart-drawer.drawer.is-empty');
+    if (cartDrawer) {
+      cartDrawer.classList.remove('is-empty');
+    }
   }
 
   //toggleHeatmapClassOnDrawer
