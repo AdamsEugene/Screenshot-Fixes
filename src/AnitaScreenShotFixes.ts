@@ -37,7 +37,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNone();
     this.setStyleToRecommendationModal();
     this.rdImasetOpacityToProductCages();
-    this.setDisplayToBlockFulton();
+    // this.setDisplayToBlockFulton();
     this.setDisplayToBlockForKachingBundles();
     this.removeAllInlineStylesFromMegaMenuWithDelay();
     this.updateHeightForSpecificElement();
@@ -106,6 +106,7 @@ export default class AnitaScreenShotFixes {
     this.setVisibilityForElementFastTrac();
     this.hideInsertedStarContainersFastTrac();
     this.setWidthForMobileMenuReviewMysticBarrels();
+    this.removeInlineStylesFromMenuDrawerZBioticz();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1343,6 +1344,20 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private removeInlineStylesFromMenuDrawerZBioticz(): void {
+    const menuDrawer = this.document.querySelector('#menu-drawer.bg-stone-500.menu-drawer.motion-reduce') as HTMLElement | null;
+  
+    if (menuDrawer) {
+      menuDrawer.removeAttribute('style');
+  
+      const menuDrawerNavContainer = menuDrawer.querySelector('.menu-drawer__navigation-container') as HTMLElement | null;
+  
+      if (menuDrawerNavContainer) {
+        menuDrawerNavContainer.removeAttribute('style');
+      }
+    }
+  }
+  
   
   
   
