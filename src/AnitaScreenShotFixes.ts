@@ -106,6 +106,7 @@ export default class AnitaScreenShotFixes {
     this.setVisibilityForElementFastTrac();
     this.hideInsertedStarContainersFastTrac();
     this.setWidthForMobileMenuReviewMysticBarrels();
+    this.removeInlineStylesFromMenuDrawerZBioticz();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1290,7 +1291,7 @@ export default class AnitaScreenShotFixes {
   private removeInlineStylesFromElementOCTO(): void {
     const element = this.document.querySelector(
       ".bgExtraLayerOverlay"
-    ) as HTMLElement | null;
+    ) as HTMLElement;
 
     if (element) {
       element.removeAttribute("style");
@@ -1299,7 +1300,7 @@ export default class AnitaScreenShotFixes {
   private setStylesForElementOCTO(): void {
     const element = this.document.querySelector(
       ".u_1560738228.dmNewParagraph"
-    ) as HTMLElement | null;
+    ) as HTMLElement;
 
     if (element) {
       element.style.setProperty("margin-left", "60px", "important");
@@ -1308,47 +1309,68 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("width", "286px", "important");
     }
   }
-  
+
   private removeInlineStylesFASTTRAC(): void {
-    const element = this.document.querySelector('.sc-TBWPX.gKJFzi.pf-280_.pf-heading-1-h3') as HTMLElement | null;
-  
+    const element = this.document.querySelector(
+      ".sc-TBWPX.gKJFzi.pf-280_.pf-heading-1-h3"
+    ) as HTMLElement;
+
     if (element) {
-      element.removeAttribute('style');
+      element.removeAttribute("style");
     }
   }
+
   private setVisibilityForElementFastTrac(): void {
-    const element = this.document.querySelector('.sc-TBWPX.gKJFzi.pf-171_.pf-heading-1-h3') as HTMLElement | null;
-  
+    const element = this.document.querySelector(
+      ".sc-TBWPX.gKJFzi.pf-171_.pf-heading-1-h3"
+    ) as HTMLElement;
+
     if (element) {
-      element.style.visibility = 'visible';
+      element.style.visibility = "visible";
     }
   }
+
   private hideInsertedStarContainersFastTrac(): void {
-    const elements = this.document.querySelectorAll('.inserted-star-container') as NodeListOf<HTMLElement>;
+    const parent = this.document.querySelector('.sc-dwsnSq.jqylDz') as HTMLElement;
+    if (parent) {
+      const elements = parent.querySelectorAll('.inserted-star-container') as NodeListOf<HTMLElement>;
   
-    setTimeout(() => {
-      elements.forEach((element) => {
-        element.style.display = 'none';
-      });
-    }, 2000);
-  }
-  private setWidthForMobileMenuReviewMysticBarrels(): void {
-    const menuDrawer = this.document.querySelector('.menu-drawer__navigation') as HTMLElement | null;
-  
-    if (menuDrawer) {
-      const mobileMenuReview = menuDrawer.querySelector('.mobile-menu-review') as HTMLElement | null;
-  
-      if (mobileMenuReview) {
-        mobileMenuReview.style.width = '392px';
-      }
+      setTimeout(() => {
+        elements.forEach((element) => {
+          element.style.display = 'none';
+        });
+      }, 2000);
     }
   }
   
-  
-  
-  
-  
-  
-  
-  
+  private setWidthForMobileMenuReviewMysticBarrels(): void {
+    const menuDrawer = this.document.querySelector(
+      ".menu-drawer__navigation"
+    ) as HTMLElement;
+    const mobileMenuReview = menuDrawer?.querySelector(
+      ".mobile-menu-review"
+    ) as HTMLElement;
+
+    if (mobileMenuReview) {
+      mobileMenuReview.style.width = "392px";
+    }
+  }
+
+  private removeInlineStylesFromMenuDrawerZBioticz(): void {
+    const menuDrawer = this.document.querySelector(
+      "#menu-drawer.bg-stone-500.menu-drawer.motion-reduce"
+    ) as HTMLElement;
+
+    if (menuDrawer) {
+      menuDrawer.removeAttribute("style");
+    }
+
+    const menuDrawerNavContainer = menuDrawer?.querySelector(
+      ".menu-drawer__navigation-container"
+    ) as HTMLElement;
+
+    if (menuDrawerNavContainer) {
+      menuDrawerNavContainer.removeAttribute("style");
+    }
+  }
 }
