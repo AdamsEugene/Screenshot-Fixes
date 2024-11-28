@@ -1331,16 +1331,18 @@ export default class AnitaScreenShotFixes {
   }
 
   private hideInsertedStarContainersFastTrac(): void {
-    const elements = this.document.querySelectorAll(
-      ".inserted-star-container"
-    ) as NodeListOf<HTMLElement>;
-
-    setTimeout(() => {
-      elements.forEach((element) => {
-        element.style.display = "none";
-      });
-    }, 2000);
+    const parent = this.document.querySelector('.sc-dwsnSq.jqylDz') as HTMLElement;
+    if (parent) {
+      const elements = parent.querySelectorAll('.inserted-star-container') as NodeListOf<HTMLElement>;
+  
+      setTimeout(() => {
+        elements.forEach((element) => {
+          element.style.display = 'none';
+        });
+      }, 2000);
+    }
   }
+  
   private setWidthForMobileMenuReviewMysticBarrels(): void {
     const menuDrawer = this.document.querySelector(
       ".menu-drawer__navigation"
