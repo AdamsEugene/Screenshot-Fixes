@@ -641,14 +641,6 @@
     }
   },
   {
-    "selector": "#cart-drawer",
-    "content": {
-      "idSite": 1420,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/lilyandroo.com-products-silver-large-pearl-drop-ear-threaders-main.html"
-    }
-  },
-  {
     "selector": ".drawer__inner",
     "content": {
       "idSite": 1464,
