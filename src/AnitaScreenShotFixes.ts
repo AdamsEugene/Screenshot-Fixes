@@ -105,6 +105,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFASTTRAC();
     this.setVisibilityForElementFastTrac();
     this.hideInsertedStarContainersFastTrac();
+    this.setWidthForMobileMenuReviewMysticBarrels();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1331,6 +1332,18 @@ export default class AnitaScreenShotFixes {
       });
     }, 2000);
   }
+  private setWidthForMobileMenuReviewMysticBarrels(): void {
+    const menuDrawer = this.document.querySelector('.menu-drawer__navigation') as HTMLElement | null;
+  
+    if (menuDrawer) {
+      const mobileMenuReview = menuDrawer.querySelector('.mobile-menu-review') as HTMLElement | null;
+  
+      if (mobileMenuReview) {
+        mobileMenuReview.style.width = '392px';
+      }
+    }
+  }
+  
   
   
   
