@@ -591,5 +591,21 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.sullenclothing.com-collections-tees-main.html"
     }
+  },
+  {
+    "selector": "#mini-cart",
+    "content": {
+      "idSite": 345,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.myisense.com-products-isense-hybrid-premier-main.html"
+    }
+  },
+  {
+    "selector": "#cart-drawer",
+    "content": {
+      "idSite": 415,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thomsoncarter.com--main.html"
+    }
   }
 ]
