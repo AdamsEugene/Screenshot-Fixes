@@ -108,7 +108,7 @@ export default class AnitaScreenShotFixes {
     this.setWidthForMobileMenuReviewMysticBarrels();
     this.removeInlineStylesFromMenuDrawerZBioticz();
     this.hideWhiteLogoMCAFEE();
-
+    this.removeMarginFromAncestorOATFUL();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1333,18 +1333,22 @@ export default class AnitaScreenShotFixes {
   }
 
   private hideInsertedStarContainersFastTrac(): void {
-    const parent = this.document.querySelector('.sc-dwsnSq.jqylDz') as HTMLElement;
+    const parent = this.document.querySelector(
+      ".sc-dwsnSq.jqylDz"
+    ) as HTMLElement;
     if (parent) {
-      const elements = parent.querySelectorAll('.inserted-star-container') as NodeListOf<HTMLElement>;
-  
+      const elements = parent.querySelectorAll(
+        ".inserted-star-container"
+      ) as NodeListOf<HTMLElement>;
+
       setTimeout(() => {
         elements.forEach((element) => {
-          element.style.display = 'none';
+          element.style.display = "none";
         });
       }, 2000);
     }
   }
-  
+
   private setWidthForMobileMenuReviewMysticBarrels(): void {
     const menuDrawer = this.document.querySelector(
       ".menu-drawer__navigation"
@@ -1377,49 +1381,72 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeInlineStylesFromScopedNavigationContainers(): void {
-    const ancestor = this.document.querySelector('.header__icon.header__icon--menu.header__icon--summary.link.focus-inset') as HTMLElement;
-  
+    const ancestor = this.document.querySelector(
+      ".header__icon.header__icon--menu.header__icon--summary.link.focus-inset"
+    ) as HTMLElement;
+
     if (ancestor) {
-      const elements = ancestor.querySelectorAll('.menu-drawer__navigation-container') as NodeListOf<HTMLElement>;
-  
+      const elements = ancestor.querySelectorAll(
+        ".menu-drawer__navigation-container"
+      ) as NodeListOf<HTMLElement>;
+
       elements.forEach((element) => {
-        element.removeAttribute('style'); // Remove all inline styles
+        element.removeAttribute("style"); // Remove all inline styles
       });
     }
   }
-  
 
   private removeInlineStylesFromImagesInMegaInnerMob(): void {
     const parentElements = this.document.querySelectorAll(
-      '.menu-drawer__menu-item.list-menu__item.link.link--text.focus-inset'
+      ".menu-drawer__menu-item.list-menu__item.link.link--text.focus-inset"
     ) as NodeListOf<HTMLElement>;
-  
+
     parentElements.forEach((parent) => {
-      const megaInnerMobElements = parent.querySelectorAll('.mega_inner_mob') as NodeListOf<HTMLElement>;
-  
+      const megaInnerMobElements = parent.querySelectorAll(
+        ".mega_inner_mob"
+      ) as NodeListOf<HTMLElement>;
+
       megaInnerMobElements.forEach((megaInnerMob) => {
-        const images = megaInnerMob.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
-  
+        const images = megaInnerMob.querySelectorAll(
+          "img"
+        ) as NodeListOf<HTMLImageElement>;
+
         images.forEach((img) => {
-          img.removeAttribute('style');
+          img.removeAttribute("style");
         });
       });
     });
   }
   private hideWhiteLogoMCAFEE(): void {
     const parentElement = this.document.querySelector(
-      '.header__logo-link.has-white-logo.flex.items-center.relative'
+      ".header__logo-link.has-white-logo.flex.items-center.relative"
     ) as HTMLElement;
-  
+
     if (parentElement) {
       const logoElement = parentElement.querySelector(
-        '.white-logo.md\\:hidden.absolute'
+        ".white-logo.md\\:hidden.absolute"
       ) as HTMLElement;
-  
+
       if (logoElement) {
-        logoElement.style.display = 'none';
+        logoElement.style.display = "none";
       }
     }
   }
-  
+  private removeMarginFromAncestorOATFUL(): void {
+    setTimeout(() => {
+      const element = this.document.getElementById(
+        "shopify-section-main_banner_U6w7wr"
+      ) as HTMLElement | null;
+
+      if (element) {
+        const ancestor = element.closest(
+          "main.homepage-contentwrapper.main-content"
+        ) as HTMLElement | null;
+
+        if (ancestor) {
+          ancestor.style.removeProperty("margin");
+        }
+      }
+    }, 2000);
+  }
 }
