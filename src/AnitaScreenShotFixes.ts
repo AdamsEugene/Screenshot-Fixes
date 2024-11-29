@@ -108,6 +108,7 @@ export default class AnitaScreenShotFixes {
     this.setWidthForMobileMenuReviewMysticBarrels();
     this.removeInlineStylesFromMenuDrawerZBioticz();
     this.hideWhiteLogoMCAFEE();
+    this.removeMarginFromAncestorOATFUL();
 
   }
 
@@ -1421,5 +1422,17 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private removeMarginFromAncestorOATFUL(): void {
+    const element = this.document.getElementById('shopify-section-main_banner_U6w7wr') as HTMLElement | null;
+  
+    if (element) {
+      const ancestor = element.closest('main.homepage-contentwrapper.main-content') as HTMLElement | null;
+  
+      if (ancestor) {
+        ancestor.style.removeProperty('margin');
+      }
+    }
+  }
+  
   
 }
