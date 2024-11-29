@@ -542,6 +542,15 @@
     }
   },
   {
+    "selector": "#shopify-experts-ecommerce-agency",
+    "content": {
+      "idSite": 2385,
+      "idSiteHsr": 4198550,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/monumental.is--main.html"
+    }
+  },
+  {
     "selector": ".first-load-prod",
     "content": {
       "idSite": 2930,
