@@ -86,6 +86,7 @@ export default class RyanScreenshotFixes extends Common {
       this.VelvetCaviarupdateParentDisplayStyle();
       this.KarambitupdateCartDrawer();
       this.denverHeadshotupdateHeroMargin();
+      this.QureupdateWistiaEmbed();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1871,6 +1872,19 @@ export default class RyanScreenshotFixes extends Common {
           );
         }
       }
+    }
+  }
+
+  //Qure Skincare
+  private QureupdateWistiaEmbed() {
+    const wistiaChrome = this.dom.querySelector(
+      ".wistia_embed #wistia_chrome_37"
+    ) as HTMLElement;
+    if (wistiaChrome) {
+      ["height", "width"].forEach((prop) => {
+        wistiaChrome.style.removeProperty(prop);
+        wistiaChrome.style.setProperty(prop, "auto", "important");
+      });
     }
   }
 
