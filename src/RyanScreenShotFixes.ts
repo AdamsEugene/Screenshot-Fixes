@@ -1877,15 +1877,21 @@ export default class RyanScreenshotFixes extends Common {
 
   //Qure Skincare
   private QureupdateWistiaEmbed() {
-    const wistiaChrome = this.dom.querySelector(
-      ".wistia_embed #wistia_chrome_37"
-    ) as HTMLElement;
-    if (wistiaChrome) {
-      ["height", "width"].forEach((prop) => {
-        wistiaChrome.style.removeProperty(prop);
-        wistiaChrome.style.setProperty(prop, "auto", "important");
+    setTimeout(() => {
+      const wistiaChromes = this.dom.querySelectorAll('.wistia_embed #wistia_chrome_37');
+      const modalBackdrops = this.dom.querySelectorAll('.modal-backdrop.fade.show');
+  
+      wistiaChromes.forEach(chrome => {
+        ['height', 'width'].forEach(prop => {
+          (chrome as HTMLElement).style.removeProperty(prop);
+          (chrome as HTMLElement).style.setProperty(prop, 'auto', 'important');
+        });
       });
-    }
+  
+      modalBackdrops.forEach(modal => {
+        (modal as HTMLElement).style.setProperty('display', 'none', 'important');
+      });
+    }, 1000);
   }
 
   //toggleHeatmapClassOnDrawer
