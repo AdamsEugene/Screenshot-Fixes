@@ -109,6 +109,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromMenuDrawerZBioticz();
     this.hideWhiteLogoMCAFEE();
     this.removeMarginFromAncestorOATFUL();
+    this.removeDisplayPropertyBudMother();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1449,4 +1450,12 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
+  private removeDisplayPropertyBudMother(): void {
+    const element = this.document.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
+  
+    if (element) {
+      element.style.removeProperty('display');
+    }
+  }
+  
 }
