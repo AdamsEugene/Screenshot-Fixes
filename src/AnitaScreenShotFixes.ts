@@ -110,6 +110,7 @@ export default class AnitaScreenShotFixes {
     this.removeMarginFromAncestorOATFUL();
     this.removeDisplayPropertyBudMother();
     this.removeInlineStylesFromWhiteLogoMcAffe();
+    this. hideCartPopupSectionFuego();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1454,6 +1455,27 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private hideCartPopupSectionFuego(): void {
+    const targetElement = this.document.querySelector('#shopify-section-cart-popup.shopify-section') as HTMLElement | null;
+  
+    if (targetElement) {
+      const topSibling = targetElement.previousElementSibling as HTMLElement | null;
+      const bottomSibling = targetElement.nextElementSibling as HTMLElement | null;
+  
+      if (
+        topSibling?.id === 'shopify-section-header' &&
+        topSibling?.classList.contains('shopify-section') &&
+        topSibling?.classList.contains('section-header') &&
+        topSibling?.classList.contains('header_sticky') &&
+        bottomSibling?.id === 'MainContent' &&
+        bottomSibling?.classList.contains('content-for-layout') &&
+        bottomSibling?.classList.contains('focus-none')
+      ) {
+        targetElement.style.setProperty('display', 'none', 'important');
+      }
+    }
+  }
+  
   
   
 }
