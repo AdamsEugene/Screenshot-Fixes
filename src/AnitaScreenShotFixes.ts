@@ -107,9 +107,9 @@ export default class AnitaScreenShotFixes {
     this.hideInsertedStarContainersFastTrac();
     this.setWidthForMobileMenuReviewMysticBarrels();
     this.removeInlineStylesFromMenuDrawerZBioticz();
-    this.hideWhiteLogoMCAFEE();
     this.removeMarginFromAncestorOATFUL();
     this.removeDisplayPropertyBudMother();
+    this.removeInlineStylesFromWhiteLogoMcAffe();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1418,21 +1418,7 @@ export default class AnitaScreenShotFixes {
       });
     });
   }
-  private hideWhiteLogoMCAFEE(): void {
-    const parentElement = this.document.querySelector(
-      ".header__logo-link.has-white-logo.flex.items-center.relative"
-    ) as HTMLElement;
-
-    if (parentElement) {
-      const logoElement = parentElement.querySelector(
-        ".white-logo.md\\:hidden.absolute"
-      ) as HTMLElement;
-
-      if (logoElement) {
-        logoElement.style.display = "none";
-      }
-    }
-  }
+  
   private removeMarginFromAncestorOATFUL(): void {
     setTimeout(() => {
       const element = this.document.getElementById(
@@ -1457,5 +1443,17 @@ export default class AnitaScreenShotFixes {
       element.style.removeProperty('display');
     }
   }
+  private removeInlineStylesFromWhiteLogoMcAffe(): void {
+    const parentElement = this.document.querySelector('.header__logo-link.has-white-logo.flex.items-center.relative') as HTMLElement | null;
+  
+    if (parentElement) {
+      const childElement = parentElement.querySelector('.white-logo.hidden.md\\:block.absolute') as HTMLElement | null;
+  
+      if (childElement) {
+        childElement.removeAttribute('style');
+      }
+    }
+  }
+  
   
 }
