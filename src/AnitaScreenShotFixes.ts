@@ -112,6 +112,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromWhiteLogoMcAffe();
     this. hideCartPopupSectionFuego();
     this.testMenuDrawerzorali();
+    this.setPositionRelativeTanito();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1498,6 +1499,14 @@ export default class AnitaScreenShotFixes {
       });
     }
   }
+  private setPositionRelativeTanito(): void {
+    const element = this.document.querySelector('.slideshow__slide.slideshow__slide--template--16650453188833__730c5010-4eb1-4723-8b3d-06970325ab13-1666466508afdc26e1-0.d-flex.justify-content-center.align-items-center') as HTMLElement | null;
+  
+    if (element) {
+      element.style.setProperty('position', 'relative', 'important');
+    }
+  }
+  
   
   
   
