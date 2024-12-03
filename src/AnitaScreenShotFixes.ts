@@ -114,6 +114,7 @@ export default class AnitaScreenShotFixes {
     this.setPositionRelativeTanitco();
     this.removeOpacityFromFlickityDescendantsTanitco();
     this.removeDisplayFromChildBUDMOTHER();
+    this.hideMultipleFeaturedCollectionsBUDMOTHER();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1528,6 +1529,21 @@ export default class AnitaScreenShotFixes {
     }
   }
 }
+private hideMultipleFeaturedCollectionsBUDMOTHER(): void {
+  const ids: string[] = [
+    'shopify-section-template--24198020596096__cw_featured_collection_bypTGe',
+    'shopify-section-template--24198020596096__cw_featured_collection_RJqhjY',
+    'shopify-section-template--24198020596096__cw_featured_collection_XPEC66'
+  ];
+
+  ids.forEach((id) => {
+    const element = this.document.getElementById(id) as HTMLElement | null;
+    if (element) {
+      element.style.setProperty('display', 'none', 'important');
+    }
+  });
+}
+
 
   
   
