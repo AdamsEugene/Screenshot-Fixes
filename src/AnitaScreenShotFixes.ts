@@ -108,11 +108,12 @@ export default class AnitaScreenShotFixes {
     this.setWidthForMobileMenuReviewMysticBarrels();
     this.removeInlineStylesFromMenuDrawerZBioticz();
     this.removeMarginFromAncestorOATFUL();
-    this.removeDisplayPropertyBudMother();
     this.removeInlineStylesFromWhiteLogoMcAffe();
     this. hideCartPopupSectionFuego();
     this.testMenuDrawerzorali();
-    this.setPositionRelativeTanito();
+    this.setPositionRelativeTanitco();
+    this.removeOpacityFromFlickityDescendantsTanitco();
+    this.removeDisplayFromChildBUDMOTHER();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1439,13 +1440,7 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
-  private removeDisplayPropertyBudMother(): void {
-    const element = this.document.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
   
-    if (element) {
-      element.style.removeProperty('display');
-    }
-  }
   private removeInlineStylesFromWhiteLogoMcAffe(): void {
     const parentElement = this.document.querySelector('.header__logo-link.has-white-logo.flex.items-center.relative') as HTMLElement | null;
   
@@ -1499,13 +1494,42 @@ export default class AnitaScreenShotFixes {
       });
     }
   }
-  private setPositionRelativeTanito(): void {
+  private setPositionRelativeTanitco(): void {
     const element = this.document.querySelector('.slideshow__slide.slideshow__slide--template--16650453188833__730c5010-4eb1-4723-8b3d-06970325ab13-1666466508afdc26e1-0.d-flex.justify-content-center.align-items-center') as HTMLElement | null;
   
     if (element) {
       element.style.setProperty('position', 'relative', 'important');
     }
   }
+  private removeOpacityFromFlickityDescendantsTanitco(): void {
+    const parentElement = this.document.getElementById(
+      'Slideshow-template--18622508073185__659ca9df-371f-4701-bb4c-92dd5f2b0c43'
+    ) as HTMLElement | null;
+  
+    if (parentElement) {
+      const flickityViewports = parentElement.querySelectorAll('.flickity-viewport') as NodeListOf<HTMLElement>;
+  
+      flickityViewports.forEach((viewport) => {
+        const descendants = viewport.querySelectorAll('*') as NodeListOf<HTMLElement>;
+        descendants.forEach((descendant) => {
+          descendant.style.removeProperty('opacity');
+        });
+      });
+    }
+  }
+  private removeDisplayFromChildBUDMOTHER(): void {
+  const parentElement = this.document.querySelector('.cw-cart-drower') as HTMLElement | null;
+
+  if (parentElement) {
+    const childElement = parentElement.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
+
+    if (childElement) {
+      childElement.style.removeProperty('display');
+    }
+  }
+}
+
+  
   
   
   
