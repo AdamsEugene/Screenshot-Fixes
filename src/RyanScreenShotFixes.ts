@@ -776,23 +776,32 @@ export default class RyanScreenshotFixes extends Common {
           child.style.setProperty("min-height", "auto", "important")
         );
     });
-
-    const updateVisibility = (el: HTMLElement) =>
-      el.style.visibility === "hidden" &&
-      el.style.setProperty("visibility", "visible", "important");
-
+  
+    const updateVisibility = (el: HTMLElement) => {
+      if (el.style.visibility === "hidden") {
+        el.style.setProperty("visibility", "visible", "important");
+      }
+      
+      el.querySelectorAll('*').forEach((innerEl: HTMLElement) => {
+        if (innerEl.style.visibility === "hidden") {
+          innerEl.style.setProperty("visibility", "visible", "important");
+        }
+      });
+    };
+  
     const observer = new MutationObserver(() =>
       this.dom
         .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
         .forEach((el) => updateVisibility(el as HTMLElement))
     );
-
+  
     observer.observe(this.dom.body, {
       childList: true,
       subtree: true,
       attributes: true,
       attributeFilter: ["style"],
     });
+  
     this.dom
       .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
       .forEach((el) => updateVisibility(el as HTMLElement));
@@ -1706,7 +1715,7 @@ export default class RyanScreenshotFixes extends Common {
       if (grid && grid.querySelector(".group")) {
         (grid as HTMLElement).style.setProperty("display", "grid", "important");
       }
-    }, 1000);
+    }, 2000);
   }
 
   //Kahoots
