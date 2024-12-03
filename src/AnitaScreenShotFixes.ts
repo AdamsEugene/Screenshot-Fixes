@@ -108,12 +108,12 @@ export default class AnitaScreenShotFixes {
     this.setWidthForMobileMenuReviewMysticBarrels();
     this.removeInlineStylesFromMenuDrawerZBioticz();
     this.removeMarginFromAncestorOATFUL();
-    this.removeDisplayPropertyBudMother();
     this.removeInlineStylesFromWhiteLogoMcAffe();
     this. hideCartPopupSectionFuego();
     this.testMenuDrawerzorali();
     this.setPositionRelativeTanitco();
     this.removeOpacityFromFlickityDescendantsTanitco();
+    this.removeDisplayFromChildBUDMOTHER();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1440,13 +1440,7 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
-  private removeDisplayPropertyBudMother(): void {
-    const element = this.document.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
   
-    if (element) {
-      element.style.removeProperty('display');
-    }
-  }
   private removeInlineStylesFromWhiteLogoMcAffe(): void {
     const parentElement = this.document.querySelector('.header__logo-link.has-white-logo.flex.items-center.relative') as HTMLElement | null;
   
@@ -1523,6 +1517,18 @@ export default class AnitaScreenShotFixes {
       });
     }
   }
+  private removeDisplayFromChildBUDMOTHER(): void {
+  const parentElement = this.document.querySelector('.cw-cart-drower') as HTMLElement | null;
+
+  if (parentElement) {
+    const childElement = parentElement.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
+
+    if (childElement) {
+      childElement.style.removeProperty('display');
+    }
+  }
+}
+
   
   
   
