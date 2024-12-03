@@ -1519,16 +1519,19 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeDisplayFromChildBUDMOTHER(): void {
-  const parentElement = this.document.querySelector('.cw-cart-drower') as HTMLElement | null;
-
-  if (parentElement) {
-    const childElement = parentElement.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
-
-    if (childElement) {
-      childElement.style.removeProperty('display');
-    }
+    setTimeout(() => {
+      const parentElement = this.document.querySelector('.cw-cart-drower') as HTMLElement | null;
+  
+      if (parentElement) {
+        const childElement = parentElement.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
+  
+        if (childElement) {
+          childElement.style.removeProperty('display');
+        }
+      }
+    }, 2000);
   }
-}
+  
 private hideMultipleFeaturedCollectionsBUDMOTHER(): void {
   const ids: string[] = [
     'shopify-section-template--24198020596096__cw_featured_collection_bypTGe',
