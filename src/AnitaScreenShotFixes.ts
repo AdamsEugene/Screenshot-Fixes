@@ -112,7 +112,8 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromWhiteLogoMcAffe();
     this. hideCartPopupSectionFuego();
     this.testMenuDrawerzorali();
-    this.setPositionRelativeTanito();
+    this.setPositionRelativeTanitco();
+    this.removeOpacityFromFlickityDescendantsTanitco();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1499,13 +1500,30 @@ export default class AnitaScreenShotFixes {
       });
     }
   }
-  private setPositionRelativeTanito(): void {
+  private setPositionRelativeTanitco(): void {
     const element = this.document.querySelector('.slideshow__slide.slideshow__slide--template--16650453188833__730c5010-4eb1-4723-8b3d-06970325ab13-1666466508afdc26e1-0.d-flex.justify-content-center.align-items-center') as HTMLElement | null;
   
     if (element) {
       element.style.setProperty('position', 'relative', 'important');
     }
   }
+  private removeOpacityFromFlickityDescendantsTanitco(): void {
+    const parentElement = this.document.getElementById(
+      'Slideshow-template--18622508073185__659ca9df-371f-4701-bb4c-92dd5f2b0c43'
+    ) as HTMLElement | null;
+  
+    if (parentElement) {
+      const flickityViewports = parentElement.querySelectorAll('.flickity-viewport') as NodeListOf<HTMLElement>;
+  
+      flickityViewports.forEach((viewport) => {
+        const descendants = viewport.querySelectorAll('*') as NodeListOf<HTMLElement>;
+        descendants.forEach((descendant) => {
+          descendant.style.removeProperty('opacity');
+        });
+      });
+    }
+  }
+  
   
   
   
