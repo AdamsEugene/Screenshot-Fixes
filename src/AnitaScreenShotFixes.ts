@@ -111,6 +111,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayPropertyBudMother();
     this.removeInlineStylesFromWhiteLogoMcAffe();
     this. hideCartPopupSectionFuego();
+    this.testMenuDrawerzorali();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1475,6 +1476,29 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private testMenuDrawerzorali(): void {
+    const menuDrawer = this.document.querySelector('#menu-drawer.gradient.menu-drawer.motion-reduce.color-') as HTMLElement | null;
+  
+    if (menuDrawer) {
+      const innerContainer = menuDrawer.querySelector('.menu-drawer__inner-container') as HTMLElement | null;
+      const navigationContainer = innerContainer?.querySelector('.menu-drawer__navigation-container') as HTMLElement | null;
+  
+      if (innerContainer && navigationContainer) {
+        innerContainer.style.removeProperty('width');
+        navigationContainer.style.removeProperty('width');
+      }
+  
+      const megaInnerMobElements = menuDrawer.querySelectorAll('.mega_inner_mob img') as NodeListOf<HTMLImageElement>;
+      megaInnerMobElements.forEach((img) => {
+        const parent = img.closest('.mega_inner_mob') as HTMLElement | null;
+        if (parent) {
+          img.style.removeProperty('width');
+          img.style.removeProperty('height');
+        }
+      });
+    }
+  }
+  
   
   
   
