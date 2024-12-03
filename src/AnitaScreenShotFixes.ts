@@ -107,8 +107,12 @@ export default class AnitaScreenShotFixes {
     this.hideInsertedStarContainersFastTrac();
     this.setWidthForMobileMenuReviewMysticBarrels();
     this.removeInlineStylesFromMenuDrawerZBioticz();
-    this.hideWhiteLogoMCAFEE();
     this.removeMarginFromAncestorOATFUL();
+    this.removeDisplayPropertyBudMother();
+    this.removeInlineStylesFromWhiteLogoMcAffe();
+    this. hideCartPopupSectionFuego();
+    this.testMenuDrawerzorali();
+    this.setPositionRelativeTanito();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1417,21 +1421,7 @@ export default class AnitaScreenShotFixes {
       });
     });
   }
-  private hideWhiteLogoMCAFEE(): void {
-    const parentElement = this.document.querySelector(
-      ".header__logo-link.has-white-logo.flex.items-center.relative"
-    ) as HTMLElement;
-
-    if (parentElement) {
-      const logoElement = parentElement.querySelector(
-        ".white-logo.md\\:hidden.absolute"
-      ) as HTMLElement;
-
-      if (logoElement) {
-        logoElement.style.display = "none";
-      }
-    }
-  }
+  
   private removeMarginFromAncestorOATFUL(): void {
     setTimeout(() => {
       const element = this.document.getElementById(
@@ -1449,4 +1439,76 @@ export default class AnitaScreenShotFixes {
       }
     }, 2000);
   }
+  private removeDisplayPropertyBudMother(): void {
+    const element = this.document.querySelector('.tw-h-full.tw-fixed.tw-top-0.tw-right-0.tw-z-30') as HTMLElement | null;
+  
+    if (element) {
+      element.style.removeProperty('display');
+    }
+  }
+  private removeInlineStylesFromWhiteLogoMcAffe(): void {
+    const parentElement = this.document.querySelector('.header__logo-link.has-white-logo.flex.items-center.relative') as HTMLElement | null;
+  
+    if (parentElement) {
+      const childElement = parentElement.querySelector('.white-logo.hidden.md\\:block.absolute') as HTMLElement | null;
+  
+      if (childElement) {
+        childElement.removeAttribute('style');
+      }
+    }
+  }
+  private hideCartPopupSectionFuego(): void {
+    const targetElement = this.document.querySelector('#shopify-section-cart-popup.shopify-section') as HTMLElement | null;
+  
+    if (targetElement) {
+      const topSibling = targetElement.previousElementSibling as HTMLElement | null;
+      const bottomSibling = targetElement.nextElementSibling as HTMLElement | null;
+  
+      if (
+        topSibling?.id === 'shopify-section-header' &&
+        topSibling?.classList.contains('shopify-section') &&
+        topSibling?.classList.contains('section-header') &&
+        topSibling?.classList.contains('header_sticky') &&
+        bottomSibling?.id === 'MainContent' &&
+        bottomSibling?.classList.contains('content-for-layout') &&
+        bottomSibling?.classList.contains('focus-none')
+      ) {
+        targetElement.style.setProperty('display', 'none', 'important');
+      }
+    }
+  }
+  private testMenuDrawerzorali(): void {
+    const menuDrawer = this.document.querySelector('#menu-drawer.gradient.menu-drawer.motion-reduce.color-') as HTMLElement | null;
+  
+    if (menuDrawer) {
+      const innerContainer = menuDrawer.querySelector('.menu-drawer__inner-container') as HTMLElement | null;
+      const navigationContainer = innerContainer?.querySelector('.menu-drawer__navigation-container') as HTMLElement | null;
+  
+      if (innerContainer && navigationContainer) {
+        innerContainer.style.removeProperty('width');
+        navigationContainer.style.removeProperty('width');
+      }
+  
+      const megaInnerMobElements = menuDrawer.querySelectorAll('.mega_inner_mob img') as NodeListOf<HTMLImageElement>;
+      megaInnerMobElements.forEach((img) => {
+        const parent = img.closest('.mega_inner_mob') as HTMLElement | null;
+        if (parent) {
+          img.style.removeProperty('width');
+          img.style.removeProperty('height');
+        }
+      });
+    }
+  }
+  private setPositionRelativeTanito(): void {
+    const element = this.document.querySelector('.slideshow__slide.slideshow__slide--template--16650453188833__730c5010-4eb1-4723-8b3d-06970325ab13-1666466508afdc26e1-0.d-flex.justify-content-center.align-items-center') as HTMLElement | null;
+  
+    if (element) {
+      element.style.setProperty('position', 'relative', 'important');
+    }
+  }
+  
+  
+  
+  
+  
 }
