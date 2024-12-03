@@ -115,6 +115,9 @@ export default class AnitaScreenShotFixes {
     this.removeOpacityFromFlickityDescendantsTanitco();
     this.removeDisplayFromChildBUDMOTHER();
     this.hideMultipleFeaturedCollectionsBUDMOTHER();
+    this.setSvgStylesForSliderSNAX();
+    this.hidePrevArrowSNAX();
+    this.setArrowsStyleSNAX();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1546,6 +1549,59 @@ private hideMultipleFeaturedCollectionsBUDMOTHER(): void {
     }
   });
 }
+private setSvgStylesForSliderSNAX(): void {
+  const sliderElement = this.document.querySelector(
+    '.rtnu-collection__sp-slider.splide--slide.splide--ltr.splide--draggable.is-active.is-initialized'
+  ) as HTMLElement | null;
+
+  if (sliderElement) {
+    const arrowElement = sliderElement.querySelector('.splide__arrow.splide__arrow--next') as HTMLElement | null;
+
+    if (arrowElement) {
+      const svgChild = arrowElement.querySelector('svg') as SVGElement | null;
+
+      if (svgChild) {
+        svgChild.style.fill = 'rgba(var(--c-dark), .28)';
+        svgChild.style.transition = 'all .2s';
+      }
+    }
+  }
+}
+private hidePrevArrowSNAX(): void {
+  const sliderElement = this.document.querySelector(
+    '.rtnu-collection__sp-slider.splide--slide.splide--ltr.splide--draggable.is-active.is-initialized'
+  ) as HTMLElement | null;
+
+  if (sliderElement) {
+    const prevArrow = sliderElement.querySelector('.splide__arrow.splide__arrow--prev') as HTMLElement | null;
+
+    if (prevArrow) {
+      prevArrow.style.display = 'none';
+    }
+  }
+}
+private setArrowsStyleSNAX(): void {
+  const sliderElement = this.document.querySelector(
+    '.rtnu-collection__sp-slider.splide--slide.splide--ltr.splide--draggable.is-active.is-initialized'
+  ) as HTMLElement | null;
+
+  if (sliderElement) {
+    const arrowsElement = sliderElement.querySelector('.splide__arrows.splide__arrows--ltr') as HTMLElement | null;
+
+    if (arrowsElement) {
+      arrowsElement.style.opacity = '1';
+      arrowsElement.style.position = 'absolute';
+      arrowsElement.style.top = '50%';
+      arrowsElement.style.right = '0';
+      arrowsElement.style.transform = 'translateY(-50%)';
+      arrowsElement.style.zIndex = '999';
+    }
+  }
+}
+
+
+
+
 
 
   
