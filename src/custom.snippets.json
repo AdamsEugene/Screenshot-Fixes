@@ -682,5 +682,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/laticoleathers.com-products-callie-sling-crossbody-main.html"
     }
+  },
+  {
+    "selector": ".#shopify-section-template--23221440676171__53c32e57-978e-447f-8454-f4d090662cb7",
+    "content": {
+      "idSite": 1740,
+      "idSiteHsr": 1929423,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.dylanoaks.com-products-3cm-letter-bar-main.html"
+    }
   }
 ]

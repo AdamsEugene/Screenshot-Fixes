@@ -89,6 +89,8 @@ export default class RyanScreenshotFixes extends Common {
       this.QureupdateWistiaEmbed();
       this.thedetoxmarketSetRimagePadding();
       this.PectivHideSearchBar();
+      this.HygieneLabShowReviews();
+      this.FeelgroundsSetProductTableHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1936,6 +1938,35 @@ export default class RyanScreenshotFixes extends Common {
       .forEach((wrapper) =>
         (wrapper as HTMLElement).style.setProperty("display", "none")
       );
+  }
+
+  //Hygiene Lab
+  private HygieneLabShowReviews() {
+    if (!document.querySelector("style[data-alpha-lion-reviews]")) {
+      const style = document.createElement("style");
+      style.setAttribute("data-alpha-lion-reviews", "");
+      style.innerHTML = "[data-oke-carousel] { display: block !important; }";
+      document.head.appendChild(style);
+    }
+  }
+
+  //Feelgrounds
+  private FeelgroundsSetProductTableHeight() {
+    this.dom
+      .querySelectorAll(
+        ".product-table-container .product-table.fg-product-grid.js-isotope-layout"
+      )
+      .forEach((element) => {
+        const actualHeight = element.getAttribute("actualheight");
+        if (actualHeight) {
+          (element as HTMLElement).style.removeProperty("height");
+          (element as HTMLElement).style.setProperty(
+            "height",
+            actualHeight,
+            "important"
+          );
+        }
+      });
   }
 
   //toggleHeatmapClassOnDrawer
