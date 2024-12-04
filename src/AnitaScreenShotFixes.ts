@@ -122,7 +122,7 @@ export default class AnitaScreenShotFixes {
     this.monitorPaginationDotsSNAXDOTS();
     this.stylePaginationAndChildrenSNAX();
     this.removeInlineStylesFromSidebarNOVA();
-    this.removeDisplayFromHeaderPULIZE();
+    this.removeDisplayFromHeaderOPULIZE();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1712,7 +1712,7 @@ export default class AnitaScreenShotFixes {
       sidebarElement.removeAttribute('style');
     }
   }
-  private removeDisplayFromHeaderPULIZE(): void {
+  private removeDisplayFromHeaderOPULIZE(): void {
     const headerElement = this.document.querySelector(
       '.header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account'
     ) as HTMLElement | null;
