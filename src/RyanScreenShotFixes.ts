@@ -1295,19 +1295,8 @@ export default class RyanScreenshotFixes extends Common {
 
   //Remi
   private RemiupdateLightboxWrapperOpacity() {
-    setTimeout(() => {
-      this.dom
-        .querySelectorAll("#shopify-section-template--18360970215637__main")
-        .forEach((parentElement) => {
-          const childElement = parentElement.querySelector(".lightbox-wrapper");
-
-          if (childElement) {
-            const childHTMLElement = childElement as HTMLElement;
-            childHTMLElement.style.removeProperty("opacity");
-            childHTMLElement.style.setProperty("opacity", "0", "important");
-          }
-        });
-    }, 2000);
+    this.dom.querySelectorAll('.lightbox-wrapper:has(.lightbox-container)')
+        .forEach(element => (element as HTMLElement).style.setProperty('display', 'none', 'important'));
   }
 
   //Andie Swim
