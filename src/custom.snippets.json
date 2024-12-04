@@ -551,6 +551,15 @@
     }
   },
   {
+    "selector": ".home-module--homewr--b07db",
+    "content": {
+      "idSite": 2424,
+      "idSiteHsr": 4106408,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.buckmason.com--main.html"
+    }
+  },
+  {
     "selector": "#shopify-section-template--23090236653890__tpt_badges_three_qhTRbw",
     "content": {
       "idSite": 2851,
