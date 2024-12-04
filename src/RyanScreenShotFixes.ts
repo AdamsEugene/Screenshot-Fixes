@@ -95,6 +95,7 @@ export default class RyanScreenshotFixes extends Common {
       this.CadenaJewellerySetHeaderHeight();
       this.bruntworkwearSetSlideWidth();
       this.SayaUpdateImageWidth();
+      this.SquidHausupdateSubMenuLinks();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2002,6 +2003,12 @@ export default class RyanScreenshotFixes extends Common {
                 img.setAttribute('src', newSrc);
             }
         });
+  }
+
+  //SquidHaus
+  private SquidHausupdateSubMenuLinks() {
+    this.dom.querySelectorAll('.sub-menu:has(.brand-sub-menu.collection-pop-menu) li a')
+        .forEach(element => (element as HTMLElement).style.setProperty('color', '#646464', 'important'));
   }
 
   //toggleHeatmapClassOnDrawer
