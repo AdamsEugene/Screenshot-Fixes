@@ -92,6 +92,9 @@ export default class RyanScreenshotFixes extends Common {
       this.HygieneLabShowReviews();
       this.FeelgroundsSetProductTableHeight();
       this.LilyRooRemoveSwatchDisplay();
+      this.CadenaJewellerySetHeaderHeight();
+      this.bruntworkwearSetSlideWidth();
+      this.SayaUpdateImageWidth();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1976,6 +1979,40 @@ export default class RyanScreenshotFixes extends Common {
         this.dom.querySelectorAll('.ProductMeta__Alternative_Item a [class*="ProductMeta__Alternative_Item__Finish_Swatch"]')
             .forEach(element => (element as HTMLElement).style.removeProperty('display'));
     }, 1000);
+  }
+
+  //Cadena Jewellery
+  private CadenaJewellerySetHeaderHeight() {
+    this.dom.querySelectorAll('.header-sections #shopify-section-sections--23605020393793__header')
+        .forEach(element => {
+            const actualHeight = element.getAttribute('actualheight');
+            if (actualHeight) {
+                (element as HTMLElement).style.setProperty('height', actualHeight, 'important');
+            }
+        });
+  }
+
+  //brunt work wear
+  private bruntworkwearSetSlideWidth() {
+    this.dom.querySelectorAll('.swiper-wrapper .swiper-slide.product__slides')
+        .forEach(element => {
+            (element as HTMLElement).style.removeProperty('max-width');
+            (element as HTMLElement).style.removeProperty('min-width');
+            (element as HTMLElement).style.setProperty('max-width', 'max-content', 'important');
+            (element as HTMLElement).style.setProperty('min-width', 'revert-layer', 'important');
+        });
+  }
+
+  //Saya
+  private SayaUpdateImageWidth() {
+    this.dom.querySelectorAll('.t4s-product-inner.t4s-pr.t4s-oh .t4s-product-img.t4s_ratio.is-show-img2 img')
+        .forEach(img => {
+            const currentSrc = img.getAttribute('src');
+            if (currentSrc) {
+                const newSrc = currentSrc.replace(/width=\d+/, 'width=500');
+                img.setAttribute('src', newSrc);
+            }
+        });
   }
 
   //toggleHeatmapClassOnDrawer
