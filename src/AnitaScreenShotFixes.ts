@@ -121,6 +121,8 @@ export default class AnitaScreenShotFixes {
     this.setArrowsStyleSnaxNAVdots();
     this.monitorPaginationDotsSNAXDOTS();
     this.stylePaginationAndChildrenSNAX();
+    this.removeInlineStylesFromSidebarNOVA();
+    this.removeDisplayFromHeaderPULIZE();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1703,5 +1705,23 @@ export default class AnitaScreenShotFixes {
       });
     }
   }
+  private removeInlineStylesFromSidebarNOVA(): void {
+    const sidebarElement = this.document.querySelector('.sidebar.col-lg-3.order-1.col-12') as HTMLElement | null;
+  
+    if (sidebarElement) {
+      sidebarElement.removeAttribute('style');
+    }
+  }
+  private removeDisplayFromHeaderPULIZE(): void {
+    const headerElement = this.document.querySelector(
+      '.header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account'
+    ) as HTMLElement | null;
+  
+    if (headerElement) {
+      headerElement.style.removeProperty('display');
+    }
+  }
+  
+  
   
 }
