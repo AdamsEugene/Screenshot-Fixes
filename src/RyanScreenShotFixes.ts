@@ -87,6 +87,8 @@ export default class RyanScreenshotFixes extends Common {
       this.KarambitupdateCartDrawer();
       this.denverHeadshotupdateHeroMargin();
       this.QureupdateWistiaEmbed();
+      this.thedetoxmarketSetRimagePadding();
+      this.PectivHideSearchBar();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -776,32 +778,32 @@ export default class RyanScreenshotFixes extends Common {
           child.style.setProperty("min-height", "auto", "important")
         );
     });
-  
+
     const updateVisibility = (el: HTMLElement) => {
       if (el.style.visibility === "hidden") {
         el.style.setProperty("visibility", "visible", "important");
       }
-      
-      el.querySelectorAll('*').forEach((innerEl: HTMLElement) => {
+
+      el.querySelectorAll("*").forEach((innerEl: HTMLElement) => {
         if (innerEl.style.visibility === "hidden") {
           innerEl.style.setProperty("visibility", "visible", "important");
         }
       });
     };
-  
+
     const observer = new MutationObserver(() =>
       this.dom
         .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
         .forEach((el) => updateVisibility(el as HTMLElement))
     );
-  
+
     observer.observe(this.dom.body, {
       childList: true,
       subtree: true,
       attributes: true,
       attributeFilter: ["style"],
     });
-  
+
     this.dom
       .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
       .forEach((el) => updateVisibility(el as HTMLElement));
@@ -1887,20 +1889,53 @@ export default class RyanScreenshotFixes extends Common {
   //Qure Skincare
   private QureupdateWistiaEmbed() {
     setTimeout(() => {
-      const wistiaChromes = this.dom.querySelectorAll('.wistia_embed #wistia_chrome_37');
-      const modalBackdrops = this.dom.querySelectorAll('.modal-backdrop.fade.show');
-  
-      wistiaChromes.forEach(chrome => {
-        ['height', 'width'].forEach(prop => {
+      const wistiaChromes = this.dom.querySelectorAll(
+        ".wistia_embed #wistia_chrome_37"
+      );
+      const modalBackdrops = this.dom.querySelectorAll(
+        ".modal-backdrop.fade.show"
+      );
+
+      wistiaChromes.forEach((chrome) => {
+        ["height", "width"].forEach((prop) => {
           (chrome as HTMLElement).style.removeProperty(prop);
-          (chrome as HTMLElement).style.setProperty(prop, 'auto', 'important');
+          (chrome as HTMLElement).style.setProperty(prop, "auto", "important");
         });
       });
-  
-      modalBackdrops.forEach(modal => {
-        (modal as HTMLElement).style.setProperty('display', 'none', 'important');
+
+      modalBackdrops.forEach((modal) => {
+        (modal as HTMLElement).style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
       });
     }, 1000);
+  }
+
+  //The Detox Market
+  private thedetoxmarketSetRimagePadding() {
+    setTimeout(() => {
+      this.dom
+        .querySelectorAll(".rimage-outer-wrapper.mobile-only .rimage-wrapper")
+        .forEach((wrapper) => {
+          (wrapper as HTMLElement).removeAttribute("style");
+          (wrapper as HTMLElement).style.setProperty(
+            "padding-top",
+            "100%",
+            "important"
+          );
+        });
+    }, 1000);
+  }
+
+  //Pectiv
+  private PectivHideSearchBar() {
+    this.dom
+      .querySelectorAll("#SearchBar .search-bar-wrapper")
+      .forEach((wrapper) =>
+        (wrapper as HTMLElement).style.setProperty("display", "none")
+      );
   }
 
   //toggleHeatmapClassOnDrawer
