@@ -91,6 +91,7 @@ export default class RyanScreenshotFixes extends Common {
       this.PectivHideSearchBar();
       this.HygieneLabShowReviews();
       this.FeelgroundsSetProductTableHeight();
+      this.LilyRooRemoveSwatchDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1967,6 +1968,12 @@ export default class RyanScreenshotFixes extends Common {
           );
         }
       });
+  }
+
+  //Lily Roo
+  private LilyRooRemoveSwatchDisplay() {
+    this.dom.querySelectorAll('.ProductMeta__Alternative_Item a .ProductMeta__Alternative_Item__Finish_Swatch')
+        .forEach(element => (element as HTMLElement).style.removeProperty('display'));
   }
 
   //toggleHeatmapClassOnDrawer
