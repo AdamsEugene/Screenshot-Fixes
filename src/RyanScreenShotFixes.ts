@@ -1296,8 +1296,15 @@ export default class RyanScreenshotFixes extends Common {
 
   //Remi
   private RemiupdateLightboxWrapperOpacity() {
-    this.dom.querySelectorAll('.lightbox-wrapper:has(.lightbox-container)')
-        .forEach(element => (element as HTMLElement).style.setProperty('display', 'none', 'important'));
+    this.dom
+      .querySelectorAll(".lightbox-wrapper:has(.lightbox-container)")
+      .forEach((element) =>
+        (element as HTMLElement).style.setProperty(
+          "display",
+          "none",
+          "important"
+        )
+      );
   }
 
   //Andie Swim
@@ -1966,49 +1973,82 @@ export default class RyanScreenshotFixes extends Common {
   //Lily Roo
   private LilyRooRemoveSwatchDisplay() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.ProductMeta__Alternative_Item a [class*="ProductMeta__Alternative_Item__Finish_Swatch"]')
-            .forEach(element => (element as HTMLElement).style.removeProperty('display'));
+      this.dom
+        .querySelectorAll(
+          '.ProductMeta__Alternative_Item a [class*="ProductMeta__Alternative_Item__Finish_Swatch"]'
+        )
+        .forEach((element) =>
+          (element as HTMLElement).style.removeProperty("display")
+        );
     }, 1000);
   }
 
   //Cadena Jewellery
   private CadenaJewellerySetHeaderHeight() {
-    this.dom.querySelectorAll('.header-sections #shopify-section-sections--23605020393793__header')
-        .forEach(element => {
-            const actualHeight = element.getAttribute('actualheight');
-            if (actualHeight) {
-                (element as HTMLElement).style.setProperty('height', actualHeight, 'important');
-            }
-        });
+    this.dom
+      .querySelectorAll(
+        ".header-sections #shopify-section-sections--23605020393793__header"
+      )
+      .forEach((element) => {
+        const actualHeight = element.getAttribute("actualheight");
+        if (actualHeight) {
+          (element as HTMLElement).style.setProperty(
+            "height",
+            actualHeight,
+            "important"
+          );
+        }
+      });
   }
 
   //brunt work wear
   private bruntworkwearSetSlideWidth() {
-    this.dom.querySelectorAll('.swiper-wrapper .swiper-slide.product__slides')
-        .forEach(element => {
-            (element as HTMLElement).style.removeProperty('max-width');
-            (element as HTMLElement).style.removeProperty('min-width');
-            (element as HTMLElement).style.setProperty('max-width', 'max-content', 'important');
-            (element as HTMLElement).style.setProperty('min-width', 'revert-layer', 'important');
-        });
+    this.dom
+      .querySelectorAll(".swiper-wrapper .swiper-slide.product__slides")
+      .forEach((element) => {
+        (element as HTMLElement).style.removeProperty("max-width");
+        (element as HTMLElement).style.removeProperty("min-width");
+        (element as HTMLElement).style.setProperty(
+          "max-width",
+          "max-content",
+          "important"
+        );
+        (element as HTMLElement).style.setProperty(
+          "min-width",
+          "revert-layer",
+          "important"
+        );
+      });
   }
 
   //Saya
   private SayaUpdateImageWidth() {
-    this.dom.querySelectorAll('.t4s-product-inner.t4s-pr.t4s-oh .t4s-product-img.t4s_ratio.is-show-img2 img')
-        .forEach(img => {
-            const currentSrc = img.getAttribute('src');
-            if (currentSrc) {
-                const newSrc = currentSrc.replace(/width=\d+/, 'width=500');
-                img.setAttribute('src', newSrc);
-            }
-        });
+    this.dom
+      .querySelectorAll(
+        ".t4s-product-inner.t4s-pr.t4s-oh .t4s-product-img.t4s_ratio.is-show-img2 img"
+      )
+      .forEach((img) => {
+        const currentSrc = img.getAttribute("src");
+        if (currentSrc) {
+          const newSrc = currentSrc.replace(/width=\d+/, "width=500");
+          img.setAttribute("src", newSrc);
+        }
+      });
   }
 
   //SquidHaus
   private SquidHausupdateSubMenuLinks() {
-    this.dom.querySelectorAll('.sub-menu:has(.brand-sub-menu.collection-pop-menu) li a')
-        .forEach(element => (element as HTMLElement).style.setProperty('color', '#646464', 'important'));
+    this.dom
+      .querySelectorAll(
+        ".sub-menu:has(.brand-sub-menu.collection-pop-menu) li a"
+      )
+      .forEach((element) =>
+        (element as HTMLElement).style.setProperty(
+          "color",
+          "#646464",
+          "important"
+        )
+      );
   }
 
   //toggleHeatmapClassOnDrawer
