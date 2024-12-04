@@ -181,6 +181,24 @@
     }
   },
   {
+    "selector": "#template-index",
+    "content": {
+      "idSite": 303,
+      "idSiteHsr": 65930,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/upcirclebeauty.com--main.html"
+    }
+  },
+  {
+    "selector": "#shopify-section-footer",
+    "content": {
+      "idSite": 303,
+      "idSiteHsr": 65930,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/upcirclebeauty.com--main-footer.html"
+    }
+  },
+  {
     "selector": "#main-content",
     "content": {
       "idSite": 2886,
@@ -610,11 +628,77 @@
     }
   },
   {
-    "selector": "#cart-drawer",
+    "selector": ".cart-drawer__body",
     "content": {
       "idSite": 415,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thomsoncarter.com--main.html"
+    }
+  },
+  {
+    "selector": ".cart-drawer__foot",
+    "content": {
+      "idSite": 415,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.thomsoncarter.com-footer-main.html"
+    }
+  },
+  {
+    "selector": ".global--cart-drawer__content",
+    "content": {
+      "idSite": 605,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/rest.com-products-evercool-pillowcases-main.html"
+    }
+  },
+  {
+    "selector": "#component--cart-drawer--footer",
+    "content": {
+      "idSite": 605,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/rest.com-products-evercool-pillowcases-footer-main.html"
+    }
+  },
+  {
+    "selector": ".drawer__inner",
+    "content": {
+      "idSite": 666,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/thundathighs.com-collections-best-seller-products-size-thigh-belt-main.html"
+    }
+  },
+  {
+    "selector": ".drawer__inner",
+    "content": {
+      "idSite": 1464,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/mysweetsmile.com--main.html"
+    }
+  },
+  {
+    "selector": ".styles_CartPreview__card__KX-WB",
+    "content": {
+      "idSite": 1492,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/carplaybox.co--main.html"
+    }
+  },
+  {
+    "selector": ".klaviyo-form-WvNGgh",
+    "content": {
+      "idSite": 1425,
+      "idSiteHsr": 1314502,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/laticoleathers.com-products-callie-sling-crossbody-main.html"
+    }
+  },
+  {
+    "selector": ".#shopify-section-template--23221440676171__53c32e57-978e-447f-8454-f4d090662cb7",
+    "content": {
+      "idSite": 1740,
+      "idSiteHsr": 1929423,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.dylanoaks.com-products-3cm-letter-bar-main.html"
     }
   }
 ]

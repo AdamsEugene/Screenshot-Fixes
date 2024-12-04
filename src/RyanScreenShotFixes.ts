@@ -86,6 +86,11 @@ export default class RyanScreenshotFixes extends Common {
       this.VelvetCaviarupdateParentDisplayStyle();
       this.KarambitupdateCartDrawer();
       this.denverHeadshotupdateHeroMargin();
+      this.QureupdateWistiaEmbed();
+      this.thedetoxmarketSetRimagePadding();
+      this.PectivHideSearchBar();
+      this.HygieneLabShowReviews();
+      this.FeelgroundsSetProductTableHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -776,9 +781,17 @@ export default class RyanScreenshotFixes extends Common {
         );
     });
 
-    const updateVisibility = (el: HTMLElement) =>
-      el.style.visibility === "hidden" &&
-      el.style.setProperty("visibility", "visible", "important");
+    const updateVisibility = (el: HTMLElement) => {
+      if (el.style.visibility === "hidden") {
+        el.style.setProperty("visibility", "visible", "important");
+      }
+
+      el.querySelectorAll("*").forEach((innerEl: HTMLElement) => {
+        if (innerEl.style.visibility === "hidden") {
+          innerEl.style.setProperty("visibility", "visible", "important");
+        }
+      });
+    };
 
     const observer = new MutationObserver(() =>
       this.dom
@@ -792,6 +805,7 @@ export default class RyanScreenshotFixes extends Common {
       attributes: true,
       attributeFilter: ["style"],
     });
+
     this.dom
       .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
       .forEach((el) => updateVisibility(el as HTMLElement));
@@ -1705,7 +1719,7 @@ export default class RyanScreenshotFixes extends Common {
       if (grid && grid.querySelector(".group")) {
         (grid as HTMLElement).style.setProperty("display", "grid", "important");
       }
-    }, 1000);
+    }, 2000);
   }
 
   //Kahoots
@@ -1872,6 +1886,87 @@ export default class RyanScreenshotFixes extends Common {
         }
       }
     }
+  }
+
+  //Qure Skincare
+  private QureupdateWistiaEmbed() {
+    setTimeout(() => {
+      const wistiaChromes = this.dom.querySelectorAll(
+        ".wistia_embed #wistia_chrome_37"
+      );
+      const modalBackdrops = this.dom.querySelectorAll(
+        ".modal-backdrop.fade.show"
+      );
+
+      wistiaChromes.forEach((chrome) => {
+        ["height", "width"].forEach((prop) => {
+          (chrome as HTMLElement).style.removeProperty(prop);
+          (chrome as HTMLElement).style.setProperty(prop, "auto", "important");
+        });
+      });
+
+      modalBackdrops.forEach((modal) => {
+        (modal as HTMLElement).style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+      });
+    }, 1000);
+  }
+
+  //The Detox Market
+  private thedetoxmarketSetRimagePadding() {
+    setTimeout(() => {
+      this.dom
+        .querySelectorAll(".rimage-outer-wrapper.mobile-only .rimage-wrapper")
+        .forEach((wrapper) => {
+          (wrapper as HTMLElement).removeAttribute("style");
+          (wrapper as HTMLElement).style.setProperty(
+            "padding-top",
+            "100%",
+            "important"
+          );
+        });
+    }, 1000);
+  }
+
+  //Pectiv
+  private PectivHideSearchBar() {
+    this.dom
+      .querySelectorAll("#SearchBar .search-bar-wrapper")
+      .forEach((wrapper) =>
+        (wrapper as HTMLElement).style.setProperty("display", "none")
+      );
+  }
+
+  //Hygiene Lab
+  private HygieneLabShowReviews() {
+    if (!document.querySelector("style[data-alpha-lion-reviews]")) {
+      const style = document.createElement("style");
+      style.setAttribute("data-alpha-lion-reviews", "");
+      style.innerHTML = "[data-oke-carousel] { display: block !important; }";
+      document.head.appendChild(style);
+    }
+  }
+
+  //Feelgrounds
+  private FeelgroundsSetProductTableHeight() {
+    this.dom
+      .querySelectorAll(
+        ".product-table-container .product-table.fg-product-grid.js-isotope-layout"
+      )
+      .forEach((element) => {
+        const actualHeight = element.getAttribute("actualheight");
+        if (actualHeight) {
+          (element as HTMLElement).style.removeProperty("height");
+          (element as HTMLElement).style.setProperty(
+            "height",
+            actualHeight,
+            "important"
+          );
+        }
+      });
   }
 
   //toggleHeatmapClassOnDrawer
