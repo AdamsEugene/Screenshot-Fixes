@@ -123,6 +123,7 @@ export default class AnitaScreenShotFixes {
     this.stylePaginationAndChildrenSNAX();
     this.removeInlineStylesFromSidebarNOVA();
     this.removeDisplayFromHeaderOPULIZE();
+    this.setVisibilityOnChildFastTRAC();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1721,6 +1722,20 @@ export default class AnitaScreenShotFixes {
       headerElement.style.removeProperty('display');
     }
   }
+  private setVisibilityOnChildFastTRAC(): void {
+    const parentElement = this.document.querySelector('.sc-dExXmK.fNpoDq.pf-280_') as HTMLElement | null;
+  
+    if (parentElement) {
+      const childElement = parentElement.querySelector(
+        '.sc-eZjPq.gpuBwB.pf-281_.pf-heading-1-h3'
+      ) as HTMLElement | null;
+  
+      if (childElement) {
+        childElement.style.visibility = 'visible';
+      }
+    }
+  }
+  
   
   
   
