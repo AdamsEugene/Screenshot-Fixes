@@ -124,6 +124,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromSidebarNOVA();
     this.removeDisplayFromHeaderOPULIZE();
     this.setVisibilityOnChildFastTRAC();
+    this.setVisibilityOnSpecificChildfasttrac();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1735,6 +1736,18 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private setVisibilityOnSpecificChildfasttrac(): void {
+    const parentElement = this.document.querySelector('.sc-dExXmK.fNpoDq.pf-171_') as HTMLElement | null;
+  
+    if (parentElement) {
+      const childElement = parentElement.querySelector('.sc-eZjPq.gpuBwB.pf-172_.pf-heading-1-h3') as HTMLElement | null;
+  
+      if (childElement) {
+        childElement.style.visibility = 'visible';
+      }
+    }
+  }
+  
   
   
   
