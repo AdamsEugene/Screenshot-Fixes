@@ -1351,6 +1351,25 @@ class ScreenshotFixes extends Common {
     });
   };
 
+  private handleHamburgerMenuClick = () => {
+    if (this.insideIframe) {
+        const headerContent = this.dom.querySelector('.header.content') as HTMLElement;
+        if (headerContent) {
+            const hamburgerButton = headerContent.querySelector('#main-hamberger') as HTMLElement;
+            if (hamburgerButton) {
+                hamburgerButton.addEventListener('click', () => {
+                    const htmlElement = this.dom.documentElement;
+                    if (htmlElement.classList.contains('nav-before-open')) {
+                        htmlElement.classList.remove('nav-before-open', 'nav-open');
+                    } else {
+                        htmlElement.classList.add('nav-before-open', 'nav-open');
+                    }
+                });
+            }
+        }
+    }
+  };
+
   private updateMiniCartHeight = () => {
     const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
 
@@ -1424,6 +1443,7 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
+      { ids: [2850], functions: [this.handleHamburgerMenuClick] },
       // { ids: [2432], functions: [this.hideAllScalapayModals] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },

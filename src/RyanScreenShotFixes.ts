@@ -96,6 +96,7 @@ export default class RyanScreenshotFixes extends Common {
       this.bruntworkwearSetSlideWidth();
       this.SayaUpdateImageWidth();
       this.SquidHausupdateSubMenuLinks();
+      this.ToolNutremoveMinicartStyle();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -777,39 +778,51 @@ export default class RyanScreenshotFixes extends Common {
   // Woojer
   private WoojerUpdateMinHeightAndVisibility() {
     const updateVisibility = (el: HTMLElement) => {
-        if (el.style.visibility === "hidden") {
-            el.style.setProperty("visibility", "visible", "important");
+      if (el.style.visibility === "hidden") {
+        el.style.setProperty("visibility", "visible", "important");
+      }
+      el.querySelectorAll("*").forEach((innerEl: Element) => {
+        if ((innerEl as HTMLElement).style.visibility === "hidden") {
+          (innerEl as HTMLElement).style.setProperty(
+            "visibility",
+            "visible",
+            "important"
+          );
         }
-        el.querySelectorAll("*").forEach((innerEl: Element) => {
-            if ((innerEl as HTMLElement).style.visibility === "hidden") {
-                (innerEl as HTMLElement).style.setProperty("visibility", "visible", "important");
-            }
-        });
+      });
     };
 
     this.dom.querySelectorAll(".sc-kqGpvY").forEach((parent) => {
-        parent.querySelectorAll(
-            ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
-        ).forEach((child: Element) => {
-            (child as HTMLElement).style.setProperty("min-height", "auto", "important");
+      parent
+        .querySelectorAll(
+          ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
+        )
+        .forEach((child: Element) => {
+          (child as HTMLElement).style.setProperty(
+            "min-height",
+            "auto",
+            "important"
+          );
         });
     });
 
     if (this.dom?.body) {
-        const observer = new MutationObserver(() => {
-            this.dom.querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
-                .forEach((el) => updateVisibility(el as HTMLElement));
-        });
+      const observer = new MutationObserver(() => {
+        this.dom
+          .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+          .forEach((el) => updateVisibility(el as HTMLElement));
+      });
 
-        observer.observe(this.dom.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["style"],
-        });
+      observer.observe(this.dom.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["style"],
+      });
 
-        this.dom.querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
-            .forEach((el) => updateVisibility(el as HTMLElement));
+      this.dom
+        .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+        .forEach((el) => updateVisibility(el as HTMLElement));
     }
   }
 
@@ -2046,6 +2059,18 @@ export default class RyanScreenshotFixes extends Common {
           "important"
         )
       );
+  }
+
+  //Tool Nut
+  private ToolNutremoveMinicartStyle() {
+    if (this.insideIframe) {
+      const minicart = this.dom.querySelector(
+        ".ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.mage-dropdown-dialog .block.block-minicart.ui-dialog-content.ui-widget-content"
+      );
+      if (minicart) {
+        (minicart as HTMLElement).style.removeProperty("display");
+      }
+    }
   }
 
   //toggleHeatmapClassOnDrawer
