@@ -709,5 +709,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.dylanoaks.com-products-3cm-letter-bar-main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-sections--16160885276846__footer",
+    "content": {
+      "idSite": 3003,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.pawsomepawsboutique.co.uk--main.html"
+    }
   }
 ]
