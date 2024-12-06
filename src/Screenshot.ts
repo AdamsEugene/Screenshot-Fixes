@@ -222,7 +222,6 @@ class ScreenshotFixes extends Common {
                 } else if (Array.isArray(elementToApplyStyles)) {
                   elementToApplyStyles.forEach(({ selector, styles }) => {
                     const styleTargets = this.dom.querySelectorAll(selector);
-                    console.log({ styleTargets, styles: styles });
 
                     styleTargets.forEach((target) => {
                       if (styles && target) {
@@ -1402,26 +1401,6 @@ class ScreenshotFixes extends Common {
     }
   };
 
-  //Love Wellness
-  private LoveWellnesstoggleNavButton = () => {
-    const navButton = this.dom.querySelector(
-      "button.flex.items-center.justify-center.group"
-    ) as HTMLButtonElement | null;
-    const mobileNav = this.dom.querySelector("nav.fixed") as HTMLElement | null;
-
-    if (navButton && mobileNav) {
-      navButton.onclick = () => {
-        if (!navButton.classList.contains("active")) {
-          navButton.classList.add("active");
-          mobileNav.classList.add("active");
-        } else {
-          navButton.classList.remove("active");
-          mobileNav.classList.remove("active");
-        }
-      };
-    }
-  };
-
   private updateMiniCartHeight = () => {
     const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
 
@@ -1496,7 +1475,6 @@ class ScreenshotFixes extends Common {
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
       { ids: [2850], functions: [this.handleHamburgerMenuClick] },
-      { ids: [2740], functions: [this.LoveWellnesstoggleNavButton] },
       // { ids: [2432], functions: [this.hideAllScalapayModals] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
