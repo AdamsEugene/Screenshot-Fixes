@@ -1503,15 +1503,10 @@ export default class RyanScreenshotFixes extends Common {
   private LoveWellnesstoggleNavButton() {
     const navButton = this.dom.querySelector('button[class*="flex"][class*="items-center"][class*="justify-center"][class*="group"]');
     const mobileNav = this.dom.querySelector('nav[class*="fixed"]');
-
+    
     navButton?.addEventListener('click', () => {
-        if (!navButton.classList.contains('active')) {
-            navButton.classList.add('active');
-            mobileNav?.classList.add('active');
-        } else {
-            navButton.classList.remove('active');
-            mobileNav?.classList.remove('active');
-        }
+        navButton.classList.toggle('active');
+        mobileNav?.classList.toggle('active');
     });
   }
 
