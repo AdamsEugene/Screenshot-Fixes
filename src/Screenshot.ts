@@ -159,61 +159,70 @@ class ScreenshotFixes extends Common {
 
   private processSnippets() {
     snippets.forEach((snippet: JsonEntry) => {
-      const { selector, content } = snippet;
+        const { selector, content, elementToApplyStyles } = snippet;
+        const isElementInDom = selector
+            ? this.dom.querySelector(selector)
+            : undefined;
+        const idSiteHsr = content.idSiteHsr
+            ? content.idSiteHsr === this.idSiteHsr()
+            : true;
 
-      const isElementInDom = selector
-        ? this.dom.querySelector(selector)
-        : undefined;
+        if (content.path && content.idSite === this.idSite() && idSiteHsr && isElementInDom) {
+            fetch(content.path)
+                .then((response) => response.text())
+                .then((htmlContent) => {
+                    const element = this.dom.querySelector(selector) as HTMLElement;
+                    this.displayBlock(element);
+                    if (element) {
+                        if (element.hasAttribute("aria-code-injected")) {
+                            return;
+                        }
 
-      const idSiteHsr = content.idSiteHsr
-        ? content.idSiteHsr === this.idSiteHsr()
-        : true;
-
-      if (
-        content.path &&
-        content.idSite === this.idSite() &&
-        idSiteHsr &&
-        isElementInDom
-      ) {
-        fetch(content.path)
-          .then((response) => response.text())
-          .then((htmlContent) => {
-            const element = this.dom.querySelector(selector) as HTMLElement;
-            this.displayBlock(element);
-
-            if (element) {
-              // Check for the 'aria-code-injected' attribute to prevent re-injection
-              if (element.hasAttribute("aria-code-injected")) {
-                return;
-              }
-
-              if (snippet.append) {
-                const targetElement = document.querySelector(snippet.selector);
-                if (targetElement) {
-                  targetElement.parentNode.insertBefore(
-                    this.stringToHTML(htmlContent),
-                    targetElement
-                  );
-                  // Mark the injected snippet with 'aria-code-injected' attribute
-                  targetElement.setAttribute("aria-code-injected", "true");
-                }
-              } else {
-                if (snippet?.shadow) {
-                  this.appendToFastSimonShadowRoot(
-                    element,
-                    htmlContent,
-                    snippet
-                  );
-                } else {
-                  element.innerHTML = htmlContent;
-                }
-                // Mark the injected snippet with 'aria-code-injected' attribute
-                element.setAttribute("aria-code-injected", "true");
-              }
-            }
-          })
-          .catch((error) => console.error(`Error fetching content: ${error}`));
-      }
+                        if (snippet.append) {
+                            const targetElement = document.querySelector(snippet.selector);
+                            if (targetElement) {
+                                targetElement.parentNode.insertBefore(
+                                    this.stringToHTML(htmlContent),
+                                    targetElement
+                                );
+                                targetElement.setAttribute("aria-code-injected", "true");
+                            }
+                        } else {
+                            if (snippet?.shadow) {
+                                this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
+                            } else {
+                                element.innerHTML = htmlContent;
+                            }
+                            element.setAttribute("aria-code-injected", "true");
+                        }
+                        if (elementToApplyStyles) {
+                          if (typeof elementToApplyStyles === 'string') {
+                              const styleTargets = this.dom.querySelectorAll(elementToApplyStyles);
+                              styleTargets.forEach(target => {
+                                  if (snippet.styles && target) {
+                                      Object.entries(snippet.styles).forEach(([property, value]) => {
+                                          (target as HTMLElement).style[property as any] = value;
+                                      });
+                                  }
+                              });
+                          }
+                          else if (Array.isArray(elementToApplyStyles)) {
+                              elementToApplyStyles.forEach(styleSelector => {
+                                  const styleTargets = this.dom.querySelectorAll(styleSelector.selector);
+                                  styleTargets.forEach(target => {
+                                      if (snippet.styles && target) {
+                                          Object.entries(snippet.styles).forEach(([property, value]) => {
+                                              (target as HTMLElement).style[property as any] = value;
+                                          });
+                                      }
+                                  });
+                              });
+                          }
+                      }
+                    }
+                })
+                .catch((error) => console.error(`Error fetching content: ${error}`));
+        }
     });
   }
   private setFontSizeToImportantOCTO(): void {
@@ -251,7 +260,7 @@ class ScreenshotFixes extends Common {
 
           newDiv.innerHTML = htmlContent;
 
-          if (elementToApplyStyles) {
+          if (elementToApplyStyles && typeof elementToApplyStyles === 'string') {
             applyStylesToMe = newDiv.querySelector(elementToApplyStyles);
             if (!applyStylesToMe)
               applyStylesToMe = shadowRoot.querySelector(elementToApplyStyles);
@@ -1370,6 +1379,24 @@ class ScreenshotFixes extends Common {
     }
   };
 
+  //Love Wellness
+  private LoveWellnesstoggleNavButton = () => {
+    const navButton = this.dom.querySelector('button.flex.items-center.justify-center.group') as HTMLButtonElement | null;
+    const mobileNav = this.dom.querySelector('nav.fixed') as HTMLElement | null;
+    
+    if (navButton && mobileNav) {
+        navButton.onclick = () => {
+            if (!navButton.classList.contains('active')) {
+                navButton.classList.add('active');
+                mobileNav.classList.add('active');
+            } else {
+                navButton.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        };
+    }
+  };
+
   private updateMiniCartHeight = () => {
     const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
 
@@ -1444,6 +1471,7 @@ class ScreenshotFixes extends Common {
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
       { ids: [2850], functions: [this.handleHamburgerMenuClick] },
+      { ids: [2740], functions: [this.LoveWellnesstoggleNavButton] },
       // { ids: [2432], functions: [this.hideAllScalapayModals] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },

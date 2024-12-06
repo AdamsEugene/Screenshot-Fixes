@@ -97,6 +97,7 @@ export default class RyanScreenshotFixes extends Common {
       this.SayaUpdateImageWidth();
       this.SquidHausupdateSubMenuLinks();
       this.ToolNutremoveMinicartStyle();
+      this.BentgoremoveMobileNavOverflow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2070,6 +2071,14 @@ export default class RyanScreenshotFixes extends Common {
       if (minicart) {
         (minicart as HTMLElement).style.removeProperty("display");
       }
+    }
+  }
+
+  //Bentgo
+  private BentgoremoveMobileNavOverflow() {
+    const mobileNav = this.dom.querySelector('#mobile-nav:has(.inner, #sub-nav-menu-1)');
+    if (mobileNav) {
+        (mobileNav as HTMLElement).style.removeProperty('overflow');
     }
   }
 
