@@ -106,6 +106,7 @@ class ScreenshotFixes extends Common {
       this.getAttrAndSetDisplayNone();
       this.modifyParentElement();
       this.replaceImgSrc();
+      this.hideIframesByTitle();
     };
 
     this.exec({ containerId, debugMode, func });
@@ -159,70 +160,85 @@ class ScreenshotFixes extends Common {
 
   private processSnippets() {
     snippets.forEach((snippet: JsonEntry) => {
-        const { selector, content, elementToApplyStyles } = snippet;
-        const isElementInDom = selector
-            ? this.dom.querySelector(selector)
-            : undefined;
-        const idSiteHsr = content.idSiteHsr
-            ? content.idSiteHsr === this.idSiteHsr()
-            : true;
+      const { selector, content, elementToApplyStyles } = snippet;
+      const isElementInDom = selector
+        ? this.dom.querySelector(selector)
+        : undefined;
+      const idSiteHsr = content.idSiteHsr
+        ? content.idSiteHsr === this.idSiteHsr()
+        : true;
 
-        if (content.path && content.idSite === this.idSite() && idSiteHsr && isElementInDom) {
-            fetch(content.path)
-                .then((response) => response.text())
-                .then((htmlContent) => {
-                    const element = this.dom.querySelector(selector) as HTMLElement;
-                    this.displayBlock(element);
-                    if (element) {
-                        if (element.hasAttribute("aria-code-injected")) {
-                            return;
-                        }
+      if (
+        content.path &&
+        content.idSite === this.idSite() &&
+        idSiteHsr &&
+        isElementInDom
+      ) {
+        fetch(content.path)
+          .then((response) => response.text())
+          .then((htmlContent) => {
+            const element = this.dom.querySelector(selector) as HTMLElement;
+            this.displayBlock(element);
+            if (element) {
+              if (element.hasAttribute("aria-code-injected")) {
+                return;
+              }
 
-                        if (snippet.append) {
-                            const targetElement = document.querySelector(snippet.selector);
-                            if (targetElement) {
-                                targetElement.parentNode.insertBefore(
-                                    this.stringToHTML(htmlContent),
-                                    targetElement
-                                );
-                                targetElement.setAttribute("aria-code-injected", "true");
-                            }
-                        } else {
-                            if (snippet?.shadow) {
-                                this.appendToFastSimonShadowRoot(element, htmlContent, snippet);
-                            } else {
-                                element.innerHTML = htmlContent;
-                            }
-                            element.setAttribute("aria-code-injected", "true");
+              if (snippet.append) {
+                const targetElement = document.querySelector(snippet.selector);
+                if (targetElement) {
+                  targetElement.parentNode.insertBefore(
+                    this.stringToHTML(htmlContent),
+                    targetElement
+                  );
+                  targetElement.setAttribute("aria-code-injected", "true");
+                }
+              } else {
+                if (snippet?.shadow) {
+                  this.appendToFastSimonShadowRoot(
+                    element,
+                    htmlContent,
+                    snippet
+                  );
+                } else {
+                  element.innerHTML = htmlContent;
+                }
+                element.setAttribute("aria-code-injected", "true");
+              }
+              if (elementToApplyStyles) {
+                if (typeof elementToApplyStyles === "string") {
+                  const styleTargets =
+                    this.dom.querySelectorAll(elementToApplyStyles);
+                  styleTargets.forEach((target) => {
+                    if (snippet.styles && target) {
+                      Object.entries(snippet.styles).forEach(
+                        ([property, value]) => {
+                          (target as HTMLElement).style[property as any] =
+                            value;
                         }
-                        if (elementToApplyStyles) {
-                          if (typeof elementToApplyStyles === 'string') {
-                              const styleTargets = this.dom.querySelectorAll(elementToApplyStyles);
-                              styleTargets.forEach(target => {
-                                  if (snippet.styles && target) {
-                                      Object.entries(snippet.styles).forEach(([property, value]) => {
-                                          (target as HTMLElement).style[property as any] = value;
-                                      });
-                                  }
-                              });
-                          }
-                          else if (Array.isArray(elementToApplyStyles)) {
-                              elementToApplyStyles.forEach(styleSelector => {
-                                  const styleTargets = this.dom.querySelectorAll(styleSelector.selector);
-                                  styleTargets.forEach(target => {
-                                      if (snippet.styles && target) {
-                                          Object.entries(snippet.styles).forEach(([property, value]) => {
-                                              (target as HTMLElement).style[property as any] = value;
-                                          });
-                                      }
-                                  });
-                              });
-                          }
-                      }
+                      );
                     }
-                })
-                .catch((error) => console.error(`Error fetching content: ${error}`));
-        }
+                  });
+                } else if (Array.isArray(elementToApplyStyles)) {
+                  elementToApplyStyles.forEach(({ selector, styles }) => {
+                    const styleTargets = this.dom.querySelectorAll(selector);
+                    console.log({ styleTargets, styles: styles });
+
+                    styleTargets.forEach((target) => {
+                      if (styles && target) {
+                        Object.entries(styles).forEach(([property, value]) => {
+                          (target as HTMLElement).style[property as any] =
+                            value;
+                        });
+                      }
+                    });
+                  });
+                }
+              }
+            }
+          })
+          .catch((error) => console.error(`Error fetching content: ${error}`));
+      }
     });
   }
   private setFontSizeToImportantOCTO(): void {
@@ -260,7 +276,10 @@ class ScreenshotFixes extends Common {
 
           newDiv.innerHTML = htmlContent;
 
-          if (elementToApplyStyles && typeof elementToApplyStyles === 'string') {
+          if (
+            elementToApplyStyles &&
+            typeof elementToApplyStyles === "string"
+          ) {
             applyStylesToMe = newDiv.querySelector(elementToApplyStyles);
             if (!applyStylesToMe)
               applyStylesToMe = shadowRoot.querySelector(elementToApplyStyles);
@@ -1362,38 +1381,44 @@ class ScreenshotFixes extends Common {
 
   private handleHamburgerMenuClick = () => {
     if (this.insideIframe) {
-        const headerContent = this.dom.querySelector('.header.content') as HTMLElement;
-        if (headerContent) {
-            const hamburgerButton = headerContent.querySelector('#main-hamberger') as HTMLElement;
-            if (hamburgerButton) {
-                hamburgerButton.addEventListener('click', () => {
-                    const htmlElement = this.dom.documentElement;
-                    if (htmlElement.classList.contains('nav-before-open')) {
-                        htmlElement.classList.remove('nav-before-open', 'nav-open');
-                    } else {
-                        htmlElement.classList.add('nav-before-open', 'nav-open');
-                    }
-                });
+      const headerContent = this.dom.querySelector(
+        ".header.content"
+      ) as HTMLElement;
+      if (headerContent) {
+        const hamburgerButton = headerContent.querySelector(
+          "#main-hamberger"
+        ) as HTMLElement;
+        if (hamburgerButton) {
+          hamburgerButton.addEventListener("click", () => {
+            const htmlElement = this.dom.documentElement;
+            if (htmlElement.classList.contains("nav-before-open")) {
+              htmlElement.classList.remove("nav-before-open", "nav-open");
+            } else {
+              htmlElement.classList.add("nav-before-open", "nav-open");
             }
+          });
         }
+      }
     }
   };
 
   //Love Wellness
   private LoveWellnesstoggleNavButton = () => {
-    const navButton = this.dom.querySelector('button.flex.items-center.justify-center.group') as HTMLButtonElement | null;
-    const mobileNav = this.dom.querySelector('nav.fixed') as HTMLElement | null;
-    
+    const navButton = this.dom.querySelector(
+      "button.flex.items-center.justify-center.group"
+    ) as HTMLButtonElement | null;
+    const mobileNav = this.dom.querySelector("nav.fixed") as HTMLElement | null;
+
     if (navButton && mobileNav) {
-        navButton.onclick = () => {
-            if (!navButton.classList.contains('active')) {
-                navButton.classList.add('active');
-                mobileNav.classList.add('active');
-            } else {
-                navButton.classList.remove('active');
-                mobileNav.classList.remove('active');
-            }
-        };
+      navButton.onclick = () => {
+        if (!navButton.classList.contains("active")) {
+          navButton.classList.add("active");
+          mobileNav.classList.add("active");
+        } else {
+          navButton.classList.remove("active");
+          mobileNav.classList.remove("active");
+        }
+      };
     }
   };
 
