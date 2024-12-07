@@ -126,6 +126,7 @@ export default class AnitaScreenShotFixes {
     this.setVisibilityOnChildFastTRAC();
     this.setVisibilityOnSpecificChildfasttrac();
     this.hideSubNavElementsBentgo();
+    this.observeNutrientsSlideOpacityAPupAbove();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1642,12 +1643,12 @@ export default class AnitaScreenShotFixes {
     const sliderElement = this.document.querySelector(
       ".rtnu-collection__sp-slider.splide--slide.splide--ltr.splide--draggable.is-active.is-initialized"
     ) as HTMLElement | null;
-  
+
     if (sliderElement) {
       const paginationPages = sliderElement.querySelectorAll(
         ".splide__pagination__page"
       ) as NodeListOf<HTMLElement>;
-  
+
       if (paginationPages.length > 0) {
         paginationPages.forEach((page) => {
           page.style.width = "20px";
@@ -1660,7 +1661,6 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  
 
   private monitorPaginationDotsSNAXDOTS(): void {
     const paginationContainer = this.document.querySelector(
@@ -1696,80 +1696,126 @@ export default class AnitaScreenShotFixes {
 
   private stylePaginationAndChildrenSNAX(): void {
     const paginationElement = this.document.querySelector(
-      '.splide__pagination.splide__pagination--ltr'
+      ".splide__pagination.splide__pagination--ltr"
     ) as HTMLElement | null;
-  
+
     if (paginationElement) {
-      paginationElement.style.margin = '3.5rem 0 0';
-  
-      const childLiElements = paginationElement.querySelectorAll('li') as NodeListOf<HTMLElement>;
+      paginationElement.style.margin = "3.5rem 0 0";
+
+      const childLiElements = paginationElement.querySelectorAll(
+        "li"
+      ) as NodeListOf<HTMLElement>;
       childLiElements.forEach((li) => {
-        li.style.margin = '0 4px';
+        li.style.margin = "0 4px";
       });
     }
   }
   private removeInlineStylesFromSidebarNOVA(): void {
-    const sidebarElement = this.document.querySelector('.sidebar.col-lg-3.order-1.col-12') as HTMLElement | null;
-  
+    const sidebarElement = this.document.querySelector(
+      ".sidebar.col-lg-3.order-1.col-12"
+    ) as HTMLElement | null;
+
     if (sidebarElement) {
-      sidebarElement.removeAttribute('style');
+      sidebarElement.removeAttribute("style");
     }
   }
   private removeDisplayFromHeaderOPULIZE(): void {
     const headerElement = this.document.querySelector(
-      '.header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account'
+      ".header.header--middle-left.header--mobile-center.page-width.header--has-menu.header--has-social.header--has-account"
     ) as HTMLElement | null;
-  
+
     if (headerElement) {
-      headerElement.style.removeProperty('display');
+      headerElement.style.removeProperty("display");
     }
   }
   private setVisibilityOnChildFastTRAC(): void {
-    const parentElement = this.document.querySelector('.sc-dExXmK.fNpoDq.pf-280_') as HTMLElement | null;
-  
+    const parentElement = this.document.querySelector(
+      ".sc-dExXmK.fNpoDq.pf-280_"
+    ) as HTMLElement | null;
+
     if (parentElement) {
       const childElement = parentElement.querySelector(
-        '.sc-eZjPq.gpuBwB.pf-281_.pf-heading-1-h3'
+        ".sc-eZjPq.gpuBwB.pf-281_.pf-heading-1-h3"
       ) as HTMLElement | null;
-  
+
       if (childElement) {
-        childElement.style.visibility = 'visible';
+        childElement.style.visibility = "visible";
       }
     }
   }
   private setVisibilityOnSpecificChildfasttrac(): void {
-    const parentElement = this.document.querySelector('.sc-dExXmK.fNpoDq.pf-171_') as HTMLElement | null;
-  
+    const parentElement = this.document.querySelector(
+      ".sc-dExXmK.fNpoDq.pf-171_"
+    ) as HTMLElement | null;
+
     if (parentElement) {
-      const childElement = parentElement.querySelector('.sc-eZjPq.gpuBwB.pf-172_.pf-heading-1-h3') as HTMLElement | null;
-  
+      const childElement = parentElement.querySelector(
+        ".sc-eZjPq.gpuBwB.pf-172_.pf-heading-1-h3"
+      ) as HTMLElement | null;
+
       if (childElement) {
-        childElement.style.visibility = 'visible';
+        childElement.style.visibility = "visible";
       }
     }
   }
   private hideSubNavElementsBentgo(): void {
-    const mobileNav = this.document.querySelector('#mobile-nav') as HTMLElement | null;
-  
-    if (mobileNav && mobileNav.tagName.toLowerCase() === 'nav') {
-      const colorboxSibling = mobileNav.previousElementSibling as HTMLElement | null;
-  
-      if (colorboxSibling && colorboxSibling.id === 'colorbox') {
-        const subNavElements = mobileNav.querySelectorAll('.sub-nav') as NodeListOf<HTMLElement>;
-  
+    const mobileNav = this.document.querySelector(
+      "#mobile-nav"
+    ) as HTMLElement | null;
+
+    if (mobileNav && mobileNav.tagName.toLowerCase() === "nav") {
+      const colorboxSibling =
+        mobileNav.previousElementSibling as HTMLElement | null;
+
+      if (colorboxSibling && colorboxSibling.id === "colorbox") {
+        const subNavElements = mobileNav.querySelectorAll(
+          ".sub-nav"
+        ) as NodeListOf<HTMLElement>;
+
         if (subNavElements.length > 0) {
           subNavElements.forEach((element) => {
-            element.style.display = 'none';
+            element.style.display = "none";
           });
         }
       }
     }
   }
-  
+  private observeNutrientsSlideOpacityAPupAbove(): void {
+    const container = this.document.querySelector(
+      ".slick-slider"
+    ) as HTMLElement | null;
 
-  
-  
-  
-  
-  
+    if (!container) return;
+
+    const updateSlideOpacity = (): void => {
+      const allSlides = container.querySelectorAll(
+        ".nutrients__slide.slick-slide"
+      ) as NodeListOf<HTMLElement>;
+
+      allSlides.forEach((slide) => {
+        slide.style.opacity = "0";
+      });
+
+      const activeSlide = container.querySelector(
+        ".nutrients__slide.slick-slide.slick-current.slick-active"
+      ) as HTMLElement | null;
+
+      if (activeSlide) {
+        activeSlide.style.opacity = "1";
+      }
+    };
+
+    updateSlideOpacity();
+
+    const observer = new MutationObserver(() => {
+      updateSlideOpacity();
+    });
+
+    observer.observe(container, {
+      childList: true,
+      attributes: true,
+      subtree: true,
+      attributeFilter: ["class"],
+    });
+  }
 }
