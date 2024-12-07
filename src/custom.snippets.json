@@ -10,14 +10,18 @@
   },
   {
     "selector": "#shopify-block-obviyo_recommend_personalize_location_block_8UhAUk",
-    "elementToApplyStyles": ".obvSectionTitle",
-    "styles": {
-      "font-size": "var(--text-h2)",
-      "font-family": "DIN Next Bold, sans-serif",
-      "font-weight": "700",
-      "padding-bottom": "20px",
-      "text-align": "center"
-    },
+    "elementToApplyStyles": [
+      {
+        "selector": ".obvSectionTitle",
+        "styles": {
+          "font-size": "var(--text-h2)",
+          "font-family": "DIN Next Bold, sans-serif",
+          "font-weight": "700",
+          "padding-bottom": "20px",
+          "text-align": "center"
+        }
+      }
+    ],
     "content": {
       "idSite": 2710,
       "idSiteHsr": 4815604,
@@ -718,5 +722,52 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.dylanoaks.com-products-3cm-letter-bar-main.html"
     }
+  },
+  {
+    "selector": "#shopify-section-sections--16160885276846__footer",
+    "content": {
+      "idSite": 3003,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.pawsomepawsboutique.co.uk--main.html"
+    }
+  },
+  {
+    "selector": ".siteHeader",
+    "content": {
+      "idSite": 2740,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/lovewellness.com--main.html"
+    },
+    "elementToApplyStyles": [
+      {
+        "selector": ".category-subnav",
+        "styles": {
+          "display": "block",
+          "background-color": "white",
+          "padding": "5px",
+          "padding-bottom": "7px",
+          "font-weight": "600",
+          "font-size": "1.4rem",
+          "letter-spacing": "0",
+          "border-bottom": "0.2rem solid black"
+        }
+      },
+      {
+        "selector": ".category-subnav ul",
+        "styles": {
+          "margin": "0 auto",
+          "padding": "0",
+          "text-align": "center",
+          "list-style": "none"
+        }
+      },
+      {
+        "selector": ".category-subnav li",
+        "styles": {
+          "display": "inline-block",
+          "margin": "7px"
+        }
+      }
+    ]
   }
 ]

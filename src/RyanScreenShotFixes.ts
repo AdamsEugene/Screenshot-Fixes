@@ -92,6 +92,13 @@ export default class RyanScreenshotFixes extends Common {
       this.HygieneLabShowReviews();
       this.FeelgroundsSetProductTableHeight();
       this.LilyRooRemoveSwatchDisplay();
+      this.CadenaJewellerySetHeaderHeight();
+      this.bruntworkwearSetSlideWidth();
+      this.SayaUpdateImageWidth();
+      this.SquidHausupdateSubMenuLinks();
+      this.ToolNutremoveMinicartStyle();
+      this.BentgoremoveMobileNavOverflow();
+      this.LoveWellnesstoggleNavButton();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -772,44 +779,53 @@ export default class RyanScreenshotFixes extends Common {
 
   // Woojer
   private WoojerUpdateMinHeightAndVisibility() {
+    const updateVisibility = (el: HTMLElement) => {
+      if (el.style.visibility === "hidden") {
+        el.style.setProperty("visibility", "visible", "important");
+      }
+      el.querySelectorAll("*").forEach((innerEl: Element) => {
+        if ((innerEl as HTMLElement).style.visibility === "hidden") {
+          (innerEl as HTMLElement).style.setProperty(
+            "visibility",
+            "visible",
+            "important"
+          );
+        }
+      });
+    };
+
     this.dom.querySelectorAll(".sc-kqGpvY").forEach((parent) => {
       parent
         .querySelectorAll(
           ".sc-dhKdPU.hjOBND.pf-7_.pf-r.pf-c-cm.pf-r-eh, .sc-dhKdPU.hjOBND.pf-58_.fortnitehero.pf-r.pf-c-cm.pf-r-eh"
         )
-        .forEach((child: HTMLElement) =>
-          child.style.setProperty("min-height", "auto", "important")
-        );
+        .forEach((child: Element) => {
+          (child as HTMLElement).style.setProperty(
+            "min-height",
+            "auto",
+            "important"
+          );
+        });
     });
 
-    const updateVisibility = (el: HTMLElement) => {
-      if (el.style.visibility === "hidden") {
-        el.style.setProperty("visibility", "visible", "important");
-      }
-
-      el.querySelectorAll("*").forEach((innerEl: HTMLElement) => {
-        if (innerEl.style.visibility === "hidden") {
-          innerEl.style.setProperty("visibility", "visible", "important");
-        }
+    if (this.dom?.body) {
+      const observer = new MutationObserver(() => {
+        this.dom
+          .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
+          .forEach((el) => updateVisibility(el as HTMLElement));
       });
-    };
 
-    const observer = new MutationObserver(() =>
+      observer.observe(this.dom.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["style"],
+      });
+
       this.dom
         .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
-        .forEach((el) => updateVisibility(el as HTMLElement))
-    );
-
-    observer.observe(this.dom.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["style"],
-    });
-
-    this.dom
-      .querySelectorAll(".pf-c .sc-iapVNj.iUcVvL")
-      .forEach((el) => updateVisibility(el as HTMLElement));
+        .forEach((el) => updateVisibility(el as HTMLElement));
+    }
   }
 
   //Nubiance
@@ -1292,19 +1308,15 @@ export default class RyanScreenshotFixes extends Common {
 
   //Remi
   private RemiupdateLightboxWrapperOpacity() {
-    setTimeout(() => {
-      this.dom
-        .querySelectorAll("#shopify-section-template--18360970215637__main")
-        .forEach((parentElement) => {
-          const childElement = parentElement.querySelector(".lightbox-wrapper");
-
-          if (childElement) {
-            const childHTMLElement = childElement as HTMLElement;
-            childHTMLElement.style.removeProperty("opacity");
-            childHTMLElement.style.setProperty("opacity", "0", "important");
-          }
-        });
-    }, 2000);
+    this.dom
+      .querySelectorAll(".lightbox-wrapper:has(.lightbox-container)")
+      .forEach((element) =>
+        (element as HTMLElement).style.setProperty(
+          "display",
+          "none",
+          "important"
+        )
+      );
   }
 
   //Andie Swim
@@ -1485,6 +1497,17 @@ export default class RyanScreenshotFixes extends Common {
     this.dom
       .querySelector(".mobile_menu_holder .close_button")
       ?.addEventListener("click", () => menuHolder?.classList.remove("open"));
+  }
+
+  //Love Wellness
+  private LoveWellnesstoggleNavButton() {
+    const navButton = this.dom.querySelector('button[class*="flex"][class*="items-center"][class*="justify-center"][class*="group"]');
+    const mobileNav = this.dom.querySelector('nav[class*="fixed"]');
+    
+    navButton?.addEventListener('click', () => {
+        navButton.classList.toggle('active');
+        mobileNav?.classList.toggle('active');
+    });
   }
 
   //Svelte Chic
@@ -1973,9 +1996,102 @@ export default class RyanScreenshotFixes extends Common {
   //Lily Roo
   private LilyRooRemoveSwatchDisplay() {
     setTimeout(() => {
-        this.dom.querySelectorAll('.ProductMeta__Alternative_Item a [class*="ProductMeta__Alternative_Item__Finish_Swatch"]')
-            .forEach(element => (element as HTMLElement).style.removeProperty('display'));
+      this.dom
+        .querySelectorAll(
+          '.ProductMeta__Alternative_Item a [class*="ProductMeta__Alternative_Item__Finish_Swatch"]'
+        )
+        .forEach((element) =>
+          (element as HTMLElement).style.removeProperty("display")
+        );
     }, 1000);
+  }
+
+  //Cadena Jewellery
+  private CadenaJewellerySetHeaderHeight() {
+    this.dom
+      .querySelectorAll(
+        ".header-sections #shopify-section-sections--23605020393793__header"
+      )
+      .forEach((element) => {
+        const actualHeight = element.getAttribute("actualheight");
+        if (actualHeight) {
+          (element as HTMLElement).style.setProperty(
+            "height",
+            actualHeight,
+            "important"
+          );
+        }
+      });
+  }
+
+  //brunt work wear
+  private bruntworkwearSetSlideWidth() {
+    this.dom
+      .querySelectorAll(".swiper-wrapper .swiper-slide.product__slides")
+      .forEach((element) => {
+        (element as HTMLElement).style.removeProperty("max-width");
+        (element as HTMLElement).style.removeProperty("min-width");
+        (element as HTMLElement).style.setProperty(
+          "max-width",
+          "max-content",
+          "important"
+        );
+        (element as HTMLElement).style.setProperty(
+          "min-width",
+          "revert-layer",
+          "important"
+        );
+      });
+  }
+
+  //Saya
+  private SayaUpdateImageWidth() {
+    this.dom
+      .querySelectorAll(
+        ".t4s-product-inner.t4s-pr.t4s-oh .t4s-product-img.t4s_ratio.is-show-img2 img"
+      )
+      .forEach((img) => {
+        const currentSrc = img.getAttribute("src");
+        if (currentSrc) {
+          const newSrc = currentSrc.replace(/width=\d+/, "width=500");
+          img.setAttribute("src", newSrc);
+        }
+      });
+  }
+
+  //SquidHaus
+  private SquidHausupdateSubMenuLinks() {
+    this.dom
+      .querySelectorAll(
+        ".sub-menu:has(.brand-sub-menu.collection-pop-menu) li a"
+      )
+      .forEach((element) =>
+        (element as HTMLElement).style.setProperty(
+          "color",
+          "#646464",
+          "important"
+        )
+      );
+  }
+
+  //Tool Nut
+  private ToolNutremoveMinicartStyle() {
+    if (this.insideIframe) {
+      const minicart = this.dom.querySelector(
+        ".ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.mage-dropdown-dialog .block.block-minicart.ui-dialog-content.ui-widget-content"
+      );
+      if (minicart) {
+        (minicart as HTMLElement).style.removeProperty("display");
+      }
+    }
+  }
+
+  //Bentgo
+  private BentgoremoveMobileNavOverflow() {
+    const mobileNav = this.dom.querySelector('#mobile-nav:has(.inner, #sub-nav-menu-1)');
+    if (mobileNav) {
+        (mobileNav as HTMLElement).style.removeProperty('overflow');
+    }
   }
 
   //toggleHeatmapClassOnDrawer

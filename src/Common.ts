@@ -199,6 +199,52 @@ export default class Common {
     );
   }
 
+  protected hideIframesByTitle(iframeTitles: string[] = []) {
+    try {
+      const titles = ["Alia rewards", "Alia popup", ...iframeTitles];
+      const title = titles
+        .map((title) => `iframe[title="${title}"]`)
+        .join(", ");
+      const iframes = this.dom.querySelectorAll<HTMLElement>(title);
+
+      iframes.forEach((iframe) => {
+        console.log({ iframe });
+
+        const parent = iframe.parentElement;
+        if (!parent) {
+          this.displayNone(iframe, true);
+          return;
+        }
+
+        if (parent.tagName.toLowerCase() === "div") {
+          this.displayNone(parent, true);
+          let parentId = parent.id;
+
+          if (!parentId) {
+            parentId = `parent-${iframe.title
+              .replace(/[^a-zA-Z0-9-]/g, "-")
+              .toLowerCase()}`;
+            parent.id = parentId;
+          }
+
+          const existingStyle = this.dom.getElementById(`style-${parentId}`);
+          if (existingStyle) {
+            existingStyle.remove();
+          }
+
+          const style = this.dom.createElement("style");
+          style.id = `style-${parentId}`;
+          style.textContent = `#${parentId} { display: none !important; }`;
+          this.dom.head.appendChild(style);
+
+          this.displayNone(iframe, true);
+        }
+      });
+    } catch (error) {
+      if (!this.prodMode) console.error("Error hiding iframes:", error);
+    }
+  }
+
   public removeHeatmapComHideElement() {
     if (!this.idSite()) return;
     const exclusionRules = this.selectorsToExclude.get(this.idSite());

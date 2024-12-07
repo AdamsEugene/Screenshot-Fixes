@@ -106,6 +106,7 @@ class ScreenshotFixes extends Common {
       this.getAttrAndSetDisplayNone();
       this.modifyParentElement();
       this.replaceImgSrc();
+      this.hideIframesByTitle();
     };
 
     this.exec({ containerId, debugMode, func });
@@ -159,12 +160,10 @@ class ScreenshotFixes extends Common {
 
   private processSnippets() {
     snippets.forEach((snippet: JsonEntry) => {
-      const { selector, content } = snippet;
-
+      const { selector, content, elementToApplyStyles } = snippet;
       const isElementInDom = selector
         ? this.dom.querySelector(selector)
         : undefined;
-
       const idSiteHsr = content.idSiteHsr
         ? content.idSiteHsr === this.idSiteHsr()
         : true;
@@ -180,9 +179,7 @@ class ScreenshotFixes extends Common {
           .then((htmlContent) => {
             const element = this.dom.querySelector(selector) as HTMLElement;
             this.displayBlock(element);
-
             if (element) {
-              // Check for the 'aria-code-injected' attribute to prevent re-injection
               if (element.hasAttribute("aria-code-injected")) {
                 return;
               }
@@ -194,7 +191,6 @@ class ScreenshotFixes extends Common {
                     this.stringToHTML(htmlContent),
                     targetElement
                   );
-                  // Mark the injected snippet with 'aria-code-injected' attribute
                   targetElement.setAttribute("aria-code-injected", "true");
                 }
               } else {
@@ -207,8 +203,36 @@ class ScreenshotFixes extends Common {
                 } else {
                   element.innerHTML = htmlContent;
                 }
-                // Mark the injected snippet with 'aria-code-injected' attribute
                 element.setAttribute("aria-code-injected", "true");
+              }
+              if (elementToApplyStyles) {
+                if (typeof elementToApplyStyles === "string") {
+                  const styleTargets =
+                    this.dom.querySelectorAll(elementToApplyStyles);
+                  styleTargets.forEach((target) => {
+                    if (snippet.styles && target) {
+                      Object.entries(snippet.styles).forEach(
+                        ([property, value]) => {
+                          (target as HTMLElement).style[property as any] =
+                            value;
+                        }
+                      );
+                    }
+                  });
+                } else if (Array.isArray(elementToApplyStyles)) {
+                  elementToApplyStyles.forEach(({ selector, styles }) => {
+                    const styleTargets = this.dom.querySelectorAll(selector);
+
+                    styleTargets.forEach((target) => {
+                      if (styles && target) {
+                        Object.entries(styles).forEach(([property, value]) => {
+                          (target as HTMLElement).style[property as any] =
+                            value;
+                        });
+                      }
+                    });
+                  });
+                }
               }
             }
           })
@@ -251,7 +275,10 @@ class ScreenshotFixes extends Common {
 
           newDiv.innerHTML = htmlContent;
 
-          if (elementToApplyStyles) {
+          if (
+            elementToApplyStyles &&
+            typeof elementToApplyStyles === "string"
+          ) {
             applyStylesToMe = newDiv.querySelector(elementToApplyStyles);
             if (!applyStylesToMe)
               applyStylesToMe = shadowRoot.querySelector(elementToApplyStyles);
@@ -1351,6 +1378,29 @@ class ScreenshotFixes extends Common {
     });
   };
 
+  private handleHamburgerMenuClick = () => {
+    if (this.insideIframe) {
+      const headerContent = this.dom.querySelector(
+        ".header.content"
+      ) as HTMLElement;
+      if (headerContent) {
+        const hamburgerButton = headerContent.querySelector(
+          "#main-hamberger"
+        ) as HTMLElement;
+        if (hamburgerButton) {
+          hamburgerButton.addEventListener("click", () => {
+            const htmlElement = this.dom.documentElement;
+            if (htmlElement.classList.contains("nav-before-open")) {
+              htmlElement.classList.remove("nav-before-open", "nav-open");
+            } else {
+              htmlElement.classList.add("nav-before-open", "nav-open");
+            }
+          });
+        }
+      }
+    }
+  };
+
   private updateMiniCartHeight = () => {
     const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
 
@@ -1424,6 +1474,7 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
+      { ids: [2850], functions: [this.handleHamburgerMenuClick] },
       // { ids: [2432], functions: [this.hideAllScalapayModals] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
