@@ -128,6 +128,7 @@ export default class AnitaScreenShotFixes {
     this.hideSubNavElementsBentgo();
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
+    this.toggleMobileNavBentgo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1834,4 +1835,44 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private toggleMobileNavBentgo(): void {
+    const toggleButton = this.document.querySelector('.toggle-mob-nav') as HTMLElement | null;
+    const mobileNav = this.document.querySelector('#mobile-nav') as HTMLElement | null;
+  
+    if (!toggleButton || !mobileNav) {
+      console.error('Required elements not found.');
+      return;
+    }
+  
+    const showMobileNav = (): void => {
+      document.body.classList.add('show-mobile-nav');
+      mobileNav.style.transform = 'translate3d(100%, 0, 0)';
+    };
+  
+    const hideMobileNav = (): void => {
+      document.body.classList.remove('show-mobile-nav');
+      mobileNav.style.removeProperty('transform');
+    };
+  
+  
+    toggleButton.addEventListener('click', (event: MouseEvent) => {
+      event.stopPropagation();
+      if (document.body.classList.contains('show-mobile-nav')) {
+        hideMobileNav();
+      } else {
+        showMobileNav();
+      }
+    });
+  
+    document.addEventListener('click', (event: MouseEvent) => {
+      const target = event.target as Node;
+      const isClickInsideNav = mobileNav.contains(target);
+      const isClickOnToggle = toggleButton.contains(target);
+  
+      if (!isClickInsideNav && !isClickOnToggle) {
+        hideMobileNav();
+      }
+    });
+  }
+  
 }
