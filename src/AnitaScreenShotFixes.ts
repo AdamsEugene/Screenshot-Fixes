@@ -128,7 +128,7 @@ export default class AnitaScreenShotFixes {
     this.hideSubNavElementsBentgo();
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
-    this.toggleMobileNavBentgo();
+    this.setupMobileNavToggleBentgo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1835,44 +1835,45 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  private toggleMobileNavBentgo(): void {
-    const toggleButton = this.document.querySelector('.toggle-mob-nav') as HTMLElement | null;
-    const mobileNav = this.document.querySelector('#mobile-nav') as HTMLElement | null;
-  
+  private setupMobileNavToggleBentgo(): void {
+    const toggleButton = this.document.querySelector(
+      ".toggle-mob-nav"
+    ) as HTMLElement | null;
+    const mobileNav = this.document.querySelector(
+      "#mobile-nav"
+    ) as HTMLElement | null;
+
     if (!toggleButton || !mobileNav) {
-      console.error('Required elements not found.');
       return;
     }
-  
-    const showMobileNav = (): void => {
-      document.body.classList.add('show-mobile-nav');
-      mobileNav.style.transform = 'translate3d(100%, 0, 0)';
+
+    const showClass = "show-mobile-nav";
+    const navActiveStyle = "transform: translate3d(100%, 0, 0);";
+
+    const applyTransform = (): void => {
+      this.document.body.classList.add(showClass);
+      mobileNav.style.cssText = navActiveStyle;
     };
-  
-    const hideMobileNav = (): void => {
-      document.body.classList.remove('show-mobile-nav');
-      mobileNav.style.removeProperty('transform');
+
+    const resetTransform = (): void => {
+      this.document.body.classList.remove(showClass);
+      mobileNav.style.removeProperty("transform");
     };
-  
-  
-    toggleButton.addEventListener('click', (event: MouseEvent) => {
+
+    toggleButton.addEventListener("click", (event: Event) => {
       event.stopPropagation();
-      if (document.body.classList.contains('show-mobile-nav')) {
-        hideMobileNav();
+      if (this.document.body.classList.contains(showClass)) {
+        resetTransform();
       } else {
-        showMobileNav();
+        applyTransform();
       }
     });
-  
-    document.addEventListener('click', (event: MouseEvent) => {
-      const target = event.target as Node;
-      const isClickInsideNav = mobileNav.contains(target);
-      const isClickOnToggle = toggleButton.contains(target);
-  
-      if (!isClickInsideNav && !isClickOnToggle) {
-        hideMobileNav();
+
+    this.document.addEventListener("click", (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (!mobileNav.contains(target) && !toggleButton.contains(target)) {
+        resetTransform();
       }
     });
   }
-  
 }
