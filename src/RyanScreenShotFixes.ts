@@ -2111,8 +2111,10 @@ export default class RyanScreenshotFixes extends Common {
             '.klaviyo-form-RHkXrY.klaviyo-form.form-version-cid-1, .promo-block__image-clip'
         ).forEach(parent => {
             if (parent.classList.contains('klaviyo-form-RHkXrY')) {
-                const klaviyoChildren = Array.from(parent.querySelectorAll('.needsclick.kl-private-reset-css-Xuajs1'));
-                klaviyoChildren.slice(1).forEach(el => el.remove());
+                const klaviyoChildren = parent.querySelectorAll('.needsclick.kl-private-reset-css-Xuajs1');
+                if (klaviyoChildren.length > 1) {
+                    (klaviyoChildren[1] as HTMLElement).style.display = 'none';
+                }
             } else {
                 const promoChild = parent.querySelector('.promo-block__image-wrapper.promo-block__image-wrapper--cover');
                 if (promoChild && window.getComputedStyle(promoChild).display === 'none') {

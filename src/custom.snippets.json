@@ -792,5 +792,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/tacticalelites.com-products-site-right-2-0-bundle-main.html"
     }
+  },
+  {
+    "selector": ".dy_smart_object_2251680",
+    "content": {
+      "idSite": 3004,
+      "idSiteHsr": 7153896,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/shopvitality.com--main.html"
+    }
   }
 ]
