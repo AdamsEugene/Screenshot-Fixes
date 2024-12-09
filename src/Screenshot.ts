@@ -695,7 +695,6 @@ class ScreenshotFixes extends Common {
       ".boost-cart__backdrop",
       ".modal__gifting",
       ".fixed.inset-0.bg-black.bg-opacity-25",
-      ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
       ".window-overlay",
       ".agp__background.agp__background--color",

@@ -2106,17 +2106,21 @@ export default class RyanScreenshotFixes extends Common {
 
   //Affordable Golf
   private AffordableGolffixPromoDisplay() {
-    this.dom
-        .querySelectorAll('.promo-block__image-clip')
-        .forEach((parent) => {
-            const childElement = parent.querySelector(
-                '.promo-block__image-wrapper.promo-block__image-wrapper--cover'
-            );
-            
-            if (childElement) {
-                (childElement as HTMLElement).style.removeProperty('display');
+    setInterval(() => {
+        this.dom.querySelectorAll(
+            '.klaviyo-form-RHkXrY.klaviyo-form.form-version-cid-1, .promo-block__image-clip'
+        ).forEach(parent => {
+            if (parent.classList.contains('klaviyo-form-RHkXrY')) {
+                const klaviyoChildren = Array.from(parent.querySelectorAll('.needsclick.kl-private-reset-css-Xuajs1'));
+                klaviyoChildren.slice(1).forEach(el => el.remove());
+            } else {
+                const promoChild = parent.querySelector('.promo-block__image-wrapper.promo-block__image-wrapper--cover');
+                if (promoChild && window.getComputedStyle(promoChild).display === 'none') {
+                    (promoChild as HTMLElement).style.removeProperty('display');
+                }
             }
         });
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
