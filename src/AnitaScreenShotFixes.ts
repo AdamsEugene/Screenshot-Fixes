@@ -128,6 +128,7 @@ export default class AnitaScreenShotFixes {
     this.hideSubNavElementsBentgo();
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
+    this.setupMobileNavToggleBentgo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1833,5 +1834,46 @@ export default class AnitaScreenShotFixes {
         childElement.removeAttribute("style");
       }
     }
+  }
+  private setupMobileNavToggleBentgo(): void {
+    const toggleButton = this.document.querySelector(
+      ".toggle-mob-nav"
+    ) as HTMLElement | null;
+    const mobileNav = this.document.querySelector(
+      "#mobile-nav"
+    ) as HTMLElement | null;
+
+    if (!toggleButton || !mobileNav) {
+      return;
+    }
+
+    const showClass = "show-mobile-nav";
+    const navActiveStyle = "transform: translate3d(100%, 0, 0);";
+
+    const applyTransform = (): void => {
+      this.document.body.classList.add(showClass);
+      mobileNav.style.cssText = navActiveStyle;
+    };
+
+    const resetTransform = (): void => {
+      this.document.body.classList.remove(showClass);
+      mobileNav.style.removeProperty("transform");
+    };
+
+    toggleButton.addEventListener("click", (event: Event) => {
+      event.stopPropagation();
+      if (this.document.body.classList.contains(showClass)) {
+        resetTransform();
+      } else {
+        applyTransform();
+      }
+    });
+
+    this.document.addEventListener("click", (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (!mobileNav.contains(target) && !toggleButton.contains(target)) {
+        resetTransform();
+      }
+    });
   }
 }
