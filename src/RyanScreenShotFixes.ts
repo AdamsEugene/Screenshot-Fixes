@@ -100,6 +100,8 @@ export default class RyanScreenshotFixes extends Common {
       this.LoveWellnesstoggleNavButton();
       this.closeCartPopup();
       this.AffordableGolffixPromoDisplay();
+      this.BrownSugarBabefixMediaHoverOpacity();
+      this.RazorSupplyfixFooterMobileNav();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2122,6 +2124,36 @@ export default class RyanScreenshotFixes extends Common {
                 }
             }
         });
+    }, 500);
+  }
+
+  //Brown Sugar Babe
+  private BrownSugarBabefixMediaHoverOpacity() {
+    setInterval(() => {
+        this.dom
+            .querySelectorAll('.card__media')
+            .forEach((parent) => {
+                const mediaElement = parent.querySelector('.media.media--hover-effect');
+                if (mediaElement) {
+                    const images = mediaElement.querySelectorAll('img');
+                    if (images.length > 1) {
+                        (images[1] as HTMLElement).style.removeProperty('opacity');
+                    }
+                }
+            });
+    }, 500);
+  }
+
+  //Razor Supply
+  private RazorSupplyfixFooterMobileNav() {
+    setInterval(() => {
+        const parent = this.dom.getElementById('FooterMobileNavWrap');
+        if (parent) {
+            const child = parent.querySelector('#FooterMobileNav');
+            if (child && window.getComputedStyle(child).display === 'none') {
+                (child as HTMLElement).style.removeProperty('display');
+            }
+        }
     }, 500);
   }
 
