@@ -127,6 +127,7 @@ export default class AnitaScreenShotFixes {
     this.setVisibilityOnSpecificChildfasttrac();
     this.hideSubNavElementsBentgo();
     this.observeNutrientsSlideOpacityAPupAbove();
+    this.removeInlineStylesFromChildBreeo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1817,5 +1818,20 @@ export default class AnitaScreenShotFixes {
       subtree: true,
       attributeFilter: ["class"],
     });
+  }
+  private removeInlineStylesFromChildBreeo(): void {
+    const parentElement = this.document.querySelector(
+      ".variant-specs-compare-image-col.grid-item"
+    ) as HTMLElement | null;
+
+    if (parentElement) {
+      const childElement = parentElement.querySelector(
+        ".variant-specs-compare-images"
+      ) as HTMLElement | null;
+
+      if (childElement) {
+        childElement.removeAttribute("style");
+      }
+    }
   }
 }
