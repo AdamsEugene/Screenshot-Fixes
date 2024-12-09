@@ -99,6 +99,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ToolNutremoveMinicartStyle();
       this.BentgoremoveMobileNavOverflow();
       this.LoveWellnesstoggleNavButton();
+      this.closeCartPopup();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1501,12 +1502,29 @@ export default class RyanScreenshotFixes extends Common {
 
   //Love Wellness
   private LoveWellnesstoggleNavButton() {
-    const navButton = this.dom.querySelector('button[class*="flex"][class*="items-center"][class*="justify-center"][class*="group"]');
-    const mobileNav = this.dom.querySelector('nav[class*="fixed"]');
-    
-    navButton?.addEventListener('click', () => {
-        navButton.classList.toggle('active');
-        mobileNav?.classList.toggle('active');
+    const observer = new MutationObserver(() => {
+        const navButton = this.dom.querySelector('button[class*="flex"][class*="items-center"][class*="justify-center"][class*="group"]');
+        const mobileNav = this.dom.querySelector('nav[class*="fixed"]');
+        
+        navButton?.addEventListener('click', () => {
+            navButton.classList.toggle('active');
+            mobileNav?.classList.toggle('active');
+        });
+    });
+
+    observer.observe(this.dom.body, {
+        childList: true,
+        subtree: true
+    });
+  }
+
+  //Upcart close cart
+  private closeCartPopup() {
+    this.dom.addEventListener('click', e => {
+        if ((e.target as HTMLElement).matches('.upcart-header-close-button, .upcart-header-close-button-icon')) {
+            this.dom.querySelector('#CartPopup')?.classList.remove('styles_active__7AzVD');
+            this.dom.querySelector('.upcart-backdrop.styles_CartPreview__backdrop__CjzdP')?.classList.remove('styles_active__7AzVD');
+        }
     });
   }
 

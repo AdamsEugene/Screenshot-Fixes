@@ -760,5 +760,37 @@
         }
       }
     ]
+  },
+  {
+    "selector": ".styles_CartPreview__card__KX-WB",
+    "content": {
+      "idSite": 2907,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/yaqeenbooks.com-collections-ebooks-main.html"
+    }
+  },
+  {
+    "selector": ".styles_CartPreview__card__KX-WB",
+    "content": {
+      "idSite": 2865,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/lucshy.com--main.html"
+    }
+  },
+  {
+    "selector": ".drawer__inner",
+    "content": {
+      "idSite": 2792,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.autocarplay.co-products-sleutelhanger-main.html"
+    }
+  },
+  {
+    "selector": ".styles_CartPreview__card__KX-WB",
+    "content": {
+      "idSite": 2737,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/tacticalelites.com-products-site-right-2-0-bundle-main.html"
+    }
   }
 ]

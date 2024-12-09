@@ -1447,6 +1447,13 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  private removeEmptyCartClass = () => {
+    const cartDrawer = this.dom.querySelector('cart-drawer.drawer.animate');
+    if (cartDrawer) {
+        cartDrawer.classList.remove('is-empty');
+    }
+  };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1475,6 +1482,7 @@ class ScreenshotFixes extends Common {
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
       { ids: [2850], functions: [this.handleHamburgerMenuClick] },
+      { ids: [2792], functions: [this.removeEmptyCartClass] },
       // { ids: [2432], functions: [this.hideAllScalapayModals] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
