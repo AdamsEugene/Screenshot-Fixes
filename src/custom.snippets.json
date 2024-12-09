@@ -801,5 +801,23 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/shopvitality.com--main.html"
     }
+  },
+  {
+    "selector": ".dy_smart_object_2251682",
+    "content": {
+      "idSite": 3004,
+      "idSiteHsr": 7153896,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/shopvitality.com--main1.html"
+    }
+  },
+  {
+    "selector": ".dy_smart_object_2251683",
+    "content": {
+      "idSite": 3004,
+      "idSiteHsr": 7153896,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/shopvitality.com--main2.html"
+    }
   }
 ]
