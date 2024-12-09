@@ -99,6 +99,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ToolNutremoveMinicartStyle();
       this.LoveWellnesstoggleNavButton();
       this.closeCartPopup();
+      this.AffordableGolffixPromoDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2101,6 +2102,21 @@ export default class RyanScreenshotFixes extends Common {
         (minicart as HTMLElement).style.removeProperty("display");
       }
     }
+  }
+
+  //Affordable Golf
+  private AffordableGolffixPromoDisplay() {
+    this.dom
+        .querySelectorAll('.promo-block__image-clip')
+        .forEach((parent) => {
+            const childElement = parent.querySelector(
+                '.promo-block__image-wrapper.promo-block__image-wrapper--cover'
+            );
+            
+            if (childElement) {
+                (childElement as HTMLElement).style.removeProperty('display');
+            }
+        });
   }
 
   //toggleHeatmapClassOnDrawer
