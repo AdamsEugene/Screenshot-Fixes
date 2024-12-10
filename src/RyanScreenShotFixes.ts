@@ -102,6 +102,7 @@ export default class RyanScreenshotFixes extends Common {
       this.AffordableGolffixPromoDisplay();
       this.BrownSugarBabefixMediaHoverOpacity();
       this.RazorSupplyfixFooterMobileNav();
+      this.LaCremeLibrefixMenuDrawerHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2147,12 +2148,37 @@ export default class RyanScreenshotFixes extends Common {
   //Razor Supply
   private RazorSupplyfixFooterMobileNav() {
     setInterval(() => {
-        const parent = this.dom.getElementById('FooterMobileNavWrap');
-        if (parent) {
-            const child = parent.querySelector('#FooterMobileNav');
-            if (child && window.getComputedStyle(child).display === 'none') {
-                (child as HTMLElement).style.removeProperty('display');
-            }
+        interface StyleFix {
+            selector: string;
+            property: string;
+            value?: string;
+        }
+
+        const selectors: StyleFix[] = [
+            { selector: '#FooterMobileNavWrap #FooterMobileNav', property: 'display' },
+            { selector: '.image-element.aos-init.aos-animate img', property: 'minHeight', value: 'max-content' },
+            { selector: '.panel .panel-body', property: 'opacity' }
+        ];
+
+        selectors.forEach(({selector, property, value}) => {
+            this.dom.querySelectorAll(selector).forEach(element => {
+                const el = element as HTMLElement;
+                if (value) {
+                    el.style.setProperty(property, value);
+                } else {
+                    el.style.removeProperty(property);
+                }
+            });
+        });
+    }, 500);
+  }
+
+  //La Creme Libre
+  private LaCremeLibrefixMenuDrawerHeight() {
+    setInterval(() => {
+        const menuDrawer = this.dom.querySelector('#menu-drawer.menu-drawer.motion-reduce');
+        if (menuDrawer) {
+            (menuDrawer as HTMLElement).style.height = 'auto';
         }
     }, 500);
   }
