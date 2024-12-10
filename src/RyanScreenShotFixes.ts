@@ -103,6 +103,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BrownSugarBabefixMediaHoverOpacity();
       this.RazorSupplyfixFooterMobileNav();
       this.LaCremeLibrefixMenuDrawerHeight();
+      this.harklafixDropdownHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2179,6 +2180,19 @@ export default class RyanScreenshotFixes extends Common {
         const menuDrawer = this.dom.querySelector('#menu-drawer.menu-drawer.motion-reduce');
         if (menuDrawer) {
             (menuDrawer as HTMLElement).style.height = 'auto';
+        }
+    }, 500);
+  }
+
+  //harkla
+  private harklafixDropdownHeight() {
+    setInterval(() => {
+        const header = this.dom.querySelector('#header.mobile_nav-fixed--true');
+        if (header) {
+            const dropdown = header.querySelector('.dropdown_container');
+            if (dropdown) {
+                (dropdown as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+            }
         }
     }, 500);
   }

@@ -698,6 +698,7 @@ class ScreenshotFixes extends Common {
       ".flex.flex-wrap.h-full.px-4.-mx-4",
       ".window-overlay",
       ".agp__background.agp__background--color",
+      ".video-modal-template--21660939124759__ss_product_videos_4_jb8mYM",
     ];
 
     // Add inline styles with !important to class-based elements
