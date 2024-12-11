@@ -86,7 +86,6 @@ export default class AnitaScreenShotFixes {
     this.setMaxWidthForColorElementsADDISON();
     this.setMaxWidthForSpecificColorElementsADDISON();
     this.updateSecondSiblingPositionSMEL();
-    // this.updateBannerHeightBREEO();
     this.hideAllScalapayModals();
     this.updateDrawerMenuDisplayNuBest();
     this.hideJstIframeElementNuBest();
@@ -1126,16 +1125,6 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  // private updateBannerHeightBREEO(): void {
-  //   const bannerElement = this.document.getElementById(
-  //     "Banner-template--16295038844973__image_banner_DYeApg"
-  //   ) as HTMLElement;
-
-  //   if (bannerElement) {
-  //     bannerElement.setAttribute("style", "");
-  //     bannerElement.style.setProperty("height", "720px", "important");
-  //   }
-  // }
 
   private hideAllScalapayModals(): void {
     const modalElements = this.document.querySelectorAll(
@@ -1811,20 +1800,23 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeInlineStylesFromChildBreeo(): void {
-    const parentElement = this.document.querySelector(
-      ".variant-specs-compare-image-col.grid-item"
-    ) as HTMLElement | null;
+    setTimeout(() => {
+        const parentElement = this.document.querySelector(
+            ".variant-specs-compare-image-col.grid-item"
+        ) as HTMLElement | null;
 
-    if (parentElement) {
-      const childElement = parentElement.querySelector(
-        ".variant-specs-compare-images"
-      ) as HTMLElement | null;
+        if (parentElement) {
+            const childElement = parentElement.querySelector(
+                ".variant-specs-compare-images"
+            ) as HTMLElement | null;
 
-      if (childElement) {
-        childElement.removeAttribute("style");
-      }
-    }
-  }
+            if (childElement) {
+                childElement.removeAttribute("style");
+            }
+        }
+    }, 2000);
+}
+
   private setupMobileNavToggleBentgo(): void {
     const toggleButton = this.document.querySelector(
       ".toggle-mob-nav"
