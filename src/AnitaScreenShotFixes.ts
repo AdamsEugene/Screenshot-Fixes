@@ -86,7 +86,6 @@ export default class AnitaScreenShotFixes {
     this.setMaxWidthForColorElementsADDISON();
     this.setMaxWidthForSpecificColorElementsADDISON();
     this.updateSecondSiblingPositionSMEL();
-    // this.updateBannerHeightBREEO();
     this.hideAllScalapayModals();
     this.updateDrawerMenuDisplayNuBest();
     this.hideJstIframeElementNuBest();
@@ -128,9 +127,9 @@ export default class AnitaScreenShotFixes {
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
     this.setupMobileNavToggleBentgo();
-    this.removeInlineCssFromSecondDivChild();
+    this.removeInlineCssFromSecondDivChildHelloSilky();
     this.setAuthorAvatarImageStylesTalktheTalk();
-  
+    this.removeInlineOpacityFromVideoModalHELLOSILKY();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1126,16 +1125,6 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  // private updateBannerHeightBREEO(): void {
-  //   const bannerElement = this.document.getElementById(
-  //     "Banner-template--16295038844973__image_banner_DYeApg"
-  //   ) as HTMLElement;
-
-  //   if (bannerElement) {
-  //     bannerElement.setAttribute("style", "");
-  //     bannerElement.style.setProperty("height", "720px", "important");
-  //   }
-  // }
 
   private hideAllScalapayModals(): void {
     const modalElements = this.document.querySelectorAll(
@@ -1811,20 +1800,23 @@ export default class AnitaScreenShotFixes {
     });
   }
   private removeInlineStylesFromChildBreeo(): void {
-    const parentElement = this.document.querySelector(
-      ".variant-specs-compare-image-col.grid-item"
-    ) as HTMLElement | null;
+    setTimeout(() => {
+        const parentElement = this.document.querySelector(
+            ".variant-specs-compare-image-col.grid-item"
+        ) as HTMLElement | null;
 
-    if (parentElement) {
-      const childElement = parentElement.querySelector(
-        ".variant-specs-compare-images"
-      ) as HTMLElement | null;
+        if (parentElement) {
+            const childElement = parentElement.querySelector(
+                ".variant-specs-compare-images"
+            ) as HTMLElement | null;
 
-      if (childElement) {
-        childElement.removeAttribute("style");
-      }
-    }
-  }
+            if (childElement) {
+                childElement.removeAttribute("style");
+            }
+        }
+    }, 2000);
+}
+
   private setupMobileNavToggleBentgo(): void {
     const toggleButton = this.document.querySelector(
       ".toggle-mob-nav"
@@ -1866,36 +1858,49 @@ export default class AnitaScreenShotFixes {
       }
     });
   }
-  private removeInlineCssFromSecondDivChild(): void {
+  private removeInlineCssFromSecondDivChildHelloSilky(): void {
+    setTimeout(() => {
+      const parentElement = this.document.querySelector(
+        "#shopify-section-template--21644081922071__ss_shoppable_video_xtELYD"
+      ) as HTMLElement | null;
+
+      if (parentElement) {
+        const childDivs = Array.from(parentElement.children).filter(
+          (child): child is HTMLElement => child.tagName === "DIV"
+        );
+
+        if (childDivs.length >= 2) {
+          const secondDivChild = childDivs[1];
+          secondDivChild.removeAttribute("style");
+        }
+      }
+    }, 2000);
+  }
+
+  private setAuthorAvatarImageStylesTalktheTalk(): void {
+    const element = this.document.querySelector(
+      ".author-avatar-image"
+    ) as HTMLElement | null;
+
+    if (element) {
+      element.style.opacity = "1";
+      element.style.fontSize = "0px";
+      element.style.left = "0px";
+      element.style.top = "0px";
+      element.style.width = "50px";
+      element.style.height = "50px";
+      element.style.position = "relative";
+      element.style.borderRadius = "50%";
+    }
+  }
+
+  private removeInlineOpacityFromVideoModalHELLOSILKY(): void {
     const parentElement = this.document.querySelector(
-      "#shopify-section-template--21644081922071__ss_shoppable_video_xtELYD"
+      ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
     ) as HTMLElement | null;
 
     if (parentElement) {
-      const childDivs = Array.from(parentElement.children).filter(
-        (child): child is HTMLElement => child.tagName === "DIV"
-      );
-
-      if (childDivs.length >= 2) {
-        const secondDivChild = childDivs[1];
-        secondDivChild.removeAttribute("style");
-      }
+      parentElement.style.opacity = "";
     }
   }
-  private setAuthorAvatarImageStylesTalktheTalk(): void {
-    const element = this.document.querySelector(".author-avatar-image") as HTMLElement | null;
-
-    if (element) {
-        element.style.opacity = "1";
-        element.style.fontSize = "0px";
-        element.style.left = "0px";
-        element.style.top = "0px";
-        element.style.width = "50px";
-        element.style.height = "50px";
-        element.style.position = "relative";
-        element.style.borderRadius = "50%";
-    }
-}
-
-
 }
