@@ -97,8 +97,13 @@ export default class RyanScreenshotFixes extends Common {
       this.SayaUpdateImageWidth();
       this.SquidHausupdateSubMenuLinks();
       this.ToolNutremoveMinicartStyle();
-      this.BentgoremoveMobileNavOverflow();
       this.LoveWellnesstoggleNavButton();
+      this.closeCartPopup();
+      this.AffordableGolffixPromoDisplay();
+      this.BrownSugarBabefixMediaHoverOpacity();
+      this.RazorSupplyfixFooterMobileNav();
+      this.LaCremeLibrefixMenuDrawerHeight();
+      this.harklafixDropdownHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -1501,12 +1506,29 @@ export default class RyanScreenshotFixes extends Common {
 
   //Love Wellness
   private LoveWellnesstoggleNavButton() {
-    const navButton = this.dom.querySelector('button[class*="flex"][class*="items-center"][class*="justify-center"][class*="group"]');
-    const mobileNav = this.dom.querySelector('nav[class*="fixed"]');
-    
-    navButton?.addEventListener('click', () => {
-        navButton.classList.toggle('active');
-        mobileNav?.classList.toggle('active');
+    const observer = new MutationObserver(() => {
+        const navButton = this.dom.querySelector('button[class*="flex"][class*="items-center"][class*="justify-center"][class*="group"]');
+        const mobileNav = this.dom.querySelector('nav[class*="fixed"]');
+        
+        navButton?.addEventListener('click', () => {
+            navButton.classList.toggle('active');
+            mobileNav?.classList.toggle('active');
+        });
+    });
+
+    observer.observe(this.dom.body, {
+        childList: true,
+        subtree: true
+    });
+  }
+
+  //Upcart close cart
+  private closeCartPopup() {
+    this.dom.addEventListener('click', e => {
+        if ((e.target as HTMLElement).matches('.upcart-header-close-button, .upcart-header-close-button-icon')) {
+            this.dom.querySelector('#CartPopup')?.classList.remove('styles_active__7AzVD');
+            this.dom.querySelector('.upcart-backdrop.styles_CartPreview__backdrop__CjzdP')?.classList.remove('styles_active__7AzVD');
+        }
     });
   }
 
@@ -2086,12 +2108,93 @@ export default class RyanScreenshotFixes extends Common {
     }
   }
 
-  //Bentgo
-  private BentgoremoveMobileNavOverflow() {
-    const mobileNav = this.dom.querySelector('#mobile-nav:has(.inner, #sub-nav-menu-1)');
-    if (mobileNav) {
-        (mobileNav as HTMLElement).style.removeProperty('overflow');
-    }
+  //Affordable Golf
+  private AffordableGolffixPromoDisplay() {
+    setInterval(() => {
+        this.dom.querySelectorAll(
+            '.klaviyo-form-RHkXrY.klaviyo-form.form-version-cid-1, .promo-block__image-clip'
+        ).forEach(parent => {
+            if (parent.classList.contains('klaviyo-form-RHkXrY')) {
+                const klaviyoChildren = parent.querySelectorAll('.needsclick.kl-private-reset-css-Xuajs1');
+                if (klaviyoChildren.length > 1) {
+                    (klaviyoChildren[1] as HTMLElement).style.display = 'none';
+                }
+            } else {
+                const promoChild = parent.querySelector('.promo-block__image-wrapper.promo-block__image-wrapper--cover');
+                if (promoChild && window.getComputedStyle(promoChild).display === 'none') {
+                    (promoChild as HTMLElement).style.removeProperty('display');
+                }
+            }
+        });
+    }, 500);
+  }
+
+  //Brown Sugar Babe
+  private BrownSugarBabefixMediaHoverOpacity() {
+    setInterval(() => {
+        this.dom
+            .querySelectorAll('.card__media')
+            .forEach((parent) => {
+                const mediaElement = parent.querySelector('.media.media--hover-effect');
+                if (mediaElement) {
+                    const images = mediaElement.querySelectorAll('img');
+                    if (images.length > 1) {
+                        (images[1] as HTMLElement).style.removeProperty('opacity');
+                    }
+                }
+            });
+    }, 500);
+  }
+
+  //Razor Supply
+  private RazorSupplyfixFooterMobileNav() {
+    setInterval(() => {
+        interface StyleFix {
+            selector: string;
+            property: string;
+            value?: string;
+        }
+
+        const selectors: StyleFix[] = [
+            { selector: '#FooterMobileNavWrap #FooterMobileNav', property: 'display' },
+            { selector: '.image-element.aos-init.aos-animate img', property: 'minHeight', value: 'max-content' },
+            { selector: '.panel .panel-body', property: 'opacity' }
+        ];
+
+        selectors.forEach(({selector, property, value}) => {
+            this.dom.querySelectorAll(selector).forEach(element => {
+                const el = element as HTMLElement;
+                if (value) {
+                    el.style.setProperty(property, value);
+                } else {
+                    el.style.removeProperty(property);
+                }
+            });
+        });
+    }, 500);
+  }
+
+  //La Creme Libre
+  private LaCremeLibrefixMenuDrawerHeight() {
+    setInterval(() => {
+        const menuDrawer = this.dom.querySelector('#menu-drawer.menu-drawer.motion-reduce');
+        if (menuDrawer) {
+            (menuDrawer as HTMLElement).style.height = 'auto';
+        }
+    }, 500);
+  }
+
+  //harkla
+  private harklafixDropdownHeight() {
+    setInterval(() => {
+        const header = this.dom.querySelector('#header.mobile_nav-fixed--true');
+        if (header) {
+            const dropdown = header.querySelector('.dropdown_container');
+            if (dropdown) {
+                (dropdown as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+            }
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer

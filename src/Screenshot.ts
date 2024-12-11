@@ -695,10 +695,10 @@ class ScreenshotFixes extends Common {
       ".boost-cart__backdrop",
       ".modal__gifting",
       ".fixed.inset-0.bg-black.bg-opacity-25",
-      ".needsclick.kl-private-reset-css-Xuajs1",
       ".flex.flex-wrap.h-full.px-4.-mx-4",
       ".window-overlay",
       ".agp__background.agp__background--color",
+      ".video-modal-template--21660939124759__ss_product_videos_4_jb8mYM",
     ];
 
     // Add inline styles with !important to class-based elements
@@ -1447,6 +1447,13 @@ class ScreenshotFixes extends Common {
     });
   }
 
+  private removeEmptyCartClass = () => {
+    const cartDrawer = this.dom.querySelector('cart-drawer.drawer.animate');
+    if (cartDrawer) {
+        cartDrawer.classList.remove('is-empty');
+    }
+  };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1466,7 +1473,7 @@ class ScreenshotFixes extends Common {
         functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
       },
       {
-        ids: [2777, 172, 2907, 555, 2684, 2842, 2993],
+        ids: [2777, 172, 2907, 555, 2684, 2842, 2993, 715],
         functions: [this.observeMutation],
       },
       { ids: [1848], functions: [this.removeMainContentMarginTop] },
@@ -1475,6 +1482,7 @@ class ScreenshotFixes extends Common {
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
       { ids: [2850], functions: [this.handleHamburgerMenuClick] },
+      { ids: [2792], functions: [this.removeEmptyCartClass] },
       // { ids: [2432], functions: [this.hideAllScalapayModals] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
