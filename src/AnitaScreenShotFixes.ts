@@ -1883,7 +1883,7 @@ export default class AnitaScreenShotFixes {
     }
 }
 private setAuthorAvatarImageStylesTalktheTalk(): void {
-  const element = this.document.querySelector(".author-avatar-image") as HTMLElement | null;
+  const element = document.querySelector(".author-avatar-image") as HTMLElement | null;
 
   if (element) {
       element.style.opacity = "1";
@@ -1893,8 +1893,10 @@ private setAuthorAvatarImageStylesTalktheTalk(): void {
       element.style.width = "50px";
       element.style.height = "50px";
       element.style.position = "relative";
+      element.style.borderRadius = "50%";
   }
 }
+
 
 
 
