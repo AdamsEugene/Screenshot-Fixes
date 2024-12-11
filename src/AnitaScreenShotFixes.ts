@@ -129,6 +129,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromChildBreeo();
     this.setupMobileNavToggleBentgo();
     this.removeInlineCssFromSecondDivChild();
+    this.setAuthorAvatarImageStylesTalktheTalk();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1881,6 +1882,20 @@ export default class AnitaScreenShotFixes {
         }
     }
 }
+private setAuthorAvatarImageStylesTalktheTalk(): void {
+  const element = this.document.querySelector(".author-avatar-image") as HTMLElement | null;
+
+  if (element) {
+      element.style.opacity = "1";
+      element.style.fontSize = "0px";
+      element.style.left = "0px";
+      element.style.top = "0px";
+      element.style.width = "50px";
+      element.style.height = "50px";
+      element.style.position = "relative";
+  }
+}
+
 
 
 }
