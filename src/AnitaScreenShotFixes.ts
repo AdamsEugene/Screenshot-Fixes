@@ -101,7 +101,6 @@ export default class AnitaScreenShotFixes {
     this.hideElementWithClassBGT4X4();
     this.setHeaderToFlexMYSTICBARRELS();
     this.removeInlineStylesFromElementOCTO();
-    this.setStylesForElementOCTO();
     this.removeInlineStylesFASTTRAC();
     this.setVisibilityForElementFastTrac();
     this.hideInsertedStarContainersFastTrac();
@@ -129,6 +128,9 @@ export default class AnitaScreenShotFixes {
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
     this.setupMobileNavToggleBentgo();
+    this.removeInlineCssFromSecondDivChild();
+    this.setAuthorAvatarImageStylesTalktheTalk();
+  
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1319,18 +1321,6 @@ export default class AnitaScreenShotFixes {
       element.removeAttribute("style");
     }
   }
-  private setStylesForElementOCTO(): void {
-    const element = this.document.querySelector(
-      ".u_1560738228.dmNewParagraph"
-    ) as HTMLElement;
-
-    if (element) {
-      element.style.setProperty("margin-left", "60px", "important");
-      element.style.setProperty("max-width", "100%", "important");
-      element.style.setProperty("margin", "unset", "important");
-      element.style.setProperty("width", "286px", "important");
-    }
-  }
 
   private removeInlineStylesFASTTRAC(): void {
     const element = this.document.querySelector(
@@ -1876,4 +1866,36 @@ export default class AnitaScreenShotFixes {
       }
     });
   }
+  private removeInlineCssFromSecondDivChild(): void {
+    const parentElement = this.document.querySelector(
+      "#shopify-section-template--21644081922071__ss_shoppable_video_xtELYD"
+    ) as HTMLElement | null;
+
+    if (parentElement) {
+      const childDivs = Array.from(parentElement.children).filter(
+        (child): child is HTMLElement => child.tagName === "DIV"
+      );
+
+      if (childDivs.length >= 2) {
+        const secondDivChild = childDivs[1];
+        secondDivChild.removeAttribute("style");
+      }
+    }
+  }
+  private setAuthorAvatarImageStylesTalktheTalk(): void {
+    const element = this.document.querySelector(".author-avatar-image") as HTMLElement | null;
+
+    if (element) {
+        element.style.opacity = "1";
+        element.style.fontSize = "0px";
+        element.style.left = "0px";
+        element.style.top = "0px";
+        element.style.width = "50px";
+        element.style.height = "50px";
+        element.style.position = "relative";
+        element.style.borderRadius = "50%";
+    }
+}
+
+
 }
