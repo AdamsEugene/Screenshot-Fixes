@@ -257,14 +257,6 @@
     }
   },
   {
-    "selector": ".klaviyo-form-QWhmcn",
-    "content": {
-      "idSite": 2171,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.serenitycbd.com-pet-can-i-give-my-dog-cbd-and-trazodone-main.html"
-    }
-  },
-  {
     "selector": "#shopify-section-template--16394274570326__03ab1527-a9a3-4dcf-a02a-e817632ef113",
     "content": {
       "idSite": 2052,
@@ -315,7 +307,7 @@
       "idSite": 2761,
       "idSiteHsr": 5121103,
       "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/breeo.com-products-x-series-smokeless-fire-pit-main.html"
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/breeo.com-products-x-series-smokeless-fire-pit-main.html"
     }
   },
   {
@@ -362,14 +354,6 @@
     }
   },
   {
-    "selector": ".klaviyo-form-UQytH3",
-    "content": {
-      "idSite": 2545,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/kinnstudio.com--main.html"
-    }
-  },
-  {
     "selector": ".ajax-cart__content",
     "content": {
       "idSite": 2853,
@@ -399,15 +383,6 @@
       "idSite": 1802,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/heyhair.co-products-gray-escape-advanced-hair-growth-supplement-main.html"
-    }
-  },
-  {
-    "selector": ".klaviyo-form-VaBDVq",
-    "content": {
-      "idSite": 2429,
-      "idSiteHsr": 4206773,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.lundberg.com-collections-all-products-main.html"
     }
   },
   {
@@ -480,15 +455,6 @@
       "idSiteHsr": 3425608,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.shopbotaniqueparis.com-pages-tracking-main.html"
-    }
-  },
-  {
-    "selector": ".klaviyo-form-VENSvR",
-    "content": {
-      "idSite": 2903,
-      "idSiteHsr": 5914022,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bedsrus.com.au--main.html"
     }
   },
   {
@@ -712,15 +678,6 @@
       "idSite": 1492,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/carplaybox.co--main.html"
-    }
-  },
-  {
-    "selector": ".klaviyo-form-WvNGgh",
-    "content": {
-      "idSite": 1425,
-      "idSiteHsr": 1314502,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/laticoleathers.com-products-callie-sling-crossbody-main.html"
     }
   },
   {
