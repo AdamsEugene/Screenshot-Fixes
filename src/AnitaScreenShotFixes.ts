@@ -131,7 +131,7 @@ export default class AnitaScreenShotFixes {
     this.setAuthorAvatarImageStylesTalktheTalk();
     this.removeInlineOpacityFromVideoModalHELLOSILKY();
     this.removeInlineCssFromSectionTalktheTalk();
-    // this.setItemPaginationStylesTalktheTalk();
+    this.removeInlineHeightFromImageTalktheTalk();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1919,6 +1919,22 @@ export default class AnitaScreenShotFixes {
         }
     }, 2000);
 }
+private removeInlineHeightFromImageTalktheTalk(): void {
+  const parentElement = document.querySelector(".fluid-image-container.sqs-image-content") as HTMLElement | null;
+
+  if (parentElement) {
+      const contentFillElement = parentElement.querySelector(".content-fill") as HTMLElement | null;
+
+      if (contentFillElement) {
+          const imgElement = contentFillElement.querySelector("img") as HTMLImageElement | null;
+
+          if (imgElement) {
+              imgElement.style.height = "";
+          }
+      }
+  }
+}
+
 
 
 
