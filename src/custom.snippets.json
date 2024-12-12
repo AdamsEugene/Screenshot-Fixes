@@ -95,6 +95,15 @@
     }
   },
   {
+    "selector": "#shopify-block-AVVBhcjhMd3dEaW5aT__loox_reviews_loox_agg_section_UHWkk9",
+    "content": {
+      "idSite": 2925,
+      "idSiteHsr": 6421370,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/https_--yousmel.com-0303fd80-76dd-4ee9-bfad-ecddd76af486-main.html"
+    }
+  },
+  {
     "selector": ".kaching-bundles__bars",
     "content": {
       "idSite": 2890,
