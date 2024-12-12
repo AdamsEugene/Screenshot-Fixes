@@ -1899,14 +1899,17 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeInlineOpacityFromVideoModalHELLOSILKY(): void {
-    const parentElement = this.document.querySelector(
-      ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
-    ) as HTMLElement | null;
+    setTimeout(() => {
+        const parentElement = this.document.querySelector(
+            ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
+        ) as HTMLElement | null;
 
-    if (parentElement) {
-      parentElement.style.opacity = "";
-    }
-  }
+        if (parentElement) {
+            parentElement.style.opacity = "";
+        }
+    }, 3000);
+}
+
   private removeInlineCssFromSectionTalktheTalk(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
