@@ -132,6 +132,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineOpacityFromVideoModalHELLOSILKY();
     this.removeInlineCssFromSectionTalktheTalk();
     this.removeInlineHeightFromImageTalktheTalk();
+    this.removeInlineLeftStyleIfHasChildNova();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1803,21 +1804,21 @@ export default class AnitaScreenShotFixes {
   }
   private removeInlineStylesFromChildBreeo(): void {
     setTimeout(() => {
-        const parentElement = this.document.querySelector(
-            ".variant-specs-compare-image-col.grid-item"
+      const parentElement = this.document.querySelector(
+        ".variant-specs-compare-image-col.grid-item"
+      ) as HTMLElement | null;
+
+      if (parentElement) {
+        const childElement = parentElement.querySelector(
+          ".variant-specs-compare-images"
         ) as HTMLElement | null;
 
-        if (parentElement) {
-            const childElement = parentElement.querySelector(
-                ".variant-specs-compare-images"
-            ) as HTMLElement | null;
-
-            if (childElement) {
-                childElement.removeAttribute("style");
-            }
+        if (childElement) {
+          childElement.removeAttribute("style");
         }
+      }
     }, 2000);
-}
+  }
 
   private setupMobileNavToggleBentgo(): void {
     const toggleButton = this.document.querySelector(
@@ -1907,35 +1908,54 @@ export default class AnitaScreenShotFixes {
   }
   private removeInlineCssFromSectionTalktheTalk(): void {
     setTimeout(() => {
-        const parentElement = this.document.querySelector(".section-border") as HTMLElement | null;
+      const parentElement = this.document.querySelector(
+        ".section-border"
+      ) as HTMLElement | null;
 
-        if (parentElement) {
-            const childElement = parentElement.querySelector(".section-background") as HTMLElement | null;
+      if (parentElement) {
+        const childElement = parentElement.querySelector(
+          ".section-background"
+        ) as HTMLElement | null;
 
-            if (childElement) {
-                parentElement.removeAttribute("style");
-                childElement.removeAttribute("style");
-            }
+        if (childElement) {
+          parentElement.removeAttribute("style");
+          childElement.removeAttribute("style");
         }
+      }
     }, 2000);
-}
-private removeInlineHeightFromImageTalktheTalk(): void {
-  const parentElement = document.querySelector(".fluid-image-container.sqs-image-content") as HTMLElement | null;
+  }
+  private removeInlineHeightFromImageTalktheTalk(): void {
+    const parentElement = document.querySelector(
+      ".fluid-image-container.sqs-image-content"
+    ) as HTMLElement | null;
 
-  if (parentElement) {
-      const contentFillElement = parentElement.querySelector(".content-fill") as HTMLElement | null;
+    if (parentElement) {
+      const contentFillElement = parentElement.querySelector(
+        ".content-fill"
+      ) as HTMLElement | null;
 
       if (contentFillElement) {
-          const imgElement = contentFillElement.querySelector("img") as HTMLImageElement | null;
+        const imgElement = contentFillElement.querySelector(
+          "img"
+        ) as HTMLImageElement | null;
 
-          if (imgElement) {
-              imgElement.style.height = "";
-          }
+        if (imgElement) {
+          imgElement.style.height = "";
+        }
       }
+    }
   }
+  private removeInlineLeftStyleIfHasChildNova(): void {
+    const parentElement = this.document.querySelector(".nt-canvas-menu.nt-push-menu") as HTMLElement | null;
+
+    if (parentElement) {
+        const childElement = parentElement.querySelector(".shopify-section.menu-section-container.menu-section") as HTMLElement | null;
+
+        if (childElement) {
+            parentElement.style.left = "";
+        }
+    }
 }
-
-
 
 
 }
