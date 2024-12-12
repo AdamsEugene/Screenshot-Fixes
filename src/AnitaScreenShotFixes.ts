@@ -130,6 +130,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineCssFromSecondDivChildHelloSilky();
     this.setAuthorAvatarImageStylesTalktheTalk();
     this.removeInlineOpacityFromVideoModalHELLOSILKY();
+    this.removeInlineCssFromSectionTalktheTalk();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1903,4 +1904,18 @@ export default class AnitaScreenShotFixes {
       parentElement.style.opacity = "";
     }
   }
+  private removeInlineCssFromSectionTalktheTalk(): void {
+    const parentElement = this.document.querySelector(".section-border") as HTMLElement | null;
+
+    if (parentElement) {
+        const childElement = parentElement.querySelector(".section-background") as HTMLElement | null;
+
+        if (childElement) {
+            parentElement.removeAttribute("style");
+
+            childElement.removeAttribute("style");
+        }
+    }
+}
+
 }

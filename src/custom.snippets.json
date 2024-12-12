@@ -301,6 +301,15 @@
     }
   },
   {
+    "selector": ".variant-specs-compare-images",
+    "content": {
+      "idSite": 2761,
+      "idSiteHsr": 5121103,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/breeo.com-products-x-series-smokeless-fire-pit-main.html"
+    }
+  },
+  {
     "selector": "#cart",
     "content": {
       "idSite": 2898,
