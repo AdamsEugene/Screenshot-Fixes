@@ -133,6 +133,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineCssFromSectionTalktheTalk();
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
+    this.removeInlineHeightFromMobileMenuBALANCE();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1946,16 +1947,27 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeInlineLeftStyleIfHasChildNova(): void {
-    const parentElement = this.document.querySelector(".nt-canvas-menu.nt-push-menu") as HTMLElement | null;
+    const parentElement = this.document.querySelector(
+      ".nt-canvas-menu.nt-push-menu"
+    ) as HTMLElement | null;
 
     if (parentElement) {
-        const childElement = parentElement.querySelector(".shopify-section.menu-section-container.menu-section") as HTMLElement | null;
+      const childElement = parentElement.querySelector(
+        ".shopify-section.menu-section-container.menu-section"
+      ) as HTMLElement | null;
 
-        if (childElement) {
-            parentElement.style.left = "";
-        }
+      if (childElement) {
+        parentElement.style.left = "";
+      }
     }
-}
+  }
+  private removeInlineHeightFromMobileMenuBALANCE(): void {
+    const element = this.document.querySelector(
+      "#mobile-menu-drawer.drawer.drawer--from-left.new_mobile_mega_menu"
+    ) as HTMLElement | null;
 
-
+    if (element) {
+      element.style.height = "";
+    }
+  }
 }
