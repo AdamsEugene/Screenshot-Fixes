@@ -122,6 +122,15 @@
     }
   },
   {
+    "selector": "#main",
+    "content": {
+      "idSite": 1909,
+      "idSiteHsr": 2260099,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/echowater.com-products-echo-go-plus-portable-hydrogen-water-main.html"
+    }
+  },
+  {
     "selector": "#main-content",
     "content": {
       "idSite": 2886,
