@@ -131,6 +131,7 @@ export default class AnitaScreenShotFixes {
     this.setAuthorAvatarImageStylesTalktheTalk();
     this.removeInlineOpacityFromVideoModalHELLOSILKY();
     this.removeInlineCssFromSectionTalktheTalk();
+    // this.setItemPaginationStylesTalktheTalk();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1905,17 +1906,20 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeInlineCssFromSectionTalktheTalk(): void {
-    const parentElement = this.document.querySelector(".section-border") as HTMLElement | null;
+    setTimeout(() => {
+        const parentElement = this.document.querySelector(".section-border") as HTMLElement | null;
 
-    if (parentElement) {
-        const childElement = parentElement.querySelector(".section-background") as HTMLElement | null;
+        if (parentElement) {
+            const childElement = parentElement.querySelector(".section-background") as HTMLElement | null;
 
-        if (childElement) {
-            parentElement.removeAttribute("style");
-
-            childElement.removeAttribute("style");
+            if (childElement) {
+                parentElement.removeAttribute("style");
+                childElement.removeAttribute("style");
+            }
         }
-    }
+    }, 2000);
 }
+
+
 
 }
