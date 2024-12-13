@@ -133,6 +133,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineCssFromSectionTalktheTalk();
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
+    this.removeInlineHeightFromMobileMenuBALANCE();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1898,14 +1899,17 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeInlineOpacityFromVideoModalHELLOSILKY(): void {
-    const parentElement = this.document.querySelector(
-      ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
-    ) as HTMLElement | null;
+    setTimeout(() => {
+        const parentElement = this.document.querySelector(
+            ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
+        ) as HTMLElement | null;
 
-    if (parentElement) {
-      parentElement.style.opacity = "";
-    }
-  }
+        if (parentElement) {
+            parentElement.style.opacity = "";
+        }
+    }, 3000);
+}
+
   private removeInlineCssFromSectionTalktheTalk(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
@@ -1946,16 +1950,27 @@ export default class AnitaScreenShotFixes {
     }
   }
   private removeInlineLeftStyleIfHasChildNova(): void {
-    const parentElement = this.document.querySelector(".nt-canvas-menu.nt-push-menu") as HTMLElement | null;
+    const parentElement = this.document.querySelector(
+      ".nt-canvas-menu.nt-push-menu"
+    ) as HTMLElement | null;
 
     if (parentElement) {
-        const childElement = parentElement.querySelector(".shopify-section.menu-section-container.menu-section") as HTMLElement | null;
+      const childElement = parentElement.querySelector(
+        ".shopify-section.menu-section-container.menu-section"
+      ) as HTMLElement | null;
 
-        if (childElement) {
-            parentElement.style.left = "";
-        }
+      if (childElement) {
+        parentElement.style.left = "";
+      }
     }
-}
+  }
+  private removeInlineHeightFromMobileMenuBALANCE(): void {
+    const element = this.document.querySelector(
+      "#mobile-menu-drawer.drawer.drawer--from-left.new_mobile_mega_menu"
+    ) as HTMLElement | null;
 
-
+    if (element) {
+      element.style.height = "";
+    }
+  }
 }
