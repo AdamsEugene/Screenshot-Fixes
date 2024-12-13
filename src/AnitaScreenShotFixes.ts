@@ -134,6 +134,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
     this.removeInlineHeightFromMobileMenuBALANCE();
+    this.setDisplayBlockForClosedStateDescendantsSupply();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1900,15 +1901,15 @@ export default class AnitaScreenShotFixes {
 
   private removeInlineOpacityFromVideoModalHELLOSILKY(): void {
     setTimeout(() => {
-        const parentElement = this.document.querySelector(
-            ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
-        ) as HTMLElement | null;
+      const parentElement = this.document.querySelector(
+        ".video-modal-template--21644081922071__ss_shoppable_video_xtELYD"
+      ) as HTMLElement | null;
 
-        if (parentElement) {
-            parentElement.style.opacity = "";
-        }
+      if (parentElement) {
+        parentElement.style.opacity = "";
+      }
     }, 3000);
-}
+  }
 
   private removeInlineCssFromSectionTalktheTalk(): void {
     setTimeout(() => {
@@ -1941,7 +1942,7 @@ export default class AnitaScreenShotFixes {
       if (contentFillElement) {
         const imgElement = contentFillElement.querySelector(
           "img"
-        ) as HTMLImageElement | null;
+        ) as HTMLImageElement;
 
         if (imgElement) {
           imgElement.style.height = "";
@@ -1952,12 +1953,12 @@ export default class AnitaScreenShotFixes {
   private removeInlineLeftStyleIfHasChildNova(): void {
     const parentElement = this.document.querySelector(
       ".nt-canvas-menu.nt-push-menu"
-    ) as HTMLElement | null;
+    ) as HTMLElement;
 
     if (parentElement) {
       const childElement = parentElement.querySelector(
         ".shopify-section.menu-section-container.menu-section"
-      ) as HTMLElement | null;
+      ) as HTMLElement;
 
       if (childElement) {
         parentElement.style.left = "";
@@ -1967,10 +1968,27 @@ export default class AnitaScreenShotFixes {
   private removeInlineHeightFromMobileMenuBALANCE(): void {
     const element = this.document.querySelector(
       "#mobile-menu-drawer.drawer.drawer--from-left.new_mobile_mega_menu"
-    ) as HTMLElement | null;
+    ) as HTMLElement;
 
     if (element) {
       element.style.height = "";
+    }
+  }
+  private setDisplayBlockForClosedStateDescendantsSupply(): void {
+    const parentElement = this.document.querySelector(
+      ".r-1r5tugn"
+    ) as HTMLElement | null;
+
+    if (parentElement) {
+      const closedDescendants = parentElement.querySelectorAll(
+        '[data-state="closed"]'
+      ) as NodeListOf<HTMLElement>;
+
+      if (closedDescendants.length > 0) {
+        closedDescendants.forEach((descendant) => {
+          descendant.style.display = "block";
+        });
+      }
     }
   }
 }
