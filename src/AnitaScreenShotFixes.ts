@@ -126,7 +126,7 @@ export default class AnitaScreenShotFixes {
     this.hideSubNavElementsBentgo();
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
-    this.setupMobileNavToggleBentgo();
+    // this.setupMobileNavToggleBentgo();
     this.removeInlineCssFromSecondDivChildHelloSilky();
     this.setAuthorAvatarImageStylesTalktheTalk();
     this.removeInlineOpacityFromVideoModalHELLOSILKY();
@@ -1984,5 +1984,6 @@ export default class AnitaScreenShotFixes {
             element.style.display = "block";
         });
     }
+  
   }
 }
