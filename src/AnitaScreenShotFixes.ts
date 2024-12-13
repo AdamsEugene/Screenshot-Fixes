@@ -1975,20 +1975,14 @@ export default class AnitaScreenShotFixes {
     }
   }
   private setDisplayBlockForClosedStateDescendantsSupply(): void {
-    const parentElement = this.document.querySelector(
-      ".r-1r5tugn"
-    ) as HTMLElement | null;
+    const parentElement = this.document.querySelector(".r-1r5tugn") as HTMLElement | null;
 
     if (parentElement) {
-      const closedDescendants = parentElement.querySelectorAll(
-        '[data-state="closed"]'
-      ) as NodeListOf<HTMLElement>;
+        const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
 
-      if (closedDescendants.length > 0) {
-        closedDescendants.forEach((descendant) => {
-          descendant.style.display = "block";
+        closedElements.forEach((element) => {
+            element.style.display = "block";
         });
-      }
     }
   }
 }
