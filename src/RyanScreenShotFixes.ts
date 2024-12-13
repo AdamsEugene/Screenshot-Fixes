@@ -104,6 +104,7 @@ export default class RyanScreenshotFixes extends Common {
       this.RazorSupplyfixFooterMobileNav();
       this.LaCremeLibrefixMenuDrawerHeight();
       this.harklafixDropdownHeight();
+      this.VIVAaddSplideBaseClass();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2195,6 +2196,25 @@ export default class RyanScreenshotFixes extends Common {
             }
         }
     }, 500);
+  }
+
+  //VIVA
+  private VIVAaddSplideBaseClass() {
+    this.dom
+        .querySelectorAll('.page-width.section-template--15831369613375__multicolumn_WfL8gL-padding.isolate')
+        .forEach((parent) => {
+            const childElements = parent.querySelectorAll(
+                '.splide--desktop-dots-under.splide--mobile-dots-under.splide--desktop-arrows-sides' +
+                '.splide--desktop-arrows-outside.splide--mobile-arrows-under.splide--destroy-desktop' +
+                '.splide--destroy-mobile'
+            );
+
+            childElements.forEach((child) => {
+                if (!child.classList.contains('splide')) {
+                    child.classList.add('splide');
+                }
+            });
+        });
   }
 
   //toggleHeatmapClassOnDrawer
