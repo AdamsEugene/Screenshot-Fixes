@@ -311,6 +311,15 @@
     }
   },
   {
+    "selector": "#ProductInfo-template--23430313541919__main-product",
+    "content": {
+      "idSite": 2742,
+      "idSiteHsr": 4934491,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.holywaterbracelet.com-products-holy-water-porcelain-cross-bracelet-in-silver-main.html"
+    }
+  },
+  {
     "selector": ".variant-specs-compare-images",
     "content": {
       "idSite": 2761,
