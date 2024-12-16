@@ -138,6 +138,7 @@ export default class AnitaScreenShotFixes {
     this.hideMediaOverlaysKotomi();
     this.removeInlineStylesFromMediaElementsKotomi();
     this.setDisplayBlockForClosedStateDescendantsSupply1();
+    this.removeInlineOpacityFromElementsNAALI();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1978,74 +1979,95 @@ export default class AnitaScreenShotFixes {
     }
   }
   private setDisplayBlockForClosedStateDescendantsSupply(): void {
-    const parentElement = this.document.querySelector(".r-1r5tugn") as HTMLElement | null;
+    const parentElement = this.document.querySelector(
+      ".r-1r5tugn"
+    ) as HTMLElement | null;
 
     if (parentElement) {
-        const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
+      const closedElements = parentElement.querySelectorAll(
+        '[data-state="closed"]'
+      ) as NodeListOf<HTMLElement>;
 
-        closedElements.forEach((element) => {
-            element.style.display = "block";
-        });
+      closedElements.forEach((element) => {
+        element.style.display = "block";
+      });
     }
-  
   }
   private hideMediaOverlaysKotomi(): void {
-    const elements = this.document.querySelectorAll('.media__overlay') as NodeListOf<HTMLElement>;
-  
+    const elements = this.document.querySelectorAll(
+      ".media__overlay"
+    ) as NodeListOf<HTMLElement>;
+
     if (elements.length === 0) {
       return;
     }
-  
+
     elements.forEach((element) => {
-      element.style.display = 'none';
+      element.style.display = "none";
     });
   }
-  
+
   private removeInlineStylesFromMediaElementsKotomi(): void {
-    const mediaSourceElements = this.document.querySelectorAll('.media__source') as NodeListOf<HTMLElement>;
-  
+    const mediaSourceElements = this.document.querySelectorAll(
+      ".media__source"
+    ) as NodeListOf<HTMLElement>;
+
     mediaSourceElements.forEach((mediaSource) => {
-      const ancestor = mediaSource.closest('.MediaGalleryWidget__media') as HTMLElement | null;
-  
+      const ancestor = mediaSource.closest(
+        ".MediaGalleryWidget__media"
+      ) as HTMLElement | null;
+
       if (ancestor) {
         if (ancestor.style) {
-          ancestor.removeAttribute('style');
+          ancestor.removeAttribute("style");
         }
-  
+
         if (mediaSource.style) {
-          mediaSource.removeAttribute('style');
+          mediaSource.removeAttribute("style");
         }
-  
-        const mediaItem = ancestor.closest('.MediaGalleryWidget__item') as HTMLElement | null;
-  
+
+        const mediaItem = ancestor.closest(
+          ".MediaGalleryWidget__item"
+        ) as HTMLElement | null;
+
         if (mediaItem && mediaItem.style) {
-          mediaItem.removeAttribute('style');
+          mediaItem.removeAttribute("style");
         }
       }
     });
   }
-  
-  
 
   private setDisplayBlockForClosedStateDescendantsSupply1(): void {
     setTimeout(() => {
-      const parentElements = this.document.querySelectorAll(".r-1r5tugn") as NodeListOf<HTMLElement>;
-  
+      const parentElements = this.document.querySelectorAll(
+        ".r-1r5tugn"
+      ) as NodeListOf<HTMLElement>;
+
       parentElements.forEach((parentElement) => {
-        const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
-  
+        const closedElements = parentElement.querySelectorAll(
+          '[data-state="closed"]'
+        ) as NodeListOf<HTMLElement>;
+
         closedElements.forEach((element) => {
           element.style.setProperty("display", "block", "important");
         });
       });
-    }, 2000); 
+    }, 2000);
   }
-  
-  
-  
-  
-  
-  
-  
+  private removeInlineOpacityFromElementsNAALI(): void {
+    const selectors: string[] = [
+      ".jc-flex.jc-flex-row-reverse.jc-opacity-0.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-bg-white.jc-transition-opacity.jc-duration-300",
+      ".js-burger-menu.jc-bg-white.jc-max-h-\\[calc\\(100vh-var\\(--top-gap\\)\\)\\].jc-overflow-y-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-opacity-0.jc-pointer-events-none.peer-aria-expanded\\:jc-opacity-100.peer-aria-expanded\\:jc-pointer-events-auto.jc-transition-opacity.jc-duration-300",
+      ".jc-shadow-md.jc-px-\\[28px\\].jc-py-5.jc-bg-white.jc-absolute.jc-top-\\[calc\\(100\\%\\+18px\\)\\].jc-left-0.jc-opacity-0.jc-transition-opacity.jc-duration-300.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto",
+    ];
 
+    selectors.forEach((selector: string) => {
+      const elements: NodeListOf<HTMLElement> =
+        document.querySelectorAll(selector);
+
+      elements.forEach((element: HTMLElement) => {
+        element.style.removeProperty("opacity");
+      });
+    });
+  }
 }
