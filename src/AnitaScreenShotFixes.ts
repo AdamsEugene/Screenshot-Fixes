@@ -2063,7 +2063,7 @@ export default class AnitaScreenShotFixes {
 
     selectors.forEach((selector: string) => {
       const elements: NodeListOf<HTMLElement> =
-        document.querySelectorAll(selector);
+        this.document.querySelectorAll(selector);
 
       elements.forEach((element: HTMLElement) => {
         element.style.removeProperty("opacity");
