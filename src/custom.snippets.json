@@ -413,6 +413,15 @@
     }
   },
   {
+    "selector": "#reviews",
+    "content": {
+      "idSite": 2880,
+      "idSiteHsr": 5400614,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.buildredux.com-pages-reviews-main.html"
+    }
+  },
+  {
     "selector": "#shopify-section-template--16447012208810__1657471292f7ce33fd",
     "content": {
       "idSite": 2338,
