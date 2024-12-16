@@ -134,9 +134,10 @@ export default class AnitaScreenShotFixes {
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
     this.removeInlineHeightFromMobileMenuBALANCE();
-    this.setDisplayBlockForClosedStateDescendantsSupply();
+    // this.setDisplayBlockForClosedStateDescendantsSupply();
     this.hideMediaOverlaysKotomi();
     this.removeInlineStylesFromMediaElementsKotomi();
+    this.setDisplayBlockForClosedStateDescendantsSupply1();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2021,6 +2022,20 @@ export default class AnitaScreenShotFixes {
           mediaItem.removeAttribute('style');
         }
       }
+    });
+  }
+  
+  
+
+  private setDisplayBlockForClosedStateDescendantsSupply1(): void {
+    const parentElements = this.document.querySelectorAll(".r-1r5tugn") as NodeListOf<HTMLElement>;
+  
+    parentElements.forEach((parentElement, parentIndex) => {
+      const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
+  
+      closedElements.forEach((element, index) => {
+        element.style.display = "block";
+      });
     });
   }
   
