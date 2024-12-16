@@ -413,6 +413,15 @@
     }
   },
   {
+    "selector": "#shopify-section-template--16447012208810__1657471292f7ce33fd",
+    "content": {
+      "idSite": 2338,
+      "idSiteHsr": 3631167,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/shopstrangetails.com--main.html"
+    }
+  },
+  {
     "selector": "#shopify-section-template--23789853901184__1665673125426ea976",
     "content": {
       "idSite": 2463,
