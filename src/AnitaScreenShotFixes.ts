@@ -2060,14 +2060,17 @@ export default class AnitaScreenShotFixes {
       ".js-burger-menu.jc-bg-white.jc-max-h-\\[calc\\(100vh-var\\(--top-gap\\)\\)\\].jc-overflow-y-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-opacity-0.jc-pointer-events-none.peer-aria-expanded\\:jc-opacity-100.peer-aria-expanded\\:jc-pointer-events-auto.jc-transition-opacity.jc-duration-300",
       ".jc-shadow-md.jc-px-\\[28px\\].jc-py-5.jc-bg-white.jc-absolute.jc-top-\\[calc\\(100\\%\\+18px\\)\\].jc-left-0.jc-opacity-0.jc-transition-opacity.jc-duration-300.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto",
     ];
-
-    selectors.forEach((selector: string) => {
-      const elements: NodeListOf<HTMLElement> =
-        this.document.querySelectorAll(selector);
-
-      elements.forEach((element: HTMLElement) => {
-        element.style.removeProperty("opacity");
+  
+    setTimeout(() => {
+      selectors.forEach((selector: string) => {
+        const elements: NodeListOf<HTMLElement> =
+          this.document.querySelectorAll(selector);
+  
+        elements.forEach((element: HTMLElement) => {
+          element.style.removeProperty("opacity");
+        });
       });
-    });
+    }, 2000);
   }
+  
 }
