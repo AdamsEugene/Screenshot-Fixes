@@ -2028,16 +2028,19 @@ export default class AnitaScreenShotFixes {
   
 
   private setDisplayBlockForClosedStateDescendantsSupply1(): void {
-    const parentElements = this.document.querySelectorAll(".r-1r5tugn") as NodeListOf<HTMLElement>;
+    setTimeout(() => {
+      const parentElements = this.document.querySelectorAll(".r-1r5tugn") as NodeListOf<HTMLElement>;
   
-    parentElements.forEach((parentElement, parentIndex) => {
-      const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
+      parentElements.forEach((parentElement) => {
+        const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
   
-      closedElements.forEach((element, index) => {
-        element.style.display = "block";
+        closedElements.forEach((element) => {
+          element.style.setProperty("display", "block", "important");
+        });
       });
-    });
+    }, 2000); 
   }
+  
   
   
   
