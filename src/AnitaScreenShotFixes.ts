@@ -126,7 +126,7 @@ export default class AnitaScreenShotFixes {
     this.hideSubNavElementsBentgo();
     this.observeNutrientsSlideOpacityAPupAbove();
     this.removeInlineStylesFromChildBreeo();
-    this.setupMobileNavToggleBentgo();
+    // this.setupMobileNavToggleBentgo();
     this.removeInlineCssFromSecondDivChildHelloSilky();
     this.setAuthorAvatarImageStylesTalktheTalk();
     this.removeInlineOpacityFromVideoModalHELLOSILKY();
@@ -134,7 +134,10 @@ export default class AnitaScreenShotFixes {
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
     this.removeInlineHeightFromMobileMenuBALANCE();
-    this.setDisplayBlockForClosedStateDescendantsSupply();
+    // this.setDisplayBlockForClosedStateDescendantsSupply();
+    this.hideMediaOverlaysKotomi();
+    this.removeInlineStylesFromMediaElementsKotomi();
+    this.setDisplayBlockForClosedStateDescendantsSupply1();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1984,5 +1987,62 @@ export default class AnitaScreenShotFixes {
             element.style.display = "block";
         });
     }
+  
   }
+  private hideMediaOverlaysKotomi(): void {
+    const elements = this.document.querySelectorAll('.media__overlay') as NodeListOf<HTMLElement>;
+  
+    if (elements.length === 0) {
+      return;
+    }
+  
+    elements.forEach((element) => {
+      element.style.display = 'none';
+    });
+  }
+  
+  private removeInlineStylesFromMediaElementsKotomi(): void {
+    const mediaSourceElements = this.document.querySelectorAll('.media__source') as NodeListOf<HTMLElement>;
+  
+    mediaSourceElements.forEach((mediaSource) => {
+      const ancestor = mediaSource.closest('.MediaGalleryWidget__media') as HTMLElement | null;
+  
+      if (ancestor) {
+        if (ancestor.style) {
+          ancestor.removeAttribute('style');
+        }
+  
+        if (mediaSource.style) {
+          mediaSource.removeAttribute('style');
+        }
+  
+        const mediaItem = ancestor.closest('.MediaGalleryWidget__item') as HTMLElement | null;
+  
+        if (mediaItem && mediaItem.style) {
+          mediaItem.removeAttribute('style');
+        }
+      }
+    });
+  }
+  
+  
+
+  private setDisplayBlockForClosedStateDescendantsSupply1(): void {
+    const parentElements = this.document.querySelectorAll(".r-1r5tugn") as NodeListOf<HTMLElement>;
+  
+    parentElements.forEach((parentElement, parentIndex) => {
+      const closedElements = parentElement.querySelectorAll('[data-state="closed"]') as NodeListOf<HTMLElement>;
+  
+      closedElements.forEach((element, index) => {
+        element.style.display = "block";
+      });
+    });
+  }
+  
+  
+  
+  
+  
+  
+
 }
