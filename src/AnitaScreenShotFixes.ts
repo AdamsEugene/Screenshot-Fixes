@@ -135,6 +135,8 @@ export default class AnitaScreenShotFixes {
     this.removeInlineLeftStyleIfHasChildNova();
     this.removeInlineHeightFromMobileMenuBALANCE();
     this.setDisplayBlockForClosedStateDescendantsSupply();
+    this.hideMediaOverlaysKotomi();
+    this.removeInlineStylesFromMediaElementsKotomi();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1986,4 +1988,46 @@ export default class AnitaScreenShotFixes {
     }
   
   }
+  private hideMediaOverlaysKotomi(): void {
+    const elements = this.document.querySelectorAll('.media__overlay') as NodeListOf<HTMLElement>;
+  
+    if (elements.length === 0) {
+      return;
+    }
+  
+    elements.forEach((element) => {
+      element.style.display = 'none';
+    });
+  }
+  
+  private removeInlineStylesFromMediaElementsKotomi(): void {
+    const mediaSourceElements = this.document.querySelectorAll('.media__source') as NodeListOf<HTMLElement>;
+  
+    mediaSourceElements.forEach((mediaSource) => {
+      const ancestor = mediaSource.closest('.MediaGalleryWidget__media') as HTMLElement | null;
+  
+      if (ancestor) {
+        if (ancestor.style) {
+          ancestor.removeAttribute('style');
+        }
+  
+        if (mediaSource.style) {
+          mediaSource.removeAttribute('style');
+        }
+  
+        const mediaItem = ancestor.closest('.MediaGalleryWidget__item') as HTMLElement | null;
+  
+        if (mediaItem && mediaItem.style) {
+          mediaItem.removeAttribute('style');
+        }
+      }
+    });
+  }
+  
+  
+  
+  
+  
+  
+
 }
