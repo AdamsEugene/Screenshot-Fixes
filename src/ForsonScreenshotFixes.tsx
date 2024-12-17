@@ -55,7 +55,7 @@ export default class ForsonScreenshotFixes {
     this.removeMinHeightStyle();
     this.addMarginToElement();
     this.hideLiveChatEyeCatcher();
-    this.removeImageWidthInPaymentIcon()
+    this.removeImportantWidthFromPaymentIcon()
   }
 
   // Upcircle EU
@@ -693,22 +693,32 @@ export default class ForsonScreenshotFixes {
     }
   }
 
-  private removeImageWidthInPaymentIcon() {
-    const paymentIcons = this.document.querySelectorAll('.paymentIcon') as NodeListOf<HTMLElement>;
-  
-    paymentIcons.forEach((icon) => {
-      const img = icon.querySelector('img');
-  
-      if (img) {
-        img.style.width = '';
-        const style = this.document.createElement('style');
-        style.textContent = `
-          .paymentIcon img {
-            width: auto !important; /* Override any inline width */
-          }
-        `;
-        document.head.appendChild(style);
-      }
+  private removeImportantWidthFromPaymentIcon() {
+    const processImages = () => {
+      const paymentIcons = this.document.querySelectorAll('.paymentIcon');
+      paymentIcons.forEach((icon, index) => {
+        const img = icon.querySelector('img');
+        if (img) {
+          img.style.width = '';
+          const style = this.document.createElement('style');
+          style.textContent = `
+            .paymentIcon img {
+              width: auto !important; /* Force override any inline width */
+            }
+          `;
+          this.document.head.appendChild(style);
+        }
+      });
+    };
+    if (this.document.readyState === 'loading') {
+      this.document.addEventListener('DOMContentLoaded', processImages);
+    } else {
+      processImages();
+    }
+    const observer = new MutationObserver(() => {
+      processImages();
     });
+    observer.observe(this.document.body, { childList: true, subtree: true });
   }
+  
 }

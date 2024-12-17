@@ -105,6 +105,9 @@ export default class RyanScreenshotFixes extends Common {
       this.LaCremeLibrefixMenuDrawerHeight();
       this.harklafixDropdownHeight();
       this.VIVAaddSplideBaseClass();
+      this.HngematteKaufentoggleMobileMenuHidden();
+      this.TheRidgeFixPanelHeight();
+      this.IAMBICMODELFixGalleryOverflow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2215,6 +2218,52 @@ export default class RyanScreenshotFixes extends Common {
                 }
             });
         });
+  }
+
+  //Hngematte Kaufen
+  private HngematteKaufentoggleMobileMenuHidden() {
+    try {
+      const mobileMenu = this.dom.querySelector("#mobile-menu.mobile-menu") as HTMLElement;
+      const toggler = this.dom.querySelector("#mobile-menu-toggler") as HTMLElement;
+      const closeButton = this.dom.querySelector(
+        ".flex.items-center.justify-center.btn-icon.absolute.left-4"
+      ) as HTMLElement;
+  
+      if (mobileMenu && toggler && closeButton) {
+        toggler.addEventListener("click", () => {
+          try {
+            mobileMenu.classList.toggle("hidden");
+          } catch {}
+        });
+  
+        closeButton.addEventListener("click", () => {
+          try {
+            mobileMenu.classList.add("hidden");
+          } catch {}
+        });
+      }
+    } catch {}
+  }
+
+  //The Ridge
+  private TheRidgeFixPanelHeight() {
+    setInterval(() => {
+        const panel = this.dom.querySelector('.mm-panels:has(#mm-1)');
+        if (panel) {
+            (panel as HTMLElement).style.removeProperty('height');
+            (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+        }
+    }, 500);
+  }
+
+  //IAMBIC MODEL
+  private IAMBICMODELFixGalleryOverflow() {
+    setInterval(() => {
+        const carousel = this.dom.querySelector('.product-gallery__media-list-wrapper media-carousel[desktop-mode="carousel_thumbnails_bottom"]');
+        if (carousel) {
+            (carousel as HTMLElement).style.overflow = 'auto';
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
