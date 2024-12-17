@@ -2126,15 +2126,18 @@ export default class AnitaScreenShotFixes {
       '.gp-h-full.gp-max-w-full.gp-flex',
       '.pointer-events-auto.h-full.gp-flex',
     ];
-
-    selectors.forEach((selector) => {
-      const elements = this.document.querySelectorAll<HTMLElement>(selector);
-      elements.forEach((el) => {
-        el.style.removeProperty('height');
-        el.style.removeProperty('width');
+  
+    setTimeout(() => {
+      selectors.forEach((selector) => {
+        const elements = this.document.querySelectorAll<HTMLElement>(selector);
+        elements.forEach((el) => {
+          el.style.removeProperty('height');
+          el.style.removeProperty('width');
+        });
       });
-    });
+    }, 2000);
   }
+  
   
   
 }
