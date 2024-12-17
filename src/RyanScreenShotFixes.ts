@@ -107,6 +107,7 @@ export default class RyanScreenshotFixes extends Common {
       this.VIVAaddSplideBaseClass();
       this.HngematteKaufentoggleMobileMenuHidden();
       this.TheRidgeFixPanelHeight();
+      this.IAMBICMODELFixGalleryOverflow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2251,6 +2252,16 @@ export default class RyanScreenshotFixes extends Common {
         if (panel) {
             (panel as HTMLElement).style.removeProperty('height');
             (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+        }
+    }, 500);
+  }
+
+  //IAMBIC MODEL
+  private IAMBICMODELFixGalleryOverflow() {
+    setInterval(() => {
+        const carousel = this.dom.querySelector('.product-gallery__media-list-wrapper media-carousel[desktop-mode="carousel_thumbnails_bottom"]');
+        if (carousel) {
+            (carousel as HTMLElement).style.overflow = 'auto';
         }
     }, 500);
   }
