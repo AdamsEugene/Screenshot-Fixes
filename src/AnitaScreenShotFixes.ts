@@ -1773,68 +1773,46 @@ export default class AnitaScreenShotFixes {
     }
   }
   private observeNutrientsSlideOpacityAPupAbove(): void {
-    console.log("observeNutrientsSlideOpacityAPupAbove: Method initialized.");
-
     const container = this.document.querySelector(
       ".slick-slider"
     ) as HTMLElement | null;
-
+  
     if (!container) {
-      console.warn("observeNutrientsSlideOpacityAPupAbove: '.slick-slider' container not found.");
       return;
     }
-    console.log("observeNutrientsSlideOpacityAPupAbove: '.slick-slider' container found.");
-
+  
     const updateSlideOpacity = (): void => {
-      console.log("updateSlideOpacity: Function triggered.");
-
       const allSlides = container.querySelectorAll(
         ".nutrients__slide.slick-slide"
       ) as NodeListOf<HTMLElement>;
-
-      console.log(`updateSlideOpacity: Total slides found: ${allSlides.length}`);
-
-      allSlides.forEach((slide, index) => {
+  
+      allSlides.forEach((slide) => {
         slide.style.opacity = "0";
-        console.log(`updateSlideOpacity: Slide ${index + 1} opacity set to 0.`);
       });
-
+  
       const activeSlide = container.querySelector(
         ".nutrients__slide.slick-slide.slick-current.slick-active"
       ) as HTMLElement | null;
-
+  
       if (activeSlide) {
         activeSlide.style.opacity = "1";
-        console.log("updateSlideOpacity: Active slide opacity set to 1.");
-      } else {
-        console.warn("updateSlideOpacity: No active slide found.");
       }
     };
-
-    console.log("observeNutrientsSlideOpacityAPupAbove: Initial updateSlideOpacity call.");
+  
     updateSlideOpacity();
-
-    const observer = new MutationObserver((mutations) => {
-      console.log("MutationObserver: DOM mutations detected.");
-      mutations.forEach((mutation, index) => {
-        console.log(
-          `MutationObserver: Mutation ${index + 1} - Type: ${mutation.type}, Target:`,
-          mutation.target
-        );
-      });
+  
+    const observer = new MutationObserver(() => {
       updateSlideOpacity();
     });
-
-    console.log("observeNutrientsSlideOpacityAPupAbove: Setting up MutationObserver.");
+  
     observer.observe(container, {
       childList: true,
       attributes: true,
       subtree: true,
       attributeFilter: ["class"],
     });
-
-    console.log("observeNutrientsSlideOpacityAPupAbove: MutationObserver initialized.");
   }
+  
   private removeInlineStylesFromChildBreeo(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
