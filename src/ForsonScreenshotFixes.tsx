@@ -51,7 +51,7 @@ export default class ForsonScreenshotFixes {
     this.showHiddenElement();
     this.overrideBeforeStyle();
     this.hideTinyCookieWrapper();
-    this.styleMenuDrawerElements();
+    // this.styleMenuDrawerElements();
     this.removeMinHeightStyle();
     this.addMarginToElement();
     this.hideLiveChatEyeCatcher();
@@ -650,23 +650,23 @@ export default class ForsonScreenshotFixes {
     });
   }
 
-  private styleMenuDrawerElements() {
-    const parentElements = this.document.querySelectorAll(
-      ".menu-drawer__inner-container"
-    ) as NodeListOf<HTMLImageElement>;
-    parentElements.forEach((parent) => {
-      const child = parent.querySelector(
-        ".menu-drawer__navigation-container"
-      ) as HTMLLIElement;
+  // private styleMenuDrawerElements() {
+  //   const parentElements = this.document.querySelectorAll(
+  //     ".menu-drawer__inner-container"
+  //   ) as NodeListOf<HTMLImageElement>;
+  //   parentElements.forEach((parent) => {
+  //     const child = parent.querySelector(
+  //       ".menu-drawer__navigation-container"
+  //     ) as HTMLLIElement;
 
-      if (child) {
-        parent.style.width = "max-content";
-        parent.style.background = "white";
-        child.style.width = "max-content";
-        child.style.background = "white";
-      }
-    });
-  }
+  //     if (child) {
+  //       parent.style.width = "max-content";
+  //       parent.style.background = "white";
+  //       child.style.width = "max-content";
+  //       child.style.background = "white";
+  //     }
+  //   });
+  // }
 
   private removeMinHeightStyle() {
     const element = this.document.getElementById(

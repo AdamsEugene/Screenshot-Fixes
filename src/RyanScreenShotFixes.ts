@@ -105,6 +105,7 @@ export default class RyanScreenshotFixes extends Common {
       this.LaCremeLibrefixMenuDrawerHeight();
       this.harklafixDropdownHeight();
       this.VIVAaddSplideBaseClass();
+      this.HngematteKaufentoggleMobileMenuHidden();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2215,6 +2216,23 @@ export default class RyanScreenshotFixes extends Common {
                 }
             });
         });
+  }
+
+  //Hngematte Kaufen
+  private HngematteKaufentoggleMobileMenuHidden() {
+    const mobileMenu = this.dom.querySelector("#mobile-menu.mobile-menu") as HTMLElement;
+    const toggler = this.dom.querySelector("#mobile-menu-toggler") as HTMLElement;
+    const closeButton = this.dom.querySelector(
+      ".flex.items-center.justify-center.btn-icon.absolute.left-4"
+    ) as HTMLElement;
+  
+    toggler.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  
+    closeButton.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
   }
 
   //toggleHeatmapClassOnDrawer
