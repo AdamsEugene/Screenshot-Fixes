@@ -51,9 +51,11 @@ export default class ForsonScreenshotFixes {
     this.showHiddenElement();
     this.overrideBeforeStyle();
     this.hideTinyCookieWrapper();
-    this.styleMenuDrawerElements();
+    // this.styleMenuDrawerElements();
     this.removeMinHeightStyle();
     this.addMarginToElement();
+    this.hideLiveChatEyeCatcher();
+    this.removeImageWidthInPaymentIcon()
   }
 
   // Upcircle EU
@@ -648,23 +650,23 @@ export default class ForsonScreenshotFixes {
     });
   }
 
-  private styleMenuDrawerElements() {
-    const parentElements = this.document.querySelectorAll(
-      ".menu-drawer__inner-container"
-    ) as NodeListOf<HTMLImageElement>;
-    parentElements.forEach((parent) => {
-      const child = parent.querySelector(
-        ".menu-drawer__navigation-container"
-      ) as HTMLLIElement;
+  // private styleMenuDrawerElements() {
+  //   const parentElements = this.document.querySelectorAll(
+  //     ".menu-drawer__inner-container"
+  //   ) as NodeListOf<HTMLImageElement>;
+  //   parentElements.forEach((parent) => {
+  //     const child = parent.querySelector(
+  //       ".menu-drawer__navigation-container"
+  //     ) as HTMLLIElement;
 
-      if (child) {
-        parent.style.width = "max-content";
-        parent.style.background = "white";
-        child.style.width = "max-content";
-        child.style.background = "white";
-      }
-    });
-  }
+  //     if (child) {
+  //       parent.style.width = "max-content";
+  //       parent.style.background = "white";
+  //       child.style.width = "max-content";
+  //       child.style.background = "white";
+  //     }
+  //   });
+  // }
 
   private removeMinHeightStyle() {
     const element = this.document.getElementById(
@@ -673,5 +675,40 @@ export default class ForsonScreenshotFixes {
     if (element) {
       element.style.removeProperty("min-height");
     }
+  }
+
+
+  private hideLiveChatEyeCatcher() {
+    const element = this.document.getElementById('livechat-eye-catcher');
+    
+    if (element) {
+      element.style.display = '';
+      const style = this.document.createElement('style');
+      style.textContent = `
+        #livechat-eye-catcher {
+          display: none !important;
+        }
+      `;
+      this.document.head.appendChild(style);
+    }
+  }
+
+  private removeImageWidthInPaymentIcon() {
+    const paymentIcons = this.document.querySelectorAll('.paymentIcon') as NodeListOf<HTMLElement>;
+  
+    paymentIcons.forEach((icon) => {
+      const img = icon.querySelector('img');
+  
+      if (img) {
+        img.style.width = '';
+        const style = this.document.createElement('style');
+        style.textContent = `
+          .paymentIcon img {
+            width: auto !important; /* Override any inline width */
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    });
   }
 }
