@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 export default class AnitaScreenShotFixes {
   private document: Document;
   private prodMode: boolean;
@@ -139,6 +141,9 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromMediaElementsKotomi();
     this.setDisplayBlockForClosedStateDescendantsSupply1();
     this.removeInlineOpacityFromElementsNAALI();
+    this.reloadLazyImagesSourplus();
+    this.removeInlineHeightAndWidthSourplus();
+    this.goToFirstSlideDRWOOLF();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1774,33 +1779,35 @@ export default class AnitaScreenShotFixes {
     const container = this.document.querySelector(
       ".slick-slider"
     ) as HTMLElement | null;
-
-    if (!container) return;
-
+  
+    if (!container) {
+      return;
+    }
+  
     const updateSlideOpacity = (): void => {
       const allSlides = container.querySelectorAll(
         ".nutrients__slide.slick-slide"
       ) as NodeListOf<HTMLElement>;
-
+  
       allSlides.forEach((slide) => {
         slide.style.opacity = "0";
       });
-
+  
       const activeSlide = container.querySelector(
         ".nutrients__slide.slick-slide.slick-current.slick-active"
       ) as HTMLElement | null;
-
+  
       if (activeSlide) {
         activeSlide.style.opacity = "1";
       }
     };
-
+  
     updateSlideOpacity();
-
+  
     const observer = new MutationObserver(() => {
       updateSlideOpacity();
     });
-
+  
     observer.observe(container, {
       childList: true,
       attributes: true,
@@ -1808,6 +1815,7 @@ export default class AnitaScreenShotFixes {
       attributeFilter: ["class"],
     });
   }
+  
   private removeInlineStylesFromChildBreeo(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
@@ -2072,5 +2080,51 @@ export default class AnitaScreenShotFixes {
       });
     }, 2000);
   }
+  private reloadLazyImagesSourplus(): void {
+    const containers = this.document.querySelectorAll('.content-for-layout.focus-none');
+  
+    containers.forEach((container) => {
+      const child = container.querySelector('.shopify-section.gps-537860369318675452.gps.gpsil');
+      if (!child) return; 
+  
+      container.querySelectorAll('img, source').forEach((el) => {
+        const dataSrc = el.getAttribute('data-src');
+        const dataSrcset = el.getAttribute('data-srcset');
+  
+        if (dataSrc) {
+          (el as HTMLImageElement).src = dataSrc; 
+        } else if (dataSrcset) {
+          (el as HTMLSourceElement).srcset = dataSrcset; 
+        } else if (el.tagName === 'IMG') {
+          (el as HTMLImageElement).src = (el as HTMLImageElement).src; 
+        }
+      });
+    });
+  }
+  
+  private removeInlineHeightAndWidthSourplus(): void {
+    const selectors = [
+      '.gp-h-full.gp-max-w-full.gp-flex',
+      '.pointer-events-auto.h-full.gp-flex',
+    ];
+  
+    setTimeout(() => {
+      selectors.forEach((selector) => {
+        const elements = this.document.querySelectorAll<HTMLElement>(selector);
+        elements.forEach((el) => {
+          el.style.removeProperty('height');
+          el.style.removeProperty('width');
+        });
+      });
+    }, 2000);
+  }
+
+  private goToFirstSlideDRWOOLF(): void {
+    const slider = this.document.querySelector('.Main--ProductPhotos') as any; 
+    if (slider && slider.slick) {
+      slider.slick.slickGoTo(0);
+    }
+  }
+  
   
 }
