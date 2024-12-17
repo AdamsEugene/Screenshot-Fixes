@@ -1,4 +1,4 @@
-import $ from "jquery";
+// import $ from "jquery";
 
 export default class AnitaScreenShotFixes {
   private document: Document;
@@ -907,41 +907,6 @@ export default class AnitaScreenShotFixes {
     }, 1000);
   }
 
-  private removeHeightFromImageHeroContainerSMEL(): void {
-    setTimeout(() => {
-      const elements = this.document.querySelectorAll(
-        ".image-hero__image-container"
-      ) as NodeListOf<HTMLElement>;
-
-      if (elements.length > 0) {
-        elements.forEach((element) => {
-          element.style.removeProperty("height");
-        });
-      }
-    }, 2000);
-  }
-
-  private setHeightAutoForAllImageInnerSMEL(): void {
-    setTimeout(() => {
-      const parentElements = this.document.querySelectorAll(
-        ".image.image-hero__image.image--animate.animation--lazy-load.loaded"
-      ) as NodeListOf<HTMLElement>;
-
-      if (parentElements.length > 0) {
-        parentElements.forEach((parentElement) => {
-          const childElements = parentElement.querySelectorAll(
-            ".image__img"
-          ) as NodeListOf<HTMLElement>;
-
-          if (childElements.length > 0) {
-            childElements.forEach((childElement) => {
-              childElement.style.setProperty("height", "auto", "important");
-            });
-          }
-        });
-      }
-    }, 3000);
-  }
   private updateSvgElementsInsideDecorCEDIA(): void {
     const decorSvgElements = this.document.querySelectorAll(
       ".decor svg"
@@ -2119,7 +2084,4 @@ export default class AnitaScreenShotFixes {
     }, 2000);
   }
 
-  
-  
-  
 }
