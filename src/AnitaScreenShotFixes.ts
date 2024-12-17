@@ -1,4 +1,3 @@
-// import $ from "jquery";
 
 export default class AnitaScreenShotFixes {
   private document: Document;
