@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 export default class AnitaScreenShotFixes {
   private document: Document;
   private prodMode: boolean;
@@ -141,6 +143,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineOpacityFromElementsNAALI();
     this.reloadLazyImagesSourplus();
     this.removeInlineHeightAndWidthSourplus();
+    this.goToFirstSlideDRWOOLF();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2115,7 +2118,13 @@ export default class AnitaScreenShotFixes {
       });
     }, 2000);
   }
-  
+
+  private goToFirstSlideDRWOOLF(): void {
+    const slider = this.document.querySelector('.Main--ProductPhotos') as any; 
+    if (slider && slider.slick) {
+      slider.slick.slickGoTo(0);
+    }
+  }
   
   
 }
