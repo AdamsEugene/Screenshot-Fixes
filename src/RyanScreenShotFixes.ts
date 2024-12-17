@@ -2220,19 +2220,27 @@ export default class RyanScreenshotFixes extends Common {
 
   //Hngematte Kaufen
   private HngematteKaufentoggleMobileMenuHidden() {
-    const mobileMenu = this.dom.querySelector("#mobile-menu.mobile-menu") as HTMLElement;
-    const toggler = this.dom.querySelector("#mobile-menu-toggler") as HTMLElement;
-    const closeButton = this.dom.querySelector(
-      ".flex.items-center.justify-center.btn-icon.absolute.left-4"
-    ) as HTMLElement;
+    try {
+      const mobileMenu = this.dom.querySelector("#mobile-menu.mobile-menu") as HTMLElement;
+      const toggler = this.dom.querySelector("#mobile-menu-toggler") as HTMLElement;
+      const closeButton = this.dom.querySelector(
+        ".flex.items-center.justify-center.btn-icon.absolute.left-4"
+      ) as HTMLElement;
   
-    toggler.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
+      if (mobileMenu && toggler && closeButton) {
+        toggler.addEventListener("click", () => {
+          try {
+            mobileMenu.classList.toggle("hidden");
+          } catch {}
+        });
   
-    closeButton.addEventListener("click", () => {
-      mobileMenu.classList.add("hidden");
-    });
+        closeButton.addEventListener("click", () => {
+          try {
+            mobileMenu.classList.add("hidden");
+          } catch {}
+        });
+      }
+    } catch {}
   }
 
   //toggleHeatmapClassOnDrawer
