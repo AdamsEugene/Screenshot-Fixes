@@ -106,6 +106,7 @@ export default class RyanScreenshotFixes extends Common {
       this.harklafixDropdownHeight();
       this.VIVAaddSplideBaseClass();
       this.HngematteKaufentoggleMobileMenuHidden();
+      this.TheRidgeFixPanelHeight();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2241,6 +2242,17 @@ export default class RyanScreenshotFixes extends Common {
         });
       }
     } catch {}
+  }
+
+  //The Ridge
+  private TheRidgeFixPanelHeight() {
+    setInterval(() => {
+        const panel = this.dom.querySelector('.mm-panels:has(#mm-1)');
+        if (panel) {
+            (panel as HTMLElement).style.removeProperty('height');
+            (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
