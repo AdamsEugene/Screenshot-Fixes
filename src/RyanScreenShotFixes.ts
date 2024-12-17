@@ -106,7 +106,7 @@ export default class RyanScreenshotFixes extends Common {
       this.harklafixDropdownHeight();
       this.VIVAaddSplideBaseClass();
       this.HngematteKaufentoggleMobileMenuHidden();
-      this.TheRidgeFixPanelHeight();
+      this.TheRidgeStyleFixes();
       this.IAMBICMODELFixGalleryOverflow();
     };
     this.exec({ containerId, debugMode, func });
@@ -2246,12 +2246,17 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //The Ridge
-  private TheRidgeFixPanelHeight() {
+  private TheRidgeStyleFixes() {
     setInterval(() => {
         const panel = this.dom.querySelector('.mm-panels:has(#mm-1)');
         if (panel) {
             (panel as HTMLElement).style.removeProperty('height');
             (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+        }
+
+        const dropdown = this.dom.querySelector('.ridge-footer__countrySelector .ridge-footer__dropdown');
+        if (dropdown) {
+            (dropdown as HTMLElement).style.removeProperty('opacity');
         }
     }, 500);
   }
