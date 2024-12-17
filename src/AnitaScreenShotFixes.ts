@@ -139,6 +139,8 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesFromMediaElementsKotomi();
     this.setDisplayBlockForClosedStateDescendantsSupply1();
     this.removeInlineOpacityFromElementsNAALI();
+    this.reloadLazyImagesSourplus();
+    this.removeInlineHeightAndWidthSourplus();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1771,19 +1773,30 @@ export default class AnitaScreenShotFixes {
     }
   }
   private observeNutrientsSlideOpacityAPupAbove(): void {
+    console.log("observeNutrientsSlideOpacityAPupAbove: Method initialized.");
+
     const container = this.document.querySelector(
       ".slick-slider"
     ) as HTMLElement | null;
 
-    if (!container) return;
+    if (!container) {
+      console.warn("observeNutrientsSlideOpacityAPupAbove: '.slick-slider' container not found.");
+      return;
+    }
+    console.log("observeNutrientsSlideOpacityAPupAbove: '.slick-slider' container found.");
 
     const updateSlideOpacity = (): void => {
+      console.log("updateSlideOpacity: Function triggered.");
+
       const allSlides = container.querySelectorAll(
         ".nutrients__slide.slick-slide"
       ) as NodeListOf<HTMLElement>;
 
-      allSlides.forEach((slide) => {
+      console.log(`updateSlideOpacity: Total slides found: ${allSlides.length}`);
+
+      allSlides.forEach((slide, index) => {
         slide.style.opacity = "0";
+        console.log(`updateSlideOpacity: Slide ${index + 1} opacity set to 0.`);
       });
 
       const activeSlide = container.querySelector(
@@ -1792,21 +1805,35 @@ export default class AnitaScreenShotFixes {
 
       if (activeSlide) {
         activeSlide.style.opacity = "1";
+        console.log("updateSlideOpacity: Active slide opacity set to 1.");
+      } else {
+        console.warn("updateSlideOpacity: No active slide found.");
       }
     };
 
+    console.log("observeNutrientsSlideOpacityAPupAbove: Initial updateSlideOpacity call.");
     updateSlideOpacity();
 
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver((mutations) => {
+      console.log("MutationObserver: DOM mutations detected.");
+      mutations.forEach((mutation, index) => {
+        console.log(
+          `MutationObserver: Mutation ${index + 1} - Type: ${mutation.type}, Target:`,
+          mutation.target
+        );
+      });
       updateSlideOpacity();
     });
 
+    console.log("observeNutrientsSlideOpacityAPupAbove: Setting up MutationObserver.");
     observer.observe(container, {
       childList: true,
       attributes: true,
       subtree: true,
       attributeFilter: ["class"],
     });
+
+    console.log("observeNutrientsSlideOpacityAPupAbove: MutationObserver initialized.");
   }
   private removeInlineStylesFromChildBreeo(): void {
     setTimeout(() => {
@@ -2072,5 +2099,42 @@ export default class AnitaScreenShotFixes {
       });
     }, 2000);
   }
+  private reloadLazyImagesSourplus(): void {
+    const containers = this.document.querySelectorAll('.content-for-layout.focus-none');
+  
+    containers.forEach((container) => {
+      const child = container.querySelector('.shopify-section.gps-537860369318675452.gps.gpsil');
+      if (!child) return; 
+  
+      container.querySelectorAll('img, source').forEach((el) => {
+        const dataSrc = el.getAttribute('data-src');
+        const dataSrcset = el.getAttribute('data-srcset');
+  
+        if (dataSrc) {
+          (el as HTMLImageElement).src = dataSrc; 
+        } else if (dataSrcset) {
+          (el as HTMLSourceElement).srcset = dataSrcset; 
+        } else if (el.tagName === 'IMG') {
+          (el as HTMLImageElement).src = (el as HTMLImageElement).src; 
+        }
+      });
+    });
+  }
+  
+  private removeInlineHeightAndWidthSourplus(): void {
+    const selectors = [
+      '.gp-h-full.gp-max-w-full.gp-flex',
+      '.pointer-events-auto.h-full.gp-flex',
+    ];
+
+    selectors.forEach((selector) => {
+      const elements = this.document.querySelectorAll<HTMLElement>(selector);
+      elements.forEach((el) => {
+        el.style.removeProperty('height');
+        el.style.removeProperty('width');
+      });
+    });
+  }
+  
   
 }
