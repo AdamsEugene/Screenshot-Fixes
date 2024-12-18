@@ -2043,7 +2043,7 @@ export default class AnitaScreenShotFixes {
           element.style.removeProperty("opacity");
         });
       });
-    }, 2000);
+    }, 5000);
   }
   private reloadLazyImagesSourplus(): void {
     const containers = this.document.querySelectorAll('.content-for-layout.focus-none');

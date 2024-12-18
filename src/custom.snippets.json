@@ -320,6 +320,14 @@
     }
   },
   {
+    "selector": "#ProductInfo-template--23430313541919__main-product",
+    "content": {
+      "idSite": 1966,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/dolcilusso.com-products-sogno-main.html"
+    }
+  },
+  {
     "selector": ".variant-specs-compare-images",
     "content": {
       "idSite": 2761,
