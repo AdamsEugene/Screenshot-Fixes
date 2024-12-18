@@ -6,7 +6,7 @@ export default class AnitaScreenShotFixes {
 
   constructor(dom: Document = document) {
     this.document = dom;
-    this.prodMode = this.getRedirectType() === "dashboard"; // Initialize prodMode
+    this.prodMode = this.getRedirectType() === "dashboard";
     this.setupLoadEventListener();
   }
 

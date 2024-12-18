@@ -106,8 +106,10 @@ export default class RyanScreenshotFixes extends Common {
       this.harklafixDropdownHeight();
       this.VIVAaddSplideBaseClass();
       this.HngematteKaufentoggleMobileMenuHidden();
-      this.TheRidgeFixPanelHeight();
+      this.TheRidgeStyleFixes();
       this.IAMBICMODELFixGalleryOverflow();
+      this.AlbionFithandleMobileMenuClose();
+      this.OodiemenuToggleFix();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2246,12 +2248,17 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   //The Ridge
-  private TheRidgeFixPanelHeight() {
+  private TheRidgeStyleFixes() {
     setInterval(() => {
         const panel = this.dom.querySelector('.mm-panels:has(#mm-1)');
         if (panel) {
             (panel as HTMLElement).style.removeProperty('height');
             (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
+        }
+
+        const dropdown = this.dom.querySelector('.ridge-footer__countrySelector .ridge-footer__dropdown');
+        if (dropdown) {
+            (dropdown as HTMLElement).style.removeProperty('opacity');
         }
     }, 500);
   }
@@ -2262,6 +2269,33 @@ export default class RyanScreenshotFixes extends Common {
         const carousel = this.dom.querySelector('.product-gallery__media-list-wrapper media-carousel[desktop-mode="carousel_thumbnails_bottom"]');
         if (carousel) {
             (carousel as HTMLElement).style.overflow = 'auto';
+        }
+    }, 500);
+  }
+
+  //Albion Fit
+  private AlbionFithandleMobileMenuClose() {
+    try {
+        const closeButton = this.dom.querySelector('.mobile-menu-container__top-bar span');
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                const details = this.dom.querySelector('.top-bar.td-mobile-nav details');
+                if (details) details.removeAttribute('open');
+            });
+        }
+    } catch (error) {}
+  }
+
+  //The Oodie
+  private OodiemenuToggleFix() {
+    setTimeout(() => {
+        try {
+            const bars = this.dom.querySelectorAll('.menu-toggle .bar');
+            if (!bars.length) return;
+            
+            bars.forEach(bar => (bar as HTMLElement).style.display = 'block');
+        } catch (error) {
+            return;
         }
     }, 500);
   }

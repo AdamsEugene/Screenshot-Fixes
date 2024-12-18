@@ -412,12 +412,12 @@
     }
   },
   {
-    "selector": ".site-main-tw-component",
+    "selector": "#main-content",
     "content": {
       "idSite": 2886,
       "idSiteHsr": 5449435,
       "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com--main.html"
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-landingpage-main.html"
     }
   },
   {

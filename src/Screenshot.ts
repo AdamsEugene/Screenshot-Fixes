@@ -41,6 +41,7 @@ class ScreenshotFixes extends Common {
     () => this.BenchmadeupdateMinHeight(),
     () => this.riequipupdateHeaderClass(),
     () => this.runFunctionsForIdSiteDesktop(),
+    () => this.SassysaintstoggleHeaderElements(),
   ];
 
   mobileFunctions = [
@@ -378,6 +379,24 @@ class ScreenshotFixes extends Common {
           ).style.setProperty("margin-top", "0px", "important");
         }
       });
+  }
+
+  //Sassy saints
+  private SassysaintstoggleHeaderElements() {
+    this.dom
+        .querySelectorAll('[class*="px-[18px]"][class*="xl:px-0"][class*="max-w-[1170px]"]')
+        .forEach((parent) => {
+            const mobileElement = parent.querySelector('[class*="gap-[10px]"][class*="2xl:hidden"]');
+            if (mobileElement) {
+                mobileElement.classList.add('hidden');
+            }
+
+            const desktopElement = parent.querySelector('[class*="font-[500]"][class*="text-[14px]"][class*="leading-[22.4px]"]');
+            if (desktopElement) {
+                desktopElement.classList.remove('hidden');
+                (desktopElement as HTMLElement).style.display = 'flex';
+            }
+        });
   }
 
   private removeIdFromLogo() {
