@@ -109,6 +109,7 @@ export default class RyanScreenshotFixes extends Common {
       this.TheRidgeStyleFixes();
       this.IAMBICMODELFixGalleryOverflow();
       this.AlbionFithandleMobileMenuClose();
+      this.OodiemenuToggleFix();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2283,6 +2284,20 @@ export default class RyanScreenshotFixes extends Common {
             });
         }
     } catch (error) {}
+  }
+
+  //The Oodie
+  private OodiemenuToggleFix() {
+    setTimeout(() => {
+        try {
+            const bars = this.dom.querySelectorAll('.menu-toggle .bar');
+            if (!bars.length) return;
+            
+            bars.forEach(bar => (bar as HTMLElement).style.display = 'block');
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
