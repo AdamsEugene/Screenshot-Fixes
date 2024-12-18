@@ -108,6 +108,7 @@ export default class RyanScreenshotFixes extends Common {
       this.HngematteKaufentoggleMobileMenuHidden();
       this.TheRidgeStyleFixes();
       this.IAMBICMODELFixGalleryOverflow();
+      this.AlbionFithandleMobileMenuClose();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2269,6 +2270,19 @@ export default class RyanScreenshotFixes extends Common {
             (carousel as HTMLElement).style.overflow = 'auto';
         }
     }, 500);
+  }
+
+  //Albion Fit
+  private AlbionFithandleMobileMenuClose() {
+    try {
+        const closeButton = this.dom.querySelector('.mobile-menu-container__top-bar span');
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                const details = this.dom.querySelector('.top-bar.td-mobile-nav details');
+                if (details) details.removeAttribute('open');
+            });
+        }
+    } catch (error) {}
   }
 
   //toggleHeatmapClassOnDrawer
