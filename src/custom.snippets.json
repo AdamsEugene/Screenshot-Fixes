@@ -877,7 +877,7 @@
     }
   },
   {
-    "selector": ".flickity-slider",
+    "selector": ".theridge-pdp__grid-images",
     "content": {
       "idSite": 1745,
       "idSiteHsr": 7925006,
