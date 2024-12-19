@@ -112,6 +112,7 @@ export default class RyanScreenshotFixes extends Common {
       this.OodiemenuToggleFix();
       this.adjustBreadcrumbsMargin();
       this.adjustMegaMenuOpacity();
+      this.removeHiddenFromTracker();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2263,6 +2264,17 @@ export default class RyanScreenshotFixes extends Common {
             (dropdown as HTMLElement).style.removeProperty('opacity');
         }
     }, 500);
+  }
+
+  private removeHiddenFromTracker() {
+    try {
+        const tracker = this.dom.querySelector('.wndr-sxn__faq.wndr-sxn__section.wndr-sxn__custom-html-html.wndr-sxn__custom-html-html-width-regular#WS--template--16441654968394__track_your_order_heading');
+        if (!tracker) return;
+        
+        tracker.classList.remove('hidden');
+    } catch (error) {
+        return;
+    }
   }
 
   //IAMBIC MODEL

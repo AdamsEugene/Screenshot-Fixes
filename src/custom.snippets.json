@@ -839,5 +839,23 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-en-ke-products-the-staple-6-pack-main.html"
     }
+  },
+  {
+    "selector": "#wonderment-tracking-root--shipment-block-12b8ea3263bdd48a10d56ebff342df66",
+    "content": {
+      "idSite": 1745,
+      "idSiteHsr": 7924985,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/ridge.com-pages-order-tracking-main.html"
+    }
+  },
+  {
+    "selector": "#frontpage-nosto-3",
+    "content": {
+      "idSite": 586,
+      "idSiteHsr": 7928611,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-pages-track-my-order-main.html"
+    }
   }
 ]
