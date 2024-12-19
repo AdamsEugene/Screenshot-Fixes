@@ -114,6 +114,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustMegaMenuOpacity();
       this.removeHiddenFromTracker();
       this.removeDisplayFromReeview();
+      this.SourPlusupdateCarouselOverflow();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2370,6 +2371,20 @@ export default class RyanScreenshotFixes extends Common {
         `;
         document.head.appendChild(styleSheet);
     }
+  }
+
+  //Sour Plus
+  private SourPlusupdateCarouselOverflow() {
+    setTimeout(() => {
+        try {
+            const carousel = this.dom.querySelector('#gp-carousel-ft-gp-carousel-gZHKhM893--template--17785259393179__gp_section_537860369301898236-8299986976923-template--17785259393179__gp_section_537860369301898236.gem-slider.gp-h-full.gp-overflow-hidden.gp-select-none.mobile\\:!gp-flex-nowrap.tablet\\:!gp-flex-nowrap.!gp-flex-nowrap.mobile\\:!gp-min-h-full.tablet\\:!gp-min-h-full.!gp-min-h-full') as HTMLElement;
+            if (!carousel) return;
+ 
+            carousel.style.setProperty('overflow', 'auto');
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
