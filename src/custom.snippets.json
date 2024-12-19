@@ -835,7 +835,6 @@
     "selector": ".product-recommendation",
     "content": {
       "idSite": 586,
-      "idSiteHsr": 7928609,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-en-ke-products-the-staple-6-pack-main.html"
     }
@@ -856,6 +855,15 @@
       "idSiteHsr": 7928611,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-pages-track-my-order-main.html"
+    }
+  },
+  {
+    "selector": "#productpage-nosto-1",
+    "content": {
+      "idSite": 586,
+      "idSiteHsr": 7928600,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-products-the-crew-color-pack-main.html"
     }
   }
 ]

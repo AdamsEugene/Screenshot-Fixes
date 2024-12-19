@@ -113,6 +113,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustBreadcrumbsMargin();
       this.adjustMegaMenuOpacity();
       this.removeHiddenFromTracker();
+      this.removeDisplayFromReeview();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2352,6 +2353,22 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 100);
+  }
+
+  private removeDisplayFromReeview() {
+    const selector = '.reeview-app-widget#reeview-app-widget_63dd492c555d61002a0f56d6';
+    const styleId = 'reeview-display-fix';
+ 
+    if (!this.dom.getElementById(styleId)) {
+        const styleSheet = document.createElement('style');
+        styleSheet.id = styleId;
+        styleSheet.textContent = `
+            .reeview-app-widget#reeview-app-widget_63dd492c555d61002a0f56d6 {
+                display: block !important;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
   }
 
   //toggleHeatmapClassOnDrawer
