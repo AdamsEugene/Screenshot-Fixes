@@ -140,7 +140,7 @@ export default class AnitaScreenShotFixes {
     this.hideMediaOverlaysKotomi();
     this.removeInlineStylesFromMediaElementsKotomi();
     this.setDisplayBlockForClosedStateDescendantsSupply1();
-    this.removeInlineOpacityFromElementsNAALI();
+    this.observeAndRemoveInlineOpacityNAALI();
     this.reloadLazyImagesSourplus();
     this.removeInlineHeightAndWidthSourplus();
     this.goToFirstSlideDRWOOLF();
@@ -2027,24 +2027,36 @@ export default class AnitaScreenShotFixes {
       });
     }, 2000);
   }
-  private removeInlineOpacityFromElementsNAALI(): void {
+  private observeAndRemoveInlineOpacityNAALI(): void {
     const selectors: string[] = [
       ".jc-flex.jc-flex-row-reverse.jc-opacity-0.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-bg-white.jc-transition-opacity.jc-duration-300",
       ".js-burger-menu.jc-bg-white.jc-max-h-\\[calc\\(100vh-var\\(--top-gap\\)\\)\\].jc-overflow-y-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-opacity-0.jc-pointer-events-none.peer-aria-expanded\\:jc-opacity-100.peer-aria-expanded\\:jc-pointer-events-auto.jc-transition-opacity.jc-duration-300",
       ".jc-shadow-md.jc-px-\\[28px\\].jc-py-5.jc-bg-white.jc-absolute.jc-top-\\[calc\\(100\\%\\+18px\\)\\].jc-left-0.jc-opacity-0.jc-transition-opacity.jc-duration-300.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto",
     ];
   
-    setTimeout(() => {
+    const observerCallback = (mutations: MutationRecord[]): void => {
       selectors.forEach((selector: string) => {
-        const elements: NodeListOf<HTMLElement> =
-          this.document.querySelectorAll(selector);
+        const elements: NodeListOf<HTMLElement> = document.querySelectorAll(selector);
   
         elements.forEach((element: HTMLElement) => {
           element.style.removeProperty("opacity");
         });
       });
-    }, 2000);
+    };
+  
+    // Start observing the body for DOM changes
+    const observer = new MutationObserver(observerCallback);
+    observer.observe(document.body, {
+      childList: true,      // Watch for added/removed child elements
+      subtree: true,        // Watch all descendant nodes
+      attributes: true,     // Watch attribute changes
+      attributeFilter: ["style", "class"], // Watch specifically for style or class changes
+    });
+  
+    // Run once initially to catch existing elements
+    observerCallback([]);
   }
+  
   private reloadLazyImagesSourplus(): void {
     const containers = this.document.querySelectorAll('.content-for-layout.focus-none');
   
