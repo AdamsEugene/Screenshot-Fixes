@@ -2328,16 +2328,18 @@ export default class RyanScreenshotFixes extends Common {
   }
 
   private adjustMegaMenuOpacity() {
-    setTimeout(() => {
+    setInterval(() => {
         try {
-            const megaMenu = this.dom.querySelector('.header-nav-wrapper.header-element #mega-menu.mega-menu');
+            const megaMenu = this.dom.querySelector('.header-nav-wrapper.header-element #mega-menu.mega-menu') as HTMLElement;
             if (!megaMenu) return;
-            
-            (megaMenu as HTMLElement).style.removeProperty('opacity');
+
+            if (megaMenu.style.opacity) {
+                megaMenu.style.removeProperty('opacity');
+            }
         } catch (error) {
             return;
         }
-    }, 500);
+    }, 100);
   }
 
   //toggleHeatmapClassOnDrawer
