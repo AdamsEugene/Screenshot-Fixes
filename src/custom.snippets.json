@@ -875,5 +875,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-products-the-crew-color-pack-main.html"
     }
+  },
+  {
+    "selector": ".flickity-slider",
+    "content": {
+      "idSite": 1745,
+      "idSiteHsr": 7925006,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/ridge.com-products-aluminum-gunmetal-main.html"
+    }
   }
 ]
