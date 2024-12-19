@@ -2260,11 +2260,11 @@ export default class RyanScreenshotFixes extends Common {
             (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
         }
  
-        const dropdown = this.dom.querySelector('.ridge-footer__countrySelector .ridge-footer__dropdown');
-        if (dropdown) {
+        const dropdowns = this.dom.querySelectorAll('.ridge-footer__countrySelector .ridge-footer__dropdown');
+        dropdowns.forEach(dropdown => {
             (dropdown as HTMLElement).style.removeProperty('opacity');
             (dropdown as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
-        }
+        });
     }, 500);
   }
 
