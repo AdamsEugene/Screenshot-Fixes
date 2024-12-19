@@ -835,6 +835,16 @@
     "selector": ".product-recommendation",
     "content": {
       "idSite": 586,
+      "idSiteHsr": 7928609,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-en-ke-products-the-staple-6-pack-main.html"
+    }
+  },
+  {
+    "selector": ".product-recommendation",
+    "content": {
+      "idSite": 586,
+      "idSiteHsr": 7928693,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.trueclassictees.com-en-ke-products-the-staple-6-pack-main.html"
     }
