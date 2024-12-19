@@ -110,6 +110,7 @@ export default class RyanScreenshotFixes extends Common {
       this.IAMBICMODELFixGalleryOverflow();
       this.AlbionFithandleMobileMenuClose();
       this.OodiemenuToggleFix();
+      this.adjustBreadcrumbsMargin();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2294,6 +2295,31 @@ export default class RyanScreenshotFixes extends Common {
             if (!bars.length) return;
             
             bars.forEach(bar => (bar as HTMLElement).style.display = 'block');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //true Classic
+  private adjustBreadcrumbsMargin() {
+    setTimeout(() => {
+        try {
+            const mainContent = this.dom.querySelector<HTMLElement>('#MainContent');
+            if (!mainContent) return;
+            
+            const firstChild = mainContent.firstElementChild;
+            if (!firstChild || firstChild.id !== 'shopify-section-breadcrumbs') return;
+            
+            mainContent.style.removeProperty('margin-top');
+            mainContent.style.setProperty('margin-top', 'revert-layer', 'important');
+ 
+            const paletteSwatches = this.dom.querySelectorAll('.react-color-palette-btn .react-color-palette-btn__swatch');
+            if (!paletteSwatches.length) return;
+            
+            paletteSwatches.forEach(swatch => {
+                (swatch as HTMLElement).style.removeProperty('display');
+            });
         } catch (error) {
             return;
         }

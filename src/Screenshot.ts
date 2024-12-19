@@ -51,6 +51,7 @@ class ScreenshotFixes extends Common {
     () => this.observeMutations(),
     () => this.DenvercoContentAdjustOpacity(),
     () => this.setFontSizeToImportantOCTO(),
+    () => this.moveProductElements(),
   ];
 
   public init(containerId = "recordingPlayer1", debugMode = false): void {
@@ -541,6 +542,36 @@ class ScreenshotFixes extends Common {
         }
       }
     });
+  }
+
+  //Nuve
+  private moveProductElements() {
+    try {
+        const parent = this.dom.querySelector<HTMLElement>(
+            '#ProductInfo-template--23889557193029__main'
+        );
+        if (!parent) return;
+ 
+        const accordions = parent.querySelectorAll<HTMLElement>(
+            '.product__accordion.accordion.quick-add-hidden'
+        );
+        if (!accordions.length) return;
+ 
+        const lastAccordion = accordions[accordions.length - 1];
+        const buyButtons = parent.querySelector<HTMLElement>('.buy_buttons-ex');
+        const description = parent.querySelector<HTMLElement>('.mo.mo_description');
+ 
+        if (buyButtons) {
+            lastAccordion.insertAdjacentElement('afterend', buyButtons);
+        }
+ 
+        if (description) {
+            const lastElement = buyButtons || lastAccordion;
+            lastElement.insertAdjacentElement('afterend', description);
+        }
+    } catch (error) {
+        return;
+    }
   }
 
   //jolies skin care
