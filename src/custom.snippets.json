@@ -884,5 +884,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/ridge.com-products-aluminum-gunmetal-main.html"
     }
+  },
+  {
+    "selector": "#minicart",
+    "content": {
+      "idSite": 1745,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/ridge.com-products-lavender-main.html"
+    }
   }
 ]
