@@ -144,6 +144,9 @@ export default class AnitaScreenShotFixes {
     this.reloadLazyImagesSourplus();
     this.removeInlineHeightAndWidthSourplus();
     this.goToFirstSlideDRWOOLF();
+    this.removeMinHeightInlineStylesNAALI();
+    this.setDisplayToBlockForWidgetEarthFlow();
+
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2036,7 +2039,7 @@ export default class AnitaScreenShotFixes {
   
     const observerCallback = (mutations: MutationRecord[]): void => {
       selectors.forEach((selector: string) => {
-        const elements: NodeListOf<HTMLElement> = document.querySelectorAll(selector);
+        const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(selector);
   
         elements.forEach((element: HTMLElement) => {
           element.style.removeProperty("opacity");
@@ -2102,6 +2105,27 @@ export default class AnitaScreenShotFixes {
       slider.slick.slickGoTo(0);
     }
   }
+  private removeMinHeightInlineStylesNAALI(): void {
+    const classSelector: string =
+      ".gem-slider.gp-h-full.gp-overflow-hidden.gp-select-none" +
+      ".mobile\\:\\!gp-flex-nowrap.tablet\\:\\!gp-flex-nowrap" +
+      ".\\!gp-flex-nowrap.mobile\\:\\!gp-min-h-full.tablet\\:\\!gp-min-h-full.\\!gp-min-h-full";
+  
+    const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(classSelector);
+  
+    elements.forEach((element: HTMLElement) => {
+      element.style.removeProperty("min-height");
+    });
+  }
+  private setDisplayToBlockForWidgetEarthFlow(): void {
+    const parentElement = this.document.getElementById("reeview-app-widget_671a4ad69c3cea00296e2880") as HTMLElement;
+
+    if (parentElement) {
+        parentElement.style.display = "block";
+    }
+}
+
+  
   
   
 }
