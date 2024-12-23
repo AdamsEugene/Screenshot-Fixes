@@ -147,6 +147,7 @@ export default class AnitaScreenShotFixes {
     this.removeBeforeContentFromBannerCURATEDchrome();
     this.hideMobileHeaderSectionCuratedChrome();
     this.setGradientDisplayToBlockFourth();
+    this.adjustVerifiedBadgeWidthLittleCuriousMinds();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2167,6 +2168,16 @@ export default class AnitaScreenShotFixes {
       }
     });
   }
+  private adjustVerifiedBadgeWidthLittleCuriousMinds(): void {
+    const element = this.document.querySelector(
+      ".product__customer-review-verified-badge img"
+    ) as HTMLElement | null;
+  
+    if (element) {
+      element.style.setProperty("width", "11px", "important");
+    }
+  }
+  
   
   
 }
