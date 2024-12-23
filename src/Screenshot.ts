@@ -640,6 +640,7 @@ class ScreenshotFixes extends Common {
     const classes = [
       ".splide__list.sbc-section__menu.border-black",
       ".quick-add-modal__content-info",
+      ".reeview-app-widget",
     ];
     classes.forEach((cls) => {
       const elements = this.allElements(cls);
