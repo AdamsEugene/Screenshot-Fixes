@@ -293,6 +293,23 @@
     }
   },
   {
+    "selector": "#mobile-nav",
+    "content": {
+      "idSite": 3024,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bentgo.com-pages-lunchtime-essentials-main.html"
+    }
+  },
+  {
+    "selector": "#r-1649269195318",
+    "content": {
+      "idSite": 1787,
+      "idSiteHsr": 1947642,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/blackforestsupplements.com--main.html"
+    }
+  },
+  {
     "selector": "#shopify-section-template--16394274570326__fbde8f8f-d63e-4c78-aa9c-7ae6106764e2",
     "content": {
       "idSite": 2052,
