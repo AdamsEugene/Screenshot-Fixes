@@ -110,6 +110,13 @@ export default class RyanScreenshotFixes extends Common {
       this.IAMBICMODELFixGalleryOverflow();
       this.AlbionFithandleMobileMenuClose();
       this.OodiemenuToggleFix();
+      this.adjustBreadcrumbsMargin();
+      this.adjustMegaMenuOpacity();
+      this.removeHiddenFromTracker();
+      this.removeDisplayFromReeview();
+      this.SourPlusupdateCarouselOverflow();
+      this.updateReeviewDisplay();
+      this.clearMobileMenuOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2255,12 +2262,24 @@ export default class RyanScreenshotFixes extends Common {
             (panel as HTMLElement).style.removeProperty('height');
             (panel as HTMLElement).style.setProperty('height', 'revert-layer', 'important');
         }
-
-        const dropdown = this.dom.querySelector('.ridge-footer__countrySelector .ridge-footer__dropdown');
-        if (dropdown) {
+ 
+        const dropdowns = this.dom.querySelectorAll('.ridge-footer__countrySelector .ridge-footer__dropdown');
+        dropdowns.forEach(dropdown => {
             (dropdown as HTMLElement).style.removeProperty('opacity');
-        }
+            (dropdown as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
+        });
     }, 500);
+  }
+
+  private removeHiddenFromTracker() {
+    try {
+        const tracker = this.dom.querySelector('.wndr-sxn__faq.wndr-sxn__section.wndr-sxn__custom-html-html.wndr-sxn__custom-html-html-width-regular#WS--template--16441654968394__track_your_order_heading');
+        if (!tracker) return;
+        
+        tracker.classList.remove('hidden');
+    } catch (error) {
+        return;
+    }
   }
 
   //IAMBIC MODEL
@@ -2294,6 +2313,108 @@ export default class RyanScreenshotFixes extends Common {
             if (!bars.length) return;
             
             bars.forEach(bar => (bar as HTMLElement).style.display = 'block');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //true Classic
+  private adjustBreadcrumbsMargin() {
+    setTimeout(() => {
+        try {
+            const mainContent = this.dom.querySelector<HTMLElement>('#MainContent');
+            if (!mainContent) return;
+            
+            const firstChild = mainContent.firstElementChild;
+            if (!firstChild || firstChild.id !== 'shopify-section-breadcrumbs') return;
+            
+            mainContent.style.removeProperty('margin-top');
+            mainContent.style.setProperty('margin-top', 'revert-layer', 'important');
+ 
+            const paletteSwatches = this.dom.querySelectorAll('.react-color-palette-btn .react-color-palette-btn__swatch');
+            if (!paletteSwatches.length) return;
+            
+            paletteSwatches.forEach(swatch => {
+                (swatch as HTMLElement).style.removeProperty('display');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustMegaMenuOpacity() {
+    setInterval(() => {
+        try {
+            const megaMenu = this.dom.querySelector('.header-nav-wrapper.header-element #mega-menu.mega-menu') as HTMLElement;
+            if (!megaMenu) return;
+
+            if (megaMenu.style.opacity) {
+                megaMenu.style.removeProperty('opacity');
+            }
+        } catch (error) {
+            return;
+        }
+    }, 100);
+  }
+
+  private removeDisplayFromReeview() {
+    const selector = '.reeview-app-widget#reeview-app-widget_63dd492c555d61002a0f56d6';
+    const styleId = 'reeview-display-fix';
+ 
+    if (!this.dom.getElementById(styleId)) {
+        const styleSheet = document.createElement('style');
+        styleSheet.id = styleId;
+        styleSheet.textContent = `
+            .reeview-app-widget#reeview-app-widget_63dd492c555d61002a0f56d6 {
+                display: block !important;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    }
+  }
+
+  //Sour Plus
+  private SourPlusupdateCarouselOverflow() {
+    setInterval(() => {
+        try {
+            const carousel = this.dom.querySelector('#gp-carousel-ft-gp-carousel-gZHKhM893--template--17785259393179__gp_section_537860369301898236-8299986976923-template--17785259393179__gp_section_537860369301898236.gem-slider.gp-h-full.gp-overflow-hidden.gp-select-none.mobile\\:!gp-flex-nowrap.tablet\\:!gp-flex-nowrap.!gp-flex-nowrap.mobile\\:!gp-min-h-full.tablet\\:!gp-min-h-full.!gp-min-h-full') as HTMLElement;
+            if (!carousel) return;
+ 
+            carousel.style.setProperty('overflow', 'auto');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private updateReeviewDisplay() {
+    setTimeout(() => {
+        try {
+            const reeviews = this.dom.querySelectorAll('.reeview-app-widget');
+            if (!reeviews.length) return;
+ 
+            reeviews.forEach(reeview => {
+                (reeview as HTMLElement).style.setProperty('display', 'block', 'important');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //Mariners Learning System
+  private clearMobileMenuOpacity() {
+    setTimeout(() => {
+        try {
+            const mobileMenus = this.dom.querySelectorAll('details .mobile-menu-container.dropdown');
+            if (!mobileMenus.length) return;
+ 
+            mobileMenus.forEach(menu => {
+                (menu as HTMLElement).style.removeProperty('opacity');
+                (menu as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
+            });
         } catch (error) {
             return;
         }
