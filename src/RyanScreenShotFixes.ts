@@ -115,6 +115,7 @@ export default class RyanScreenshotFixes extends Common {
       this.removeHiddenFromTracker();
       this.removeDisplayFromReeview();
       this.SourPlusupdateCarouselOverflow();
+      this.updateReeviewDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2381,6 +2382,19 @@ export default class RyanScreenshotFixes extends Common {
             if (!carousel) return;
  
             carousel.style.setProperty('overflow', 'auto');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private updateReeviewDisplay() {
+    setTimeout(() => {
+        try {
+            const reeview = this.dom.querySelector('.reeview-app-widget') as HTMLElement;
+            if (!reeview) return;
+ 
+            reeview.style.setProperty('display', 'block');
         } catch (error) {
             return;
         }
