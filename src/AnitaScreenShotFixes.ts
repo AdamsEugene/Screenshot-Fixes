@@ -148,6 +148,7 @@ export default class AnitaScreenShotFixes {
     this.hideMobileHeaderSectionCuratedChrome();
     this.setGradientDisplayToBlockFourth();
     this.adjustVerifiedBadgeWidthLittleCuriousMinds();
+    this.showCustomStickyAtcAerify();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2177,6 +2178,22 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("width", "11px", "important");
     }
   }
+  private showCustomStickyAtcAerify(): void {
+    const parentElement = this.document.querySelector(
+      "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
+    ) as HTMLElement | null;
+  
+    if (parentElement) {
+      const childElement = parentElement.querySelector(
+        "#custom_sticky_atc.custom_sticky_atc"
+      ) as HTMLElement | null;
+  
+      if (childElement) {
+        childElement.style.removeProperty("display");
+      }
+    }
+  }
+  
   
   
   
