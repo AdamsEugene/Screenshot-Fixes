@@ -146,6 +146,7 @@ export default class AnitaScreenShotFixes {
     this.setDisplayToBlockForWidgetEarthFlow();
     this.removeBeforeContentFromBannerCURATEDchrome();
     this.hideMobileHeaderSectionCuratedChrome();
+    this.setGradientDisplayToBlockFourth();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2153,4 +2154,19 @@ export default class AnitaScreenShotFixes {
       element.style.setProperty("display", "none", "important");
     }
   }
+  private setGradientDisplayToBlockFourth(): void {
+    const elements = this.document.querySelectorAll(
+      ".box.box-background.box-background-position-center_center.bg-lazy.bg-loaded"
+    );
+  
+    elements.forEach((element) => {
+      const child = element.querySelector(".gradient.gradient-offwhite") as HTMLElement;
+  
+      if (child) {
+        child.style.setProperty("display", "block", "important");
+      }
+    });
+  }
+  
+  
 }
