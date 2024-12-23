@@ -146,6 +146,8 @@ export default class AnitaScreenShotFixes {
     this.goToFirstSlideDRWOOLF();
     this.removeMinHeightInlineStylesNAALI();
     this.setDisplayToBlockForWidgetEarthFlow();
+    this.removeBeforeContentFromBannerCURATEDchrome();
+    this.hideMobileHeaderSectionCuratedChrome();
 
   }
 
@@ -2047,16 +2049,13 @@ export default class AnitaScreenShotFixes {
       });
     };
   
-    // Start observing the body for DOM changes
     const observer = new MutationObserver(observerCallback);
     observer.observe(document.body, {
-      childList: true,      // Watch for added/removed child elements
-      subtree: true,        // Watch all descendant nodes
-      attributes: true,     // Watch attribute changes
-      attributeFilter: ["style", "class"], // Watch specifically for style or class changes
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style", "class"],
     });
-  
-    // Run once initially to catch existing elements
     observerCallback([]);
   }
   
@@ -2124,6 +2123,32 @@ export default class AnitaScreenShotFixes {
         parentElement.style.display = "block";
     }
 }
+private removeBeforeContentFromBannerCURATEDchrome(): void {
+  const element = this.document.querySelector(
+    ".collection-banner__body.color-background-4.overlay-enable.show_img"
+  ) as HTMLElement;
+
+  if (element) {
+      const style = document.createElement("style");
+      style.textContent = `
+          .collection-banner__body.color-background-4.overlay-enable.show_img::before {
+              content: none !important;
+          }
+      `;
+      document.head.appendChild(style);
+  }
+}
+private hideMobileHeaderSectionCuratedChrome(): void {
+  const element = this.document.querySelector(
+    "#shopify-section-sections--22768627777868__header_mobile"
+  ) as HTMLElement;
+
+  if (element) {
+      element.style.setProperty("display", "none", "important");
+  }
+}
+
+
 
   
   
