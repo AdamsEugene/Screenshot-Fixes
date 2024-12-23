@@ -2179,20 +2179,23 @@ export default class AnitaScreenShotFixes {
     }
   }
   private showCustomStickyAtcAerify(): void {
-    const parentElement = this.document.querySelector(
-      "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
-    ) as HTMLElement | null;
-  
-    if (parentElement) {
-      const childElement = parentElement.querySelector(
-        "#custom_sticky_atc.custom_sticky_atc"
-      ) as HTMLElement | null;
-  
-      if (childElement) {
-        childElement.style.removeProperty("display");
-      }
-    }
-  }
+    setTimeout(() => {
+        const parentElement = this.document.querySelector(
+            "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
+        ) as HTMLElement | null;
+
+        if (parentElement) {
+            const childElement = parentElement.querySelector(
+                "#custom_sticky_atc.custom_sticky_atc"
+            ) as HTMLElement | null;
+
+            if (childElement) {
+                childElement.style.removeProperty("display");
+            }
+        }
+    }, 3000);
+}
+
   
   
   
