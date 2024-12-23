@@ -1,5 +1,3 @@
-
-
 export default class AnitaScreenShotFixes {
   private document: Document;
   private prodMode: boolean;
@@ -148,7 +146,6 @@ export default class AnitaScreenShotFixes {
     this.setDisplayToBlockForWidgetEarthFlow();
     this.removeBeforeContentFromBannerCURATEDchrome();
     this.hideMobileHeaderSectionCuratedChrome();
-
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1749,35 +1746,35 @@ export default class AnitaScreenShotFixes {
     const container = this.document.querySelector(
       ".slick-slider"
     ) as HTMLElement | null;
-  
+
     if (!container) {
       return;
     }
-  
+
     const updateSlideOpacity = (): void => {
       const allSlides = container.querySelectorAll(
         ".nutrients__slide.slick-slide"
       ) as NodeListOf<HTMLElement>;
-  
+
       allSlides.forEach((slide) => {
         slide.style.opacity = "0";
       });
-  
+
       const activeSlide = container.querySelector(
         ".nutrients__slide.slick-slide.slick-current.slick-active"
       ) as HTMLElement | null;
-  
+
       if (activeSlide) {
         activeSlide.style.opacity = "1";
       }
     };
-  
+
     updateSlideOpacity();
-  
+
     const observer = new MutationObserver(() => {
       updateSlideOpacity();
     });
-  
+
     observer.observe(container, {
       childList: true,
       attributes: true,
@@ -1785,7 +1782,7 @@ export default class AnitaScreenShotFixes {
       attributeFilter: ["class"],
     });
   }
-  
+
   private removeInlineStylesFromChildBreeo(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
@@ -2038,17 +2035,18 @@ export default class AnitaScreenShotFixes {
       ".js-burger-menu.jc-bg-white.jc-max-h-\\[calc\\(100vh-var\\(--top-gap\\)\\)\\].jc-overflow-y-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-opacity-0.jc-pointer-events-none.peer-aria-expanded\\:jc-opacity-100.peer-aria-expanded\\:jc-pointer-events-auto.jc-transition-opacity.jc-duration-300",
       ".jc-shadow-md.jc-px-\\[28px\\].jc-py-5.jc-bg-white.jc-absolute.jc-top-\\[calc\\(100\\%\\+18px\\)\\].jc-left-0.jc-opacity-0.jc-transition-opacity.jc-duration-300.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto",
     ];
-  
+
     const observerCallback = (mutations: MutationRecord[]): void => {
       selectors.forEach((selector: string) => {
-        const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(selector);
-  
+        const elements: NodeListOf<HTMLElement> =
+          this.document.querySelectorAll(selector);
+
         elements.forEach((element: HTMLElement) => {
           element.style.removeProperty("opacity");
         });
       });
     };
-  
+
     const observer = new MutationObserver(observerCallback);
     observer.observe(document.body, {
       childList: true,
@@ -2058,48 +2056,52 @@ export default class AnitaScreenShotFixes {
     });
     observerCallback([]);
   }
-  
+
   private reloadLazyImagesSourplus(): void {
-    const containers = this.document.querySelectorAll('.content-for-layout.focus-none');
-  
+    const containers = this.document.querySelectorAll(
+      ".content-for-layout.focus-none"
+    );
+
     containers.forEach((container) => {
-      const child = container.querySelector('.shopify-section.gps-537860369318675452.gps.gpsil');
-      if (!child) return; 
-  
-      container.querySelectorAll('img, source').forEach((el) => {
-        const dataSrc = el.getAttribute('data-src');
-        const dataSrcset = el.getAttribute('data-srcset');
-  
+      const child = container.querySelector(
+        ".shopify-section.gps-537860369318675452.gps.gpsil"
+      );
+      if (!child) return;
+
+      container.querySelectorAll("img, source").forEach((el) => {
+        const dataSrc = el.getAttribute("data-src");
+        const dataSrcset = el.getAttribute("data-srcset");
+
         if (dataSrc) {
-          (el as HTMLImageElement).src = dataSrc; 
+          (el as HTMLImageElement).src = dataSrc;
         } else if (dataSrcset) {
-          (el as HTMLSourceElement).srcset = dataSrcset; 
-        } else if (el.tagName === 'IMG') {
-          (el as HTMLImageElement).src = (el as HTMLImageElement).src; 
+          (el as HTMLSourceElement).srcset = dataSrcset;
+        } else if (el.tagName === "IMG") {
+          (el as HTMLImageElement).src = (el as HTMLImageElement).src;
         }
       });
     });
   }
-  
+
   private removeInlineHeightAndWidthSourplus(): void {
     const selectors = [
-      '.gp-h-full.gp-max-w-full.gp-flex',
-      '.pointer-events-auto.h-full.gp-flex',
+      ".gp-h-full.gp-max-w-full.gp-flex",
+      ".pointer-events-auto.h-full.gp-flex",
     ];
-  
+
     setTimeout(() => {
       selectors.forEach((selector) => {
         const elements = this.document.querySelectorAll<HTMLElement>(selector);
         elements.forEach((el) => {
-          el.style.removeProperty('height');
-          el.style.removeProperty('width');
+          el.style.removeProperty("height");
+          el.style.removeProperty("width");
         });
       });
     }, 2000);
   }
 
   private goToFirstSlideDRWOOLF(): void {
-    const slider = this.document.querySelector('.Main--ProductPhotos') as any; 
+    const slider = this.document.querySelector(".Main--ProductPhotos") as any;
     if (slider && slider.slick) {
       slider.slick.slickGoTo(0);
     }
@@ -2109,48 +2111,46 @@ export default class AnitaScreenShotFixes {
       ".gem-slider.gp-h-full.gp-overflow-hidden.gp-select-none" +
       ".mobile\\:\\!gp-flex-nowrap.tablet\\:\\!gp-flex-nowrap" +
       ".\\!gp-flex-nowrap.mobile\\:\\!gp-min-h-full.tablet\\:\\!gp-min-h-full.\\!gp-min-h-full";
-  
-    const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(classSelector);
-  
+
+    const elements: NodeListOf<HTMLElement> =
+      this.document.querySelectorAll(classSelector);
+
     elements.forEach((element: HTMLElement) => {
       element.style.removeProperty("min-height");
     });
   }
   private setDisplayToBlockForWidgetEarthFlow(): void {
-    const parentElement = this.document.getElementById("reeview-app-widget_671a4ad69c3cea00296e2880") as HTMLElement;
+    const parentElement = this.document.getElementById(
+      "reeview-app-widget_671a4ad69c3cea00296e2880"
+    ) as HTMLElement;
 
     if (parentElement) {
-        parentElement.style.display = "block";
+      parentElement.style.display = "block";
     }
-}
-private removeBeforeContentFromBannerCURATEDchrome(): void {
-  const element = this.document.querySelector(
-    ".collection-banner__body.color-background-4.overlay-enable.show_img"
-  ) as HTMLElement;
+  }
+  private removeBeforeContentFromBannerCURATEDchrome(): void {
+    const element = this.document.querySelector(
+      ".collection-banner__body.color-background-4.overlay-enable.show_img"
+    ) as HTMLElement;
 
-  if (element) {
-      const style = document.createElement("style");
+    if (element) {
+      const style = this.document.createElement("style");
       style.textContent = `
-          .collection-banner__body.color-background-4.overlay-enable.show_img::before {
-              content: none !important;
-          }
-      `;
-      document.head.appendChild(style);
+      .collection-banner__body.color-background-4.overlay-enable.show_img::before {
+        content: none !important;
+      }
+    `;
+      this.document.head.appendChild(style);
+    }
   }
-}
-private hideMobileHeaderSectionCuratedChrome(): void {
-  const element = this.document.querySelector(
-    "#shopify-section-sections--22768627777868__header_mobile"
-  ) as HTMLElement;
 
-  if (element) {
+  private hideMobileHeaderSectionCuratedChrome(): void {
+    const element = this.document.querySelector(
+      "#shopify-section-sections--22768627777868__header_mobile"
+    ) as HTMLElement;
+
+    if (element) {
       element.style.setProperty("display", "none", "important");
+    }
   }
-}
-
-
-
-  
-  
-  
 }
