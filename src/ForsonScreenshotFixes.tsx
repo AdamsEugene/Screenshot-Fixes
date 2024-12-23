@@ -650,24 +650,6 @@ export default class ForsonScreenshotFixes {
     });
   }
 
-  // private styleMenuDrawerElements() {
-  //   const parentElements = this.document.querySelectorAll(
-  //     ".menu-drawer__inner-container"
-  //   ) as NodeListOf<HTMLImageElement>;
-  //   parentElements.forEach((parent) => {
-  //     const child = parent.querySelector(
-  //       ".menu-drawer__navigation-container"
-  //     ) as HTMLLIElement;
-
-  //     if (child) {
-  //       parent.style.width = "max-content";
-  //       parent.style.background = "white";
-  //       child.style.width = "max-content";
-  //       child.style.background = "white";
-  //     }
-  //   });
-  // }
-
   private removeMinHeightStyle() {
     const element = this.document.getElementById(
       "gp-carousel-product-list-carousel-g5qBAQx5d8-template--23408454664498__gp_section_519316681286222864"
