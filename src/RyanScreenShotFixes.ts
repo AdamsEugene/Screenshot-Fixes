@@ -2391,10 +2391,12 @@ export default class RyanScreenshotFixes extends Common {
   private updateReeviewDisplay() {
     setTimeout(() => {
         try {
-            const reeview = this.dom.querySelector('.reeview-app-widget') as HTMLElement;
-            if (!reeview) return;
+            const reeviews = this.dom.querySelectorAll('.reeview-app-widget');
+            if (!reeviews.length) return;
  
-            reeview.style.setProperty('display', 'block');
+            reeviews.forEach(reeview => {
+                (reeview as HTMLElement).style.setProperty('display', 'block', 'important');
+            });
         } catch (error) {
             return;
         }
