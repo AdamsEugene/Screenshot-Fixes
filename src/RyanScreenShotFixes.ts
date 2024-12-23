@@ -116,6 +116,7 @@ export default class RyanScreenshotFixes extends Common {
       this.removeDisplayFromReeview();
       this.SourPlusupdateCarouselOverflow();
       this.updateReeviewDisplay();
+      this.clearMobileMenuOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2396,6 +2397,23 @@ export default class RyanScreenshotFixes extends Common {
  
             reeviews.forEach(reeview => {
                 (reeview as HTMLElement).style.setProperty('display', 'block', 'important');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //Mariners Learning System
+  private clearMobileMenuOpacity() {
+    setTimeout(() => {
+        try {
+            const mobileMenus = this.dom.querySelectorAll('details .mobile-menu-container.dropdown');
+            if (!mobileMenus.length) return;
+ 
+            mobileMenus.forEach(menu => {
+                (menu as HTMLElement).style.removeProperty('opacity');
+                (menu as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
             });
         } catch (error) {
             return;
