@@ -702,5 +702,4 @@ export default class ForsonScreenshotFixes {
     });
     observer.observe(this.document.body, { childList: true, subtree: true });
   }
-  
 }
