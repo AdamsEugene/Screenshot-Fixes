@@ -301,6 +301,15 @@
     }
   },
   {
+    "selector": "#shopify-section-template--18969758400834__22990065-a389-4475-9c3b-99552fa755e3",
+    "content": {
+      "idSite": 189,
+      "idSiteHsr": 1927898,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/karambit.com--main.html"
+    }
+  },
+  {
     "selector": "#r-1649269195318",
     "content": {
       "idSite": 1787,
