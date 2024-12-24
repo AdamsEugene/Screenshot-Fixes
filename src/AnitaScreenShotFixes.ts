@@ -149,6 +149,9 @@ export default class AnitaScreenShotFixes {
     this.setGradientDisplayToBlockFourth();
     this.adjustVerifiedBadgeWidthLittleCuriousMinds();
     this.showCustomStickyAtcAerify();
+    this.removeInlineStylesKarambit();
+    this.setSlickTrackWidthKarambit();
+    this.removeWidthFromObjfitKarambit();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2195,6 +2198,36 @@ export default class AnitaScreenShotFixes {
         }
     }, 3000);
 }
+private removeInlineStylesKarambit(): void {
+  const elements = this.document.querySelectorAll<HTMLElement>('.kb-hero-slider__item.slick-slide');
+
+  elements.forEach((element) => {
+      element.removeAttribute('style');
+  });
+}
+private setSlickTrackWidthKarambit(): void {
+  const parent = this.document.querySelector<HTMLElement>(
+      '.kb-hero-slider.slick-initialized.slick-slider.slick-dotted'
+  );
+
+  if (parent) {
+      const slickTrack = parent.querySelector<HTMLElement>('.slick-track');
+      if (slickTrack) {
+          slickTrack.style.setProperty('width', '1875px', 'important');
+      }
+  }
+}private removeWidthFromObjfitKarambit(): void {
+  const elements = this.document.querySelectorAll<HTMLElement>('.image-container .objfit');
+
+  elements.forEach((element) => {
+      if (element.style.width) {
+          element.style.removeProperty('width');
+      }
+  });
+}
+
+
+
 
   
   
