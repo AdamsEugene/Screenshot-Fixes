@@ -2164,10 +2164,12 @@ export default class AnitaScreenShotFixes {
     const elements = this.document.querySelectorAll(
       ".box.box-background.box-background-position-center_center.bg-lazy.bg-loaded"
     );
-  
+
     elements.forEach((element) => {
-      const child = element.querySelector(".gradient.gradient-offwhite") as HTMLElement;
-  
+      const child = element.querySelector(
+        ".gradient.gradient-offwhite"
+      ) as HTMLElement;
+
       if (child) {
         child.style.setProperty("display", "block", "important");
       }
@@ -2177,85 +2179,76 @@ export default class AnitaScreenShotFixes {
     const element = this.document.querySelector(
       ".product__customer-review-verified-badge img"
     ) as HTMLElement | null;
-  
+
     if (element) {
       element.style.setProperty("width", "11px", "important");
     }
   }
   private showCustomStickyAtcAerify(): void {
     setTimeout(() => {
-        const parentElement = this.document.querySelector(
-            "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
+      const parentElement = this.document.querySelector(
+        "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
+      ) as HTMLElement | null;
+
+      if (parentElement) {
+        const childElement = parentElement.querySelector(
+          "#custom_sticky_atc.custom_sticky_atc"
         ) as HTMLElement | null;
 
-        if (parentElement) {
-            const childElement = parentElement.querySelector(
-                "#custom_sticky_atc.custom_sticky_atc"
-            ) as HTMLElement | null;
-
-            if (childElement) {
-                childElement.style.removeProperty("display");
-            }
+        if (childElement) {
+          childElement.style.removeProperty("display");
         }
+      }
     }, 3000);
-}
-private removeInlineStylesKarambit(): void {
-  setTimeout(() => {
-      const elements = this.document.querySelectorAll<HTMLElement>('.kb-hero-slider__item.slick-slide');
+  }
+  private removeInlineStylesKarambit(): void {
+    const elements = this.document.querySelectorAll<HTMLElement>(
+      ".kb-hero-slider__item.slick-slide"
+    );
 
-      elements.forEach((element) => {
-          element.removeAttribute('style');
-      });
-  }, 2000);
-}
+    elements.forEach((element) => {
+      element.removeAttribute("style");
+    });
+  }
+  private setSlickTrackWidthKarambit(): void {
+    const parent = this.document.querySelector<HTMLElement>(
+      ".kb-hero-slider.slick-initialized.slick-slider.slick-dotted"
+    );
 
-private setSlickTrackWidthKarambit(): void {
-  setTimeout(() => {
-      const parent = this.document.querySelector<HTMLElement>(
-          '.kb-hero-slider.slick-initialized.slick-slider.slick-dotted'
+    if (parent) {
+      const slickTrack = parent.querySelector<HTMLElement>(".slick-track");
+      if (slickTrack) {
+        slickTrack.style.setProperty("width", "1875px", "important");
+      }
+    }
+  }
+  private removeWidthFromObjfitKarambit(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll<HTMLElement>(
+        ".image-container .objfit"
       );
 
-      if (parent) {
-          const slickTrack = parent.querySelector<HTMLElement>('.slick-track');
-          if (slickTrack) {
-              slickTrack.style.setProperty('width', '1875px', 'important');
-          }
-      }
-  }, 2000);
-}
-
-private removeWidthFromObjfitKarambit(): void {
-  setTimeout(() => {
-      const elements = this.document.querySelectorAll<HTMLElement>('.image-container .objfit');
-
       elements.forEach((element) => {
-          if (element.style.width) {
-              element.style.removeProperty('width');
-          }
+        if (element.style.width) {
+          element.style.removeProperty("width");
+        }
       });
-  }, 2000);
-}
+    }, 2000);
+  }
 
-private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
-  const parentElement = this.document.querySelector<HTMLElement>(
+  private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
+    const parentElement = this.document.querySelector<HTMLElement>(
       "#shopify-section-template--15480873320538__site-header-offset"
-  );
+    );
 
-  if (parentElement) {
-      const childElement = parentElement.querySelector<HTMLElement>(".site-header-offset");
+    if (parentElement) {
+      const childElement = parentElement.querySelector<HTMLElement>(
+        ".site-header-offset"
+      );
 
       if (childElement && childElement.style.display === "none") {
-          childElement.style.removeProperty("display");
+        childElement.style.removeProperty("display");
       }
+    }
   }
-}
-
-
-
-
-
-  
-  
-  
-  
 }
