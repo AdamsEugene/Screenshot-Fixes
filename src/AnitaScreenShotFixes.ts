@@ -2200,32 +2200,43 @@ export default class AnitaScreenShotFixes {
     }, 3000);
 }
 private removeInlineStylesKarambit(): void {
-  const elements = this.document.querySelectorAll<HTMLElement>('.kb-hero-slider__item.slick-slide');
+  setTimeout(() => {
+      const elements = this.document.querySelectorAll<HTMLElement>('.kb-hero-slider__item.slick-slide');
 
-  elements.forEach((element) => {
-      element.removeAttribute('style');
-  });
+      elements.forEach((element) => {
+          element.removeAttribute('style');
+      });
+  }, 2000);
 }
+
 private setSlickTrackWidthKarambit(): void {
-  const parent = this.document.querySelector<HTMLElement>(
-      '.kb-hero-slider.slick-initialized.slick-slider.slick-dotted'
-  );
+  setTimeout(() => {
+      const parent = this.document.querySelector<HTMLElement>(
+          '.kb-hero-slider.slick-initialized.slick-slider.slick-dotted'
+      );
 
-  if (parent) {
-      const slickTrack = parent.querySelector<HTMLElement>('.slick-track');
-      if (slickTrack) {
-          slickTrack.style.setProperty('width', '1875px', 'important');
+      if (parent) {
+          const slickTrack = parent.querySelector<HTMLElement>('.slick-track');
+          if (slickTrack) {
+              slickTrack.style.setProperty('width', '1875px', 'important');
+          }
       }
-  }
-}private removeWidthFromObjfitKarambit(): void {
-  const elements = this.document.querySelectorAll<HTMLElement>('.image-container .objfit');
+  }, 2000);
+}
 
-  elements.forEach((element) => {
-      if (element.style.width) {
-          element.style.removeProperty('width');
-      }
-  });
-}private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
+private removeWidthFromObjfitKarambit(): void {
+  setTimeout(() => {
+      const elements = this.document.querySelectorAll<HTMLElement>('.image-container .objfit');
+
+      elements.forEach((element) => {
+          if (element.style.width) {
+              element.style.removeProperty('width');
+          }
+      });
+  }, 2000);
+}
+
+private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
   const parentElement = this.document.querySelector<HTMLElement>(
       "#shopify-section-template--15480873320538__site-header-offset"
   );
