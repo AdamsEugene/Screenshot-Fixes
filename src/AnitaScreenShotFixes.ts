@@ -2237,18 +2237,21 @@ export default class AnitaScreenShotFixes {
   }
 
   private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
-    const parentElement = this.document.querySelector<HTMLElement>(
-      "#shopify-section-template--15480873320538__site-header-offset"
-    );
+    setTimeout(() => {
+        const parentElement = this.document.querySelector<HTMLElement>(
+            "#shopify-section-template--15480873320538__site-header-offset"
+        );
 
-    if (parentElement) {
-      const childElement = parentElement.querySelector<HTMLElement>(
-        ".site-header-offset"
-      );
+        if (parentElement) {
+            const childElement = parentElement.querySelector<HTMLElement>(
+                ".site-header-offset"
+            );
 
-      if (childElement && childElement.style.display === "none") {
-        childElement.style.removeProperty("display");
-      }
-    }
-  }
+            if (childElement && childElement.style.display === "none") {
+                childElement.style.removeProperty("display");
+            }
+        }
+    }, 2000);
+}
+
 }
