@@ -2406,19 +2406,33 @@ export default class RyanScreenshotFixes extends Common {
 
   //Mariners Learning System
   private clearMobileMenuOpacity() {
-    setTimeout(() => {
-        try {
-            const mobileMenus = this.dom.querySelectorAll('details .mobile-menu-container.dropdown');
-            if (!mobileMenus.length) return;
+    try {
+        const selector = 'details .mobile-menu-container.dropdown';
+        
+        const observer = new MutationObserver(() => {
+            try {
+                const elements = this.dom.querySelectorAll(selector);
+                elements.forEach((element) => {
+                    if (element && (element as HTMLElement).style.opacity === '1') {
+                        (element as HTMLElement).style.removeProperty('opacity');
+                        (element as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
+                    }
+                });
+            } catch (error) {
+                return;
+            }
+        });
  
-            mobileMenus.forEach(menu => {
-                (menu as HTMLElement).style.removeProperty('opacity');
-                (menu as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
-            });
-        } catch (error) {
-            return;
-        }
-    }, 500);
+        const targetElement = this.dom.querySelector('details');
+        if (!targetElement) return;
+ 
+        observer.observe(targetElement, {
+            attributeFilter: ['style'],
+            subtree: true
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   //toggleHeatmapClassOnDrawer
