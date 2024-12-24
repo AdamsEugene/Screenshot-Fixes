@@ -152,6 +152,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineStylesKarambit();
     this.setSlickTrackWidthKarambit();
     this.removeWidthFromObjfitKarambit();
+    this.removeDisplayNoneFromSiteHeaderOffsetDryrobe();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2224,7 +2225,20 @@ private setSlickTrackWidthKarambit(): void {
           element.style.removeProperty('width');
       }
   });
+}private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
+  const parentElement = this.document.querySelector<HTMLElement>(
+      "#shopify-section-template--15480873320538__site-header-offset"
+  );
+
+  if (parentElement) {
+      const childElement = parentElement.querySelector<HTMLElement>(".site-header-offset");
+
+      if (childElement && childElement.style.display === "none") {
+          childElement.style.removeProperty("display");
+      }
+  }
 }
+
 
 
 
