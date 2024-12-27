@@ -1524,7 +1524,7 @@ class ScreenshotFixes extends Common {
         functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
       },
       {
-        ids: [2777, 172, 2907, 555, 2684, 2842, 2993, 715],
+        ids: [2777, 172, 2907, 555, 2684, 2842, 2993, 715, 1504, 2972],
         functions: [this.observeMutation],
       },
       { ids: [1848], functions: [this.removeMainContentMarginTop] },

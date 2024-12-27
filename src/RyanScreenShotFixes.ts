@@ -117,6 +117,20 @@ export default class RyanScreenshotFixes extends Common {
       this.SourPlusupdateCarouselOverflow();
       this.updateReeviewDisplay();
       this.clearMobileMenuOpacity();
+      this.adjustMobileNavHeight();
+      this.adjustLoginModalOpacity();
+      this.adjustSlideLayerDisplay();
+      this.adjustKlaviyoFormDisplay();
+      this.adjustDisplayRecursively();
+      this.adjustCurrencyList();
+      this.adjustMenuButtonDisplay();
+      this.addSplideClass();
+      this.adjustAnnouncementDisplay();
+      this.adjustTechWrapper();
+      this.adjustMobileNavOverflow();
+      this.adjustFaqTextOpacity();
+      this.adjustWidgetDisplay();
+      this.adjustHamburgerDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2433,6 +2447,239 @@ export default class RyanScreenshotFixes extends Common {
     } catch (error) {
         return;
     }
+  }
+
+  private adjustMobileNavHeight() {
+    setTimeout(() => {
+        try {
+            const mobileNav = this.dom.querySelector('#mobile-main-nav') as HTMLElement;
+            if (!mobileNav) return;
+ 
+            mobileNav.style.setProperty('height', '100%', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustLoginModalOpacity() {
+    setInterval(() => {
+        try {
+            const loginModal = this.dom.querySelector('#loginModal.login-modal__outer-wrapper') as HTMLElement;
+            if (!loginModal) return;
+ 
+            loginModal.style.removeProperty('opacity');
+            loginModal.style.setProperty('opacity', 'revert-layer', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 1000);
+  }
+
+  private adjustSlideLayerDisplay() {
+    setInterval(() => {
+        try {
+            const container = this.dom.querySelector('.n2-ss-layers-container.n2-ss-slide-limiter.n2-ow');
+            if (!container) return;
+ 
+            const layer = container.querySelector('.n2-ss-layer.n2-ow.n-uc-OWbnvKckIsIQ') as HTMLElement;
+            if (!layer) return;
+ 
+            layer.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustKlaviyoFormDisplay() {
+    setTimeout(() => {
+        try {
+            const container = this.dom.querySelector('.container1250');
+            if (!container) return;
+ 
+            const klaviyoForm = container.querySelector('.klaviyo-form-YezMyJ.klaviyo-form.form-version-cid-1') as HTMLElement;
+            if (!klaviyoForm) return;
+ 
+            klaviyoForm.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustDisplayRecursively() {
+    setTimeout(() => {
+        try {
+            const elements = this.dom.querySelectorAll('.r-1obhhk9');
+            if (!elements.length) return;
+ 
+            elements.forEach(parent => {
+                const checkAndRemoveDisplay = (element: Element) => {
+                    if ((element as HTMLElement).style?.display === 'none') {
+                        (element as HTMLElement).style.removeProperty('display');
+                    }
+ 
+                    element.children.length && 
+                        Array.from(element.children).forEach(child => checkAndRemoveDisplay(child));
+                };
+ 
+                checkAndRemoveDisplay(parent);
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustCurrencyList() {
+    const selector = '.doubly-nice-select.currency-switcher.left.slim .list';
+    
+    const observer = new MutationObserver(() => {
+        try {
+            const elements = this.dom.querySelectorAll(selector);
+            elements.forEach((element) => {
+                if (element && (element as HTMLElement).style.opacity) {
+                    (element as HTMLElement).style.removeProperty('opacity');
+                    (element as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    });
+ 
+    try {
+        const targetElement = this.dom.querySelector('.doubly-nice-select.currency-switcher.left.slim');
+        if (!targetElement) return;
+ 
+        observer.observe(targetElement, {
+            attributeFilter: ['style'],
+            subtree: true
+        });
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustMenuButtonDisplay() {
+    setTimeout(() => {
+        try {
+            const parent = this.dom.querySelector('.menu-button-3.w-nav-button');
+            if (!parent) return;
+ 
+            const menuIcon = parent.querySelector('.w-icon-nav-menu') as HTMLElement;
+            if (!menuIcon) return;
+ 
+            menuIcon.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private addSplideClass() {
+    try {
+        const splideElement = this.dom.querySelector('.splide--desktop-dots-under.splide--mobile-dots-under.splide--desktop-arrows-sides.splide--desktop-arrows-outside.splide--mobile-arrows-under.splide--destroy-desktop.splide--destroy-mobile') as HTMLElement;
+        if (!splideElement) return;
+ 
+        splideElement.classList.add('splide');
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustAnnouncementDisplay() {
+    try {
+        const announcementBar = this.dom.querySelector('announcement-bar');
+        if (!announcementBar) return;
+ 
+        const sliders = announcementBar.querySelectorAll('.announcement-slider');
+        if (!sliders.length) return;
+ 
+        sliders.forEach((slider, index) => {
+            if (index === 0) {
+                (slider as HTMLElement).style.removeProperty('display');
+            } else {
+                (slider as HTMLElement).style.setProperty('display', 'none', 'important');
+            }
+        });
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustTechWrapper() {
+    setTimeout(() => {
+        try {
+            const container = this.dom.querySelector('.Tech__wrapper.ui-player-container.bitmovinplayer-container.bmpui-ui-uicontainer');
+            if (!container) return;
+ 
+            const skeleton = container.querySelector('.AspectRatioSkeleton__wrapper') as HTMLElement;
+            if (!skeleton) return;
+ 
+            skeleton.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustMobileNavOverflow() {
+    setTimeout(() => {
+        try {
+            const mobileNav = this.dom.querySelector('nav#mobile-nav') as HTMLElement;
+            if (!mobileNav) return;
+ 
+            mobileNav.style.removeProperty('overflow');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustFaqTextOpacity() {
+    setTimeout(() => {
+        try {
+            const faqContainers = this.dom.querySelectorAll('.faq.width-narrow.text-align-left');
+            if (!faqContainers.length) return;
+ 
+            faqContainers.forEach(container => {
+                const textElements = container.querySelectorAll('.text');
+                textElements.forEach(text => {
+                    (text as HTMLElement).style.removeProperty('opacity');
+                });
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustWidgetDisplay() {
+    setTimeout(() => {
+        try {
+            const habitat = this.dom.querySelector('[data-widget-host="habitat-static-feed"]') as HTMLElement;
+            if (!habitat) return;
+ 
+            habitat.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustHamburgerDisplay() {
+    setTimeout(() => {
+        try {
+            const hamburger = this.dom.querySelector('.m-hamburger-box__inner') as HTMLElement;
+            if (!hamburger) return;
+ 
+            hamburger.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
