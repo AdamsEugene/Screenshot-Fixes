@@ -153,6 +153,8 @@ export default class AnitaScreenShotFixes {
     this.setSlickTrackWidthKarambit();
     this.removeWidthFromObjfitKarambit();
     this.removeDisplayNoneFromSiteHeaderOffsetDryrobe();
+    this.removeWidthFromImgFluidWithAncestorNutriseed();
+    this.removeWidthFromImagesNUTRISEED();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2253,5 +2255,33 @@ export default class AnitaScreenShotFixes {
         }
     }, 2000);
 }
+private removeWidthFromImgFluidWithAncestorNutriseed(): void {
+  const elements = this.document.querySelectorAll<HTMLImageElement>('.img-fluid');
+
+  elements.forEach((element) => {
+      if (
+          element.tagName.toLowerCase() === 'img' &&
+          element.closest('.laptopImg.box') &&
+          element.style.width
+      ) {
+          element.style.removeProperty('width');
+      }
+  });
+}
+private removeWidthFromImagesNUTRISEED(): void {
+  const parentElements = this.document.querySelectorAll(
+      ".spd__flxiSlide.slideshow__slide.slider__slide"
+  );
+
+  parentElements.forEach((parentElement) => {
+      const imgElements = parentElement.querySelectorAll<HTMLImageElement>(".img-fluid");
+
+      imgElements.forEach((imgElement) => {
+          imgElement.style.removeProperty("width");
+      });
+  });
+}
+
+
 
 }
