@@ -131,6 +131,18 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustFaqTextOpacity();
       this.adjustWidgetDisplay();
       this.adjustHamburgerDisplay();
+      this.adjustTopBunDisplay();
+      this.adjustCalendlyIframeHeight();
+      this.adjustSwatchElements();
+      this.adjustMenuAndMediaElements();
+      this.adjustProductThumbnails();
+      this.adjustGemSliderOverflow();
+      this.adjustYotpoWidget();
+      this.adjustProductPadding();
+      this.ToolnutadjustHamburgerDisplay();
+      this.adjustNavigationDisplay();
+      this.handleHamburgerMenuClick();
+      this.createProductImages();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2680,6 +2692,215 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 500);
+  }
+
+  private adjustTopBunDisplay() {
+    setTimeout(() => {
+        try {
+            const burgerParts = this.dom.querySelectorAll('.top-bun, .patty, .bottom-bun');
+            if (!burgerParts.length) return;
+ 
+            burgerParts.forEach(part => {
+                (part as HTMLElement).style.removeProperty('display');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustCalendlyIframeHeight() {
+    setTimeout(() => {
+        try {
+            const calendlyWidgets = this.dom.querySelectorAll('.calendly-inline-widget');
+            if (!calendlyWidgets.length) return;
+ 
+            calendlyWidgets.forEach(widget => {
+                const iframe = widget.querySelector('iframe') as HTMLElement;
+                if (!iframe) return;
+ 
+                iframe.style.removeProperty('height');
+                iframe.style.setProperty('height', 'inherit', 'important');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustSwatchElements() {
+    setTimeout(() => {
+        try {
+            const swatchContainers = this.dom.querySelectorAll('.swatchColor.swatchType_one_color');
+            if (!swatchContainers.length) return;
+ 
+            swatchContainers.forEach(container => {
+                ((container.querySelector('div')) as HTMLElement)?.style.removeProperty('display');
+                ((container.querySelector('.webyzeTooltip')) as HTMLElement)?.style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustMenuAndMediaElements() {
+    setTimeout(() => {
+        try {
+            const megaMenu = this.dom.querySelector('#Details-HeaderMenu-1 #MegaMenu-Content-1') as HTMLElement;
+            if (megaMenu) megaMenu.style.removeProperty('height');
+ 
+            this.dom.querySelectorAll('.featured-media .media-wrapper img').forEach(img => 
+                (img as HTMLElement).style.removeProperty('width'));
+ 
+            this.dom.querySelectorAll('.card-image a img').forEach(img => 
+                (img as HTMLElement).style.removeProperty('height'));
+ 
+            const pageWidth = this.dom.querySelector('#sc-template--16760377737429__8d4e28d9-f86e-4610-be3e-90ae44bc6401.page-width');
+            if (pageWidth?.parentElement) (pageWidth.parentElement as HTMLElement).style.removeProperty('height');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustProductThumbnails() {
+    setTimeout(() => {
+        try {
+            const selectors = [
+                '.js-product-thumbnail--image.product-thumbnail--image.block.link.absolute.absolute-fill.flex.items-center.justify-center .inline-block.width-auto.height-auto.max-width-full.max-height-full.loaded',
+                '.block.font-size-6.font-weight-6.text-no-decoration.text-primary.letter-spacing--2 .inline-block.width-auto.height-auto.max-width-full.max-height-full.loaded'
+            ];
+ 
+            selectors.forEach(selector => {
+                this.dom.querySelectorAll(selector).forEach(img => 
+                    (img as HTMLElement).style.removeProperty('width'));
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustGemSliderOverflow() {
+    setTimeout(() => {
+        try {
+            const slider = this.dom.querySelector('[id="gp-carousel-ft-gp-carousel-gZHKhM893--template--17785259393179__gp_section_537860369301898236-8299986976923-template--17785259393179__gp_section_537860369301898236"]') as HTMLElement;
+            if (!slider) return;
+
+            slider.style.removeProperty('overflow');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustYotpoWidget() {
+    setTimeout(() => {
+        try {
+            const yotpoWidgets = this.dom.querySelectorAll('.yotpo-widget-instance.star-rating-container');
+            if (!yotpoWidgets.length) return;
+ 
+            yotpoWidgets.forEach(widget => {
+                (widget as HTMLElement).style.removeProperty('display');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustProductPadding() {
+    setTimeout(() => {
+        try {
+            const product = this.dom.querySelector('#Product--template--18561541112060__main.index-product.section-padding') as HTMLElement;
+            if (!product) return;
+ 
+            product.style.setProperty('padding-top', '100px', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private ToolnutadjustHamburgerDisplay() {
+    setInterval(() => {
+        try {
+            const hamburger = this.dom.querySelector('#main-hamberger.ninjamenus-top-triggered') as HTMLElement;
+            if (!hamburger) return;
+ 
+            hamburger.style.setProperty('display', 'flex', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustNavigationDisplay() {
+    try {
+        const parentSelector = '.ninjamenus-mobile-wrapper';
+        
+        const observer = new MutationObserver(() => {
+            const parent = this.dom.querySelector(parentSelector) as HTMLElement;
+            if (parent && parent.style.display === 'none') {
+                parent.style.removeProperty('display');
+                parent.style.setProperty('display', 'block', 'important');
+            }
+        });
+
+        const parent = this.dom.querySelector(parentSelector);
+        if (parent) {
+            observer.observe(parent, {
+                attributeFilter: ['style']
+            });
+
+            // Initial check and fix
+            if ((parent as HTMLElement).style.display === 'none') {
+                (parent as HTMLElement).style.removeProperty('display');
+                (parent as HTMLElement).style.setProperty('display', 'block', 'important');
+            }
+        }
+    } catch (error) {
+        return;
+    }
+  }
+
+  private handleHamburgerMenuClick() {
+    if (this.insideIframe) {
+        const headerContent = this.dom.querySelector('.header.content') as HTMLElement;
+        if (!headerContent) return;
+ 
+        const hamburgerButton = headerContent.querySelector('#main-hamberger');
+        if (hamburgerButton) {
+            hamburgerButton.addEventListener('click', () => {
+                const htmlElement = this.dom.documentElement;
+                const currentClass = htmlElement.getAttribute('class') || '';
+ 
+                if (currentClass.includes('nav-before-open')) {
+                    htmlElement.classList.remove('nav-before-open', 'nav-open');
+                } else {
+                    htmlElement.classList.add('nav-before-open', 'nav-open');
+                }
+            });
+        }
+    }
+  }
+
+  private createProductImages() {
+    if (this.insideIframe) {
+        const productContainers = this.dom.querySelectorAll('.product-image');
+        productContainers.forEach(container => {
+            const lazyImages = container.querySelectorAll('.lazy-image');
+            lazyImages.forEach(lazyImage => {
+                const dataImage = lazyImage.getAttribute('data-image');
+                if (dataImage) {
+                    const img = document.createElement('img');
+                    img.src = dataImage;
+                    lazyImage.appendChild(img);
+                }
+            });
+        });
+    }
   }
 
   //toggleHeatmapClassOnDrawer
