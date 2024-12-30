@@ -2295,11 +2295,9 @@ private setMinHeightForElementBARLEYBUS(): void {
   const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_container.left");
   if (element) {
       element.style.setProperty("min-height", "852px", "important");
-      console.log("Min height set to 852px with !important for:", element);
-  } else {
-      console.log("Element with class 'et_pb_fullwidth_header_container left' not found.");
   }
 }
+
 
 private setMinHeightForTargetElementBARLEYBUS(): void {
   const element = this.document.querySelector<HTMLElement>(
@@ -2308,11 +2306,9 @@ private setMinHeightForTargetElementBARLEYBUS(): void {
 
   if (element) {
       element.style.setProperty("min-height", "852px", "important");
-      console.log("Min height set to 852px with !important for the target element:", element);
-  } else {
-      console.log("Target element not found. Please check the class selector.");
   }
 }
+
 
 
 private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
@@ -2320,11 +2316,9 @@ private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
 
   if (element) {
       element.removeAttribute("style");
-      console.log("Inline CSS removed for the target element:", element);
-  } else {
-      console.log("Element with class 'et_pb_fullwidth_header_overlay' not found.");
   }
 }
+
 
 private removeHeightAndTransformFromChildBARLEYBUS(): void {
   const parentElement = this.document.querySelector<HTMLElement>(".et_parallax_bg_wrap");
@@ -2335,14 +2329,10 @@ private removeHeightAndTransformFromChildBARLEYBUS(): void {
       if (childElement) {
           childElement.style.removeProperty("height");
           childElement.style.removeProperty("transform");
-          console.log("Removed 'height' and 'transform' properties from:", childElement);
-      } else {
-          console.log("Child element with class 'et_parallax_bg' not found.");
       }
-  } else {
-      console.log("Parent element with class 'et_parallax_bg_wrap' not found.");
   }
 }
+
 
 
 
