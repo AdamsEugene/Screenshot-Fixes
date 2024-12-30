@@ -919,5 +919,23 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/ridge.com-products-aluminum-gunmetal-main.html"
     }
+  },
+  {
+    "selector": ".reeview-app-widget",
+    "content": {
+      "idSite": 2799,
+      "idSiteHsr": 5102812,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/hergroomie.com-pages-how-it-works-main.html"
+    }
+  },
+  {
+    "selector": ".collection__content",
+    "content": {
+      "idSite": 244,
+      "idSiteHsr": 71874,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bruntworkwear.com-collections-all-main.html"
+    }
   }
 ]

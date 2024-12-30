@@ -1429,28 +1429,26 @@ class ScreenshotFixes extends Common {
     });
   };
 
-  private handleHamburgerMenuClick = () => {
-    if (this.insideIframe) {
-      const headerContent = this.dom.querySelector(
-        ".header.content"
-      ) as HTMLElement;
-      if (headerContent) {
-        const hamburgerButton = headerContent.querySelector(
-          "#main-hamberger"
-        ) as HTMLElement;
-        if (hamburgerButton) {
-          hamburgerButton.addEventListener("click", () => {
-            const htmlElement = this.dom.documentElement;
-            if (htmlElement.classList.contains("nav-before-open")) {
-              htmlElement.classList.remove("nav-before-open", "nav-open");
-            } else {
-              htmlElement.classList.add("nav-before-open", "nav-open");
-            }
-          });
-        }
-      }
-    }
-  };
+  // private handleHamburgerMenuClick = () => {
+  //   if (this.insideIframe) {
+  //       const headerContent = this.dom.querySelector('.header.content') as HTMLElement;
+  //       if (!headerContent) return;
+
+  //       const hamburgerButton = headerContent.querySelector('#main-hamberger') as HTMLElement;
+  //       if (!hamburgerButton) return;
+
+  //       hamburgerButton.addEventListener('click', () => {
+  //           const htmlElement = this.dom.documentElement;
+  //           const currentClass = htmlElement.getAttribute('class') || '';
+
+  //           if (currentClass.includes('nav-before-open')) {
+  //               htmlElement.classList.remove('nav-before-open', 'nav-open');
+  //           } else {
+  //               htmlElement.classList.add('nav-before-open', 'nav-open');
+  //           }
+  //       });
+  //   }
+  // };
 
   private updateMiniCartHeight = () => {
     const miniCart = this.dom.querySelector("#mini-cart.mini-cart");
@@ -1484,6 +1482,28 @@ class ScreenshotFixes extends Common {
       img.src = imgMap.src;
     }
   }
+
+  private adjustHeaderPadding = () => {
+    if (this.insideIframe) {
+        const header = this.dom.querySelector(
+            '#shopify-section-header.shopify-section.header-section'
+        ) as HTMLElement;
+        if (header) {
+            header.style.setProperty('padding-bottom', '0px', 'important');
+        }
+    }
+  };
+
+  private setImagesVisible = () => {
+    if (this.insideIframe) {
+        const images = this.dom.querySelectorAll('img');
+        if (!images.length) return;
+ 
+        images.forEach(img => {
+            (img as HTMLElement).style.setProperty('visibility', 'visible', 'important');
+        });
+    }
+  };
 
   //Springinger
   private hideShopifyMinicartElements() {
@@ -1524,7 +1544,7 @@ class ScreenshotFixes extends Common {
         functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
       },
       {
-        ids: [2777, 172, 2907, 555, 2684, 2842, 2993, 715],
+        ids: [2777, 172, 2907, 555, 2684, 2842, 2993, 715, 1504, 2972],
         functions: [this.observeMutation],
       },
       { ids: [1848], functions: [this.removeMainContentMarginTop] },
@@ -1532,9 +1552,10 @@ class ScreenshotFixes extends Common {
       { ids: [2898], functions: [this.Nuvecartfooter] },
       { ids: [2176], functions: [this.updateMiniCartHeight] },
       { ids: [2858], functions: [this.hideShopifyMinicartElements] },
-      { ids: [2850], functions: [this.handleHamburgerMenuClick] },
+      // { ids: [2850], functions: [this.handleHamburgerMenuClick] },
       { ids: [2792], functions: [this.removeEmptyCartClass] },
-      // { ids: [2432], functions: [this.hideAllScalapayModals] },
+      { ids: [2994], functions: [this.adjustHeaderPadding] },
+      { ids: [174], functions: [this.setImagesVisible] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
