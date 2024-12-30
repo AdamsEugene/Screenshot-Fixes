@@ -159,6 +159,7 @@ export default class AnitaScreenShotFixes {
     this.setMinHeightForTargetElementBARLEYBUS();
     this.removeInlineCSSFromOverlayWithParentBarleyBus();
     this.removeHeightAndTransformFromChildBARLEYBUS();
+    this.removeHeightFromGridItemsReachInternational();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2343,6 +2344,18 @@ private removeHeightAndTransformFromChildBARLEYBUS(): void {
       }
   }, 2000);
 }
+private removeHeightFromGridItemsReachInternational(): void {
+  const parentElement = this.document.getElementById("ProductSection-template--16473037471821__main");
+
+  if (parentElement) {
+      const elements = parentElement.querySelectorAll<HTMLElement>(".grid__item.medium-up--one-half");
+
+      elements.forEach((element) => {
+          element.style.removeProperty("height");
+      });
+  }
+}
+
 
 
 
