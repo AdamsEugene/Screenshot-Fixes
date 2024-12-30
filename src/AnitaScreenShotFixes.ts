@@ -155,9 +155,9 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNoneFromSiteHeaderOffsetDryrobe();
     this.removeWidthFromImgFluidWithAncestorNutriseed();
     this.removeWidthFromImagesNUTRISEED();
-    this.setMinHeightForElementBARLEYBUS();
-    this.setMinHeightForSpecificElementBARLEYBUS();
-    this.removeInlineCSSFromOverlayWithParentBarleyBus();
+    // this.setMinHeightForElementBARLEYBUS();
+    // this.setMinHeightForSpecificElementBARLEYBUS();
+    // this.removeInlineCSSFromOverlayWithParentBarleyBus();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2259,67 +2259,105 @@ export default class AnitaScreenShotFixes {
     }, 2000);
 }
 private removeWidthFromImgFluidWithAncestorNutriseed(): void {
-  const elements = this.document.querySelectorAll<HTMLImageElement>('.img-fluid');
+  setTimeout(() => {
+      const elements = this.document.querySelectorAll<HTMLImageElement>('.img-fluid');
 
-  elements.forEach((element) => {
-      if (
-          element.tagName.toLowerCase() === 'img' &&
-          element.closest('.laptopImg.box') &&
-          element.style.width
-      ) {
-          element.style.removeProperty('width');
-      }
-  });
-}
-private removeWidthFromImagesNUTRISEED(): void {
-  const parentElements = this.document.querySelectorAll(
-      ".spd__flxiSlide.slideshow__slide.slider__slide"
-  );
-
-  parentElements.forEach((parentElement) => {
-      const imgElements = parentElement.querySelectorAll<HTMLImageElement>(".img-fluid");
-
-      imgElements.forEach((imgElement) => {
-          imgElement.style.removeProperty("width");
+      elements.forEach((element) => {
+          if (
+              element.tagName.toLowerCase() === 'img' &&
+              element.closest('.laptopImg.box') &&
+              element.style.width
+          ) {
+              element.style.removeProperty('width');
+          }
       });
-  });
-}private setMinHeightForElementBARLEYBUS(): void {
+  }, 2000);
+}
+
+private removeWidthFromImagesNUTRISEED(): void {
+  setTimeout(() => {
+      const parentElements = this.document.querySelectorAll(
+          ".spd__flxiSlide.slideshow__slide.slider__slide"
+      );
+
+      parentElements.forEach((parentElement) => {
+          const imgElements = parentElement.querySelectorAll<HTMLImageElement>(".img-fluid");
+
+          imgElements.forEach((imgElement) => {
+              imgElement.style.removeProperty("width");
+          });
+      });
+  }, 2000);
+}
+
+private setMinHeightForElementBARLEYBUS(): void {
+  console.log("Searching for parent element...");
+
   const parentElement = this.document.querySelector<HTMLElement>(
       ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
   );
 
   if (parentElement) {
+      console.log("Parent element found:", parentElement);
+
       const childElement = parentElement.querySelector<HTMLElement>(
           ".et_pb_fullwidth_header_container.left"
       );
 
       if (childElement) {
+          console.log("Child element found:", childElement);
           childElement.style.setProperty("min-height", "852px", "important");
+          console.log("Min height set to 852px with !important.");
+      } else {
+          console.warn("Child element not found.");
       }
+  } else {
+      console.warn("Parent element not found.");
   }
 }
+
 private setMinHeightForSpecificElementBARLEYBUS(): void {
+  console.log("Starting the search for the specific element...");
+
   const element = this.document.querySelector<HTMLElement>(
       ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
   );
 
   if (element) {
+      console.log("Element found:", element);
       element.style.setProperty("min-height", "852px", "important");
+      console.log("Min height successfully set to 852px with !important.");
+  } else {
+      console.log("Element not found. Please check the class selector.");
   }
 }
+
 private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
+  console.log("Searching for the parent element...");
+
   const parentElement = this.document.querySelector<HTMLElement>(
       ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
   );
 
   if (parentElement) {
-      const overlayElements = parentElement.querySelectorAll<HTMLElement>(".et_pb_fullwidth_header_overlay");
+      console.log("Parent element found:", parentElement);
 
-      overlayElements.forEach((overlayElement) => {
+      const overlayElements = parentElement.querySelectorAll<HTMLElement>(".et_pb_fullwidth_header_overlay");
+      console.log(`${overlayElements.length} overlay elements found.`);
+
+      overlayElements.forEach((overlayElement, index) => {
           overlayElement.removeAttribute("style");
+          console.log(`Removed inline style from overlay element ${index + 1}:`, overlayElement);
       });
+  } else {
+      console.log("Parent element not found. Please check the class selector.");
   }
 }
+
+
+
+
+
 
 
 
