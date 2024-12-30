@@ -160,6 +160,7 @@ export default class AnitaScreenShotFixes {
     this.removeInlineCSSFromOverlayWithParentBarleyBus();
     this.removeHeightAndTransformFromChildBARLEYBUS();
     this.removeHeightFromGridItemsReachInternational();
+    // this.setPaddingTopForLazyloadPlaceholders();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2355,6 +2356,21 @@ private removeHeightFromGridItemsReachInternational(): void {
       });
   }
 }
+
+private setPaddingTopForLazyloadPlaceholders(): void {
+  setTimeout(() => {
+      const parentElements = this.document.querySelectorAll<HTMLElement>(".hc-sliders-wrapper");
+
+      parentElements.forEach((parent) => {
+          const elements = parent.querySelectorAll<HTMLElement>(".rimage-wrapper.lazyload--placeholder");
+
+          elements.forEach((element) => {
+              element.style.setProperty("padding-top", "100%", "important");
+          });
+      });
+  }, 3000); 
+}
+
 
 
 
