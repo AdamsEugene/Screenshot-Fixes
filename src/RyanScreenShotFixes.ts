@@ -143,6 +143,11 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustNavigationDisplay();
       this.handleHamburgerMenuClick();
       this.createProductImages();
+      this.adjustMegaDropdownOpacity();
+      this.adjustTnsInnerHeight();
+      this.adjustAgeVerifierOpacity();
+      this.adjustTeaserDisplay();
+      this.adjustMediaOverlayOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2901,6 +2906,102 @@ export default class RyanScreenshotFixes extends Common {
             });
         });
     }
+  }
+
+  private adjustMegaDropdownOpacity() {
+    setInterval(() => {
+        try {
+            const megaContents = this.dom.querySelectorAll('.mega-dropdown-inner.mv-relative .mega-content.mv-mx-auto.mv-px-10.mv-pt-3.mv-pb-5.mv-relative.mv-z-50.mv-text-black');
+            if (!megaContents.length) return;
+
+            megaContents.forEach(content => {
+                (content as HTMLElement).style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustTnsInnerHeight() {
+    setTimeout(() => {
+        try {
+            const tnsOuters = this.dom.querySelectorAll('.tns-outer');
+            if (!tnsOuters.length) return;
+ 
+            tnsOuters.forEach(outer => {
+                const inner = outer.querySelector('.tns-inner.tns-ovh.tns-ah') as HTMLElement;
+                if (inner) {
+                    inner.style.setProperty('height', 'auto', 'important');
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //GARVEE
+  private adjustAgeVerifierOpacity() {
+    setTimeout(() => {
+        try {
+            const popup = this.dom.querySelector('m-age-verifier-popup#sections--22741745074489__age-verifier-popup.m-age-verifier') as HTMLElement;
+            if (!popup) return;
+ 
+            popup.style.removeProperty('opacity');
+ 
+            const innerElements = popup.querySelectorAll('*');
+            innerElements.forEach(element => {
+                (element as HTMLElement).style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustTeaserDisplay() {
+    try {
+        const parentSelector = '.needsclick.kl-teaser-SvpLPh.undefined.kl-private-reset-css-Xuajs1';
+        const observer = new MutationObserver(() => {
+            const parent = this.dom.querySelector(parentSelector) as HTMLElement;
+            if (parent && parent.style.display) {
+                parent.style.removeProperty('display');
+            }
+        });
+ 
+        const parent = this.dom.querySelector(parentSelector);
+        if (parent) {
+            observer.observe(parent, {
+                attributeFilter: ['style']
+            });
+ 
+            if ((parent as HTMLElement).style.display) {
+                (parent as HTMLElement).style.removeProperty('display');
+            }
+        }
+    } catch (error) {
+        return;
+    }
+  }
+
+  //Juicerville CAD
+  private adjustMediaOverlayOpacity() {
+    setTimeout(() => {
+        try {
+            const overlays = this.dom.querySelectorAll('.media.media--has-overlay.absolute.top-0.left-0.w-full.h-full');
+            if (!overlays.length) return;
+ 
+            overlays.forEach(overlay => {
+                const img = overlay.querySelector('img') as HTMLElement;
+                if (img) {
+                    img.style.removeProperty('opacity');
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
