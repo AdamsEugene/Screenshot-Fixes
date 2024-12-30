@@ -146,6 +146,8 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustMegaDropdownOpacity();
       this.adjustTnsInnerHeight();
       this.adjustAgeVerifierOpacity();
+      this.adjustTeaserDisplay();
+      this.adjustMediaOverlayOpacity();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2939,6 +2941,7 @@ export default class RyanScreenshotFixes extends Common {
     }, 500);
   }
 
+  //GARVEE
   private adjustAgeVerifierOpacity() {
     setTimeout(() => {
         try {
@@ -2950,6 +2953,50 @@ export default class RyanScreenshotFixes extends Common {
             const innerElements = popup.querySelectorAll('*');
             innerElements.forEach(element => {
                 (element as HTMLElement).style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustTeaserDisplay() {
+    try {
+        const parentSelector = '.needsclick.kl-teaser-SvpLPh.undefined.kl-private-reset-css-Xuajs1';
+        const observer = new MutationObserver(() => {
+            const parent = this.dom.querySelector(parentSelector) as HTMLElement;
+            if (parent && parent.style.display) {
+                parent.style.removeProperty('display');
+            }
+        });
+ 
+        const parent = this.dom.querySelector(parentSelector);
+        if (parent) {
+            observer.observe(parent, {
+                attributeFilter: ['style']
+            });
+ 
+            if ((parent as HTMLElement).style.display) {
+                (parent as HTMLElement).style.removeProperty('display');
+            }
+        }
+    } catch (error) {
+        return;
+    }
+  }
+
+  //Juicerville CAD
+  private adjustMediaOverlayOpacity() {
+    setTimeout(() => {
+        try {
+            const overlays = this.dom.querySelectorAll('.media.media--has-overlay.absolute.top-0.left-0.w-full.h-full');
+            if (!overlays.length) return;
+ 
+            overlays.forEach(overlay => {
+                const img = overlay.querySelector('img') as HTMLElement;
+                if (img) {
+                    img.style.removeProperty('opacity');
+                }
             });
         } catch (error) {
             return;
