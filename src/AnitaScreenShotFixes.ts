@@ -155,9 +155,10 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNoneFromSiteHeaderOffsetDryrobe();
     this.removeWidthFromImgFluidWithAncestorNutriseed();
     this.removeWidthFromImagesNUTRISEED();
-    // this.setMinHeightForElementBARLEYBUS();
-    // this.setMinHeightForSpecificElementBARLEYBUS();
-    // this.removeInlineCSSFromOverlayWithParentBarleyBus();
+    this.setMinHeightForElementBARLEYBUS();
+    this.setMinHeightForTargetElementBARLEYBUS();
+    this.removeInlineCSSFromOverlayWithParentBarleyBus();
+    this.removeHeightAndTransformFromChildBARLEYBUS();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2291,66 +2292,55 @@ private removeWidthFromImagesNUTRISEED(): void {
 }
 
 private setMinHeightForElementBARLEYBUS(): void {
-  console.log("Searching for parent element...");
-
-  const parentElement = this.document.querySelector<HTMLElement>(
-      ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
-  );
-
-  if (parentElement) {
-      console.log("Parent element found:", parentElement);
-
-      const childElement = parentElement.querySelector<HTMLElement>(
-          ".et_pb_fullwidth_header_container.left"
-      );
-
-      if (childElement) {
-          console.log("Child element found:", childElement);
-          childElement.style.setProperty("min-height", "852px", "important");
-          console.log("Min height set to 852px with !important.");
-      } else {
-          console.warn("Child element not found.");
-      }
+  const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_container.left");
+  if (element) {
+      element.style.setProperty("min-height", "852px", "important");
+      console.log("Min height set to 852px with !important for:", element);
   } else {
-      console.warn("Parent element not found.");
+      console.log("Element with class 'et_pb_fullwidth_header_container left' not found.");
   }
 }
 
-private setMinHeightForSpecificElementBARLEYBUS(): void {
-  console.log("Starting the search for the specific element...");
-
+private setMinHeightForTargetElementBARLEYBUS(): void {
   const element = this.document.querySelector<HTMLElement>(
       ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
   );
 
   if (element) {
-      console.log("Element found:", element);
       element.style.setProperty("min-height", "852px", "important");
-      console.log("Min height successfully set to 852px with !important.");
+      console.log("Min height set to 852px with !important for the target element:", element);
   } else {
-      console.log("Element not found. Please check the class selector.");
+      console.log("Target element not found. Please check the class selector.");
   }
 }
 
-private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
-  console.log("Searching for the parent element...");
 
-  const parentElement = this.document.querySelector<HTMLElement>(
-      ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
-  );
+private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
+  const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_overlay");
+
+  if (element) {
+      element.removeAttribute("style");
+      console.log("Inline CSS removed for the target element:", element);
+  } else {
+      console.log("Element with class 'et_pb_fullwidth_header_overlay' not found.");
+  }
+}
+
+private removeHeightAndTransformFromChildBARLEYBUS(): void {
+  const parentElement = this.document.querySelector<HTMLElement>(".et_parallax_bg_wrap");
 
   if (parentElement) {
-      console.log("Parent element found:", parentElement);
+      const childElement = parentElement.querySelector<HTMLElement>(".et_parallax_bg");
 
-      const overlayElements = parentElement.querySelectorAll<HTMLElement>(".et_pb_fullwidth_header_overlay");
-      console.log(`${overlayElements.length} overlay elements found.`);
-
-      overlayElements.forEach((overlayElement, index) => {
-          overlayElement.removeAttribute("style");
-          console.log(`Removed inline style from overlay element ${index + 1}:`, overlayElement);
-      });
+      if (childElement) {
+          childElement.style.removeProperty("height");
+          childElement.style.removeProperty("transform");
+          console.log("Removed 'height' and 'transform' properties from:", childElement);
+      } else {
+          console.log("Child element with class 'et_parallax_bg' not found.");
+      }
   } else {
-      console.log("Parent element not found. Please check the class selector.");
+      console.log("Parent element with class 'et_parallax_bg_wrap' not found.");
   }
 }
 
