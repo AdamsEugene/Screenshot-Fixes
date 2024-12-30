@@ -2292,46 +2292,58 @@ private removeWidthFromImagesNUTRISEED(): void {
 }
 
 private setMinHeightForElementBARLEYBUS(): void {
-  const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_container.left");
-  if (element) {
-      element.style.setProperty("min-height", "852px", "important");
-  }
+  setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_container.left");
+      if (element) {
+          element.style.setProperty("min-height", "852px", "important");
+      }
+  }, 2000);
 }
+
 
 
 private setMinHeightForTargetElementBARLEYBUS(): void {
-  const element = this.document.querySelector<HTMLElement>(
-      ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
-  );
+  setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+          ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
+      );
 
-  if (element) {
-      element.style.setProperty("min-height", "852px", "important");
-  }
+      if (element) {
+          element.style.setProperty("min-height", "852px", "important");
+      }
+  }, 2000);
 }
+
 
 
 
 private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
-  const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_overlay");
+  setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_overlay");
 
-  if (element) {
-      element.removeAttribute("style");
-  }
+      if (element) {
+          element.removeAttribute("style");
+      }
+  }, 2000);
 }
+
 
 
 private removeHeightAndTransformFromChildBARLEYBUS(): void {
-  const parentElement = this.document.querySelector<HTMLElement>(".et_parallax_bg_wrap");
+  setTimeout(() => {
+      const parentElement = this.document.querySelector<HTMLElement>(".et_parallax_bg_wrap");
 
-  if (parentElement) {
-      const childElement = parentElement.querySelector<HTMLElement>(".et_parallax_bg");
+      if (parentElement) {
+          const childElement = parentElement.querySelector<HTMLElement>(".et_parallax_bg");
 
-      if (childElement) {
-          childElement.style.removeProperty("height");
-          childElement.style.removeProperty("transform");
+          if (childElement) {
+              childElement.style.removeProperty("height");
+              childElement.style.removeProperty("transform");
+          }
       }
-  }
+  }, 2000);
 }
+
 
 
 
