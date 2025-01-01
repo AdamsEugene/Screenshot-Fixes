@@ -134,7 +134,6 @@ export default class AnitaScreenShotFixes {
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
     this.removeInlineHeightFromMobileMenuBALANCE();
-    // this.setDisplayBlockForClosedStateDescendantsSupply();
     this.hideMediaOverlaysKotomi();
     this.removeInlineStylesFromMediaElementsKotomi();
     this.setDisplayBlockForClosedStateDescendantsSupply1();
@@ -397,21 +396,6 @@ export default class AnitaScreenShotFixes {
       });
     }, 100);
   }
-  // private setDisplayToBlockFulton(): void {
-  //   setTimeout(() => {
-  //     const parentElement = this.document.getElementById(
-  //       "shopify-section-layout-header"
-  //     ) as HTMLElement;
-
-  //     if (parentElement) {
-  //       const targetElement = parentElement.children[1] as HTMLElement;
-
-  //       if (targetElement) {
-  //         targetElement.style.setProperty("display", "block", "important");
-  //       }
-  //     }
-  //   }, 100);
-  // }
 
   private setDisplayToBlockForKachingBundles(): void {
     setTimeout(() => {
@@ -542,29 +526,6 @@ export default class AnitaScreenShotFixes {
     });
   }
 
-  private updatePromoCardsAndParentStylesKHAITE(): void {
-    const element = this.document.getElementById(
-      "shopify-section-template--15516159377471__hero_banner_GWHzkd"
-    ) as HTMLElement;
-
-    if (element) {
-      const parent = element.closest(
-        "#MainContent.main-content"
-      ) as HTMLElement;
-      if (parent) {
-        parent.style.setProperty("margin-top", "0", "important");
-        parent.style.setProperty("height", "auto", "important");
-      }
-    }
-    const promoCardElements = this.document.querySelectorAll(
-      ".collection-promo-card__media"
-    ) as NodeListOf<HTMLElement>;
-
-    promoCardElements.forEach((element) => {
-      element.style.removeProperty("height");
-      element.style.removeProperty("width");
-    });
-  }
   private removeStylesFromPromoCardsAndParentKHAITE(): void {
     const heroBannerElement = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
@@ -1374,43 +1335,6 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private removeInlineStylesFromScopedNavigationContainers(): void {
-    const ancestor = this.document.querySelector(
-      ".header__icon.header__icon--menu.header__icon--summary.link.focus-inset"
-    ) as HTMLElement;
-
-    if (ancestor) {
-      const elements = ancestor.querySelectorAll(
-        ".menu-drawer__navigation-container"
-      ) as NodeListOf<HTMLElement>;
-
-      elements.forEach((element) => {
-        element.removeAttribute("style"); // Remove all inline styles
-      });
-    }
-  }
-
-  private removeInlineStylesFromImagesInMegaInnerMob(): void {
-    const parentElements = this.document.querySelectorAll(
-      ".menu-drawer__menu-item.list-menu__item.link.link--text.focus-inset"
-    ) as NodeListOf<HTMLElement>;
-
-    parentElements.forEach((parent) => {
-      const megaInnerMobElements = parent.querySelectorAll(
-        ".mega_inner_mob"
-      ) as NodeListOf<HTMLElement>;
-
-      megaInnerMobElements.forEach((megaInnerMob) => {
-        const images = megaInnerMob.querySelectorAll(
-          "img"
-        ) as NodeListOf<HTMLImageElement>;
-
-        images.forEach((img) => {
-          img.removeAttribute("style");
-        });
-      });
-    });
-  }
 
   private removeMarginFromAncestorOATFUL(): void {
     setTimeout(() => {
@@ -1815,47 +1739,6 @@ export default class AnitaScreenShotFixes {
     }, 2000);
   }
 
-  private setupMobileNavToggleBentgo(): void {
-    const toggleButton = this.document.querySelector(
-      ".toggle-mob-nav"
-    ) as HTMLElement | null;
-    const mobileNav = this.document.querySelector(
-      "#mobile-nav"
-    ) as HTMLElement | null;
-
-    if (!toggleButton || !mobileNav) {
-      return;
-    }
-
-    const showClass = "show-mobile-nav";
-    const navActiveStyle = "transform: translate3d(100%, 0, 0);";
-
-    const applyTransform = (): void => {
-      this.document.body.classList.add(showClass);
-      mobileNav.style.cssText = navActiveStyle;
-    };
-
-    const resetTransform = (): void => {
-      this.document.body.classList.remove(showClass);
-      mobileNav.style.removeProperty("transform");
-    };
-
-    toggleButton.addEventListener("click", (event: Event) => {
-      event.stopPropagation();
-      if (this.document.body.classList.contains(showClass)) {
-        resetTransform();
-      } else {
-        applyTransform();
-      }
-    });
-
-    this.document.addEventListener("click", (event: Event) => {
-      const target = event.target as HTMLElement;
-      if (!mobileNav.contains(target) && !toggleButton.contains(target)) {
-        resetTransform();
-      }
-    });
-  }
   private removeInlineCssFromSecondDivChildHelloSilky(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
@@ -1967,21 +1850,7 @@ export default class AnitaScreenShotFixes {
       element.style.height = "";
     }
   }
-  private setDisplayBlockForClosedStateDescendantsSupply(): void {
-    const parentElement = this.document.querySelector(
-      ".r-1r5tugn"
-    ) as HTMLElement | null;
 
-    if (parentElement) {
-      const closedElements = parentElement.querySelectorAll(
-        '[data-state="closed"]'
-      ) as NodeListOf<HTMLElement>;
-
-      closedElements.forEach((element) => {
-        element.style.display = "block";
-      });
-    }
-  }
   private hideMediaOverlaysKotomi(): void {
     const elements = this.document.querySelectorAll(
       ".media__overlay"
@@ -2301,8 +2170,6 @@ private setMinHeightForElementBARLEYBUS(): void {
   }, 2000);
 }
 
-
-
 private setMinHeightForTargetElementBARLEYBUS(): void {
   setTimeout(() => {
       const element = this.document.querySelector<HTMLElement>(
@@ -2315,9 +2182,6 @@ private setMinHeightForTargetElementBARLEYBUS(): void {
   }, 2000);
 }
 
-
-
-
 private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
   setTimeout(() => {
       const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_overlay");
@@ -2327,8 +2191,6 @@ private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
       }
   }, 2000);
 }
-
-
 
 private removeHeightAndTransformFromChildBARLEYBUS(): void {
   setTimeout(() => {
