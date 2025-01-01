@@ -161,6 +161,9 @@ export default class AnitaScreenShotFixes {
     this.removeHeightAndTransformFromChildBARLEYBUS();
     this.removeHeightFromGridItemsReachInternational();
     // this.setPaddingTopForLazyloadPlaceholders();
+    this.reinitializeSlickSlider();
+    // this.setPaddingTopForPageHeader();
+
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2246,143 +2249,179 @@ export default class AnitaScreenShotFixes {
 
   private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
     setTimeout(() => {
-        const parentElement = this.document.querySelector<HTMLElement>(
-            "#shopify-section-template--15480873320538__site-header-offset"
+      const parentElement = this.document.querySelector<HTMLElement>(
+        "#shopify-section-template--15480873320538__site-header-offset"
+      );
+
+      if (parentElement) {
+        const childElement = parentElement.querySelector<HTMLElement>(
+          ".site-header-offset"
         );
 
-        if (parentElement) {
-            const childElement = parentElement.querySelector<HTMLElement>(
-                ".site-header-offset"
-            );
-
-            if (childElement && childElement.style.display === "none") {
-                childElement.style.removeProperty("display");
-            }
+        if (childElement && childElement.style.display === "none") {
+          childElement.style.removeProperty("display");
         }
+      }
     }, 2000);
-}
-private removeWidthFromImgFluidWithAncestorNutriseed(): void {
-  setTimeout(() => {
-      const elements = this.document.querySelectorAll<HTMLImageElement>('.img-fluid');
+  }
+  private removeWidthFromImgFluidWithAncestorNutriseed(): void {
+    setTimeout(() => {
+      const elements =
+        this.document.querySelectorAll<HTMLImageElement>(".img-fluid");
 
       elements.forEach((element) => {
-          if (
-              element.tagName.toLowerCase() === 'img' &&
-              element.closest('.laptopImg.box') &&
-              element.style.width
-          ) {
-              element.style.removeProperty('width');
-          }
+        if (
+          element.tagName.toLowerCase() === "img" &&
+          element.closest(".laptopImg.box") &&
+          element.style.width
+        ) {
+          element.style.removeProperty("width");
+        }
       });
-  }, 2000);
-}
+    }, 2000);
+  }
 
-private removeWidthFromImagesNUTRISEED(): void {
-  setTimeout(() => {
+  private removeWidthFromImagesNUTRISEED(): void {
+    setTimeout(() => {
       const parentElements = this.document.querySelectorAll(
-          ".spd__flxiSlide.slideshow__slide.slider__slide"
+        ".spd__flxiSlide.slideshow__slide.slider__slide"
       );
 
       parentElements.forEach((parentElement) => {
-          const imgElements = parentElement.querySelectorAll<HTMLImageElement>(".img-fluid");
+        const imgElements =
+          parentElement.querySelectorAll<HTMLImageElement>(".img-fluid");
 
-          imgElements.forEach((imgElement) => {
-              imgElement.style.removeProperty("width");
-          });
+        imgElements.forEach((imgElement) => {
+          imgElement.style.removeProperty("width");
+        });
       });
-  }, 2000);
-}
+    }, 2000);
+  }
 
-private setMinHeightForElementBARLEYBUS(): void {
-  setTimeout(() => {
-      const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_container.left");
-      if (element) {
-          element.style.setProperty("min-height", "852px", "important");
-      }
-  }, 2000);
-}
-
-
-
-private setMinHeightForTargetElementBARLEYBUS(): void {
-  setTimeout(() => {
+  private setMinHeightForElementBARLEYBUS(): void {
+    setTimeout(() => {
       const element = this.document.querySelector<HTMLElement>(
-          ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
+        ".et_pb_fullwidth_header_container.left"
+      );
+      if (element) {
+        element.style.setProperty("min-height", "852px", "important");
+      }
+    }, 2000);
+  }
+
+  private setMinHeightForTargetElementBARLEYBUS(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+        ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
       );
 
       if (element) {
-          element.style.setProperty("min-height", "852px", "important");
+        element.style.setProperty("min-height", "852px", "important");
       }
-  }, 2000);
-}
+    }, 2000);
+  }
 
-
-
-
-private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
-  setTimeout(() => {
-      const element = this.document.querySelector<HTMLElement>(".et_pb_fullwidth_header_overlay");
+  private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+        ".et_pb_fullwidth_header_overlay"
+      );
 
       if (element) {
-          element.removeAttribute("style");
+        element.removeAttribute("style");
       }
-  }, 2000);
-}
+    }, 2000);
+  }
 
-
-
-private removeHeightAndTransformFromChildBARLEYBUS(): void {
-  setTimeout(() => {
-      const parentElement = this.document.querySelector<HTMLElement>(".et_parallax_bg_wrap");
+  private removeHeightAndTransformFromChildBARLEYBUS(): void {
+    setTimeout(() => {
+      const parentElement = this.document.querySelector<HTMLElement>(
+        ".et_parallax_bg_wrap"
+      );
 
       if (parentElement) {
-          const childElement = parentElement.querySelector<HTMLElement>(".et_parallax_bg");
+        const childElement =
+          parentElement.querySelector<HTMLElement>(".et_parallax_bg");
 
-          if (childElement) {
-              childElement.style.removeProperty("height");
-              childElement.style.removeProperty("transform");
-          }
+        if (childElement) {
+          childElement.style.removeProperty("height");
+          childElement.style.removeProperty("transform");
+        }
       }
-  }, 2000);
-}
-private removeHeightFromGridItemsReachInternational(): void {
-  const parentElement = this.document.getElementById("ProductSection-template--16473037471821__main");
+    }, 2000);
+  }
+  private removeHeightFromGridItemsReachInternational(): void {
+    const parentElement = this.document.getElementById(
+      "ProductSection-template--16473037471821__main"
+    );
 
-  if (parentElement) {
-      const elements = parentElement.querySelectorAll<HTMLElement>(".grid__item.medium-up--one-half");
+    if (parentElement) {
+      const elements = parentElement.querySelectorAll<HTMLElement>(
+        ".grid__item.medium-up--one-half"
+      );
 
       elements.forEach((element) => {
-          element.style.removeProperty("height");
+        element.style.removeProperty("height");
       });
+    }
   }
-}
 
-private setPaddingTopForLazyloadPlaceholders(): void {
-  setTimeout(() => {
-      const parentElements = this.document.querySelectorAll<HTMLElement>(".hc-sliders-wrapper");
+  private setPaddingTopForLazyloadPlaceholders(): void {
+    setTimeout(() => {
+      const parentElements = this.document.querySelectorAll<HTMLElement>(
+        ".hc-sliders-wrapper"
+      );
 
       parentElements.forEach((parent) => {
-          const elements = parent.querySelectorAll<HTMLElement>(".rimage-wrapper.lazyload--placeholder");
+        const elements = parent.querySelectorAll<HTMLElement>(
+          ".rimage-wrapper.lazyload--placeholder"
+        );
 
-          elements.forEach((element) => {
-              element.style.setProperty("padding-top", "100%", "important");
-          });
+        elements.forEach((element) => {
+          element.style.setProperty("padding-top", "100%", "important");
+        });
       });
-  }, 3000); 
+    }, 3000);
+  }
+
+  private reinitializeSlickSlider(): void {
+    setTimeout(() => {
+      const slider = this.document.querySelector<HTMLElement>(
+        ".hc-main-slider.slick-initialized.slick-slider"
+      );
+
+      if (!slider) {
+        return;
+      }
+
+      const slickInstance = (slider as any).slick;
+
+      if (!slickInstance) {
+        return;
+      }
+
+      try {
+        const currentSlideIndex = slickInstance.currentSlide;
+
+        slickInstance.unslick();
+
+        slickInstance.init();
+
+        slickInstance.slickGoTo(currentSlideIndex);
+      } catch (error) {
+      }
+    }, 3000);
+  }
+
+  private setPaddingTopForPageHeader(): void {
+    setTimeout(() => {
+        const element = this.document.querySelector<HTMLElement>(".page-header.layout-center");
+
+        if (element) {
+            element.style.setProperty("padding-top", "56px", "important");
+        }
+    }, 3000); 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
