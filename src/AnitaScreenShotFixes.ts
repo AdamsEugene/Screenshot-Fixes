@@ -163,7 +163,7 @@ export default class AnitaScreenShotFixes {
     this.reinitializeSlickSliderBentgo();
     this.setPaddingTopForPageHeaderBentgo();
     this.removeDisplayInlineStylesKetone();
-
+    this.removeWidthInlineStylesFromTestimonialsKeto();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -1340,7 +1340,6 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-
   private removeMarginFromAncestorOATFUL(): void {
     setTimeout(() => {
       const element = this.document.getElementById(
@@ -2278,33 +2277,48 @@ export default class AnitaScreenShotFixes {
         slickInstance.init();
 
         slickInstance.slickGoTo(currentSlideIndex);
-      } catch (error) {
-      }
+      } catch (error) {}
     }, 3000);
   }
 
   private setPaddingTopForPageHeaderBentgo(): void {
     setTimeout(() => {
-        const element = this.document.querySelector<HTMLElement>(".page-header.layout-center");
+      const element = this.document.querySelector<HTMLElement>(
+        ".page-header.layout-center"
+      );
 
-        if (element) {
-            element.style.setProperty("padding-top", "40px", "important");
-        }
-    }, 3000); 
-}
-private removeDisplayInlineStylesKetone(): void {
-  const classSelector: string = ".navigation__padding.js-navigation-padding";
+      if (element) {
+        element.style.setProperty("padding-top", "40px", "important");
+      }
+    }, 3000);
+  }
+  private removeDisplayInlineStylesKetone(): void {
+    const classSelector: string = ".navigation__padding.js-navigation-padding";
 
-  const elements: NodeListOf<HTMLElement> =
-    this.document.querySelectorAll(classSelector);
+    const elements: NodeListOf<HTMLElement> =
+      this.document.querySelectorAll(classSelector);
 
-  setTimeout(() => {
-    elements.forEach((element: HTMLElement) => {
-      element.style.removeProperty("display");
-    });
-  }, 2000);
-}
+    setTimeout(() => {
+      elements.forEach((element: HTMLElement) => {
+        element.style.removeProperty("display");
+      });
+    }, 2000);
+  }
+  private removeWidthInlineStylesFromTestimonialsKeto(): void {
+    const ancestorId: string =
+      "testimonials-section-template--18080241680553__testimonials-v2";
+    const classSelector: string = ".testimonial-image";
 
+    const ancestorElement: HTMLElement | null =
+      this.document.getElementById(ancestorId);
 
+    if (ancestorElement) {
+      const elements: NodeListOf<HTMLElement> =
+        ancestorElement.querySelectorAll(classSelector);
 
+      elements.forEach((element: HTMLElement) => {
+        element.style.removeProperty("width");
+      });
+    }
+  }
 }
