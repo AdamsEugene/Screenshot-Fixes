@@ -2339,16 +2339,19 @@ export default class AnitaScreenShotFixes {
     const childSelector: string = ".toolbar.cf.docked";
     const parentSelector: string = ".page-header.layout-center";
   
-    const childElement: HTMLElement | null = this.document.querySelector(childSelector);
+    setTimeout(() => {
+      const childElement: HTMLElement | null = this.document.querySelector(childSelector);
   
-    if (childElement) {
-      const parentElement: HTMLElement | null = childElement.closest(parentSelector);
+      if (childElement) {
+        const parentElement: HTMLElement | null = childElement.closest(parentSelector);
   
-      if (parentElement) {
-        parentElement.style.setProperty("padding-top", "40px", "important");
+        if (parentElement) {
+          parentElement.style.setProperty("padding-top", "40px", "important");
+        }
       }
-    }
+    }, 2000);
   }
+  
   
   
   
