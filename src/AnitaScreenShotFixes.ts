@@ -164,6 +164,8 @@ export default class AnitaScreenShotFixes {
     this.setPaddingTopForPageHeaderBentgo();
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
+    this.removeDisplayNoneFromGlueBentgo();
+    this.setParentPaddingTopBentgo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2079,7 +2081,7 @@ export default class AnitaScreenShotFixes {
           childElement.style.removeProperty("display");
         }
       }
-    }, 3000);
+    }, 5000);
   }
   private removeInlineStylesKarambit(): void {
     const elements = this.document.querySelectorAll<HTMLElement>(
@@ -2322,5 +2324,32 @@ export default class AnitaScreenShotFixes {
         });
       }, 2000);
     }
+  }private removeDisplayNoneFromGlueBentgo(): void {
+    const ancestor: HTMLElement | null = this.document.querySelector('.swatch.clearfix');
+  
+    if (ancestor) {
+      const targetElement: HTMLElement | null = ancestor.querySelector('.os-content-glue');
+  
+      if (targetElement && targetElement.style.display === 'none') {
+        targetElement.style.display = '';
+      }
+    }
   }
+  private setParentPaddingTopBentgo(): void {
+    const childSelector: string = ".toolbar.cf.docked";
+    const parentSelector: string = ".page-header.layout-center";
+  
+    const childElement: HTMLElement | null = this.document.querySelector(childSelector);
+  
+    if (childElement) {
+      const parentElement: HTMLElement | null = childElement.closest(parentSelector);
+  
+      if (parentElement) {
+        parentElement.style.setProperty("padding-top", "40px", "important");
+      }
+    }
+  }
+  
+  
+  
 }
