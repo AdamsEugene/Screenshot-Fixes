@@ -2349,7 +2349,7 @@ export default class AnitaScreenShotFixes {
           parentElement.style.setProperty("padding-top", "40px", "important");
         }
       }
-    }, 2000);
+    }, 3000);
   }
   
   
