@@ -2287,7 +2287,7 @@ export default class AnitaScreenShotFixes {
         const element = this.document.querySelector<HTMLElement>(".page-header.layout-center");
 
         if (element) {
-            element.style.setProperty("padding-top", "46px", "important");
+            element.style.setProperty("padding-top", "40px", "important");
         }
     }, 3000); 
 }
