@@ -165,7 +165,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
     this.removeDisplayNoneFromGlueBentgo();
-    this.setParentPaddingTopBentgo();
+    this.setSecondSiblingPaddingTopWithDelay();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2335,23 +2335,28 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  private setParentPaddingTopBentgo(): void {
-    const childSelector: string = ".toolbar.cf.docked";
-    const parentSelector: string = ".page-header.layout-center";
+
+  private setSecondSiblingPaddingTopWithDelay(): void {
+    const targetSelector: string = '.aph_bar_bar#bar533678';
   
     setTimeout(() => {
-      const childElement: HTMLElement | null = this.document.querySelector(childSelector);
+      const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
   
-      if (childElement) {
-        const parentElement: HTMLElement | null = childElement.closest(parentSelector);
+      if (targetElement) {
+        let sibling: HTMLElement | null = targetElement.nextElementSibling as HTMLElement;
   
-        if (parentElement) {
-          parentElement.style.setProperty("padding-top", "40px", "important");
+        if (sibling) {
+          sibling = sibling.nextElementSibling as HTMLElement;
+  
+          if (sibling && sibling.tagName === 'DIV') {
+            sibling.style.setProperty('padding-top', '90px', 'important');
+          }
         }
       }
-    }, 3000);
+    }, 5000); // Delay of 1000ms (1 second)
   }
   
+
   
   
   
