@@ -2079,7 +2079,7 @@ export default class AnitaScreenShotFixes {
           childElement.style.removeProperty("display");
         }
       }
-    }, 3000);
+    }, 5000);
   }
   private removeInlineStylesKarambit(): void {
     const elements = this.document.querySelectorAll<HTMLElement>(
