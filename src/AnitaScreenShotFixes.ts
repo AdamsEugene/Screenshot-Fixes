@@ -165,7 +165,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
     this.removeDisplayNoneFromGlueBentgo();
-    this.setSecondSiblingPaddingTopWithDelay();
+    this.observeAndSetSecondSiblingPadding();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2336,10 +2336,10 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private setSecondSiblingPaddingTopWithDelay(): void {
+  private observeAndSetSecondSiblingPadding(): void {
     const targetSelector: string = '.aph_bar_bar#bar533678';
   
-    setTimeout(() => {
+    const observer = new MutationObserver(() => {
       const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
   
       if (targetElement) {
@@ -2349,12 +2349,22 @@ export default class AnitaScreenShotFixes {
           sibling = sibling.nextElementSibling as HTMLElement;
   
           if (sibling && sibling.tagName === 'DIV') {
-            sibling.style.setProperty('padding-top', '90px', 'important');
+            sibling.style.setProperty('padding-top', '40px', 'important');
           }
         }
       }
-    }, 5000); // Delay of 1000ms (1 second)
+    });
+  
+    const config = { childList: true, subtree: true };
+  
+    observer.observe(this.document.body, config);
+  
+    // Optional: Disconnect observer after a certain time or condition
+    setTimeout(() => {
+      observer.disconnect();
+    }, 60000); // Stops observing after 60 seconds
   }
+  
   
 
   
