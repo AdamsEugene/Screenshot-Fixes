@@ -164,6 +164,7 @@ export default class AnitaScreenShotFixes {
     this.setPaddingTopForPageHeaderBentgo();
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
+    this.removeDisplayNoneFromGlueBentgo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2322,5 +2323,16 @@ export default class AnitaScreenShotFixes {
         });
       }, 2000);
     }
+  }private removeDisplayNoneFromGlueBentgo(): void {
+    const ancestor: HTMLElement | null = this.document.querySelector('.swatch.clearfix');
+  
+    if (ancestor) {
+      const targetElement: HTMLElement | null = ancestor.querySelector('.os-content-glue');
+  
+      if (targetElement && targetElement.style.display === 'none') {
+        targetElement.style.display = '';
+      }
+    }
   }
+  
 }
