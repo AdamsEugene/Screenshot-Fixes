@@ -2338,7 +2338,7 @@ export default class AnitaScreenShotFixes {
 
   private observeAndSetSecondSiblingPadding(): void {
     const targetSelector: string = '.aph_bar_bar#bar533678';
-  
+
     const observer = new MutationObserver(() => {
       const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
   
@@ -2358,10 +2358,6 @@ export default class AnitaScreenShotFixes {
     const config = { childList: true, subtree: true };
   
     observer.observe(this.document.body, config);
-  
-    setTimeout(() => {
-      observer.disconnect();
-    }, 50000); 
   }
   
   
