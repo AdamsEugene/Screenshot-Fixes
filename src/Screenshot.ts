@@ -8,6 +8,7 @@ import Common from "./Common";
 import snippets from "./custom.snippets.json";
 import styles from "./cssSnippets.json";
 import { JsonEntry } from "./@types";
+import BensonScreenshotFixes from "./BensonScreenShotFixes";
 
 class ScreenshotFixes extends Common {
   constructor(debugMode = false) {
@@ -127,6 +128,9 @@ class ScreenshotFixes extends Common {
 
     const ryanScreenshotFixesInstance = new RyanScreenShotFixes(this.dom);
     ryanScreenshotFixesInstance.init(containerId, debugMode);
+
+    const bensonScreenShotFixesInstance = new BensonScreenshotFixes(this.dom);
+    bensonScreenShotFixesInstance.init(containerId, debugMode);
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
