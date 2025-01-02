@@ -150,6 +150,10 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustMediaOverlayOpacity();
       this.adjustMenuDrawerAndTestimonial();
       this.adjustHeaderMobileDisplay();
+      this.adjustPfElementDisplay();
+      this.adjustStickyButtonVisibility();
+      this.adjustPageOverlay();
+      this.adjustScrollShadowElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3033,6 +3037,66 @@ export default class RyanScreenshotFixes extends Common {
             if (!mobileHeader) return;
  
             mobileHeader.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustPfElementDisplay() {
+    setTimeout(() => {
+        try {
+            const elements = this.dom.querySelectorAll('.pf-c .sc-iapVNj.iUcVvL.pf-961_');
+            if (!elements.length) return;
+ 
+            elements.forEach(element => {
+                (element as HTMLElement).style.removeProperty('display');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustStickyButtonVisibility() {
+    try {
+        const buyButtons = this.dom.querySelectorAll('buy-buttons');
+        if (!buyButtons.length) return;
+ 
+        buyButtons.forEach(button => {
+            const stickyButton = button.querySelector('.sticky-buy-button-mobile') as HTMLElement;
+            if (stickyButton) {
+                stickyButton.style.setProperty('visibility', 'visible', 'important');
+            }
+        });
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustPageOverlay() {
+    setTimeout(() => {
+        try {
+            const overlay = this.dom.querySelector('a#page-overlay') as HTMLElement;
+            if (!overlay) return;
+ 
+            overlay.removeAttribute('style');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustScrollShadowElements() {
+    setTimeout(() => {
+        try {
+            this.dom.querySelectorAll('.product-image-container.product-image-container--thumbnails scroll-shadow').forEach(shadow => {
+                (shadow as HTMLElement).style.removeProperty('height');
+                const thumbnails = shadow.querySelector('#Product-Thumbnails.product-thumbnail-container') as HTMLElement;
+                if (thumbnails) {
+                    ['height', 'overflow'].forEach(prop => thumbnails.style.removeProperty(prop));
+                }
+            });
         } catch (error) {
             return;
         }
