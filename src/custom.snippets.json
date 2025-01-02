@@ -257,6 +257,15 @@
     }
   },
   {
+    "selector": ".hc-sliders-wrapper",
+    "content": {
+      "idSite": 3024,
+      "idSiteHsr": 7472750,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bentgo.com-products-bentgo-kids-prints-lunch-box-main.html"
+    }
+  },
+  {
     "selector": "#main-content",
     "content": {
       "idSite": 2886,
