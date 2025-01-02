@@ -162,6 +162,7 @@ export default class AnitaScreenShotFixes {
     // this.setPaddingTopForLazyloadPlaceholders();
     this.reinitializeSlickSliderBentgo();
     this.setPaddingTopForPageHeaderBentgo();
+    this.removeDisplayInlineStylesKetone();
 
   }
 
@@ -2291,6 +2292,17 @@ export default class AnitaScreenShotFixes {
         }
     }, 3000); 
 }
+private removeDisplayInlineStylesKetone(): void {
+  const classSelector: string = ".navigation__padding.js-navigation-padding";
+
+  const elements: NodeListOf<HTMLElement> =
+    this.document.querySelectorAll(classSelector);
+
+  elements.forEach((element: HTMLElement) => {
+    element.style.removeProperty("display");
+  });
+}
+
 
 
 }
