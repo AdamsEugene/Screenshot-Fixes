@@ -685,7 +685,7 @@ export default class ForsonScreenshotFixes {
           const style = this.document.createElement('style');
           style.textContent = `
             .paymentIcon img {
-              width: auto !important; /* Force override any inline width */
+              width: auto !important;
             }
           `;
           this.document.head.appendChild(style);
@@ -702,5 +702,4 @@ export default class ForsonScreenshotFixes {
     });
     observer.observe(this.document.body, { childList: true, subtree: true });
   }
-  
 }

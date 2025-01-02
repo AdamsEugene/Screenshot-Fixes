@@ -1,5 +1,3 @@
-
-
 export default class AnitaScreenShotFixes {
   private document: Document;
   private prodMode: boolean;
@@ -136,7 +134,6 @@ export default class AnitaScreenShotFixes {
     this.removeInlineHeightFromImageTalktheTalk();
     this.removeInlineLeftStyleIfHasChildNova();
     this.removeInlineHeightFromMobileMenuBALANCE();
-    // this.setDisplayBlockForClosedStateDescendantsSupply();
     this.hideMediaOverlaysKotomi();
     this.removeInlineStylesFromMediaElementsKotomi();
     this.setDisplayBlockForClosedStateDescendantsSupply1();
@@ -148,7 +145,25 @@ export default class AnitaScreenShotFixes {
     this.setDisplayToBlockForWidgetEarthFlow();
     this.removeBeforeContentFromBannerCURATEDchrome();
     this.hideMobileHeaderSectionCuratedChrome();
-
+    this.setGradientDisplayToBlockFourth();
+    this.adjustVerifiedBadgeWidthLittleCuriousMinds();
+    this.showCustomStickyAtcAerify();
+    this.removeInlineStylesKarambit();
+    this.setSlickTrackWidthKarambit();
+    this.removeWidthFromObjfitKarambit();
+    this.removeDisplayNoneFromSiteHeaderOffsetDryrobe();
+    this.removeWidthFromImgFluidWithAncestorNutriseed();
+    this.removeWidthFromImagesNUTRISEED();
+    this.setMinHeightForElementBARLEYBUS();
+    this.setMinHeightForTargetElementBARLEYBUS();
+    this.removeInlineCSSFromOverlayWithParentBarleyBus();
+    this.removeHeightAndTransformFromChildBARLEYBUS();
+    this.removeHeightFromGridItemsReachInternational();
+    // this.setPaddingTopForLazyloadPlaceholders();
+    this.reinitializeSlickSliderBentgo();
+    this.setPaddingTopForPageHeaderBentgo();
+    this.removeDisplayInlineStylesKetone();
+    this.removeWidthInlineStylesFromTestimonialsKeto();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -386,21 +401,6 @@ export default class AnitaScreenShotFixes {
       });
     }, 100);
   }
-  // private setDisplayToBlockFulton(): void {
-  //   setTimeout(() => {
-  //     const parentElement = this.document.getElementById(
-  //       "shopify-section-layout-header"
-  //     ) as HTMLElement;
-
-  //     if (parentElement) {
-  //       const targetElement = parentElement.children[1] as HTMLElement;
-
-  //       if (targetElement) {
-  //         targetElement.style.setProperty("display", "block", "important");
-  //       }
-  //     }
-  //   }, 100);
-  // }
 
   private setDisplayToBlockForKachingBundles(): void {
     setTimeout(() => {
@@ -531,29 +531,6 @@ export default class AnitaScreenShotFixes {
     });
   }
 
-  private updatePromoCardsAndParentStylesKHAITE(): void {
-    const element = this.document.getElementById(
-      "shopify-section-template--15516159377471__hero_banner_GWHzkd"
-    ) as HTMLElement;
-
-    if (element) {
-      const parent = element.closest(
-        "#MainContent.main-content"
-      ) as HTMLElement;
-      if (parent) {
-        parent.style.setProperty("margin-top", "0", "important");
-        parent.style.setProperty("height", "auto", "important");
-      }
-    }
-    const promoCardElements = this.document.querySelectorAll(
-      ".collection-promo-card__media"
-    ) as NodeListOf<HTMLElement>;
-
-    promoCardElements.forEach((element) => {
-      element.style.removeProperty("height");
-      element.style.removeProperty("width");
-    });
-  }
   private removeStylesFromPromoCardsAndParentKHAITE(): void {
     const heroBannerElement = this.document.getElementById(
       "shopify-section-template--15516159377471__hero_banner_GWHzkd"
@@ -1363,44 +1340,6 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private removeInlineStylesFromScopedNavigationContainers(): void {
-    const ancestor = this.document.querySelector(
-      ".header__icon.header__icon--menu.header__icon--summary.link.focus-inset"
-    ) as HTMLElement;
-
-    if (ancestor) {
-      const elements = ancestor.querySelectorAll(
-        ".menu-drawer__navigation-container"
-      ) as NodeListOf<HTMLElement>;
-
-      elements.forEach((element) => {
-        element.removeAttribute("style"); // Remove all inline styles
-      });
-    }
-  }
-
-  private removeInlineStylesFromImagesInMegaInnerMob(): void {
-    const parentElements = this.document.querySelectorAll(
-      ".menu-drawer__menu-item.list-menu__item.link.link--text.focus-inset"
-    ) as NodeListOf<HTMLElement>;
-
-    parentElements.forEach((parent) => {
-      const megaInnerMobElements = parent.querySelectorAll(
-        ".mega_inner_mob"
-      ) as NodeListOf<HTMLElement>;
-
-      megaInnerMobElements.forEach((megaInnerMob) => {
-        const images = megaInnerMob.querySelectorAll(
-          "img"
-        ) as NodeListOf<HTMLImageElement>;
-
-        images.forEach((img) => {
-          img.removeAttribute("style");
-        });
-      });
-    });
-  }
-
   private removeMarginFromAncestorOATFUL(): void {
     setTimeout(() => {
       const element = this.document.getElementById(
@@ -1749,35 +1688,35 @@ export default class AnitaScreenShotFixes {
     const container = this.document.querySelector(
       ".slick-slider"
     ) as HTMLElement | null;
-  
+
     if (!container) {
       return;
     }
-  
+
     const updateSlideOpacity = (): void => {
       const allSlides = container.querySelectorAll(
         ".nutrients__slide.slick-slide"
       ) as NodeListOf<HTMLElement>;
-  
+
       allSlides.forEach((slide) => {
         slide.style.opacity = "0";
       });
-  
+
       const activeSlide = container.querySelector(
         ".nutrients__slide.slick-slide.slick-current.slick-active"
       ) as HTMLElement | null;
-  
+
       if (activeSlide) {
         activeSlide.style.opacity = "1";
       }
     };
-  
+
     updateSlideOpacity();
-  
+
     const observer = new MutationObserver(() => {
       updateSlideOpacity();
     });
-  
+
     observer.observe(container, {
       childList: true,
       attributes: true,
@@ -1785,7 +1724,7 @@ export default class AnitaScreenShotFixes {
       attributeFilter: ["class"],
     });
   }
-  
+
   private removeInlineStylesFromChildBreeo(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
@@ -1804,47 +1743,6 @@ export default class AnitaScreenShotFixes {
     }, 2000);
   }
 
-  private setupMobileNavToggleBentgo(): void {
-    const toggleButton = this.document.querySelector(
-      ".toggle-mob-nav"
-    ) as HTMLElement | null;
-    const mobileNav = this.document.querySelector(
-      "#mobile-nav"
-    ) as HTMLElement | null;
-
-    if (!toggleButton || !mobileNav) {
-      return;
-    }
-
-    const showClass = "show-mobile-nav";
-    const navActiveStyle = "transform: translate3d(100%, 0, 0);";
-
-    const applyTransform = (): void => {
-      this.document.body.classList.add(showClass);
-      mobileNav.style.cssText = navActiveStyle;
-    };
-
-    const resetTransform = (): void => {
-      this.document.body.classList.remove(showClass);
-      mobileNav.style.removeProperty("transform");
-    };
-
-    toggleButton.addEventListener("click", (event: Event) => {
-      event.stopPropagation();
-      if (this.document.body.classList.contains(showClass)) {
-        resetTransform();
-      } else {
-        applyTransform();
-      }
-    });
-
-    this.document.addEventListener("click", (event: Event) => {
-      const target = event.target as HTMLElement;
-      if (!mobileNav.contains(target) && !toggleButton.contains(target)) {
-        resetTransform();
-      }
-    });
-  }
   private removeInlineCssFromSecondDivChildHelloSilky(): void {
     setTimeout(() => {
       const parentElement = this.document.querySelector(
@@ -1956,21 +1854,7 @@ export default class AnitaScreenShotFixes {
       element.style.height = "";
     }
   }
-  private setDisplayBlockForClosedStateDescendantsSupply(): void {
-    const parentElement = this.document.querySelector(
-      ".r-1r5tugn"
-    ) as HTMLElement | null;
 
-    if (parentElement) {
-      const closedElements = parentElement.querySelectorAll(
-        '[data-state="closed"]'
-      ) as NodeListOf<HTMLElement>;
-
-      closedElements.forEach((element) => {
-        element.style.display = "block";
-      });
-    }
-  }
   private hideMediaOverlaysKotomi(): void {
     const elements = this.document.querySelectorAll(
       ".media__overlay"
@@ -2038,17 +1922,18 @@ export default class AnitaScreenShotFixes {
       ".js-burger-menu.jc-bg-white.jc-max-h-\\[calc\\(100vh-var\\(--top-gap\\)\\)\\].jc-overflow-y-auto.jc-absolute.jc-top-full.jc-left-0.jc-right-0.jc-opacity-0.jc-pointer-events-none.peer-aria-expanded\\:jc-opacity-100.peer-aria-expanded\\:jc-pointer-events-auto.jc-transition-opacity.jc-duration-300",
       ".jc-shadow-md.jc-px-\\[28px\\].jc-py-5.jc-bg-white.jc-absolute.jc-top-\\[calc\\(100\\%\\+18px\\)\\].jc-left-0.jc-opacity-0.jc-transition-opacity.jc-duration-300.group-aria-expanded\\:jc-opacity-100.jc-pointer-events-none.group-aria-expanded\\:jc-pointer-events-auto",
     ];
-  
+
     const observerCallback = (mutations: MutationRecord[]): void => {
       selectors.forEach((selector: string) => {
-        const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(selector);
-  
+        const elements: NodeListOf<HTMLElement> =
+          this.document.querySelectorAll(selector);
+
         elements.forEach((element: HTMLElement) => {
           element.style.removeProperty("opacity");
         });
       });
     };
-  
+
     const observer = new MutationObserver(observerCallback);
     observer.observe(document.body, {
       childList: true,
@@ -2058,48 +1943,52 @@ export default class AnitaScreenShotFixes {
     });
     observerCallback([]);
   }
-  
+
   private reloadLazyImagesSourplus(): void {
-    const containers = this.document.querySelectorAll('.content-for-layout.focus-none');
-  
+    const containers = this.document.querySelectorAll(
+      ".content-for-layout.focus-none"
+    );
+
     containers.forEach((container) => {
-      const child = container.querySelector('.shopify-section.gps-537860369318675452.gps.gpsil');
-      if (!child) return; 
-  
-      container.querySelectorAll('img, source').forEach((el) => {
-        const dataSrc = el.getAttribute('data-src');
-        const dataSrcset = el.getAttribute('data-srcset');
-  
+      const child = container.querySelector(
+        ".shopify-section.gps-537860369318675452.gps.gpsil"
+      );
+      if (!child) return;
+
+      container.querySelectorAll("img, source").forEach((el) => {
+        const dataSrc = el.getAttribute("data-src");
+        const dataSrcset = el.getAttribute("data-srcset");
+
         if (dataSrc) {
-          (el as HTMLImageElement).src = dataSrc; 
+          (el as HTMLImageElement).src = dataSrc;
         } else if (dataSrcset) {
-          (el as HTMLSourceElement).srcset = dataSrcset; 
-        } else if (el.tagName === 'IMG') {
-          (el as HTMLImageElement).src = (el as HTMLImageElement).src; 
+          (el as HTMLSourceElement).srcset = dataSrcset;
+        } else if (el.tagName === "IMG") {
+          (el as HTMLImageElement).src = (el as HTMLImageElement).src;
         }
       });
     });
   }
-  
+
   private removeInlineHeightAndWidthSourplus(): void {
     const selectors = [
-      '.gp-h-full.gp-max-w-full.gp-flex',
-      '.pointer-events-auto.h-full.gp-flex',
+      ".gp-h-full.gp-max-w-full.gp-flex",
+      ".pointer-events-auto.h-full.gp-flex",
     ];
-  
+
     setTimeout(() => {
       selectors.forEach((selector) => {
         const elements = this.document.querySelectorAll<HTMLElement>(selector);
         elements.forEach((el) => {
-          el.style.removeProperty('height');
-          el.style.removeProperty('width');
+          el.style.removeProperty("height");
+          el.style.removeProperty("width");
         });
       });
     }, 2000);
   }
 
   private goToFirstSlideDRWOOLF(): void {
-    const slider = this.document.querySelector('.Main--ProductPhotos') as any; 
+    const slider = this.document.querySelector(".Main--ProductPhotos") as any;
     if (slider && slider.slick) {
       slider.slick.slickGoTo(0);
     }
@@ -2109,48 +1998,329 @@ export default class AnitaScreenShotFixes {
       ".gem-slider.gp-h-full.gp-overflow-hidden.gp-select-none" +
       ".mobile\\:\\!gp-flex-nowrap.tablet\\:\\!gp-flex-nowrap" +
       ".\\!gp-flex-nowrap.mobile\\:\\!gp-min-h-full.tablet\\:\\!gp-min-h-full.\\!gp-min-h-full";
-  
-    const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(classSelector);
-  
+
+    const elements: NodeListOf<HTMLElement> =
+      this.document.querySelectorAll(classSelector);
+
     elements.forEach((element: HTMLElement) => {
       element.style.removeProperty("min-height");
     });
   }
   private setDisplayToBlockForWidgetEarthFlow(): void {
-    const parentElement = this.document.getElementById("reeview-app-widget_671a4ad69c3cea00296e2880") as HTMLElement;
+    const parentElement = this.document.getElementById(
+      "reeview-app-widget_671a4ad69c3cea00296e2880"
+    ) as HTMLElement;
 
     if (parentElement) {
-        parentElement.style.display = "block";
+      parentElement.style.display = "block";
     }
-}
-private removeBeforeContentFromBannerCURATEDchrome(): void {
-  const element = this.document.querySelector(
-    ".collection-banner__body.color-background-4.overlay-enable.show_img"
-  ) as HTMLElement;
+  }
+  private removeBeforeContentFromBannerCURATEDchrome(): void {
+    const element = this.document.querySelector(
+      ".collection-banner__body.color-background-4.overlay-enable.show_img"
+    ) as HTMLElement;
 
-  if (element) {
-      const style = document.createElement("style");
+    if (element) {
+      const style = this.document.createElement("style");
       style.textContent = `
-          .collection-banner__body.color-background-4.overlay-enable.show_img::before {
-              content: none !important;
-          }
-      `;
-      document.head.appendChild(style);
+      .collection-banner__body.color-background-4.overlay-enable.show_img::before {
+        content: none !important;
+      }
+    `;
+      this.document.head.appendChild(style);
+    }
   }
-}
-private hideMobileHeaderSectionCuratedChrome(): void {
-  const element = this.document.querySelector(
-    "#shopify-section-sections--22768627777868__header_mobile"
-  ) as HTMLElement;
 
-  if (element) {
+  private hideMobileHeaderSectionCuratedChrome(): void {
+    const element = this.document.querySelector(
+      "#shopify-section-sections--22768627777868__header_mobile"
+    ) as HTMLElement;
+
+    if (element) {
       element.style.setProperty("display", "none", "important");
+    }
   }
-}
+  private setGradientDisplayToBlockFourth(): void {
+    const elements = this.document.querySelectorAll(
+      ".box.box-background.box-background-position-center_center.bg-lazy.bg-loaded"
+    );
 
+    elements.forEach((element) => {
+      const child = element.querySelector(
+        ".gradient.gradient-offwhite"
+      ) as HTMLElement;
 
+      if (child) {
+        child.style.setProperty("display", "block", "important");
+      }
+    });
+  }
+  private adjustVerifiedBadgeWidthLittleCuriousMinds(): void {
+    const element = this.document.querySelector(
+      ".product__customer-review-verified-badge img"
+    ) as HTMLElement | null;
 
-  
-  
-  
+    if (element) {
+      element.style.setProperty("width", "11px", "important");
+    }
+  }
+  private showCustomStickyAtcAerify(): void {
+    setTimeout(() => {
+      const parentElement = this.document.querySelector(
+        "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
+      ) as HTMLElement | null;
+
+      if (parentElement) {
+        const childElement = parentElement.querySelector(
+          "#custom_sticky_atc.custom_sticky_atc"
+        ) as HTMLElement | null;
+
+        if (childElement) {
+          childElement.style.removeProperty("display");
+        }
+      }
+    }, 3000);
+  }
+  private removeInlineStylesKarambit(): void {
+    const elements = this.document.querySelectorAll<HTMLElement>(
+      ".kb-hero-slider__item.slick-slide"
+    );
+
+    elements.forEach((element) => {
+      element.removeAttribute("style");
+    });
+  }
+  private setSlickTrackWidthKarambit(): void {
+    const parent = this.document.querySelector<HTMLElement>(
+      ".kb-hero-slider.slick-initialized.slick-slider.slick-dotted"
+    );
+
+    if (parent) {
+      const slickTrack = parent.querySelector<HTMLElement>(".slick-track");
+      if (slickTrack) {
+        slickTrack.style.setProperty("width", "1875px", "important");
+      }
+    }
+  }
+  private removeWidthFromObjfitKarambit(): void {
+    setTimeout(() => {
+      const elements = this.document.querySelectorAll<HTMLElement>(
+        ".image-container .objfit"
+      );
+
+      elements.forEach((element) => {
+        if (element.style.width) {
+          element.style.removeProperty("width");
+        }
+      });
+    }, 2000);
+  }
+
+  private removeDisplayNoneFromSiteHeaderOffsetDryrobe(): void {
+    setTimeout(() => {
+      const parentElement = this.document.querySelector<HTMLElement>(
+        "#shopify-section-template--15480873320538__site-header-offset"
+      );
+
+      if (parentElement) {
+        const childElement = parentElement.querySelector<HTMLElement>(
+          ".site-header-offset"
+        );
+
+        if (childElement && childElement.style.display === "none") {
+          childElement.style.removeProperty("display");
+        }
+      }
+    }, 2000);
+  }
+  private removeWidthFromImgFluidWithAncestorNutriseed(): void {
+    setTimeout(() => {
+      const elements =
+        this.document.querySelectorAll<HTMLImageElement>(".img-fluid");
+
+      elements.forEach((element) => {
+        if (
+          element.tagName.toLowerCase() === "img" &&
+          element.closest(".laptopImg.box") &&
+          element.style.width
+        ) {
+          element.style.removeProperty("width");
+        }
+      });
+    }, 2000);
+  }
+
+  private removeWidthFromImagesNUTRISEED(): void {
+    setTimeout(() => {
+      const parentElements = this.document.querySelectorAll(
+        ".spd__flxiSlide.slideshow__slide.slider__slide"
+      );
+
+      parentElements.forEach((parentElement) => {
+        const imgElements =
+          parentElement.querySelectorAll<HTMLImageElement>(".img-fluid");
+
+        imgElements.forEach((imgElement) => {
+          imgElement.style.removeProperty("width");
+        });
+      });
+    }, 2000);
+  }
+
+  private setMinHeightForElementBARLEYBUS(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+        ".et_pb_fullwidth_header_container.left"
+      );
+      if (element) {
+        element.style.setProperty("min-height", "852px", "important");
+      }
+    }, 2000);
+  }
+
+  private setMinHeightForTargetElementBARLEYBUS(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+        ".et_pb_module.et_pb_fullwidth_header.et_pb_fullwidth_header_2.et_pb_ab_subject.et_pb_ab_subject_id-902_1.et_pb_ab_goal.et_pb_ab_goal_id-902.et_hover_enabled.et_pb_section_parallax.et_pb_text_align_left.et_pb_bg_layout_dark.et_pb_fullscreen.et_had_animation"
+      );
+
+      if (element) {
+        element.style.setProperty("min-height", "852px", "important");
+      }
+    }, 2000);
+  }
+
+  private removeInlineCSSFromOverlayWithParentBarleyBus(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+        ".et_pb_fullwidth_header_overlay"
+      );
+
+      if (element) {
+        element.removeAttribute("style");
+      }
+    }, 2000);
+  }
+
+  private removeHeightAndTransformFromChildBARLEYBUS(): void {
+    setTimeout(() => {
+      const parentElement = this.document.querySelector<HTMLElement>(
+        ".et_parallax_bg_wrap"
+      );
+
+      if (parentElement) {
+        const childElement =
+          parentElement.querySelector<HTMLElement>(".et_parallax_bg");
+
+        if (childElement) {
+          childElement.style.removeProperty("height");
+          childElement.style.removeProperty("transform");
+        }
+      }
+    }, 2000);
+  }
+  private removeHeightFromGridItemsReachInternational(): void {
+    const parentElement = this.document.getElementById(
+      "ProductSection-template--16473037471821__main"
+    );
+
+    if (parentElement) {
+      const elements = parentElement.querySelectorAll<HTMLElement>(
+        ".grid__item.medium-up--one-half"
+      );
+
+      elements.forEach((element) => {
+        element.style.removeProperty("height");
+      });
+    }
+  }
+
+  private setPaddingTopForLazyloadPlaceholders(): void {
+    setTimeout(() => {
+      const parentElements = this.document.querySelectorAll<HTMLElement>(
+        ".hc-sliders-wrapper"
+      );
+
+      parentElements.forEach((parent) => {
+        const elements = parent.querySelectorAll<HTMLElement>(
+          ".rimage-wrapper.lazyload--placeholder"
+        );
+
+        elements.forEach((element) => {
+          element.style.setProperty("padding-top", "100%", "important");
+        });
+      });
+    }, 3000);
+  }
+
+  private reinitializeSlickSliderBentgo(): void {
+    setTimeout(() => {
+      const slider = this.document.querySelector<HTMLElement>(
+        ".hc-main-slider.slick-initialized.slick-slider"
+      );
+
+      if (!slider) {
+        return;
+      }
+
+      const slickInstance = (slider as any).slick;
+
+      if (!slickInstance) {
+        return;
+      }
+
+      try {
+        const currentSlideIndex = slickInstance.currentSlide;
+
+        slickInstance.unslick();
+
+        slickInstance.init();
+
+        slickInstance.slickGoTo(currentSlideIndex);
+      } catch (error) {}
+    }, 3000);
+  }
+
+  private setPaddingTopForPageHeaderBentgo(): void {
+    setTimeout(() => {
+      const element = this.document.querySelector<HTMLElement>(
+        ".page-header.layout-center"
+      );
+
+      if (element) {
+        element.style.setProperty("padding-top", "40px", "important");
+      }
+    }, 3000);
+  }
+  private removeDisplayInlineStylesKetone(): void {
+    const classSelector: string = ".navigation__padding.js-navigation-padding";
+
+    const elements: NodeListOf<HTMLElement> =
+      this.document.querySelectorAll(classSelector);
+
+    setTimeout(() => {
+      elements.forEach((element: HTMLElement) => {
+        element.style.removeProperty("display");
+      });
+    }, 2000);
+  }
+  private removeWidthInlineStylesFromTestimonialsKeto(): void {
+    const ancestorId: string =
+      "testimonials-section-template--18080241680553__testimonials-v2";
+    const classSelector: string = ".testimonial-image";
+
+    const ancestorElement: HTMLElement | null =
+      this.document.getElementById(ancestorId);
+
+    if (ancestorElement) {
+      setTimeout(() => {
+        const elements: NodeListOf<HTMLElement> =
+          ancestorElement.querySelectorAll(classSelector);
+
+        elements.forEach((element: HTMLElement) => {
+          element.style.removeProperty("width");
+        });
+      }, 2000);
+    }
+  }
 }

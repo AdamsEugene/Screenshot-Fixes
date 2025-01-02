@@ -117,6 +117,39 @@ export default class RyanScreenshotFixes extends Common {
       this.SourPlusupdateCarouselOverflow();
       this.updateReeviewDisplay();
       this.clearMobileMenuOpacity();
+      this.adjustMobileNavHeight();
+      this.adjustLoginModalOpacity();
+      this.adjustSlideLayerDisplay();
+      this.adjustKlaviyoFormDisplay();
+      this.adjustDisplayRecursively();
+      this.adjustCurrencyList();
+      this.adjustMenuButtonDisplay();
+      this.addSplideClass();
+      this.adjustAnnouncementDisplay();
+      this.adjustTechWrapper();
+      this.adjustMobileNavOverflow();
+      this.adjustFaqTextOpacity();
+      this.adjustWidgetDisplay();
+      this.adjustHamburgerDisplay();
+      this.adjustTopBunDisplay();
+      this.adjustCalendlyIframeHeight();
+      this.adjustSwatchElements();
+      this.adjustMenuAndMediaElements();
+      this.adjustProductThumbnails();
+      this.adjustGemSliderOverflow();
+      this.adjustYotpoWidget();
+      this.adjustProductPadding();
+      this.ToolnutadjustHamburgerDisplay();
+      this.adjustNavigationDisplay();
+      this.handleHamburgerMenuClick();
+      this.createProductImages();
+      this.adjustMegaDropdownOpacity();
+      this.adjustTnsInnerHeight();
+      this.adjustAgeVerifierOpacity();
+      this.adjustTeaserDisplay();
+      this.adjustMediaOverlayOpacity();
+      this.adjustMenuDrawerAndTestimonial();
+      this.adjustHeaderMobileDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2433,6 +2466,577 @@ export default class RyanScreenshotFixes extends Common {
     } catch (error) {
         return;
     }
+  }
+
+  private adjustMobileNavHeight() {
+    setTimeout(() => {
+        try {
+            const mobileNav = this.dom.querySelector('#mobile-main-nav') as HTMLElement;
+            if (!mobileNav) return;
+ 
+            mobileNav.style.setProperty('height', '100%', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustLoginModalOpacity() {
+    setInterval(() => {
+        try {
+            const loginModal = this.dom.querySelector('#loginModal.login-modal__outer-wrapper') as HTMLElement;
+            if (!loginModal) return;
+ 
+            loginModal.style.removeProperty('opacity');
+            loginModal.style.setProperty('opacity', 'revert-layer', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 1000);
+  }
+
+  private adjustSlideLayerDisplay() {
+    setInterval(() => {
+        try {
+            const container = this.dom.querySelector('.n2-ss-layers-container.n2-ss-slide-limiter.n2-ow');
+            if (!container) return;
+ 
+            const layer = container.querySelector('.n2-ss-layer.n2-ow.n-uc-OWbnvKckIsIQ') as HTMLElement;
+            if (!layer) return;
+ 
+            layer.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustKlaviyoFormDisplay() {
+    setTimeout(() => {
+        try {
+            const container = this.dom.querySelector('.container1250');
+            if (!container) return;
+ 
+            const klaviyoForm = container.querySelector('.klaviyo-form-YezMyJ.klaviyo-form.form-version-cid-1') as HTMLElement;
+            if (!klaviyoForm) return;
+ 
+            klaviyoForm.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustDisplayRecursively() {
+    setTimeout(() => {
+        try {
+            const elements = this.dom.querySelectorAll('.r-1obhhk9');
+            if (!elements.length) return;
+ 
+            elements.forEach(parent => {
+                const checkAndRemoveDisplay = (element: Element) => {
+                    if ((element as HTMLElement).style?.display === 'none') {
+                        (element as HTMLElement).style.removeProperty('display');
+                    }
+ 
+                    element.children.length && 
+                        Array.from(element.children).forEach(child => checkAndRemoveDisplay(child));
+                };
+ 
+                checkAndRemoveDisplay(parent);
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustCurrencyList() {
+    const selector = '.doubly-nice-select.currency-switcher.left.slim .list';
+    
+    const observer = new MutationObserver(() => {
+        try {
+            const elements = this.dom.querySelectorAll(selector);
+            elements.forEach((element) => {
+                if (element && (element as HTMLElement).style.opacity) {
+                    (element as HTMLElement).style.removeProperty('opacity');
+                    (element as HTMLElement).style.setProperty('opacity', 'revert-layer', 'important');
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    });
+ 
+    try {
+        const targetElement = this.dom.querySelector('.doubly-nice-select.currency-switcher.left.slim');
+        if (!targetElement) return;
+ 
+        observer.observe(targetElement, {
+            attributeFilter: ['style'],
+            subtree: true
+        });
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustMenuButtonDisplay() {
+    setTimeout(() => {
+        try {
+            const parent = this.dom.querySelector('.menu-button-3.w-nav-button');
+            if (!parent) return;
+ 
+            const menuIcon = parent.querySelector('.w-icon-nav-menu') as HTMLElement;
+            if (!menuIcon) return;
+ 
+            menuIcon.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private addSplideClass() {
+    try {
+        const splideElement = this.dom.querySelector('.splide--desktop-dots-under.splide--mobile-dots-under.splide--desktop-arrows-sides.splide--desktop-arrows-outside.splide--mobile-arrows-under.splide--destroy-desktop.splide--destroy-mobile') as HTMLElement;
+        if (!splideElement) return;
+ 
+        splideElement.classList.add('splide');
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustAnnouncementDisplay() {
+    try {
+        const announcementBar = this.dom.querySelector('announcement-bar');
+        if (!announcementBar) return;
+ 
+        const sliders = announcementBar.querySelectorAll('.announcement-slider');
+        if (!sliders.length) return;
+ 
+        sliders.forEach((slider, index) => {
+            if (index === 0) {
+                (slider as HTMLElement).style.removeProperty('display');
+            } else {
+                (slider as HTMLElement).style.setProperty('display', 'none', 'important');
+            }
+        });
+    } catch (error) {
+        return;
+    }
+  }
+
+  private adjustTechWrapper() {
+    setTimeout(() => {
+        try {
+            const container = this.dom.querySelector('.Tech__wrapper.ui-player-container.bitmovinplayer-container.bmpui-ui-uicontainer');
+            if (!container) return;
+ 
+            const skeleton = container.querySelector('.AspectRatioSkeleton__wrapper') as HTMLElement;
+            if (!skeleton) return;
+ 
+            skeleton.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustMobileNavOverflow() {
+    setTimeout(() => {
+        try {
+            const mobileNav = this.dom.querySelector('nav#mobile-nav') as HTMLElement;
+            if (!mobileNav) return;
+ 
+            mobileNav.style.removeProperty('overflow');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustFaqTextOpacity() {
+    setTimeout(() => {
+        try {
+            const faqContainers = this.dom.querySelectorAll('.faq.width-narrow.text-align-left');
+            if (!faqContainers.length) return;
+ 
+            faqContainers.forEach(container => {
+                const textElements = container.querySelectorAll('.text');
+                textElements.forEach(text => {
+                    (text as HTMLElement).style.removeProperty('opacity');
+                });
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustWidgetDisplay() {
+    setTimeout(() => {
+        try {
+            const habitat = this.dom.querySelector('[data-widget-host="habitat-static-feed"]') as HTMLElement;
+            if (!habitat) return;
+ 
+            habitat.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustHamburgerDisplay() {
+    setTimeout(() => {
+        try {
+            const hamburger = this.dom.querySelector('.m-hamburger-box__inner') as HTMLElement;
+            if (!hamburger) return;
+ 
+            hamburger.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustTopBunDisplay() {
+    setTimeout(() => {
+        try {
+            const burgerParts = this.dom.querySelectorAll('.top-bun, .patty, .bottom-bun');
+            if (!burgerParts.length) return;
+ 
+            burgerParts.forEach(part => {
+                (part as HTMLElement).style.removeProperty('display');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustCalendlyIframeHeight() {
+    setTimeout(() => {
+        try {
+            const calendlyWidgets = this.dom.querySelectorAll('.calendly-inline-widget');
+            if (!calendlyWidgets.length) return;
+ 
+            calendlyWidgets.forEach(widget => {
+                const iframe = widget.querySelector('iframe') as HTMLElement;
+                if (!iframe) return;
+ 
+                iframe.style.removeProperty('height');
+                iframe.style.setProperty('height', 'inherit', 'important');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustSwatchElements() {
+    setTimeout(() => {
+        try {
+            const swatchContainers = this.dom.querySelectorAll('.swatchColor.swatchType_one_color');
+            if (!swatchContainers.length) return;
+ 
+            swatchContainers.forEach(container => {
+                ((container.querySelector('div')) as HTMLElement)?.style.removeProperty('display');
+                ((container.querySelector('.webyzeTooltip')) as HTMLElement)?.style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustMenuAndMediaElements() {
+    setTimeout(() => {
+        try {
+            const megaMenu = this.dom.querySelector('#Details-HeaderMenu-1 #MegaMenu-Content-1') as HTMLElement;
+            if (megaMenu) megaMenu.style.removeProperty('height');
+ 
+            this.dom.querySelectorAll('.featured-media .media-wrapper img').forEach(img => 
+                (img as HTMLElement).style.removeProperty('width'));
+ 
+            this.dom.querySelectorAll('.card-image a img').forEach(img => 
+                (img as HTMLElement).style.removeProperty('height'));
+ 
+            const pageWidth = this.dom.querySelector('#sc-template--16760377737429__8d4e28d9-f86e-4610-be3e-90ae44bc6401.page-width');
+            if (pageWidth?.parentElement) (pageWidth.parentElement as HTMLElement).style.removeProperty('height');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustProductThumbnails() {
+    setTimeout(() => {
+        try {
+            const selectors = [
+                '.js-product-thumbnail--image.product-thumbnail--image.block.link.absolute.absolute-fill.flex.items-center.justify-center .inline-block.width-auto.height-auto.max-width-full.max-height-full.loaded',
+                '.block.font-size-6.font-weight-6.text-no-decoration.text-primary.letter-spacing--2 .inline-block.width-auto.height-auto.max-width-full.max-height-full.loaded'
+            ];
+ 
+            selectors.forEach(selector => {
+                this.dom.querySelectorAll(selector).forEach(img => 
+                    (img as HTMLElement).style.removeProperty('width'));
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustGemSliderOverflow() {
+    setTimeout(() => {
+        try {
+            const slider = this.dom.querySelector('[id="gp-carousel-ft-gp-carousel-gZHKhM893--template--17785259393179__gp_section_537860369301898236-8299986976923-template--17785259393179__gp_section_537860369301898236"]') as HTMLElement;
+            if (!slider) return;
+
+            slider.style.removeProperty('overflow');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustYotpoWidget() {
+    setTimeout(() => {
+        try {
+            const yotpoWidgets = this.dom.querySelectorAll('.yotpo-widget-instance.star-rating-container');
+            if (!yotpoWidgets.length) return;
+ 
+            yotpoWidgets.forEach(widget => {
+                (widget as HTMLElement).style.removeProperty('display');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustProductPadding() {
+    setTimeout(() => {
+        try {
+            const product = this.dom.querySelector('#Product--template--18561541112060__main.index-product.section-padding') as HTMLElement;
+            if (!product) return;
+ 
+            product.style.setProperty('padding-top', '100px', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private ToolnutadjustHamburgerDisplay() {
+    setInterval(() => {
+        try {
+            const hamburger = this.dom.querySelector('#main-hamberger.ninjamenus-top-triggered') as HTMLElement;
+            if (!hamburger) return;
+ 
+            hamburger.style.setProperty('display', 'flex', 'important');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustNavigationDisplay() {
+    try {
+        const parentSelector = '.ninjamenus-mobile-wrapper';
+        
+        const observer = new MutationObserver(() => {
+            const parent = this.dom.querySelector(parentSelector) as HTMLElement;
+            if (parent && parent.style.display === 'none') {
+                parent.style.removeProperty('display');
+                parent.style.setProperty('display', 'block', 'important');
+            }
+        });
+
+        const parent = this.dom.querySelector(parentSelector);
+        if (parent) {
+            observer.observe(parent, {
+                attributeFilter: ['style']
+            });
+
+            // Initial check and fix
+            if ((parent as HTMLElement).style.display === 'none') {
+                (parent as HTMLElement).style.removeProperty('display');
+                (parent as HTMLElement).style.setProperty('display', 'block', 'important');
+            }
+        }
+    } catch (error) {
+        return;
+    }
+  }
+
+  private handleHamburgerMenuClick() {
+    if (this.insideIframe) {
+        const headerContent = this.dom.querySelector('.header.content') as HTMLElement;
+        if (!headerContent) return;
+ 
+        const hamburgerButton = headerContent.querySelector('#main-hamberger');
+        if (hamburgerButton) {
+            hamburgerButton.addEventListener('click', () => {
+                const htmlElement = this.dom.documentElement;
+                const currentClass = htmlElement.getAttribute('class') || '';
+ 
+                if (currentClass.includes('nav-before-open')) {
+                    htmlElement.classList.remove('nav-before-open', 'nav-open');
+                } else {
+                    htmlElement.classList.add('nav-before-open', 'nav-open');
+                }
+            });
+        }
+    }
+  }
+
+  private createProductImages() {
+    if (this.insideIframe) {
+        const productContainers = this.dom.querySelectorAll('.product-image');
+        productContainers.forEach(container => {
+            const lazyImages = container.querySelectorAll('.lazy-image');
+            lazyImages.forEach(lazyImage => {
+                const dataImage = lazyImage.getAttribute('data-image');
+                if (dataImage) {
+                    const img = document.createElement('img');
+                    img.src = dataImage;
+                    lazyImage.appendChild(img);
+                }
+            });
+        });
+    }
+  }
+
+  private adjustMegaDropdownOpacity() {
+    setInterval(() => {
+        try {
+            const megaContents = this.dom.querySelectorAll('.mega-dropdown-inner.mv-relative .mega-content.mv-mx-auto.mv-px-10.mv-pt-3.mv-pb-5.mv-relative.mv-z-50.mv-text-black');
+            if (!megaContents.length) return;
+
+            megaContents.forEach(content => {
+                (content as HTMLElement).style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustTnsInnerHeight() {
+    setInterval(() => {
+        try {
+            const tnsOuters = this.dom.querySelectorAll('.tns-outer');
+            if (!tnsOuters.length) return;
+ 
+            tnsOuters.forEach(outer => {
+                const inner = outer.querySelector('.tns-inner.tns-ovh.tns-ah') as HTMLElement;
+                if (inner) {
+                    inner.style.setProperty('height', 'auto', 'important');
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //GARVEE
+  private adjustAgeVerifierOpacity() {
+    setTimeout(() => {
+        try {
+            const popup = this.dom.querySelector('m-age-verifier-popup#sections--22741745074489__age-verifier-popup.m-age-verifier') as HTMLElement;
+            if (!popup) return;
+ 
+            popup.style.removeProperty('opacity');
+ 
+            const innerElements = popup.querySelectorAll('*');
+            innerElements.forEach(element => {
+                (element as HTMLElement).style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  private adjustTeaserDisplay() {
+    try {
+        const parentSelector = '.needsclick.kl-teaser-SvpLPh.undefined.kl-private-reset-css-Xuajs1';
+        const observer = new MutationObserver(() => {
+            const parent = this.dom.querySelector(parentSelector) as HTMLElement;
+            if (parent && parent.style.display) {
+                parent.style.removeProperty('display');
+            }
+        });
+ 
+        const parent = this.dom.querySelector(parentSelector);
+        if (parent) {
+            observer.observe(parent, {
+                attributeFilter: ['style']
+            });
+ 
+            if ((parent as HTMLElement).style.display) {
+                (parent as HTMLElement).style.removeProperty('display');
+            }
+        }
+    } catch (error) {
+        return;
+    }
+  }
+
+  //Juicerville CAD
+  private adjustMediaOverlayOpacity() {
+    setTimeout(() => {
+        try {
+            const overlays = this.dom.querySelectorAll('.media.media--has-overlay.absolute.top-0.left-0.w-full.h-full');
+            if (!overlays.length) return;
+ 
+            overlays.forEach(overlay => {
+                const img = overlay.querySelector('img') as HTMLElement;
+                if (img) {
+                    img.style.removeProperty('opacity');
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //Neat SweatProof
+  private adjustMenuDrawerAndTestimonial() {
+    setTimeout(() => {
+        try {
+            this.dom.querySelectorAll('.testimonial-video-play-btn .m-testimonial-video__cover.m-bg-lazy')
+                .forEach(cover => {
+                    (cover as HTMLElement).style.removeProperty('display');
+                    cover.classList.remove('m-bg-lazy');
+                });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+ 
+    this.dom.querySelector('.m-menu-drawer-close-btn')?.addEventListener('click', () => {
+        this.dom.querySelector('#m-menu-drawer.m-menu-drawer.open')?.classList.remove('open');
+    });
+  }
+
+  //Curated Chrome
+  private adjustHeaderMobileDisplay() {
+    setTimeout(() => {
+        try {
+            const mobileHeader = this.dom.querySelector('#shopify-section-sections--22768627777868__header_mobile.shopify-section.shopify-section-group-header-group.header-mobile-section') as HTMLElement;
+            if (!mobileHeader) return;
+ 
+            mobileHeader.style.removeProperty('display');
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
