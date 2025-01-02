@@ -946,5 +946,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bruntworkwear.com-collections-all-main.html"
     }
+  },
+  {
+    "selector": "#page-content",
+    "content": {
+      "idSite": 2851,
+      "idSiteHsr": 5339209,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main1.html"
+    }
   }
 ]
