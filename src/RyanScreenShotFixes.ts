@@ -560,7 +560,6 @@ export default class RyanScreenshotFixes extends Common {
         this.NextAdventureSetSubmenuHeight();
         this.NitesightssetChildOpacities();
         this.ShieldEUsetChildOpacities();
-        // this.PulsioShowHiddenFAQAnswers();
         this.bigkizzyFixSlideshowbox();
         this.SerenityremoveMinHeightFromVcRow();
         this.DetoxMarketupdateSrcsetFromSrc();
@@ -1100,21 +1099,6 @@ export default class RyanScreenshotFixes extends Common {
       }
     });
   }
-
-  //Pulsio AIR
-  // private PulsioShowHiddenFAQAnswers() {
-  //   this.dom
-  //     .querySelectorAll('[classification^="FAQ Question"]')
-  //     .forEach((parent) => {
-  //       const hiddenChild = Array.from(parent.children).find(
-  //         (child) => window.getComputedStyle(child).display === "none"
-  //       ) as HTMLElement;
-
-  //       if (hiddenChild) {
-  //         hiddenChild.style.setProperty("display", "block", "important");
-  //       }
-  //     });
-  // }
 
   //big kizzy hair
   private bigkizzyFixSlideshowbox() {
@@ -1758,35 +1742,6 @@ export default class RyanScreenshotFixes extends Common {
         });
     }, 2000);
   }
-
-  //Latico Leather
-  // private preventSidebarDisplayNone() {
-  //   const selectors = [
-  //       '#sidebar-menu.SidebarMenu.Drawer.Drawer--small.Drawer--fromLeft',
-  //       '.mob-drawer',
-  //       '.mobile-menu'
-  //   ];
-
-  //   const observer = new MutationObserver(() => {
-  //       selectors.forEach(selector => {
-  //           const elements = this.dom.querySelectorAll(selector);
-  //           elements.forEach(element => {
-  //               if (element && (element as HTMLElement).style.display === 'none') {
-  //                   (element as HTMLElement).style.removeProperty('display');
-  //               }
-  //           });
-  //       });
-  //   });
-
-  //   selectors.forEach(selector => {
-  //       const targetElement = this.dom.querySelector(selector);
-  //       if (targetElement) {
-  //           observer.observe(targetElement, {
-  //               attributeFilter: ['style']
-  //           });
-  //       }
-  //   });
-  // }
 
   //Albion
   private AlbionremoveSwiperOverflow() {
