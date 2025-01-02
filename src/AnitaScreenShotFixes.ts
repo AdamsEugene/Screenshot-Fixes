@@ -165,6 +165,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
     this.removeDisplayNoneFromGlueBentgo();
+    this.setParentPaddingTopBentgo();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2334,5 +2335,21 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
+  private setParentPaddingTopBentgo(): void {
+    const childSelector: string = ".toolbar.cf.docked";
+    const parentSelector: string = ".page-header.layout-center";
+  
+    const childElement: HTMLElement | null = this.document.querySelector(childSelector);
+  
+    if (childElement) {
+      const parentElement: HTMLElement | null = childElement.closest(parentSelector);
+  
+      if (parentElement) {
+        parentElement.style.setProperty("padding-top", "40px", "important");
+      }
+    }
+  }
+  
+  
   
 }
