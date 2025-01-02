@@ -160,8 +160,8 @@ export default class AnitaScreenShotFixes {
     this.removeHeightAndTransformFromChildBARLEYBUS();
     this.removeHeightFromGridItemsReachInternational();
     // this.setPaddingTopForLazyloadPlaceholders();
-    this.reinitializeSlickSlider();
-    // this.setPaddingTopForPageHeader();
+    this.reinitializeSlickSliderBentgo();
+    this.setPaddingTopForPageHeaderBentgo();
 
   }
 
@@ -2253,7 +2253,7 @@ export default class AnitaScreenShotFixes {
     }, 3000);
   }
 
-  private reinitializeSlickSlider(): void {
+  private reinitializeSlickSliderBentgo(): void {
     setTimeout(() => {
       const slider = this.document.querySelector<HTMLElement>(
         ".hc-main-slider.slick-initialized.slick-slider"
@@ -2282,12 +2282,12 @@ export default class AnitaScreenShotFixes {
     }, 3000);
   }
 
-  private setPaddingTopForPageHeader(): void {
+  private setPaddingTopForPageHeaderBentgo(): void {
     setTimeout(() => {
         const element = this.document.querySelector<HTMLElement>(".page-header.layout-center");
 
         if (element) {
-            element.style.setProperty("padding-top", "56px", "important");
+            element.style.setProperty("padding-top", "46px", "important");
         }
     }, 3000); 
 }
