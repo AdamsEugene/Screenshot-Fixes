@@ -2359,10 +2359,9 @@ export default class AnitaScreenShotFixes {
   
     observer.observe(this.document.body, config);
   
-    // Optional: Disconnect observer after a certain time or condition
     setTimeout(() => {
       observer.disconnect();
-    }, 60000); // Stops observing after 60 seconds
+    }, 50000); 
   }
   
   
