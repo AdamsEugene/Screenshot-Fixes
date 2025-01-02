@@ -946,14 +946,5 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bruntworkwear.com-collections-all-main.html"
     }
-  },
-  {
-    "selector": ".left-header.scm-col-12",
-    "content": {
-      "idSite": 3055,
-      "idSiteHsr": 7873136,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/srcdoc-main.html"
-    }
   }
 ]
