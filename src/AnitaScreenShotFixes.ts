@@ -2298,9 +2298,11 @@ private removeDisplayInlineStylesKetone(): void {
   const elements: NodeListOf<HTMLElement> =
     this.document.querySelectorAll(classSelector);
 
-  elements.forEach((element: HTMLElement) => {
-    element.style.removeProperty("display");
-  });
+  setTimeout(() => {
+    elements.forEach((element: HTMLElement) => {
+      element.style.removeProperty("display");
+    });
+  }, 2000);
 }
 
 
