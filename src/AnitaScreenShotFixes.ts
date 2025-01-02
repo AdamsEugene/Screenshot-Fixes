@@ -165,7 +165,8 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
     this.removeDisplayNoneFromGlueBentgo();
-    this.observeAndSetSecondSiblingPadding();
+    this.observeAndSetSecondSiblingPaddingBentgo();
+    this.removeHeightInlineStyleEraofnature();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2336,7 +2337,7 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private observeAndSetSecondSiblingPadding(): void {
+  private observeAndSetSecondSiblingPaddingBentgo(): void {
     const targetSelector: string = '.aph_bar_bar#bar533678';
 
     const observer = new MutationObserver(() => {
@@ -2359,6 +2360,16 @@ export default class AnitaScreenShotFixes {
   
     observer.observe(this.document.body, config);
   }
+  private removeHeightInlineStyleEraofnature(): void {
+    const targetSelector: string = '.scm-reviews-importer-iframe.sma-load-iframe.main-widget-product';
+  
+    const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(targetSelector);
+  
+    elements.forEach((element: HTMLElement) => {
+      element.style.removeProperty('height');
+    });
+  }
+  
   
   
 
