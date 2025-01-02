@@ -2313,12 +2313,14 @@ export default class AnitaScreenShotFixes {
       this.document.getElementById(ancestorId);
 
     if (ancestorElement) {
-      const elements: NodeListOf<HTMLElement> =
-        ancestorElement.querySelectorAll(classSelector);
+      setTimeout(() => {
+        const elements: NodeListOf<HTMLElement> =
+          ancestorElement.querySelectorAll(classSelector);
 
-      elements.forEach((element: HTMLElement) => {
-        element.style.removeProperty("width");
-      });
+        elements.forEach((element: HTMLElement) => {
+          element.style.removeProperty("width");
+        });
+      }, 2000);
     }
   }
 }
