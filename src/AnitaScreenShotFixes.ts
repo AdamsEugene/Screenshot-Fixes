@@ -165,7 +165,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
     this.removeDisplayNoneFromGlueBentgo();
-    this.setParentPaddingTopBentgo();
+    this.observeAndSetSecondSiblingPadding();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2335,20 +2335,33 @@ export default class AnitaScreenShotFixes {
       }
     }
   }
-  private setParentPaddingTopBentgo(): void {
-    const childSelector: string = ".toolbar.cf.docked";
-    const parentSelector: string = ".page-header.layout-center";
+
+  private observeAndSetSecondSiblingPadding(): void {
+    const targetSelector: string = '.aph_bar_bar#bar533678';
+
+    const observer = new MutationObserver(() => {
+      const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
   
-    const childElement: HTMLElement | null = this.document.querySelector(childSelector);
+      if (targetElement) {
+        let sibling: HTMLElement | null = targetElement.nextElementSibling as HTMLElement;
   
-    if (childElement) {
-      const parentElement: HTMLElement | null = childElement.closest(parentSelector);
+        if (sibling) {
+          sibling = sibling.nextElementSibling as HTMLElement;
   
-      if (parentElement) {
-        parentElement.style.setProperty("padding-top", "40px", "important");
+          if (sibling && sibling.tagName === 'DIV') {
+            sibling.style.setProperty('padding-top', '40px', 'important');
+          }
+        }
       }
-    }
+    });
+  
+    const config = { childList: true, subtree: true };
+  
+    observer.observe(this.document.body, config);
   }
+  
+  
+
   
   
   
