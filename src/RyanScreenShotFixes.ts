@@ -152,6 +152,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustHeaderMobileDisplay();
       this.adjustPfElementDisplay();
       this.adjustStickyButtonVisibility();
+      this.adjustPageOverlay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3070,6 +3071,19 @@ export default class RyanScreenshotFixes extends Common {
     } catch (error) {
         return;
     }
+  }
+
+  private adjustPageOverlay() {
+    setTimeout(() => {
+        try {
+            const overlay = this.dom.querySelector('a#page-overlay') as HTMLElement;
+            if (!overlay) return;
+ 
+            overlay.removeAttribute('style');
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
