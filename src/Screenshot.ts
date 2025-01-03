@@ -1531,10 +1531,19 @@ class ScreenshotFixes extends Common {
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
+      const productCardInfoElements =  this.dom
+      .querySelectorAll<HTMLElement>(".product-card__info")
+      productCardInfoElements.forEach(element => {
+        const actualMinHeight = element.getAttribute("actualMinHeight");
+        // set min-height to max-content
+        element.style.setProperty("min-height", actualMinHeight, "important");
 
-      this.dom
-      .querySelectorAll<HTMLElement>(".product-card__info .v-stack")
-      .forEach(element => element.style.height = '0');
+        // v-stack
+        const vStack = element.querySelector<HTMLElement>(".v-stack");
+        if (vStack) {
+          vStack.style.height = 'auto';
+        }
+      });
     } catch (error) {}
   }
 
