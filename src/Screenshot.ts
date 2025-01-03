@@ -1509,6 +1509,19 @@ class ScreenshotFixes extends Common {
     }
   };
 
+  // Petsmont
+  private setWidthForSlickTracks = () => {
+    setInterval(() => {
+      const slickTracks = this.dom.querySelectorAll('.slick-track');
+      slickTracks.forEach((track: HTMLElement) => {
+         const actualWidth = track.getAttribute('actualWidth');
+         if (actualWidth) {
+             track.style.setProperty('width', actualWidth, 'important');
+         }
+      });
+    }, 1000);
+  };
+
   //Springinger
   private hideShopifyMinicartElements() {
     const elements = this.dom.querySelectorAll(
@@ -1560,6 +1573,7 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
+      { ids: [2841], functions: [this.setWidthForSlickTracks] }, 
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
