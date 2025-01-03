@@ -894,7 +894,7 @@
     }
   },
   {
-    "selector": "#wonderment-tracking-root--shipment-block-12b8ea3263bdd48a10d56ebff342df66",
+    "selector": "#wonderment-tracking-root--shipment-block-c328882a6328b8aa0dd833fd1bd983e4",
     "content": {
       "idSite": 1745,
       "idSiteHsr": 7924985,
@@ -945,6 +945,15 @@
       "idSiteHsr": 71874,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/bruntworkwear.com-collections-all-main.html"
+    }
+  },
+  {
+    "selector": "#page-content",
+    "content": {
+      "idSite": 2851,
+      "idSiteHsr": 5339209,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main+(2).html"
     }
   }
 ]
