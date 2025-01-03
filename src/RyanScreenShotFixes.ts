@@ -1820,28 +1820,19 @@ export default class RyanScreenshotFixes extends Common {
 
   //Kahoots
   private KahootsshowFloatingCart() {
-    const selector =
-      "#floating-addToCart-container.floating-addToCart-container";
-
-    const observer = new MutationObserver(() => {
-      const elements = this.dom.querySelectorAll(selector);
-      elements.forEach((element) => {
-        if (element && (element as HTMLElement).style.display !== "block") {
-          (element as HTMLElement).style.setProperty(
-            "display",
-            "block",
-            "important"
-          );
+    setTimeout(() => {
+        try {
+            const selector = '#floating-addToCart-container.floating-addToCart-container';
+            const element = this.dom.querySelector(selector) as HTMLElement;
+            if (!element) return;
+ 
+            element.style.setProperty('display', 'block');
+            element.style.setProperty('left', 'auto');
+            element.style.setProperty('transform', 'none');
+        } catch (error) {
+            return;
         }
-      });
-    });
-
-    const targetElement = this.dom.querySelector(selector);
-    if (targetElement) {
-      observer.observe(targetElement, {
-        attributeFilter: ["style"],
-      });
-    }
+    }, 500);
   }
 
   //Mad Rabbit
