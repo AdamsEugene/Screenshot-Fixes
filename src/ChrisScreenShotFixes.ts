@@ -7,7 +7,7 @@ interface ToggleConfig {
 }
 
 export default class ChrisScreenShotFixes {
-  private elements: HTMLElement[] = []; // Initialize the elements array
+  private elements: HTMLElement[] = [];
   private document: Document;
 
   constructor(dom: Document = document) {
@@ -27,18 +27,16 @@ export default class ChrisScreenShotFixes {
     ]);
 
     this.setupCartButtons();
+    this.KahootAdjustSvgIconSize();
   }
 
   private toggleCart(open: boolean): void {
-    // Select the cart container
     const cartContent = this.document.querySelector(
       ".cart-container > div"
     ) as HTMLElement;
-
-    // Check if the cart content exists before applying changes
     if (cartContent) {
-      cartContent.style.visibility = open ? "visible" : "hidden"; // Toggle visibility
-      cartContent.style.transform = open ? "" : "matrix(1, 0, 0, 1, 0, 0)"; // Toggle transformation
+      cartContent.style.visibility = open ? "visible" : "hidden";
+      cartContent.style.transform = open ? "" : "matrix(1, 0, 0, 1, 0, 0)";
       cartContent.style.transition = open
         ? "transform 0.3s ease, visibility 0.3s ease"
         : "";
@@ -46,7 +44,6 @@ export default class ChrisScreenShotFixes {
   }
 
   private setupCartButtons(): void {
-    // Setup the close button
     const closeButton = this.document.querySelector(
       ".cart-container header > button"
     ) as HTMLElement;
@@ -56,7 +53,6 @@ export default class ChrisScreenShotFixes {
       closeButton.style.display = "block";
     }
 
-    // Setup the open button
     const cartButton = this.document.querySelector(
       ".cart-container > a"
     ) as HTMLElement;
@@ -96,6 +92,35 @@ export default class ChrisScreenShotFixes {
         });
       }
     });
+  }
+
+  private KahootAdjustSvgIconSize() {
+    try {
+      this.document.querySelectorAll(".emphatic").forEach((emphaticEl) => {
+        try {
+          const svgIconEl = emphaticEl.querySelector(".svgicon") as HTMLElement;
+          if (!svgIconEl) return;
+          const svgEl = svgIconEl.querySelector("svg");
+          if (!svgEl?.hasAttribute("actualHeight")) return;
+          const heightValue = svgEl.getAttribute("actualHeight")?.replace("px", "");
+          if (!heightValue) return;
+          svgIconEl.style.height = svgIconEl.style.width = `${heightValue}px`;
+        } catch (innerError) {}
+      });
+      this.document.querySelectorAll(".store-icons").forEach((storeIconsEl) => {
+        try {
+          const serviceIcons = storeIconsEl.querySelectorAll(".service-icon") as NodeListOf<HTMLElement>;
+          serviceIcons.forEach((serviceIcon) => {
+            try {
+              if (!serviceIcon.hasAttribute("actualHeight")) return;
+              const heightValue = serviceIcon.getAttribute("actualHeight")?.replace("px", "");
+              if (!heightValue) return;
+              serviceIcon.style.height = serviceIcon.style.width = `${heightValue}px`;
+            } catch (serviceIconError) {}
+          });
+        } catch (storeIconsError) {}
+      });
+    } catch (error) {}
   }
 
   public getElements(): HTMLElement[] {
