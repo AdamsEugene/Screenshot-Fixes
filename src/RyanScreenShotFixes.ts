@@ -1820,19 +1820,35 @@ export default class RyanScreenshotFixes extends Common {
 
   //Kahoots
   private KahootsshowFloatingCart() {
-    setTimeout(() => {
+    const selector = '#floating-addToCart-container.floating-addToCart-container';
+    
+    const observer = new MutationObserver(() => {
         try {
-            const selector = '#floating-addToCart-container.floating-addToCart-container';
-            const element = this.dom.querySelector(selector) as HTMLElement;
-            if (!element) return;
- 
-            element.style.setProperty('display', 'block');
-            element.style.setProperty('left', 'auto');
-            element.style.setProperty('transform', 'none');
+            const elements = this.dom.querySelectorAll(selector);
+            elements.forEach((element) => {
+                if (element && (element as HTMLElement).style.display !== 'block') {
+                    (element as HTMLElement).style.setProperty('display', 'block', 'important');
+                    (element as HTMLElement).style.setProperty('left', 'auto');
+                    (element as HTMLElement).style.setProperty('transform', 'none');
+                }
+            });
         } catch (error) {
             return;
         }
-    }, 500);
+    });
+
+    const targetElement = this.dom.querySelector(selector);
+    if (targetElement) {
+        observer.observe(targetElement, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+
+        // Initial set
+        (targetElement as HTMLElement).style.setProperty('display', 'block', 'important');
+        (targetElement as HTMLElement).style.setProperty('left', 'auto');
+        (targetElement as HTMLElement).style.setProperty('transform', 'none');
+    }
   }
 
   //Mad Rabbit
