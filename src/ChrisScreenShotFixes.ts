@@ -27,6 +27,7 @@ export default class ChrisScreenShotFixes {
     ]);
 
     this.setupCartButtons();
+    this.KahootAdjustSvgIconSize();
   }
 
   private toggleCart(open: boolean): void {
@@ -91,6 +92,35 @@ export default class ChrisScreenShotFixes {
         });
       }
     });
+  }
+
+  private KahootAdjustSvgIconSize() {
+    try {
+      this.document.querySelectorAll(".emphatic").forEach((emphaticEl) => {
+        try {
+          const svgIconEl = emphaticEl.querySelector(".svgicon") as HTMLElement;
+          if (!svgIconEl) return;
+          const svgEl = svgIconEl.querySelector("svg");
+          if (!svgEl?.hasAttribute("actualHeight")) return;
+          const heightValue = svgEl.getAttribute("actualHeight")?.replace("px", "");
+          if (!heightValue) return;
+          svgIconEl.style.height = svgIconEl.style.width = `${heightValue}px`;
+        } catch (innerError) {}
+      });
+      this.document.querySelectorAll(".store-icons").forEach((storeIconsEl) => {
+        try {
+          const serviceIcons = storeIconsEl.querySelectorAll(".service-icon") as NodeListOf<HTMLElement>;
+          serviceIcons.forEach((serviceIcon) => {
+            try {
+              if (!serviceIcon.hasAttribute("actualHeight")) return;
+              const heightValue = serviceIcon.getAttribute("actualHeight")?.replace("px", "");
+              if (!heightValue) return;
+              serviceIcon.style.height = serviceIcon.style.width = `${heightValue}px`;
+            } catch (serviceIconError) {}
+          });
+        } catch (storeIconsError) {}
+      });
+    } catch (error) {}
   }
 
   public getElements(): HTMLElement[] {
