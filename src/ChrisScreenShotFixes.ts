@@ -28,6 +28,7 @@ export default class ChrisScreenShotFixes {
 
     this.setupCartButtons();
     this.KahootAdjustSvgIconSize();
+    this.oberfieldssetCircleBackgrounds();
   }
 
   private toggleCart(open: boolean): void {
@@ -127,6 +128,55 @@ export default class ChrisScreenShotFixes {
       });
     } catch (error) {}
   }
+
+
+  private oberfieldssetCircleBackgrounds(): void {
+    try {
+        const backgroundMap: Record<string, { default: string; hover: string }> = {
+            pavers_circle: {
+                default: 'https://oberfields.com/assets/img/section_circles_pavers.jpg',
+                hover: 'https://oberfields.com/assets/img/section_circles_pavers_over.jpg'
+            },
+            retaining_circle: {
+                default: 'https://oberfields.com/assets/img/section_circles_retaining.jpg',
+                hover: 'https://oberfields.com/assets/img/section_circles_retaining_over.jpg'
+            },
+            masonry_circle: {
+                default: 'https://oberfields.com/assets/img/section_circles_masonry_.jpg',
+                hover: 'https://oberfields.com/assets/img/section_circles_masonry_over.jpg'
+            }
+        };
+
+        Object.values(backgroundMap).forEach(({default: d, hover: h}) => {
+            new Image().src = d;
+            new Image().src = h;
+        });
+
+        this.document.querySelectorAll<HTMLAnchorElement>('.section_circle.col-s-4 a').forEach(link => {
+            const matchingClass = Object.keys(backgroundMap).find(c => link.classList.contains(c));
+            
+            if (matchingClass) {
+                link.style.backgroundImage = `url("${backgroundMap[matchingClass].default}")`;
+                link.style.color = '#000000';
+                
+                link.addEventListener('mouseenter', () => 
+                    requestAnimationFrame(() => {
+                        link.style.backgroundImage = `url("${backgroundMap[matchingClass].hover}")`;
+                        link.style.color = '#54B6CF';
+                    })
+                );
+                
+                link.addEventListener('mouseleave', () => 
+                    requestAnimationFrame(() => {
+                        link.style.backgroundImage = `url("${backgroundMap[matchingClass].default}")`;
+                        link.style.color = '#000000';
+                    })
+                );
+            }
+        });
+    } catch (_) {}
+}
+
 
   public getElements(): HTMLElement[] {
     return this.elements;
