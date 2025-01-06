@@ -28,8 +28,28 @@ export default class ChrisScreenShotFixes {
 
     this.setupCartButtons();
     this.KahootAdjustSvgIconSize();
+    this.oberfieldssetCircleBackgrounds();
+    this.skinnyskinRemoveSwiperArrows();
+    //unforgettable gadgets
+    this.cleanUrlsInDocument(3017, 'proxy', undefined, false);
+
   }
 
+  private getIdSiteFromURL(): number | null {
+    try {
+        const url: URL = new URL(window.location.href);
+        const idSiteParam: string | null = url.searchParams.get("idSite");
+        const idSiteNumber: number | null = idSiteParam ? parseInt(idSiteParam, 10) : null;
+        return Number.isNaN(idSiteNumber) ? null : idSiteNumber;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error('Error parsing URL:', error.message);
+        } else {
+            console.error('Unknown error parsing URL');
+        }
+        return null;
+    }
+}
   private toggleCart(open: boolean): void {
     const cartContent = this.document.querySelector(
       ".cart-container > div"
@@ -122,6 +142,132 @@ export default class ChrisScreenShotFixes {
       });
     } catch (error) {}
   }
+
+
+  private oberfieldssetCircleBackgrounds(): void {
+    try {
+        const backgroundMap: Record<string, { default: string; hover: string }> = {
+            pavers_circle: {
+                default: 'https://oberfields.com/assets/img/section_circles_pavers.jpg',
+                hover: 'https://oberfields.com/assets/img/section_circles_pavers_over.jpg'
+            },
+            retaining_circle: {
+                default: 'https://oberfields.com/assets/img/section_circles_retaining.jpg',
+                hover: 'https://oberfields.com/assets/img/section_circles_retaining_over.jpg'
+            },
+            masonry_circle: {
+                default: 'https://oberfields.com/assets/img/section_circles_masonry_.jpg',
+                hover: 'https://oberfields.com/assets/img/section_circles_masonry_over.jpg'
+            }
+        };
+
+        Object.values(backgroundMap).forEach(({default: d, hover: h}) => {
+            new Image().src = d;
+            new Image().src = h;
+        });
+
+        this.document.querySelectorAll<HTMLAnchorElement>('.section_circle.col-s-4 a').forEach(link => {
+            const matchingClass = Object.keys(backgroundMap).find(c => link.classList.contains(c));
+            
+            if (matchingClass) {
+                link.style.backgroundImage = `url("${backgroundMap[matchingClass].default}")`;
+                link.style.color = '#000000';
+                
+                link.addEventListener('mouseenter', () => 
+                    requestAnimationFrame(() => {
+                        link.style.backgroundImage = `url("${backgroundMap[matchingClass].hover}")`;
+                        link.style.color = '#54B6CF';
+                    })
+                );
+                
+                link.addEventListener('mouseleave', () => 
+                    requestAnimationFrame(() => {
+                        link.style.backgroundImage = `url("${backgroundMap[matchingClass].default}")`;
+                        link.style.color = '#000000';
+                    })
+                );
+            }
+        });
+    } catch (_) {}
+}
+
+private  skinnyskinRemoveSwiperArrows(): void {
+  try {
+      // Try with parent selector first
+      const parentPrev: HTMLElement | null = this.document.querySelector('.logos-row-inner .swiper-button-prev');
+      const parentNext: HTMLElement | null = document.querySelector('.logos-row-inner .swiper-button-next');
+      
+      // Only proceed to general removal if parent removal was successful
+      if (parentPrev && parentNext) {
+          parentPrev.remove();
+          parentNext.remove();
+
+          // Check for remaining arrows
+          const remainingPrev: HTMLElement | null = this.document.querySelector('.swiper-button-prev');
+          const remainingNext: HTMLElement | null = this.document.querySelector('.swiper-button-next');
+          
+          if (remainingPrev) remainingPrev.remove();
+          if (remainingNext) remainingNext.remove();
+      }
+  } catch (_) {}
+}
+
+private cleanUrlsInDocument(
+  targetSiteId: number,
+  termToRemove: string,
+  regexPattern: RegExp = new RegExp(`${termToRemove}/?`, 'gi'),
+  debug: boolean = false
+): void {
+  const log = (message: string, ...args: unknown[]): void => {
+      if (debug) console.debug(message, ...args);
+  };
+
+  log('Starting URL cleaning process');
+  // Check if we're on the correct site
+  const currentSiteId: number | null = this.getIdSiteFromURL();
+  log('Current site ID:', currentSiteId);
+  
+  if (currentSiteId !== targetSiteId) {
+      log('Exiting: Not target site ID');
+      return;
+  }
+
+  try {
+      // Process images
+      const images: HTMLCollectionOf<HTMLImageElement> = this.document.getElementsByTagName('img');
+      log('Found images:', images.length);
+
+      Array.from(images).forEach((img: HTMLImageElement, index: number): void => {
+          log(`Processing image ${index}:`, img.src);
+          if (img.src?.includes(termToRemove)) {
+              log(`Found ${termToRemove} in image ${index}`);
+              const cleanUrl: string = img.src.replace(regexPattern, '');
+              log(`Cleaned URL: ${cleanUrl}`);
+              img.src = cleanUrl;
+          }
+      });
+
+      // Process background images
+      const elementsWithBgImage: NodeListOf<HTMLElement> = this.document.querySelectorAll('[style*="background-image"]');
+      log('Found background images:', elementsWithBgImage.length);
+      
+      elementsWithBgImage.forEach((element: HTMLElement, index: number): void => {
+          const style: string | null = element.getAttribute('style');
+          log(`Processing background ${index}:`, style);
+          if (style?.includes(termToRemove)) {
+              log(`Found ${termToRemove} in background ${index}`);
+              const cleanStyle: string = style.replace(regexPattern, '');
+              log(`Cleaned style: ${cleanStyle}`);
+              element.setAttribute('style', cleanStyle);
+          }
+      });
+
+  } catch (error) {
+      log('Error in URL cleaning process:', error);
+  }
+  
+  log('Finished URL cleaning process');
+}
 
   public getElements(): HTMLElement[] {
     return this.elements;
