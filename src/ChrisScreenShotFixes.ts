@@ -31,7 +31,7 @@ export default class ChrisScreenShotFixes {
     this.oberfieldssetCircleBackgrounds();
     this.skinnyskinRemoveSwiperArrows();
     //unforgettable gadgets
-    this.cleanUrlsInDocument(3017, 'proxy', undefined, true);
+    this.cleanUrlsInDocument(3017, 'proxy', undefined, false);
 
   }
 
