@@ -2363,12 +2363,15 @@ export default class AnitaScreenShotFixes {
   private removeHeightInlineStyleEraofnature(): void {
     const targetSelector: string = '.scm-reviews-importer-iframe.sma-load-iframe.main-widget-product';
   
-    const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(targetSelector);
+    setTimeout(() => {
+      const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(targetSelector);
   
-    elements.forEach((element: HTMLElement) => {
-      element.style.removeProperty('height');
-    });
+      elements.forEach((element: HTMLElement) => {
+        element.style.removeProperty('height');
+      });
+    }, 2000);
   }
+  
   
   
   

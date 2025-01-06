@@ -7,7 +7,7 @@ interface ToggleConfig {
 }
 
 export default class ChrisScreenShotFixes {
-  private elements: HTMLElement[] = []; // Initialize the elements array
+  private elements: HTMLElement[] = [];
   private document: Document;
 
   constructor(dom: Document = document) {
@@ -32,15 +32,12 @@ export default class ChrisScreenShotFixes {
   }
 
   private toggleCart(open: boolean): void {
-    // Select the cart container
     const cartContent = this.document.querySelector(
       ".cart-container > div"
     ) as HTMLElement;
-
-    // Check if the cart content exists before applying changes
     if (cartContent) {
-      cartContent.style.visibility = open ? "visible" : "hidden"; // Toggle visibility
-      cartContent.style.transform = open ? "" : "matrix(1, 0, 0, 1, 0, 0)"; // Toggle transformation
+      cartContent.style.visibility = open ? "visible" : "hidden";
+      cartContent.style.transform = open ? "" : "matrix(1, 0, 0, 1, 0, 0)";
       cartContent.style.transition = open
         ? "transform 0.3s ease, visibility 0.3s ease"
         : "";
@@ -48,7 +45,6 @@ export default class ChrisScreenShotFixes {
   }
 
   private setupCartButtons(): void {
-    // Setup the close button
     const closeButton = this.document.querySelector(
       ".cart-container header > button"
     ) as HTMLElement;
@@ -58,7 +54,6 @@ export default class ChrisScreenShotFixes {
       closeButton.style.display = "block";
     }
 
-    // Setup the open button
     const cartButton = this.document.querySelector(
       ".cart-container > a"
     ) as HTMLElement;

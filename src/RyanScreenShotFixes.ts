@@ -1820,27 +1820,34 @@ export default class RyanScreenshotFixes extends Common {
 
   //Kahoots
   private KahootsshowFloatingCart() {
-    const selector =
-      "#floating-addToCart-container.floating-addToCart-container";
-
+    const selector = '#floating-addToCart-container.floating-addToCart-container';
+    
     const observer = new MutationObserver(() => {
-      const elements = this.dom.querySelectorAll(selector);
-      elements.forEach((element) => {
-        if (element && (element as HTMLElement).style.display !== "block") {
-          (element as HTMLElement).style.setProperty(
-            "display",
-            "block",
-            "important"
-          );
+        try {
+            const elements = this.dom.querySelectorAll(selector);
+            elements.forEach((element) => {
+                if (element && (element as HTMLElement).style.display !== 'block') {
+                    (element as HTMLElement).style.setProperty('display', 'block', 'important');
+                    (element as HTMLElement).style.setProperty('left', 'auto');
+                    (element as HTMLElement).style.setProperty('transform', 'none');
+                }
+            });
+        } catch (error) {
+            return;
         }
-      });
     });
 
     const targetElement = this.dom.querySelector(selector);
     if (targetElement) {
-      observer.observe(targetElement, {
-        attributeFilter: ["style"],
-      });
+        observer.observe(targetElement, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+
+        // Initial set
+        (targetElement as HTMLElement).style.setProperty('display', 'block', 'important');
+        (targetElement as HTMLElement).style.setProperty('left', 'auto');
+        (targetElement as HTMLElement).style.setProperty('transform', 'none');
     }
   }
 

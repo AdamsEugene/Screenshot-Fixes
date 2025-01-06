@@ -1489,25 +1489,63 @@ class ScreenshotFixes extends Common {
 
   private adjustHeaderPadding = () => {
     if (this.insideIframe) {
-        const header = this.dom.querySelector(
-            '#shopify-section-header.shopify-section.header-section'
-        ) as HTMLElement;
-        if (header) {
-            header.style.setProperty('padding-bottom', '0px', 'important');
-        }
+      const header = this.dom.querySelector(
+        "#shopify-section-header.shopify-section.header-section"
+      ) as HTMLElement;
+      if (header) {
+        header.style.setProperty("padding-bottom", "0px", "important");
+      }
     }
   };
 
   private setImagesVisible = () => {
     if (this.insideIframe) {
-        const images = this.dom.querySelectorAll('img');
-        if (!images.length) return;
- 
-        images.forEach(img => {
-            (img as HTMLElement).style.setProperty('visibility', 'visible', 'important');
-        });
+      const images = this.dom.querySelectorAll("img");
+      if (!images.length) return;
+
+      images.forEach((img) => {
+        (img as HTMLElement).style.setProperty(
+          "visibility",
+          "visible",
+          "important"
+        );
+      });
     }
   };
+
+  // Petsmont
+  private setWidthForSlickTracks = () => {
+    setInterval(() => {
+      try {
+        const slickTracks = this.dom.querySelectorAll(".slick-track");
+        slickTracks.forEach((track: HTMLElement) => {
+          const actualWidth = track.getAttribute("actualWidth");
+          if (actualWidth) {
+            track.style.setProperty("width", actualWidth, "important");
+          }
+        });
+      } catch (error) {}
+    }, 1000);
+  };
+
+  //Remi
+  private removeHeightFromProductCardDetails = () => {
+    try{
+      const productCardInfoElements =  this.dom
+      .querySelectorAll<HTMLElement>(".product-card__info")
+      productCardInfoElements.forEach(element => {
+        const actualMinHeight = element.getAttribute("actualMinHeight");
+        // set min-height to max-content
+        element.style.setProperty("min-height", actualMinHeight, "important");
+
+        // v-stack
+        const vStack = element.querySelector<HTMLElement>(".v-stack");
+        if (vStack) {
+          vStack.style.height = 'auto';
+        }
+      });
+    } catch (error) {}
+  }
 
   //Springinger
   private hideShopifyMinicartElements() {
@@ -1560,6 +1598,8 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
+      { ids: [2841], functions: [this.setWidthForSlickTracks] },
+      { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
