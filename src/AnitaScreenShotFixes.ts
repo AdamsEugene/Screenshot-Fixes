@@ -2068,28 +2068,33 @@ export default class AnitaScreenShotFixes {
     }
   }
   private showCustomStickyAtcAerify(): void {
-    const targetSelector = "#shopify-section-template--24036272374104__sticky_atc_LUxL8b";
+    const targetSelector =
+      "#shopify-section-template--24036272374104__sticky_atc_LUxL8b";
     const childSelector = "#custom_sticky_atc.custom_sticky_atc";
-  
+
     const observer = new MutationObserver((mutationsList, observer) => {
-      const parentElement = this.document.querySelector(targetSelector) as HTMLElement | null;
-  
+      const parentElement = this.document.querySelector(
+        targetSelector
+      ) as HTMLElement | null;
+
       if (parentElement) {
-        const childElement = parentElement.querySelector(childSelector) as HTMLElement | null;
-  
+        const childElement = parentElement.querySelector(
+          childSelector
+        ) as HTMLElement | null;
+
         if (childElement) {
-          childElement.style.removeProperty("display");
+          childElement.style.setProperty("display", "block", "important");
           observer.disconnect();
         }
       }
     });
-  
+
     observer.observe(this.document.body, {
       childList: true,
       subtree: true,
     });
   }
-  
+
   private removeInlineStylesKarambit(): void {
     const elements = this.document.querySelectorAll<HTMLElement>(
       ".kb-hero-slider__item.slick-slide"
@@ -2331,58 +2336,57 @@ export default class AnitaScreenShotFixes {
         });
       }, 2000);
     }
-  }private removeDisplayNoneFromGlueBentgo(): void {
-    const ancestor: HTMLElement | null = this.document.querySelector('.swatch.clearfix');
-  
+  }
+  private removeDisplayNoneFromGlueBentgo(): void {
+    const ancestor: HTMLElement | null =
+      this.document.querySelector(".swatch.clearfix");
+
     if (ancestor) {
-      const targetElement: HTMLElement | null = ancestor.querySelector('.os-content-glue');
-  
-      if (targetElement && targetElement.style.display === 'none') {
-        targetElement.style.display = '';
+      const targetElement: HTMLElement | null =
+        ancestor.querySelector(".os-content-glue");
+
+      if (targetElement && targetElement.style.display === "none") {
+        targetElement.style.display = "";
       }
     }
   }
 
   private observeAndSetSecondSiblingPaddingBentgo(): void {
-    const targetSelector: string = '.aph_bar_bar#bar533678';
+    const targetSelector: string = ".aph_bar_bar#bar533678";
 
     const observer = new MutationObserver(() => {
-      const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
-  
+      const targetElement: HTMLElement | null =
+        this.document.querySelector(targetSelector);
+
       if (targetElement) {
-        let sibling: HTMLElement | null = targetElement.nextElementSibling as HTMLElement;
-  
+        let sibling: HTMLElement | null =
+          targetElement.nextElementSibling as HTMLElement;
+
         if (sibling) {
           sibling = sibling.nextElementSibling as HTMLElement;
-  
-          if (sibling && sibling.tagName === 'DIV') {
-            sibling.style.setProperty('padding-top', '40px', 'important');
+
+          if (sibling && sibling.tagName === "DIV") {
+            sibling.style.setProperty("padding-top", "40px", "important");
           }
         }
       }
     });
-  
+
     const config = { childList: true, subtree: true };
-  
+
     observer.observe(this.document.body, config);
   }
   private removeHeightInlineStyleEraofnature(): void {
-    const targetSelector: string = '.scm-reviews-importer-iframe.sma-load-iframe.main-widget-product';
-  
+    const targetSelector: string =
+      ".scm-reviews-importer-iframe.sma-load-iframe.main-widget-product";
+
     setTimeout(() => {
-      const elements: NodeListOf<HTMLElement> = this.document.querySelectorAll(targetSelector);
-  
+      const elements: NodeListOf<HTMLElement> =
+        this.document.querySelectorAll(targetSelector);
+
       elements.forEach((element: HTMLElement) => {
-        element.style.removeProperty('height');
+        element.style.removeProperty("height");
       });
     }, 2000);
   }
-  
-  
-  
-  
-
-  
-  
-  
 }
