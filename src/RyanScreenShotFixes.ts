@@ -155,7 +155,6 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustPageOverlay();
       this.adjustScrollShadowElements();
       this.togglePanelCollapse();
-      this.adjustOwlStageStyles();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3123,25 +3122,6 @@ export default class RyanScreenshotFixes extends Common {
                 const thumbnails = shadow.querySelector('#Product-Thumbnails.product-thumbnail-container') as HTMLElement;
                 if (thumbnails) {
                     ['height', 'overflow'].forEach(prop => thumbnails.style.removeProperty(prop));
-                }
-            });
-        } catch (error) {
-            return;
-        }
-    }, 500);
-  }
-
-  private adjustOwlStageStyles() {
-    setTimeout(() => {
-        try {
-            const stageOuters = this.dom.querySelectorAll('.owl-stage-outer');
-            if (!stageOuters.length) return;
- 
-            stageOuters.forEach(outer => {
-                const stage = outer.querySelector('.owl-stage') as HTMLElement;
-                if (stage) {
-                    stage.style.removeProperty('width');
-                    stage.style.removeProperty('transform');
                 }
             });
         } catch (error) {

@@ -1528,6 +1528,27 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  //Mr Moxeys
+  private MrMoxeysadjustOwlStageStyles = () => {
+    setTimeout(() => {
+        try {
+            const stageOuters = this.dom.querySelectorAll<HTMLElement>('.owl-stage-outer');
+            stageOuters.forEach(outer => {
+                const stage = outer.querySelector<HTMLElement>('.owl-stage');
+                if (stage) {
+                    stage.style.setProperty('width', '2780px', 'important');
+                    stage.style.setProperty('transform', 'translate3d(-860px, 0px, 0px)', 'important');
+ 
+                    const owlItems = stage.querySelectorAll<HTMLElement>('.owl-item');
+                    owlItems.forEach(item => {
+                        item.style.setProperty('width', 'auto', 'important');
+                    });
+                }
+            });
+        } catch (error) {}
+    }, 500);
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1600,6 +1621,7 @@ class ScreenshotFixes extends Common {
       { ids: [174], functions: [this.setImagesVisible] },
       { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
+      { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
