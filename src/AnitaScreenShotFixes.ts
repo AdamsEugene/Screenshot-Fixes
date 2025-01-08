@@ -2070,7 +2070,7 @@ export default class AnitaScreenShotFixes {
   private showCustomStickyAtcAerify(): void {
     const targetSelector =
       "#shopify-section-template--24036272374104__sticky_atc_LUxL8b";
-    const childSelector = "#custom_sticky_atc.custom_sticky_atc";
+    const childSelector = ".custom_sticky_atc";
 
     const observer = new MutationObserver((mutationsList, observer) => {
       const parentElement = this.document.querySelector(
