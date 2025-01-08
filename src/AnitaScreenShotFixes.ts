@@ -2045,19 +2045,22 @@ export default class AnitaScreenShotFixes {
   }
   private setGradientDisplayToBlockFourth(): void {
     const elements = this.document.querySelectorAll(
-      ".box.box-background.box-background-position-center_center.bg-lazy.bg-loaded"
+        ".box.box-background.box-background-position-center_center.bg-lazy.bg-loaded"
     );
 
-    elements.forEach((element) => {
-      const child = element.querySelector(
-        ".gradient.gradient-offwhite"
-      ) as HTMLElement;
+    setTimeout(() => {
+        elements.forEach((element) => {
+            const child = element.querySelector(
+                ".gradient.gradient-offwhite"
+            ) as HTMLElement;
 
-      if (child) {
-        child.style.setProperty("display", "block", "important");
-      }
-    });
-  }
+            if (child) {
+                child.style.setProperty("display", "block", "important");
+            }
+        });
+    }, 2000); 
+}
+
   private adjustVerifiedBadgeWidthLittleCuriousMinds(): void {
     const element = this.document.querySelector(
       ".product__customer-review-verified-badge img"
