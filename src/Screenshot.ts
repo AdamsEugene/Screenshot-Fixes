@@ -4,6 +4,7 @@ import ForsonScreenshotFixes from "./ForsonScreenshotFixes";
 import JesseScreenShotFixes from "./JesseScreenShotFixes";
 import AnitaScreenShotFixes from "./AnitaScreenShotFixes";
 import RyanScreenShotFixes from "./RyanScreenShotFixes";
+import FortuneScreenshotFixes from "./FortuneScreenShotFixes";
 import Common from "./Common";
 import snippets from "./custom.snippets.json";
 import styles from "./cssSnippets.json";
@@ -131,6 +132,9 @@ class ScreenshotFixes extends Common {
 
     const bensonScreenShotFixesInstance = new BensonScreenshotFixes(this.dom);
     bensonScreenShotFixesInstance.init(containerId, debugMode);
+
+    const fortuneScreenShotFixesInstance = new FortuneScreenshotFixes(this.dom);
+    fortuneScreenShotFixesInstance.init(containerId, debugMode);
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
