@@ -147,7 +147,6 @@ export default class AnitaScreenShotFixes {
     this.hideMobileHeaderSectionCuratedChrome();
     this.setGradientDisplayToBlockFourth();
     this.adjustVerifiedBadgeWidthLittleCuriousMinds();
-    this.showCustomStickyAtcAerify();
     this.removeInlineStylesKarambit();
     this.setSlickTrackWidthKarambit();
     this.removeWidthFromObjfitKarambit();
@@ -167,6 +166,7 @@ export default class AnitaScreenShotFixes {
     this.removeDisplayNoneFromGlueBentgo();
     this.observeAndSetSecondSiblingPaddingBentgo();
     this.removeHeightInlineStyleEraofnature();
+    this.showCustomStickyAtcAerify();
   }
 
   private log(message: string, ...optionalParams: any[]): void {
@@ -2068,22 +2068,28 @@ export default class AnitaScreenShotFixes {
     }
   }
   private showCustomStickyAtcAerify(): void {
-    setTimeout(() => {
-      const parentElement = this.document.querySelector(
-        "#shopify-section-template--24036272374104__sticky_atc_LUxL8b"
-      ) as HTMLElement | null;
-
+    const targetSelector = "#shopify-section-template--24036272374104__sticky_atc_LUxL8b";
+    const childSelector = "#custom_sticky_atc.custom_sticky_atc";
+  
+    const observer = new MutationObserver((mutationsList, observer) => {
+      const parentElement = this.document.querySelector(targetSelector) as HTMLElement | null;
+  
       if (parentElement) {
-        const childElement = parentElement.querySelector(
-          "#custom_sticky_atc.custom_sticky_atc"
-        ) as HTMLElement | null;
-
+        const childElement = parentElement.querySelector(childSelector) as HTMLElement | null;
+  
         if (childElement) {
           childElement.style.removeProperty("display");
+          observer.disconnect();
         }
       }
-    }, 5000);
+    });
+  
+    observer.observe(this.document.body, {
+      childList: true,
+      subtree: true,
+    });
   }
+  
   private removeInlineStylesKarambit(): void {
     const elements = this.document.querySelectorAll<HTMLElement>(
       ".kb-hero-slider__item.slick-slide"
