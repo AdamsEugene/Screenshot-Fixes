@@ -139,7 +139,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustGemSliderOverflow();
       this.adjustYotpoWidget();
       this.adjustProductPadding();
-      this.ToolnutadjustHamburgerDisplay();
+      // this.ToolnutadjustHamburgerDisplay();
       this.adjustNavigationDisplay();
       this.handleHamburgerMenuClick();
       this.createProductImages();
@@ -2842,18 +2842,18 @@ export default class RyanScreenshotFixes extends Common {
     }, 500);
   }
 
-  private ToolnutadjustHamburgerDisplay() {
-    setInterval(() => {
-        try {
-            const hamburger = this.dom.querySelector('#main-hamberger.ninjamenus-top-triggered') as HTMLElement;
-            if (!hamburger) return;
+  // private ToolnutadjustHamburgerDisplay() {
+  //   setInterval(() => {
+  //       try {
+  //           const hamburger = this.dom.querySelector('#main-hamberger.ninjamenus-top-triggered') as HTMLElement;
+  //           if (!hamburger) return;
  
-            hamburger.style.setProperty('display', 'flex', 'important');
-        } catch (error) {
-            return;
-        }
-    }, 500);
-  }
+  //           hamburger.style.setProperty('display', 'flex', 'important');
+  //       } catch (error) {
+  //           return;
+  //       }
+  //   }, 500);
+  // }
 
   private adjustNavigationDisplay() {
     try {
