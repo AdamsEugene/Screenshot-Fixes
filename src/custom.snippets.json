@@ -457,6 +457,15 @@
     }
   },
   {
+    "selector": "#main-content",
+    "content": {
+      "idSite": 2886,
+      "idSiteHsr": 8079242,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.zeroco.com-pages-make-2025-count-main.html"
+    }
+  },
+  {
     "selector": "#reviews",
     "content": {
       "idSite": 2880,
@@ -957,12 +966,12 @@
     }
   },
   {
-    "selector": "#shopify-section-template--24346357956987__product_custom_app_review_8ekG6W",
+    "selector": ".plp_filter_with_grid",
     "content": {
-      "idSite": 3066,
-      "idSiteHsr": 8062474,
+      "idSite": 3114,
+      "idSiteHsr": 8530129,
       "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/fabuwellness.com-products-fabu-shrooms-meno-peri-main.html"
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.rumpl.com-collections-puffy-blankets-main.html"
     }
   }
 ]

@@ -154,6 +154,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustStickyButtonVisibility();
       this.adjustPageOverlay();
       this.adjustScrollShadowElements();
+      this.togglePanelCollapse();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3092,6 +3093,25 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 500);
+  }
+
+  private togglePanelCollapse() {
+    try {
+        const panels = this.dom.querySelectorAll('.panel.panel-default');
+
+        panels.forEach(panel => {
+            const heading = panel.querySelector('.panel-heading');
+            const collapsible = panel.querySelector('.panel-collapse.collapse');
+
+            if (heading && collapsible) {
+                heading.addEventListener('click', () => {
+                    collapsible.classList.toggle('show');
+                });
+            }
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   private adjustScrollShadowElements() {

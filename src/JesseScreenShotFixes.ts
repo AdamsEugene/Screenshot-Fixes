@@ -8,7 +8,6 @@ export default class JesseScreenShotFixes extends Common {
     this.exec({ containerId, debugMode, func });
   }
 
-  // Burga US Phone Cases.. fixes a loading overlay issue
   private changeAfterBackgroundToTransparent() {
     try {
       const loadingBody = this.dom.querySelector(
