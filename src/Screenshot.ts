@@ -43,6 +43,7 @@ class ScreenshotFixes extends Common {
     () => this.riequipupdateHeaderClass(),
     () => this.runFunctionsForIdSiteDesktop(),
     () => this.SassysaintstoggleHeaderElements(),
+    () => this.adjustNinjaMenuClasses(),
   ];
 
   mobileFunctions = [
@@ -402,6 +403,38 @@ class ScreenshotFixes extends Common {
                 (desktopElement as HTMLElement).style.display = 'flex';
             }
         });
+  }
+
+  //ToolNut
+  private adjustNinjaMenuClasses() {
+    try {
+        this.dom.querySelectorAll('.sections.nav-sections.ninjamenus-mobile-wrapper')
+            .forEach((wrapper) => {
+                wrapper.classList.remove('ninjamenus-mobile-wrapper');
+                wrapper.classList.add('ninjamenus-desktop-wrapper');
+                
+                const ninjaMenu = wrapper.querySelector('.navigation .ninjamenus.ninjamenus-vertical.ninjamenus-mobile-drilldown.ninjamenus-top.ninjamenus-drilldown.ninjamenus-mobile');
+                if (ninjaMenu) {
+                    ninjaMenu.classList.remove('ninjamenus-drilldown', 'ninjamenus-mobile');
+                    ninjaMenu.classList.add('ninjamenus-desktop');
+                }
+            });
+ 
+        this.dom.querySelectorAll('.magezon-builder .left_edge_menu_bar').forEach(menu => {
+            ['mouseenter', 'mouseleave'].forEach(event => {
+                menu.addEventListener(event, () => {
+                    const submenu = menu.querySelector('.item-submenu') as HTMLElement;
+                    if (submenu) {
+                        event === 'mouseenter' ? 
+                            submenu.style.setProperty('display', 'block', 'important') : 
+                            submenu.style.removeProperty('display');
+                    }
+                });
+            });
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   private removeIdFromLogo() {
@@ -1528,6 +1561,27 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  //Mr Moxeys
+  private MrMoxeysadjustOwlStageStyles = () => {
+    setTimeout(() => {
+        try {
+            const stageOuters = this.dom.querySelectorAll<HTMLElement>('.owl-stage-outer');
+            stageOuters.forEach(outer => {
+                const stage = outer.querySelector<HTMLElement>('.owl-stage');
+                if (stage) {
+                    stage.style.setProperty('width', '2780px', 'important');
+                    stage.style.setProperty('transform', 'translate3d(-860px, 0px, 0px)', 'important');
+ 
+                    const owlItems = stage.querySelectorAll<HTMLElement>('.owl-item');
+                    owlItems.forEach(item => {
+                        item.style.setProperty('width', 'auto', 'important');
+                    });
+                }
+            });
+        } catch (error) {}
+    }, 500);
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1600,6 +1654,7 @@ class ScreenshotFixes extends Common {
       { ids: [174], functions: [this.setImagesVisible] },
       { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
+      { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
