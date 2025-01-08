@@ -43,6 +43,7 @@ class ScreenshotFixes extends Common {
     () => this.riequipupdateHeaderClass(),
     () => this.runFunctionsForIdSiteDesktop(),
     () => this.SassysaintstoggleHeaderElements(),
+    () => this.adjustNinjaMenuClasses(),
   ];
 
   mobileFunctions = [
@@ -402,6 +403,38 @@ class ScreenshotFixes extends Common {
                 (desktopElement as HTMLElement).style.display = 'flex';
             }
         });
+  }
+
+  //ToolNut
+  private adjustNinjaMenuClasses() {
+    try {
+        this.dom.querySelectorAll('.sections.nav-sections.ninjamenus-mobile-wrapper')
+            .forEach((wrapper) => {
+                wrapper.classList.remove('ninjamenus-mobile-wrapper');
+                wrapper.classList.add('ninjamenus-desktop-wrapper');
+                
+                const ninjaMenu = wrapper.querySelector('.navigation .ninjamenus.ninjamenus-vertical.ninjamenus-mobile-drilldown.ninjamenus-top.ninjamenus-drilldown.ninjamenus-mobile');
+                if (ninjaMenu) {
+                    ninjaMenu.classList.remove('ninjamenus-drilldown', 'ninjamenus-mobile');
+                    ninjaMenu.classList.add('ninjamenus-desktop');
+                }
+            });
+ 
+        this.dom.querySelectorAll('.magezon-builder .left_edge_menu_bar').forEach(menu => {
+            ['mouseenter', 'mouseleave'].forEach(event => {
+                menu.addEventListener(event, () => {
+                    const submenu = menu.querySelector('.item-submenu') as HTMLElement;
+                    if (submenu) {
+                        event === 'mouseenter' ? 
+                            submenu.style.setProperty('display', 'block', 'important') : 
+                            submenu.style.removeProperty('display');
+                    }
+                });
+            });
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   private removeIdFromLogo() {
