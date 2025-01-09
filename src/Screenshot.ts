@@ -10,6 +10,7 @@ import snippets from "./custom.snippets.json";
 import styles from "./cssSnippets.json";
 import { JsonEntry } from "./@types";
 import BensonScreenshotFixes from "./BensonScreenShotFixes";
+import JoeScreenShotFixes from "./JoeScreenShotFixes"
 
 class ScreenshotFixes extends Common {
   constructor(debugMode = false) {
@@ -136,6 +137,9 @@ class ScreenshotFixes extends Common {
 
     const fortuneScreenShotFixesInstance = new FortuneScreenshotFixes(this.dom);
     fortuneScreenShotFixesInstance.init(containerId, debugMode);
+
+    const joeScreenShotFixes  = new JoeScreenShotFixes(this.dom) 
+    joeScreenShotFixes.init(containerId, debugMode)
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
