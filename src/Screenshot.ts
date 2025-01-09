@@ -1748,6 +1748,7 @@ class ScreenshotFixes extends Common {
       { ids: [179], functions: [this.TheOodiesetSlickTrackWidths] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
