@@ -43,6 +43,7 @@ class ScreenshotFixes extends Common {
     () => this.riequipupdateHeaderClass(),
     () => this.runFunctionsForIdSiteDesktop(),
     () => this.SassysaintstoggleHeaderElements(),
+    () => this.adjustNinjaMenuClasses(),
   ];
 
   mobileFunctions = [
@@ -402,6 +403,38 @@ class ScreenshotFixes extends Common {
                 (desktopElement as HTMLElement).style.display = 'flex';
             }
         });
+  }
+
+  //ToolNut
+  private adjustNinjaMenuClasses() {
+    try {
+        this.dom.querySelectorAll('.sections.nav-sections.ninjamenus-mobile-wrapper')
+            .forEach((wrapper) => {
+                wrapper.classList.remove('ninjamenus-mobile-wrapper');
+                wrapper.classList.add('ninjamenus-desktop-wrapper');
+                
+                const ninjaMenu = wrapper.querySelector('.navigation .ninjamenus.ninjamenus-vertical.ninjamenus-mobile-drilldown.ninjamenus-top.ninjamenus-drilldown.ninjamenus-mobile');
+                if (ninjaMenu) {
+                    ninjaMenu.classList.remove('ninjamenus-drilldown', 'ninjamenus-mobile');
+                    ninjaMenu.classList.add('ninjamenus-desktop');
+                }
+            });
+ 
+        this.dom.querySelectorAll('.magezon-builder .left_edge_menu_bar').forEach(menu => {
+            ['mouseenter', 'mouseleave'].forEach(event => {
+                menu.addEventListener(event, () => {
+                    const submenu = menu.querySelector('.item-submenu') as HTMLElement;
+                    if (submenu) {
+                        event === 'mouseenter' ? 
+                            submenu.style.setProperty('display', 'block', 'important') : 
+                            submenu.style.removeProperty('display');
+                    }
+                });
+            });
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   private removeIdFromLogo() {
@@ -1528,6 +1561,73 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  //Mr Moxeys
+  private MrMoxeysadjustOwlStageStyles = () => {
+    setTimeout(() => {
+        try {
+            const stageOuters = this.dom.querySelectorAll<HTMLElement>('.owl-stage-outer');
+            stageOuters.forEach(outer => {
+                const stage = outer.querySelector<HTMLElement>('.owl-stage');
+                if (stage) {
+                    stage.style.setProperty('width', '2780px', 'important');
+                    stage.style.setProperty('transform', 'translate3d(-860px, 0px, 0px)', 'important');
+ 
+                    const owlItems = stage.querySelectorAll<HTMLElement>('.owl-item');
+                    owlItems.forEach(item => {
+                        item.style.setProperty('width', 'auto', 'important');
+                    });
+                }
+            });
+        } catch (error) {}
+    }, 500);
+  };
+
+  //Daily Rhythm
+  private DailyRhythmadjustMainContentOverflow = () => {
+    setTimeout(() => {
+        try {
+            const mainContent = this.dom.querySelector<HTMLElement>('#MainContent.page-layout__main');
+            if (mainContent) {
+                mainContent.style.removeProperty('overflow');
+            }
+        } catch (error) {}
+    }, 500);
+  };
+
+  //Breeo
+  private BreeoadjustUpsellAndCardElements = () => {
+    try {
+        const upsellSection = this.dom.querySelector<HTMLElement>('#shopify-section-template--16295038943277__product_upsell_eDkb4p.upsell_section');
+        if (upsellSection) {
+            upsellSection.style.setProperty('display', 'block');
+        }
+ 
+        const productCards = this.dom.querySelectorAll('.unstyled-link.product-card-link');
+        productCards.forEach(card => {
+            const media = card.querySelector<HTMLElement>('.card-media');
+            if (media) {
+                media.style.removeProperty('padding-top');
+            }
+        });
+    } catch (error) {}
+  };
+
+  //The Oodie
+  private TheOodiesetSlickTrackWidths = () => {
+    setInterval(() => {
+        try {
+            const tracks = this.dom.querySelectorAll<HTMLElement>('.slick-list.draggable .slick-track');
+            
+            tracks.forEach(track => {
+                const actualWidth = track.getAttribute('actualwidth');
+                if (actualWidth) {
+                    track.style.setProperty('width', actualWidth);
+                }
+            });
+        } catch (error) {}
+    }, 100);
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1600,6 +1700,10 @@ class ScreenshotFixes extends Common {
       { ids: [174], functions: [this.setImagesVisible] },
       { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
+      { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
+      { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
+      { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
+      { ids: [179], functions: [this.TheOodiesetSlickTrackWidths] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];

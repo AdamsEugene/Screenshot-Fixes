@@ -139,7 +139,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustGemSliderOverflow();
       this.adjustYotpoWidget();
       this.adjustProductPadding();
-      this.ToolnutadjustHamburgerDisplay();
+      // this.ToolnutadjustHamburgerDisplay();
       this.adjustNavigationDisplay();
       this.handleHamburgerMenuClick();
       this.createProductImages();
@@ -154,6 +154,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustStickyButtonVisibility();
       this.adjustPageOverlay();
       this.adjustScrollShadowElements();
+      this.togglePanelCollapse();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -2841,18 +2842,18 @@ export default class RyanScreenshotFixes extends Common {
     }, 500);
   }
 
-  private ToolnutadjustHamburgerDisplay() {
-    setInterval(() => {
-        try {
-            const hamburger = this.dom.querySelector('#main-hamberger.ninjamenus-top-triggered') as HTMLElement;
-            if (!hamburger) return;
+  // private ToolnutadjustHamburgerDisplay() {
+  //   setInterval(() => {
+  //       try {
+  //           const hamburger = this.dom.querySelector('#main-hamberger.ninjamenus-top-triggered') as HTMLElement;
+  //           if (!hamburger) return;
  
-            hamburger.style.setProperty('display', 'flex', 'important');
-        } catch (error) {
-            return;
-        }
-    }, 500);
-  }
+  //           hamburger.style.setProperty('display', 'flex', 'important');
+  //       } catch (error) {
+  //           return;
+  //       }
+  //   }, 500);
+  // }
 
   private adjustNavigationDisplay() {
     try {
@@ -3092,6 +3093,25 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 500);
+  }
+
+  private togglePanelCollapse() {
+    try {
+        const panels = this.dom.querySelectorAll('.panel.panel-default');
+
+        panels.forEach(panel => {
+            const heading = panel.querySelector('.panel-heading');
+            const collapsible = panel.querySelector('.panel-collapse.collapse');
+
+            if (heading && collapsible) {
+                heading.addEventListener('click', () => {
+                    collapsible.classList.toggle('show');
+                });
+            }
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   private adjustScrollShadowElements() {
