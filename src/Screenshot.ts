@@ -1701,6 +1701,14 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  // Ketone : 2928
+  private updateWithOfTestimonialImages = () => {
+    try {
+        this.dom.querySelectorAll<HTMLImageElement>("img.testimonial-image")
+        .forEach(element => element.style.width="100%")
+    } catch (error) {}
+  }
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1759,7 +1767,10 @@ class ScreenshotFixes extends Common {
     const functionGroups: {
       ids: number[];
       functions: (() => void)[];
-    }[] = [{ ids: [2925], functions: [this.fixHeroSectionOfSmel] }];
+    }[] = [
+      { ids: [2925], functions: [this.fixHeroSectionOfSmel] },
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
+    ];
 
     const map: Record<number, (() => void)[]> = {};
 
