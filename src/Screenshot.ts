@@ -1594,6 +1594,24 @@ class ScreenshotFixes extends Common {
     }, 500);
   };
 
+  //Breeo
+  private BreeoadjustUpsellAndCardElements = () => {
+    try {
+        const upsellSection = this.dom.querySelector<HTMLElement>('#shopify-section-template--16295038943277__product_upsell_eDkb4p.upsell_section');
+        if (upsellSection) {
+            upsellSection.style.setProperty('display', 'block');
+        }
+ 
+        const productCards = this.dom.querySelectorAll('.unstyled-link.product-card-link');
+        productCards.forEach(card => {
+            const media = card.querySelector<HTMLElement>('.card-media');
+            if (media) {
+                media.style.removeProperty('padding-top');
+            }
+        });
+    } catch (error) {}
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1668,6 +1686,7 @@ class ScreenshotFixes extends Common {
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
+      { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
