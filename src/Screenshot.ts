@@ -1645,6 +1645,21 @@ class ScreenshotFixes extends Common {
     } catch (error) {}
   };
 
+  //Bentgo
+  private BentgoupdateHeaderPadding = () => {
+    setInterval(() => {
+        try {
+            const headerSection = this.dom.querySelector('#shopify-section-header');
+            if (headerSection) {
+                const pageHeader = headerSection.querySelector('.page-header.layout-center') as HTMLElement;
+                if (pageHeader) {
+                    pageHeader.style.setProperty('padding-top', '40px', 'important');
+                }
+            }
+        } catch (error) {}
+    }, 100);
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1764,7 +1779,8 @@ class ScreenshotFixes extends Common {
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
-      { ids: [2928], functions: [this.updateWithOfTestimonialImages] }
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
+      { ids: [3024], functions: [this.BentgoupdateHeaderPadding] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];

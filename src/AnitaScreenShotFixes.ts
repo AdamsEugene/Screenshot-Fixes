@@ -161,11 +161,11 @@ export default class AnitaScreenShotFixes {
     this.removeHeightFromGridItemsReachInternational();
     // this.setPaddingTopForLazyloadPlaceholders();
     this.reinitializeSlickSliderBentgo();
-    this.setPaddingTopForPageHeaderBentgo();
+    // this.setPaddingTopForPageHeaderBentgo();
     this.removeDisplayInlineStylesKetone();
     this.removeWidthInlineStylesFromTestimonialsKeto();
     this.removeDisplayNoneFromGlueBentgo();
-    this.observeAndSetSecondSiblingPaddingBentgo();
+    // this.observeAndSetSecondSiblingPaddingBentgo();
     this.removeHeightInlineStyleEraofnature();
   }
 
@@ -2284,17 +2284,17 @@ export default class AnitaScreenShotFixes {
     }, 3000);
   }
 
-  private setPaddingTopForPageHeaderBentgo(): void {
-    setTimeout(() => {
-      const element = this.document.querySelector<HTMLElement>(
-        ".page-header.layout-center"
-      );
+  // private setPaddingTopForPageHeaderBentgo(): void {
+  //   setTimeout(() => {
+  //     const element = this.document.querySelector<HTMLElement>(
+  //       ".page-header.layout-center"
+  //     );
 
-      if (element) {
-        element.style.setProperty("padding-top", "40px", "important");
-      }
-    }, 3000);
-  }
+  //     if (element) {
+  //       element.style.setProperty("padding-top", "40px", "important");
+  //     }
+  //   }, 3000);
+  // }
   private removeDisplayInlineStylesKetone(): void {
     const classSelector: string = ".navigation__padding.js-navigation-padding";
 
@@ -2337,29 +2337,29 @@ export default class AnitaScreenShotFixes {
     }
   }
 
-  private observeAndSetSecondSiblingPaddingBentgo(): void {
-    const targetSelector: string = '.aph_bar_bar#bar533678';
+  // private observeAndSetSecondSiblingPaddingBentgo(): void {
+  //   const targetSelector: string = '.aph_bar_bar#bar533678';
 
-    const observer = new MutationObserver(() => {
-      const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
+  //   const observer = new MutationObserver(() => {
+  //     const targetElement: HTMLElement | null = this.document.querySelector(targetSelector);
   
-      if (targetElement) {
-        let sibling: HTMLElement | null = targetElement.nextElementSibling as HTMLElement;
+  //     if (targetElement) {
+  //       let sibling: HTMLElement | null = targetElement.nextElementSibling as HTMLElement;
   
-        if (sibling) {
-          sibling = sibling.nextElementSibling as HTMLElement;
+  //       if (sibling) {
+  //         sibling = sibling.nextElementSibling as HTMLElement;
   
-          if (sibling && sibling.tagName === 'DIV') {
-            sibling.style.setProperty('padding-top', '40px', 'important');
-          }
-        }
-      }
-    });
+  //         if (sibling && sibling.tagName === 'DIV') {
+  //           sibling.style.setProperty('padding-top', '40px', 'important');
+  //         }
+  //       }
+  //     }
+  //   });
   
-    const config = { childList: true, subtree: true };
+  //   const config = { childList: true, subtree: true };
   
-    observer.observe(this.document.body, config);
-  }
+  //   observer.observe(this.document.body, config);
+  // }
   private removeHeightInlineStyleEraofnature(): void {
     const targetSelector: string = '.scm-reviews-importer-iframe.sma-load-iframe.main-widget-product';
   
