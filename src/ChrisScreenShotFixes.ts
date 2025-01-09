@@ -32,6 +32,8 @@ export default class ChrisScreenShotFixes {
     this.skinnyskinRemoveSwiperArrows();
     //unforgettable gadgets
     this.cleanUrlsInDocument(3017, 'proxy', undefined, false);
+    //posterprintshop
+    this.fixElementsNavbarAndHeaderElementor();
 
   }
 
@@ -267,6 +269,96 @@ private cleanUrlsInDocument(
   }
   
   log('Finished URL cleaning process');
+}
+
+
+private fixElementsNavbarAndHeaderElementor(customConfig: Partial<{
+  elements: Array<{
+      selector: string;
+      styles: Partial<CSSStyleDeclaration>;
+      innerSelector?: string;
+      innerStyles?: Partial<CSSStyleDeclaration>;
+      removeClasses?: string[];
+  }>;
+}> = {}): void {
+  try {
+      const defaultConfig = {
+          elements: [
+              {
+                  selector: '.elementor-hidden-desktop.e-con-boxed:not(.header-tag)',
+                  styles: {
+                      position: 'fixed',
+                      top: '0',
+                      left: '0',
+                      width: '100%',
+                      zIndex: '999'
+                  },
+                  innerSelector: '.e-con-inner',
+                  innerStyles: {
+                      width: '100%',
+                      maxWidth: '100%',
+                      padding: '10px 20px'
+                  },
+                  removeClasses: ['elementor-sticky--effects', 'elementor-sticky--active']
+              },
+              {
+                  selector: '.header-tag.elementor-hidden-desktop',
+                  styles: {
+                      position: 'fixed',
+                      top: '51px',
+                      left: '0',
+                      width: '100%',
+                      maxWidth: '100%',
+                      zIndex: '998',
+                      backgroundColor: '#fff',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  },
+                  innerSelector: '.e-con-inner',
+                  innerStyles: {
+                      width: '100%',
+                      maxWidth: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '10px 20px',
+                      margin: '0',
+                      minHeight: '53px'
+                  }
+              }
+          ]
+      };
+
+      // Merge custom config with default
+      const finalConfig = {
+          ...defaultConfig,
+          ...customConfig
+      };
+
+      finalConfig.elements.forEach((element): void => {
+          const targetElement: HTMLElement | null = document.querySelector(element.selector);
+          if (!targetElement) return;
+
+          // Apply main element styles
+          Object.assign(targetElement.style, element.styles);
+
+          // Remove classes if specified
+          if (element.removeClasses) {
+              element.removeClasses.forEach((className: string): void => {
+                  targetElement.classList.remove(className);
+              });
+          }
+
+          // Apply inner element styles if specified
+          if (element.innerSelector && element.innerStyles) {
+              const innerElement: HTMLElement | null = targetElement.querySelector(element.innerSelector);
+              if (innerElement) {
+                  Object.assign(innerElement.style, element.innerStyles);
+              }
+          }
+      });
+  } catch (_) {
+      // Silent error handling
+  }
 }
 
   public getElements(): HTMLElement[] {
