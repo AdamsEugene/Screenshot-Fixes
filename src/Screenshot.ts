@@ -1582,6 +1582,18 @@ class ScreenshotFixes extends Common {
     }, 500);
   };
 
+  //Daily Rhythm
+  private DailyRhythmadjustMainContentOverflow = () => {
+    setTimeout(() => {
+        try {
+            const mainContent = this.dom.querySelector<HTMLElement>('#MainContent.page-layout__main');
+            if (mainContent) {
+                mainContent.style.removeProperty('overflow');
+            }
+        } catch (error) {}
+    }, 500);
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1655,6 +1667,7 @@ class ScreenshotFixes extends Common {
       { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
+      { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
