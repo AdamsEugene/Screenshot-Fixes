@@ -1632,6 +1632,15 @@ class ScreenshotFixes extends Common {
     }, 100);
   };
 
+  //Brunt
+  private BruntupdateLazyPictureStyle = () => {
+    try {
+        const style = document.createElement('style');
+        style.textContent = '.lazyPicture::before { display: none !important; }';
+        this.dom.head.appendChild(style);
+    } catch (error) {}
+  };
+
   //Remi
   private removeHeightFromProductCardDetails = () => {
     try{
@@ -1745,7 +1754,8 @@ class ScreenshotFixes extends Common {
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
-      { ids: [179], functions: [this.TheOodiesetSlickTrackWidths] },
+      { ids: [179, 1932], functions: [this.TheOodiesetSlickTrackWidths] },
+      { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] }
