@@ -973,5 +973,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.rumpl.com-collections-puffy-blankets-main.html"
     }
+  },
+  {
+    "selector": ".product-form__buttons",
+    "content": {
+      "idSite": 3008,
+      "idSiteHsr": 7214532,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nodpod.com-products-nodpod-main.html"
+    }
   }
 ]
