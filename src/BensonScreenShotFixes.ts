@@ -5,6 +5,7 @@ export default class BensonScreenshotFixes extends Common {
     const func = () => {
       this.DaisyLondonRemoveWidthFromSlickTrack();
       this.run(this.PetsmonRemoveDuplicateFooters());
+      this.RnnrRemoveCollectionLoadingClassAfterLoad();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -49,5 +50,19 @@ export default class BensonScreenshotFixes extends Common {
         footer.remove();
       }
     });
+  }
+
+  // Runny Hats: 3060
+  private RnnrRemoveCollectionLoadingClassAfterLoad() {
+    setInterval(() => {
+    try {
+      const targetElement = this.dom.querySelectorAll<HTMLElement>(".collection__loading");
+      if (targetElement.length > 0) {
+        targetElement.forEach((element) => {
+          element.style.opacity = "0"; 
+        })
+      }
+    } catch (error) {}
+    }, 1000);
   }
 }
