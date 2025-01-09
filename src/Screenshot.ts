@@ -1669,8 +1669,8 @@ class ScreenshotFixes extends Common {
 
   // JuicerVille: 3086
   private useActualHeightForHeroVideo = () => {
+    setInterval(() => {
     try {
-
       const elements = this.dom.querySelectorAll<HTMLElement>('#template--17074751373524__81be84c8-e058-419f-a0cc-47fc7a2c7bb8 > div');
       elements.forEach((element) => {
         const actualHeight = element.getAttribute("actualHeight");
@@ -1679,6 +1679,22 @@ class ScreenshotFixes extends Common {
         }
       });
     } catch (error) {}
+    }, 1000);
+  };
+
+  // She Birdie: 1656
+  private useActualHeightForIframeBirdie = () => {
+    setInterval(() => {
+      try {
+        const elements = this.dom.querySelectorAll<HTMLElement>('#looxReviewsFrame');
+        elements.forEach((element) => {
+          const actualHeight = element.getAttribute("actualHeight");
+          if (actualHeight) {
+            element.style.setProperty("height", actualHeight, "important");
+          }
+        });
+      } catch (error) {}
+    }, 1000);
   };
 
   private functionsMap: Record<number, (() => void)[]> =
@@ -1719,6 +1735,7 @@ class ScreenshotFixes extends Common {
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       { ids: [179], functions: [this.TheOodiesetSlickTrackWidths] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
+      { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
