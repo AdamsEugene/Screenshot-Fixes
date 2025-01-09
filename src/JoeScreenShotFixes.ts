@@ -3,9 +3,9 @@ import Common from "./Common";
 export default class JoeScreenshotFixes extends Common {
     public init(containerId: string, debugMode: boolean): void {
         const func = () => {
-            this.removeImagesWhiteOverlayRnnr()
-            this.removeBlackOverlayQueSkinCare()
-
+            this.removeImagesWhiteOverlayRnnr();
+            this.removeBlackOverlayQueSkinCare();
+            this.handleDesktopNavigationOverlapsFeelsGround();
         };
         this.exec({ containerId, debugMode, func });
     }
@@ -33,6 +33,23 @@ export default class JoeScreenshotFixes extends Common {
             if (modalBackdrop) {
                 modalBackdrop.classList.remove("show");
             }
+        } catch (error) {}
+    }
+
+    private handleDesktopNavigationOverlapsFeelsGround() {
+        try {
+            const elements = document.querySelectorAll(
+                ".nav__list-item.nav__list-item--has-child-nav"
+            ) as NodeListOf<HTMLElement>;
+
+            elements.forEach((element) => {
+                const childNav = element.querySelector(
+                    ".child-navigation"
+                ) as HTMLElement;
+                if (childNav) {
+                    childNav.style.display = "none";
+                }
+            });
         } catch (error) {}
     }
 }
