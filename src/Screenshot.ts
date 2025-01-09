@@ -1680,6 +1680,44 @@ class ScreenshotFixes extends Common {
     }
   };
 
+  // JuicerVille: 3086
+  private useActualHeightForHeroVideo = () => {
+    setInterval(() => {
+    try {
+      const elements = this.dom.querySelectorAll<HTMLElement>('#template--17074751373524__81be84c8-e058-419f-a0cc-47fc7a2c7bb8 > div');
+      elements.forEach((element) => {
+        const actualHeight = element.getAttribute("actualHeight");
+        if (actualHeight) {
+          element.style.setProperty("height", actualHeight, "important");
+        }
+      });
+    } catch (error) {}
+    }, 1000);
+  };
+
+  // She Birdie: 1656
+  private useActualHeightForIframeBirdie = () => {
+    setInterval(() => {
+      try {
+        const elements = this.dom.querySelectorAll<HTMLElement>('#looxReviewsFrame');
+        elements.forEach((element) => {
+          const actualHeight = element.getAttribute("actualHeight");
+          if (actualHeight) {
+            element.style.setProperty("height", actualHeight, "important");
+          }
+        });
+      } catch (error) {}
+    }, 1000);
+  };
+
+  // Ketone : 2928
+  private updateWithOfTestimonialImages = () => {
+    try {
+        this.dom.querySelectorAll<HTMLImageElement>("img.testimonial-image")
+        .forEach(element => element.style.width="100%")
+    } catch (error) {}
+  }
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1718,6 +1756,9 @@ class ScreenshotFixes extends Common {
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       { ids: [179, 1932], functions: [this.TheOodiesetSlickTrackWidths] },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
+      { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
+      { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
@@ -1737,7 +1778,10 @@ class ScreenshotFixes extends Common {
     const functionGroups: {
       ids: number[];
       functions: (() => void)[];
-    }[] = [{ ids: [2925], functions: [this.fixHeroSectionOfSmel] }];
+    }[] = [
+      { ids: [2925], functions: [this.fixHeroSectionOfSmel] },
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
+    ];
 
     const map: Record<number, (() => void)[]> = {};
 
