@@ -1712,10 +1712,12 @@ class ScreenshotFixes extends Common {
 
   // Ketone : 2928
   private updateWithOfTestimonialImages = () => {
-    try {
+    setInterval(() => {
+      try {
         this.dom.querySelectorAll<HTMLImageElement>("img.testimonial-image")
         .forEach(element => element.style.width="100%")
-    } catch (error) {}
+      } catch (error) {}
+    }, 1000)
   }
 
   private functionsMap: Record<number, (() => void)[]> =
