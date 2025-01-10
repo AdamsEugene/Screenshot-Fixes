@@ -335,7 +335,7 @@ private fixElementsNavbarAndHeaderElementor(customConfig: Partial<{
       };
 
       finalConfig.elements.forEach((element): void => {
-          const targetElement: HTMLElement | null = document.querySelector(element.selector);
+          const targetElement: HTMLElement | null = this.document.querySelector(element.selector);
           if (!targetElement) return;
 
           // Apply main element styles
