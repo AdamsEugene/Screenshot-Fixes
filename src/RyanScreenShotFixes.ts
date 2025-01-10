@@ -155,6 +155,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustPageOverlay();
       this.adjustScrollShadowElements();
       this.togglePanelCollapse();
+      this.BlauVerdeadjustNavigationDrawer();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3124,6 +3125,19 @@ export default class RyanScreenshotFixes extends Common {
                     ['height', 'overflow'].forEach(prop => thumbnails.style.removeProperty(prop));
                 }
             });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //BlauVerde
+  private BlauVerdeadjustNavigationDrawer() {
+    setTimeout(() => {
+        try {
+            const menuDrawer = this.dom.querySelector('#Navigation-drawer-header.drawer__container #Navigation-menu-drawer-header') as HTMLElement;
+            if (!menuDrawer) return;
+            menuDrawer.removeAttribute('style');
         } catch (error) {
             return;
         }
