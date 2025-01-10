@@ -1636,6 +1636,26 @@ class ScreenshotFixes extends Common {
     }, 100);
   };
 
+  //Blocout
+  private BlocoutsetSlickTrackWidths = () => {
+    setInterval(() => {
+        try {
+            const tracks = this.dom.querySelectorAll<HTMLElement>('.slick-initialized.slick-slider .slick-list.draggable');
+            tracks.forEach(track => {
+                track.style.removeProperty('overflow');
+            });
+
+            const gallerySlides = this.dom.querySelectorAll('.product-gallery-slide__inner');
+            gallerySlides.forEach(slide => {
+                const image = slide.querySelector('img') as HTMLElement;
+                if (image) {
+                    image.style.removeProperty('height');
+                }
+            });
+        } catch (error) {}
+    }, 100);
+  };
+
   //Brunt
   private BruntupdateLazyPictureStyle = () => {
     try {
@@ -1780,7 +1800,8 @@ class ScreenshotFixes extends Common {
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
-      { ids: [3024], functions: [this.BentgoupdateHeaderPadding] }
+      { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
+      { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
