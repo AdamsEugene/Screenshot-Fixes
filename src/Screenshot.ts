@@ -1769,9 +1769,7 @@ class ScreenshotFixes extends Common {
         targetElements.forEach((element) => {
           element.style.removeProperty("display");
         });
-      } catch (error) {
-        console.error(error)
-      }
+      } catch (error) {}
     }, 1000);
   }
 
