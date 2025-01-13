@@ -1759,6 +1759,20 @@ class ScreenshotFixes extends Common {
     }, 1000)
   }
 
+  // Eden Boost: 2721
+  private RemoveOkeCarouselDisplay = () => {
+    setInterval(() => {
+      try {
+        const targetElements = this.dom.querySelectorAll<HTMLElement>(
+          "[data-oke-carousel]"
+        );
+        targetElements.forEach((element) => {
+          element.style.removeProperty("display");
+        });
+      } catch (error) {}
+    }, 1000);
+  }
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1801,7 +1815,8 @@ class ScreenshotFixes extends Common {
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
       { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
-      { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] }
+      { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
+      { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
