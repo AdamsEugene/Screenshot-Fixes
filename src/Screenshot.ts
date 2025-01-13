@@ -1633,7 +1633,7 @@ class ScreenshotFixes extends Common {
                 }
             });
         } catch (error) {}
-    }, 100);
+    }, 50);
   };
 
   //Blocout
