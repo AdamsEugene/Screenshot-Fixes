@@ -7,6 +7,7 @@ export default class BensonScreenshotFixes extends Common {
       this.run(this.PetsmonRemoveDuplicateFooters());
       this.RnnrRemoveCollectionLoadingClassAfterLoad();
       this.run(this.DialectRemoveOpacityOfPickerDropdown());
+      this.run(this.TalkTheTalkAccordionIconDisplay());
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -75,5 +76,14 @@ export default class BensonScreenshotFixes extends Common {
           element.style.opacity = "0"; 
         })
       }
+  }
+
+  // TalkTheTalk: 2947
+  private TalkTheTalkAccordionIconDisplay() {
+    const targetElements = this.dom.querySelectorAll<HTMLElement>(".accordion-item .plus__horizontal-line, .accordion-item .minus__vertical-line");
+
+    targetElements.forEach((element) => {
+      element.style.display = "initial";
+    });
   }
 }
