@@ -38,13 +38,13 @@ export default class JoeScreenshotFixes extends Common {
 
     private handleDesktopNavigationOverlapsFeelsGround() {
         try {
-            const elements = document.querySelectorAll(
+            const elements = this.dom.querySelectorAll(
                 ".nav__list-item.nav__list-item--has-child-nav"
             ) as NodeListOf<HTMLElement>;
 
             elements.forEach((element) => {
                 const childNav = element.querySelector(
-                    ".child-navigation"
+                    ".child-navigation.box-lightshadow"
                 ) as HTMLElement;
                 if (childNav) {
                     childNav.style.display = "none";
