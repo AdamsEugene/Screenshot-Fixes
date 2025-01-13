@@ -37,19 +37,21 @@ export default class JoeScreenshotFixes extends Common {
     }
 
     private handleDesktopNavigationOverlapsFeelsGround() {
-        try {
-            const elements = this.dom.querySelectorAll(
-                ".nav__list-item.nav__list-item--has-child-nav"
-            ) as NodeListOf<HTMLElement>;
+        setTimeout(() => {
+            try {
+                const elements = this.dom.querySelectorAll(
+                    ".nav__list-item.nav__list-item--has-child-nav"
+                ) as NodeListOf<HTMLElement>;
 
-            elements.forEach((element) => {
-                const childNav = element.querySelector(
-                    ".child-navigation.box-lightshadow"
-                ) as HTMLElement;
-                if (childNav) {
-                    childNav.style.display = "none";
-                }
-            });
-        } catch (error) {}
+                elements.forEach((element) => {
+                    const childNav = element.querySelector(
+                        ".child-navigation.box-lightshadow"
+                    ) as HTMLElement;
+                    if (childNav) {
+                        childNav.style.display = "none";
+                    }
+                });
+            } catch (error) {}
+        }, 1000);
     }
 }
