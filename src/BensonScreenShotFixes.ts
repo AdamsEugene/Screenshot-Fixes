@@ -86,7 +86,7 @@ export default class BensonScreenshotFixes extends Common {
     setInterval(() => {
       try {
         const targetElements = this.dom.querySelectorAll<HTMLElement>(
-          ".accordion-item .plus__horizontal-line, .accordion-item .minus__vertical-line"
+          ".accordion-item .plus__horizontal-line, .accordion-item .plus__vertical-line"
         );
         const dividers =
           this.dom.querySelectorAll<HTMLElement>(".accordion-divider");
