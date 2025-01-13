@@ -156,6 +156,7 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustScrollShadowElements();
       this.togglePanelCollapse();
       this.BlauVerdeadjustNavigationDrawer();
+      this.FleetRunsetBannerStyles();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3142,6 +3143,34 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 500);
+  }
+
+  //FleetRun
+  private FleetRunsetBannerStyles() {
+    setInterval(() => {
+      try {
+          const el1 = this.dom.querySelector('.relative.container.half-pad.animate-section.clearfix.up.go') as HTMLElement;
+          if (el1?.parentElement?.classList.contains('search-section')) {
+              Object.assign(el1.style, {position:'absolute', top:'0', width:'100%'});
+          }
+
+          const gliderSlides = this.dom.querySelectorAll('.glider-slide');
+          gliderSlides.forEach(slide => {
+              const lazyContainer = slide.querySelector('.relative.lazycontainer') as HTMLElement;
+              if (lazyContainer) {
+                  const child = lazyContainer.querySelector('.relative.container.half-pad.clearfix') as HTMLElement;
+                  if (child) {
+                      Object.assign(child.style, {position:'absolute', top:'0', width:'100%'});
+                      const img = lazyContainer.querySelector('img') as HTMLImageElement;
+                      ['height', 'width'].forEach(attr => {
+                          img?.removeAttribute(attr);
+                          img?.style.removeProperty(attr);
+                      });
+                  }
+              }
+          });
+      } catch {}
+    }, 50);
   }
 
   //toggleHeatmapClassOnDrawer
