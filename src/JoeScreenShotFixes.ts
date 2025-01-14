@@ -37,19 +37,42 @@ export default class JoeScreenshotFixes extends Common {
     }
 
     private handleDesktopNavigationOverlapsFeelsGround() {
-        try {
-            const elements = document.querySelectorAll(
-                ".nav__list-item.nav__list-item--has-child-nav"
-            ) as NodeListOf<HTMLElement>;
+        setTimeout(() => {
+            try {
+                const elements = this.dom.querySelectorAll(
+                    ".nav__list-item.nav__list-item--has-child-nav"
+                ) as NodeListOf<HTMLElement>;
 
-            elements.forEach((element) => {
-                const childNav = element.querySelector(
-                    ".child-navigation"
-                ) as HTMLElement;
-                if (childNav) {
-                    childNav.style.display = "none";
-                }
-            });
-        } catch (error) {}
+                elements.forEach((element) => {
+                    const childNav = element.querySelector(
+                        ".child-navigation.box-lightshadow"
+                    ) as HTMLElement;
+                    if (childNav) {
+                        childNav.style.display = "none";
+
+                        element.addEventListener("click", (event) => {
+                            event.stopPropagation();
+
+                            elements.forEach((el) => {
+                                if (el != element) {
+                                    if (el.classList.contains("is-open")) {
+                                        el.classList.remove("is-open");
+                                    }
+                                    const otherChildNav = el.querySelector(
+                                        ".child-navigation.box-lightshadow"
+                                    ) as HTMLElement;
+                                    if (otherChildNav) {
+                                        otherChildNav.style.display = "none";
+                                    }
+                                }
+                            });
+
+                            const isOpen = element.classList.toggle("is-open");
+                            childNav.style.display = isOpen ? "block" : "none";
+                        });
+                    }
+                });
+            } catch (error) {}
+        }, 1000);
     }
 }
