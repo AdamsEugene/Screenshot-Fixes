@@ -157,6 +157,7 @@ export default class RyanScreenshotFixes extends Common {
       this.togglePanelCollapse();
       this.BlauVerdeadjustNavigationDrawer();
       this.FleetRunsetBannerStyles();
+      this.ToolNutadjustSidebarWidth();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3170,6 +3171,20 @@ export default class RyanScreenshotFixes extends Common {
               }
           });
       } catch {}
+    }, 50);
+  }
+
+  private ToolNutadjustSidebarWidth() {
+    setInterval(() => {
+        try {
+            const columns = this.dom.querySelectorAll('.columns');
+            columns.forEach(column => {
+                const sidebar = column.querySelector('.sidebar.sidebar-main') as HTMLElement;
+                if (sidebar) {
+                    sidebar.style.removeProperty('width');
+                }
+            });
+        } catch {}
     }, 50);
   }
 
