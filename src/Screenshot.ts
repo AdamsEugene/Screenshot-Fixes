@@ -1773,6 +1773,18 @@ class ScreenshotFixes extends Common {
     }, 1000);
   }
 
+  // ShinnySkin: 2392
+  private ShinnySkinHideNavButtons = () => {
+    try {
+    const targetElements = this.dom.querySelectorAll<HTMLElement>(
+      ".swiper-arrow, fc-arrow"
+    );
+    targetElements.forEach((element) => {
+      element.style.display = "none";
+    });
+    } catch (error) {}
+  }
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1816,7 +1828,8 @@ class ScreenshotFixes extends Common {
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
       { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
       { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
-      { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] }
+      { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
+      { ids: [2392], functions: [this.ShinnySkinHideNavButtons] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
