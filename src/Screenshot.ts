@@ -1807,14 +1807,17 @@ class ScreenshotFixes extends Common {
 
   // ShinnySkin: 2392
   private ShinnySkinHideNavButtons = () => {
-    try {
-    const targetElements = this.dom.querySelectorAll<HTMLElement>(
-      ".swiper-arrow, fc-arrow"
-    );
-    targetElements.forEach((element) => {
-      element.style.display = "none";
-    });
-    } catch (error) {}
+    setTimeout(() => {     
+      try {
+      const targetElements = this.dom.querySelectorAll<HTMLElement>(
+        ".swiper-arrow, .fc-arrow"
+      );
+      console.log({targetElements});
+      targetElements.forEach((element) => {
+        element.style.display = "none";
+      });
+      } catch (error) {}
+    }, 2000)
   }
 
   private functionsMap: Record<number, (() => void)[]> =
