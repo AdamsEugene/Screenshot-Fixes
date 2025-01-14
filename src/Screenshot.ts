@@ -1812,12 +1812,26 @@ class ScreenshotFixes extends Common {
       const targetElements = this.dom.querySelectorAll<HTMLElement>(
         ".swiper-arrow, .fc-arrow"
       );
-      console.log({targetElements});
       targetElements.forEach((element) => {
         element.style.display = "none";
       });
       } catch (error) {}
     }, 2000)
+  }
+
+  // Box Magic: 3076
+  private BoxMagicHeroImageOverlayDisplay = () => {
+    setInterval(() => {
+      try {
+        const targetElement = this.dom.querySelector<HTMLElement>(
+          "#shopify-section-template--21742027341847__section_hero_JRzCdM > div > div > div > div.image-overlay"
+        );
+        if (targetElement) {
+          targetElement.style.removeProperty("display");
+        }
+        
+      } catch (error) {}
+    }, 1000)
   }
 
   private functionsMap: Record<number, (() => void)[]> =
@@ -1865,7 +1879,8 @@ class ScreenshotFixes extends Common {
       { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
       { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
       { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
-      { ids: [2392], functions: [this.ShinnySkinHideNavButtons] }
+      { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
+      { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
