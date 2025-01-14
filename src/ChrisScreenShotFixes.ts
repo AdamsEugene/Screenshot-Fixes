@@ -311,7 +311,7 @@ export default class ChrisScreenShotFixes {
 }
 
 private adjustQuikreteImageUrls() {
-  setInterval(() => {
+ 
       try {
         const currentSiteId: number | null = this.getIdSiteFromURL();
         if (currentSiteId !== 2973) {
@@ -331,7 +331,6 @@ private adjustQuikreteImageUrls() {
               }
           });
       } catch {}
-  }, 50);
 }
 
 
