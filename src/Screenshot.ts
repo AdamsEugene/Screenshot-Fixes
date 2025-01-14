@@ -1759,6 +1759,38 @@ class ScreenshotFixes extends Common {
     }, 1000)
   }
 
+  //PURAKAI
+  private PURAKAIupdateKlaviyoFormStyles = () => {
+    setInterval(() => {
+        try {
+            const parentElement = this.dom.querySelector<HTMLElement>(
+                '.needsclick.klaviyo-form.klaviyo-form-version-cid_1.go417382439.kl-private-reset-css-Xuajs1'
+            );
+
+            if (parentElement) {
+                // Remove padding from parent
+                parentElement.style.removeProperty('padding');
+
+                // Get child elements
+                const childElements = parentElement.querySelectorAll<HTMLElement>(
+                    '.needsclick.kl-private-reset-css-Xuajs1'
+                );
+
+                // Set first child display to none
+                if (childElements[0]) {
+                    childElements[0].style.display = 'none';
+                }
+
+                // Remove existing padding then set new padding on second child
+                if (childElements[1]) {
+                    childElements[1].style.removeProperty('padding');
+                    childElements[1].style.padding = '30px 40px 40px';
+                }
+            }
+        } catch (error) {}
+    }, 500);
+};
+
   // Eden Boost: 2721
   private RemoveOkeCarouselDisplay = () => {
     setInterval(() => {
@@ -1816,7 +1848,8 @@ class ScreenshotFixes extends Common {
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
       { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
       { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
-      { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] }
+      { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
+      { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
