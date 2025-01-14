@@ -1789,7 +1789,7 @@ class ScreenshotFixes extends Common {
             }
         } catch (error) {}
     }, 500);
-};
+  };
 
   // Eden Boost: 2721
   private RemoveOkeCarouselDisplay = () => {
