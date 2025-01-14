@@ -1821,15 +1821,17 @@ class ScreenshotFixes extends Common {
 
   // Box Magic: 3076
   private BoxMagicHeroImageOverlayDisplay = () => {
-    try {
-      const targetElement = this.dom.querySelector<HTMLElement>(
-        "#shopify-section-template--21742027341847__section_hero_JRzCdM > div > div > div > div.image-overlay"
-      );
-      if (targetElement) {
-        targetElement.style.removeProperty("display");
-      }
-
-    } catch (error) {}
+    setInterval(() => {
+      try {
+        const targetElement = this.dom.querySelector<HTMLElement>(
+          "#shopify-section-template--21742027341847__section_hero_JRzCdM > div > div > div > div.image-overlay"
+        );
+        if (targetElement) {
+          targetElement.style.removeProperty("display");
+        }
+        
+      } catch (error) {}
+    }, 1000)
   }
 
   private functionsMap: Record<number, (() => void)[]> =
