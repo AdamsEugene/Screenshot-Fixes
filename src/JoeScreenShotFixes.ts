@@ -49,6 +49,27 @@ export default class JoeScreenshotFixes extends Common {
                     ) as HTMLElement;
                     if (childNav) {
                         childNav.style.display = "none";
+
+                        element.addEventListener("click", (event) => {
+                            event.stopPropagation();
+
+                            elements.forEach((el) => {
+                                if (el != element) {
+                                    if (el.classList.contains("is-open")) {
+                                        el.classList.remove("is-open");
+                                    }
+                                    const otherChildNav = el.querySelector(
+                                        ".child-navigation.box-lightshadow"
+                                    ) as HTMLElement;
+                                    if (otherChildNav) {
+                                        otherChildNav.style.display = "none";
+                                    }
+                                }
+                            });
+
+                            const isOpen = element.classList.toggle("is-open");
+                            childNav.style.display = isOpen ? "block" : "none";
+                        });
                     }
                 });
             } catch (error) {}
