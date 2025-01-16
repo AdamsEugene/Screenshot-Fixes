@@ -1633,6 +1633,26 @@ class ScreenshotFixes extends Common {
                 }
             });
         } catch (error) {}
+    }, 50);
+  };
+
+  //Blocout
+  private BlocoutsetSlickTrackWidths = () => {
+    setInterval(() => {
+        try {
+            const tracks = this.dom.querySelectorAll<HTMLElement>('.slick-initialized.slick-slider .slick-list.draggable');
+            tracks.forEach(track => {
+                track.style.removeProperty('overflow');
+            });
+
+            const gallerySlides = this.dom.querySelectorAll('.product-gallery-slide__inner');
+            gallerySlides.forEach(slide => {
+                const image = slide.querySelector('img') as HTMLElement;
+                if (image) {
+                    image.style.removeProperty('height');
+                }
+            });
+        } catch (error) {}
     }, 100);
   };
 
@@ -1643,6 +1663,21 @@ class ScreenshotFixes extends Common {
         style.textContent = '.lazyPicture::before { display: none !important; }';
         this.dom.head.appendChild(style);
     } catch (error) {}
+  };
+
+  //Bentgo
+  private BentgoupdateHeaderPadding = () => {
+    setInterval(() => {
+        try {
+            const headerSection = this.dom.querySelector('#shopify-section-header');
+            if (headerSection) {
+                const pageHeader = headerSection.querySelector('.page-header.layout-center') as HTMLElement;
+                if (pageHeader) {
+                    pageHeader.style.setProperty('padding-top', '40px', 'important');
+                }
+            }
+        } catch (error) {}
+    }, 100);
   };
 
   //Remi
@@ -1684,6 +1719,121 @@ class ScreenshotFixes extends Common {
     }
   };
 
+  // JuicerVille: 3086
+  private useActualHeightForHeroVideo = () => {
+    setInterval(() => {
+    try {
+      const elements = this.dom.querySelectorAll<HTMLElement>('#template--17074751373524__81be84c8-e058-419f-a0cc-47fc7a2c7bb8 > div');
+      elements.forEach((element) => {
+        const actualHeight = element.getAttribute("actualHeight");
+        if (actualHeight) {
+          element.style.setProperty("height", actualHeight, "important");
+        }
+      });
+    } catch (error) {}
+    }, 1000);
+  };
+
+  // She Birdie: 1656
+  private useActualHeightForIframeBirdie = () => {
+    setInterval(() => {
+      try {
+        const elements = this.dom.querySelectorAll<HTMLElement>('#looxReviewsFrame');
+        elements.forEach((element) => {
+          const actualHeight = element.getAttribute("actualHeight");
+          if (actualHeight) {
+            element.style.setProperty("height", actualHeight, "important");
+          }
+        });
+      } catch (error) {}
+    }, 1000);
+  };
+
+  // Ketone : 2928
+  private updateWithOfTestimonialImages = () => {
+    setInterval(() => {
+      try {
+        this.dom.querySelectorAll<HTMLImageElement>("img.testimonial-image")
+        .forEach(element => element.style.width="100%")
+      } catch (error) {}
+    }, 1000)
+  }
+
+  //PURAKAI
+  private PURAKAIupdateKlaviyoFormStyles = () => {
+    setInterval(() => {
+        try {
+            const parentElement = this.dom.querySelector<HTMLElement>(
+                '.needsclick.klaviyo-form.klaviyo-form-version-cid_1.go417382439.kl-private-reset-css-Xuajs1'
+            );
+
+            if (parentElement) {
+                // Remove padding from parent
+                parentElement.style.removeProperty('padding');
+
+                // Get child elements
+                const childElements = parentElement.querySelectorAll<HTMLElement>(
+                    '.needsclick.kl-private-reset-css-Xuajs1'
+                );
+
+                // Set first child display to none
+                if (childElements[0]) {
+                    childElements[0].style.display = 'none';
+                }
+
+                // Remove existing padding then set new padding on second child
+                if (childElements[1]) {
+                    childElements[1].style.removeProperty('padding');
+                    childElements[1].style.padding = '30px 40px 40px';
+                }
+            }
+        } catch (error) {}
+    }, 500);
+  };
+
+  // Eden Boost: 2721
+  private RemoveOkeCarouselDisplay = () => {
+    setInterval(() => {
+      try {
+        const targetElements = this.dom.querySelectorAll<HTMLElement>(
+          "[data-oke-carousel]"
+        );
+        targetElements.forEach((element) => {
+          element.style.removeProperty("display");
+        });
+      } catch (error) {}
+    }, 1000);
+  }
+
+  // ShinnySkin: 2392
+  private ShinnySkinHideNavButtons = () => {
+    setTimeout(() => {     
+      try {
+      const targetElements = this.dom.querySelectorAll<HTMLElement>(
+        ".swiper-arrow, .fc-arrow"
+      );
+      targetElements.forEach((element) => {
+        element.style.display = "none";
+      });
+      } catch (error) {}
+    }, 2000)
+  }
+
+  // Box Magic: 3076
+  private BoxMagicHeroImageOverlayDisplay = () => {
+    setInterval(() => {
+      try {
+        const targetElement = this.dom.querySelector<HTMLElement>(
+          "#shopify-section-template--21742027341847__section_hero_JRzCdM > div > div > div > div.image-overlay"
+        );
+        if (targetElement) {
+          targetElement.style.removeProperty("display");
+        }
+        
+      } catch (error) {}
+    }, 1000)
+  }
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1720,8 +1870,17 @@ class ScreenshotFixes extends Common {
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
-      { ids: [179, 1932, 2555], functions: [this.TheOodiesetSlickTrackWidths] },
+      { ids: [179, 1932, 2905, 3024, 3147, 2555], functions: [this.TheOodiesetSlickTrackWidths] },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
+      { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
+      { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
+      { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
+      { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
+      { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
+      { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
+      { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
+      { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
@@ -1741,7 +1900,10 @@ class ScreenshotFixes extends Common {
     const functionGroups: {
       ids: number[];
       functions: (() => void)[];
-    }[] = [{ ids: [2925], functions: [this.fixHeroSectionOfSmel] }];
+    }[] = [
+      { ids: [2925], functions: [this.fixHeroSectionOfSmel] },
+      { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
+    ];
 
     const map: Record<number, (() => void)[]> = {};
 

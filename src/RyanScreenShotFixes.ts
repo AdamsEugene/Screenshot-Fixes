@@ -155,6 +155,10 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustPageOverlay();
       this.adjustScrollShadowElements();
       this.togglePanelCollapse();
+      this.BlauVerdeadjustNavigationDrawer();
+      this.FleetRunsetBannerStyles();
+      this.ToolNutadjustSidebarWidth();
+      this.CrownAffairadjustOkeReviewsFooter();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3124,6 +3128,75 @@ export default class RyanScreenshotFixes extends Common {
                     ['height', 'overflow'].forEach(prop => thumbnails.style.removeProperty(prop));
                 }
             });
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //BlauVerde
+  private BlauVerdeadjustNavigationDrawer() {
+    setTimeout(() => {
+        try {
+            const menuDrawer = this.dom.querySelector('#Navigation-drawer-header.drawer__container #Navigation-menu-drawer-header') as HTMLElement;
+            if (!menuDrawer) return;
+            menuDrawer.removeAttribute('style');
+        } catch (error) {
+            return;
+        }
+    }, 500);
+  }
+
+  //FleetRun
+  private FleetRunsetBannerStyles() {
+    setInterval(() => {
+      try {
+          const el1 = this.dom.querySelector('.relative.container.half-pad.animate-section.clearfix.up.go') as HTMLElement;
+          if (el1?.parentElement?.classList.contains('search-section')) {
+              Object.assign(el1.style, {position:'absolute', top:'0', width:'100%'});
+          }
+
+          const gliderSlides = this.dom.querySelectorAll('.glider-slide');
+          gliderSlides.forEach(slide => {
+              const lazyContainer = slide.querySelector('.relative.lazycontainer') as HTMLElement;
+              if (lazyContainer) {
+                  const child = lazyContainer.querySelector('.relative.container.half-pad.clearfix') as HTMLElement;
+                  if (child) {
+                      Object.assign(child.style, {position:'absolute', top:'0', width:'100%'});
+                      const img = lazyContainer.querySelector('img') as HTMLImageElement;
+                      ['height', 'width'].forEach(attr => {
+                          img?.removeAttribute(attr);
+                          img?.style.removeProperty(attr);
+                      });
+                  }
+              }
+          });
+      } catch {}
+    }, 50);
+  }
+
+  private ToolNutadjustSidebarWidth() {
+    setInterval(() => {
+        try {
+            const columns = this.dom.querySelectorAll('.columns');
+            columns.forEach(column => {
+                const sidebar = column.querySelector('.sidebar.sidebar-main') as HTMLElement;
+                if (sidebar) {
+                    sidebar.style.removeProperty('width');
+                }
+            });
+        } catch {}
+    }, 50);
+  }
+
+  //Crown Affair
+  private CrownAffairadjustOkeReviewsFooter() {
+    setTimeout(() => {
+        try {
+            const footerElement = this.dom.querySelector('.okeReviews-reviews .okeReviews-reviews-footer');
+            if (!footerElement) return;
+            
+            footerElement.classList.remove('is-okeReviews-hidden');
         } catch (error) {
             return;
         }
