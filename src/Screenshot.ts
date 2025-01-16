@@ -1837,12 +1837,12 @@ class ScreenshotFixes extends Common {
 
   // Aerial: 2538
   private AerifyShowNowButtonDisplay = () => {
-    setTimeout(() => {
+    setInterval(() => {
       try {
         this.dom.querySelector<HTMLElement>('#custom_sticky_atc')
           .style.removeProperty("display");
       } catch (error) {}
-    }, 2000)
+    }, 1000)
   }
 
   private functionsMap: Record<number, (() => void)[]> =
