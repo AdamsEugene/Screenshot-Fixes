@@ -7,6 +7,7 @@ export default class JoeScreenshotFixes extends Common {
             this.removeBlackOverlayQueSkinCare();
             this.handleDesktopNavigationOverlapsFeelsGround();
             this.handleBackgroundOverlayNotShowingUsDoctor();
+            this.handleMissingInstagramSectionDrHarveys();
         };
         this.exec({ containerId, debugMode, func });
     }
@@ -78,20 +79,42 @@ export default class JoeScreenshotFixes extends Common {
     }
 
     private handleBackgroundOverlayNotShowingUsDoctor() {
-        try {
-            const parentEls = this.dom.querySelectorAll(
-                ".article__text-wrap"
-            ) as NodeListOf<HTMLElement>;
+        setTimeout(() => {
+            try {
+                const parentEls = this.dom.querySelectorAll(
+                    ".article__text-wrap"
+                ) as NodeListOf<HTMLElement>;
 
-            parentEls.forEach((parent) => {
-                const child = parent.querySelector(
-                    ".article__bg"
+                parentEls.forEach((parent) => {
+                    const child = parent.querySelector(
+                        ".article__bg"
+                    ) as HTMLElement;
+
+                    if (child) {
+                        child.style.removeProperty("display");
+                    }
+                });
+            } catch (error) {}
+        }, 2000);
+    }
+
+    private handleMissingInstagramSectionDrHarveys() {
+        setTimeout(() => {
+            try {
+                const parent = this.dom.querySelector(
+                    ".latest-instagram-wrapper"
                 ) as HTMLElement;
 
-                if (child) {
-                    child.style.removeProperty("display");
+                if (parent) {
+                    const child = parent.querySelector(
+                        ".instagram"
+                    ) as HTMLElement;
+
+                    if (child) {
+                        parent.style.removeProperty("display");
+                    }
                 }
-            });
-        } catch (error) {}
+            } catch (error) {}
+        }, 500);
     }
 }
