@@ -1637,23 +1637,24 @@ class ScreenshotFixes extends Common {
   };
 
   //Blocout
-  private BlocoutsetSlickTrackWidths = () => {
+  private BlocoutsetSlickTrackStyles = () => {
     setInterval(() => {
         try {
-            const tracks = this.dom.querySelectorAll<HTMLElement>('.slick-initialized.slick-slider .slick-list.draggable');
-            tracks.forEach(track => {
-                track.style.removeProperty('overflow');
+            this.dom.querySelectorAll<HTMLElement>('.slick-list.draggable').forEach(list => {
+                const track = list.querySelector<HTMLElement>('.slick-track');
+                const actualHeight = track?.getAttribute('actualheight');
+                if (actualHeight) {
+                    list.style.setProperty('height', actualHeight);
+                    track.style.setProperty('height', actualHeight);
+                }
+                list.style.removeProperty('overflow');
             });
 
-            const gallerySlides = this.dom.querySelectorAll('.product-gallery-slide__inner');
-            gallerySlides.forEach(slide => {
-                const image = slide.querySelector('img') as HTMLElement;
-                if (image) {
-                    image.style.removeProperty('height');
-                }
-            });
+            this.dom.querySelectorAll('.product-gallery-slide__inner img').forEach(img => 
+                (img as HTMLElement).style.removeProperty('height')
+            );
         } catch (error) {}
-    }, 100);
+    }, 50);
   };
 
   //Brunt
@@ -1836,12 +1837,12 @@ class ScreenshotFixes extends Common {
 
   // Aerial: 2538
   private AerifyShowNowButtonDisplay = () => {
-    setTimeout(() => {
+    setInterval(() => {
       try {
         this.dom.querySelector<HTMLElement>('#custom_sticky_atc')
           .style.removeProperty("display");
       } catch (error) {}
-    }, 2000)
+    }, 1000)
   }
 
   private functionsMap: Record<number, (() => void)[]> =
@@ -1886,13 +1887,12 @@ class ScreenshotFixes extends Common {
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
       { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
-      { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
+      { ids: [3065], functions: [this.BlocoutsetSlickTrackStyles] },
       { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
       { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
       { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
       { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] },
       { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
-      
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
