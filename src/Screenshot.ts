@@ -1834,6 +1834,16 @@ class ScreenshotFixes extends Common {
     }, 1000)
   }
 
+  // Aerial: 2538
+  private AerifyShowNowButtonDisplay = () => {
+    setTimeout(() => {
+      try {
+        this.dom.querySelector<HTMLElement>('#custom_sticky_atc')
+          .style.removeProperty("display");
+      } catch (error) {}
+    }, 2000)
+  }
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1865,7 +1875,7 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
-      { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
+      { ids: [2841, 1834 ], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
@@ -1880,7 +1890,9 @@ class ScreenshotFixes extends Common {
       { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
       { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
       { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
-      { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] }
+      { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] },
+      { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
+      
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
