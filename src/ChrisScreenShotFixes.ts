@@ -51,6 +51,7 @@ export default class ChrisScreenShotFixes {
     this.adjustElementorWidths();
     this.adjustQuikreteImageUrls();
     this.tsbLivinremoveLazySizePadding();
+    this.fleetRunTruckfixTableBackgroundColor();
 
   }
 
@@ -350,6 +351,16 @@ private tsbLivinremoveLazySizePadding(): void {
       }
   } catch (_) {
   }
+}
+
+
+private fleetRunTruckfixTableBackgroundColor() {
+  try {
+      const element = this.document.querySelector('div[class*="relative table content-height content-height-options"]');
+      if (element instanceof HTMLElement) {
+          element.style.setProperty('background-color', '#E32E00', 'important');
+      }
+  } catch (_) {}
 }
 
 
