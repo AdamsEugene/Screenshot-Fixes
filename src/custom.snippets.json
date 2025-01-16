@@ -973,5 +973,13 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.rumpl.com-collections-puffy-blankets-main.html"
     }
+  },
+  {
+    "selector": "#layout-header",
+    "content": {
+      "idSite": 1959,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/velvetcaviar.com-collections-cyber-sales-main.html"
+    }
   }
 ]

@@ -6,6 +6,8 @@ export default class JoeScreenshotFixes extends Common {
             this.removeImagesWhiteOverlayRnnr();
             this.removeBlackOverlayQueSkinCare();
             this.handleDesktopNavigationOverlapsFeelsGround();
+            this.handleBackgroundOverlayNotShowingUsDoctor();
+            this.handleMissingInstagramSectionDrHarveys();
         };
         this.exec({ containerId, debugMode, func });
     }
@@ -74,5 +76,45 @@ export default class JoeScreenshotFixes extends Common {
                 });
             } catch (error) {}
         }, 1000);
+    }
+
+    private handleBackgroundOverlayNotShowingUsDoctor() {
+        setTimeout(() => {
+            try {
+                const parentEls = this.dom.querySelectorAll(
+                    ".article__text-wrap"
+                ) as NodeListOf<HTMLElement>;
+
+                parentEls.forEach((parent) => {
+                    const child = parent.querySelector(
+                        ".article__bg"
+                    ) as HTMLElement;
+
+                    if (child) {
+                        child.style.removeProperty("display");
+                    }
+                });
+            } catch (error) {}
+        }, 2000);
+    }
+
+    private handleMissingInstagramSectionDrHarveys() {
+        setTimeout(() => {
+            try {
+                const parent = this.dom.querySelector(
+                    ".latest-instagram-wrapper"
+                ) as HTMLElement;
+
+                if (parent) {
+                    const child = parent.querySelector(
+                        ".instagram"
+                    ) as HTMLElement;
+
+                    if (child) {
+                        parent.style.removeProperty("display");
+                    }
+                }
+            } catch (error) {}
+        }, 500);
     }
 }

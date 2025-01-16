@@ -340,7 +340,7 @@ private tsbLivinremoveLazySizePadding(): void {
       if (lazyImages.length > 0) {
           lazyImages.forEach((image: HTMLElement) => {
               const paddingTopStyle = image.style.paddingTop;
-              if (paddingTopStyle?.endsWith('%')) {
+              if ( paddingTopStyle?.endsWith('%')) {
                   const paddingValue = parseFloat(paddingTopStyle);
                   if (paddingValue > 10) {
                       image.style.removeProperty('padding-top');
