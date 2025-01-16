@@ -1870,7 +1870,7 @@ class ScreenshotFixes extends Common {
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
-      { ids: [179, 1932, 2905, 3024, 3147], functions: [this.TheOodiesetSlickTrackWidths] },
+      { ids: [179, 1932, 2905, 3024, 3147, 2555], functions: [this.TheOodiesetSlickTrackWidths] },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
