@@ -356,7 +356,7 @@ private tsbLivinremoveLazySizePadding(): void {
 
 private fleetRunTruckfixTableBackgroundColor() {
   try {
-      const element = this.document.querySelector('div[class*="relative table content-height content-height-options"]');
+      const element = this.document.querySelector('div.table-cell.middle');
       if (element instanceof HTMLElement) {
           element.style.setProperty('background-color', '#E32E00', 'important');
       }
