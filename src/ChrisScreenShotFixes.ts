@@ -50,6 +50,7 @@ export default class ChrisScreenShotFixes {
     //posterprintshop
     this.adjustElementorWidths();
     this.adjustQuikreteImageUrls();
+    this.tsbLivinremoveLazySizePadding();
 
   }
 
@@ -331,6 +332,24 @@ private adjustQuikreteImageUrls() {
               }
           });
       } catch {}
+}
+
+private tsbLivinremoveLazySizePadding(): void {
+  try {
+      const lazyImages: NodeListOf<HTMLElement> = this.document.querySelectorAll('.image-lazysize');
+      if (lazyImages.length > 0) {
+          lazyImages.forEach((image: HTMLElement) => {
+              const paddingTopStyle = image.style.paddingTop;
+              if (paddingTopStyle?.endsWith('%')) {
+                  const paddingValue = parseFloat(paddingTopStyle);
+                  if (paddingValue > 10) {
+                      image.style.removeProperty('padding-top');
+                  }
+              }
+          });
+      }
+  } catch (_) {
+  }
 }
 
 
