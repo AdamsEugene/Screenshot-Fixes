@@ -158,6 +158,7 @@ export default class RyanScreenshotFixes extends Common {
       this.BlauVerdeadjustNavigationDrawer();
       this.FleetRunsetBannerStyles();
       this.ToolNutadjustSidebarWidth();
+      this.CrownAffairadjustOkeReviewsFooter();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3186,6 +3187,20 @@ export default class RyanScreenshotFixes extends Common {
             });
         } catch {}
     }, 50);
+  }
+
+  //Crown Affair
+  private CrownAffairadjustOkeReviewsFooter() {
+    setTimeout(() => {
+        try {
+            const footerElement = this.dom.querySelector('.okeReviews-reviews .okeReviews-reviews-footer');
+            if (!footerElement) return;
+            
+            footerElement.classList.remove('is-okeReviews-hidden');
+        } catch (error) {
+            return;
+        }
+    }, 500);
   }
 
   //toggleHeatmapClassOnDrawer
