@@ -1865,7 +1865,7 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
-      { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
+      { ids: [2841, 1834, 2538], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
