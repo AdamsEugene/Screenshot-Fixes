@@ -9,6 +9,7 @@ export default class JoeScreenshotFixes extends Common {
             this.handleBackgroundOverlayNotShowingUsDoctor();
             this.handleMissingInstagramSectionDrHarveys();
             this.handleCanopyIssues();
+            this.handleHairbrellaMenuOverlapIssue();
         };
         this.exec({ containerId, debugMode, func });
     }
@@ -167,6 +168,24 @@ export default class JoeScreenshotFixes extends Common {
                     });
                 }
             } catch (error) {}
+        }, 500);
+    }
+
+    private handleHairbrellaMenuOverlapIssue() {
+        setTimeout(() => {
+            const parent = this.dom.querySelector(
+                ".product-header-sticky-bar"
+            ) as HTMLElement;
+
+            if (parent) {
+                const child = parent.querySelector(
+                    ".product-header-sticky-bar-inner-block.max-w-screen"
+                );
+
+                if (child) {
+                    parent.style.removeProperty("opacity");
+                }
+            }
         }, 500);
     }
 }
