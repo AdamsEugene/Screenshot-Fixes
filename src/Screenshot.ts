@@ -1637,23 +1637,24 @@ class ScreenshotFixes extends Common {
   };
 
   //Blocout
-  private BlocoutsetSlickTrackWidths = () => {
+  private BlocoutsetSlickTrackStyles = () => {
     setInterval(() => {
         try {
-            const tracks = this.dom.querySelectorAll<HTMLElement>('.slick-initialized.slick-slider .slick-list.draggable');
-            tracks.forEach(track => {
-                track.style.removeProperty('overflow');
+            this.dom.querySelectorAll<HTMLElement>('.slick-list.draggable').forEach(list => {
+                const track = list.querySelector<HTMLElement>('.slick-track');
+                const actualHeight = track?.getAttribute('actualheight');
+                if (actualHeight) {
+                    list.style.setProperty('height', actualHeight);
+                    track.style.setProperty('height', actualHeight);
+                }
+                list.style.removeProperty('overflow');
             });
 
-            const gallerySlides = this.dom.querySelectorAll('.product-gallery-slide__inner');
-            gallerySlides.forEach(slide => {
-                const image = slide.querySelector('img') as HTMLElement;
-                if (image) {
-                    image.style.removeProperty('height');
-                }
-            });
+            this.dom.querySelectorAll('.product-gallery-slide__inner img').forEach(img => 
+                (img as HTMLElement).style.removeProperty('height')
+            );
         } catch (error) {}
-    }, 100);
+    }, 50);
   };
 
   //Brunt
@@ -1834,6 +1835,28 @@ class ScreenshotFixes extends Common {
     }, 1000)
   }
 
+  // Aerial: 2538
+  private AerifyShowNowButtonDisplay = () => {
+    setInterval(() => {
+      try {
+        this.dom.querySelector<HTMLElement>('#custom_sticky_atc')
+          .style.removeProperty("display");
+      } catch (error) {}
+    }, 1000)
+  }
+
+  //Misen
+  private MisenadjustMainContentMargin = () => {
+    setInterval(() => {
+        try {
+            const mainContent = this.dom.querySelector('#MainContent.content-for-layout') as HTMLElement;
+            if (!mainContent) return;
+            
+            mainContent.style.removeProperty('margin-top');
+        } catch (error) {}
+    }, 50);
+  };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1865,22 +1888,24 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
-      { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
+      { ids: [2841, 1834 ], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
-      { ids: [179, 1932, 2905, 3024, 3147, 2555], functions: [this.TheOodiesetSlickTrackWidths] },
+      { ids: [179, 1932, 2905, 3024, 3147, 2555, 2851], functions: [this.TheOodiesetSlickTrackWidths] },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
       { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
-      { ids: [3065], functions: [this.BlocoutsetSlickTrackWidths] },
+      { ids: [3065], functions: [this.BlocoutsetSlickTrackStyles] },
       { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
       { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
       { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
-      { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] }
+      { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] },
+      { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
+      { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];

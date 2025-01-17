@@ -957,15 +957,6 @@
     }
   },
   {
-    "selector": "#page-content",
-    "content": {
-      "idSite": 2851,
-      "idSiteHsr": 5339209,
-      "type": "file",
-      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/nood.co.nz--main+(2).html"
-    }
-  },
-  {
     "selector": ".plp_filter_with_grid",
     "content": {
       "idSite": 3114,
@@ -980,6 +971,24 @@
       "idSite": 1959,
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/velvetcaviar.com-collections-cyber-sales-main.html"
+    }
+  },
+  {
+    "selector": ".related-products",
+    "content": {
+      "idSite": 2907,
+      "idSiteHsr": 5940590,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/yaqeenbooks.com-products-the-top-500-repeated-words-in-quran-bonuses-main.html"
+    }
+  },
+  {
+    "selector": ".complementary-products-row",
+    "content": {
+      "idSite": 2761,
+      "idSiteHsr": 5121103,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/breeo.com-products-x-series-smokeless-fire-pit-main.html"
     }
   }
 ]
