@@ -291,77 +291,80 @@ export default class ChrisScreenShotFixes {
 
   private adjustElementorWidths() {
     setInterval(() => {
-        try {
-            const parentElement = this.document.querySelector('.elementor-location-header');
-
-            if (parentElement) {
-                const childElements = parentElement.querySelectorAll([
-                    '.elementor-element-0e45695',
-                    '.elementor-element-8d37659'
-                ].join(','));
-
-                childElements.forEach(element => {
-                    if (element instanceof HTMLElement) {
-                        console.log('Removing width from element:', element); 
-                        element.style.removeProperty('width');
-                        element.style.setProperty('width', 'auto', 'important');
-                    }
-                });
-            }
-        } catch (_) {}
-    }, 50);
-}
-
-private adjustQuikreteImageUrls() {
- 
       try {
-        const currentSiteId: number | null = this.getIdSiteFromURL();
-        if (currentSiteId !== 2973) {
-          return;
-        }
-          const images = this.document.querySelectorAll('img');
-          images.forEach(image => {
-              const currentSrc = image.getAttribute('src');
-              if (currentSrc?.includes('proxy/spa-only')) {
-                  const newSrc = currentSrc.replace('proxy/spa-only', 'athome');
-                  image.setAttribute('src', newSrc);
-              }
-              const backgroundImage = image.style.backgroundImage;
-              if (backgroundImage?.includes('proxy/spa-only')) {
-                  const newBackgroundImage = backgroundImage.replace('proxy/spa-only', 'athome');
-                  image.style.backgroundImage = newBackgroundImage;
-              }
-          });
-      } catch {}
-}
+        const parentElement = this.document.querySelector('.elementor-location-header');
 
-private tsbLivinremoveLazySizePadding(): void {
-  try {
+        if (parentElement) {
+          const childElements = parentElement.querySelectorAll([
+            '.elementor-element-0e45695',
+            '.elementor-element-8d37659'
+          ].join(','));
+
+          childElements.forEach(element => {
+            if (element instanceof HTMLElement) {
+              console.log('Removing width from element:', element);
+              element.style.removeProperty('width');
+              element.style.setProperty('width', 'auto', 'important');
+            }
+          });
+        }
+      } catch (_) { }
+    }, 50);
+  }
+
+  private adjustQuikreteImageUrls() {
+
+    try {
+      const currentSiteId: number | null = this.getIdSiteFromURL();
+      if (currentSiteId !== 2973) {
+        return;
+      }
+      const images = this.document.querySelectorAll('img');
+      images.forEach(image => {
+        const currentSrc = image.getAttribute('src');
+        if (currentSrc?.includes('proxy/spa-only')) {
+          const newSrc = currentSrc.replace('proxy/spa-only', 'athome');
+          image.setAttribute('src', newSrc);
+        }
+        const backgroundImage = image.style.backgroundImage;
+        if (backgroundImage?.includes('proxy/spa-only')) {
+          const newBackgroundImage = backgroundImage.replace('proxy/spa-only', 'athome');
+          image.style.backgroundImage = newBackgroundImage;
+        }
+      });
+    } catch { }
+  }
+
+  private tsbLivinremoveLazySizePadding(): void {
+    try {
       const lazyImages: NodeListOf<HTMLElement> = this.document.querySelectorAll('.image-lazysize');
       if (lazyImages.length > 0) {
-          lazyImages.forEach((image: HTMLElement) => {
-              const paddingTopStyle = image.style.paddingTop;
-              if ( paddingTopStyle?.endsWith('%')) {
-                  const paddingValue = parseFloat(paddingTopStyle);
-                  if (paddingValue > 10) {
-                      image.style.removeProperty('padding-top');
-                  }
-              }
-          });
+        lazyImages.forEach((image: HTMLElement) => {
+          const paddingTopStyle = image.style.paddingTop;
+          if (paddingTopStyle?.endsWith('%')) {
+            const paddingValue = parseFloat(paddingTopStyle);
+            if (paddingValue > 10) {
+              image.style.removeProperty('padding-top');
+            }
+          }
+        });
       }
-  } catch (_) {
+    } catch (_) {
+    }
   }
-}
 
 
-private fleetRunTruckfixTableBackgroundColor() {
-  try {
-      const element = this.document.querySelector('div.table-cell.middle');
-      if (element instanceof HTMLElement) {
+  private fleetRunTruckfixTableBackgroundColor() {
+    setInterval(() => {
+      try {
+
+        const element = this.document.querySelector('div.table-cell.middle');
+        if (element instanceof HTMLElement) {
           element.style.setProperty('background-color', '#E32E00', 'important');
-      }
-  } catch (_) {}
-}
+        }
+      } catch (_) { }
+    }, 50);
+  }
 
 
   public getElements(): HTMLElement[] {
