@@ -172,20 +172,22 @@ export default class JoeScreenshotFixes extends Common {
     }
 
     private handleHairbrellaMenuOverlapIssue() {
-        setTimeout(() => {
-            const parent = this.dom.querySelector(
-                ".product-header-sticky-bar"
-            ) as HTMLElement;
+        setInterval(() => {
+            try {
+                const parent = this.dom.querySelector(
+                    ".product-header-sticky-bar"
+                ) as HTMLElement;
 
-            if (parent) {
-                const child = parent.querySelector(
-                    ".product-header-sticky-bar-inner-block.max-w-screen"
-                );
+                if (parent) {
+                    const child = parent.querySelector(
+                        ".product-header-sticky-bar-inner-block.max-w-screen"
+                    ) as HTMLElement;
 
-                if (child) {
-                    parent.style.removeProperty("opacity");
+                    if (child) {
+                        parent.style.removeProperty("opacity");
+                    }
                 }
-            }
-        }, 500);
+            } catch (error) {}
+        }, 50);
     }
 }
