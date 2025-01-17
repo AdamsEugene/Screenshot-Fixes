@@ -1845,6 +1845,18 @@ class ScreenshotFixes extends Common {
     }, 1000)
   }
 
+  //Misen
+  private MisenadjustMainContentMargin = () => {
+    setInterval(() => {
+        try {
+            const mainContent = this.dom.querySelector('#MainContent.content-for-layout') as HTMLElement;
+            if (!mainContent) return;
+            
+            mainContent.style.removeProperty('margin-top');
+        } catch (error) {}
+    }, 50);
+  };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1893,6 +1905,7 @@ class ScreenshotFixes extends Common {
       { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
       { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] },
       { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
+      { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
