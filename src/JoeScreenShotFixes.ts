@@ -8,6 +8,7 @@ export default class JoeScreenshotFixes extends Common {
             this.handleDesktopNavigationOverlapsFeelsGround();
             this.handleBackgroundOverlayNotShowingUsDoctor();
             this.handleMissingInstagramSectionDrHarveys();
+            this.handleCanopyIssues();
         };
         this.exec({ containerId, debugMode, func });
     }
@@ -113,6 +114,57 @@ export default class JoeScreenshotFixes extends Common {
                     if (child) {
                         parent.style.removeProperty("display");
                     }
+                }
+            } catch (error) {}
+        }, 500);
+    }
+
+    private handleCanopyIssues() {
+        setTimeout(() => {
+            try {
+                const parentElements = this.dom.querySelectorAll(
+                    ".oke-barDefault-background"
+                ) as NodeListOf<HTMLElement>;
+
+                parentElements.forEach((parent) => {
+                    const child = parent.querySelector(
+                        ".oke-barDefault-background-shading"
+                    ) as HTMLElement;
+
+                    if (child) {
+                        child.style.removeProperty("display");
+                        child.style.removeProperty("height");
+                    }
+                });
+
+                if (parentElements.length > 0) {
+                    const dotParentEls = this.dom.querySelectorAll(
+                        ".oke-barDefault-dots"
+                    ) as NodeListOf<HTMLElement>;
+
+                    dotParentEls.forEach((parent) => {
+                        const childDots = parent.querySelectorAll(
+                            ".oke-barDefault-dot.oke-barDefault-dot--dark"
+                        ) as NodeListOf<HTMLElement>;
+
+                        childDots.forEach((dot) => {
+                            dot.style.removeProperty("display");
+                        });
+                    });
+
+                    const lastDotParents = this.dom.querySelectorAll(
+                        ".oke-barDefault-marker"
+                    ) as NodeListOf<HTMLElement>;
+
+                    lastDotParents.forEach((parent) => {
+                        const child = parent.querySelector(
+                            ".oke-barDefault-dot"
+                        ) as HTMLElement;
+
+                        if (child) {
+                            child.style.removeProperty("display");
+                        }
+                    });
                 }
             } catch (error) {}
         }, 500);
