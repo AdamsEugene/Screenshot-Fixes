@@ -10,7 +10,8 @@ export default class JoeScreenshotFixes extends Common {
             this.handleMissingInstagramSectionDrHarveys();
             this.handleCanopyIssues();
             this.handleHairbrellaMenuOverlapIssue();
-            this.naaliAdjustWidgetRemoveDisplay()
+            this.naaliAdjustWidgetRemoveDisplay();
+            this.handleHangemattenMenuIssue();
         };
         this.exec({ containerId, debugMode, func });
     }
@@ -208,5 +209,30 @@ export default class JoeScreenshotFixes extends Common {
                 });
             } catch {}
         }, 50);
+    }
+
+    private handleHangemattenMenuIssue() {
+        setTimeout(() => {
+            try {
+                const toggleButton = this.dom.querySelector(
+                    ".mobile-menu-toggler.pointer.lg\\:hidden"
+                ) as HTMLElement;
+
+                toggleButton.addEventListener("click", () => {
+                    const menuInner = this.dom.querySelector(
+                        ".mobile-menu-inner-wrapper .mobile-menu-inner"
+                    ) as HTMLElement;
+
+                    if (
+                        menuInner.style.display === "none" ||
+                        menuInner.style.display === ""
+                    ) {
+                        menuInner.style.display = "block";
+                    } else {
+                        menuInner.style.display = "none";
+                    }
+                });
+            } catch (error) {}
+        }, 500);
     }
 }
