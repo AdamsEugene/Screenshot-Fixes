@@ -52,6 +52,7 @@ export default class ChrisScreenShotFixes {
     this.adjustQuikreteImageUrls();
     this.tsbLivinremoveLazySizePadding();
     this.fleetRunTruckfixTableBackgroundColor();
+    this.posterstyleEconGridContainer();
 
   }
 
@@ -365,6 +366,17 @@ export default class ChrisScreenShotFixes {
       } catch (_) { }
     }, 50);
   }
+
+  private posterstyleEconGridContainer(): void {
+    try {
+      const targetElement = this.document.querySelector('.e-con-inner > .e-grid.e-con-full.e-con.e-child');
+      if (targetElement instanceof HTMLElement) {
+        targetElement.style.display = 'flex';
+        targetElement.style.flexDirection = 'column';
+      }
+    } catch (_) { }
+  }
+  
 
 
   public getElements(): HTMLElement[] {
