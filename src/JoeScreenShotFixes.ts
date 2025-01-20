@@ -212,7 +212,7 @@ export default class JoeScreenshotFixes extends Common {
     }
 
     private handleHangemattenMenuIssue() {
-        setTimeout(() => {
+        setInterval(() => {
             try {
                 const toggleButton = this.dom.querySelector(
                     ".mobile-menu-toggler.pointer.lg\\:hidden"
@@ -233,6 +233,6 @@ export default class JoeScreenshotFixes extends Common {
                     }
                 });
             } catch (error) {}
-        }, 500);
+        }, 50);
     }
 }
