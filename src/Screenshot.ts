@@ -1857,6 +1857,36 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  //Crown Affair
+  private CrownAffairadjustSwiperAndHeroStyles = () => {
+    setInterval(() => {
+        try {
+            const swiperWrappers = this.dom.querySelectorAll('.swiper.swiper-initialized .swiper-wrapper');
+            swiperWrappers.forEach(wrapper => {
+                const wrapperEl = wrapper as HTMLElement;
+                const wrapperWidth = wrapperEl.getAttribute('actualwidth');
+                if (wrapperWidth) wrapperEl.style.setProperty('width', wrapperWidth);
+
+                wrapperEl.querySelectorAll<HTMLElement>('.swiper-slide.h-auto').forEach(slide => {
+                    const slideWidth = slide.getAttribute('actualwidth');
+                    if (slideWidth) {
+                        ['width', 'min-width', 'max-width'].forEach(prop => {
+                            slide.style.removeProperty(prop);
+                            slide.style.setProperty(prop, slideWidth);
+                        });
+                    }
+                });
+            });
+
+            const heroSection = this.dom.querySelector('#shopify-section-template--15393784135743__hero') as HTMLElement;
+            if (heroSection?.querySelector('.relative.w-full')) {
+                const heroWidth = heroSection.getAttribute('actualwidth');
+                if (heroWidth) heroSection.style.setProperty('width', heroWidth);
+            }
+        } catch (error) {}
+    }, 50);
+  };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1906,6 +1936,7 @@ class ScreenshotFixes extends Common {
       { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] },
       { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
       { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
+      { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
