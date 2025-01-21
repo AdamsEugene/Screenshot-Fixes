@@ -159,6 +159,7 @@ export default class RyanScreenshotFixes extends Common {
       this.FleetRunsetBannerStyles();
       this.ToolNutadjustSidebarWidth();
       this.CrownAffairadjustOkeReviewsFooter();
+      this.adjustReploElements();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3201,6 +3202,24 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 500);
+  }
+
+  private adjustReploElements() {
+    try {
+        const parentElement = this.dom.querySelector('.r-awh57a');
+        if (!parentElement) return;
+
+        const targetElements = parentElement.querySelectorAll('div > *[id^="replo-:R"][id$="jd2:"]');
+        if (!targetElements.length) return;
+
+        targetElements.forEach(element => {
+            if (element.id.match(/^replo-:R\d+jd2:$/)) {
+                (element as HTMLElement).style.removeProperty('display');
+            }
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   //toggleHeatmapClassOnDrawer
