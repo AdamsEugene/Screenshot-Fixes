@@ -1977,7 +1977,7 @@ class ScreenshotFixes extends Common {
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       {
-        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951],
+        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387],
         functions: [this.TheOodiesetSlickTrackWidths],
       },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
