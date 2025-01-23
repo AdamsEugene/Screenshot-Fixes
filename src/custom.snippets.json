@@ -999,5 +999,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/madgeshatbox.com--main.html"
     }
+  },
+  {
+    "selector": ".product-recommendations",
+    "content": {
+      "idSite": 2761,
+      "idSiteHsr": 5121103,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/breeo.com-products-x-series-smokeless-fire-pit-main(1).html"
+    }
   }
 ]
