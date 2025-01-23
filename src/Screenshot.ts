@@ -1670,6 +1670,28 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  //Daisy London
+  private DaisyLondonsetSlickTrackWidths = () => {
+    setInterval(() => {
+      try {
+        const selectors = [
+          ".inspire-blocks__items .slick-list.draggable .slick-track",
+          ".slider-white .slick-list.draggable .slick-track",
+        ];
+
+        selectors.forEach((selector) => {
+          const tracks = this.dom.querySelectorAll<HTMLElement>(selector);
+          tracks.forEach((track) => {
+            const actualWidth = track.getAttribute("actualwidth");
+            if (actualWidth) {
+              track.style.setProperty("width", actualWidth);
+            }
+          });
+        });
+      } catch (error) {}
+    }, 50);
+  };
+
   //Blocout
   private BlocoutsetSlickTrackStyles = () => {
     setInterval(() => {
@@ -1971,13 +1993,13 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
-      { ids: [2841, 1834], functions: [this.setWidthForSlickTracks] },
+      { ids: [2841], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       {
-        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387],
+        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153],
         functions: [this.TheOodiesetSlickTrackWidths],
       },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
@@ -1999,6 +2021,7 @@ class ScreenshotFixes extends Common {
       },
       { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
+      { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];

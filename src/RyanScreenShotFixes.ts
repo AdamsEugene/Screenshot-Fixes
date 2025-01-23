@@ -160,6 +160,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ToolNutadjustSidebarWidth();
       this.CrownAffairadjustOkeReviewsFooter();
       this.adjustReploElements();
+      this.AMANDAPEARLadjustSlideshowLoaders();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3434,6 +3435,22 @@ export default class RyanScreenshotFixes extends Common {
       }
     }, 50);
   }
+
+  //AMANDA PEARL
+  private AMANDAPEARLadjustSlideshowLoaders() {
+    setInterval(() => {
+        try {
+            const loaderElements = this.dom.querySelectorAll('.slideshow__loader');
+            if (!loaderElements.length) return;
+
+            loaderElements.forEach(element => {
+                (element as HTMLElement).style.removeProperty('opacity');
+            });
+        } catch (error) {
+            return;
+        }
+    }, 50);
+}
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
