@@ -160,6 +160,7 @@ export default class RyanScreenshotFixes extends Common {
       this.ToolNutadjustSidebarWidth();
       this.CrownAffairadjustOkeReviewsFooter();
       this.adjustReploElements();
+      this.AMANDAPEARLadjustSlideshowLoaders();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3217,6 +3218,22 @@ export default class RyanScreenshotFixes extends Common {
                 if (element.id.match(/^replo-:R\d+jd2:$/)) {
                     (element as HTMLElement).style.removeProperty('display');
                 }
+            });
+        } catch (error) {
+            return;
+        }
+    }, 50);
+  }
+
+  //AMANDA PEARL
+  private AMANDAPEARLadjustSlideshowLoaders() {
+    setInterval(() => {
+        try {
+            const loaderElements = document.querySelectorAll('.slideshow__loader');
+            if (!loaderElements.length) return;
+ 
+            loaderElements.forEach(element => {
+                (element as HTMLElement).style.removeProperty('opacity');
             });
         } catch (error) {
             return;
