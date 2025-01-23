@@ -1636,6 +1636,28 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  //Daisy London
+  private DaisyLondonsetSlickTrackWidths = () => {
+    setInterval(() => {
+        try {
+            const selectors = [
+                '.inspire-blocks__items .slick-list.draggable .slick-track',
+                '.slider-white .slick-list.draggable .slick-track'
+            ];
+ 
+            selectors.forEach(selector => {
+                const tracks = this.dom.querySelectorAll<HTMLElement>(selector);
+                tracks.forEach(track => {
+                    const actualWidth = track.getAttribute('actualwidth');
+                    if (actualWidth) {
+                        track.style.setProperty('width', actualWidth);
+                    }
+                });
+            });
+        } catch (error) {}
+    }, 50);
+  };
+
   //Blocout
   private BlocoutsetSlickTrackStyles = () => {
     setInterval(() => {
@@ -1937,6 +1959,7 @@ class ScreenshotFixes extends Common {
       { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
       { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
+      { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] }
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
