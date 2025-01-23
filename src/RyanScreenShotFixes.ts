@@ -3229,9 +3229,9 @@ export default class RyanScreenshotFixes extends Common {
   private AMANDAPEARLadjustSlideshowLoaders() {
     setInterval(() => {
         try {
-            const loaderElements = document.querySelectorAll('.slideshow__loader');
+            const loaderElements = this.dom.querySelectorAll('.slideshow__loader');
             if (!loaderElements.length) return;
- 
+
             loaderElements.forEach(element => {
                 (element as HTMLElement).style.removeProperty('opacity');
             });
@@ -3239,7 +3239,7 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 50);
-  }
+}
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
