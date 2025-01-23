@@ -39,8 +39,6 @@ export default class AntenorScreenShotFixes extends Common {
         ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
       ) as HTMLElement;
 
-      console.log("promo", promoSlider);
-
       if (promoSlider) {
         promoSlider.style.setProperty("max-width", "100vw");
 
