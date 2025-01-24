@@ -10,7 +10,6 @@ export default class AntenorScreenShotFixes extends Common {
   }
 
   //A pup above
-  //Set  inactive slick-slide intial opacity to 0
   private setAPupAboveInactiveSlickSlideInititalOpacity(): void {
     try {
       const nutrientSlickSlides = this.dom.querySelectorAll(
@@ -32,8 +31,7 @@ export default class AntenorScreenShotFixes extends Common {
   }
 
   //Nood
-
-  private setNoodPromoCardImageSize(): void {
+  private setNoodPromoCardImageSize() {
     try {
       const promoSlider = this.dom.querySelector(
         ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
