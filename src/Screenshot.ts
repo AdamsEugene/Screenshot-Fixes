@@ -1916,6 +1916,12 @@ class ScreenshotFixes extends Common {
         const faqElement = this.dom.querySelectorAll<HTMLElement>(
           ".replo-animated"
         );
+        const elementsToRemoveHeight = this.dom.querySelectorAll<HTMLElement>(
+          "#replo-fullpage-element > div > div > div > div.r-mp26gn > div > div.r-1aupqxm, #replo-fullpage-element > div > div > div > div.r-mp26gn > div "
+        );
+        elementsToRemoveHeight.forEach((element) => {
+          element.style.removeProperty("height");
+        });
         faqElement.forEach((element) => {
           element.style.removeProperty("display");
         });
