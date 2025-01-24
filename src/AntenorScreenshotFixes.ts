@@ -5,6 +5,7 @@ export default class AntenorScreenShotFixes extends Common {
     const func = () => {
       this.aPupAboveScreenShotFixes();
       this.setNoodPromoCardImageSize();
+      this.laBourseRemoveSearchBarOverlay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -80,6 +81,23 @@ export default class AntenorScreenShotFixes extends Common {
         if (divWithBGImage) {
           divWithBGImage.style.removeProperty("height");
         }
+      }
+    } catch (error) {}
+  }
+
+  // La Bourse Aux Livres
+  private laBourseRemoveSearchBarOverlay(): void {
+    try {
+      const searchBarForm = this.dom.querySelector(
+        "form.lg\\:jc-relative.jc-group\\/search-form"
+      ) as HTMLElement;
+
+      if (searchBarForm) {
+        const searchContentElement = searchBarForm.querySelector(
+          ".js-searchbar-content"
+        ) as HTMLElement;
+
+        searchContentElement.style.setProperty("display", "none");
       }
     } catch (error) {}
   }
