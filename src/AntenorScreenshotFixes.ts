@@ -44,7 +44,7 @@ export default class AntenorScreenShotFixes extends Common {
     try {
       const popUpElement = this.dom.querySelector(
         "#mobile-nutrient-pop-up"
-      ) as HTMLElement;
+      ) as HTMLElement | null;
       if (popUpElement) {
         popUpElement.style.setProperty("display", "none");
       }
@@ -55,10 +55,30 @@ export default class AntenorScreenShotFixes extends Common {
     try {
       const sliderContainer = this.dom.querySelector(
         ".pdp-gallery.product-single__media-group.medium-up--one-half"
-      ) as HTMLElement;
+      ) as HTMLElement | null;
       if (sliderContainer) {
-        const actualHeight = sliderContainer.getAttribute("actualheight");
-        sliderContainer.style.setProperty("height", actualHeight);
+        this.setStylePropertyFromAttribute(
+          sliderContainer,
+          "height",
+          "actualheight"
+        );
+
+        const sliderChildElementSelectors = [
+          ".slick-list.draggable",
+          ".product-single__media-slider.product-single__media-slider--mobile.slick-initialized.slick-slider",
+        ];
+
+        sliderChildElementSelectors.forEach((selector) => {
+          const childElement = sliderContainer.querySelector(
+            selector
+          ) as HTMLElement | null;
+          if (childElement)
+            this.setStylePropertyFromAttribute(
+              childElement,
+              "height",
+              "actualheight"
+            );
+        });
       }
     } catch (error) {}
   }
@@ -68,7 +88,7 @@ export default class AntenorScreenShotFixes extends Common {
     try {
       const promoSlider = this.dom.querySelector(
         ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
-      ) as HTMLElement;
+      ) as HTMLElement | null;
 
       if (promoSlider) {
         promoSlider.style.setProperty("max-width", "100vw");
@@ -76,7 +96,7 @@ export default class AntenorScreenShotFixes extends Common {
 
         const divWithBGImage = promoSlider.querySelector(
           ".rimage-outer-wrapper.mobile-only.fade-in.lazyloaded"
-        ) as HTMLElement;
+        ) as HTMLElement | null;
 
         if (divWithBGImage) {
           divWithBGImage.style.removeProperty("height");
@@ -90,15 +110,30 @@ export default class AntenorScreenShotFixes extends Common {
     try {
       const searchBarForm = this.dom.querySelector(
         "form.lg\\:jc-relative.jc-group\\/search-form"
-      ) as HTMLElement;
+      ) as HTMLElement | null;
 
       if (searchBarForm) {
         const searchContentElement = searchBarForm.querySelector(
           ".js-searchbar-content"
-        ) as HTMLElement;
+        ) as HTMLElement | null;
 
         searchContentElement.style.setProperty("display", "none");
       }
     } catch (error) {}
+  }
+
+  //Utils
+  private setStylePropertyFromAttribute(
+    element: HTMLElement,
+    propertyName: string,
+    attributeName: string,
+    isImportant = false
+  ): void {
+    const attributeValue = element.getAttribute(attributeName);
+    element.style.setProperty(
+      propertyName,
+      attributeValue,
+      isImportant ? "important" : ""
+    );
   }
 }
