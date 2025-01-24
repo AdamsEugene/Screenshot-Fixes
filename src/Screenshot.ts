@@ -1909,6 +1909,20 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  // Pure Life: 2287
+  private PureLifeRemoveFAQDisplay = () => {
+    setTimeout(() => {
+      try {
+        const faqElement = this.dom.querySelectorAll<HTMLElement>(
+          ".replo-animated"
+        );
+        faqElement.forEach((element) => {
+          element.style.removeProperty("display");
+        });
+      } catch (error) {}
+    }, 1000);
+  };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -1959,7 +1973,8 @@ class ScreenshotFixes extends Common {
       { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
       { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
-      { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] }
+      { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
+      { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
