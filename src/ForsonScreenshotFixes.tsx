@@ -3,7 +3,6 @@ import { log } from "console";
 export default class ForsonScreenshotFixes {
   private document: Document;
 
-
   constructor(dom: Document = document) {
     this.document = dom;
     this.setupLoadEventListener();
@@ -56,7 +55,7 @@ export default class ForsonScreenshotFixes {
     this.addMarginToElement();
     this.hideLiveChatEyeCatcher();
     this.removeImportantWidthFromPaymentIcon();
-    this.applyBackgroundColor()
+    this.applyBackgroundColor();
   }
 
   // Upcircle EU
@@ -660,13 +659,12 @@ export default class ForsonScreenshotFixes {
     }
   }
 
-
   private hideLiveChatEyeCatcher() {
-    const element = this.document.getElementById('livechat-eye-catcher');
-    
+    const element = this.document.getElementById("livechat-eye-catcher");
+
     if (element) {
-      element.style.display = '';
-      const style = this.document.createElement('style');
+      element.style.display = "";
+      const style = this.document.createElement("style");
       style.textContent = `
         #livechat-eye-catcher {
           display: none !important;
@@ -678,12 +676,12 @@ export default class ForsonScreenshotFixes {
 
   private removeImportantWidthFromPaymentIcon() {
     const processImages = () => {
-      const paymentIcons = this.document.querySelectorAll('.paymentIcon');
+      const paymentIcons = this.document.querySelectorAll(".paymentIcon");
       paymentIcons.forEach((icon, index) => {
-        const img = icon.querySelector('img');
+        const img = icon.querySelector("img");
         if (img) {
-          img.style.width = '';
-          const style = this.document.createElement('style');
+          img.style.width = "";
+          const style = this.document.createElement("style");
           style.textContent = `
             .paymentIcon img {
               width: auto !important;
@@ -693,8 +691,8 @@ export default class ForsonScreenshotFixes {
         }
       });
     };
-    if (this.document.readyState === 'loading') {
-      this.document.addEventListener('DOMContentLoaded', processImages);
+    if (this.document.readyState === "loading") {
+      this.document.addEventListener("DOMContentLoaded", processImages);
     } else {
       processImages();
     }
@@ -705,14 +703,17 @@ export default class ForsonScreenshotFixes {
   }
 
   private applyBackgroundColor() {
-    const elements = this.document.querySelectorAll('.box.box-content') as NodeListOf<HTMLElement>;
+    const elements = this.document.querySelectorAll(
+      ".box.box-content"
+    ) as NodeListOf<HTMLElement>;
     if (elements.length > 0) {
       elements.forEach((element) => {
-        element.style.setProperty('background-color', 'rgba(241, 242, 243, 0.9)', 'important');
+        element.style.setProperty(
+          "background-color",
+          "rgba(241, 242, 243, 0.9)",
+          "important"
+        );
       });
     }
   }
-  
-  
-  
 }

@@ -10,7 +10,8 @@ import snippets from "./custom.snippets.json";
 import styles from "./cssSnippets.json";
 import { JsonEntry } from "./@types";
 import BensonScreenshotFixes from "./BensonScreenShotFixes";
-import JoeScreenShotFixes from "./JoeScreenShotFixes"
+import JoeScreenShotFixes from "./JoeScreenShotFixes";
+import AntenorScreenShotFixes from "./AntenorScreenshotFixes";
 
 class ScreenshotFixes extends Common {
   constructor(debugMode = false) {
@@ -138,8 +139,11 @@ class ScreenshotFixes extends Common {
     const fortuneScreenShotFixesInstance = new FortuneScreenshotFixes(this.dom);
     fortuneScreenShotFixesInstance.init(containerId, debugMode);
 
-    const joeScreenShotFixes  = new JoeScreenShotFixes(this.dom) 
-    joeScreenShotFixes.init(containerId, debugMode)
+    const joeScreenShotFixes = new JoeScreenShotFixes(this.dom);
+    joeScreenShotFixes.init(containerId, debugMode);
+
+    const antenorScreenShotFixes = new AntenorScreenShotFixes(this.dom);
+    antenorScreenShotFixes.init(containerId, debugMode);
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
@@ -398,50 +402,66 @@ class ScreenshotFixes extends Common {
   //Sassy saints
   private SassysaintstoggleHeaderElements() {
     this.dom
-        .querySelectorAll('[class*="px-[18px]"][class*="xl:px-0"][class*="max-w-[1170px]"]')
-        .forEach((parent) => {
-            const mobileElement = parent.querySelector('[class*="gap-[10px]"][class*="2xl:hidden"]');
-            if (mobileElement) {
-                mobileElement.classList.add('hidden');
-            }
+      .querySelectorAll(
+        '[class*="px-[18px]"][class*="xl:px-0"][class*="max-w-[1170px]"]'
+      )
+      .forEach((parent) => {
+        const mobileElement = parent.querySelector(
+          '[class*="gap-[10px]"][class*="2xl:hidden"]'
+        );
+        if (mobileElement) {
+          mobileElement.classList.add("hidden");
+        }
 
-            const desktopElement = parent.querySelector('[class*="font-[500]"][class*="text-[14px]"][class*="leading-[22.4px]"]');
-            if (desktopElement) {
-                desktopElement.classList.remove('hidden');
-                (desktopElement as HTMLElement).style.display = 'flex';
-            }
-        });
+        const desktopElement = parent.querySelector(
+          '[class*="font-[500]"][class*="text-[14px]"][class*="leading-[22.4px]"]'
+        );
+        if (desktopElement) {
+          desktopElement.classList.remove("hidden");
+          (desktopElement as HTMLElement).style.display = "flex";
+        }
+      });
   }
 
   //ToolNut
   private adjustNinjaMenuClasses() {
     try {
-        this.dom.querySelectorAll('.sections.nav-sections.ninjamenus-mobile-wrapper')
-            .forEach((wrapper) => {
-                wrapper.classList.remove('ninjamenus-mobile-wrapper');
-                wrapper.classList.add('ninjamenus-desktop-wrapper');
-                
-                const ninjaMenu = wrapper.querySelector('.navigation .ninjamenus.ninjamenus-vertical.ninjamenus-mobile-drilldown.ninjamenus-top.ninjamenus-drilldown.ninjamenus-mobile');
-                if (ninjaMenu) {
-                    ninjaMenu.classList.remove('ninjamenus-drilldown', 'ninjamenus-mobile');
-                    ninjaMenu.classList.add('ninjamenus-desktop');
-                }
+      this.dom
+        .querySelectorAll(".sections.nav-sections.ninjamenus-mobile-wrapper")
+        .forEach((wrapper) => {
+          wrapper.classList.remove("ninjamenus-mobile-wrapper");
+          wrapper.classList.add("ninjamenus-desktop-wrapper");
+
+          const ninjaMenu = wrapper.querySelector(
+            ".navigation .ninjamenus.ninjamenus-vertical.ninjamenus-mobile-drilldown.ninjamenus-top.ninjamenus-drilldown.ninjamenus-mobile"
+          );
+          if (ninjaMenu) {
+            ninjaMenu.classList.remove(
+              "ninjamenus-drilldown",
+              "ninjamenus-mobile"
+            );
+            ninjaMenu.classList.add("ninjamenus-desktop");
+          }
+        });
+
+      this.dom
+        .querySelectorAll(".magezon-builder .left_edge_menu_bar")
+        .forEach((menu) => {
+          ["mouseenter", "mouseleave"].forEach((event) => {
+            menu.addEventListener(event, () => {
+              const submenu = menu.querySelector(
+                ".item-submenu"
+              ) as HTMLElement;
+              if (submenu) {
+                event === "mouseenter"
+                  ? submenu.style.setProperty("display", "block", "important")
+                  : submenu.style.removeProperty("display");
+              }
             });
- 
-        this.dom.querySelectorAll('.magezon-builder .left_edge_menu_bar').forEach(menu => {
-            ['mouseenter', 'mouseleave'].forEach(event => {
-                menu.addEventListener(event, () => {
-                    const submenu = menu.querySelector('.item-submenu') as HTMLElement;
-                    if (submenu) {
-                        event === 'mouseenter' ? 
-                            submenu.style.setProperty('display', 'block', 'important') : 
-                            submenu.style.removeProperty('display');
-                    }
-                });
-            });
+          });
         });
     } catch (error) {
-        return;
+      return;
     }
   }
 
@@ -592,30 +612,31 @@ class ScreenshotFixes extends Common {
   //Nuve
   private moveProductElements() {
     try {
-        const parent = this.dom.querySelector<HTMLElement>(
-            '#ProductInfo-template--23889557193029__main'
-        );
-        if (!parent) return;
- 
-        const accordions = parent.querySelectorAll<HTMLElement>(
-            '.product__accordion.accordion.quick-add-hidden'
-        );
-        if (!accordions.length) return;
- 
-        const lastAccordion = accordions[accordions.length - 1];
-        const buyButtons = parent.querySelector<HTMLElement>('.buy_buttons-ex');
-        const description = parent.querySelector<HTMLElement>('.mo.mo_description');
- 
-        if (buyButtons) {
-            lastAccordion.insertAdjacentElement('afterend', buyButtons);
-        }
- 
-        if (description) {
-            const lastElement = buyButtons || lastAccordion;
-            lastElement.insertAdjacentElement('afterend', description);
-        }
+      const parent = this.dom.querySelector<HTMLElement>(
+        "#ProductInfo-template--23889557193029__main"
+      );
+      if (!parent) return;
+
+      const accordions = parent.querySelectorAll<HTMLElement>(
+        ".product__accordion.accordion.quick-add-hidden"
+      );
+      if (!accordions.length) return;
+
+      const lastAccordion = accordions[accordions.length - 1];
+      const buyButtons = parent.querySelector<HTMLElement>(".buy_buttons-ex");
+      const description =
+        parent.querySelector<HTMLElement>(".mo.mo_description");
+
+      if (buyButtons) {
+        lastAccordion.insertAdjacentElement("afterend", buyButtons);
+      }
+
+      if (description) {
+        const lastElement = buyButtons || lastAccordion;
+        lastElement.insertAdjacentElement("afterend", description);
+      }
     } catch (error) {
-        return;
+      return;
     }
   }
 
@@ -1572,121 +1593,163 @@ class ScreenshotFixes extends Common {
   //Mr Moxeys
   private MrMoxeysadjustOwlStageStyles = () => {
     setTimeout(() => {
-        try {
-            const stageOuters = this.dom.querySelectorAll<HTMLElement>('.owl-stage-outer');
-            stageOuters.forEach(outer => {
-                const stage = outer.querySelector<HTMLElement>('.owl-stage');
-                if (stage) {
-                    stage.style.setProperty('width', '2780px', 'important');
-                    stage.style.setProperty('transform', 'translate3d(-860px, 0px, 0px)', 'important');
- 
-                    const owlItems = stage.querySelectorAll<HTMLElement>('.owl-item');
-                    owlItems.forEach(item => {
-                        item.style.setProperty('width', 'auto', 'important');
-                    });
-                }
+      try {
+        const stageOuters =
+          this.dom.querySelectorAll<HTMLElement>(".owl-stage-outer");
+        stageOuters.forEach((outer) => {
+          const stage = outer.querySelector<HTMLElement>(".owl-stage");
+          if (stage) {
+            stage.style.setProperty("width", "2780px", "important");
+            stage.style.setProperty(
+              "transform",
+              "translate3d(-860px, 0px, 0px)",
+              "important"
+            );
+
+            const owlItems = stage.querySelectorAll<HTMLElement>(".owl-item");
+            owlItems.forEach((item) => {
+              item.style.setProperty("width", "auto", "important");
             });
-        } catch (error) {}
+          }
+        });
+      } catch (error) {}
     }, 500);
   };
 
   //Daily Rhythm
   private DailyRhythmadjustMainContentOverflow = () => {
     setTimeout(() => {
-        try {
-            const mainContent = this.dom.querySelector<HTMLElement>('#MainContent.page-layout__main');
-            if (mainContent) {
-                mainContent.style.removeProperty('overflow');
-            }
-        } catch (error) {}
+      try {
+        const mainContent = this.dom.querySelector<HTMLElement>(
+          "#MainContent.page-layout__main"
+        );
+        if (mainContent) {
+          mainContent.style.removeProperty("overflow");
+        }
+      } catch (error) {}
     }, 500);
   };
 
   //Breeo
   private BreeoadjustUpsellAndCardElements = () => {
     try {
-        const upsellSection = this.dom.querySelector<HTMLElement>('#shopify-section-template--16295038943277__product_upsell_eDkb4p.upsell_section');
-        if (upsellSection) {
-            upsellSection.style.setProperty('display', 'block');
+      const upsellSection = this.dom.querySelector<HTMLElement>(
+        "#shopify-section-template--16295038943277__product_upsell_eDkb4p.upsell_section"
+      );
+      if (upsellSection) {
+        upsellSection.style.setProperty("display", "block");
+      }
+
+      const productCards = this.dom.querySelectorAll(
+        ".unstyled-link.product-card-link"
+      );
+      productCards.forEach((card) => {
+        const media = card.querySelector<HTMLElement>(".card-media");
+        if (media) {
+          media.style.removeProperty("padding-top");
         }
- 
-        const productCards = this.dom.querySelectorAll('.unstyled-link.product-card-link');
-        productCards.forEach(card => {
-            const media = card.querySelector<HTMLElement>('.card-media');
-            if (media) {
-                media.style.removeProperty('padding-top');
-            }
-        });
+      });
     } catch (error) {}
   };
 
   //The Oodie
   private TheOodiesetSlickTrackWidths = () => {
     setInterval(() => {
-        try {
-            const tracks = this.dom.querySelectorAll<HTMLElement>('.slick-list.draggable .slick-track');
-            
-            tracks.forEach(track => {
-                const actualWidth = track.getAttribute('actualwidth');
-                if (actualWidth) {
-                    track.style.setProperty('width', actualWidth);
-                }
-            });
-        } catch (error) {}
+      try {
+        const tracks = this.dom.querySelectorAll<HTMLElement>(
+          ".slick-list.draggable .slick-track"
+        );
+
+        tracks.forEach((track) => {
+          const actualWidth = track.getAttribute("actualwidth");
+          if (actualWidth) {
+            track.style.setProperty("width", actualWidth);
+          }
+        });
+      } catch (error) {}
+    }, 50);
+  };
+
+  //Daisy London
+  private DaisyLondonsetSlickTrackWidths = () => {
+    setInterval(() => {
+      try {
+        const selectors = [
+          ".inspire-blocks__items .slick-list.draggable .slick-track",
+          ".slider-white .slick-list.draggable .slick-track",
+        ];
+
+        selectors.forEach((selector) => {
+          const tracks = this.dom.querySelectorAll<HTMLElement>(selector);
+          tracks.forEach((track) => {
+            const actualWidth = track.getAttribute("actualwidth");
+            if (actualWidth) {
+              track.style.setProperty("width", actualWidth);
+            }
+          });
+        });
+      } catch (error) {}
     }, 50);
   };
 
   //Blocout
   private BlocoutsetSlickTrackStyles = () => {
     setInterval(() => {
-        try {
-            this.dom.querySelectorAll<HTMLElement>('.slick-list.draggable').forEach(list => {
-                const track = list.querySelector<HTMLElement>('.slick-track');
-                const actualHeight = track?.getAttribute('actualheight');
-                if (actualHeight) {
-                    list.style.setProperty('height', actualHeight);
-                    track.style.setProperty('height', actualHeight);
-                }
-                list.style.removeProperty('overflow');
-            });
+      try {
+        this.dom
+          .querySelectorAll<HTMLElement>(".slick-list.draggable")
+          .forEach((list) => {
+            const track = list.querySelector<HTMLElement>(".slick-track");
+            const actualHeight = track?.getAttribute("actualheight");
+            if (actualHeight) {
+              list.style.setProperty("height", actualHeight);
+              track.style.setProperty("height", actualHeight);
+            }
+            list.style.removeProperty("overflow");
+          });
 
-            this.dom.querySelectorAll('.product-gallery-slide__inner img').forEach(img => 
-                (img as HTMLElement).style.removeProperty('height')
-            );
-        } catch (error) {}
+        this.dom
+          .querySelectorAll(".product-gallery-slide__inner img")
+          .forEach((img) =>
+            (img as HTMLElement).style.removeProperty("height")
+          );
+      } catch (error) {}
     }, 50);
   };
 
   //Brunt
   private BruntupdateLazyPictureStyle = () => {
     try {
-        const style = document.createElement('style');
-        style.textContent = '.lazyPicture::before { display: none !important; }';
-        this.dom.head.appendChild(style);
+      const style = document.createElement("style");
+      style.textContent = ".lazyPicture::before { display: none !important; }";
+      this.dom.head.appendChild(style);
     } catch (error) {}
   };
 
   //Bentgo
   private BentgoupdateHeaderPadding = () => {
     setInterval(() => {
-        try {
-            const headerSection = this.dom.querySelector('#shopify-section-header');
-            if (headerSection) {
-                const pageHeader = headerSection.querySelector('.page-header.layout-center') as HTMLElement;
-                if (pageHeader) {
-                    pageHeader.style.setProperty('padding-top', '40px', 'important');
-                }
-            }
-        } catch (error) {}
+      try {
+        const headerSection = this.dom.querySelector("#shopify-section-header");
+        if (headerSection) {
+          const pageHeader = headerSection.querySelector(
+            ".page-header.layout-center"
+          ) as HTMLElement;
+          if (pageHeader) {
+            pageHeader.style.setProperty("padding-top", "40px", "important");
+          }
+        }
+      } catch (error) {}
     }, 100);
   };
 
   //Remi
   private removeHeightFromProductCardDetails = () => {
-    try{
-      const productCardInfoElements =  this.dom
-      .querySelectorAll<HTMLElement>(".product-card__info")
-      productCardInfoElements.forEach(element => {
+    try {
+      const productCardInfoElements = this.dom.querySelectorAll<HTMLElement>(
+        ".product-card__info"
+      );
+      productCardInfoElements.forEach((element) => {
         const actualMinHeight = element.getAttribute("actualMinHeight");
         // set min-height to max-content
         element.style.setProperty("min-height", actualMinHeight, "important");
@@ -1694,11 +1757,11 @@ class ScreenshotFixes extends Common {
         // v-stack
         const vStack = element.querySelector<HTMLElement>(".v-stack");
         if (vStack) {
-          vStack.style.height = 'auto';
+          vStack.style.height = "auto";
         }
       });
     } catch (error) {}
-  }
+  };
 
   //Springinger
   private hideShopifyMinicartElements() {
@@ -1714,24 +1777,26 @@ class ScreenshotFixes extends Common {
   }
 
   private removeEmptyCartClass = () => {
-    const cartDrawer = this.dom.querySelector('cart-drawer.drawer.animate');
+    const cartDrawer = this.dom.querySelector("cart-drawer.drawer.animate");
     if (cartDrawer) {
-        cartDrawer.classList.remove('is-empty');
+      cartDrawer.classList.remove("is-empty");
     }
   };
 
   // JuicerVille: 3086
   private useActualHeightForHeroVideo = () => {
     setInterval(() => {
-    try {
-      const elements = this.dom.querySelectorAll<HTMLElement>('#template--17074751373524__81be84c8-e058-419f-a0cc-47fc7a2c7bb8 > div');
-      elements.forEach((element) => {
-        const actualHeight = element.getAttribute("actualHeight");
-        if (actualHeight) {
-          element.style.setProperty("height", actualHeight, "important");
-        }
-      });
-    } catch (error) {}
+      try {
+        const elements = this.dom.querySelectorAll<HTMLElement>(
+          "#template--17074751373524__81be84c8-e058-419f-a0cc-47fc7a2c7bb8 > div"
+        );
+        elements.forEach((element) => {
+          const actualHeight = element.getAttribute("actualHeight");
+          if (actualHeight) {
+            element.style.setProperty("height", actualHeight, "important");
+          }
+        });
+      } catch (error) {}
     }, 1000);
   };
 
@@ -1739,7 +1804,8 @@ class ScreenshotFixes extends Common {
   private useActualHeightForIframeBirdie = () => {
     setInterval(() => {
       try {
-        const elements = this.dom.querySelectorAll<HTMLElement>('#looxReviewsFrame');
+        const elements =
+          this.dom.querySelectorAll<HTMLElement>("#looxReviewsFrame");
         elements.forEach((element) => {
           const actualHeight = element.getAttribute("actualHeight");
           if (actualHeight) {
@@ -1754,41 +1820,42 @@ class ScreenshotFixes extends Common {
   private updateWithOfTestimonialImages = () => {
     setInterval(() => {
       try {
-        this.dom.querySelectorAll<HTMLImageElement>("img.testimonial-image")
-        .forEach(element => element.style.width="100%")
+        this.dom
+          .querySelectorAll<HTMLImageElement>("img.testimonial-image")
+          .forEach((element) => (element.style.width = "100%"));
       } catch (error) {}
-    }, 1000)
-  }
+    }, 1000);
+  };
 
   //PURAKAI
   private PURAKAIupdateKlaviyoFormStyles = () => {
     setInterval(() => {
-        try {
-            const parentElement = this.dom.querySelector<HTMLElement>(
-                '.needsclick.klaviyo-form.klaviyo-form-version-cid_1.go417382439.kl-private-reset-css-Xuajs1'
-            );
+      try {
+        const parentElement = this.dom.querySelector<HTMLElement>(
+          ".needsclick.klaviyo-form.klaviyo-form-version-cid_1.go417382439.kl-private-reset-css-Xuajs1"
+        );
 
-            if (parentElement) {
-                // Remove padding from parent
-                parentElement.style.removeProperty('padding');
+        if (parentElement) {
+          // Remove padding from parent
+          parentElement.style.removeProperty("padding");
 
-                // Get child elements
-                const childElements = parentElement.querySelectorAll<HTMLElement>(
-                    '.needsclick.kl-private-reset-css-Xuajs1'
-                );
+          // Get child elements
+          const childElements = parentElement.querySelectorAll<HTMLElement>(
+            ".needsclick.kl-private-reset-css-Xuajs1"
+          );
 
-                // Set first child display to none
-                if (childElements[0]) {
-                    childElements[0].style.display = 'none';
-                }
+          // Set first child display to none
+          if (childElements[0]) {
+            childElements[0].style.display = "none";
+          }
 
-                // Remove existing padding then set new padding on second child
-                if (childElements[1]) {
-                    childElements[1].style.removeProperty('padding');
-                    childElements[1].style.padding = '30px 40px 40px';
-                }
-            }
-        } catch (error) {}
+          // Remove existing padding then set new padding on second child
+          if (childElements[1]) {
+            childElements[1].style.removeProperty("padding");
+            childElements[1].style.padding = "30px 40px 40px";
+          }
+        }
+      } catch (error) {}
     }, 500);
   };
 
@@ -1804,21 +1871,21 @@ class ScreenshotFixes extends Common {
         });
       } catch (error) {}
     }, 1000);
-  }
+  };
 
   // ShinnySkin: 2392
   private ShinnySkinHideNavButtons = () => {
-    setTimeout(() => {     
+    setTimeout(() => {
       try {
-      const targetElements = this.dom.querySelectorAll<HTMLElement>(
-        ".swiper-arrow, .fc-arrow"
-      );
-      targetElements.forEach((element) => {
-        element.style.display = "none";
-      });
+        const targetElements = this.dom.querySelectorAll<HTMLElement>(
+          ".swiper-arrow, .fc-arrow"
+        );
+        targetElements.forEach((element) => {
+          element.style.display = "none";
+        });
       } catch (error) {}
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   // Box Magic: 3076
   private BoxMagicHeroImageOverlayDisplay = () => {
@@ -1830,61 +1897,88 @@ class ScreenshotFixes extends Common {
         if (targetElement) {
           targetElement.style.removeProperty("display");
         }
-        
       } catch (error) {}
-    }, 1000)
-  }
+    }, 1000);
+  };
 
   // Aerial: 2538
   private AerifyShowNowButtonDisplay = () => {
     setInterval(() => {
       try {
-        this.dom.querySelector<HTMLElement>('#custom_sticky_atc')
+        this.dom
+          .querySelector<HTMLElement>("#custom_sticky_atc")
           .style.removeProperty("display");
       } catch (error) {}
-    }, 1000)
-  }
+    }, 1000);
+  };
 
   //Misen
   private MisenadjustMainContentMargin = () => {
     setInterval(() => {
-        try {
-            const mainContent = this.dom.querySelector('#MainContent.content-for-layout') as HTMLElement;
-            if (!mainContent) return;
-            
-            mainContent.style.removeProperty('margin-top');
-        } catch (error) {}
+      try {
+        const mainContent = this.dom.querySelector(
+          "#MainContent.content-for-layout"
+        ) as HTMLElement;
+        if (!mainContent) return;
+
+        mainContent.style.removeProperty("margin-top");
+      } catch (error) {}
     }, 50);
   };
 
   //Crown Affair
   private CrownAffairadjustSwiperAndHeroStyles = () => {
     setInterval(() => {
-        try {
-            const swiperWrappers = this.dom.querySelectorAll('.swiper.swiper-initialized .swiper-wrapper');
-            swiperWrappers.forEach(wrapper => {
-                const wrapperEl = wrapper as HTMLElement;
-                const wrapperWidth = wrapperEl.getAttribute('actualwidth');
-                if (wrapperWidth) wrapperEl.style.setProperty('width', wrapperWidth);
+      try {
+        const swiperWrappers = this.dom.querySelectorAll(
+          ".swiper.swiper-initialized .swiper-wrapper"
+        );
+        swiperWrappers.forEach((wrapper) => {
+          const wrapperEl = wrapper as HTMLElement;
+          const wrapperWidth = wrapperEl.getAttribute("actualwidth");
+          if (wrapperWidth) wrapperEl.style.setProperty("width", wrapperWidth);
 
-                wrapperEl.querySelectorAll<HTMLElement>('.swiper-slide.h-auto').forEach(slide => {
-                    const slideWidth = slide.getAttribute('actualwidth');
-                    if (slideWidth) {
-                        ['width', 'min-width', 'max-width'].forEach(prop => {
-                            slide.style.removeProperty(prop);
-                            slide.style.setProperty(prop, slideWidth);
-                        });
-                    }
+          wrapperEl
+            .querySelectorAll<HTMLElement>(".swiper-slide.h-auto")
+            .forEach((slide) => {
+              const slideWidth = slide.getAttribute("actualwidth");
+              if (slideWidth) {
+                ["width", "min-width", "max-width"].forEach((prop) => {
+                  slide.style.removeProperty(prop);
+                  slide.style.setProperty(prop, slideWidth);
                 });
+              }
             });
+        });
 
-            const heroSection = this.dom.querySelector('#shopify-section-template--15393784135743__hero') as HTMLElement;
-            if (heroSection?.querySelector('.relative.w-full')) {
-                const heroWidth = heroSection.getAttribute('actualwidth');
-                if (heroWidth) heroSection.style.setProperty('width', heroWidth);
-            }
-        } catch (error) {}
+        const heroSection = this.dom.querySelector(
+          "#shopify-section-template--15393784135743__hero"
+        ) as HTMLElement;
+        if (heroSection?.querySelector(".relative.w-full")) {
+          const heroWidth = heroSection.getAttribute("actualwidth");
+          if (heroWidth) heroSection.style.setProperty("width", heroWidth);
+        }
+      } catch (error) {}
     }, 50);
+  };
+
+  // Pure Life: 2287
+  private PureLifeRemoveFAQDisplay = () => {
+    setTimeout(() => {
+      try {
+        const faqElement =
+          this.dom.querySelectorAll<HTMLElement>(".replo-animated");
+        const elementsToRemoveHeight = this.dom.querySelectorAll<HTMLElement>(
+          "#replo-fullpage-element > div > div > div > div.r-mp26gn > div > div.r-1aupqxm, #replo-fullpage-element > div > div > div > div.r-mp26gn > div "
+        );
+        elementsToRemoveHeight.forEach((element) => {
+          element.style.removeProperty("height");
+        });
+        faqElement.forEach((element) => {
+          element.style.removeProperty("display");
+        });
+      } catch (error) {}
+    }, 1000);
   };
 
   private functionsMap: Record<number, (() => void)[]> =
@@ -1918,12 +2012,15 @@ class ScreenshotFixes extends Common {
       { ids: [2792], functions: [this.removeEmptyCartClass] },
       { ids: [2994], functions: [this.adjustHeaderPadding] },
       { ids: [174], functions: [this.setImagesVisible] },
-      { ids: [2841, 1834 ], functions: [this.setWidthForSlickTracks] },
+      { ids: [2841], functions: [this.setWidthForSlickTracks] },
       { ids: [2948], functions: [this.removeHeightFromProductCardDetails] },
       { ids: [2913], functions: [this.MrMoxeysadjustOwlStageStyles] },
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
-      { ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387], functions: [this.TheOodiesetSlickTrackWidths] },
+      {
+        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168],
+        functions: [this.TheOodiesetSlickTrackWidths],
+      },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
       { ids: [3086], functions: [this.useActualHeightForHeroVideo] },
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
@@ -1934,9 +2031,17 @@ class ScreenshotFixes extends Common {
       { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
       { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
       { ids: [3076], functions: [this.BoxMagicHeroImageOverlayDisplay] },
-      { ids: [2538], functions: [this.AerifyShowNowButtonDisplay, this.setWidthForSlickTracks] },
+      {
+        ids: [2538],
+        functions: [
+          this.AerifyShowNowButtonDisplay,
+          this.setWidthForSlickTracks,
+        ],
+      },
       { ids: [3136], functions: [this.MisenadjustMainContentMargin] },
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
+      { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
+      { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
