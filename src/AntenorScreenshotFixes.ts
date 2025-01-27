@@ -6,7 +6,7 @@ export default class AntenorScreenShotFixes extends Common {
       this.aPupAboveScreenShotFixes();
       this.setNoodPromoCardImageSize();
       this.laBourseRemoveSearchBarOverlay();
-      this.setSolarNewsletterFormDisplay();
+      this.setSolaNewsletterFormDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -105,6 +105,7 @@ export default class AntenorScreenShotFixes extends Common {
         const sliderChildrenSelectors = [
           ".rimage-outer-wrapper.mobile-only.fade-in.lazyloaded",
           ".slick-track",
+          ".slick-list.draggable",
         ];
 
         sliderChildrenSelectors.forEach((selector) => {
@@ -137,16 +138,18 @@ export default class AntenorScreenShotFixes extends Common {
     } catch (error) {}
   }
 
-  //Solarwave //IMF-841
-  private setSolarNewsletterFormDisplay(): void {
+  //Solawave //IMF-841
+  private setSolaNewsletterFormDisplay(): void {
     try {
-      const formContainer = this.dom.querySelector(
-        ".klaviyo-form-RnerNm.klaviyo-form.form-version-cid-1"
-      ) as HTMLElement | null;
+      setInterval(() => {
+        const formContainer = this.dom.querySelector(
+          ".klaviyo-form-RnerNm.klaviyo-form.form-version-cid-1"
+        ) as HTMLElement | null;
 
-      if (formContainer) {
-        formContainer.style.setProperty("display", "block");
-      }
+        if (formContainer) {
+          formContainer.style.setProperty("display", "block");
+        }
+      }, 1000);
     } catch (error) {}
   }
 
