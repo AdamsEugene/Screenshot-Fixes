@@ -12,11 +12,33 @@ export default class JoeScreenshotFixes extends Common {
             this.handleHairbrellaMenuOverlapIssue();
             this.naaliAdjustWidgetRemoveDisplay();
             this.handleHangemattenMenuIssue();
-            this.resolveMenuIssueKeyStoneWalls()
+            this.resolveMenuIssueKeyStoneWalls();
+            this.resolveUnresponsiveDropDownsContech();
         };
         this.exec({ containerId, debugMode, func });
     }
 
+    private resolveUnresponsiveDropDownsContech() {
+        try {
+            const elements = this.dom.querySelectorAll(
+                ".container > .row > .col-12.col-md-3"
+            ) as NodeListOf<HTMLElement>;
+
+            elements.forEach((el) => {
+                const panel = el.querySelector(".panel.panel-default") as HTMLElement;
+
+                const collapsible = panel.querySelector(
+                    ".panel-collapse.collapse"
+                ) as HTMLElement;
+
+                if (panel) {
+                    panel.addEventListener("click", () => {
+                        collapsible.classList.toggle("show");
+                    });
+                }
+            });
+        } catch (error) {}
+    }
     private resolveMenuIssueKeyStoneWalls() {
         try {
             const parent = this.dom.querySelector(".pull-left") as HTMLElement;
