@@ -19,25 +19,29 @@ export default class JoeScreenshotFixes extends Common {
     }
 
     private resolveUnresponsiveDropDownsContech() {
-        try {
-            const elements = this.dom.querySelectorAll(
-                ".container > .row > .col-12.col-md-3"
-            ) as NodeListOf<HTMLElement>;
+        setTimeout(() => {
+            try {
+                const elements = this.dom.querySelectorAll(
+                    ".container > .row > .col-12.col-md-3"
+                ) as NodeListOf<HTMLElement>;
 
-            elements.forEach((el) => {
-                const panel = el.querySelector(".panel.panel-default") as HTMLElement;
+                elements.forEach((el) => {
+                    const panel = el.querySelector(
+                        ".panel.panel-default"
+                    ) as HTMLElement;
 
-                const collapsible = panel.querySelector(
-                    ".panel-collapse.collapse"
-                ) as HTMLElement;
+                    const collapsible = panel.querySelector(
+                        ".panel-collapse.collapse"
+                    ) as HTMLElement;
 
-                if (panel) {
-                    panel.addEventListener("click", () => {
-                        collapsible.classList.toggle("show");
-                    });
-                }
-            });
-        } catch (error) {}
+                    if (panel) {
+                        panel.addEventListener("click", () => {
+                            collapsible.classList.toggle("show");
+                        });
+                    }
+                });
+            } catch (error) {}
+        }, 1000);
     }
     private resolveMenuIssueKeyStoneWalls() {
         try {
