@@ -6,6 +6,7 @@ export default class AntenorScreenShotFixes extends Common {
       this.aPupAboveScreenShotFixes();
       this.setNoodPromoCardImageSize();
       this.laBourseRemoveSearchBarOverlay();
+      this.setSolarNewsletterFormDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -18,6 +19,7 @@ export default class AntenorScreenShotFixes extends Common {
       this.setAPupAboveProductSliderContainerHeight();
     } catch (error) {}
   }
+
   private setAPupAboveInactiveSlickSlideInititalOpacity(): void {
     try {
       setInterval(() => {
@@ -86,21 +88,34 @@ export default class AntenorScreenShotFixes extends Common {
   //Nood
   private setNoodPromoCardImageSize() {
     try {
-      const promoSlider = this.dom.querySelector(
-        ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
+      const promoContainer = this.dom.querySelector(
+        "#section-id-template--23090236653890__slideshow_MgChQG"
       ) as HTMLElement | null;
 
-      if (promoSlider) {
-        promoSlider.style.setProperty("max-width", "100vw");
-        promoSlider.style.setProperty("height", "max-content");
-
-        const divWithBGImage = promoSlider.querySelector(
-          ".rimage-outer-wrapper.mobile-only.fade-in.lazyloaded"
+      if (promoContainer) {
+        const promoSlider = promoContainer.querySelector(
+          ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
         ) as HTMLElement | null;
 
-        if (divWithBGImage) {
-          divWithBGImage.style.removeProperty("height");
+        if (promoSlider) {
+          promoSlider.style.setProperty("max-width", "100vw");
+          promoSlider.style.setProperty("height", "max-content");
         }
+
+        const sliderChildrenSelectors = [
+          ".rimage-outer-wrapper.mobile-only.fade-in.lazyloaded",
+          ".slick-track",
+        ];
+
+        sliderChildrenSelectors.forEach((selector) => {
+          const childElement = promoContainer.querySelector(
+            selector
+          ) as HTMLElement | null;
+
+          if (childElement) {
+            childElement.style.removeProperty("height");
+          }
+        });
       }
     } catch (error) {}
   }
@@ -118,6 +133,19 @@ export default class AntenorScreenShotFixes extends Common {
         ) as HTMLElement | null;
 
         searchContentElement.style.setProperty("display", "none");
+      }
+    } catch (error) {}
+  }
+
+  //Solarwave //IMF-841
+  private setSolarNewsletterFormDisplay(): void {
+    try {
+      const formContainer = this.dom.querySelector(
+        ".klaviyo-form-RnerNm.klaviyo-form.form-version-cid-1"
+      ) as HTMLElement | null;
+
+      if (formContainer) {
+        formContainer.style.setProperty("display", "block");
       }
     } catch (error) {}
   }
