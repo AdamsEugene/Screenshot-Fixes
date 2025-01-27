@@ -1947,6 +1947,18 @@ class ScreenshotFixes extends Common {
         } catch (error) {}
     }, 50);
   };
+  
+  //Ethique
+  private EthiqueremoveMenuDrawerDisplay = () => {
+    setInterval(() => {
+        try {
+            const menuDrawer = this.dom.querySelector('#mobile-menu-drawer.drawer.drawer--from-left');
+            if (!menuDrawer) return;
+ 
+            (menuDrawer as HTMLElement).style.removeProperty('display');
+        } catch (error) {}
+    }, 50);
+  };
 
   //Crown Affair
   private CrownAffairadjustSwiperAndHeroStyles = () => {
@@ -2065,6 +2077,7 @@ class ScreenshotFixes extends Common {
       { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
       { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
       { ids: [3065], functions: [this.blocoutsetSubmenuHeight] },
+      { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
