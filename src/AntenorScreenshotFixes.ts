@@ -141,13 +141,15 @@ export default class AntenorScreenShotFixes extends Common {
   //Solawave //IMF-841
   private setSolaNewsletterFormDisplay(): void {
     try {
-      const formContainer = this.dom.querySelector(
-        ".klaviyo-form-RnerNm.klaviyo-form.form-version-cid-1"
-      ) as HTMLElement | null;
+      setInterval(() => {
+        const formContainer = this.dom.querySelector(
+          ".klaviyo-form-RnerNm.klaviyo-form.form-version-cid-1"
+        ) as HTMLElement | null;
 
-      if (formContainer) {
-        formContainer.style.setProperty("display", "block");
-      }
+        if (formContainer) {
+          formContainer.style.setProperty("display", "block");
+        }
+      }, 1000);
     } catch (error) {}
   }
 
