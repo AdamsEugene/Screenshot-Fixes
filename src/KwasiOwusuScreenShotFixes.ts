@@ -38,30 +38,26 @@ export default class KwasiOwusuScreenshotFixes extends Common {
         if (!lazyImageSpans.length) return;
 
         lazyImageSpans.forEach((span) => {
-          // Check if the span already contains an <img> element
           const hasImage = span.querySelector<HTMLImageElement>('img');
           if (hasImage) return;
-
-          // Get the image URL and alt text from data attributes
+          
           const imageUrl = span.getAttribute('data-image');
           const altText = span.getAttribute('data-alt') || 'Image';
-
-          // Validate that the required data attributes exist
+          
           if (!imageUrl) return;
 
-          // Create the <img> element
+         
           const imgElement = document.createElement('img');
           imgElement.src = imageUrl;
           imgElement.alt = altText;
           imgElement.style.maxWidth = '150px';
           imgElement.style.width = '100%';
           imgElement.style.height = 'auto';
-
-          // Append the <img> element into the <span>
+         
           span.appendChild(imgElement);
         });
       } catch (error) {
-        console.error('Error while fixing missing images:', error);
+        
       }
     }, 5000);
   }
