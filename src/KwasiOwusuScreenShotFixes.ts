@@ -63,6 +63,6 @@ export default class KwasiOwusuScreenshotFixes extends Common {
       } catch (error) {
         console.error('Error while fixing missing images:', error);
       }
-    }, 5000); // Adjust interval time as needed
+    }, 5000);
   }
 }
