@@ -1926,6 +1926,28 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  //blocout
+  private blocoutsetSubmenuHeight = () => {
+    setInterval(() => {
+        try {
+            const submenuElements = this.dom.querySelectorAll('.menu-drawer__submenu.has-submenu');
+            if (!submenuElements.length) return;
+ 
+            submenuElements.forEach(element => {
+                (element as HTMLElement).style.setProperty('height', 'auto');
+            });
+ 
+            const innerContainer = this.dom.querySelector('.menu-drawer__inner-container');
+            if (!innerContainer) return;
+ 
+            const actualHeight = innerContainer.getAttribute('actualheight');
+            if (actualHeight) {
+                (innerContainer as HTMLElement).style.setProperty('height', actualHeight);
+            }
+        } catch (error) {}
+    }, 50);
+  };
+
   //Crown Affair
   private CrownAffairadjustSwiperAndHeroStyles = () => {
     setInterval(() => {
@@ -2042,6 +2064,7 @@ class ScreenshotFixes extends Common {
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
       { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
       { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
+      { ids: [3065], functions: [this.blocoutsetSubmenuHeight] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
