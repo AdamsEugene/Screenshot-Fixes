@@ -106,6 +106,7 @@ export default class AntenorScreenShotFixes extends Common {
           ".rimage-outer-wrapper.mobile-only.fade-in.lazyloaded",
           ".slick-track",
           ".slick-list.draggable",
+          ".slideshow.slideshow--navigation-none.slick-slider-overlay-dots-desktop.slick-slider-overlay-dots.slick-initialized.slick-slider",
         ];
 
         sliderChildrenSelectors.forEach((selector) => {
@@ -138,7 +139,7 @@ export default class AntenorScreenShotFixes extends Common {
     } catch (error) {}
   }
 
-  //Solawave //IMF-841
+  //Solawave
   private setSolaNewsletterFormDisplay(): void {
     try {
       setInterval(() => {
