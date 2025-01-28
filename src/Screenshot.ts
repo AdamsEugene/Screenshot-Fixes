@@ -1964,6 +1964,28 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  //The Pure Cut
+  private PureCutupdateSourceSrcset = () => {
+    setInterval(() => {
+        try {
+            const pictures = this.dom.querySelectorAll('picture.gp-contents');
+            if (!pictures.length) return;
+
+            pictures.forEach(picture => {
+                const sources = picture.querySelectorAll('source');
+                sources.forEach(source => {
+                    const srcset = source.getAttribute('srcset');
+                    const dataSrcset = source.getAttribute('data-srcset');
+                    
+                    if (srcset && srcset.startsWith('data:')) {
+                        source.setAttribute('srcset', dataSrcset);
+                    }
+                });
+            });
+        } catch (error) {}
+    }, 50);
+  };
+
   //Crown Affair
   private CrownAffairadjustSwiperAndHeroStyles = () => {
     setInterval(() => {
@@ -2056,7 +2078,7 @@ class ScreenshotFixes extends Common {
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       {
-        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168],
+        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168, 3160],
         functions: [this.TheOodiesetSlickTrackWidths],
       },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
@@ -2082,6 +2104,7 @@ class ScreenshotFixes extends Common {
       { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
       { ids: [3065], functions: [this.blocoutsetSubmenuHeight] },
       { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
+      { ids: [3158], functions: [this.PureCutupdateSourceSrcset] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
