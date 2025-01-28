@@ -7,6 +7,7 @@ export default class AntenorScreenShotFixes extends Common {
       this.setNoodPromoCardImageSize();
       this.laBourseRemoveSearchBarOverlay();
       this.setSolaNewsletterFormDisplay();
+      this.setBestBlockElementDisplay();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -89,7 +90,7 @@ export default class AntenorScreenShotFixes extends Common {
   private setNoodPromoCardImageSize() {
     try {
       const promoContainer = this.dom.querySelector(
-        "#section-id-template--23090236653890__slideshow_MgChQG"
+        "#shopify-section-template--23090236653890__slideshow_MgChQG"
       ) as HTMLElement | null;
 
       if (promoContainer) {
@@ -99,7 +100,7 @@ export default class AntenorScreenShotFixes extends Common {
 
         if (promoSlider) {
           promoSlider.style.setProperty("max-width", "100vw");
-          promoSlider.style.setProperty("height", "max-content");
+          promoSlider.style.removeProperty("height");
         }
 
         const sliderChildrenSelectors = [
@@ -107,6 +108,7 @@ export default class AntenorScreenShotFixes extends Common {
           ".slick-track",
           ".slick-list.draggable",
           ".slideshow.slideshow--navigation-none.slick-slider-overlay-dots-desktop.slick-slider-overlay-dots.slick-initialized.slick-slider",
+          "#section-id-template--23090236653890__slideshow_MgChQG",
         ];
 
         sliderChildrenSelectors.forEach((selector) => {
@@ -139,6 +141,62 @@ export default class AntenorScreenShotFixes extends Common {
     } catch (error) {}
   }
 
+  private setBestBlockElementDisplay(): void {
+    try {
+      //clone element on page init to keep track of styles
+      const syncStyles = (root: HTMLElement, copy: HTMLElement) => {
+        const originalDisplayStyleValue =
+          copy.style.getPropertyValue("display");
+
+        const updatedDisplayStyleValue = root.style.getPropertyValue("display");
+
+        if (updatedDisplayStyleValue !== originalDisplayStyleValue) {
+          root.style.setProperty(
+            "display",
+            originalDisplayStyleValue,
+            "important"
+          );
+        }
+
+        const rootChildren = root.children;
+        const copyChildren = copy.children;
+
+        if (rootChildren.length === copyChildren.length) {
+          for (let i = 0; i < rootChildren.length; i++) {
+            const rootChild = rootChildren[i] as HTMLElement;
+            const copyChild = copyChildren[i] as HTMLElement;
+
+            syncStyles(rootChild, copyChild);
+          }
+        }
+      };
+
+      const rootElement = this.dom.querySelector(
+        ".n2-section-smartslider.fitvidsignore.n2_clear"
+      ) as HTMLElement | null;
+
+      const rootElementClone = rootElement.cloneNode(true) as HTMLElement;
+
+      if (rootElement) {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (
+              mutation.type === "attributes" ||
+              mutation.type === "childList"
+            ) {
+              syncStyles(rootElement, rootElementClone);
+            }
+          });
+        });
+
+        observer.observe(rootElement, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+      }
+    } catch (error) {}
+  }
   //Solawave
   private setSolaNewsletterFormDisplay(): void {
     try {
@@ -168,4 +226,31 @@ export default class AntenorScreenShotFixes extends Common {
       isImportant ? "important" : ""
     );
   }
+
+  // private async generateHash(input: string): Promise<string> {
+  //   const padWithZeros = (str: string, targetLength: number) => {
+  //     while (str.length < targetLength) {
+  //       str = "0" + str;
+  //     }
+  //     return str;
+  //   };
+  //   const encoder = new TextEncoder();
+  //   const data = encoder.encode(input);
+  //   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  //   const hashArray = Array.from(new Uint8Array(hashBuffer));
+  //   const hashHex = hashArray
+  //     .map((b) => padWithZeros(b.toString(16), 2))
+  //     .join("");
+
+  //   return hashHex.slice(0, 10);
+  // }
+
+  // private async createElementStyleMap(rootElement: HTMLElement): Promise<any> {
+  //   const styleMap = {};
+  //   const getElementDisplayProperty = async (element: HTMLElement) => {
+  //     const elementID = await this.generateHash(element);
+  //     const displayStyle = element.style.getPropertyValue("display");
+  //   };
+  //   return styleMap;
+  // }
 }
