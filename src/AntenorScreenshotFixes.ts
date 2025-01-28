@@ -8,6 +8,7 @@ export default class AntenorScreenShotFixes extends Common {
       this.laBourseRemoveSearchBarOverlay();
       this.setSolaNewsletterFormDisplay();
       this.setBestBlockElementDisplay();
+      this.otaaScreenShotFixes();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -94,6 +95,7 @@ export default class AntenorScreenShotFixes extends Common {
       ) as HTMLElement | null;
 
       if (promoContainer) {
+        promoContainer.style.removeProperty("height");
         const promoSlider = promoContainer.querySelector(
           ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
         ) as HTMLElement | null;
@@ -209,6 +211,68 @@ export default class AntenorScreenShotFixes extends Common {
           formContainer.style.setProperty("display", "block");
         }
       }, 1000);
+    } catch (error) {}
+  }
+
+  //Otaa
+
+  private otaaScreenShotFixes(): void {
+    try {
+      const sectionContainer = this.dom.querySelector(
+        "#shopify-section-collection-template-boost-pfs-filter"
+      ) as HTMLElement | null;
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === "attributes" || mutation.type === "childList") {
+            this.fixOtaaFilterOptionsSize(sectionContainer);
+            this.setOtaaSortIconOpacity(sectionContainer);
+          }
+        });
+      });
+
+      observer.observe(sectionContainer, {
+        subtree: true,
+        attributes: true,
+        childList: true,
+      });
+    } catch (error) {}
+  }
+  private setOtaaSortIconOpacity(sectionContainer: HTMLElement): void {
+    try {
+      const filterOverlayContainer = sectionContainer.querySelector(
+        ".boost-pfs-filter-wrapper"
+      );
+
+      if (filterOverlayContainer) {
+        const sortIconContainer = filterOverlayContainer.querySelector(
+          ".custom_mobile_filters_sort"
+        ) as HTMLElement | null;
+
+        const isOverlayActive =
+          filterOverlayContainer.classList.contains("main_filter_div");
+        if (sortIconContainer) {
+          sortIconContainer.style.setProperty(
+            "opacity",
+            isOverlayActive ? "0" : "1"
+          );
+        }
+      }
+    } catch (error) {}
+  }
+  private fixOtaaFilterOptionsSize(sectionContainer: HTMLElement): void {
+    try {
+      const filterOptionsContainer = sectionContainer.querySelector(
+        ".boost-pfs-filter-options-wrapper"
+      ) as HTMLElement | null;
+
+      const filterOptions = filterOptionsContainer.querySelectorAll(
+        ".boost-pfs-filter-option.boost-pfs-filter-option-list.boost-pfs-filter-no-scrollbar.boost-pfs-filter-option-column-1"
+      ) as NodeListOf<HTMLElement>;
+
+      filterOptions.forEach((option) => {
+        option.style.removeProperty("height");
+      });
     } catch (error) {}
   }
 
