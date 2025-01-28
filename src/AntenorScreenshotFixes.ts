@@ -226,31 +226,4 @@ export default class AntenorScreenShotFixes extends Common {
       isImportant ? "important" : ""
     );
   }
-
-  // private async generateHash(input: string): Promise<string> {
-  //   const padWithZeros = (str: string, targetLength: number) => {
-  //     while (str.length < targetLength) {
-  //       str = "0" + str;
-  //     }
-  //     return str;
-  //   };
-  //   const encoder = new TextEncoder();
-  //   const data = encoder.encode(input);
-  //   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  //   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  //   const hashHex = hashArray
-  //     .map((b) => padWithZeros(b.toString(16), 2))
-  //     .join("");
-
-  //   return hashHex.slice(0, 10);
-  // }
-
-  // private async createElementStyleMap(rootElement: HTMLElement): Promise<any> {
-  //   const styleMap = {};
-  //   const getElementDisplayProperty = async (element: HTMLElement) => {
-  //     const elementID = await this.generateHash(element);
-  //     const displayStyle = element.style.getPropertyValue("display");
-  //   };
-  //   return styleMap;
-  // }
 }
