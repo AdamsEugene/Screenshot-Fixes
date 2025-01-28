@@ -96,6 +96,11 @@ export default class AntenorScreenShotFixes extends Common {
 
       if (promoContainer) {
         promoContainer.style.removeProperty("height");
+        const containerParent = promoContainer.parentElement;
+        if (containerParent) {
+          containerParent.style.removeProperty("height");
+        }
+
         const promoSlider = promoContainer.querySelector(
           ".slide.slide-1.height--adapt.image-overlay.image-overlay--bg-full.slick-slide.slick-current.slick-active"
         ) as HTMLElement | null;
