@@ -12,6 +12,7 @@ import { JsonEntry } from "./@types";
 import BensonScreenshotFixes from "./BensonScreenShotFixes";
 import JoeScreenShotFixes from "./JoeScreenShotFixes";
 import AntenorScreenShotFixes from "./AntenorScreenshotFixes";
+import KwasiOwusuScreenshotFixes from "./KwasiOwusuScreenShotFixes";
 
 class ScreenshotFixes extends Common {
   constructor(debugMode = false) {
@@ -144,6 +145,9 @@ class ScreenshotFixes extends Common {
 
     const antenorScreenShotFixes = new AntenorScreenShotFixes(this.dom);
     antenorScreenShotFixes.init(containerId, debugMode);
+
+    const kwasiOwusuScreenFixes = new KwasiOwusuScreenshotFixes(this.dom);
+    kwasiOwusuScreenFixes.init(containerId, debugMode);
 
     const fixedElementsInstance = new StickyAddToCart(this.dom);
     const fixedElements = fixedElementsInstance.getElements();
