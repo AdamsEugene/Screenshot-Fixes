@@ -2480,7 +2480,7 @@ export default class RyanScreenshotFixes extends Common {
       } catch (error) {
         return;
       }
-    }, 100);
+    }, 50);
   }
 
   private removeDisplayFromReeview() {
