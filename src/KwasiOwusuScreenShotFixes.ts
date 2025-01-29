@@ -17,7 +17,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
   private adjustClearDivForBlackLEDLight() {
     setInterval(() => {
       try {
-        const parentWrapper = document.querySelector<HTMLDivElement>('.style-c.wrapper');
+        const parentWrapper = this.dom.querySelector<HTMLDivElement>('.style-c.wrapper');
         if (!parentWrapper) return;
 
         const clearDiv = parentWrapper.querySelector<HTMLDivElement>('div[style*="clear: both; display: none"]');
@@ -32,7 +32,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
   private fixMissingImagesForBlackLEDLight() {
     setInterval(() => {
       try {
-        const lazyImageSpans = document.querySelectorAll<HTMLSpanElement>('.lazy-image');
+        const lazyImageSpans = this.dom.querySelectorAll<HTMLSpanElement>('.lazy-image');
 
         if (!lazyImageSpans.length) return;
 
@@ -46,7 +46,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
           if (!imageUrl) return;
 
 
-          const imgElement = document.createElement('img');
+          const imgElement = this.dom.createElement('img');
           imgElement.src = imageUrl;
           imgElement.alt = altText;
           imgElement.style.maxWidth = '150px';
@@ -66,7 +66,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
     setInterval(() => {
       try {
 
-        const ngrApp: HTMLElement | null = document.querySelector('ngr-app');
+        const ngrApp: HTMLElement | null = this.dom.querySelector('ngr-app');
         if (!ngrApp) return;
 
         ngrApp.style.display = 'none';
@@ -80,7 +80,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
     setInterval(() => {
       try {
 
-        const anchorsWithoutHref: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a:not([href])');
+        const anchorsWithoutHref: NodeListOf<HTMLAnchorElement> = this.dom.querySelectorAll('a:not([href])');
         if (anchorsWithoutHref.length === 0) return;
 
         anchorsWithoutHref.forEach((anchor: HTMLAnchorElement) => {
@@ -95,7 +95,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
   private adjustImageStyles() {
     setInterval(() => {
       try {
-        const logoItems = document.querySelectorAll<HTMLLIElement>('li.hp-logos__logos-item');
+        const logoItems = this.dom.querySelectorAll<HTMLLIElement>('li.hp-logos__logos-item');
         if (!logoItems.length) return;
 
 
@@ -119,19 +119,33 @@ export default class KwasiOwusuScreenshotFixes extends Common {
 
   private applyBackgroundGradient() {
     try {
-        setInterval(() => {
-            try {
-                const targetDiv = document.querySelector<HTMLDivElement>('#shopify-section-template--21070610825549__hp-nurosym');
-                if (!targetDiv) return;
-                targetDiv.style.background = 'linear-gradient(180deg, #fff, #edf2f2)';
-            } catch (error) {
-                return;
-            }
-        }, 50);
+      setInterval(() => {
+        try {
+          const targetDiv = this.dom.querySelector<HTMLDivElement>('#shopify-section-template--21070610825549__hp-nurosym');
+          if (!targetDiv) return;
+          targetDiv.style.background = 'linear-gradient(180deg, #fff, #edf2f2)';
+        } catch (error) {
+          return;
+        }
+      }, 500);
     } catch (error) {
-        return;
+      return;
     }
-}
+  }
+
+  private updateSliderOverflow() {
+    setInterval(() => {
+      try {
+        const slider = this.dom.querySelector<HTMLElement>('#SliderGallery-template--23167624413498__featured-product');
+        if (!slider) return;
+
+        slider.style.overflow = 'hidden';
+      } catch (error) {
+        return;
+      }
+    }, 500);
+  }
+
 
 }
 
