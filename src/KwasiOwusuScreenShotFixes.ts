@@ -3,6 +3,7 @@ import Common from "./Common";
 export default class KwasiOwusuScreenshotFixes extends Common {
   public init(containerId: string, debugMode: boolean): void {
     const func = () => {
+      this.updateSliderOverflow();
       this.applyBackgroundGradient();
       this.adjustImageStyles();
       this.allowCursorForAnchorsWithoutHref();
