@@ -227,6 +227,18 @@ export default class AntenorScreenShotFixes extends Common {
         "#shopify-section-collection-template-boost-pfs-filter"
       ) as HTMLElement | null;
 
+      [
+        ".boost-pfs-filter-wrapper-filter",
+        ".boost-pfs-filter-tree-content",
+      ].forEach((selector) => {
+        const filterOverlayElement = sectionContainer.querySelector(
+          selector
+        ) as HTMLElement | null;
+        if (filterOverlayElement) {
+          filterOverlayElement.style.removeProperty("height");
+        }
+      });
+
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.type === "attributes" || mutation.type === "childList") {
