@@ -24,7 +24,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
         if (!clearDiv) return;
         clearDiv.style.removeProperty('display');
       } catch (error) {
-        console.error('Error adjusting clear div:', error);
+        return;
       }
     }, 500);
   }
@@ -56,7 +56,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
           span.appendChild(imgElement);
         });
       } catch (error) {
-
+        return;
       }
     }, 500);
   }
@@ -125,7 +125,7 @@ export default class KwasiOwusuScreenshotFixes extends Common {
                 if (!targetDiv) return;
                 targetDiv.style.background = 'linear-gradient(180deg, #fff, #edf2f2)';
             } catch (error) {
-                console.error('Error applying background gradient within interval:', error);
+                return;
             }
         }, 50);
     } catch (error) {
