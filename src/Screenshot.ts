@@ -1951,6 +1951,19 @@ class ScreenshotFixes extends Common {
         } catch (error) {}
     }, 50);
   };
+
+  private BlocoutremoveImgHeight = () => {
+    setInterval(() => {
+        try {
+            const imgElements = this.dom.querySelectorAll('img');
+            if (!imgElements.length) return;
+ 
+            imgElements.forEach(element => {
+                (element as HTMLElement).style.removeProperty('height');
+            });
+        } catch (error) {}
+    }, 50);
+  };
   
   //Ethique
   private EthiqueremoveMenuDrawerDisplay = () => {
@@ -2102,7 +2115,7 @@ class ScreenshotFixes extends Common {
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
       { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
       { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
-      { ids: [3065], functions: [this.blocoutsetSubmenuHeight] },
+      { ids: [3065], functions: [this.blocoutsetSubmenuHeight, this.BlocoutremoveImgHeight] },
       { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
       { ids: [3158], functions: [this.PureCutupdateSourceSrcset] },
 
