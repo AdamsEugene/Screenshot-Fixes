@@ -3,6 +3,9 @@ import Common from "./Common";
 export default class KwasiOwusuScreenshotFixes extends Common {
   public init(containerId: string, debugMode: boolean): void {
     const func = () => {
+      this.modifyHubSpotFormForBlackOakLED();
+      this.removeDisplayNoneForBlackOakLED();
+      this.fixBlackOakLEDDistortedFeaturedImages();
       this.applyBackgroundGradientAndAddButton();
       this.updateSliderOverflow();
       this.applyBackgroundGradient();
@@ -152,12 +155,12 @@ export default class KwasiOwusuScreenshotFixes extends Common {
   private applyBackgroundGradientAndAddButton() {
     setInterval(() => {
       try {
-        
+
         const targetDiv: HTMLElement | null = this.dom.querySelector('#shopify-section-template--21070610825549__hp-nurosym');
         if (targetDiv) {
           targetDiv.style.background = 'linear-gradient(180deg, #fff, #edf2f2)';
         }
-       
+
         const buttonContainer: HTMLElement | null = this.dom.querySelector('.tamix-ecommerce-buttons-flex');
         if (buttonContainer && !buttonContainer.querySelector('.tamix-ecommerce-buttons-item')) {
           const externalLinkButton: string = `
@@ -220,11 +223,11 @@ export default class KwasiOwusuScreenshotFixes extends Common {
                 `;
           buttonContainer.innerHTML = externalLinkButton;
 
-          
+
           const button: HTMLAnchorElement | null = buttonContainer.querySelector('.tamix-ecommerce-button');
           if (button) {
             button.addEventListener('click', (e: MouseEvent) => {
-              e.preventDefault(); 
+              e.preventDefault();
               window.open('https://www.iherb.com/pr/nubest-tall-10-teens-powerful-growth-60-capsules/122226?rcode=LUI5678', '_blank');
             });
           }
@@ -234,6 +237,91 @@ export default class KwasiOwusuScreenshotFixes extends Common {
       }
     }, 500);
   }
+
+  private fixBlackOakLEDDistortedFeaturedImages() {
+    setInterval(() => {
+      try {
+
+        const divElements: NodeListOf<HTMLDivElement> = this.dom.querySelectorAll('div.col-md-3.col-xs-12.element.mb30');
+        divElements.forEach((div: HTMLDivElement) => {
+          if (div.style.height !== '390px') {
+            div.style.height = '390px';
+          }
+        });
+
+
+        const lazyImageAnchors: NodeListOf<HTMLAnchorElement> = this.dom.querySelectorAll('a.lazy-image');
+        lazyImageAnchors.forEach((anchor: HTMLAnchorElement) => {
+          if (anchor.style.display === 'table-cell') {
+            anchor.style.display = '';
+          }
+        });
+
+        lazyImageAnchors.forEach((anchor: HTMLAnchorElement) => {
+          const imgElements: NodeListOf<HTMLImageElement> = anchor.querySelectorAll('img');
+          if (imgElements.length > 1) {
+            imgElements.forEach((img: HTMLImageElement, index: number) => {
+              if (index !== 0) {
+                img.style.display = 'none';
+              }
+            });
+          }
+        });
+      } catch (error) {
+        return;
+      }
+    }, 500);
+  }
+
+  private removeDisplayNoneForBlackOakLED() {
+    setInterval(() => {
+      try {
+        const firstDiv = this.dom.querySelector<HTMLDivElement>('div[style*="display: none"]');
+        if (firstDiv && firstDiv.style.display === 'none') {
+          firstDiv.style.display = '';
+        }
+
+        const secondDiv = this.dom.querySelector<HTMLDivElement>('div[style*="display: none"]:not(:first-of-type)');
+        if (secondDiv && secondDiv.style.display === 'none') {
+          secondDiv.style.display = '';
+        }
+      } catch (error) {
+        return;
+      }
+    }, 500);
+  }
+
+  private modifyHubSpotFormForBlackOakLED() {
+    setInterval(() => {
+        try {
+            const targetDiv = this.dom.querySelector<HTMLDivElement>('#hbspt-form-44d259cd-77e3-4f84-b6ea-67bbd09d0d9f');
+            if (!targetDiv) return;
+
+            targetDiv.setAttribute('data-hs-forms-root', 'true');
+
+            if (!targetDiv.querySelector<HTMLIFrameElement>('#hs-form-iframe-0')) {
+                const iframe: HTMLIFrameElement = this.dom.createElement('iframe');
+                iframe.id = 'hs-form-iframe-0';
+                iframe.className = 'hs-form-iframe';
+                iframe.title = 'Form 0';
+                iframe.scrolling = 'no';
+                iframe.style.position = 'static';
+                iframe.style.border = 'medium';
+                iframe.style.display = 'block';
+                iframe.style.overflow = 'hidden';
+                iframe.style.width = '100%';
+                iframe.style.height = '171px';
+                iframe.width = '100%';
+                iframe.height = '171';
+
+                targetDiv.appendChild(iframe);
+            }
+        } catch (error) {
+            console.error('Error modifying HubSpot form:', error);
+        }
+    }, 500);
+}
+
 
 }
 
