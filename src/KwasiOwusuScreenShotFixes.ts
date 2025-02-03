@@ -293,35 +293,33 @@ export default class KwasiOwusuScreenshotFixes extends Common {
 
   private modifyHubSpotFormForBlackOakLED() {
     setInterval(() => {
-        try {
-            const targetDiv = this.dom.querySelector<HTMLDivElement>('#hbspt-form-44d259cd-77e3-4f84-b6ea-67bbd09d0d9f');
-            if (!targetDiv) return;
+      try {
+        const targetDiv = this.dom.querySelector<HTMLDivElement>('#hbspt-form-44d259cd-77e3-4f84-b6ea-67bbd09d0d9f');
+        if (!targetDiv) return;
 
-            targetDiv.setAttribute('data-hs-forms-root', 'true');
+        targetDiv.setAttribute('data-hs-forms-root', 'true');
 
-            if (!targetDiv.querySelector<HTMLIFrameElement>('#hs-form-iframe-0')) {
-                const iframe: HTMLIFrameElement = this.dom.createElement('iframe');
-                iframe.id = 'hs-form-iframe-0';
-                iframe.className = 'hs-form-iframe';
-                iframe.title = 'Form 0';
-                iframe.scrolling = 'no';
-                iframe.style.position = 'static';
-                iframe.style.border = 'medium';
-                iframe.style.display = 'block';
-                iframe.style.overflow = 'hidden';
-                iframe.style.width = '100%';
-                iframe.style.height = '171px';
-                iframe.width = '100%';
-                iframe.height = '171';
+        if (!targetDiv.querySelector<HTMLIFrameElement>('#hs-form-iframe-0')) {
+          const iframe: HTMLIFrameElement = this.dom.createElement('iframe');
+          iframe.id = 'hs-form-iframe-0';
+          iframe.className = 'hs-form-iframe';
+          iframe.title = 'Form 0';
+          iframe.scrolling = 'no';
+          iframe.style.position = 'static';
+          iframe.style.border = 'medium';
+          iframe.style.display = 'block';
+          iframe.style.overflow = 'hidden';
+          iframe.style.width = '100%';
+          iframe.style.height = '171px';
+          iframe.width = '100%';
+          iframe.height = '171';
 
-                targetDiv.appendChild(iframe);
-            }
-        } catch (error) {
-            console.error('Error modifying HubSpot form:', error);
+          targetDiv.appendChild(iframe);
         }
+      } catch (error) {
+        return;
+      }
     }, 500);
-}
-
-
+  }
 }
 
