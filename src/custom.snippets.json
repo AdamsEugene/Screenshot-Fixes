@@ -1025,5 +1025,14 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/friskchocolates.com--main.html"
     }
+  },
+  {
+    "selector": "#baseBody",
+    "content": {
+      "idSite": 3039,
+      "idSiteHsr": 7675888,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.pourmoi.co.uk-ordermanagement-basket.aspx-main.html"
+    }
   }
 ]
