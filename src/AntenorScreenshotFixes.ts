@@ -365,16 +365,22 @@ export default class AntenorScreenShotFixes extends Common {
 
   private setLaticoAfterPaySVGIconHeight(): void {
     try {
-      const iconContainer = this.dom.querySelector(
-        "span.afterpay-logo-link"
+      const productPurchasePaymentMethodsSection = this.dom.querySelector(
+        ".payment-methods-text.ProductMeta__Text"
       ) as HTMLElement | null;
-      if (iconContainer) {
-        const svgRectElement = iconContainer.querySelector(
-          "svg defs clipPath#clip0 rect"
-        ) as HTMLElement | null;
+      if (productPurchasePaymentMethodsSection) {
+        const iconContainer =
+          productPurchasePaymentMethodsSection.querySelector(
+            "span.afterpay-logo-link"
+          ) as HTMLElement | null;
+        if (iconContainer) {
+          const svgRectElement = iconContainer.querySelector(
+            "svg defs clipPath#clip0 rect"
+          ) as HTMLElement | null;
 
-        if (svgRectElement) {
-          svgRectElement.style.removeProperty("height");
+          if (svgRectElement) {
+            svgRectElement.style.removeProperty("height");
+          }
         }
       }
     } catch (error) {}
