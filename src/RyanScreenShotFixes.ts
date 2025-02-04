@@ -162,6 +162,10 @@ export default class RyanScreenshotFixes extends Common {
       this.adjustReploElements();
       this.AMANDAPEARLadjustSlideshowLoaders();
       this.NaakhideBoostFilterTree();
+      this.LiaremoveCarouselOverflow();
+      this.SANTOFIremoveThumbnailStyles();
+      this.FriskChocolatessetVideoWidth();
+      this.VIIAhideIframe();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3472,6 +3476,84 @@ export default class RyanScreenshotFixes extends Common {
         return;
       }
     }, 200);
+  }
+
+  //Lia
+  private LiaremoveCarouselOverflow() {
+    setInterval(() => {
+      try {
+        const parentElements = this.dom.querySelectorAll(".contents");
+        if (!parentElements.length) return;
+
+        parentElements.forEach((parent) => {
+          const carouselElements = parent.querySelectorAll(
+            ".product-gallery__carousel.scroll-area"
+          );
+          carouselElements.forEach((carousel) => {
+            (carousel as HTMLElement).style.removeProperty("overflow");
+          });
+        });
+      } catch (error) {
+        return;
+      }
+    }, 50);
+  }
+
+  //SANTOFI
+  private SANTOFIremoveThumbnailStyles() {
+    setInterval(() => {
+      try {
+        const thumbnailImages = this.dom.querySelectorAll(
+          ".summary-thumbnail.img-wrapper > img"
+        );
+        if (!thumbnailImages.length) return;
+
+        thumbnailImages.forEach((img) => {
+          (img as HTMLElement).style.removeProperty("left");
+          (img as HTMLElement).style.removeProperty("width");
+          (img as HTMLElement).style.removeProperty("height");
+        });
+      } catch (error) {
+        return;
+      }
+    }, 50);
+  }
+
+  //Frisk Chocolates
+  private FriskChocolatessetVideoWidth() {
+    setInterval(() => {
+      try {
+        const videoElements = this.dom.querySelectorAll(
+          ".reelUp_card_video > video"
+        );
+        if (!videoElements.length) return;
+
+        videoElements.forEach((video) => {
+          (video as HTMLElement).style.setProperty(
+            "width",
+            "-webkit-fill-available"
+          );
+        });
+      } catch (error) {
+        return;
+      }
+    }, 50);
+  }
+
+  //VIIA
+  private VIIAhideIframe() {
+    setInterval(() => {
+      try {
+        const iframe = this.dom.querySelector(
+          "iframe#_jst-iframe-75a4af7fddbe4af48543a23cf3b93b90-11b581a07cfe11ef9fe53b8b0b0ca0d7-41e20832106b4c139ce932ba994c3702"
+        );
+        if (!iframe) return;
+
+        (iframe as HTMLElement).style.setProperty("display", "none");
+      } catch (error) {
+        return;
+      }
+    }, 50);
   }
 
   //toggleHeatmapClassOnDrawer

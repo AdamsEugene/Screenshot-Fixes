@@ -1016,5 +1016,23 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.haengemattengigant.de-babyhangematte-natural-green-main.html"
     }
+  },
+  {
+    "selector": ".r-1wovike",
+    "content": {
+      "idSite": 3131,
+      "idSiteHsr": 8689842,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/friskchocolates.com--main.html"
+    }
+  },
+  {
+    "selector": "#baseBody",
+    "content": {
+      "idSite": 3039,
+      "idSiteHsr": 7675888,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.pourmoi.co.uk-ordermanagement-basket.aspx-main.html"
+    }
   }
 ]
