@@ -9,6 +9,8 @@ export default class AntenorScreenShotFixes extends Common {
       this.setSolaNewsletterFormDisplay();
       this.setBestBlockElementDisplay();
       this.otaaScreenShotFixes();
+      this.laticoLeathersScreenShotFixes();
+      // this.logOXScreenShotFixes();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -295,6 +297,256 @@ export default class AntenorScreenShotFixes extends Common {
     } catch (error) {}
   }
 
+  //Latico Leathers
+
+  private laticoLeathersScreenShotFixes(): void {
+    try {
+      this.setLaticoLeathersReviewCarouselImageOverlayDisplay();
+      this.setLaticoLeathersReviewOverlayHeight();
+      this.setLaticoAfterPaySVGIconHeight();
+    } catch (error) {}
+  }
+
+  private setLaticoLeathersReviewCarouselImageOverlayDisplay(): void {
+    try {
+      const reviewCarouselContainer = this.dom.querySelector(
+        "#shopify-block-AYTBUNzNwdCt3dGFvT__28e3ba65-f3df-46ad-9b89-286449c44b5d"
+      ) as HTMLElement | null;
+
+      if (reviewCarouselContainer) {
+        const carouselImageList = reviewCarouselContainer.querySelector(
+          "ul.hooper-track"
+        ) as HTMLElement | null;
+
+        const imageOverlays = carouselImageList.querySelectorAll(
+          ".oke-mediaOverlay.oke-okendoMediaCarousel-slide-overlay"
+        ) as NodeListOf<HTMLElement>;
+
+        imageOverlays.forEach((overlay) => {
+          overlay.style.setProperty("display", "none");
+        });
+      }
+    } catch (error) {}
+  }
+
+  private setLaticoLeathersReviewOverlayHeight(): void {
+    try {
+      const laticoBody = this.dom.querySelector("body#callie-sling-crossbody");
+      if (laticoBody) {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (
+              mutation.type === "childList" ||
+              mutation.type === "attributes"
+            ) {
+              const overlayContainer = this.dom.querySelector(
+                "#oke-modalContainer"
+              ) as HTMLElement | null;
+              if (overlayContainer) {
+                const overlayDialog = overlayContainer.querySelector(
+                  ".oke-modal-content"
+                ) as HTMLElement | null;
+                if (overlayDialog) {
+                  overlayDialog.style.setProperty("height", "100%");
+                }
+              }
+            }
+          });
+        });
+
+        observer.observe(laticoBody, {
+          childList: true,
+          attributes: true,
+          subtree: true,
+        });
+      }
+    } catch (error) {}
+  }
+
+  private setLaticoAfterPaySVGIconHeight(): void {
+    try {
+      const iconContainer = this.dom.querySelector(
+        "span.afterpay-logo-link"
+      ) as HTMLElement | null;
+      if (iconContainer) {
+        const svgRectElement = iconContainer.querySelector(
+          "svg defs clipPath#clip0 rect"
+        ) as HTMLElement | null;
+
+        if (svgRectElement) {
+          svgRectElement.style.removeProperty("height");
+        }
+      }
+    } catch (error) {}
+  }
+
+  //LogOX
+  private logOXScreenShotFixes(): void {
+    this.removeLogOXGetConnectedSectionSliderImagesMaxWidth();
+    this.logOXAuthorizedRetailersSectionFixes();
+    this.removeLogOXPaddingFromBrandsWeSellSection();
+    this.setLogOXHeroVideoHeight();
+  }
+
+  private removeLogOXGetConnectedSectionSliderImagesMaxWidth(): void {
+    try {
+      const getConnectedSliderContainer = this.dom.querySelector(
+        ".d-flex.flex-warp.connected_post.mb-md-0.mb-5.custom-instagram.slick-initialized.slick-slider"
+      ) as HTMLElement | null;
+
+      if (getConnectedSliderContainer) {
+        //contain images
+        // this.wrapWithObserver(
+        //   getConnectedSliderContainer,
+        //   () => {
+        setInterval(() => {
+          const anchorTags = getConnectedSliderContainer.querySelectorAll(
+            "a.post_img.slick-slide"
+          ) as NodeListOf<HTMLAnchorElement>;
+
+          anchorTags.forEach((tag) => {
+            tag.style.removeProperty("max-width");
+
+            const linkImage = tag.querySelector(
+              "img"
+            ) as HTMLImageElement | null;
+
+            if (linkImage) {
+              linkImage.style.removeProperty("height");
+            }
+          });
+        }, 500);
+        //   },
+        //   ["attributes", "childList"]
+        // );
+      }
+    } catch (error) {}
+  }
+
+  private logOXAuthorizedRetailersSectionFixes(): void {
+    try {
+      const authorizedRetailersSection = this.dom.querySelector(
+        "#shopify-section-template--16879726100566__fbde8f8f-d63e-4c78-aa9c-7ae6106764e2"
+      ) as HTMLElement | null;
+
+      if (authorizedRetailersSection) {
+        this.wrapWithObserver(
+          authorizedRetailersSection,
+
+          () => {
+            const bgImage = authorizedRetailersSection.querySelector(
+              "img.bg-img"
+            ) as HTMLImageElement | null;
+
+            if (bgImage) {
+              bgImage.style.removeProperty("height");
+              bgImage.style.removeProperty("width");
+            }
+
+            //logo list images fix
+            const logoSliderList = this.dom.querySelectorAll(
+              ".logo-list-img.slick-slide"
+            ) as NodeListOf<HTMLElement>;
+            console.log("slides", logoSliderList);
+            logoSliderList.forEach((logoSlider) => {
+              logoSlider.style.removeProperty("min-height");
+              logoSlider.style.removeProperty("max-width");
+
+              const logoSliderImage = logoSlider.querySelector(
+                "img"
+              ) as HTMLImageElement | null;
+
+              if (logoSliderImage) {
+                logoSliderImage.style.removeProperty("width");
+              }
+            });
+          },
+          ["attributes", "childList"]
+        );
+      }
+    } catch (error) {}
+  }
+
+  private removeLogOXPaddingFromBrandsWeSellSection(): void {
+    try {
+      const brandsWeSellSection = this.dom.querySelector(
+        "#shopify-section-template--16879726100566__03ab1527-a9a3-4dcf-a02a-e817632ef113"
+      ) as HTMLElement | null;
+
+      // const observer = new MutationObserver((mutations) => {
+      //   mutations.forEach((mutation) => {
+      //     if (mutation.type === "childList" || mutation.type === "attributes") {
+      //       const proudToSellContainer = brandsWeSellSection.querySelector(
+      //         ".proud-to-sell.position-relative"
+      //       ) as HTMLElement | null;
+      //       if (proudToSellContainer) {
+      //         proudToSellContainer.style.removeProperty("padding-top");
+      //       }
+      //     }
+      //   });
+      // });
+      if (brandsWeSellSection) {
+        this.wrapWithObserver(
+          brandsWeSellSection,
+          () => {
+            const proudToSellContainer = brandsWeSellSection.querySelector(
+              ".proud-to-sell.position-relative"
+            ) as HTMLElement | null;
+            if (proudToSellContainer) {
+              proudToSellContainer.style.removeProperty("padding-top");
+            }
+          },
+          ["attributes", "childList"]
+        );
+        // observer.observe(brandsWeSellSection, {
+        //   childList: true,
+        //   subtree: true,
+        //   attributes: true,
+        // });
+      }
+    } catch (error) {}
+  }
+
+  private setLogOXHeroVideoHeight(): void {
+    try {
+      const heroSection = this.dom.querySelector(
+        "#shopify-section-template--16879726100566__main"
+      ) as HTMLElement | null;
+
+      if (heroSection) {
+        const videoContainer = heroSection.querySelector(
+          ".custom-video-container.full-video-layout.header-video-slide.swiper-slide.slide-video_slide_pWKJrq.slick-slide.w3_bg"
+        ) as HTMLElement | null;
+
+        if (videoContainer) {
+          //remove m
+          this.setStylePropertyFromAttribute(
+            videoContainer,
+            "height",
+            "actualheight",
+            true
+          );
+
+          const selectors = [
+            "custom-video.video-with--text.position-relative.d-block.w-100.h-100.placement--grid",
+            ".content-section.w3_bg",
+            ".poster-image.w3_bg",
+            "video.h-100.w-100",
+          ];
+
+          selectors.forEach((selector) => {
+            const element = videoContainer.querySelector(
+              selector
+            ) as HTMLElement | null;
+
+            if (element) {
+              element.style.removeProperty("height");
+            }
+          });
+        }
+      }
+    } catch (error) {}
+  }
   //Utils
   private setStylePropertyFromAttribute(
     element: HTMLElement,
@@ -308,5 +560,29 @@ export default class AntenorScreenShotFixes extends Common {
       attributeValue,
       isImportant ? "important" : ""
     );
+  }
+
+  private wrapWithObserver(
+    elementToObserver: HTMLElement,
+    callback: Function,
+    mutationTypes?: MutationRecordType[],
+    mutationTargets?: Node[]
+  ): void {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          (!mutationTypes || mutationTypes.includes(mutation.type)) &&
+          (!mutationTargets || mutationTargets.includes(mutation.target))
+        ) {
+          callback();
+        }
+      });
+    });
+
+    observer.observe(elementToObserver, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
   }
 }

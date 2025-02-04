@@ -1933,69 +1933,78 @@ class ScreenshotFixes extends Common {
   //blocout
   private blocoutsetSubmenuHeight = () => {
     setInterval(() => {
-        try {
-            const submenuElements = this.dom.querySelectorAll('.menu-drawer__submenu.has-submenu');
-            if (!submenuElements.length) return;
- 
-            submenuElements.forEach(element => {
-                (element as HTMLElement).style.setProperty('height', 'auto');
-            });
- 
-            const innerContainer = this.dom.querySelector('.menu-drawer__inner-container');
-            if (!innerContainer) return;
- 
-            const actualHeight = innerContainer.getAttribute('actualheight');
-            if (actualHeight) {
-                (innerContainer as HTMLElement).style.setProperty('height', actualHeight);
-            }
-        } catch (error) {}
+      try {
+        const submenuElements = this.dom.querySelectorAll(
+          ".menu-drawer__submenu.has-submenu"
+        );
+        if (!submenuElements.length) return;
+
+        submenuElements.forEach((element) => {
+          (element as HTMLElement).style.setProperty("height", "auto");
+        });
+
+        const innerContainer = this.dom.querySelector(
+          ".menu-drawer__inner-container"
+        );
+        if (!innerContainer) return;
+
+        const actualHeight = innerContainer.getAttribute("actualheight");
+        if (actualHeight) {
+          (innerContainer as HTMLElement).style.setProperty(
+            "height",
+            actualHeight
+          );
+        }
+      } catch (error) {}
     }, 50);
   };
 
   private BlocoutremoveImgHeight = () => {
     setInterval(() => {
-        try {
-            const imgElements = this.dom.querySelectorAll('img');
-            if (!imgElements.length) return;
- 
-            imgElements.forEach(element => {
-                (element as HTMLElement).style.removeProperty('height');
-            });
-        } catch (error) {}
+      try {
+        const imgElements = this.dom.querySelectorAll("img");
+        if (!imgElements.length) return;
+
+        imgElements.forEach((element) => {
+          (element as HTMLElement).style.removeProperty("height");
+        });
+      } catch (error) {}
     }, 50);
   };
-  
+
   //Ethique
   private EthiqueremoveMenuDrawerDisplay = () => {
     setInterval(() => {
-        try {
-            const menuDrawer = this.dom.querySelector('#mobile-menu-drawer.drawer.drawer--from-left');
-            if (!menuDrawer) return;
- 
-            (menuDrawer as HTMLElement).style.removeProperty('display');
-        } catch (error) {}
+      try {
+        const menuDrawer = this.dom.querySelector(
+          "#mobile-menu-drawer.drawer.drawer--from-left"
+        );
+        if (!menuDrawer) return;
+
+        (menuDrawer as HTMLElement).style.removeProperty("display");
+      } catch (error) {}
     }, 50);
   };
 
   //The Pure Cut
   private PureCutupdateSourceSrcset = () => {
     setInterval(() => {
-        try {
-            const pictures = this.dom.querySelectorAll('picture.gp-contents');
-            if (!pictures.length) return;
+      try {
+        const pictures = this.dom.querySelectorAll("picture.gp-contents");
+        if (!pictures.length) return;
 
-            pictures.forEach(picture => {
-                const sources = picture.querySelectorAll('source');
-                sources.forEach(source => {
-                    const srcset = source.getAttribute('srcset');
-                    const dataSrcset = source.getAttribute('data-srcset');
-                    
-                    if (srcset && srcset.startsWith('data:')) {
-                        source.setAttribute('srcset', dataSrcset);
-                    }
-                });
-            });
-        } catch (error) {}
+        pictures.forEach((picture) => {
+          const sources = picture.querySelectorAll("source");
+          sources.forEach((source) => {
+            const srcset = source.getAttribute("srcset");
+            const dataSrcset = source.getAttribute("data-srcset");
+
+            if (srcset && srcset.startsWith("data:")) {
+              source.setAttribute("srcset", dataSrcset);
+            }
+          });
+        });
+      } catch (error) {}
     }, 50);
   };
 
@@ -2054,6 +2063,8 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  //Latico Leathers:1425
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -2091,7 +2102,10 @@ class ScreenshotFixes extends Common {
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       {
-        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168, 3160, 3039],
+        ids: [
+          179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168,
+          3160, 3039,
+        ],
         functions: [this.TheOodiesetSlickTrackWidths],
       },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
@@ -2115,7 +2129,10 @@ class ScreenshotFixes extends Common {
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
       { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
       { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
-      { ids: [3065], functions: [this.blocoutsetSubmenuHeight, this.BlocoutremoveImgHeight] },
+      {
+        ids: [3065],
+        functions: [this.blocoutsetSubmenuHeight, this.BlocoutremoveImgHeight],
+      },
       { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
       { ids: [3158], functions: [this.PureCutupdateSourceSrcset] },
 

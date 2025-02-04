@@ -3440,35 +3440,39 @@ export default class RyanScreenshotFixes extends Common {
   //AMANDA PEARL
   private AMANDAPEARLadjustSlideshowLoaders() {
     setInterval(() => {
-        try {
-            const loaderElements = this.dom.querySelectorAll('.slideshow__loader');
-            if (!loaderElements.length) return;
+      try {
+        const loaderElements = this.dom.querySelectorAll(".slideshow__loader");
+        if (!loaderElements.length) return;
 
-            loaderElements.forEach(element => {
-                (element as HTMLElement).style.removeProperty('opacity');
-            });
-        } catch (error) {
-            return;
-        }
+        loaderElements.forEach((element) => {
+          (element as HTMLElement).style.removeProperty("opacity");
+        });
+      } catch (error) {
+        return;
+      }
     }, 50);
   }
 
   //Naak
   private NaakhideBoostFilterTree() {
     setTimeout(() => {
-        try {
-            const parentElement = this.dom.getElementById('boost-sd__filter-tree-wrapper');
-            if (!parentElement) return;
- 
-            const childElement = parentElement.querySelector('.boost-sd__filter-tree-vertical');
-            if (!childElement) return;
- 
-            childElement.classList.add('boost-sd__filter-tree-vertical--hidden');
-        } catch (error) {
-            return;
-        }
+      try {
+        const parentElement = this.dom.getElementById(
+          "boost-sd__filter-tree-wrapper"
+        );
+        if (!parentElement) return;
+
+        const childElement = parentElement.querySelector(
+          ".boost-sd__filter-tree-vertical"
+        );
+        if (!childElement) return;
+
+        childElement.classList.add("boost-sd__filter-tree-vertical--hidden");
+      } catch (error) {
+        return;
+      }
     }, 200);
- }
+  }
 
   //toggleHeatmapClassOnDrawer
   private toggleHeatmapClassOnDrawer() {
