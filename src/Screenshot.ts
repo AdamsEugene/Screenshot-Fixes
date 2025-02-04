@@ -2035,6 +2035,21 @@ class ScreenshotFixes extends Common {
     }, 50);
   };
 
+  //RetroSnap
+  private RetroSnapsetHeaderHeight = () => {
+    setInterval(() => {
+        try {
+            const headerSection = this.dom.querySelector('.shopify-section.shopify-section-group-header-group.section-header');
+            if (!headerSection) return;
+ 
+            const actualHeight = headerSection.getAttribute('actualheight');
+            if (actualHeight) {
+                (headerSection as HTMLElement).style.setProperty('max-height', actualHeight);
+            }
+        } catch (error) {}
+    }, 50);
+  };
+
   // Pure Life: 2287
   private PureLifeRemoveFAQDisplay = () => {
     setTimeout(() => {
@@ -2099,7 +2114,7 @@ class ScreenshotFixes extends Common {
       { ids: [1656], functions: [this.useActualHeightForIframeBirdie] },
       { ids: [2928], functions: [this.updateWithOfTestimonialImages] },
       { ids: [3024], functions: [this.BentgoupdateHeaderPadding] },
-      { ids: [3065], functions: [this.BlocoutsetSlickTrackStyles] },
+      { ids: [3065], functions: [this.blocoutsetSubmenuHeight, this.BlocoutremoveImgHeight, this.BlocoutsetSlickTrackStyles] },
       { ids: [2721], functions: [this.RemoveOkeCarouselDisplay] },
       { ids: [3097], functions: [this.PURAKAIupdateKlaviyoFormStyles] },
       { ids: [2392], functions: [this.ShinnySkinHideNavButtons] },
@@ -2115,10 +2130,10 @@ class ScreenshotFixes extends Common {
       { ids: [3147], functions: [this.CrownAffairadjustSwiperAndHeroStyles] },
       { ids: [1834], functions: [this.DaisyLondonsetSlickTrackWidths] },
       { ids: [2287], functions: [this.PureLifeRemoveFAQDisplay] },
-      { ids: [3065], functions: [this.blocoutsetSubmenuHeight, this.BlocoutremoveImgHeight] },
       { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
       { ids: [3158], functions: [this.PureCutupdateSourceSrcset] },
-
+      { ids: [3178], functions: [this.RetroSnapsetHeaderHeight] },
+      
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
 
