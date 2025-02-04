@@ -1016,5 +1016,23 @@
       "type": "file",
       "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.haengemattengigant.de-babyhangematte-natural-green-main.html"
     }
+  },
+  {
+    "selector": "#RechargeWidget_7832008818867",
+    "content": {
+      "idSite": 3183,
+      "idSiteHsr": 9157303,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.tiege.com-products-level-1-essential-skin-care-routine-main.html"
+    }
+  },
+  {
+    "selector": "#baseBody",
+    "content": {
+      "idSite": 3039,
+      "idSiteHsr": 7675888,
+      "type": "file",
+      "path": "https://configs-node.s3.us-west-2.amazonaws.com/configs-response/domcls/custom.snippets/www.pourmoi.co.uk-ordermanagement-basket.aspx-main.html"
+    }
   }
 ]
