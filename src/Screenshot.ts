@@ -1767,6 +1767,20 @@ class ScreenshotFixes extends Common {
     } catch (error) {}
   };
 
+  // Real Mushrooms: 2691
+  private DisplayHeaderOnRealMushroomsPDP = () => {
+    setInterval(() => {
+      try {
+        const target = this.dom.querySelector<HTMLElement>(
+          "#shopify-section-announcement-bar > div.fixedPadding"
+        );
+        if (target) {
+          target.style.setProperty("display", "block", "important");
+        }
+      } catch (error) {}
+    }, 50);
+  };
+
   //Springinger
   private hideShopifyMinicartElements() {
     const elements = this.dom.querySelectorAll(
@@ -1933,56 +1947,65 @@ class ScreenshotFixes extends Common {
   //blocout
   private blocoutsetSubmenuHeight = () => {
     setInterval(() => {
-        try {
-            const submenuElements = this.dom.querySelectorAll('.menu-drawer__submenu.has-submenu');
-            if (!submenuElements.length) return;
- 
-            submenuElements.forEach(element => {
-                (element as HTMLElement).style.setProperty('height', 'auto');
-            });
- 
-            const innerContainer = this.dom.querySelector('.menu-drawer__inner-container');
-            if (!innerContainer) return;
- 
-            const actualHeight = innerContainer.getAttribute('actualheight');
-            if (actualHeight) {
-                (innerContainer as HTMLElement).style.setProperty('height', actualHeight);
-            }
-        } catch (error) {}
+      try {
+        const submenuElements = this.dom.querySelectorAll(
+          ".menu-drawer__submenu.has-submenu"
+        );
+        if (!submenuElements.length) return;
+
+        submenuElements.forEach((element) => {
+          (element as HTMLElement).style.setProperty("height", "auto");
+        });
+
+        const innerContainer = this.dom.querySelector(
+          ".menu-drawer__inner-container"
+        );
+        if (!innerContainer) return;
+
+        const actualHeight = innerContainer.getAttribute("actualheight");
+        if (actualHeight) {
+          (innerContainer as HTMLElement).style.setProperty(
+            "height",
+            actualHeight
+          );
+        }
+      } catch (error) {}
     }, 50);
   };
-  
+
   //Ethique
   private EthiqueremoveMenuDrawerDisplay = () => {
     setInterval(() => {
-        try {
-            const menuDrawer = this.dom.querySelector('#mobile-menu-drawer.drawer.drawer--from-left');
-            if (!menuDrawer) return;
- 
-            (menuDrawer as HTMLElement).style.removeProperty('display');
-        } catch (error) {}
+      try {
+        const menuDrawer = this.dom.querySelector(
+          "#mobile-menu-drawer.drawer.drawer--from-left"
+        );
+        if (!menuDrawer) return;
+
+        (menuDrawer as HTMLElement).style.removeProperty("display");
+      } catch (error) {}
     }, 50);
   };
 
   //The Pure Cut
   private PureCutupdateSourceSrcset = () => {
     setInterval(() => {
-        try {
-            const pictures = this.dom.querySelectorAll('picture.gp-contents');
-            if (!pictures.length) return;
+      try {
+        const pictures = this.dom.querySelectorAll("picture.gp-contents");
+        if (!pictures.length) return;
 
-            pictures.forEach(picture => {
-                const sources = picture.querySelectorAll('source');
-                sources.forEach(source => {
-                    const srcset = source.getAttribute('srcset');
-                    const dataSrcset = source.getAttribute('data-srcset');
-                    
-                    if (srcset && srcset.startsWith('data:')) {
-                        source.setAttribute('srcset', dataSrcset);
-                    }
-                });
-            });
-        } catch (error) {}
+        pictures.forEach((picture) => {
+          const sources = picture.querySelectorAll("source");
+          sources.forEach((source) => {
+            const srcset = source.getAttribute("srcset");
+            const dataSrcset = source.getAttribute("data-srcset");
+
+            if (srcset && srcset.startsWith("data:")) {
+              source.setAttribute("srcset", dataSrcset);
+            }
+          });
+        });
+      } catch (error) {}
     }, 50);
   };
 
@@ -2060,7 +2083,10 @@ class ScreenshotFixes extends Common {
         functions: [this.adjustHeaderElements, this.removeMainContentMarginTop],
       },
       {
-        ids: [2777, 172, 2907, 555, 2684, 2842, 2993, 715, 1504, 2972, 3070, 3071, 3191],
+        ids: [
+          2777, 172, 2907, 555, 2684, 2842, 2993, 715, 1504, 2972, 3070, 3071,
+          3191,
+        ],
         functions: [this.observeMutation],
       },
       { ids: [1848], functions: [this.removeMainContentMarginTop] },
@@ -2078,7 +2104,10 @@ class ScreenshotFixes extends Common {
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       {
-        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168, 3160],
+        ids: [
+          179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168,
+          3160,
+        ],
         functions: [this.TheOodiesetSlickTrackWidths],
       },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
@@ -2105,6 +2134,7 @@ class ScreenshotFixes extends Common {
       { ids: [3065], functions: [this.blocoutsetSubmenuHeight] },
       { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
       { ids: [3158], functions: [this.PureCutupdateSourceSrcset] },
+      { ids: [2691], functions: [this.DisplayHeaderOnRealMushroomsPDP] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];
