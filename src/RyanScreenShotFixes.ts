@@ -18,7 +18,7 @@ export default class RyanScreenshotFixes extends Common {
       this.OliviaPearlupdateHeader();
       this.hideSearchElementIfToggleExists();
       this.BraceAbilityupdateHeader();
-      this.UpdateIframeSrc();
+      // this.UpdateIframeSrc();
       this.PetsmontremoveExtraFooter();
       this.Mimibeltupdatefooter();
       this.HampshireupdateHeader();
@@ -3646,59 +3646,59 @@ export default class RyanScreenshotFixes extends Common {
       });
   }
 
-  private UpdateIframeSrc() {
-    const iframes = this.dom.querySelectorAll(
-      "iframe"
-    ) as NodeListOf<HTMLIFrameElement>;
-    if (iframes.length === 0) return;
+  // private UpdateIframeSrc() {
+  //   const iframes = this.dom.querySelectorAll(
+  //     "iframe"
+  //   ) as NodeListOf<HTMLIFrameElement>;
+  //   if (iframes.length === 0) return;
 
-    const proxyUrl1 = "https://portal.heatmap.com/proxy/spa-only/getUrl?url=";
-    const proxyUrl2 = "https://portal.heatmap.com/proxy/getUrl?url=";
+  //   const proxyUrl1 = "https://portal.heatmap.com/proxy2/spa-only/getUrl?url=";
+  //   const proxyUrl2 = "https://portal.heatmap.com/proxy2/getUrl?url=";
 
-    const removeProxyUrl = (url: string, proxyUrl: string) => {
-      if (url.startsWith(proxyUrl)) {
-        try {
-          return decodeURIComponent(url.replace(proxyUrl, ""));
-        } catch (e) {
-          return url.replace(proxyUrl, "");
-        }
-      }
-      return url;
-    };
+  //   const removeProxyUrl = (url: string, proxyUrl: string) => {
+  //     if (url.startsWith(proxyUrl)) {
+  //       try {
+  //         return decodeURIComponent(url.replace(proxyUrl, ""));
+  //       } catch (e) {
+  //         return url.replace(proxyUrl, "");
+  //       }
+  //     }
+  //     return url;
+  //   };
 
-    iframes.forEach((iframe) => {
-      try {
-        let iframeSrc = iframe.getAttribute("src");
-        if (!iframeSrc) return;
+  //   iframes.forEach((iframe) => {
+  //     try {
+  //       let iframeSrc = iframe.getAttribute("src");
+  //       if (!iframeSrc) return;
 
-        try {
-          iframeSrc = decodeURIComponent(iframeSrc);
-        } catch (e) {}
+  //       try {
+  //         iframeSrc = decodeURIComponent(iframeSrc);
+  //       } catch (e) {}
 
-        iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
-        iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
+  //       iframeSrc = removeProxyUrl(iframeSrc, proxyUrl1);
+  //       iframeSrc = removeProxyUrl(iframeSrc, proxyUrl2);
 
-        // Check if iframe is from loox.io
-        if (iframeSrc.includes("loox.io")) {
-          iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
-        } else {
-          iframe.setAttribute("src", iframeSrc);
-        }
+  //       // Check if iframe is from loox.io
+  //       if (iframeSrc.includes("loox.io")) {
+  //         iframe.setAttribute("src", proxyUrl1 + encodeURIComponent(iframeSrc));
+  //       } else {
+  //         iframe.setAttribute("src", iframeSrc);
+  //       }
 
-        if (iframe.getAttribute("src-changed") === "true") {
-          const retryWithProxy = (proxyUrl: string) => {
-            try {
-              iframe.setAttribute(
-                "src",
-                proxyUrl + encodeURIComponent(iframeSrc)
-              );
-            } catch (e) {}
-          };
-          iframe.onerror = () => retryWithProxy(proxyUrl1);
-        }
-      } catch (e) {}
-    });
-  }
+  //       if (iframe.getAttribute("src-changed") === "true") {
+  //         const retryWithProxy = (proxyUrl: string) => {
+  //           try {
+  //             iframe.setAttribute(
+  //               "src",
+  //               proxyUrl + encodeURIComponent(iframeSrc)
+  //             );
+  //           } catch (e) {}
+  //         };
+  //         iframe.onerror = () => retryWithProxy(proxyUrl1);
+  //       }
+  //     } catch (e) {}
+  //   });
+  // }
 
   private adjustHeaderPosition() {
     const header = this.dom.getElementById(

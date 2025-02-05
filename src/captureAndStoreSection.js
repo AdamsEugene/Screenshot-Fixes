@@ -35,4 +35,4 @@ function copyContentToWindowAndDownload(selector) {
   }
 }
 
-copyContentToWindowAndDownload(".my-class");
+copyContentToWindowAndDownload("#baseBody");
