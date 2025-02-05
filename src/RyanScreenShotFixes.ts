@@ -167,6 +167,7 @@ export default class RyanScreenshotFixes extends Common {
       this.FriskChocolatessetVideoWidth();
       this.VIIAhideIframe();
       this.MysteryshirtinaboxremoveTransitionDisplay();
+      this.HouswiseadjustGalleryThumbnails();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3572,6 +3573,23 @@ export default class RyanScreenshotFixes extends Common {
             return;
         }
     }, 50);
+  }
+
+  //Houswise
+  private HouswiseadjustGalleryThumbnails() {
+    try {
+        const parentElements = this.dom.querySelectorAll('.jdgm-gallery__thumbnail-wrapper');
+        if (!parentElements.length) return;
+ 
+        parentElements.forEach(parent => {
+            const thumbnailElement = parent.querySelector('.jdgm-gallery__thumbnail');
+            if (thumbnailElement) {
+                (thumbnailElement as HTMLElement).style.removeProperty('height');
+            }
+        });
+    } catch (error) {
+        return;
+    }
   }
 
   //toggleHeatmapClassOnDrawer
