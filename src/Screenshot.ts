@@ -2041,6 +2041,27 @@ class ScreenshotFixes extends Common {
     }, 1000);
   };
 
+  //CarCoverscom
+  // private CarCoverscomadjustImageSources = () => {
+  //   setTimeout(() => {
+  //       try {
+  //           const images = this.dom.getElementsByTagName('img');
+  //           if (!images.length) return;
+            
+  //           Array.from(images).forEach(img => {
+  //               const srcset = img.getAttribute('srcset');
+  //               const src = img.getAttribute('src');
+                
+  //               if (srcset && src) {
+  //                   const domain = src.split('/_next')[0];
+  //                   const updatedSrcset = srcset.replace(/\/_next/g, `${domain}/_next`);
+  //                   img.setAttribute('srcset', updatedSrcset);
+  //               }
+  //           });
+  //       } catch (error) {}
+  //   }, 1000);
+  // };
+
   private functionsMap: Record<number, (() => void)[]> =
     this.createFunctionsMap();
 
@@ -2078,7 +2099,7 @@ class ScreenshotFixes extends Common {
       { ids: [3108], functions: [this.DailyRhythmadjustMainContentOverflow] },
       { ids: [2761], functions: [this.BreeoadjustUpsellAndCardElements] },
       {
-        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168, 3160, 2522],
+        ids: [179, 1932, 2905, 3024, 3147, 2555, 2851, 2951, 1387, 3114, 3153, 3168, 3160, 2522, 2850, 1768],
         functions: [this.TheOodiesetSlickTrackWidths],
       },
       { ids: [244], functions: [this.BruntupdateLazyPictureStyle] },
@@ -2105,6 +2126,7 @@ class ScreenshotFixes extends Common {
       { ids: [3065], functions: [this.blocoutsetSubmenuHeight] },
       { ids: [2093], functions: [this.EthiqueremoveMenuDrawerDisplay] },
       { ids: [3158], functions: [this.PureCutupdateSourceSrcset] },
+      // { ids: [3226], functions: [this.CarCoverscomadjustImageSources] },
 
       // { ids: [2925], functions: [this.setPositionForAnnouncementBarSMEL] },
     ];

@@ -168,6 +168,8 @@ export default class RyanScreenshotFixes extends Common {
       this.VIIAhideIframe();
       this.MysteryshirtinaboxremoveTransitionDisplay();
       this.HouswiseadjustGalleryThumbnails();
+      this.HyperliteadjustReviewGraphs();
+      this.ToolNutadjustSearchResults();
     };
     this.exec({ containerId, debugMode, func });
   }
@@ -3590,6 +3592,59 @@ export default class RyanScreenshotFixes extends Common {
     } catch (error) {
         return;
     }
+  }
+
+  //Hyperlite
+  private HyperliteadjustReviewGraphs() {
+    setTimeout(() => {
+        try {
+            const parentElements = this.dom.querySelectorAll('.okeReviews-ratingDistribution-item-value-graph');
+            if (!parentElements.length) return;
+ 
+            parentElements.forEach(parent => {
+                const barGraphElement = parent.querySelector('.okeReviews-barGraph');
+                if (barGraphElement) {
+                    const innerElements = barGraphElement.children;
+                    Array.from(innerElements).forEach(element => {
+                        (element as HTMLElement).style.removeProperty('display');
+                    });
+                }
+            });
+        } catch (error) {
+            return;
+        }
+    }, 1000);
+  }
+
+  //ToolNut
+  private ToolNutadjustSearchResults() {
+    setTimeout(() => {
+        try {
+            ['#amasty-shopby-product-list #searchspring-content', '.sidebar.sidebar-main #searchspring-sidebar']
+                .forEach(selector => {
+                    const element = this.dom.querySelector(selector);
+                    if (element) (element as HTMLElement).style.removeProperty('display');
+                });
+ 
+            const images = this.dom.querySelector('.footer-copyright .logo-info')?.getElementsByTagName('img');
+            if (images) Array.from(images).forEach(img => {
+                img.style.removeProperty('height');
+                img.style.removeProperty('width');
+            });
+ 
+            const footerTop = this.dom.querySelector('.footer.content .footer-top');
+            if (footerTop) {
+                const viewportHeight = footerTop.getAttribute('viewportheight');
+                const actualWidth = footerTop.getAttribute('actualwidth');
+                if (viewportHeight && actualWidth) {
+                    const paddingValue = (parseFloat(viewportHeight) / 100) * parseFloat(actualWidth);
+                    (footerTop as HTMLElement).style.paddingBottom = `${paddingValue}px`;
+                }
+            }
+        } catch (error) {
+            return;
+        }
+    }, 1000);
   }
 
   //toggleHeatmapClassOnDrawer
